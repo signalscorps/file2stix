@@ -1,3 +1,12 @@
+# Obstracts CLI
+
+Obstracts CLI is your automated threat intelligence analyst.
+
+Use Obstracts CLI to extract machine readable intelligence from unstructured data.
+
+A project from the Signals Corps: https://www.signalscorps.com/ 
+
+
 ## Instructions
 
 Download
@@ -23,3 +32,15 @@ Run program
 ```
 python extract_observables.py examples/input.txt
 ```
+
+## Obstracts Web
+
+Need more? Check out: https://www.obstracts.com/
+
+## License
+
+[LICENSE](/LICENSE)
+
+## Support
+
+Ask us anything on Discord: https://discord.gg/Qf4nmyJjME
