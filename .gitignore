@@ -130,5 +130,12 @@ dmypy.json
 .DS_Store
 
 # Example venv in docs
+venv
 
 obstracts-cli/
+
+# Ignore input file
+input.txt
+
+# Ignore .vscode settings
+.vscode/
