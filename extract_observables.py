@@ -18,7 +18,11 @@ unix_path = r"(/\S+)+"
 
 # Registry key
 registry_key = r"(?:CLSID|(?:HK(?:EY\_(?:CURRENT\_(?:CONFIG|USER)|LOCAL\_MACHINE|USERS)|C(?:C|U)|LM|U))|(?:I(?:nterface|ID))|REGISTRY|TypeLib)"
-registry_key_path = rf"({registry_key})(\\\\[^<>:\"/\\|\?\*]+)+"
+
+# User agent
+platforms = r"(Gecko)|(Firefox)|(AppleWebKit)|(Chrome)|(Safari)|(OPR)|(Edg)|(Safari)|(Mobile)|(curl)|(PostmanRuntime)"
+user_agent_details = r"\([\w;\s\.:-]+\)"
+user_agent = rf"(User-Agent:|user-agent:)? Mozilla/5.0(\s((\([\w;\s\.:-]+\)|(({platforms})(/\S+)+))))+"
 
 # Cryptocurrency address
 btc_address = r"[13][a-km-zA-HJ-NP-Z1-9]{25,34}"
@@ -41,8 +45,8 @@ observables_map = {
     "url:value": lambda x: validators.url(x),
     "email-addr:value": lambda x: validators.email(x),
     "mac-addr:value": lambda x: validators.mac_address(x),
-    # "windows-registry-key:key": r"^({registry_key})$",
-    # "network-traffic:extended_properties.http-ext.request_header.User-Agent": ""
+    "windows-registry-key:key": rf"^({registry_key}(\\\\[^<>:\"/\\|\?\*]+)+)$",
+    "network-traffic:extensions.'http-requestext'.request_header.'User-Agent'": rf"{user_agent}",
     "autonomous-system:number": r"^((AS|ASN)\d+)$",
     "artifact:payload_bin": rf"^(({btc_address})|({etc_address})|({xmr_address}))$",
     "cve": r"^(CVE-(19|20)\d{2}-\d{4,7})$",
@@ -63,9 +67,15 @@ class ExtractPatterns:
 
         # If pattern is a regex, then find all matches to the regular expression
         if isinstance(pattern, str):
-            for word in input.split():
-                if re.match(pattern, word):
-                    self.matches.append(word)
+            if pattern.startswith("^") and pattern.endswith("$"):
+                # Match each word with the regex
+                for word in input.split():
+                    if re.match(pattern, word):
+                        self.matches.append(word)
+            else:
+                # Find regex in the entire text (including whitespace)
+                for match in re.finditer(pattern, input):
+                    self.matches.append(match.group())
 
         # If pattern is a function, then find matches that don't throw exception when
         # `pattern` function runs
