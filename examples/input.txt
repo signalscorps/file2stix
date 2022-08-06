@@ -1,0 +1,25 @@
+This is some random text.
+It contains an ip address 198.51.100.3.
+Another ip address 198.0.103.12
+Another ip address 198.0.103.12
+IPv6 address: 2001:0db8:85a3:0000:0000:8a2e:0370:7334
+It contains a sha1 address 86F7E437FAA5A7FCE15D1DDCB9EAEAEA377667B8
+Md5 hash: 4ec503be252d765ea37621a629afdaa6 4ec503be252d765ea37621a629afdaa6
+sha256 hash: ba7816bf8f01cfea414140de5dae2223b00361a396177a9cb410ff61f20015ad
+sha512: 1f40fc92da241694750979ee6cf582f2d5d7d28e18335de05abc54d0560e0f5302860c652bf08d560252aa5e74210546f369fbbbce8c12cfc7957b2652fe9a75
+ssdeep hash: 96:s4Ud1Lj96tHHlZDrwciQmA+4uy1I0G4HYuL8N3TzS8QsO/wqWXLcMSx:sF1LjEtHHlZDrJzrhuyZvHYm8tKp/RWO
+virus.exe jfdjjs
+Unix path: /System/Library/LaunchDaemons
+windows path: C:\\Windows\\System32
+mac address: d2:fb:49:24:37:18
+email: example@example.com
+url: https://example.com/research/
+url: https://example.com/research/index.html
+domain: test.example.com
+sub-domain: example.com
+registry path: HKEY_LOCAL_MACHINE \\System\\Foo\\Bar
+btc address: 3FZbgi29cpjq2GjdwV8eyHuJJnkLtktZc5
+eth address: 0xb794f5ea0ba39494ce839613fffba74279579268
+xmr address: 48Fki6gnEN1QaiWNcsm8dVfX2JMg8xmjiQvuKpcdUD9rQH8WU4AXj9HKAF5AdnhKPSPLzTV7CX1Ks25BWrDeLnHuEFmhRxV
+cve id: CVE-2022-00001
+ASN number: ASN13335
