@@ -30,7 +30,7 @@ pip install -r requirements.txt
 
 Run program
 ```
-python extract_observables.py examples/input.txt
+python main.py examples/input.txt
 ```
 
 ## Obstracts Web
