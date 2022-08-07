@@ -139,3 +139,7 @@ input.txt
 
 # Ignore .vscode settings
 .vscode/
+
+# Ignore stix filestore and bundle
+stix2_extractions/
+stix2_reports/
