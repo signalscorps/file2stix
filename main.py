@@ -9,12 +9,7 @@ import json
 import logging
 import os
 from pathlib import Path
-from stix2 import (
-    Bundle,
-    Report,
-    FileSystemStore,
-    Location,
-)
+from stix2 import Bundle, Report, FileSystemStore
 from stix2.base import STIXJSONEncoder
 
 from extract_observables import observables_map, ExtractStixObservables
@@ -23,8 +18,9 @@ from extract_observables import observables_map, ExtractStixObservables
 # Configure logging module
 logging.basicConfig(format="[%(levelname)s] : %(message)s")
 
-STIX2_EXTRACTIONS_FOLDER = "stix2_extractions"
-STIX2_REPORTS_FOLDER = "stix2_reports"
+# Folders for STIX2 reports
+STIX2_EXTRACTIONS_FOLDER = os.path.abspath("stix2_extractions")
+STIX2_REPORTS_FOLDER = os.path.abspath("stix2_reports")
 
 if __name__ == "__main__":
     arg_parser = argparse.ArgumentParser(
