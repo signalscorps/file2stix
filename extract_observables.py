@@ -2,10 +2,22 @@
 Contains logic for extracting observables.
 """
 
+import logging
 import re
 from ipaddress import IPv4Interface, IPv6Interface
 import pycountry
 import validators
+from stix2 import (
+    Indicator,
+    Vulnerability,
+    ExternalReference,
+    Location,
+)
+from stix2.exceptions import InvalidValueError
+
+# NOTE: Move this to __init__.py, when __init__.py is added
+# Configure logging module
+logging.basicConfig(format="[%(levelname)s] : %(message)s")
 
 # Helper regexes
 
@@ -32,7 +44,9 @@ xmr_address = r"4[0-9AB][1-9A-HJ-NP-Za-km-z]{93}"
 # Country code
 all_country_names = [country.name for country in pycountry.countries]
 # all_country_official_names = [country.official_name for country in pycountry.countries]
-all_country_names_lower_case = [country_name.lower() for country_name in all_country_names]
+all_country_names_lower_case = [
+    country_name.lower() for country_name in all_country_names
+]
 all_country_names_alpha_2 = [country.alpha_2 for country in pycountry.countries]
 all_country_names_alpha_3 = [country.alpha_3 for country in pycountry.countries]
 
@@ -58,18 +72,23 @@ observables_map = {
     "artifact:payload_bin": rf"^(({btc_address})|({etc_address})|({xmr_address}))$",
     "cve": r"^(CVE-(19|20)\d{2}-\d{4,7})$",
     "location_country_name": r"(" + r")|(".join(all_country_names) + r")",
-    "location_country_alpha_2": r"(\s" + r"\s)|(\s".join(all_country_names_alpha_2) + r"\s)",
-    "location_country_alpha_3": r"(\s" + r"\s)|(\s".join(all_country_names_alpha_3) + r"\s)",
+    "location_country_alpha_2": r"(\s"
+    + r"\s)|(\s".join(all_country_names_alpha_2)
+    + r"\s)",
+    "location_country_alpha_3": r"(\s"
+    + r"\s)|(\s".join(all_country_names_alpha_3)
+    + r"\s)",
 }
 
 
-class ExtractPatterns:
+class ExtractStixObservables:
     """
-    Iterable that extracts all the words in `input` matching a given `pattern`.
-    In each iteration, it returns the next matched word.
+    Iterable that extracts all the observables matching a given format.
+    In each iteration, it returns the next extracted observable as a STIX object..
     """
 
-    def __init__(self, pattern, input):
+    def __init__(self, observable, pattern, input):
+        self.observable = observable
         self.pattern = pattern
         self.input = input
         self.match_index = 0
@@ -105,7 +124,55 @@ class ExtractPatterns:
 
     def __next__(self):
         if self.match_index < len(self.matches):
+            # Extracted observable
             match = self.matches[self.match_index]
             self.match_index += 1
+
+            try:
+                if self.observable == "cve":
+                    vulnerability = Vulnerability(
+                        name=match,
+                        external_references=ExternalReference(
+                            source_name="cve", external_id=match
+                        ),
+                    )
+                    return match, vulnerability
+                elif self.observable.startswith("location"):
+                    # TODO: This is a hack, think of a neater approach
+                    # Strip leading and trailing spaces
+                    match = match.strip()
+
+                    # Find country iso
+                    country_iso = match
+                    if len(match) != 2 and not match.isupper():
+                        country = pycountry.countries.get(name=match)
+                        if country != None:
+                            country_iso = country.alpha_2
+
+                    location = Location(name=f"Country: {match}", country=country_iso)
+                    return match, location
+                else:
+                    indicator = Indicator(
+                        type="indicator",
+                        name=match,
+                        pattern_type="stix",
+                        pattern=f"[ {self.observable} = '{match}' ]",
+                        indicator_types=["malicious-activity"],
+                    )
+                    # Storing in a dictionary to avoid duplicate indicators
+                    # for the same matching string
+                    return match, indicator
+            except InvalidValueError as error:
+                logging.warning(
+                    "Got InvalidValueError when creating SDO object for %s observable. "
+                    "Extracted observable is: %s",
+                    self.observable,
+                    match,
+                )
+                # TODO: We should probably log this, for now ignoring since it dirties the output.
+                # logging.exception(error)
+
+                self.__next__()
+
             return match
         raise StopIteration

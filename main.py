@@ -8,21 +8,16 @@ from datetime import datetime
 import json
 import logging
 import os
-import pycountry
 from pathlib import Path
 from stix2 import (
-    Indicator,
     Bundle,
-    Vulnerability,
-    ExternalReference,
     Report,
     FileSystemStore,
     Location,
 )
 from stix2.base import STIXJSONEncoder
-from stix2.exceptions import InvalidValueError
 
-from extract_observables import observables_map, ExtractPatterns
+from extract_observables import observables_map, ExtractStixObservables
 
 # NOTE: Move this to __init__.py, when __init__.py is added
 # Configure logging module
@@ -52,50 +47,10 @@ if __name__ == "__main__":
     # Iterate over each observable and extract them from input file
     stix_observables = {}
     for observable, pattern in observables_map.items():
-        for match in ExtractPatterns(pattern, input):
-            try:
-                if observable == "cve":
-                    vulnerability = Vulnerability(
-                        name=match,
-                        external_references=ExternalReference(
-                            source_name="cve", external_id=match
-                        ),
-                    )
-                    stix_observables[match] = vulnerability
-                elif observable.startswith("location"):
-                    # TODO: This is a hack, think of a neater approach
-                    # Strip leading and trailing spaces
-                    match = match.strip()
-
-                    # Find country iso
-                    country_iso = match
-                    if len(match) != 2 and not match.isupper():
-                        country = pycountry.countries.get(name=match)
-                        if country != None:
-                            country_iso = country.alpha_2
-
-                    location = Location(name=f"Country: {match}", country=country_iso)
-                    stix_observables[match] = location
-                else:
-                    indicator = Indicator(
-                        type="indicator",
-                        name=match,
-                        pattern_type="stix",
-                        pattern=f"[ {observable} = '{match}' ]",
-                        indicator_types=["malicious-activity"],
-                    )
-                    # Storing in a dictionary to avoid duplicate indicators
-                    # for the same matching string
-                    stix_observables[match] = indicator
-            except InvalidValueError as error:
-                logging.warning(
-                    "Got InvalidValueError when creating SDO object for %s observable. "
-                    "Extracted observable is: %s",
-                    observable,
-                    match,
-                )
-                # TODO: We should probably log this, for now ignoring since it dirties the output.
-                # logging.exception(error)
+        for extracted_observable, stix_observable_object in ExtractStixObservables(
+            observable, pattern, input
+        ):
+            stix_observables[extracted_observable] = stix_observable_object
 
     # Create report with all observables extracted
     report = Report(
