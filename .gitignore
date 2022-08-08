@@ -143,3 +143,6 @@ input.txt
 # Ignore stix filestore and bundle
 stix2_extractions/
 stix2_reports/
+
+# Ignore TODO file
+TODO.txt

@@ -4,6 +4,7 @@ Contains logic for extracting observables.
 
 import re
 from ipaddress import IPv4Interface, IPv6Interface
+import pycountry
 import validators
 
 # Helper regexes
@@ -28,16 +29,23 @@ btc_address = r"[13][a-km-zA-HJ-NP-Z1-9]{25,34}"
 etc_address = r"0x[a-f0-9]{40}"
 xmr_address = r"4[0-9AB][1-9A-HJ-NP-Za-km-z]{93}"
 
+# Country code
+all_country_names = [country.name for country in pycountry.countries]
+# all_country_official_names = [country.official_name for country in pycountry.countries]
+all_country_names_lower_case = [country_name.lower() for country_name in all_country_names]
+all_country_names_alpha_2 = [country.alpha_2 for country in pycountry.countries]
+all_country_names_alpha_3 = [country.alpha_3 for country in pycountry.countries]
+
 # Dictionary mapping observable to regular expression or a custom function
 # Note the regexs will be matched with each word in the input
 observables_map = {
     "ipv4-addr:value": lambda x: IPv4Interface(x),
     "ipv6-addr:value": lambda x: IPv6Interface(x),
     "file:name": rf"^(.*)\.({file_extensions})$",
-    "file:hashes.md5": r"^[a-fA-F0-9]{32}$",
-    "file:hashes.sha1": r"^[a-fA-F0-9]{40}$",
-    "file:hashes.sha256": r"^[a-fA-F0-9]{64}$",
-    "file:hashes.sha512": r"^[a-fA-F0-9]{128}$",
+    "file:hashes.md5": lambda x: validators.md5(x),
+    "file:hashes.sha1": lambda x: validators.sha1(x),
+    "file:hashes.sha256": lambda x: validators.sha256(x),
+    "file:hashes.sha512": lambda x: validators.sha512(x),
     "file:hashes.ssdeep": r"^\d{1,}:[A-Za-z0-9/+]{3,}:[A-Za-z0-9/+]{3,}$",
     "directory:path": rf"^(({windows_path})|({unix_path}))$",
     "domain-name:value": lambda x: validators.domain(x),
@@ -49,6 +57,9 @@ observables_map = {
     "autonomous-system:number": r"^((AS|ASN)\d+)$",
     "artifact:payload_bin": rf"^(({btc_address})|({etc_address})|({xmr_address}))$",
     "cve": r"^(CVE-(19|20)\d{2}-\d{4,7})$",
+    "location_country_name": r"(" + r")|(".join(all_country_names) + r")",
+    "location_country_alpha_2": r"(\s" + r"\s)|(\s".join(all_country_names_alpha_2) + r"\s)",
+    "location_country_alpha_3": r"(\s" + r"\s)|(\s".join(all_country_names_alpha_3) + r"\s)",
 }
 
 
@@ -67,7 +78,10 @@ class ExtractPatterns:
         # If pattern is a regex, then find all matches to the regular expression
         if isinstance(pattern, str):
             if pattern.startswith("^") and pattern.endswith("$"):
-                # Match each word with the regex
+                # If regex starts with "^" and ends with "$", it's treated specially.
+                # We iterate over each word and see if the regex exactly matches the word.
+                # The drawback of this approach is that such regexes shouldn't contain
+                # whitespaces.
                 for word in input.split():
                     if re.match(pattern, word):
                         self.matches.append(word)

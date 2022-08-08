@@ -6,12 +6,16 @@ and outputs observables found (in STIX format).
 import argparse
 from datetime import datetime
 import json
+import os
+import pycountry
 from pathlib import Path
-from os import path
-from stix2 import Indicator, Bundle, Vulnerability, ExternalReference, Report, FileSystemStore
+from stix2 import Indicator, Bundle, Vulnerability, ExternalReference, Report, FileSystemStore, Location
 from stix2.base import STIXJSONEncoder
 
 from extract_observables import observables_map, ExtractPatterns
+
+STIX2_EXTRACTIONS_FOLDER = "stix2_extractions"
+STIX2_REPORTS_FOLDER = "stix2_reports"
 
 if __name__ == "__main__":
     arg_parser = argparse.ArgumentParser(
@@ -28,7 +32,8 @@ if __name__ == "__main__":
     # Read input from file
     args = arg_parser.parse_args()
     input_file_path = args.Input
-    input = Path(input_file_path).read_text()
+    # Add a new line at EOF, to avoid edge cases
+    input = Path(input_file_path).read_text() + "\n"
 
     # Iterate over each observable and extract them from input file
     stix_observables = {}
@@ -42,6 +47,23 @@ if __name__ == "__main__":
                     ),
                 )
                 stix_observables[match] = vulnerability
+            elif observable.startswith("location"):
+                # TODO: This is a hack, think of a neater approach
+                # Strip leading and trailing spaces
+                match = match.strip()
+
+                # Find country iso
+                country_iso = match
+                if len(match) != 2 and not match.isupper():
+                    country = pycountry.countries.get(name=match)
+                    if country != None:
+                        country_iso = country.alpha_2
+                        
+                location = Location(
+                    name=f"Country: {match}",
+                    country=country_iso
+                )
+                stix_observables[match] = location
             else:
                 indicator = Indicator(
                     type="indicator",
@@ -66,11 +88,15 @@ if __name__ == "__main__":
     stix_objects = list(stix_observables.values()) + [report]
 
     # Store stix objects in filestore
-    fs = FileSystemStore("stix2_extractions")
+    if os.path.exists(STIX2_EXTRACTIONS_FOLDER) == False:
+        os.makedirs(STIX2_EXTRACTIONS_FOLDER)
+    fs = FileSystemStore(STIX2_EXTRACTIONS_FOLDER)
     fs.add(stix_objects)
 
     # Create a STIX bundle of all the STIX objects
     BundleOfAllObjects = Bundle(*stix_objects, allow_custom=True)
-    stix_bundle_path = path.join("stix2_reports", f"{BundleOfAllObjects.id}.json")
+    if os.path.exists(STIX2_REPORTS_FOLDER) == False:
+        os.makedirs(STIX2_REPORTS_FOLDER)
+    stix_bundle_path = os.path.join(STIX2_REPORTS_FOLDER, f"{BundleOfAllObjects.id}.json")
     with open(stix_bundle_path, "w") as f:
         f.write(json.dumps(BundleOfAllObjects, cls=STIXJSONEncoder, indent=4))
