@@ -144,8 +144,12 @@ class ExtractStixObservables:
 
                     # Find country iso
                     country_iso = match
-                    if len(match) != 2 and not match.isupper():
+                    if self.observable == "location_country_name":
                         country = pycountry.countries.get(name=match)
+                        if country != None:
+                            country_iso = country.alpha_2
+                    elif self.observable == "location_country_alpha_3":
+                        country = pycountry.countries.get(alpha_3=match)
                         if country != None:
                             country_iso = country.alpha_2
 
