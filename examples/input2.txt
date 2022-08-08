@@ -21,7 +21,6 @@ url: https://example.com/research/
 url: https://example.com/path/index.html
 domain: test.example.com
 sub-domain: example.com
-registry path: HKEY_LOCAL_MACHINE \\System\\Foo\\Bar
 HKEY_LOCAL_MACHINE\SOFTWARE\Wow6432Node HKEY_LOCAL_MACHINE\SYSTEM\system32\config\system
 Mozilla/5.0 (Windows; U; Windows NT 5.1; en-US; rv:1.6) Gecko/20040113
 Mozilla/5.0 (Linux; Android 11; Lenovo YT-J706X) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/96.0.4664.45 Safari/537.36
