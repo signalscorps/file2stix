@@ -4,23 +4,20 @@ and outputs observables found (in STIX format).
 """
 
 import argparse
-from datetime import datetime
-import json
 import logging
 import os
+import pytz
+from datetime import datetime
 from pathlib import Path
-from stix2 import Bundle, Report, FileSystemStore
-from stix2.base import STIXJSONEncoder
+from stix2 import Report
 
 from extract_observables import observables_map, ExtractStixObservables
+from observables_stix_store import ObservablesStixStore
 
 # NOTE: Move this to __init__.py, when __init__.py is added
 # Configure logging module
 logging.basicConfig(format="[%(levelname)s] : %(message)s")
-
-# Folders for STIX2 reports
-STIX2_EXTRACTIONS_FOLDER = os.path.abspath("stix2_extractions")
-STIX2_REPORTS_FOLDER = os.path.abspath("stix2_reports")
+logging.getLogger().setLevel(logging.INFO)
 
 if __name__ == "__main__":
     arg_parser = argparse.ArgumentParser(
@@ -40,13 +37,28 @@ if __name__ == "__main__":
     # Add a new line at EOF, to avoid edge cases
     input = Path(input_file_path).read_text() + "\n"
 
+    stix_store = ObservablesStixStore()
+
     # Iterate over each observable and extract them from input file
     stix_observables = {}
     for observable, pattern in observables_map.items():
         for extracted_observable, stix_observable_object in ExtractStixObservables(
             observable, pattern, input
         ):
+            # Check if observable already present in `stix_store`
+            old_stix_object = stix_store.get_object(extracted_observable)
+
+            # If observable already present in `stix_store`, then
+            # just update the modified time
+            if old_stix_object != None:
+                stix_observable_object = old_stix_object.new_version(
+                    modified=pytz.utc.localize(datetime.utcnow())
+                )
+
+            # Storing in a dictionary to avoid duplicate indicators
+            # for the same matching string
             stix_observables[extracted_observable] = stix_observable_object
+        logging.info("Extracted all observables of type %s", observable)
 
     # Create report with all observables extracted
     report = Report(
@@ -56,21 +68,7 @@ if __name__ == "__main__":
         object_refs=[stix_object.id for stix_object in stix_observables.values()],
     )
 
-    # Group all stix objects
+    # Group all stix objects and store in STIX filestore and bundle
     stix_objects = list(stix_observables.values()) + [report]
-
-    # Store stix objects in filestore
-    if os.path.exists(STIX2_EXTRACTIONS_FOLDER) == False:
-        os.makedirs(STIX2_EXTRACTIONS_FOLDER)
-    fs = FileSystemStore(STIX2_EXTRACTIONS_FOLDER)
-    fs.add(stix_objects)
-
-    # Create a STIX bundle of all the STIX objects
-    BundleOfAllObjects = Bundle(*stix_objects, allow_custom=True)
-    if os.path.exists(STIX2_REPORTS_FOLDER) == False:
-        os.makedirs(STIX2_REPORTS_FOLDER)
-    stix_bundle_path = os.path.join(
-        STIX2_REPORTS_FOLDER, f"{BundleOfAllObjects.id}.json"
-    )
-    with open(stix_bundle_path, "w") as f:
-        f.write(json.dumps(BundleOfAllObjects, cls=STIXJSONEncoder, indent=4))
+    stix_store.store_objects_in_filestore(stix_objects)
+    stix_store.store_objects_in_bundle(stix_objects)

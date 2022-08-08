@@ -153,7 +153,7 @@ class ExtractStixObservables:
                         if country != None:
                             country_iso = country.alpha_2
 
-                    location = Location(name=f"Country: {match}", country=country_iso)
+                    location = Location(name=f"{match}", country=country_iso)
                     return match, location
                 else:
                     indicator = Indicator(
@@ -163,8 +163,6 @@ class ExtractStixObservables:
                         pattern=f"[ {self.observable} = '{match}' ]",
                         indicator_types=["malicious-activity"],
                     )
-                    # Storing in a dictionary to avoid duplicate indicators
-                    # for the same matching string
                     return match, indicator
             except InvalidValueError as error:
                 logging.warning(
@@ -178,5 +176,4 @@ class ExtractStixObservables:
 
                 self.__next__()
 
-            return match
         raise StopIteration
