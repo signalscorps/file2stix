@@ -105,7 +105,7 @@ observables_map = {
     "mac-addr:value": lambda x: validators.mac_address(x),
     "windows-registry-key:key": rf"^({registry_key}(\\[^<>:\"/\\|\?\*]+)+)$",
     "network-traffic:extensions.'http-requestext'.request_header.'User-Agent'": rf"{user_agent}",
-    "autonomous-system:number": r"^((AS|ASN)\d+)$",
+    "autonomous-system:number": r"^((ASN?)\d+)$",
     "artifact:payload_bin": rf"^(({btc_address})|({etc_address})|({xmr_address}))$",
     "cve": r"^(CVE-(19|20)\d{2}-\d{4,7})$",
     "location_country_name": r"(" + r")|(".join(all_country_names) + r")",

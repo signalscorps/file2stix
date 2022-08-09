@@ -33,7 +33,8 @@ if __name__ == "__main__":
 
     # Read input from file
     args = arg_parser.parse_args()
-    input_file_path = args.Input
+    input_file_path = os.path.abspath(args.Input)
+    logging.info("Reading input file %s ...", input_file_path)
     # Add a new line at EOF, to avoid edge cases
     input = Path(input_file_path).read_text() + "\n"
 
