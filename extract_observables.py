@@ -67,9 +67,9 @@ unix_path = r"(/\S+)+"
 registry_key = r"(?:CLSID|(?:HK(?:EY\_(?:CURRENT\_(?:CONFIG|USER)|LOCAL\_MACHINE|USERS)|C(?:C|U)|LM|U))|(?:I(?:nterface|ID))|REGISTRY|TypeLib)"
 
 # User agent
-platforms = r"(Gecko)|(Firefox)|(AppleWebKit)|(Chrome)|(Safari)|(OPR)|(Edg)|(Safari)|(Mobile)|(curl)|(PostmanRuntime)"
-user_agent_details = r"\([\w;\s\.:-]+\)"
-user_agent = rf"(User-Agent:|user-agent:)? Mozilla/5.0(\s((\([\w;\s\.:-]+\)|(({platforms})(/\S+)+))))+"
+platforms = r"([a-zA-Z]+)"
+user_agent_details = r"\([\w;\s\,.:-]+\)"
+user_agent = rf"((User-Agent: )|(user-agent: ))?Mozilla/5.0([ ](({user_agent_details})|(({platforms}/)\S+)))+"
 
 # Cryptocurrency address
 btc_address = r"[13][a-km-zA-HJ-NP-Z1-9]{25,34}"
@@ -104,7 +104,7 @@ observables_map = {
     "email-addr:value": lambda x: validators.email(x),
     "mac-addr:value": lambda x: validators.mac_address(x),
     "windows-registry-key:key": rf"^({registry_key}(\\[^<>:\"/\\|\?\*]+)+)$",
-    "network-traffic:extensions.'http-requestext'.request_header.'User-Agent'": rf"{user_agent}",
+    "network-traffic:extensions.'http-requestext'.request_header.'User-Agent'": rf"({user_agent})",
     "autonomous-system:number": r"^((ASN?)\d+)$",
     "artifact:payload_bin": rf"^(({btc_address})|({etc_address})|({xmr_address}))$",
     "cve": r"^(CVE-(19|20)\d{2}-\d{4,7})$",
