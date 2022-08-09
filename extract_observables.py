@@ -4,7 +4,7 @@ Contains logic for extracting observables.
 
 import logging
 import re
-from ipaddress import IPv4Interface, IPv6Interface
+from ipaddress import IPv4Address, IPv4Interface, IPv6Address, IPv6Interface
 import pycountry
 import validators
 from stix2 import (
@@ -18,6 +18,41 @@ from stix2.exceptions import InvalidValueError
 # NOTE: Move this to __init__.py, when __init__.py is added
 # Configure logging module
 logging.basicConfig(format="[%(levelname)s] : %(message)s")
+
+# Helper functions
+
+# Helper function to validate ipv4 addresses with ports
+def validate_ipv4_with_port(x):
+    if ":" in x:
+        ip_address, port = x.split(":")
+
+        # Validate ipv4 address part
+        IPv4Address(ip_address)
+
+        # Validate port part
+        if 1 <= int(port) <= 65535:
+            return ip_address, port
+
+    return False
+
+
+# Helper function to validate ipv6 addresses with ports
+def validate_ipv6_with_port(x):
+    if ":" in x:
+        ip_address, port = re.search(r"\[(.*)\]:(.*)", x).groups()
+
+        # Validate ipv6 address part
+        IPv6Address(ip_address)
+
+        # Validate port part
+        if 1 <= int(port) <= 65535:
+            return ip_address, port
+
+    return False
+
+
+# Get format arguments in strings
+
 
 # Helper regexes
 
@@ -55,6 +90,8 @@ all_country_names_alpha_3 = [country.alpha_3 for country in pycountry.countries]
 observables_map = {
     "ipv4-addr:value": lambda x: IPv4Interface(x),
     "ipv6-addr:value": lambda x: IPv6Interface(x),
+    "ipv4-addr:value = '{ip_address}' AND network-traffic:port = '{port}'": validate_ipv4_with_port,
+    "ipv6-addr:value = '{ip_address}' AND network-traffic:port = '{port}'": validate_ipv6_with_port,
     "file:name": rf"^(.*)\.({file_extensions})$",
     "file:hashes.md5": lambda x: validators.md5(x),
     "file:hashes.sha1": lambda x: validators.sha1(x),
@@ -116,7 +153,7 @@ class ExtractStixObservables:
                 try:
                     if pattern(word):
                         self.matches.append(word)
-                except:
+                except Exception as error:
                     pass
 
     def __iter__(self):
@@ -156,11 +193,20 @@ class ExtractStixObservables:
                     location = Location(name=f"{match}", country=country_iso)
                     return match, location
                 else:
+                    pattern = f"[ {self.observable} = '{match}' ]"
+                    # TODO: This is a hacky approach. This module will
+                    # require redesign to improve this
+                    if self.observable.startswith("ipv4-addr:value ="):
+                        ip_address, port = validate_ipv4_with_port(match)
+                        pattern = f"[ {self.observable.format(ip_address=ip_address, port=port)} ]"
+                    elif self.observable.startswith("ipv6-addr:value ="):
+                        ip_address, port = validate_ipv6_with_port(match)
+                        pattern = f"[ {self.observable.format(ip_address=ip_address, port=port)} ]"
                     indicator = Indicator(
                         type="indicator",
                         name=match,
                         pattern_type="stix",
-                        pattern=f"[ {self.observable} = '{match}' ]",
+                        pattern=pattern,
                         indicator_types=["malicious-activity"],
                     )
                     return match, indicator

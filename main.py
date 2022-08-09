@@ -71,4 +71,5 @@ if __name__ == "__main__":
     # Group all stix objects and store in STIX filestore and bundle
     stix_objects = list(stix_observables.values()) + [report]
     stix_store.store_objects_in_filestore(stix_objects)
-    stix_store.store_objects_in_bundle(stix_objects)
+    stix_bundle_file_path = stix_store.store_objects_in_bundle(stix_objects)
+    logging.info("Stored STIX report bundle at %s", stix_bundle_file_path)

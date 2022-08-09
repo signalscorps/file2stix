@@ -48,6 +48,8 @@ class ObservablesStixStore:
         stix_bundle_file = os.path.join(self.stix_bundle_path, f"{bundle_of_all_objects.id}.json")
         with open(stix_bundle_file, "w") as f:
             f.write(json.dumps(bundle_of_all_objects, cls=STIXJSONEncoder, indent=4))
+
+        return stix_bundle_file
         
         
 
