@@ -222,8 +222,7 @@ class ExtractStixObservables:
                     self.observable,
                     match,
                 )
-                # TODO: We should probably log this, for now ignoring since it dirties the output.
-                # logging.exception(error)
+                logging.exception(error)
 
                 self.__next__()
 
