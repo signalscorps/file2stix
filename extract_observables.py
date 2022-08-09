@@ -103,7 +103,7 @@ observables_map = {
     "url:value": lambda x: validators.url(x),
     "email-addr:value": lambda x: validators.email(x),
     "mac-addr:value": lambda x: validators.mac_address(x),
-    "windows-registry-key:key": rf"^({registry_key}(\\\\[^<>:\"/\\|\?\*]+)+)$",
+    "windows-registry-key:key": rf"^({registry_key}(\\[^<>:\"/\\|\?\*]+)+)$",
     "network-traffic:extensions.'http-requestext'.request_header.'User-Agent'": rf"{user_agent}",
     "autonomous-system:number": r"^((AS|ASN)\d+)$",
     "artifact:payload_bin": rf"^(({btc_address})|({etc_address})|({xmr_address}))$",
@@ -202,6 +202,11 @@ class ExtractStixObservables:
                     elif self.observable.startswith("ipv6-addr:value ="):
                         ip_address, port = validate_ipv6_with_port(match)
                         pattern = f"[ {self.observable.format(ip_address=ip_address, port=port)} ]"
+
+                    # Escape '\' in pattern
+                    # https://github.com/oasis-open/cti-python-stix2/issues/260
+                    pattern = pattern.replace("\\", "\\\\")
+
                     indicator = Indicator(
                         type="indicator",
                         name=match,

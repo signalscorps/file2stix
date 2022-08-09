@@ -51,3 +51,5 @@ this should not extract
 
 UKa
 https:// 
+
+/domain>>”C:\WINNT\Debug\1.txt”
