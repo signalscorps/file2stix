@@ -1,4 +1,0 @@
-stix2==3.0.1
-stix2-patterns==2.0.0
-pycountry==22.3.5
-validators==0.20.0

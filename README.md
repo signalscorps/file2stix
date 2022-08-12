@@ -23,16 +23,20 @@ python -m venv obstracts-cli
 source obstracts-cli/bin/activate
 ```
 
-Install dependencies
-
+Install `obstracts-cli` tool
 ```
-pip install -r requirements.txt
+pip install .
+```
+
+`NOTE`: If you are a developer, install `obstracts-cli` in editable mode.
+```
+pip install -e .
 ```
 
 Run program
 
 ```
-python main.py examples/input.txt
+obstracts-cli examples/input.txt
 ```
 
 Creates two directories

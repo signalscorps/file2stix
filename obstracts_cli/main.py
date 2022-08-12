@@ -11,15 +11,15 @@ from datetime import datetime
 from pathlib import Path
 from stix2 import Report
 
-from extract_observables import observables_map, ExtractStixObservables
-from observables_stix_store import ObservablesStixStore
+from obstracts_cli.extract_observables import observables_map, ExtractStixObservables
+from obstracts_cli.observables_stix_store import ObservablesStixStore
 
 # NOTE: Move this to __init__.py, when __init__.py is added
 # Configure logging module
 logging.basicConfig(format="[%(levelname)s] : %(message)s")
 logging.getLogger().setLevel(logging.INFO)
 
-if __name__ == "__main__":
+def main():
     arg_parser = argparse.ArgumentParser(
         prog="extract_observables",
         usage="%(prog)s <input-text-file>",
@@ -74,3 +74,6 @@ if __name__ == "__main__":
     stix_store.store_objects_in_filestore(stix_objects)
     stix_bundle_file_path = stix_store.store_objects_in_bundle(stix_objects)
     logging.info("Stored STIX report bundle at %s", stix_bundle_file_path)
+
+if __name__ == "__main__":
+    main()
