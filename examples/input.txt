@@ -5,6 +5,15 @@ ip addresseses
 198.51.100.3-
 198.51.100.4
 
+Repeatitions (only one SDO object should be created)
+198.51.100.5
+198.51.100.5
+198.51.100.5
+198.51.100.5
+198.51.100.5
+198.51.100.5
+198.51.100.5
+
 Another ip address 198.0.103.12
 Another ip address CIDR 198.0.103.12/24
 An IP with a port 198.0.103.12:8000
@@ -45,6 +54,7 @@ cve id: CVE-2022-00001
 ASN number: ASN13335
 country: AF 
 full_country_name: Bangladesh , United Arab Emirates , Central African Republic , 
+AL , DZ , AS
 
 
 this should not extract

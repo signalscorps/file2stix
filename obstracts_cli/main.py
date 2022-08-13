@@ -11,8 +11,9 @@ from datetime import datetime
 from pathlib import Path
 from stix2 import Report
 
-from obstracts_cli.extract_observables import observables_map, ExtractStixObservables
+from obstracts_cli.extract_observables import ExtractStixObservables
 from obstracts_cli.observables_stix_store import ObservablesStixStore
+from obstracts_cli.observables import Observable
 
 # NOTE: Move this to __init__.py, when __init__.py is added
 # Configure logging module
@@ -42,24 +43,29 @@ def main():
 
     # Iterate over each observable and extract them from input file
     stix_observables = {}
-    for observable, pattern in observables_map.items():
-        for extracted_observable, stix_observable_object in ExtractStixObservables(
-            observable, pattern, input
-        ):
+    for observable in Observable.__subclasses__():
+        for extracted_stix_observable in ExtractStixObservables(observable, input):
             # Check if observable already present in `stix_store`
-            old_stix_object = stix_store.get_object(extracted_observable)
+            stix_observable_object = stix_store.get_object(extracted_stix_observable.name)
 
             # If observable already present in `stix_store`, then
             # just update the modified time
-            if old_stix_object != None:
-                stix_observable_object = old_stix_object.new_version(
+            if stix_observable_object != None:
+                stix_observable_object = stix_observable_object.new_version(
                     modified=pytz.utc.localize(datetime.utcnow())
                 )
+            else:
+                stix_observable_object = extracted_stix_observable
 
-            # Storing in a dictionary to avoid duplicate indicators
-            # for the same matching string
-            stix_observables[extracted_observable] = stix_observable_object
-        logging.info("Extracted all observables of type %s", observable)
+            stix_observables[stix_observable_object.name] = stix_observable_object
+            logging.debug("Extracted observable: %s", stix_observable_object.name)
+
+        # Hacky logging, but I don't want to complicate just getting pretty_name
+        logging.info("Extracted all observables of type %s", observable(None).pretty_name)
+
+    if not stix_observables:
+        logging.warning("No Obseravbles extracted. Hence, not creating STIX report")
+        return
 
     # Create report with all observables extracted
     report = Report(

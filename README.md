@@ -28,7 +28,7 @@ Install `obstracts-cli` tool
 pip install .
 ```
 
-`NOTE`: If you are a developer, install `obstracts-cli` in editable mode.
+**NOTE**: If you are a developer, install `obstracts-cli` in editable mode.
 ```
 pip install -e .
 ```
