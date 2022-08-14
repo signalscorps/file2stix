@@ -74,3 +74,10 @@ Credit cards
 6011111111111117
 
 IBAN - DE29100500001061045672
+
+Yara rules
+rule dummy
+{
+    condition:
+        false
+}

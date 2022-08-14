@@ -412,10 +412,9 @@ class CountryCodeAlpha3Observable(Observable):
         if country != None:
             country_iso = country.alpha_2
 
-        location = Location(
-            name=f"{extracted_observable_text}", country=country_iso
-        )
+        location = Location(name=f"{extracted_observable_text}", country=country_iso)
         return location
+
 
 class MastercardCreditCardObservable(Observable):
     name = "Mastercard Credit Card"
@@ -423,11 +422,13 @@ class MastercardCreditCardObservable(Observable):
     pattern = "[ artifact:payload_bin = '{extracted_observable_text}' ]"
     extraction_function = lambda x: validators.mastercard(x)
 
+
 class VisaCreditCardObservable(Observable):
     name = "VISA Credit Card"
     type = "indicator"
     pattern = "[ artifact:payload_bin = '{extracted_observable_text}' ]"
     extraction_function = lambda x: validators.visa(x)
+
 
 class AmexCreditCardObservable(Observable):
     name = "Amex Credit Card"
@@ -435,11 +436,13 @@ class AmexCreditCardObservable(Observable):
     pattern = "[ artifact:payload_bin = '{extracted_observable_text}' ]"
     extraction_function = lambda x: validators.amex(x)
 
+
 class UnionPayCreditCardObservable(Observable):
     name = "Union Pay Credit Card"
     type = "indicator"
     pattern = "[ artifact:payload_bin = '{extracted_observable_text}' ]"
     extraction_function = lambda x: validators.unionpay(x)
+
 
 class DinersCreditCardObservable(Observable):
     name = "Diners Credit Card"
@@ -447,14 +450,49 @@ class DinersCreditCardObservable(Observable):
     pattern = "[ artifact:payload_bin = '{extracted_observable_text}' ]"
     extraction_function = lambda x: validators.diners(x)
 
+
 class JCBCreditCardObservable(Observable):
     name = "JCB Credit Card"
     type = "indicator"
     pattern = "[ artifact:payload_bin = '{extracted_observable_text}' ]"
     extraction_function = lambda x: validators.jcb(x)
 
+
 class IBANCodeObservable(Observable):
     name = "IBAN"
     type = "indicator"
     pattern = "[ artifact:payload_bin = '{extracted_observable_text}' ]"
     extraction_function = lambda x: validators.iban(x)
+
+
+class YaraRuleObservable(Observable):
+    name = "YARA Rule"
+    type = "indicator"
+    pattern = "{extracted_observable_text}"
+    extraction_regex = r"rule .*\s+{[\s\S]*}"
+
+    def get_sdo_object(self):
+        # By default, indicator SDO objects are created.
+        if self.type == "indicator":
+            if self.pattern == None:
+                raise ValueError("pattern cannot be None for indicators.")
+
+            # Replace extracted_observable_text placeholder
+            pattern = self.pattern.format(
+                extracted_observable_text=self.extracted_observable_text
+            ).replace("\n", "\r\n")
+
+            rule_name = re.search(
+                r"rule (.*)\s+{", self.extracted_observable_text
+            ).groups()[0]
+
+            indicator = Indicator(
+                type="indicator",
+                name=f"{self.name}{self.name_delimeter}{rule_name}",
+                pattern_type="yara",
+                pattern=pattern,
+                indicator_types=["malicious-activity"],
+            )
+            return indicator
+        else:
+            raise ValueError("Observable type is not supported")
