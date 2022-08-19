@@ -46,6 +46,18 @@ Creates two directories
 * `stix2_reports/`
 	* Final STIX bundles containing collections of Objects from observables extracted from reports
 
+### Running tests
+
+Ensure that `pytest` is installed:
+```
+pip install pytest
+```
+
+Then run `pytest` command in the command line to run all tests:
+```
+pytest
+```
+
 ## Updating STIX Objects
 
 If the script detects an already extracted observable value present in `stix2_extractions/` then the `modified` time of this object is updated to the new extraction time and the updated object used in the final bundle for the report.

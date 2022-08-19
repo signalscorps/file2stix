@@ -20,24 +20,26 @@ from obstracts_cli.observables import Observable
 logging.basicConfig(format="[%(levelname)s] : %(message)s")
 logging.getLogger().setLevel(logging.INFO)
 
-def main():
-    arg_parser = argparse.ArgumentParser(
-        prog="extract_observables",
-        usage="%(prog)s <input-text-file>",
-        description="Extract observables from input file and store it in a STIX bundle",
-    )
-    arg_parser.add_argument(
-        "Input",
-        type=str,
-        help="Input text file from which observables will be extracted.",
-    )
+def main(input_file_path=None):
+    if input_file_path == None:
+        arg_parser = argparse.ArgumentParser(
+            prog="extract_observables",
+            usage="%(prog)s <input-text-file>",
+            description="Extract observables from input file and store it in a STIX bundle",
+        )
+        arg_parser.add_argument(
+            "Input",
+            type=str,
+            help="Input text file from which observables will be extracted.",
+        )
 
-    # Read input from file
-    args = arg_parser.parse_args()
-    input_file_path = os.path.abspath(args.Input)
-    logging.info("Reading input file %s ...", input_file_path)
+        # Read input from file
+        args = arg_parser.parse_args()
+        input_file_path = os.path.abspath(args.Input)
+    
     # Add a new line at EOF, to avoid edge cases
     input = Path(input_file_path).read_text() + "\n"
+    logging.info("Reading input file %s ...", input_file_path)
 
     stix_store = ObservablesStixStore()
 
@@ -80,6 +82,8 @@ def main():
     stix_store.store_objects_in_filestore(stix_objects)
     stix_bundle_file_path = stix_store.store_objects_in_bundle(stix_objects)
     logging.info("Stored STIX report bundle at %s", stix_bundle_file_path)
+
+    return stix_bundle_file_path
 
 if __name__ == "__main__":
     main()
