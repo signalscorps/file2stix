@@ -146,3 +146,6 @@ stix2_reports/
 
 # Ignore TODO file
 TODO.txt
+
+# Ignore obstracts cache
+obstracts-cache

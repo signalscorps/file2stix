@@ -1,6 +1,7 @@
 import json
 import pytest
 import obstracts_cli.main
+from obstracts_cli.config import Config
 
 # It's a tuple containing example program path and the corresponding expected reports
 testdata = [
@@ -32,8 +33,8 @@ def test_obstracts_cli(example_path, expected_report_path):
     Run obstract-cli tool for example program and compare the 
     generated report with the expected report.
     """
-    
-    report_path = obstracts_cli.main.main(example_path)
+    config = Config(example_path)
+    report_path = obstracts_cli.main.main(config)
     
     with open(report_path) as f:
         report = json.load(f)
