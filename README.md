@@ -36,7 +36,7 @@ pip install -e .
 Run program
 
 ```
-obstracts-cli examples/input.txt
+obstracts-cli --input-file examples/input.txt
 ```
 
 Creates two directories

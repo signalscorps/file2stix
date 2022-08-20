@@ -5,8 +5,18 @@
 import re
 import pycountry
 import validators
+import logging
 from ipaddress import IPv4Address, IPv4Interface, IPv6Address, IPv6Interface
-from stix2 import ExternalReference, Indicator, Location, Vulnerability
+from stix2 import (
+    ExternalReference,
+    Indicator,
+    Location,
+    Vulnerability,
+    MemoryStore,
+    Filter,
+)
+
+logger = logging.getLogger(__name__)
 
 
 class Observable:
@@ -496,3 +506,67 @@ class YaraRuleObservable(Observable):
             return indicator
         else:
             raise ValueError("Observable type is not supported")
+
+
+class MITREEnterpriseAttackObservable(Observable):
+    name = "MITRE Enterprise ATT&CK"
+    type = "attack-pattern"
+    # Regex will be updated by ExtractStixObservables Iterator
+    extraction_regex = r""
+    memory_store = None
+
+    @classmethod
+    def build_extraction_regex(
+        cls, cti_folder, bundle_relative_path="enterprise-attack/enterprise-attack.json"
+    ):
+        cls.memory_store = MemoryStore()
+        cls.memory_store.load_from_file(f"{cti_folder}/{bundle_relative_path}")
+
+        for _, object_family in cls.memory_store._data.items():
+            try:
+                sdo_object = object_family.latest_version
+                cls.extraction_regex += rf"({sdo_object.name})|"
+                cls.extraction_regex += (
+                    rf"({sdo_object.external_references[0].external_id})|"
+                )
+            except:
+                logger.debug("Ignoring errors in building extration regex")
+
+        # Trim last "|" symbols
+        cls.extraction_regex = cls.extraction_regex[:-1]
+
+    def get_sdo_object(self):
+        sdo_objects = self.memory_store.query(
+            Filter("name", "=", self.extracted_observable_text)
+        ) or self.memory_store.query(
+            Filter(
+                "external_references.external_id",
+                "=",
+                self.extracted_observable_text,
+            )
+        )
+        return sdo_objects[0]
+
+
+class MITREMobileAttackObservable(MITREEnterpriseAttackObservable):
+    name = "MITRE Mobile ATT&CK"
+    extraction_regex = r""
+    memory_store = None
+
+    @classmethod
+    def build_extraction_regex(
+        cls, cti_folder, bundle_relative_path="mobile-attack/mobile-attack.json"
+    ):
+        super().build_extraction_regex(cti_folder, bundle_relative_path)
+
+
+class MITRECapecObservable(MITREEnterpriseAttackObservable):
+    name = "MITRE CAPEC"
+    extraction_regex = r""
+    memory_store = None
+
+    @classmethod
+    def build_extraction_regex(
+        cls, cti_folder, bundle_relative_path="capec/2.1/stix-capec.json"
+    ):
+        super().build_extraction_regex(cti_folder, bundle_relative_path)

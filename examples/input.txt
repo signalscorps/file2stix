@@ -81,3 +81,9 @@ rule dummy
     condition:
         false
 }
+
+attack_pattern - Scheduled Task
+
+"Steal Application Access Token"
+
+CAPEC-170 - "Web Application Fingerprinting"

@@ -2,6 +2,17 @@
 Contains logic for extracting observables.
 """
 
+import logging
+
+from obstracts_cli.cache import Cache
+from obstracts_cli.observables import (
+    MITREEnterpriseAttackObservable,
+    MITREMobileAttackObservable,
+    MITRECapecObservable,
+)
+
+logger = logging.getLogger(__name__)
+
 
 class ExtractStixObservables:
     """
@@ -9,9 +20,28 @@ class ExtractStixObservables:
     In each iteration, it returns the next extracted observable as a STIX object..
     """
 
-    def __init__(self, observable, text):
+    def __init__(self, observable_cls, text, cache: Cache):
         self.index = 0
-        self.extracted_observables = observable.extract_observables_from_text(text)
+        self.update_stix2_extractions = True
+        self.extracted_observables = []
+
+        # Handling special observables like MITRE ATT&CK and CAPEC
+        if (
+            observable_cls == MITREEnterpriseAttackObservable
+            or observable_cls == MITREMobileAttackObservable
+            or observable_cls == MITRECapecObservable
+        ):
+            self.update_stix2_extractions = False
+            if cache.is_mitre_cti_database_in_cache():
+                observable_cls.build_extraction_regex(cache.cti_folder_path)
+            else:
+                logger.warning(
+                    "Not extracting MITRE Observable since MITRE CTI database is not present in cache. "
+                    "Use --update-mitre-cti-database option to update MITRE CTI database." 
+                )
+                return
+
+        self.extracted_observables = observable_cls.extract_observables_from_text(text)
 
     def __iter__(self):
         return self
@@ -20,5 +50,5 @@ class ExtractStixObservables:
         if self.index < len(self.extracted_observables):
             extracted_observable = self.extracted_observables[self.index]
             self.index += 1
-            return extracted_observable.get_sdo_object()
+            return extracted_observable.get_sdo_object(), self.update_stix2_extractions
         raise StopIteration

@@ -33,7 +33,7 @@ def test_obstracts_cli(example_path, expected_report_path):
     Run obstract-cli tool for example program and compare the 
     generated report with the expected report.
     """
-    config = Config(example_path)
+    config = Config(example_path, update_mitre_cti_database=True)
     report_path = obstracts_cli.main.main(config)
     
     with open(report_path) as f:
