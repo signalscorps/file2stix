@@ -11,11 +11,11 @@ testdata = [
     ),
     (
         "examples/input2.txt",
-        "tests/expected_reports/bundle--10e65017-d8f1-44b5-873e-d07f5c7ab8d5.json",
+        "tests/expected_reports/bundle--57eee019-c92e-428d-a7a5-4142828f7892.json",
     ),
     (
         "examples/input.txt",
-        "tests/expected_reports/bundle--920996cf-3f15-4150-87d8-fca8ed1e01b5.json",
+        "tests/expected_reports/bundle--b938e95a-f3d7-4ca0-bb17-fc5ed9a6c817.json",
     ),
     # Ignoring madiant-api.txt for now since it takes a lot of time
     # (
