@@ -1,0 +1,660 @@
+{
+    "type": "bundle",
+    "id": "bundle--57eee019-c92e-428d-a7a5-4142828f7892",
+    "objects": [
+        {
+            "type": "indicator",
+            "spec_version": "2.1",
+            "id": "indicator--acbc042a-17eb-4817-98ad-18bf35742f63",
+            "created": "2022-08-20T07:03:34.372024Z",
+            "modified": "2022-08-20T07:03:34.372024Z",
+            "name": "URL: https://www.fireeye.com/blog/threatresearch/2019/01/apt39-iranian-cyber-espionage-group-focused-onpersonal-information.html",
+            "indicator_types": [
+                "malicious-activity"
+            ],
+            "pattern": "[ url:value = 'https://www.fireeye.com/blog/threatresearch/2019/01/apt39-iranian-cyber-espionage-group-focused-onpersonal-information.html' ]",
+            "pattern_type": "stix",
+            "pattern_version": "2.1",
+            "valid_from": "2022-08-20T07:03:34.372024Z"
+        },
+        {
+            "type": "location",
+            "spec_version": "2.1",
+            "id": "location--da594e87-f172-43a3-80a5-bda88c3ecc13",
+            "created": "2022-08-20T07:03:37.60563Z",
+            "modified": "2022-08-20T07:03:37.60563Z",
+            "name": "IT",
+            "country": "IT"
+        },
+        {
+            "type": "intrusion-set",
+            "id": "intrusion-set--0bbdf25b-30ff-4894-a1cd-49260d0dd2d9",
+            "created_by_ref": "identity--c78cb6e5-0c4b-4611-8297-d1b8b55e40b5",
+            "created": "2017-05-31T21:31:55.853Z",
+            "modified": "2021-10-01T19:09:20.817Z",
+            "name": "APT3",
+            "description": "[APT3](https://attack.mitre.org/groups/G0022) is a China-based threat group that researchers have attributed to China's Ministry of State Security.(Citation: FireEye Clandestine Wolf)(Citation: Recorded Future APT3 May 2017) This group is responsible for the campaigns known as Operation Clandestine Fox, Operation Clandestine Wolf, and Operation Double Tap.(Citation: FireEye Clandestine Wolf)(Citation: FireEye Operation Double Tap) As of June 2015, the group appears to have shifted from targeting primarily US victims to primarily political organizations in Hong Kong.(Citation: Symantec Buckeye)\n\nIn 2017, MITRE developed an APT3 Adversary Emulation Plan.(Citation: APT3 Adversary Emulation Plan)",
+            "aliases": [
+                "APT3",
+                "Gothic Panda",
+                "Pirpi",
+                "UPS Team",
+                "Buckeye",
+                "Threat Group-0110",
+                "TG-0110"
+            ],
+            "external_references": [
+                {
+                    "source_name": "mitre-attack",
+                    "url": "https://attack.mitre.org/groups/G0022",
+                    "external_id": "G0022"
+                },
+                {
+                    "source_name": "APT3",
+                    "description": "(Citation: FireEye Clandestine Wolf) (Citation: Recorded Future APT3 May 2017) (Citation: Symantec Buckeye)"
+                },
+                {
+                    "source_name": "Gothic Panda",
+                    "description": "(Citation: PWC Pirpi Scanbox) (Citation: Recorded Future APT3 May 2017) (Citation: Symantec Buckeye)"
+                },
+                {
+                    "source_name": "Pirpi",
+                    "description": "(Citation: PWC Pirpi Scanbox)"
+                },
+                {
+                    "source_name": "UPS Team",
+                    "description": "(Citation: FireEye Clandestine Wolf) (Citation: Recorded Future APT3 May 2017) (Citation: Symantec Buckeye)"
+                },
+                {
+                    "source_name": "Buckeye",
+                    "description": "(Citation: Symantec Buckeye)"
+                },
+                {
+                    "source_name": "Threat Group-0110",
+                    "description": "(Citation: Recorded Future APT3 May 2017) (Citation: Symantec Buckeye)"
+                },
+                {
+                    "source_name": "TG-0110",
+                    "description": "(Citation: Recorded Future APT3 May 2017) (Citation: Symantec Buckeye)"
+                },
+                {
+                    "source_name": "FireEye Clandestine Wolf",
+                    "description": "Eng, E., Caselden, D.. (2015, June 23). Operation Clandestine Wolf \u2013 Adobe Flash Zero-Day in APT3 Phishing Campaign. Retrieved January 14, 2016.",
+                    "url": "https://www.fireeye.com/blog/threat-research/2015/06/operation-clandestine-wolf-adobe-flash-zero-day.html"
+                },
+                {
+                    "source_name": "Recorded Future APT3 May 2017",
+                    "description": "Insikt Group (Recorded Future). (2017, May 17). Recorded Future Research Concludes Chinese Ministry of State Security Behind APT3. Retrieved June 18, 2017.",
+                    "url": "https://www.recordedfuture.com/chinese-mss-behind-apt3/"
+                },
+                {
+                    "source_name": "FireEye Operation Double Tap",
+                    "description": "Moran, N., et al. (2014, November 21). Operation Double Tap. Retrieved January 14, 2016.",
+                    "url": "https://www.fireeye.com/blog/threat-research/2014/11/operation_doubletap.html"
+                },
+                {
+                    "source_name": "Symantec Buckeye",
+                    "description": "Symantec Security Response. (2016, September 6). Buckeye cyberespionage group shifts gaze from US to Hong Kong. Retrieved September 26, 2016.",
+                    "url": "http://www.symantec.com/connect/blogs/buckeye-cyberespionage-group-shifts-gaze-us-hong-kong"
+                },
+                {
+                    "source_name": "APT3 Adversary Emulation Plan",
+                    "description": "Korban, C, et al. (2017, September). APT3 Adversary Emulation Plan. Retrieved January 16, 2018.",
+                    "url": "https://attack.mitre.org/docs/APT3_Adversary_Emulation_Plan.pdf"
+                },
+                {
+                    "source_name": "PWC Pirpi Scanbox",
+                    "description": "Lancaster, T. (2015, July 25). A tale of Pirpi, Scanbox & CVE-2015-3113. Retrieved March 30, 2016.",
+                    "url": "http://pwc.blogs.com/cyber_security_updates/2015/07/pirpi-scanbox.html"
+                }
+            ],
+            "object_marking_refs": [
+                "marking-definition--fa42a846-8d90-4e51-bc29-71d5b4802168"
+            ],
+            "x_mitre_contributors": [
+                "Patrick Sungbahadoor"
+            ],
+            "x_mitre_domains": [
+                "enterprise-attack"
+            ],
+            "x_mitre_modified_by_ref": "identity--c78cb6e5-0c4b-4611-8297-d1b8b55e40b5",
+            "x_mitre_version": "1.4"
+        },
+        {
+            "type": "tool",
+            "id": "tool--0c8465c0-d0b4-4670-992e-4eee8d7ff952",
+            "created_by_ref": "identity--c78cb6e5-0c4b-4611-8297-d1b8b55e40b5",
+            "created": "2017-05-31T21:33:06.824Z",
+            "modified": "2022-04-20T20:02:41.550Z",
+            "name": "at",
+            "description": "[at](https://attack.mitre.org/software/S0110) is used to schedule tasks on a system to run at a specified date or time.(Citation: TechNet At)(Citation: Linux at)",
+            "labels": [
+                "tool"
+            ],
+            "external_references": [
+                {
+                    "source_name": "mitre-attack",
+                    "url": "https://attack.mitre.org/software/S0110",
+                    "external_id": "S0110"
+                },
+                {
+                    "source_name": "Linux at",
+                    "description": "IEEE/The Open Group. (2017). at(1p) \u2014 Linux manual page. Retrieved February 25, 2022.",
+                    "url": "https://man7.org/linux/man-pages/man1/at.1p.html"
+                },
+                {
+                    "source_name": "TechNet At",
+                    "description": "Microsoft. (n.d.). At. Retrieved April 28, 2016.",
+                    "url": "https://technet.microsoft.com/en-us/library/bb490866.aspx"
+                }
+            ],
+            "object_marking_refs": [
+                "marking-definition--fa42a846-8d90-4e51-bc29-71d5b4802168"
+            ],
+            "x_mitre_aliases": [
+                "at",
+                "at.exe"
+            ],
+            "x_mitre_attack_spec_version": "2.1.0",
+            "x_mitre_deprecated": false,
+            "x_mitre_domains": [
+                "enterprise-attack"
+            ],
+            "x_mitre_modified_by_ref": "identity--c78cb6e5-0c4b-4611-8297-d1b8b55e40b5",
+            "x_mitre_platforms": [
+                "Linux",
+                "Windows",
+                "macOS"
+            ],
+            "x_mitre_version": "1.2"
+        },
+        {
+            "type": "intrusion-set",
+            "id": "intrusion-set--4ca1929c-7d64-4aab-b849-badbfc0c760d",
+            "created_by_ref": "identity--c78cb6e5-0c4b-4611-8297-d1b8b55e40b5",
+            "created": "2017-12-14T16:46:06.044Z",
+            "modified": "2022-05-23T21:20:37.658Z",
+            "name": "OilRig",
+            "description": "[OilRig](https://attack.mitre.org/groups/G0049) is a suspected Iranian threat group that has targeted Middle Eastern and international victims since at least 2014. The group has targeted a variety of sectors, including financial, government, energy, chemical, and telecommunications. It appears the group carries out supply chain attacks, leveraging the trust relationship between organizations to attack their primary targets. FireEye assesses that the group works on behalf of the Iranian government based on infrastructure details that contain references to Iran, use of Iranian infrastructure, and targeting that aligns with nation-state interests.(Citation: Palo Alto OilRig April 2017)(Citation: ClearSky OilRig Jan 2017)(Citation: Palo Alto OilRig May 2016)(Citation: Palo Alto OilRig Oct 2016)(Citation: Unit 42 Playbook Dec 2017)(Citation: FireEye APT34 Dec 2017)(Citation: Unit 42 QUADAGENT July 2018)",
+            "aliases": [
+                "OilRig",
+                "COBALT GYPSY",
+                "IRN2",
+                "HELIX KITTEN",
+                "APT34"
+            ],
+            "external_references": [
+                {
+                    "source_name": "mitre-attack",
+                    "url": "https://attack.mitre.org/groups/G0049",
+                    "external_id": "G0049"
+                },
+                {
+                    "source_name": "IRN2",
+                    "description": "(Citation: Crowdstrike Helix Kitten Nov 2018)"
+                },
+                {
+                    "source_name": "OilRig",
+                    "description": "(Citation: Palo Alto OilRig April 2017) (Citation: ClearSky OilRig Jan 2017) (Citation: Palo Alto OilRig May 2016) (Citation: Palo Alto OilRig Oct 2016) (Citation: Unit 42 Playbook Dec 2017) (Citation: Unit 42 QUADAGENT July 2018)"
+                },
+                {
+                    "source_name": "COBALT GYPSY",
+                    "description": "(Citation: Secureworks COBALT GYPSY Threat Profile)"
+                },
+                {
+                    "source_name": "HELIX KITTEN",
+                    "description": "(Citation: Unit 42 QUADAGENT July 2018)(Citation: Crowdstrike Helix Kitten Nov 2018)"
+                },
+                {
+                    "source_name": "Check Point APT34 April 2021",
+                    "description": "Check Point. (2021, April 8). Iran\u2019s APT34 Returns with an Updated Arsenal. Retrieved May 5, 2021.",
+                    "url": "https://research.checkpoint.com/2021/irans-apt34-returns-with-an-updated-arsenal/"
+                },
+                {
+                    "source_name": "ClearSky OilRig Jan 2017",
+                    "description": "ClearSky Cybersecurity. (2017, January 5). Iranian Threat Agent OilRig Delivers Digitally Signed Malware, Impersonates University of Oxford. Retrieved May 3, 2017.",
+                    "url": "http://www.clearskysec.com/oilrig/"
+                },
+                {
+                    "source_name": "Palo Alto OilRig May 2016",
+                    "description": "Falcone, R. and Lee, B.. (2016, May 26). The OilRig Campaign: Attacks on Saudi Arabian Organizations Deliver Helminth Backdoor. Retrieved May 3, 2017.",
+                    "url": "http://researchcenter.paloaltonetworks.com/2016/05/the-oilrig-campaign-attacks-on-saudi-arabian-organizations-deliver-helminth-backdoor/"
+                },
+                {
+                    "source_name": "Palo Alto OilRig April 2017",
+                    "description": "Falcone, R.. (2017, April 27). OilRig Actors Provide a Glimpse into Development and Testing Efforts. Retrieved May 3, 2017.",
+                    "url": "http://researchcenter.paloaltonetworks.com/2017/04/unit42-oilrig-actors-provide-glimpse-development-testing-efforts/"
+                },
+                {
+                    "source_name": "Palo Alto OilRig Oct 2016",
+                    "description": "Grunzweig, J. and Falcone, R.. (2016, October 4). OilRig Malware Campaign Updates Toolset and Expands Targets. Retrieved May 3, 2017.",
+                    "url": "http://researchcenter.paloaltonetworks.com/2016/10/unit42-oilrig-malware-campaign-updates-toolset-and-expands-targets/"
+                },
+                {
+                    "source_name": "Unit 42 QUADAGENT July 2018",
+                    "description": "Lee, B., Falcone, R. (2018, July 25). OilRig Targets Technology Service Provider and Government Agency with QUADAGENT. Retrieved August 9, 2018.",
+                    "url": "https://researchcenter.paloaltonetworks.com/2018/07/unit42-oilrig-targets-technology-service-provider-government-agency-quadagent/"
+                },
+                {
+                    "source_name": "Crowdstrike Helix Kitten Nov 2018",
+                    "description": "Meyers, A. (2018, November 27). Meet CrowdStrike\u2019s Adversary of the Month for November: HELIX KITTEN. Retrieved December 18, 2018.",
+                    "url": "https://www.crowdstrike.com/blog/meet-crowdstrikes-adversary-of-the-month-for-november-helix-kitten/"
+                },
+                {
+                    "source_name": "FireEye APT34 Dec 2017",
+                    "description": "Sardiwal, M, et al. (2017, December 7). New Targeted Attack in the Middle East by APT34, a Suspected Iranian Threat Group, Using CVE-2017-11882 Exploit. Retrieved December 20, 2017.",
+                    "url": "https://www.fireeye.com/blog/threat-research/2017/12/targeted-attack-in-middle-east-by-apt34.html"
+                },
+                {
+                    "source_name": "Secureworks COBALT GYPSY Threat Profile",
+                    "description": "Secureworks. (n.d.). COBALT GYPSY Threat Profile. Retrieved April 14, 2021.",
+                    "url": "https://www.secureworks.com/research/threat-profiles/cobalt-gypsy"
+                },
+                {
+                    "source_name": "APT34",
+                    "description": "This group was previously tracked under two distinct groups, APT34 and OilRig, but was combined due to additional reporting giving higher confidence about the overlap of the activity. (Citation: Unit 42 QUADAGENT July 2018) (Citation: FireEye APT34 Dec 2017)(Citation: Check Point APT34 April 2021)"
+                },
+                {
+                    "source_name": "Unit 42 Playbook Dec 2017",
+                    "description": "Unit 42. (2017, December 15). Unit 42 Playbook Viewer. Retrieved December 20, 2017.",
+                    "url": "https://pan-unit42.github.io/playbook_viewer/"
+                }
+            ],
+            "object_marking_refs": [
+                "marking-definition--fa42a846-8d90-4e51-bc29-71d5b4802168"
+            ],
+            "x_mitre_attack_spec_version": "2.1.0",
+            "x_mitre_contributors": [
+                "Robert Falcone",
+                "Bryan Lee",
+                "Dragos  Threat  Intelligence"
+            ],
+            "x_mitre_deprecated": false,
+            "x_mitre_domains": [
+                "enterprise-attack"
+            ],
+            "x_mitre_modified_by_ref": "identity--c78cb6e5-0c4b-4611-8297-d1b8b55e40b5",
+            "x_mitre_version": "3.0"
+        },
+        {
+            "type": "attack-pattern",
+            "id": "attack-pattern--f3d95a1f-bba2-44ce-9af7-37866cd63fd0",
+            "created_by_ref": "identity--c78cb6e5-0c4b-4611-8297-d1b8b55e40b5",
+            "created": "2019-11-27T13:52:45.853Z",
+            "modified": "2022-04-18T20:12:04.110Z",
+            "name": "At",
+            "description": "Adversaries may abuse the [at](https://attack.mitre.org/software/S0110) utility to perform task scheduling for initial or recurring execution of malicious code. The [at](https://attack.mitre.org/software/S0110) utility exists as an executable within Windows, Linux, and macOS for scheduling tasks at a specified time and date. Although deprecated in favor of [Scheduled Task](https://attack.mitre.org/techniques/T1053/005)'s [schtasks](https://attack.mitre.org/software/S0111) in Windows environments, using [at](https://attack.mitre.org/software/S0110) requires that the Task Scheduler service be running, and the user to be logged on as a member of the local Administrators group.\n\nOn Linux and macOS, [at](https://attack.mitre.org/software/S0110) may be invoked by the superuser as well as any users added to the <code>at.allow</code> file. If the <code>at.allow</code> file does not exist, the <code>at.deny</code> file is checked. Every username not listed in <code>at.deny</code> is allowed to invoke [at](https://attack.mitre.org/software/S0110). If the <code>at.deny</code> exists and is empty, global use of [at](https://attack.mitre.org/software/S0110) is permitted. If neither file exists (which is often the baseline) only the superuser is allowed to use [at](https://attack.mitre.org/software/S0110).(Citation: Linux at)\n\nAdversaries may use [at](https://attack.mitre.org/software/S0110) to execute programs at system startup or on a scheduled basis for [Persistence](https://attack.mitre.org/tactics/TA0003). [at](https://attack.mitre.org/software/S0110) can also be abused to conduct remote [Execution](https://attack.mitre.org/tactics/TA0002) as part of [Lateral Movement](https://attack.mitre.org/tactics/TA0008) and/or to run a process under the context of a specified account (such as SYSTEM).\n\nIn Linux environments, adversaries may also abuse [at](https://attack.mitre.org/software/S0110) to break out of restricted environments by using a task to spawn an interactive system shell or to run system commands. Similarly, [at](https://attack.mitre.org/software/S0110) may also be used for [Privilege Escalation](https://attack.mitre.org/tactics/TA0004) if the binary is allowed to run as superuser via <code>sudo</code>.(Citation: GTFObins at)",
+            "kill_chain_phases": [
+                {
+                    "kill_chain_name": "mitre-attack",
+                    "phase_name": "execution"
+                },
+                {
+                    "kill_chain_name": "mitre-attack",
+                    "phase_name": "persistence"
+                },
+                {
+                    "kill_chain_name": "mitre-attack",
+                    "phase_name": "privilege-escalation"
+                }
+            ],
+            "external_references": [
+                {
+                    "source_name": "mitre-attack",
+                    "url": "https://attack.mitre.org/techniques/T1053/002",
+                    "external_id": "T1053.002"
+                },
+                {
+                    "source_name": "rowland linux at 2019",
+                    "description": "Craig Rowland. (2019, July 25). Getting an Attacker IP Address from a Malicious Linux At Job. Retrieved October 15, 2021.",
+                    "url": "https://www.linkedin.com/pulse/getting-attacker-ip-address-from-malicious-linux-job-craig-rowland/"
+                },
+                {
+                    "source_name": "GTFObins at",
+                    "description": "Emilio Pinna, Andrea Cardaci. (n.d.). gtfobins at. Retrieved September 28, 2021.",
+                    "url": "https://gtfobins.github.io/gtfobins/at/"
+                },
+                {
+                    "source_name": "Linux at",
+                    "description": "IEEE/The Open Group. (2017). at(1p) \u2014 Linux manual page. Retrieved February 25, 2022.",
+                    "url": "https://man7.org/linux/man-pages/man1/at.1p.html"
+                },
+                {
+                    "source_name": "Twitter Leoloobeek Scheduled Task",
+                    "description": "Loobeek, L. (2017, December 8). leoloobeek Status. Retrieved December 12, 2017.",
+                    "url": "https://twitter.com/leoloobeek/status/939248813465853953"
+                },
+                {
+                    "source_name": "Microsoft Scheduled Task Events Win10",
+                    "description": "Microsoft. (2017, May 28). Audit Other Object Access Events. Retrieved June 27, 2019.",
+                    "url": "https://docs.microsoft.com/en-us/windows/security/threat-protection/auditing/audit-other-object-access-events"
+                },
+                {
+                    "source_name": "TechNet Scheduled Task Events",
+                    "description": "Microsoft. (n.d.). General Task Registration. Retrieved December 12, 2017.",
+                    "url": "https://technet.microsoft.com/library/dd315590.aspx"
+                },
+                {
+                    "source_name": "TechNet Autoruns",
+                    "description": "Russinovich, M. (2016, January 4). Autoruns for Windows v13.51. Retrieved June 6, 2016.",
+                    "url": "https://technet.microsoft.com/en-us/sysinternals/bb963902"
+                },
+                {
+                    "source_name": "TechNet Forum Scheduled Task Operational Setting",
+                    "description": "Satyajit321. (2015, November 3). Scheduled Tasks History Retention settings. Retrieved December 12, 2017.",
+                    "url": "https://social.technet.microsoft.com/Forums/en-US/e5bca729-52e7-4fcb-ba12-3225c564674c/scheduled-tasks-history-retention-settings?forum=winserver8gen"
+                }
+            ],
+            "object_marking_refs": [
+                "marking-definition--fa42a846-8d90-4e51-bc29-71d5b4802168"
+            ],
+            "x_mitre_attack_spec_version": "2.1.0",
+            "x_mitre_data_sources": [
+                "Process: Process Creation",
+                "Command: Command Execution",
+                "Scheduled Job: Scheduled Job Creation",
+                "File: File Modification"
+            ],
+            "x_mitre_deprecated": false,
+            "x_mitre_detection": "Monitor process execution from the svchost.exe in Windows 10 and the Windows Task Scheduler taskeng.exe for older versions of Windows. (Citation: Twitter Leoloobeek Scheduled Task) If scheduled tasks are not used for persistence, then the adversary is likely to remove the task when the action is complete. Monitor Windows Task Scheduler stores in %systemroot%\\System32\\Tasks for change entries related to scheduled tasks that do not correlate with known software, patch cycles, etc.\n\nConfigure event logging for scheduled task creation and changes by enabling the \"Microsoft-Windows-TaskScheduler/Operational\" setting within the event logging service. (Citation: TechNet Forum Scheduled Task Operational Setting) Several events will then be logged on scheduled task activity, including: (Citation: TechNet Scheduled Task Events)(Citation: Microsoft Scheduled Task Events Win10)\n\n* Event ID 106 on Windows 7, Server 2008 R2 - Scheduled task registered\n* Event ID 140 on Windows 7, Server 2008 R2 / 4702 on Windows 10, Server 2016 - Scheduled task updated\n* Event ID 141 on Windows 7, Server 2008 R2 / 4699 on Windows 10, Server 2016 - Scheduled task deleted\n* Event ID 4698 on Windows 10, Server 2016 - Scheduled task created\n* Event ID 4700 on Windows 10, Server 2016 - Scheduled task enabled\n* Event ID 4701 on Windows 10, Server 2016 - Scheduled task disabled\n\nTools such as Sysinternals Autoruns may also be used to detect system changes that could be attempts at persistence, including listing current scheduled tasks. (Citation: TechNet Autoruns)\n\nRemote access tools with built-in features may interact directly with the Windows API to perform these functions outside of typical system utilities. Tasks may also be created through Windows system management tools such as [Windows Management Instrumentation](https://attack.mitre.org/techniques/T1047) and [PowerShell](https://attack.mitre.org/techniques/T1059/001), so additional logging may need to be configured to gather the appropriate data.\n\nIn Linux and macOS environments, monitor scheduled task creation using command-line invocation. Legitimate scheduled tasks may be created during installation of new software or through system administration functions. Look for changes to tasks that do not correlate with known software, patch cycles, etc. \n\nReview all jobs using the <code>atq</code> command and ensure IP addresses stored in the <code>SSH_CONNECTION</code> and <code>SSH_CLIENT</code> variables, machines that created the jobs, are trusted hosts. All [at](https://attack.mitre.org/software/S0110) jobs are stored in <code>/var/spool/cron/atjobs/</code>.(Citation: rowland linux at 2019)\n\nSuspicious program execution through scheduled tasks may show up as outlier processes that have not been seen before when compared against historical data. Data and events should not be viewed in isolation, but as part of a chain of behavior that could lead to other activities, such as network connections made for [Command and Control](https://attack.mitre.org/tactics/TA0011), learning details about the environment through [Discovery](https://attack.mitre.org/tactics/TA0007), and [Lateral Movement](https://attack.mitre.org/tactics/TA0008).",
+            "x_mitre_domains": [
+                "enterprise-attack"
+            ],
+            "x_mitre_is_subtechnique": true,
+            "x_mitre_modified_by_ref": "identity--c78cb6e5-0c4b-4611-8297-d1b8b55e40b5",
+            "x_mitre_permissions_required": [
+                "Administrator",
+                "User"
+            ],
+            "x_mitre_platforms": [
+                "Windows",
+                "Linux",
+                "macOS"
+            ],
+            "x_mitre_remote_support": true,
+            "x_mitre_version": "2.0"
+        },
+        {
+            "type": "tool",
+            "id": "tool--afc079f3-c0ea-4096-b75d-3f05338b7f60",
+            "created_by_ref": "identity--c78cb6e5-0c4b-4611-8297-d1b8b55e40b5",
+            "created": "2017-05-31T21:32:11.544Z",
+            "modified": "2022-04-12T18:59:55.116Z",
+            "name": "Mimikatz",
+            "description": "[Mimikatz](https://attack.mitre.org/software/S0002) is a credential dumper capable of obtaining plaintext Windows account logins and passwords, along with many other features that make it useful for testing the security of networks. (Citation: Deply Mimikatz) (Citation: Adsecurity Mimikatz Guide)",
+            "labels": [
+                "tool"
+            ],
+            "external_references": [
+                {
+                    "source_name": "mitre-attack",
+                    "url": "https://attack.mitre.org/software/S0002",
+                    "external_id": "S0002"
+                },
+                {
+                    "source_name": "Deply Mimikatz",
+                    "description": "Deply, B. (n.d.). Mimikatz. Retrieved September 29, 2015.",
+                    "url": "https://github.com/gentilkiwi/mimikatz"
+                },
+                {
+                    "source_name": "Adsecurity Mimikatz Guide",
+                    "description": "Metcalf, S. (2015, November 13). Unofficial Guide to Mimikatz & Command Reference. Retrieved December 23, 2015.",
+                    "url": "https://adsecurity.org/?page_id=1821"
+                }
+            ],
+            "object_marking_refs": [
+                "marking-definition--fa42a846-8d90-4e51-bc29-71d5b4802168"
+            ],
+            "x_mitre_aliases": [
+                "Mimikatz"
+            ],
+            "x_mitre_attack_spec_version": "2.1.0",
+            "x_mitre_contributors": [
+                "Vincent Le Toux"
+            ],
+            "x_mitre_deprecated": false,
+            "x_mitre_domains": [
+                "enterprise-attack"
+            ],
+            "x_mitre_modified_by_ref": "identity--c78cb6e5-0c4b-4611-8297-d1b8b55e40b5",
+            "x_mitre_platforms": [
+                "Windows"
+            ],
+            "x_mitre_version": "1.5"
+        },
+        {
+            "type": "attack-pattern",
+            "id": "attack-pattern--51dea151-0898-4a45-967c-3ebee0420484",
+            "created_by_ref": "identity--c78cb6e5-0c4b-4611-8297-d1b8b55e40b5",
+            "created": "2017-05-31T21:30:59.769Z",
+            "modified": "2020-02-11T18:24:04.507Z",
+            "name": "Remote Desktop Protocol",
+            "description": "Remote desktop is a common feature in operating systems. It allows a user to log into an interactive session with a system desktop graphical user interface on a remote system. Microsoft refers to its implementation of the Remote Desktop Protocol (RDP) as Remote Desktop Services (RDS). (Citation: TechNet Remote Desktop Services) There are other implementations and third-party tools that provide graphical access [Remote Services](https://attack.mitre.org/techniques/T1021) similar to RDS.\n\nAdversaries may connect to a remote system over RDP/RDS to expand access if the service is enabled and allows access to accounts with known credentials. Adversaries will likely use Credential Access techniques to acquire credentials to use with RDP. Adversaries may also use RDP in conjunction with the [Accessibility Features](https://attack.mitre.org/techniques/T1015) technique for Persistence. (Citation: Alperovitch Malware)\n\nAdversaries may also perform RDP session hijacking which involves stealing a legitimate user's remote session. Typically, a user is notified when someone else is trying to steal their session and prompted with a question. With System permissions and using Terminal Services Console, <code>c:\\windows\\system32\\tscon.exe [session number to be stolen]</code>, an adversary can hijack a session without the need for credentials or prompts to the user. (Citation: RDP Hijacking Korznikov) This can be done remotely or locally and with active or disconnected sessions. (Citation: RDP Hijacking Medium) It can also lead to [Remote System Discovery](https://attack.mitre.org/techniques/T1018) and Privilege Escalation by stealing a Domain Admin or higher privileged account session. All of this can be done by using native Windows commands, but it has also been added as a feature in RedSnarf. (Citation: Kali Redsnarf)",
+            "kill_chain_phases": [
+                {
+                    "kill_chain_name": "mitre-attack",
+                    "phase_name": "lateral-movement"
+                }
+            ],
+            "revoked": true,
+            "external_references": [
+                {
+                    "source_name": "mitre-attack",
+                    "url": "https://attack.mitre.org/techniques/T1076",
+                    "external_id": "T1076"
+                },
+                {
+                    "source_name": "capec",
+                    "url": "https://capec.mitre.org/data/definitions/555.html",
+                    "external_id": "CAPEC-555"
+                },
+                {
+                    "source_name": "TechNet Remote Desktop Services",
+                    "description": "Microsoft. (n.d.). Remote Desktop Services. Retrieved June 1, 2016.",
+                    "url": "https://technet.microsoft.com/en-us/windowsserver/ee236407.aspx"
+                },
+                {
+                    "source_name": "Alperovitch Malware",
+                    "description": "Alperovitch, D. (2014, October 31). Malware-Free Intrusions. Retrieved November 4, 2014.",
+                    "url": "http://blog.crowdstrike.com/adversary-tricks-crowdstrike-treats/"
+                },
+                {
+                    "source_name": "RDP Hijacking Korznikov",
+                    "description": "Korznikov, A. (2017, March 17). Passwordless RDP Session Hijacking Feature All Windows versions. Retrieved December 11, 2017.",
+                    "url": "http://www.korznikov.com/2017/03/0-day-or-feature-privilege-escalation.html"
+                },
+                {
+                    "source_name": "RDP Hijacking Medium",
+                    "description": "Beaumont, K. (2017, March 19). RDP hijacking\u200a\u2014\u200ahow to hijack RDS and RemoteApp sessions transparently to move through an organisation. Retrieved December 11, 2017.",
+                    "url": "https://medium.com/@networksecurity/rdp-hijacking-how-to-hijack-rds-and-remoteapp-sessions-transparently-to-move-through-an-da2a1e73a5f6"
+                },
+                {
+                    "source_name": "Kali Redsnarf",
+                    "description": "NCC Group PLC. (2016, November 1). Kali Redsnarf. Retrieved December 11, 2017.",
+                    "url": "https://github.com/nccgroup/redsnarf"
+                }
+            ],
+            "object_marking_refs": [
+                "marking-definition--fa42a846-8d90-4e51-bc29-71d5b4802168"
+            ],
+            "x_mitre_contributors": [
+                "Matthew Demaske, Adaptforward"
+            ],
+            "x_mitre_detection": "Use of RDP may be legitimate, depending on the network environment and how it is used. Other factors, such as access patterns and activity that occurs after a remote login, may indicate suspicious or malicious behavior with RDP. Monitor for user accounts logged into systems they would not normally access or access patterns to multiple systems over a relatively short period of time.\n\nAlso, set up process monitoring for <code>tscon.exe</code> usage and monitor service creation that uses <code>cmd.exe /k</code> or <code>cmd.exe /c</code> in its arguments to prevent RDP session hijacking.",
+            "x_mitre_domains": [
+                "enterprise-attack"
+            ],
+            "x_mitre_modified_by_ref": "identity--c78cb6e5-0c4b-4611-8297-d1b8b55e40b5",
+            "x_mitre_permissions_required": [
+                "Remote Desktop Users",
+                "User"
+            ],
+            "x_mitre_platforms": [
+                "Windows"
+            ],
+            "x_mitre_system_requirements": [
+                "RDP service enabled, account in the Remote Desktop Users group."
+            ],
+            "x_mitre_version": "1.0"
+        },
+        {
+            "type": "attack-pattern",
+            "id": "attack-pattern--2db31dcd-54da-405d-acef-b9129b816ed6",
+            "created_by_ref": "identity--c78cb6e5-0c4b-4611-8297-d1b8b55e40b5",
+            "created": "2020-02-11T18:27:15.774Z",
+            "modified": "2021-10-15T14:15:06.853Z",
+            "name": "SSH",
+            "description": "Adversaries may use [Valid Accounts](https://attack.mitre.org/techniques/T1078) to log into remote machines using Secure Shell (SSH). The adversary may then perform actions as the logged-on user.\n\nSSH is a protocol that allows authorized users to open remote shells on other computers. Many Linux and macOS versions come with SSH installed by default, although typically disabled until the user enables it. The SSH server can be configured to use standard password authentication or public-private keypairs in lieu of or in addition to a password. In this authentication scenario, the user\u2019s public key must be in a special file on the computer running the server that lists which keypairs are allowed to login as that user.",
+            "kill_chain_phases": [
+                {
+                    "kill_chain_name": "mitre-attack",
+                    "phase_name": "lateral-movement"
+                }
+            ],
+            "external_references": [
+                {
+                    "source_name": "mitre-attack",
+                    "url": "https://attack.mitre.org/techniques/T1021/004",
+                    "external_id": "T1021.004"
+                },
+                {
+                    "source_name": "capec",
+                    "url": "https://capec.mitre.org/data/definitions/555.html",
+                    "external_id": "CAPEC-555"
+                },
+                {
+                    "source_name": "Apple Unified Log Analysis Remote Login and Screen Sharing",
+                    "description": "Sarah Edwards. (2020, April 30). Analysis of Apple Unified Logs: Quarantine Edition [Entry 6] \u2013 Working From Home? Remote Logins. Retrieved August 19, 2021.",
+                    "url": "https://sarah-edwards-xzkc.squarespace.com/blog/2020/4/30/analysis-of-apple-unified-logs-quarantine-edition-entry-6-working-from-home-remote-logins"
+                }
+            ],
+            "object_marking_refs": [
+                "marking-definition--fa42a846-8d90-4e51-bc29-71d5b4802168"
+            ],
+            "x_mitre_data_sources": [
+                "Network Traffic: Network Connection Creation",
+                "Logon Session: Logon Session Creation",
+                "Process: Process Creation"
+            ],
+            "x_mitre_detection": "Use of SSH may be legitimate depending on the environment and how it\u2019s used. Other factors, such as access patterns and activity that occurs after a remote login, may indicate suspicious or malicious behavior with SSH. Monitor for user accounts logged into systems they would not normally access or access patterns to multiple systems over a relatively short period of time.\n\nOn macOS systems <code>log show --predicate 'process = \"sshd\"'</code> can be used to review incoming SSH connection attempts for suspicious activity. The command <code>log show --info --predicate 'process = \"ssh\" or eventMessage contains \"ssh\"'</code> can be used to review outgoing SSH connection activity.(Citation: Apple Unified Log Analysis Remote Login and Screen Sharing)\n\nOn Linux systems SSH activity can be found in the logs located in <code>/var/log/auth.log</code> or <code>/var/log/secure</code> depending on the distro you are using.",
+            "x_mitre_domains": [
+                "enterprise-attack"
+            ],
+            "x_mitre_is_subtechnique": true,
+            "x_mitre_modified_by_ref": "identity--c78cb6e5-0c4b-4611-8297-d1b8b55e40b5",
+            "x_mitre_platforms": [
+                "Linux",
+                "macOS"
+            ],
+            "x_mitre_system_requirements": [
+                "An SSH server is configured and running."
+            ],
+            "x_mitre_version": "1.1"
+        },
+        {
+            "type": "tool",
+            "id": "tool--ff6caf67-ea1f-4895-b80e-4bb0fc31c6db",
+            "created_by_ref": "identity--c78cb6e5-0c4b-4611-8297-d1b8b55e40b5",
+            "created": "2017-05-31T21:32:21.771Z",
+            "modified": "2021-06-24T13:47:24.660Z",
+            "name": "PsExec",
+            "description": "[PsExec](https://attack.mitre.org/software/S0029) is a free Microsoft tool that can be used to execute a program on another computer. It is used by IT administrators and attackers. (Citation: Russinovich Sysinternals) (Citation: SANS PsExec)",
+            "labels": [
+                "tool"
+            ],
+            "external_references": [
+                {
+                    "source_name": "mitre-attack",
+                    "url": "https://attack.mitre.org/software/S0029",
+                    "external_id": "S0029"
+                },
+                {
+                    "source_name": "Russinovich Sysinternals",
+                    "description": "Russinovich, M. (2014, May 2). Windows Sysinternals PsExec v2.11. Retrieved May 13, 2015.",
+                    "url": "https://technet.microsoft.com/en-us/sysinternals/bb897553.aspx"
+                },
+                {
+                    "source_name": "SANS PsExec",
+                    "description": "Pilkington, M.. (2012, December 17). Protecting Privileged Domain Accounts: PsExec Deep-Dive. Retrieved August 17, 2016.",
+                    "url": "https://digital-forensics.sans.org/blog/2012/12/17/protecting-privileged-domain-accounts-psexec-deep-dive"
+                }
+            ],
+            "object_marking_refs": [
+                "marking-definition--fa42a846-8d90-4e51-bc29-71d5b4802168"
+            ],
+            "x_mitre_aliases": [
+                "PsExec"
+            ],
+            "x_mitre_attack_spec_version": "2.1.0",
+            "x_mitre_contributors": [
+                "Janantha Marasinghe"
+            ],
+            "x_mitre_domains": [
+                "enterprise-attack"
+            ],
+            "x_mitre_modified_by_ref": "identity--c78cb6e5-0c4b-4611-8297-d1b8b55e40b5",
+            "x_mitre_platforms": [
+                "Windows"
+            ],
+            "x_mitre_version": "1.2"
+        },
+        {
+            "type": "tool",
+            "id": "tool--4fa49fc0-9162-4bdb-a37e-7aa3dcb6d38b",
+            "created_by_ref": "identity--c78cb6e5-0c4b-4611-8297-d1b8b55e40b5",
+            "created": "2017-05-31T21:33:11.941Z",
+            "modified": "2018-10-17T00:14:20.652Z",
+            "name": "xCmd",
+            "description": "[xCmd](https://attack.mitre.org/software/S0123) is an open source tool that is similar to [PsExec](https://attack.mitre.org/software/S0029) and allows the user to execute applications on remote systems. (Citation: xCmd)",
+            "labels": [
+                "tool"
+            ],
+            "external_references": [
+                {
+                    "source_name": "mitre-attack",
+                    "url": "https://attack.mitre.org/software/S0123",
+                    "external_id": "S0123"
+                },
+                {
+                    "source_name": "xCmd",
+                    "description": "Rayaprolu, A.. (2011, April 12). xCmd an Alternative to PsExec. Retrieved August 10, 2016.",
+                    "url": "https://ashwinrayaprolu.wordpress.com/2011/04/12/xcmd-an-alternative-to-psexec/"
+                }
+            ],
+            "object_marking_refs": [
+                "marking-definition--fa42a846-8d90-4e51-bc29-71d5b4802168"
+            ],
+            "x_mitre_attack_spec_version": "2.1.0",
+            "x_mitre_domains": [
+                "enterprise-attack"
+            ],
+            "x_mitre_modified_by_ref": "identity--c78cb6e5-0c4b-4611-8297-d1b8b55e40b5",
+            "x_mitre_version": "1.0"
+        },
+        {
+            "type": "report",
+            "spec_version": "2.1",
+            "id": "report--194ddf6e-c6ed-4829-b80b-1aed240d4ed6",
+            "created": "2022-08-20T07:05:46.968754Z",
+            "modified": "2022-08-20T07:05:46.968754Z",
+            "name": "/home/shanthanu9/free/obstracts-cli/examples/FireEyeAPT39.txt",
+            "report_types": [
+                "threat_report"
+            ],
+            "published": "2022-08-20T12:35:46.968711Z",
+            "object_refs": [
+                "indicator--acbc042a-17eb-4817-98ad-18bf35742f63",
+                "location--da594e87-f172-43a3-80a5-bda88c3ecc13",
+                "intrusion-set--0bbdf25b-30ff-4894-a1cd-49260d0dd2d9",
+                "tool--0c8465c0-d0b4-4670-992e-4eee8d7ff952",
+                "intrusion-set--4ca1929c-7d64-4aab-b849-badbfc0c760d",
+                "attack-pattern--f3d95a1f-bba2-44ce-9af7-37866cd63fd0",
+                "tool--afc079f3-c0ea-4096-b75d-3f05338b7f60",
+                "attack-pattern--51dea151-0898-4a45-967c-3ebee0420484",
+                "attack-pattern--2db31dcd-54da-405d-acef-b9129b816ed6",
+                "tool--ff6caf67-ea1f-4895-b80e-4bb0fc31c6db",
+                "tool--4fa49fc0-9162-4bdb-a37e-7aa3dcb6d38b"
+            ]
+        }
+    ]
+}

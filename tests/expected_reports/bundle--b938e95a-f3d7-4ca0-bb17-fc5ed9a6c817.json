@@ -1,0 +1,1212 @@
+{
+    "type": "bundle",
+    "id": "bundle--b938e95a-f3d7-4ca0-bb17-fc5ed9a6c817",
+    "objects": [
+        {
+            "type": "indicator",
+            "spec_version": "2.1",
+            "id": "indicator--823382e1-2d5b-4072-904c-312320430f1f",
+            "created": "2022-08-20T07:15:26.603397Z",
+            "modified": "2022-08-20T07:15:26.603397Z",
+            "name": "ipv4: 198.51.100.4",
+            "indicator_types": [
+                "malicious-activity"
+            ],
+            "pattern": "[ ipv4-addr:value = '198.51.100.4' ]",
+            "pattern_type": "stix",
+            "pattern_version": "2.1",
+            "valid_from": "2022-08-20T07:15:26.603397Z"
+        },
+        {
+            "type": "indicator",
+            "spec_version": "2.1",
+            "id": "indicator--4d6c2b57-5218-4719-b8e7-f98868bc6ed4",
+            "created": "2022-08-20T07:15:34.645896Z",
+            "modified": "2022-08-20T07:15:34.645896Z",
+            "name": "ipv4: 198.51.100.5",
+            "indicator_types": [
+                "malicious-activity"
+            ],
+            "pattern": "[ ipv4-addr:value = '198.51.100.5' ]",
+            "pattern_type": "stix",
+            "pattern_version": "2.1",
+            "valid_from": "2022-08-20T07:15:34.645896Z"
+        },
+        {
+            "type": "indicator",
+            "spec_version": "2.1",
+            "id": "indicator--ad40df90-5076-4038-8dce-5ea577d14dcc",
+            "created": "2022-08-20T07:15:35.813411Z",
+            "modified": "2022-08-20T07:15:35.813411Z",
+            "name": "ipv4: 198.0.103.12",
+            "indicator_types": [
+                "malicious-activity"
+            ],
+            "pattern": "[ ipv4-addr:value = '198.0.103.12' ]",
+            "pattern_type": "stix",
+            "pattern_version": "2.1",
+            "valid_from": "2022-08-20T07:15:35.813411Z"
+        },
+        {
+            "type": "indicator",
+            "spec_version": "2.1",
+            "id": "indicator--3817cac8-4fba-456f-b104-fb3c02b9bd2b",
+            "created": "2022-08-20T07:15:36.953299Z",
+            "modified": "2022-08-20T07:15:36.953299Z",
+            "name": "ipv4: 198.0.103.12/24",
+            "indicator_types": [
+                "malicious-activity"
+            ],
+            "pattern": "[ ipv4-addr:value = '198.0.103.12/24' ]",
+            "pattern_type": "stix",
+            "pattern_version": "2.1",
+            "valid_from": "2022-08-20T07:15:36.953299Z"
+        },
+        {
+            "type": "indicator",
+            "spec_version": "2.1",
+            "id": "indicator--833b154e-404e-4e44-b408-0ca4cab32477",
+            "created": "2022-08-20T07:15:38.103086Z",
+            "modified": "2022-08-20T07:15:38.103086Z",
+            "name": "ipv4: 198.0.103.12:8000",
+            "indicator_types": [
+                "malicious-activity"
+            ],
+            "pattern": "[ ipv4-addr:value = '198.0.103.12' AND network-traffic:dst_port = '8000' ]",
+            "pattern_type": "stix",
+            "pattern_version": "2.1",
+            "valid_from": "2022-08-20T07:15:38.103086Z"
+        },
+        {
+            "type": "indicator",
+            "spec_version": "2.1",
+            "id": "indicator--b5a26342-82d1-4191-b270-b615f9d81392",
+            "created": "2022-08-20T07:15:39.257188Z",
+            "modified": "2022-08-20T07:15:39.257188Z",
+            "name": "ipv6: 2001:0db8:85a3:0000:0000:8a2e:0370:7334",
+            "indicator_types": [
+                "malicious-activity"
+            ],
+            "pattern": "[ ipv6-addr:value = '2001:0db8:85a3:0000:0000:8a2e:0370:7334' ]",
+            "pattern_type": "stix",
+            "pattern_version": "2.1",
+            "valid_from": "2022-08-20T07:15:39.257188Z"
+        },
+        {
+            "type": "indicator",
+            "spec_version": "2.1",
+            "id": "indicator--17a68701-35c7-40cb-b583-e27dbe9381ea",
+            "created": "2022-08-20T07:15:40.413082Z",
+            "modified": "2022-08-20T07:15:40.413082Z",
+            "name": "ipv6: 2002::abcd:ffff:c0a8:101/64",
+            "indicator_types": [
+                "malicious-activity"
+            ],
+            "pattern": "[ ipv6-addr:value = '2002::abcd:ffff:c0a8:101/64' ]",
+            "pattern_type": "stix",
+            "pattern_version": "2.1",
+            "valid_from": "2022-08-20T07:15:40.413082Z"
+        },
+        {
+            "type": "indicator",
+            "spec_version": "2.1",
+            "id": "indicator--aae7180a-ea24-4f09-95eb-a637cc98dd1f",
+            "created": "2022-08-20T07:15:41.581149Z",
+            "modified": "2022-08-20T07:15:41.581149Z",
+            "name": "ipv6: [2001:0db8:85a3:0000:0000:8a2e:0370:7334]:80",
+            "indicator_types": [
+                "malicious-activity"
+            ],
+            "pattern": "[ ipv6-addr:value = '2001:0db8:85a3:0000:0000:8a2e:0370:7334' AND network-traffic:dst_port = '80' ]",
+            "pattern_type": "stix",
+            "pattern_version": "2.1",
+            "valid_from": "2022-08-20T07:15:41.581149Z"
+        },
+        {
+            "type": "indicator",
+            "spec_version": "2.1",
+            "id": "indicator--65a2915a-9185-4bf4-afbf-3f5167024cf9",
+            "created": "2022-08-20T07:15:42.777471Z",
+            "modified": "2022-08-20T07:15:42.777471Z",
+            "name": "File name: virus.exe",
+            "indicator_types": [
+                "malicious-activity"
+            ],
+            "pattern": "[ file:name = 'virus.exe' ]",
+            "pattern_type": "stix",
+            "pattern_version": "2.1",
+            "valid_from": "2022-08-20T07:15:42.777471Z"
+        },
+        {
+            "type": "indicator",
+            "spec_version": "2.1",
+            "id": "indicator--e3acacae-afc9-44c4-8499-b117f59e8041",
+            "created": "2022-08-20T07:15:45.107222Z",
+            "modified": "2022-08-20T07:15:45.107222Z",
+            "name": "md5: 4ec503be252d765ea37621a629afdaa6",
+            "indicator_types": [
+                "malicious-activity"
+            ],
+            "pattern": "[ file:hash.md5 = '4ec503be252d765ea37621a629afdaa6' ]",
+            "pattern_type": "stix",
+            "pattern_version": "2.1",
+            "valid_from": "2022-08-20T07:15:45.107222Z"
+        },
+        {
+            "type": "indicator",
+            "spec_version": "2.1",
+            "id": "indicator--d159262c-8c54-448e-ac7b-fcea21ddec01",
+            "created": "2022-08-20T07:15:46.264773Z",
+            "modified": "2022-08-20T07:15:46.264773Z",
+            "name": "sha1: 86F7E437FAA5A7FCE15D1DDCB9EAEAEA377667B8",
+            "indicator_types": [
+                "malicious-activity"
+            ],
+            "pattern": "[ file:hash.sha1 = '86F7E437FAA5A7FCE15D1DDCB9EAEAEA377667B8' ]",
+            "pattern_type": "stix",
+            "pattern_version": "2.1",
+            "valid_from": "2022-08-20T07:15:46.264773Z"
+        },
+        {
+            "type": "indicator",
+            "spec_version": "2.1",
+            "id": "indicator--d107af26-62f7-4273-877f-c49e826f66fb",
+            "created": "2022-08-20T07:15:47.432858Z",
+            "modified": "2022-08-20T07:15:47.432858Z",
+            "name": "sha256: ba7816bf8f01cfea414140de5dae2223b00361a396177a9cb410ff61f20015ad",
+            "indicator_types": [
+                "malicious-activity"
+            ],
+            "pattern": "[ file:hash.sha256 = 'ba7816bf8f01cfea414140de5dae2223b00361a396177a9cb410ff61f20015ad' ]",
+            "pattern_type": "stix",
+            "pattern_version": "2.1",
+            "valid_from": "2022-08-20T07:15:47.432858Z"
+        },
+        {
+            "type": "indicator",
+            "spec_version": "2.1",
+            "id": "indicator--cd251302-5688-4f61-86d5-0bb759ab33fb",
+            "created": "2022-08-20T07:15:48.602814Z",
+            "modified": "2022-08-20T07:15:48.602814Z",
+            "name": "sha512: 1f40fc92da241694750979ee6cf582f2d5d7d28e18335de05abc54d0560e0f5302860c652bf08d560252aa5e74210546f369fbbbce8c12cfc7957b2652fe9a75",
+            "indicator_types": [
+                "malicious-activity"
+            ],
+            "pattern": "[ file:hash.sha512 = '1f40fc92da241694750979ee6cf582f2d5d7d28e18335de05abc54d0560e0f5302860c652bf08d560252aa5e74210546f369fbbbce8c12cfc7957b2652fe9a75' ]",
+            "pattern_type": "stix",
+            "pattern_version": "2.1",
+            "valid_from": "2022-08-20T07:15:48.602814Z"
+        },
+        {
+            "type": "indicator",
+            "spec_version": "2.1",
+            "id": "indicator--5226b53a-9446-4870-baf8-53c8c3b18077",
+            "created": "2022-08-20T07:15:49.779981Z",
+            "modified": "2022-08-20T07:15:49.779981Z",
+            "name": "ssdeep: 96:s4Ud1Lj96tHHlZDrwciQmA+4uy1I0G4HYuL8N3TzS8QsO/wqWXLcMSx:sF1LjEtHHlZDrJzrhuyZvHYm8tKp/RWO",
+            "indicator_types": [
+                "malicious-activity"
+            ],
+            "pattern": "[ file:hash.ssdeep = '96:s4Ud1Lj96tHHlZDrwciQmA+4uy1I0G4HYuL8N3TzS8QsO/wqWXLcMSx:sF1LjEtHHlZDrJzrhuyZvHYm8tKp/RWO' ]",
+            "pattern_type": "stix",
+            "pattern_version": "2.1",
+            "valid_from": "2022-08-20T07:15:49.779981Z"
+        },
+        {
+            "type": "indicator",
+            "spec_version": "2.1",
+            "id": "indicator--3f9a148f-02e6-4767-9a4c-c29111557fbf",
+            "created": "2022-08-20T07:15:50.944081Z",
+            "modified": "2022-08-20T07:15:50.944081Z",
+            "name": "Directory: /System/Library/LaunchDaemons",
+            "indicator_types": [
+                "malicious-activity"
+            ],
+            "pattern": "[ directory:path = '/System/Library/LaunchDaemons' ]",
+            "pattern_type": "stix",
+            "pattern_version": "2.1",
+            "valid_from": "2022-08-20T07:15:50.944081Z"
+        },
+        {
+            "type": "indicator",
+            "spec_version": "2.1",
+            "id": "indicator--8e5e7725-3041-43cf-9a44-15d9ec9f7f45",
+            "created": "2022-08-20T07:15:52.111908Z",
+            "modified": "2022-08-20T07:15:52.111908Z",
+            "name": "Directory: C:\\\\Windows\\\\System32",
+            "indicator_types": [
+                "malicious-activity"
+            ],
+            "pattern": "[ directory:path = 'C:\\\\\\\\Windows\\\\\\\\System32' ]",
+            "pattern_type": "stix",
+            "pattern_version": "2.1",
+            "valid_from": "2022-08-20T07:15:52.111908Z"
+        },
+        {
+            "type": "indicator",
+            "spec_version": "2.1",
+            "id": "indicator--8ffd6d4e-cf35-4e7f-b2a8-2ae24329db03",
+            "created": "2022-08-20T07:15:53.268069Z",
+            "modified": "2022-08-20T07:15:53.268069Z",
+            "name": "Directory: /domain>>\u201dC:\\WINNT\\Debug\\1.txt\u201d",
+            "indicator_types": [
+                "malicious-activity"
+            ],
+            "pattern": "[ directory:path = '/domain>>\u201dC:\\\\WINNT\\\\Debug\\\\1.txt\u201d' ]",
+            "pattern_type": "stix",
+            "pattern_version": "2.1",
+            "valid_from": "2022-08-20T07:15:53.268069Z"
+        },
+        {
+            "type": "indicator",
+            "spec_version": "2.1",
+            "id": "indicator--9c585190-30b4-408d-8fce-9c5014d2b723",
+            "created": "2022-08-20T07:15:54.437034Z",
+            "modified": "2022-08-20T07:15:54.437034Z",
+            "name": "Domain: virus.exe",
+            "indicator_types": [
+                "malicious-activity"
+            ],
+            "pattern": "[ domain-name:value = 'virus.exe' ]",
+            "pattern_type": "stix",
+            "pattern_version": "2.1",
+            "valid_from": "2022-08-20T07:15:54.437034Z"
+        },
+        {
+            "type": "indicator",
+            "spec_version": "2.1",
+            "id": "indicator--1b0271c1-5475-4337-9bd3-b3fc9c917085",
+            "created": "2022-08-20T07:15:55.607288Z",
+            "modified": "2022-08-20T07:15:55.607288Z",
+            "name": "Domain: test.example.com",
+            "indicator_types": [
+                "malicious-activity"
+            ],
+            "pattern": "[ domain-name:value = 'test.example.com' ]",
+            "pattern_type": "stix",
+            "pattern_version": "2.1",
+            "valid_from": "2022-08-20T07:15:55.607288Z"
+        },
+        {
+            "type": "indicator",
+            "spec_version": "2.1",
+            "id": "indicator--040d495b-c665-45c8-9f8a-83ca43968306",
+            "created": "2022-08-20T07:15:56.770661Z",
+            "modified": "2022-08-20T07:15:56.770661Z",
+            "name": "Domain: example.com",
+            "indicator_types": [
+                "malicious-activity"
+            ],
+            "pattern": "[ domain-name:value = 'example.com' ]",
+            "pattern_type": "stix",
+            "pattern_version": "2.1",
+            "valid_from": "2022-08-20T07:15:56.770661Z"
+        },
+        {
+            "type": "indicator",
+            "spec_version": "2.1",
+            "id": "indicator--0b9405c5-351e-44b9-b87f-33c927933bd0",
+            "created": "2022-08-20T07:15:57.93888Z",
+            "modified": "2022-08-20T07:15:57.93888Z",
+            "name": "URL: https://example.com/research/",
+            "indicator_types": [
+                "malicious-activity"
+            ],
+            "pattern": "[ url:value = 'https://example.com/research/' ]",
+            "pattern_type": "stix",
+            "pattern_version": "2.1",
+            "valid_from": "2022-08-20T07:15:57.93888Z"
+        },
+        {
+            "type": "indicator",
+            "spec_version": "2.1",
+            "id": "indicator--15278e02-1cf9-4c01-9de1-9d203b467199",
+            "created": "2022-08-20T07:15:59.11522Z",
+            "modified": "2022-08-20T07:15:59.11522Z",
+            "name": "URL: https://example.com/path/index.html",
+            "indicator_types": [
+                "malicious-activity"
+            ],
+            "pattern": "[ url:value = 'https://example.com/path/index.html' ]",
+            "pattern_type": "stix",
+            "pattern_version": "2.1",
+            "valid_from": "2022-08-20T07:15:59.11522Z"
+        },
+        {
+            "type": "indicator",
+            "spec_version": "2.1",
+            "id": "indicator--ce8da606-7b72-48cf-8bee-ccaedf10f16f",
+            "created": "2022-08-20T07:16:00.302522Z",
+            "modified": "2022-08-20T07:16:00.302522Z",
+            "name": "Email Address: example@example.com",
+            "indicator_types": [
+                "malicious-activity"
+            ],
+            "pattern": "[ email-addr:value = 'example@example.com' ]",
+            "pattern_type": "stix",
+            "pattern_version": "2.1",
+            "valid_from": "2022-08-20T07:16:00.302522Z"
+        },
+        {
+            "type": "indicator",
+            "spec_version": "2.1",
+            "id": "indicator--7c1fab27-a22d-48f5-a80a-d76f4b112ce9",
+            "created": "2022-08-20T07:16:01.524286Z",
+            "modified": "2022-08-20T07:16:01.524286Z",
+            "name": "Email Address: test+1@google.com",
+            "indicator_types": [
+                "malicious-activity"
+            ],
+            "pattern": "[ email-addr:value = 'test+1@google.com' ]",
+            "pattern_type": "stix",
+            "pattern_version": "2.1",
+            "valid_from": "2022-08-20T07:16:01.524286Z"
+        },
+        {
+            "type": "indicator",
+            "spec_version": "2.1",
+            "id": "indicator--d7360612-cbc6-403c-b410-0d908aec72bd",
+            "created": "2022-08-20T07:16:02.698812Z",
+            "modified": "2022-08-20T07:16:02.698812Z",
+            "name": "MAC Address: d2:fb:49:24:37:18",
+            "indicator_types": [
+                "malicious-activity"
+            ],
+            "pattern": "[ mac-addr:value = 'd2:fb:49:24:37:18' ]",
+            "pattern_type": "stix",
+            "pattern_version": "2.1",
+            "valid_from": "2022-08-20T07:16:02.698812Z"
+        },
+        {
+            "type": "indicator",
+            "spec_version": "2.1",
+            "id": "indicator--faee8c23-fa0c-4294-8e3c-79917285d0cd",
+            "created": "2022-08-20T07:16:03.875884Z",
+            "modified": "2022-08-20T07:16:03.875884Z",
+            "name": "Windows Registry Key: HKEY_LOCAL_MACHINE\\SOFTWARE\\Wow6432Node",
+            "indicator_types": [
+                "malicious-activity"
+            ],
+            "pattern": "[ windows-registry-key:key = 'HKEY_LOCAL_MACHINE\\\\SOFTWARE\\\\Wow6432Node' ]",
+            "pattern_type": "stix",
+            "pattern_version": "2.1",
+            "valid_from": "2022-08-20T07:16:03.875884Z"
+        },
+        {
+            "type": "indicator",
+            "spec_version": "2.1",
+            "id": "indicator--3681a5f6-cfd3-4b14-a4fd-ad02440b1ee2",
+            "created": "2022-08-20T07:16:05.056727Z",
+            "modified": "2022-08-20T07:16:05.056727Z",
+            "name": "Windows Registry Key: HKEY_LOCAL_MACHINE\\SYSTEM\\system32\\config\\system",
+            "indicator_types": [
+                "malicious-activity"
+            ],
+            "pattern": "[ windows-registry-key:key = 'HKEY_LOCAL_MACHINE\\\\SYSTEM\\\\system32\\\\config\\\\system' ]",
+            "pattern_type": "stix",
+            "pattern_version": "2.1",
+            "valid_from": "2022-08-20T07:16:05.056727Z"
+        },
+        {
+            "type": "indicator",
+            "spec_version": "2.1",
+            "id": "indicator--68a450f9-4507-4035-97e3-3e1002414025",
+            "created": "2022-08-20T07:16:06.227402Z",
+            "modified": "2022-08-20T07:16:06.227402Z",
+            "name": "User Agent: Mozilla/5.0 (Windows; U; Windows NT 5.1; en-US; rv:1.6) Gecko/20040113",
+            "indicator_types": [
+                "malicious-activity"
+            ],
+            "pattern": "[ network-traffic:extensions.'http-requestext'.request_header.'User-Agent' = 'Mozilla/5.0 (Windows; U; Windows NT 5.1; en-US; rv:1.6) Gecko/20040113' ]",
+            "pattern_type": "stix",
+            "pattern_version": "2.1",
+            "valid_from": "2022-08-20T07:16:06.227402Z"
+        },
+        {
+            "type": "indicator",
+            "spec_version": "2.1",
+            "id": "indicator--9a4be335-e88c-4f28-9ab9-af02cb9f5d41",
+            "created": "2022-08-20T07:16:07.412839Z",
+            "modified": "2022-08-20T07:16:07.412839Z",
+            "name": "User Agent: Mozilla/5.0 (Linux; Android 11; Lenovo YT-J706X) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/96.0.4664.45 Safari/537.36",
+            "indicator_types": [
+                "malicious-activity"
+            ],
+            "pattern": "[ network-traffic:extensions.'http-requestext'.request_header.'User-Agent' = 'Mozilla/5.0 (Linux; Android 11; Lenovo YT-J706X) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/96.0.4664.45 Safari/537.36' ]",
+            "pattern_type": "stix",
+            "pattern_version": "2.1",
+            "valid_from": "2022-08-20T07:16:07.412839Z"
+        },
+        {
+            "type": "indicator",
+            "spec_version": "2.1",
+            "id": "indicator--4a29a5b7-65f0-4ea1-a3c9-cd549d3af6d0",
+            "created": "2022-08-20T07:16:08.629109Z",
+            "modified": "2022-08-20T07:16:08.629109Z",
+            "name": "User Agent: Mozilla/5.0 (iPhone14,6; U; CPU iPhone OS 15_4 like Mac OS X) AppleWebKit/602.1.50 (KHTML, like Gecko) Version/10.0 Mobile/19E241 Safari/602.1",
+            "indicator_types": [
+                "malicious-activity"
+            ],
+            "pattern": "[ network-traffic:extensions.'http-requestext'.request_header.'User-Agent' = 'Mozilla/5.0 (iPhone14,6; U; CPU iPhone OS 15_4 like Mac OS X) AppleWebKit/602.1.50 (KHTML, like Gecko) Version/10.0 Mobile/19E241 Safari/602.1' ]",
+            "pattern_type": "stix",
+            "pattern_version": "2.1",
+            "valid_from": "2022-08-20T07:16:08.629109Z"
+        },
+        {
+            "type": "indicator",
+            "spec_version": "2.1",
+            "id": "indicator--0b887d27-9a7d-4bd4-8c3f-14e83def457e",
+            "created": "2022-08-20T07:16:09.883031Z",
+            "modified": "2022-08-20T07:16:09.883031Z",
+            "name": "ASASN13335",
+            "indicator_types": [
+                "malicious-activity"
+            ],
+            "pattern": "[ autonomous-system:number = 'ASN13335' ]",
+            "pattern_type": "stix",
+            "pattern_version": "2.1",
+            "valid_from": "2022-08-20T07:16:09.883031Z"
+        },
+        {
+            "type": "indicator",
+            "spec_version": "2.1",
+            "id": "indicator--279290f3-4dbc-406f-9098-838fc111ccb7",
+            "created": "2022-08-20T07:16:11.108575Z",
+            "modified": "2022-08-20T07:16:11.108575Z",
+            "name": "BTC: 3FZbgi29cpjq2GjdwV8eyHuJJnkLtktZc5",
+            "indicator_types": [
+                "malicious-activity"
+            ],
+            "pattern": "[ artifact:payload_bin = '3FZbgi29cpjq2GjdwV8eyHuJJnkLtktZc5' ]",
+            "pattern_type": "stix",
+            "pattern_version": "2.1",
+            "valid_from": "2022-08-20T07:16:11.108575Z"
+        },
+        {
+            "type": "indicator",
+            "spec_version": "2.1",
+            "id": "indicator--25b09832-01fb-4309-b5cf-d4e36636c747",
+            "created": "2022-08-20T07:16:12.36085Z",
+            "modified": "2022-08-20T07:16:12.36085Z",
+            "name": "ETH: 0xb794f5ea0ba39494ce839613fffba74279579268",
+            "indicator_types": [
+                "malicious-activity"
+            ],
+            "pattern": "[ artifact:payload_bin = '0xb794f5ea0ba39494ce839613fffba74279579268' ]",
+            "pattern_type": "stix",
+            "pattern_version": "2.1",
+            "valid_from": "2022-08-20T07:16:12.36085Z"
+        },
+        {
+            "type": "indicator",
+            "spec_version": "2.1",
+            "id": "indicator--9c529433-89fe-4d8c-9a14-6c6605ba3d73",
+            "created": "2022-08-20T07:16:13.560923Z",
+            "modified": "2022-08-20T07:16:13.560923Z",
+            "name": "XMR: 48Fki6gnEN1QaiWNcsm8dVfX2JMg8xmjiQvuKpcdUD9rQH8WU4AXj9HKAF5AdnhKPSPLzTV7CX1Ks25BWrDeLnHuEFmhRxV",
+            "indicator_types": [
+                "malicious-activity"
+            ],
+            "pattern": "[ artifact:payload_bin = '48Fki6gnEN1QaiWNcsm8dVfX2JMg8xmjiQvuKpcdUD9rQH8WU4AXj9HKAF5AdnhKPSPLzTV7CX1Ks25BWrDeLnHuEFmhRxV' ]",
+            "pattern_type": "stix",
+            "pattern_version": "2.1",
+            "valid_from": "2022-08-20T07:16:13.560923Z"
+        },
+        {
+            "type": "vulnerability",
+            "spec_version": "2.1",
+            "id": "vulnerability--2292793a-b782-43f2-9160-86d1a07c9d66",
+            "created": "2022-08-20T07:16:14.755086Z",
+            "modified": "2022-08-20T07:16:14.755086Z",
+            "name": "CVE-2022-00001",
+            "external_references": [
+                {
+                    "source_name": "cve",
+                    "external_id": "CVE-2022-00001"
+                }
+            ]
+        },
+        {
+            "type": "location",
+            "spec_version": "2.1",
+            "id": "location--6312c9d7-d6a3-4ada-8b25-b50336e75eae",
+            "created": "2022-08-20T07:16:16.139251Z",
+            "modified": "2022-08-20T07:16:16.139251Z",
+            "name": "Bangladesh",
+            "country": "BD"
+        },
+        {
+            "type": "location",
+            "spec_version": "2.1",
+            "id": "location--d165c3d7-872a-4815-ab4f-ec2cc9556843",
+            "created": "2022-08-20T07:16:17.32365Z",
+            "modified": "2022-08-20T07:16:17.32365Z",
+            "name": "United Arab Emirates",
+            "country": "AE"
+        },
+        {
+            "type": "location",
+            "spec_version": "2.1",
+            "id": "location--a2f97ad2-4d46-45e4-9af6-967f5fc4d106",
+            "created": "2022-08-20T07:16:18.502087Z",
+            "modified": "2022-08-20T07:16:18.502087Z",
+            "name": "Central African Republic",
+            "country": "CF"
+        },
+        {
+            "type": "location",
+            "spec_version": "2.1",
+            "id": "location--2dc26683-50db-4197-8f29-5204cfa5887e",
+            "created": "2022-08-20T07:16:19.888411Z",
+            "modified": "2022-08-20T07:16:19.888411Z",
+            "name": "AF",
+            "country": "AF"
+        },
+        {
+            "type": "location",
+            "spec_version": "2.1",
+            "id": "location--bf75924e-70bd-4f74-9502-8ad97e5b17ef",
+            "created": "2022-08-20T07:16:21.064444Z",
+            "modified": "2022-08-20T07:16:21.064444Z",
+            "name": "AL",
+            "country": "AL"
+        },
+        {
+            "type": "location",
+            "spec_version": "2.1",
+            "id": "location--deec51d1-18bc-4a08-8ba4-7b1b5f2dfc4c",
+            "created": "2022-08-20T07:16:22.242938Z",
+            "modified": "2022-08-20T07:16:22.242938Z",
+            "name": "DZ",
+            "country": "DZ"
+        },
+        {
+            "type": "location",
+            "spec_version": "2.1",
+            "id": "location--faa7e5ed-2e8e-447b-8a0a-13af922f1ccb",
+            "created": "2022-08-20T07:16:23.419674Z",
+            "modified": "2022-08-20T07:16:23.419674Z",
+            "name": "AS",
+            "country": "AS"
+        },
+        {
+            "type": "indicator",
+            "spec_version": "2.1",
+            "id": "indicator--e738ac0e-5d90-44ce-a85e-03ea54e5f835",
+            "created": "2022-08-20T07:16:24.796903Z",
+            "modified": "2022-08-20T07:16:24.796903Z",
+            "name": "Mastercard Credit Card: 5555555555554444",
+            "indicator_types": [
+                "malicious-activity"
+            ],
+            "pattern": "[ artifact:payload_bin = '5555555555554444' ]",
+            "pattern_type": "stix",
+            "pattern_version": "2.1",
+            "valid_from": "2022-08-20T07:16:24.796903Z"
+        },
+        {
+            "type": "indicator",
+            "spec_version": "2.1",
+            "id": "indicator--69adbffb-c0ef-4114-b2d0-6321f3509a6d",
+            "created": "2022-08-20T07:16:25.993186Z",
+            "modified": "2022-08-20T07:16:25.993186Z",
+            "name": "VISA Credit Card: 4242424242424242",
+            "indicator_types": [
+                "malicious-activity"
+            ],
+            "pattern": "[ artifact:payload_bin = '4242424242424242' ]",
+            "pattern_type": "stix",
+            "pattern_version": "2.1",
+            "valid_from": "2022-08-20T07:16:25.993186Z"
+        },
+        {
+            "type": "indicator",
+            "spec_version": "2.1",
+            "id": "indicator--fb4f7cf4-4fc2-4635-9fce-3d9a0954789a",
+            "created": "2022-08-20T07:16:27.19178Z",
+            "modified": "2022-08-20T07:16:27.19178Z",
+            "name": "Amex Credit Card: 378282246310005",
+            "indicator_types": [
+                "malicious-activity"
+            ],
+            "pattern": "[ artifact:payload_bin = '378282246310005' ]",
+            "pattern_type": "stix",
+            "pattern_version": "2.1",
+            "valid_from": "2022-08-20T07:16:27.19178Z"
+        },
+        {
+            "type": "indicator",
+            "spec_version": "2.1",
+            "id": "indicator--90e290ce-6d76-4582-8d42-505c8c977e39",
+            "created": "2022-08-20T07:16:28.449477Z",
+            "modified": "2022-08-20T07:16:28.449477Z",
+            "name": "Union Pay Credit Card: 6200000000000005",
+            "indicator_types": [
+                "malicious-activity"
+            ],
+            "pattern": "[ artifact:payload_bin = '6200000000000005' ]",
+            "pattern_type": "stix",
+            "pattern_version": "2.1",
+            "valid_from": "2022-08-20T07:16:28.449477Z"
+        },
+        {
+            "type": "indicator",
+            "spec_version": "2.1",
+            "id": "indicator--ca6ded03-0c54-4b1f-9d1f-44e640351bf7",
+            "created": "2022-08-20T07:16:29.658777Z",
+            "modified": "2022-08-20T07:16:29.658777Z",
+            "name": "Diners Credit Card: 3056930009020004",
+            "indicator_types": [
+                "malicious-activity"
+            ],
+            "pattern": "[ artifact:payload_bin = '3056930009020004' ]",
+            "pattern_type": "stix",
+            "pattern_version": "2.1",
+            "valid_from": "2022-08-20T07:16:29.658777Z"
+        },
+        {
+            "type": "indicator",
+            "spec_version": "2.1",
+            "id": "indicator--b75fa920-7827-4f13-8f34-81d104242355",
+            "created": "2022-08-20T07:16:30.866863Z",
+            "modified": "2022-08-20T07:16:30.866863Z",
+            "name": "JCB Credit Card: 3566002020360505",
+            "indicator_types": [
+                "malicious-activity"
+            ],
+            "pattern": "[ artifact:payload_bin = '3566002020360505' ]",
+            "pattern_type": "stix",
+            "pattern_version": "2.1",
+            "valid_from": "2022-08-20T07:16:30.866863Z"
+        },
+        {
+            "type": "indicator",
+            "spec_version": "2.1",
+            "id": "indicator--796d4dca-153c-4e0c-8755-1035756e909b",
+            "created": "2022-08-20T07:16:32.075753Z",
+            "modified": "2022-08-20T07:16:32.075753Z",
+            "name": "IBAN: DE29100500001061045672",
+            "indicator_types": [
+                "malicious-activity"
+            ],
+            "pattern": "[ artifact:payload_bin = 'DE29100500001061045672' ]",
+            "pattern_type": "stix",
+            "pattern_version": "2.1",
+            "valid_from": "2022-08-20T07:16:32.075753Z"
+        },
+        {
+            "type": "indicator",
+            "spec_version": "2.1",
+            "id": "indicator--db816cae-b5f7-4a97-93dc-86b883dcee58",
+            "created": "2022-08-20T07:16:33.267273Z",
+            "modified": "2022-08-20T07:16:33.267273Z",
+            "name": "YARA Rule: dummy",
+            "indicator_types": [
+                "malicious-activity"
+            ],
+            "pattern": "rule dummy\r\n{\r\n    condition:\r\n        false\r\n}",
+            "pattern_type": "yara",
+            "valid_from": "2022-08-20T07:16:33.267273Z"
+        },
+        {
+            "type": "tool",
+            "id": "tool--0c8465c0-d0b4-4670-992e-4eee8d7ff952",
+            "created_by_ref": "identity--c78cb6e5-0c4b-4611-8297-d1b8b55e40b5",
+            "created": "2017-05-31T21:33:06.824Z",
+            "modified": "2022-04-20T20:02:41.550Z",
+            "name": "at",
+            "description": "[at](https://attack.mitre.org/software/S0110) is used to schedule tasks on a system to run at a specified date or time.(Citation: TechNet At)(Citation: Linux at)",
+            "labels": [
+                "tool"
+            ],
+            "external_references": [
+                {
+                    "source_name": "mitre-attack",
+                    "url": "https://attack.mitre.org/software/S0110",
+                    "external_id": "S0110"
+                },
+                {
+                    "source_name": "Linux at",
+                    "description": "IEEE/The Open Group. (2017). at(1p) \u2014 Linux manual page. Retrieved February 25, 2022.",
+                    "url": "https://man7.org/linux/man-pages/man1/at.1p.html"
+                },
+                {
+                    "source_name": "TechNet At",
+                    "description": "Microsoft. (n.d.). At. Retrieved April 28, 2016.",
+                    "url": "https://technet.microsoft.com/en-us/library/bb490866.aspx"
+                }
+            ],
+            "object_marking_refs": [
+                "marking-definition--fa42a846-8d90-4e51-bc29-71d5b4802168"
+            ],
+            "x_mitre_aliases": [
+                "at",
+                "at.exe"
+            ],
+            "x_mitre_attack_spec_version": "2.1.0",
+            "x_mitre_deprecated": false,
+            "x_mitre_domains": [
+                "enterprise-attack"
+            ],
+            "x_mitre_modified_by_ref": "identity--c78cb6e5-0c4b-4611-8297-d1b8b55e40b5",
+            "x_mitre_platforms": [
+                "Linux",
+                "Windows",
+                "macOS"
+            ],
+            "x_mitre_version": "1.2"
+        },
+        {
+            "type": "attack-pattern",
+            "id": "attack-pattern--005a06c6-14bf-4118-afa0-ebcd8aebb0c9",
+            "created_by_ref": "identity--c78cb6e5-0c4b-4611-8297-d1b8b55e40b5",
+            "created": "2019-11-27T14:58:00.429Z",
+            "modified": "2022-04-14T20:59:17.110Z",
+            "name": "Scheduled Task",
+            "description": "Adversaries may abuse the Windows Task Scheduler to perform task scheduling for initial or recurring execution of malicious code. There are multiple ways to access the Task Scheduler in Windows. The [schtasks](https://attack.mitre.org/software/S0111) utility can be run directly on the command line, or the Task Scheduler can be opened through the GUI within the Administrator Tools section of the Control Panel. In some cases, adversaries have used a .NET wrapper for the Windows Task Scheduler, and alternatively, adversaries have used the Windows netapi32 library to create a scheduled task.\n\nThe deprecated [at](https://attack.mitre.org/software/S0110) utility could also be abused by adversaries (ex: [At](https://attack.mitre.org/techniques/T1053/002)), though <code>at.exe</code> can not access tasks created with <code>schtasks</code> or the Control Panel.\n\nAn adversary may use Windows Task Scheduler to execute programs at system startup or on a scheduled basis for persistence. The Windows Task Scheduler can also be abused to conduct remote Execution as part of Lateral Movement and/or to run a process under the context of a specified account (such as SYSTEM). Similar to [System Binary Proxy Execution](https://attack.mitre.org/techniques/T1218), adversaries have also abused the Windows Task Scheduler to potentially mask one-time execution under signed/trusted system processes.(Citation: ProofPoint Serpent)",
+            "kill_chain_phases": [
+                {
+                    "kill_chain_name": "mitre-attack",
+                    "phase_name": "execution"
+                },
+                {
+                    "kill_chain_name": "mitre-attack",
+                    "phase_name": "persistence"
+                },
+                {
+                    "kill_chain_name": "mitre-attack",
+                    "phase_name": "privilege-escalation"
+                }
+            ],
+            "external_references": [
+                {
+                    "source_name": "mitre-attack",
+                    "url": "https://attack.mitre.org/techniques/T1053/005",
+                    "external_id": "T1053.005"
+                },
+                {
+                    "source_name": "ProofPoint Serpent",
+                    "description": "Campbell, B. et al. (2022, March 21). Serpent, No Swiping! New Backdoor Targets French Entities with Unique Attack Chain. Retrieved April 11, 2022.",
+                    "url": "https://www.proofpoint.com/us/blog/threat-insight/serpent-no-swiping-new-backdoor-targets-french-entities-unique-attack-chain"
+                },
+                {
+                    "source_name": "Twitter Leoloobeek Scheduled Task",
+                    "description": "Loobeek, L. (2017, December 8). leoloobeek Status. Retrieved December 12, 2017.",
+                    "url": "https://twitter.com/leoloobeek/status/939248813465853953"
+                },
+                {
+                    "source_name": "Microsoft Scheduled Task Events Win10",
+                    "description": "Microsoft. (2017, May 28). Audit Other Object Access Events. Retrieved June 27, 2019.",
+                    "url": "https://docs.microsoft.com/en-us/windows/security/threat-protection/auditing/audit-other-object-access-events"
+                },
+                {
+                    "source_name": "TechNet Scheduled Task Events",
+                    "description": "Microsoft. (n.d.). General Task Registration. Retrieved December 12, 2017.",
+                    "url": "https://technet.microsoft.com/library/dd315590.aspx"
+                },
+                {
+                    "source_name": "TechNet Autoruns",
+                    "description": "Russinovich, M. (2016, January 4). Autoruns for Windows v13.51. Retrieved June 6, 2016.",
+                    "url": "https://technet.microsoft.com/en-us/sysinternals/bb963902"
+                },
+                {
+                    "source_name": "TechNet Forum Scheduled Task Operational Setting",
+                    "description": "Satyajit321. (2015, November 3). Scheduled Tasks History Retention settings. Retrieved December 12, 2017.",
+                    "url": "https://social.technet.microsoft.com/Forums/en-US/e5bca729-52e7-4fcb-ba12-3225c564674c/scheduled-tasks-history-retention-settings?forum=winserver8gen"
+                }
+            ],
+            "object_marking_refs": [
+                "marking-definition--fa42a846-8d90-4e51-bc29-71d5b4802168"
+            ],
+            "x_mitre_attack_spec_version": "2.1.0",
+            "x_mitre_contributors": [
+                "Andrew Northern, @ex_raritas",
+                "Bryan Campbell, @bry_campbell",
+                "Zachary Abzug, @ZackDoesML",
+                "Selena Larson, @selenalarson"
+            ],
+            "x_mitre_data_sources": [
+                "Command: Command Execution",
+                "Process: Process Creation",
+                "Scheduled Job: Scheduled Job Creation",
+                "File: File Modification"
+            ],
+            "x_mitre_deprecated": false,
+            "x_mitre_detection": "Monitor process execution from the <code>svchost.exe</code> in Windows 10 and the Windows Task Scheduler <code>taskeng.exe</code> for older versions of Windows. (Citation: Twitter Leoloobeek Scheduled Task) If scheduled tasks are not used for persistence, then the adversary is likely to remove the task when the action is complete. Monitor Windows Task Scheduler stores in %systemroot%\\System32\\Tasks for change entries related to scheduled tasks that do not correlate with known software, patch cycles, etc.\n\nConfigure event logging for scheduled task creation and changes by enabling the \"Microsoft-Windows-TaskScheduler/Operational\" setting within the event logging service. (Citation: TechNet Forum Scheduled Task Operational Setting) Several events will then be logged on scheduled task activity, including: (Citation: TechNet Scheduled Task Events)(Citation: Microsoft Scheduled Task Events Win10)\n\n* Event ID 106 on Windows 7, Server 2008 R2 - Scheduled task registered\n* Event ID 140 on Windows 7, Server 2008 R2 / 4702 on Windows 10, Server 2016 - Scheduled task updated\n* Event ID 141 on Windows 7, Server 2008 R2 / 4699 on Windows 10, Server 2016 - Scheduled task deleted\n* Event ID 4698 on Windows 10, Server 2016 - Scheduled task created\n* Event ID 4700 on Windows 10, Server 2016 - Scheduled task enabled\n* Event ID 4701 on Windows 10, Server 2016 - Scheduled task disabled\n\nTools such as Sysinternals Autoruns may also be used to detect system changes that could be attempts at persistence, including listing current scheduled tasks. (Citation: TechNet Autoruns)\n\nRemote access tools with built-in features may interact directly with the Windows API to perform these functions outside of typical system utilities. Tasks may also be created through Windows system management tools such as Windows Management Instrumentation and PowerShell, so additional logging may need to be configured to gather the appropriate data.",
+            "x_mitre_domains": [
+                "enterprise-attack"
+            ],
+            "x_mitre_is_subtechnique": true,
+            "x_mitre_modified_by_ref": "identity--c78cb6e5-0c4b-4611-8297-d1b8b55e40b5",
+            "x_mitre_permissions_required": [
+                "Administrator"
+            ],
+            "x_mitre_platforms": [
+                "Windows"
+            ],
+            "x_mitre_remote_support": true,
+            "x_mitre_version": "1.1"
+        },
+        {
+            "type": "attack-pattern",
+            "id": "attack-pattern--233fe2c0-cb41-4765-b454-e0087597fbce",
+            "created_by_ref": "identity--c78cb6e5-0c4b-4611-8297-d1b8b55e40b5",
+            "created": "2022-04-01T15:12:50.740Z",
+            "modified": "2022-04-05T17:11:24.641Z",
+            "name": "Steal Application Access Token",
+            "description": "Adversaries can steal user application access tokens as a means of acquiring credentials to access remote systems and resources. This can occur through social engineering or URI hijacking and typically requires user action to grant access, such as through a system \u201cOpen With\u201d dialogue.  \n\nApplication access tokens are used to make authorized API requests on behalf of a user and are commonly used as a way to access resources in cloud-based applications and software-as-a-service (SaaS).(Citation: Auth0 - Why You Should Always Use Access Tokens to Secure APIs Sept 2019) OAuth is one commonly implemented framework used to issue tokens to users for access to systems. An application desiring access to cloud-based services or protected APIs can gain entry through OAuth 2.0 using a variety of authorization protocols. An example of a commonly-used sequence is Microsoft's Authorization Code Grant flow.(Citation: Microsoft Identity Platform Protocols May 2019)(Citation: Microsoft - OAuth Code Authorization flow - June 2019) An OAuth access token enables a third-party application to interact with resources containing user data in the ways requested without requiring user credentials.",
+            "kill_chain_phases": [
+                {
+                    "kill_chain_name": "mitre-mobile-attack",
+                    "phase_name": "credential-access"
+                }
+            ],
+            "external_references": [
+                {
+                    "source_name": "mitre-attack",
+                    "url": "https://attack.mitre.org/techniques/T1635",
+                    "external_id": "T1635"
+                },
+                {
+                    "source_name": "Android-AppLinks",
+                    "description": "Android. (n.d.). Handling App Links. Retrieved December 21, 2016.",
+                    "url": "https://developer.android.com/training/app-links/index.html"
+                },
+                {
+                    "source_name": "Auth0 - Why You Should Always Use Access Tokens to Secure APIs Sept 2019",
+                    "description": "Auth0. (n.d.). Why You Should Always Use Access Tokens to Secure APIs. Retrieved September 12, 2019.",
+                    "url": "https://auth0.com/blog/why-should-use-accesstokens-to-secure-an-api/"
+                },
+                {
+                    "source_name": "Microsoft - OAuth Code Authorization flow - June 2019",
+                    "description": "Microsoft. (n.d.). Microsoft identity platform and OAuth 2.0 authorization code flow. Retrieved September 12, 2019.",
+                    "url": "https://docs.microsoft.com/en-us/azure/active-directory/develop/v2-oauth2-auth-code-flow"
+                },
+                {
+                    "source_name": "Microsoft Identity Platform Protocols May 2019",
+                    "description": "Microsoft. (n.d.). Retrieved September 12, 2019.",
+                    "url": "https://docs.microsoft.com/en-us/azure/active-directory/develop/active-directory-v2-protocols"
+                },
+                {
+                    "source_name": "IETF-OAuthNativeApps",
+                    "description": "W. Denniss and J. Bradley. (2017, October). IETF RFC 8252: OAuth 2.0 for Native Apps. Retrieved November 30, 2018.",
+                    "url": "https://tools.ietf.org/html/rfc8252"
+                }
+            ],
+            "object_marking_refs": [
+                "marking-definition--fa42a846-8d90-4e51-bc29-71d5b4802168"
+            ],
+            "x_mitre_attack_spec_version": "2.1.0",
+            "x_mitre_deprecated": false,
+            "x_mitre_detection": "On Android, users may be presented with a popup to select the appropriate application to open a URI in. If the user sees an application they do not recognize, they can remove it. When vetting applications for potential security weaknesses, the vetting process could look for insecure use of Intents. Developers should be encouraged to use techniques to ensure that the intent can only be sent to an appropriate destination (e.g., use explicit rather than implicit intents, permission checking, checking of the destination app's signing certificate, or utilizing the App Links feature). For mobile applications using OAuth, encourage use of best practice.(Citation: IETF-OAuthNativeApps)(Citation: Android-AppLinks)",
+            "x_mitre_domains": [
+                "mobile-attack"
+            ],
+            "x_mitre_is_subtechnique": false,
+            "x_mitre_modified_by_ref": "identity--c78cb6e5-0c4b-4611-8297-d1b8b55e40b5",
+            "x_mitre_platforms": [
+                "Android",
+                "iOS"
+            ],
+            "x_mitre_tactic_type": [
+                "Post-Adversary Device Access"
+            ],
+            "x_mitre_version": "1.0"
+        },
+        {
+            "type": "attack-pattern",
+            "spec_version": "2.1",
+            "id": "attack-pattern--92cdcd3d-d734-4442-afc3-4599f261498b",
+            "created_by_ref": "identity--e50ab59c-5c4f-4d40-bf6a-d58418d89bcd",
+            "created": "2014-06-23T00:00:00.000Z",
+            "modified": "2021-10-21T00:00:00.000Z",
+            "name": "Accessing Functionality Not Properly Constrained by ACLs",
+            "description": "In applications, particularly web applications, access to functionality is mitigated by an authorization framework. This framework maps Access Control Lists (ACLs) to elements of the application's functionality; particularly URL's for web apps. In the case that the administrator failed to specify an ACL for a particular element, an attacker may be able to access it with impunity. An attacker with the ability to access functionality not properly constrained by ACLs can obtain sensitive information and possibly compromise the entire application. Such an attacker can access resources that must be available only to users at a higher privilege level, can access management sections of the application, or can run queries for data that they otherwise not supposed to.",
+            "external_references": [
+                {
+                    "source_name": "capec",
+                    "url": "https://capec.mitre.org/data/definitions/1.html",
+                    "external_id": "CAPEC-1"
+                },
+                {
+                    "source_name": "cwe",
+                    "url": "http://cwe.mitre.org/data/definitions/276.html",
+                    "external_id": "CWE-276"
+                },
+                {
+                    "source_name": "cwe",
+                    "url": "http://cwe.mitre.org/data/definitions/285.html",
+                    "external_id": "CWE-285"
+                },
+                {
+                    "source_name": "cwe",
+                    "url": "http://cwe.mitre.org/data/definitions/434.html",
+                    "external_id": "CWE-434"
+                },
+                {
+                    "source_name": "cwe",
+                    "url": "http://cwe.mitre.org/data/definitions/693.html",
+                    "external_id": "CWE-693"
+                },
+                {
+                    "source_name": "cwe",
+                    "url": "http://cwe.mitre.org/data/definitions/732.html",
+                    "external_id": "CWE-732"
+                },
+                {
+                    "source_name": "cwe",
+                    "url": "http://cwe.mitre.org/data/definitions/1193.html",
+                    "external_id": "CWE-1193"
+                },
+                {
+                    "source_name": "cwe",
+                    "url": "http://cwe.mitre.org/data/definitions/1220.html",
+                    "external_id": "CWE-1220"
+                },
+                {
+                    "source_name": "cwe",
+                    "url": "http://cwe.mitre.org/data/definitions/1297.html",
+                    "external_id": "CWE-1297"
+                },
+                {
+                    "source_name": "cwe",
+                    "url": "http://cwe.mitre.org/data/definitions/1311.html",
+                    "external_id": "CWE-1311"
+                },
+                {
+                    "source_name": "cwe",
+                    "url": "http://cwe.mitre.org/data/definitions/1314.html",
+                    "external_id": "CWE-1314"
+                },
+                {
+                    "source_name": "cwe",
+                    "url": "http://cwe.mitre.org/data/definitions/1315.html",
+                    "external_id": "CWE-1315"
+                },
+                {
+                    "source_name": "cwe",
+                    "url": "http://cwe.mitre.org/data/definitions/1318.html",
+                    "external_id": "CWE-1318"
+                },
+                {
+                    "source_name": "cwe",
+                    "url": "http://cwe.mitre.org/data/definitions/1320.html",
+                    "external_id": "CWE-1320"
+                },
+                {
+                    "source_name": "cwe",
+                    "url": "http://cwe.mitre.org/data/definitions/1321.html",
+                    "external_id": "CWE-1321"
+                },
+                {
+                    "source_name": "cwe",
+                    "url": "http://cwe.mitre.org/data/definitions/1327.html",
+                    "external_id": "CWE-1327"
+                },
+                {
+                    "source_name": "ATTACK",
+                    "description": "Hijack Execution Flow: ServicesFile Permissions Weakness",
+                    "url": "https://attack.mitre.org/wiki/Technique/T1574/010",
+                    "external_id": "T1574.010"
+                }
+            ],
+            "object_marking_refs": [
+                "marking-definition--17d82bb2-eeeb-4898-bda5-3ddbcd2b799d"
+            ],
+            "x_capec_abstraction": "Standard",
+            "x_capec_can_precede_refs": [
+                "attack-pattern--9ad2c2eb-9939-4590-9683-2e789692d262"
+            ],
+            "x_capec_child_of_refs": [
+                "attack-pattern--fd669b7d-0e79-473c-9808-a860dfb0c871"
+            ],
+            "x_capec_consequences": {
+                "Access_Control": [
+                    "Gain Privileges"
+                ],
+                "Authorization": [
+                    "Gain Privileges"
+                ],
+                "Confidentiality": [
+                    "Gain Privileges"
+                ]
+            },
+            "x_capec_domains": [
+                "Software",
+                "Hardware"
+            ],
+            "x_capec_example_instances": [
+                "\n               <xhtml:p>Implementing the Model-View-Controller (MVC) within Java EE's Servlet paradigm using a \"Single front controller\" pattern that demands that brokered HTTP requests be authenticated before hand-offs to other Action Servlets.</xhtml:p>\n               <xhtml:p>If no security-constraint is placed on those Action Servlets, such that positively no one can access them, the front controller can be subverted.</xhtml:p>\n            "
+            ],
+            "x_capec_execution_flow": "<h2> Execution Flow </h2><div><h3>Explore</h3><ol><li> <p> <b>Survey: </b>The attacker surveys the target application, possibly as a valid and authenticated user</p></li><table><tbody><tr><th>Techniques</th></tr><tr><td>Spidering web sites for all available links</td></tr><tr><td>Brute force guessing of resource names</td></tr><tr><td>Brute force guessing of user names / credentials</td></tr><tr><td>Brute force guessing of function names / actions</td></tr></tbody></table><li> <p> <b>Identify Functionality: </b>At each step, the attacker notes the resource or functionality access mechanism invoked upon performing specific actions</p></li><table><tbody><tr><th>Techniques</th></tr><tr><td>Use the web inventory of all forms and inputs and apply attack data to those inputs.</td></tr><tr><td>Use a packet sniffer to capture and record network traffic</td></tr><tr><td>Execute the software in a debugger and record API calls into the operating system or important libraries. This might occur in an environment other than a production environment, in order to find weaknesses that can be exploited in a production environment.</td></tr></tbody></table></ol></div><div><h3>Experiment</h3><ol><li> <p> <b>Iterate over access capabilities: </b>Possibly as a valid user, the attacker then tries to access each of the noted access mechanisms directly in order to perform functions not constrained by the ACLs.</p></li><table><tbody><tr><th>Techniques</th></tr><tr><td>Fuzzing of API parameters (URL parameters, OS API parameters, protocol parameters)</td></tr></tbody></table></ol></div>",
+            "x_capec_likelihood_of_attack": "High",
+            "x_capec_parent_of_refs": [
+                "attack-pattern--74bac7d9-693d-40d2-82bf-eb132f13bcaf",
+                "attack-pattern--3ba20dcc-8fec-4d74-a472-eb9694fe8142",
+                "attack-pattern--1abd165a-57e9-4b78-9221-7b6fcdc57810",
+                "attack-pattern--e8a8a8f5-3ad5-4d3f-a35b-48036147266b"
+            ],
+            "x_capec_prerequisites": [
+                "The application must be navigable in a manner that associates elements (subsections) of the application with ACLs.",
+                "The various resources, or individual URLs, must be somehow discoverable by the attacker",
+                "The administrator must have forgotten to associate an ACL or has associated an inappropriately permissive ACL with a particular navigable resource."
+            ],
+            "x_capec_resources_required": [
+                "None: No specialized resources are required to execute this type of attack."
+            ],
+            "x_capec_skills_required": {
+                "Low": "In order to discover unrestricted resources, the attacker does not need special tools or skills. They only have to observe the resources or access mechanisms invoked as each action is performed and then try and access those access mechanisms directly."
+            },
+            "x_capec_status": "Draft",
+            "x_capec_typical_severity": "High",
+            "x_capec_version": "3.7"
+        },
+        {
+            "type": "attack-pattern",
+            "spec_version": "2.1",
+            "id": "attack-pattern--0cf857f6-afa4-4f0c-850f-58a4f11df157",
+            "created_by_ref": "identity--e50ab59c-5c4f-4d40-bf6a-d58418d89bcd",
+            "created": "2014-06-23T00:00:00.000Z",
+            "modified": "2020-07-30T00:00:00.000Z",
+            "name": "Web Application Fingerprinting",
+            "description": "An attacker sends a series of probes to a web application in order to elicit version-dependent and type-dependent behavior that assists in identifying the target. An attacker could learn information such as software versions, error pages, and response headers, variations in implementations of the HTTP protocol, directory structures, and other similar information about the targeted service. This information can then be used by an attacker to formulate a targeted attack plan. While web application fingerprinting is not intended to be damaging (although certain activities, such as network scans, can sometimes cause disruptions to vulnerable applications inadvertently) it may often pave the way for more damaging attacks.",
+            "external_references": [
+                {
+                    "source_name": "capec",
+                    "url": "https://capec.mitre.org/data/definitions/170.html",
+                    "external_id": "CAPEC-170"
+                },
+                {
+                    "source_name": "cwe",
+                    "url": "http://cwe.mitre.org/data/definitions/497.html",
+                    "external_id": "CWE-497"
+                },
+                {
+                    "source_name": "reference_from_CAPEC",
+                    "description": "Saumil Shah, An Introduction to HTTP fingerprinting",
+                    "url": "http://www.net-square.com/httprint_paper.html",
+                    "external_id": "REF-36"
+                },
+                {
+                    "source_name": "reference_from_CAPEC",
+                    "description": "OWASP Web Security Testing Guide (v4 [DRAFT]), The Open Web Application Security Project (OWASP)",
+                    "url": "https://www.owasp.org/www-project-web-security-testing-guide/latest/4-Web_Application_Security_Testing/01-Information_Gathering/08-Fingerprint_Web_Application_Framework",
+                    "external_id": "REF-37"
+                },
+                {
+                    "source_name": "reference_from_CAPEC",
+                    "description": "HTTP 1.1 Specification (RFC 2616), IETF RFC",
+                    "url": "http://www.ietf.org/rfc/rfc2616.txt",
+                    "external_id": "REF-38"
+                },
+                {
+                    "source_name": "reference_from_CAPEC",
+                    "description": "WASC Threat Classification 2.0, 2010, The Web Application Security Consortium (WASC)",
+                    "url": "http://projects.webappsec.org/Fingerprinting",
+                    "external_id": "REF-39"
+                }
+            ],
+            "object_marking_refs": [
+                "marking-definition--17d82bb2-eeeb-4898-bda5-3ddbcd2b799d"
+            ],
+            "x_capec_abstraction": "Detailed",
+            "x_capec_child_of_refs": [
+                "attack-pattern--e7eec058-4cd9-4fa0-8784-ed961d8d7290"
+            ],
+            "x_capec_consequences": {
+                "Confidentiality": [
+                    "Other (Information Leakage)"
+                ]
+            },
+            "x_capec_domains": [
+                "Software"
+            ],
+            "x_capec_example_instances": [
+                "\n               <xhtml:p>An attacker sends malformed requests or requests of nonexistent pages to the server. Consider the following HTTP responses.</xhtml:p>\n               <xhtml:div style=\"margin-left:10px;\" class=\"informative\">\n                  <xhtml:div style=\"color:#32498D; font-weight:bold;\">Response from Apache 1.3.23</xhtml:div>$ nc apache.server.com80 GET / HTTP/3.0\n                  HTTP/1.1 400 Bad RequestDate: Sun, 15 Jun 2003 17:12: 37 GMTServer: Apache/1.3.23Connection: closeTransfer: chunkedContent-Type: text/HTML; charset=iso-8859-1</xhtml:div>\n               <xhtml:div style=\"margin-left:10px;\" class=\"informative\">\n                  <xhtml:div style=\"color:#32498D; font-weight:bold;\">Response from IIS 5.0</xhtml:div>$ nc iis.server.com 80GET / HTTP/3.0\n                  HTTP/1.1 200 OKServer: Microsoft-IIS/5.0Content-Location: http://iis.example.com/Default.htmDate: Fri, 01 Jan 1999 20:14: 02 GMTContent-Type: text/HTMLAccept-Ranges: bytes Last-Modified: Fri, 01 Jan 1999 20:14: 02 GMTETag: W/e0d362a4c335be1: ae1Content-Length: 133</xhtml:div>\n               <xhtml:p>[REF-37]</xhtml:p>\n            "
+            ],
+            "x_capec_execution_flow": "<h2> Execution Flow </h2><div><h3>Explore</h3><ol><li> <p> <b>Request fingerprinting: </b>Use automated tools or send web server specific commands to web server and wait for server's response.</p></li><table><tbody><tr><th>Techniques</th></tr><tr><td>Use automated tools or send web server specific commands to web server and then receive server's response.</td></tr></tbody></table></ol></div><div><h3>Experiment</h3><ol><li> <p> <b>Increase the accuracy of server fingerprinting of Web servers: </b>Attacker usually needs to send several different commands to accurately identify the web server. Attacker can also use automated tools to send requests to the server. The responses of the server may be different in terms of protocol behavior.</p></li><table><tbody><tr><th>Techniques</th></tr><tr><td>Observe the ordering of the several HTTP response headers. The ordering of the header of each server may have unique identities.</td></tr><tr><td>Send bad requests or requests of nonexistent pages to the server.</td></tr><tr><td>Attacker takes existing automated tools to recognize the type and the version of the web server in use.</td></tr></tbody></table><li> <p> <b>Identify Web Application Software: </b>After the web server platform software has been identified, the attacker start to identify web application technologies such as ASP, .NET, PHP and Java on the server.</p></li><table><tbody><tr><th>Techniques</th></tr><tr><td>Examine the file name extensions in URL, for example .php indicates PHP script interfaced with Apache server.</td></tr><tr><td>Examine the HTTP Response Headers. This may leak information about software signatures</td></tr><tr><td>Examine Cookies that may contain server's software information.</td></tr><tr><td>Check error pages.</td></tr></tbody></table><li> <p> <b>Identify Backend Database Version: </b>Determining the database engine type can assist attackers' attempt to successfully execute SQL injection. Some database API such as ODBC will show a database type as part of the driver information when reporting an error.</p></li><table><tbody><tr><th>Techniques</th></tr><tr><td>Use tools to send bogus SQL query to the server and check error pages.</td></tr></tbody></table></ol></div>",
+            "x_capec_likelihood_of_attack": "High",
+            "x_capec_prerequisites": [
+                "Any web application can be fingerprinted. However, some configuration choices can limit the useful information an attacker may collect during a fingerprinting attack."
+            ],
+            "x_capec_resources_required": [
+                "While simple fingerprinting can be accomplished with only a web browser, for more thorough fingerprinting an attacker requires a variety of tools to collect information about the target. These tools might include protocol analyzers, web-site crawlers, and fuzzing tools. Footprinting a service adequately may also take a few days if the attacker wishes the footprinting attempt to go undetected."
+            ],
+            "x_capec_skills_required": {
+                "Low": "Attacker knows how to send HTTP request, SQL query to a web application."
+            },
+            "x_capec_status": "Draft",
+            "x_capec_typical_severity": "Low",
+            "x_capec_version": "3.7"
+        },
+        {
+            "type": "report",
+            "spec_version": "2.1",
+            "id": "report--d0d637cf-ae7b-497e-ad4b-8a0c91561feb",
+            "created": "2022-08-20T07:17:22.839808Z",
+            "modified": "2022-08-20T07:17:22.839808Z",
+            "name": "/home/shanthanu9/free/obstracts-cli/examples/input.txt",
+            "report_types": [
+                "threat_report"
+            ],
+            "published": "2022-08-20T12:47:22.839719Z",
+            "object_refs": [
+                "indicator--823382e1-2d5b-4072-904c-312320430f1f",
+                "indicator--4d6c2b57-5218-4719-b8e7-f98868bc6ed4",
+                "indicator--ad40df90-5076-4038-8dce-5ea577d14dcc",
+                "indicator--3817cac8-4fba-456f-b104-fb3c02b9bd2b",
+                "indicator--833b154e-404e-4e44-b408-0ca4cab32477",
+                "indicator--b5a26342-82d1-4191-b270-b615f9d81392",
+                "indicator--17a68701-35c7-40cb-b583-e27dbe9381ea",
+                "indicator--aae7180a-ea24-4f09-95eb-a637cc98dd1f",
+                "indicator--65a2915a-9185-4bf4-afbf-3f5167024cf9",
+                "indicator--e3acacae-afc9-44c4-8499-b117f59e8041",
+                "indicator--d159262c-8c54-448e-ac7b-fcea21ddec01",
+                "indicator--d107af26-62f7-4273-877f-c49e826f66fb",
+                "indicator--cd251302-5688-4f61-86d5-0bb759ab33fb",
+                "indicator--5226b53a-9446-4870-baf8-53c8c3b18077",
+                "indicator--3f9a148f-02e6-4767-9a4c-c29111557fbf",
+                "indicator--8e5e7725-3041-43cf-9a44-15d9ec9f7f45",
+                "indicator--8ffd6d4e-cf35-4e7f-b2a8-2ae24329db03",
+                "indicator--9c585190-30b4-408d-8fce-9c5014d2b723",
+                "indicator--1b0271c1-5475-4337-9bd3-b3fc9c917085",
+                "indicator--040d495b-c665-45c8-9f8a-83ca43968306",
+                "indicator--0b9405c5-351e-44b9-b87f-33c927933bd0",
+                "indicator--15278e02-1cf9-4c01-9de1-9d203b467199",
+                "indicator--ce8da606-7b72-48cf-8bee-ccaedf10f16f",
+                "indicator--7c1fab27-a22d-48f5-a80a-d76f4b112ce9",
+                "indicator--d7360612-cbc6-403c-b410-0d908aec72bd",
+                "indicator--faee8c23-fa0c-4294-8e3c-79917285d0cd",
+                "indicator--3681a5f6-cfd3-4b14-a4fd-ad02440b1ee2",
+                "indicator--68a450f9-4507-4035-97e3-3e1002414025",
+                "indicator--9a4be335-e88c-4f28-9ab9-af02cb9f5d41",
+                "indicator--4a29a5b7-65f0-4ea1-a3c9-cd549d3af6d0",
+                "indicator--0b887d27-9a7d-4bd4-8c3f-14e83def457e",
+                "indicator--279290f3-4dbc-406f-9098-838fc111ccb7",
+                "indicator--25b09832-01fb-4309-b5cf-d4e36636c747",
+                "indicator--9c529433-89fe-4d8c-9a14-6c6605ba3d73",
+                "vulnerability--2292793a-b782-43f2-9160-86d1a07c9d66",
+                "location--6312c9d7-d6a3-4ada-8b25-b50336e75eae",
+                "location--d165c3d7-872a-4815-ab4f-ec2cc9556843",
+                "location--a2f97ad2-4d46-45e4-9af6-967f5fc4d106",
+                "location--2dc26683-50db-4197-8f29-5204cfa5887e",
+                "location--bf75924e-70bd-4f74-9502-8ad97e5b17ef",
+                "location--deec51d1-18bc-4a08-8ba4-7b1b5f2dfc4c",
+                "location--faa7e5ed-2e8e-447b-8a0a-13af922f1ccb",
+                "indicator--e738ac0e-5d90-44ce-a85e-03ea54e5f835",
+                "indicator--69adbffb-c0ef-4114-b2d0-6321f3509a6d",
+                "indicator--fb4f7cf4-4fc2-4635-9fce-3d9a0954789a",
+                "indicator--90e290ce-6d76-4582-8d42-505c8c977e39",
+                "indicator--ca6ded03-0c54-4b1f-9d1f-44e640351bf7",
+                "indicator--b75fa920-7827-4f13-8f34-81d104242355",
+                "indicator--796d4dca-153c-4e0c-8755-1035756e909b",
+                "indicator--db816cae-b5f7-4a97-93dc-86b883dcee58",
+                "tool--0c8465c0-d0b4-4670-992e-4eee8d7ff952",
+                "attack-pattern--005a06c6-14bf-4118-afa0-ebcd8aebb0c9",
+                "attack-pattern--233fe2c0-cb41-4765-b454-e0087597fbce",
+                "attack-pattern--92cdcd3d-d734-4442-afc3-4599f261498b",
+                "attack-pattern--0cf857f6-afa4-4f0c-850f-58a4f11df157"
+            ]
+        }
+    ]
+}
