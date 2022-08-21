@@ -134,9 +134,6 @@ venv
 
 obstracts-cli/
 
-# Ignore input file
-input.txt
-
 # Ignore .vscode settings
 .vscode/
 

@@ -585,23 +585,23 @@ class CustomObervable(Observable):
     custom_observables_map = {}
 
     @staticmethod
-    def get_stix2_object_custom(name, pattern, sdo_object_type):
+    def get_stix2_object_custom(pattern, sdo_object_type):
         if sdo_object_type == "attack-pattern":
-            return AttackPattern(name=f"{name}: {pattern}")
+            return AttackPattern(name=pattern)
         elif sdo_object_type == "campaign":
-            return Campaign(name=f"{name}: {pattern}")
+            return Campaign(name=pattern)
         elif sdo_object_type == "course-of-action":
-            return CourseOfAction(name=f"{name}: {pattern}")
+            return CourseOfAction(name=pattern)
         elif sdo_object_type == "infrastructure":
-            return Infrastructure(name=f"{name}: {pattern}", infrastructure_types="undefined")
+            return Infrastructure(name=pattern, infrastructure_types="undefined")
         elif sdo_object_type == "intrustion-set":
-            return IntrusionSet(name=f"{name}: {pattern}")
+            return IntrusionSet(name=pattern)
         elif sdo_object_type == "malware":
-            return Malware(name=f"{name}: {pattern}", malware_types="unknown", is_family=False)
+            return Malware(name=pattern, malware_types="unknown", is_family=False)
         elif sdo_object_type == "threat-actor":
-            return ThreatActor(name=f"{name}: {pattern}", threat_actor_types="unknown")
+            return ThreatActor(name=pattern, threat_actor_types="unknown")
         elif sdo_object_type == "tool":
-            return Tool(name=f"{name}: {pattern}")
+            return Tool(name=pattern)
         else:
             return None
 
@@ -613,14 +613,18 @@ class CustomObervable(Observable):
                     name, pattern, sdo_object_type = [text.strip() for text in line.split(",")]
                 except:
                     logger.warning("Error in parsing this line in custom extraction file: '%s'", line)
-                if CustomObervable.get_stix2_object_custom(name, pattern, sdo_object_type):
+                if CustomObervable.get_stix2_object_custom(pattern, sdo_object_type):
                     cls.extraction_regex += rf"({pattern})|"
-                    cls.custom_observables_map[pattern] = (name, sdo_object_type)
+                    cls.custom_observables_map[pattern] = sdo_object_type
         
         # Trim last "|" symbols
         cls.extraction_regex = cls.extraction_regex[:-1]
 
     def get_sdo_object(self):
         pattern = self.extracted_observable_text
-        name, sdo_object_type = self.custom_observables_map[pattern]
-        return CustomObervable.get_stix2_object_custom(name, pattern, sdo_object_type)
+        sdo_object_type = self.custom_observables_map[pattern]
+        sdo_object = CustomObervable.get_stix2_object_custom(pattern, sdo_object_type)
+        if sdo_object == None:
+            raise ValueError("Parsed SDO object after custom extraction is None.")
+        return sdo_object
+        
