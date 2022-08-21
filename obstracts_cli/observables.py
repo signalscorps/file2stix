@@ -14,6 +14,14 @@ from stix2 import (
     Vulnerability,
     MemoryStore,
     Filter,
+    AttackPattern, 
+    Campaign,
+    CourseOfAction, 
+    Infrastructure,
+    IntrusionSet,
+    Malware, 
+    ThreatActor,
+    Tool
 )
 
 logger = logging.getLogger(__name__)
@@ -570,3 +578,49 @@ class MITRECapecObservable(MITREEnterpriseAttackObservable):
         cls, cti_folder, bundle_relative_path="capec/2.1/stix-capec.json"
     ):
         super().build_extraction_regex(cti_folder, bundle_relative_path)
+
+class CustomObervable(Observable):
+    name = "Custom Observable"
+    extraction_regex = r""
+    custom_observables_map = {}
+
+    @staticmethod
+    def get_stix2_object_custom(name, pattern, sdo_object_type):
+        if sdo_object_type == "attack-pattern":
+            return AttackPattern(name=f"{name}: {pattern}")
+        elif sdo_object_type == "campaign":
+            return Campaign(name=f"{name}: {pattern}")
+        elif sdo_object_type == "course-of-action":
+            return CourseOfAction(name=f"{name}: {pattern}")
+        elif sdo_object_type == "infrastructure":
+            return Infrastructure(name=f"{name}: {pattern}", infrastructure_types="undefined")
+        elif sdo_object_type == "intrustion-set":
+            return IntrusionSet(name=f"{name}: {pattern}")
+        elif sdo_object_type == "malware":
+            return Malware(name=f"{name}: {pattern}", malware_types="unknown", is_family=False)
+        elif sdo_object_type == "threat-actor":
+            return ThreatActor(name=f"{name}: {pattern}", threat_actor_types="unknown")
+        elif sdo_object_type == "tool":
+            return Tool(name=f"{name}: {pattern}")
+        else:
+            return None
+
+    @classmethod
+    def build_extraction_regex(cls, custom_extraction_file):
+        with open(custom_extraction_file) as file:
+            for line in file:
+                try:
+                    name, pattern, sdo_object_type = [text.strip() for text in line.split(",")]
+                except:
+                    logger.warning("Error in parsing this line in custom extraction file: '%s'", line)
+                if CustomObervable.get_stix2_object_custom(name, pattern, sdo_object_type):
+                    cls.extraction_regex += rf"({pattern})|"
+                    cls.custom_observables_map[pattern] = (name, sdo_object_type)
+        
+        # Trim last "|" symbols
+        cls.extraction_regex = cls.extraction_regex[:-1]
+
+    def get_sdo_object(self):
+        pattern = self.extracted_observable_text
+        name, sdo_object_type = self.custom_observables_map[pattern]
+        return CustomObervable.get_stix2_object_custom(name, pattern, sdo_object_type)

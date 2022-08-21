@@ -87,3 +87,13 @@ attack_pattern - Scheduled Task
 "Steal Application Access Token"
 
 CAPEC-170 - "Web Application Fingerprinting"
+
+Custom extractions:
+dangerous-attack-pattern
+dangerous-campaign
+dangerous-course-of-action
+dangerous-infrastructure
+dangerous-intrustion-set
+dangerous-malware
+dangerous-threat-actor
+dangerous-tool

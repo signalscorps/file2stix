@@ -38,6 +38,12 @@ def cli():
         default=Config.update_mitre_cti_database
     )
 
+    arg_parser.add_argument(
+        "--custom-extraction-file",
+        action="store",
+        help="path to file with custom extraction logix",
+    )
+
     args = arg_parser.parse_args()
     
     input_file_path = os.path.abspath(args.input_file) if args.input_file != None else None
@@ -47,6 +53,7 @@ def cli():
         input_file_path = input_file_path,
         cache_folder = os.path.abspath(args.cache_folder),
         update_mitre_cti_database = args.update_mitre_cti_database,
+        custom_extraction_file=args.custom_extraction_file
     )
 
     # Call main

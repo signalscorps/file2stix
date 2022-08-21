@@ -46,7 +46,7 @@ def main(config: Config):
         for (
             extracted_stix_observable,
             update_stix2_extractions,
-        ) in ExtractStixObservables(observable, input, cache):
+        ) in ExtractStixObservables(observable, input, cache, config):
             stix_observable_object = extracted_stix_observable
 
             if update_stix2_extractions:

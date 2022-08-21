@@ -1,0 +1,8 @@
+my custom extraction logic, dangerous-attack-pattern , attack-pattern
+my custom extraction logic, dangerous-campaign , campaign
+my custom extraction logic, dangerous-course-of-action , course-of-action
+my custom extraction logic, dangerous-infrastructure , infrastructure
+my custom extraction logic, dangerous-intrustion-set , intrustion-set
+my custom extraction logic, dangerous-malware , malware
+my custom extraction logic, dangerous-threat-actor , threat-actor
+my custom extraction logic, dangerous-tool , tool
