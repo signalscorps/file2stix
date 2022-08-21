@@ -1,26 +1,25 @@
-# Obstracts CLI
+# Stixify
 
-Obstracts CLI is your automated threat intelligence analyst.
+Stixify is your automated threat intelligence analyst.
 
-Use Obstracts CLI to extract machine readable intelligence from unstructured data.
+Use Stixify to extract machine readable intelligence from unstructured data.
 
 A project from the Signals Corps: https://www.signalscorps.com/ 
-
 
 ## Instructions
 
 Download
 
 ```
-git clone https://github.com/signalscorps/obstracts-cli
-cd obstracts-cli
+git clone https://github.com/signalscorps/stixify
+cd stixify
 ```
 
 Setup virtual environment
 
 ```
-python -m venv obstracts-cli
-source obstracts-cli/bin/activate
+python -m venv stixify
+source stixify/bin/activate
 ```
 
 Install `obstracts-cli` tool
@@ -36,7 +35,7 @@ pip install -e .
 Run program
 
 ```
-obstracts-cli --input-file examples/input.txt
+obstracts-cli --input-file tests/file_inputs/input.txt
 ```
 
 Creates two directories
