@@ -7,8 +7,8 @@ import logging
 import os
 import pytz
 import sys
+import textract
 from datetime import datetime
-from pathlib import Path
 from stix2 import Report
 
 from obstracts_cli.cache import Cache
@@ -19,6 +19,7 @@ from obstracts_cli.observables_stix_store import ObservablesStixStore
 from obstracts_cli.observables import Observable
 
 logger = logging.getLogger(__name__)
+
 
 
 def main(config: Config):
@@ -34,7 +35,7 @@ def main(config: Config):
 
     input_file_path = config.input_file_path
     # Add a new line at EOF, to avoid edge cases
-    input = Path(input_file_path).read_text() + "\n"
+    input = textract.process(input_file_path).decode('UTF-8')
     logger.info("Reading input file %s ...", input_file_path)
 
     stix_store = ObservablesStixStore()
