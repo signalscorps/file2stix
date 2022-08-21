@@ -97,3 +97,5 @@ dangerous-intrustion-set
 dangerous-malware
 dangerous-threat-actor
 dangerous-tool
+
+whitelist: google.com

@@ -7,6 +7,7 @@ import pycountry
 import validators
 import logging
 import stix2
+from pymispwarninglists import WarningLists
 from ipaddress import IPv4Address, IPv4Interface, IPv6Address, IPv6Interface
 from stix2 import (
     ExternalReference,
@@ -96,12 +97,23 @@ class Observable:
             # https://github.com/oasis-open/cti-python-stix2/issues/260
             pattern = pattern.replace("\\", "\\\\")
 
+            # Check if observable is in warning list
+            misp_warning_list = WarningLists(slow_search=False)
+            result = misp_warning_list.search(self.extracted_observable_text)
+            x_warning_list_match = []
+
+            if result:
+                for hit in result:
+                    x_warning_list_match.append(hit.name)
+
             indicator = Indicator(
                 type="indicator",
                 name=f"{self.name}{self.name_delimeter}{self.extracted_observable_text}",
                 pattern_type="stix",
                 pattern=pattern,
                 indicator_types=["malicious-activity"],
+                x_warning_list_match=x_warning_list_match,
+                allow_custom=True
             )
             return indicator
         else:
