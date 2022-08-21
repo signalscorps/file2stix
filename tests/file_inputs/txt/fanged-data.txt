@@ -1,0 +1,31 @@
+* Wrapping one or more special charachters in `[` `]`
+  * e.g. `www[.]example[.]com`
+  * e.g. `http[:]//example.com`
+  * e.g. `http[://]example.com`
+  * e.g. `1.1.1.1[/]24`
+* Wrapping one or more special charachters in `{` `}`
+* Wrapping one or more special charachters in `(` `)`
+* Prefixing one or more special charachters with `[`
+  * e.g. `www[.example[.com`
+  * e.g. `http[://example.com`
+  * e.g. `http[://example.com`
+* Prefixing one or more special charachters with `\`
+  * e.g. `C:\\Windows\\System32`
+  * e.g. `HKEY_LOCAL_MACHINE\\System\\Foo\\Bar`
+* Replacing `http` and `hxxp`
+  * e.g. `hxxps://google.com`
+* Using spaces:
+  * e.g. `1.1.1 . 1` = `1.1.1.1`
+* Replacing `.` with ` dot `
+  * e.g. `example@example dot com`
+  * e.g. `http://example dot com`
+* Replacing `.` with `[dot]` (or  `(dot)`, or `{dot}`)
+  * e.g. `example@example[dot]com`
+* Replacing `@` with ` at `
+  * e.g. `example at example.com`
+* Replacing `@` with `[at]` (or  `(at)`, or `{at}`)
+  * e.g. `example[at]example.com` 
+
+Note, a combination of the above techniques are also commonly implemented used. For example replacing `.` with ` dot ` and replacing `@` with ` at ` for an email like so; fanged = `example at example dot com`, defanged = `example@example.com`
+
+Another example using even more fanging technique combinations for a URL; fanged = `hxxps[:]//test\.example[.)com[/]path`, defanged = `https://test.example.com/path`
