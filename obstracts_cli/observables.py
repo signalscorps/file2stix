@@ -6,6 +6,7 @@ import re
 import pycountry
 import validators
 import logging
+import stix2
 from ipaddress import IPv4Address, IPv4Interface, IPv6Address, IPv6Interface
 from stix2 import (
     ExternalReference,
@@ -14,14 +15,14 @@ from stix2 import (
     Vulnerability,
     MemoryStore,
     Filter,
-    AttackPattern, 
+    AttackPattern,
     Campaign,
-    CourseOfAction, 
+    CourseOfAction,
     Infrastructure,
     IntrusionSet,
-    Malware, 
+    Malware,
     ThreatActor,
-    Tool
+    Tool,
 )
 
 logger = logging.getLogger(__name__)
@@ -525,7 +526,18 @@ class MITREEnterpriseAttackObservable(Observable):
 
     @classmethod
     def build_extraction_regex(
-        cls, cti_folder, bundle_relative_path="enterprise-attack/enterprise-attack.json"
+        cls,
+        cti_folder,
+        bundle_relative_path="enterprise-attack/enterprise-attack.json",
+        supported_sdo_data_types=[
+            stix2.v20.AttackPattern,
+            stix2.v20.CourseOfAction,
+            stix2.v20.IntrusionSet,
+            stix2.v20.Malware,
+            stix2.v20.Tool,
+            "x-mitre-tactic",
+            "x-mitre-data-source",
+        ],
     ):
         cls.memory_store = MemoryStore()
         cls.memory_store.load_from_file(f"{cti_folder}/{bundle_relative_path}")
@@ -533,15 +545,31 @@ class MITREEnterpriseAttackObservable(Observable):
         for _, object_family in cls.memory_store._data.items():
             try:
                 sdo_object = object_family.latest_version
-                cls.extraction_regex += rf"({sdo_object.name})|"
-                cls.extraction_regex += (
-                    rf"({sdo_object.external_references[0].external_id})|"
-                )
+
+                # Extract datatypes like x-mitre-tactic and x-mitre-data-source
+                if (
+                    type(sdo_object) == dict
+                    and sdo_object["type"] in supported_sdo_data_types
+                ):
+                    cls.extraction_regex += rf"({sdo_object['name']})|"
+                    cls.extraction_regex += (
+                        rf"({sdo_object['external_references'][0]['external_id']})|"
+                    )
+
+                # Extract datatypes like attack-pattern, course-of-action, etc
+                elif type(sdo_object) in supported_sdo_data_types:
+                    cls.extraction_regex += rf"({sdo_object.name})|"
+                    cls.extraction_regex += (
+                        rf"({sdo_object.external_references[0].external_id})|"
+                    )
             except:
                 logger.debug("Ignoring errors in building extration regex")
 
         # Trim last "|" symbols
         cls.extraction_regex = cls.extraction_regex[:-1]
+        logger.debug(
+            "Length of regex string of %s: %d", cls.name, len(cls.extraction_regex)
+        )
 
     def get_sdo_object(self):
         sdo_objects = self.memory_store.query(
@@ -575,9 +603,15 @@ class MITRECapecObservable(MITREEnterpriseAttackObservable):
 
     @classmethod
     def build_extraction_regex(
-        cls, cti_folder, bundle_relative_path="capec/2.1/stix-capec.json"
+        cls,
+        cti_folder,
+        bundle_relative_path="capec/2.1/stix-capec.json",
+        supported_sdo_data_types=[stix2.AttackPattern],
     ):
-        super().build_extraction_regex(cti_folder, bundle_relative_path)
+        super().build_extraction_regex(
+            cti_folder, bundle_relative_path, supported_sdo_data_types
+        )
+
 
 class CustomObervable(Observable):
     name = "Custom Observable"
@@ -610,13 +644,18 @@ class CustomObervable(Observable):
         with open(custom_extraction_file) as file:
             for line in file:
                 try:
-                    name, pattern, sdo_object_type = [text.strip() for text in line.split(",")]
+                    pattern, sdo_object_type = [
+                        text.strip() for text in line.split(",")
+                    ]
                 except:
-                    logger.warning("Error in parsing this line in custom extraction file: '%s'", line)
+                    logger.warning(
+                        "Error in parsing this line in custom extraction file: '%s'",
+                        line,
+                    )
                 if CustomObervable.get_stix2_object_custom(pattern, sdo_object_type):
                     cls.extraction_regex += rf"({pattern})|"
                     cls.custom_observables_map[pattern] = sdo_object_type
-        
+
         # Trim last "|" symbols
         cls.extraction_regex = cls.extraction_regex[:-1]
 
@@ -627,4 +666,3 @@ class CustomObervable(Observable):
         if sdo_object == None:
             raise ValueError("Parsed SDO object after custom extraction is None.")
         return sdo_object
-        

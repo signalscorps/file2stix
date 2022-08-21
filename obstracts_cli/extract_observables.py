@@ -51,6 +51,8 @@ class ExtractStixObservables:
 
         self.extracted_observables = observable_cls.extract_observables_from_text(text)
 
+        logger.debug("Extraction of observable text complete.")
+
     def __iter__(self):
         return self
 
