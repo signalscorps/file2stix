@@ -126,6 +126,12 @@ For example, to extract the
 
 Would search document inputs for the strong "RYUK". If a match is identified, a STIX 2.1 Malware Object would be created.
 
+### Updating STIX Objects
+
+If the script detects an already extracted observable value present in `stix2_extractions/` then the `modified` time of this object is updated to the new extraction time and the updated object used in the final bundle for the report.
+
+For example, if 1.1.1.1 detected in report 1 it would create a new object (object 1) where `created` and `modified` times were equal. Subsequently if 1.1.1.1 detected in report 2 it would use object 1 in the final bundle, but object 1 would also be updated with new `modifed` time to represent second sighting. The old bundle would remain unchanged. So bundle for report 1 would still have created and modified times equal, but report 2 would have the updated object, and so on.
+
 ## Whitelisting
 
 Stixify used MISP Warning Lists to identify potential extractions that should be whitelisted.
@@ -145,12 +151,6 @@ Then run `pytest` command in the command line to run all tests:
 ```shell
 pytest
 ```
-
-## Updating STIX Objects
-
-If the script detects an already extracted observable value present in `stix2_extractions/` then the `modified` time of this object is updated to the new extraction time and the updated object used in the final bundle for the report.
-
-For example, if 1.1.1.1 detected in report 1 it would create a new object (object 1) where `created` and `modified` times were equal. Subsequently if 1.1.1.1 detected in report 2 it would use object 1 in the final bundle, but object 1 would also be updated with new `modifed` time to represent second sighting. The old bundle would remain unchanged. So bundle for report 1 would still have created and modified times equal, but report 2 would have the updated object, and so on.
 
 ## Viewer
 
