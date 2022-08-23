@@ -20,3 +20,17 @@ def inheritors(klass):
                 # subclasses.add(child)
                 work.append(child)
     return subclasses
+
+def nested_dict_values(d):
+    """
+    Get all values in a nested dictionary
+    """
+    if isinstance(d, list):
+        for item in d:
+            yield from nested_dict_values(item)
+    else:
+        for v in d.values():
+            if isinstance(v, dict):
+                yield from nested_dict_values(v)
+            else:
+                yield v

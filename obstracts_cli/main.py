@@ -8,19 +8,44 @@ import os
 import pytz
 import sys
 import textract
+import json
+from bs4 import BeautifulSoup
 from datetime import datetime
 from stix2 import Report
 
 from obstracts_cli.cache import Cache
 from obstracts_cli.config import Config
 from obstracts_cli.extract_observables import ExtractStixObservables
-from obstracts_cli.helper import inheritors
+from obstracts_cli.helper import inheritors, nested_dict_values
 from obstracts_cli.observables_stix_store import ObservablesStixStore
 from obstracts_cli.observables import Observable
 
 logger = logging.getLogger(__name__)
 
 
+def get_text_from_xml(input_file_path):
+    """
+    Extracts only text content from the xml document
+    """
+    with open(input_file_path, "r") as f:
+        soup = BeautifulSoup(f, "xml")
+
+    text_list = soup.find_all(text=True)
+    return "".join(text_list)
+
+def get_text_from_json(input_file_path):
+    with open(input_file_path, "r") as f:
+        data = json.load(f)
+    
+    values = list(nested_dict_values(data))
+    return "\n".join([str(value) for value in values])
+
+def get_text_from_markdown(input_file_path):
+    with open(input_file_path, "r") as f:
+        soup = BeautifulSoup(f, "lxml")
+
+    text_list = soup.find_all(text=True)
+    return "".join(text_list)
 
 def main(config: Config):
     cache = Cache(config.cache_folder)
@@ -34,8 +59,19 @@ def main(config: Config):
         sys.exit(0)
 
     input_file_path = config.input_file_path
-    # Add a new line at EOF, to avoid edge cases
-    input = textract.process(input_file_path).decode('UTF-8')
+    file_name, file_extension = os.path.splitext(input_file_path)
+    input = None
+
+    # Handle xml, json and md files specially
+    if file_extension == ".xml":
+        input = get_text_from_xml(input_file_path)
+    elif file_extension == ".json":
+        input = get_text_from_json(input_file_path)
+    elif file_extension == ".md":
+        input = get_text_from_markdown(input_file_path)
+    else:
+        input = textract.process(input_file_path).decode('UTF-8')
+
     logger.info("Reading input file %s ...", input_file_path)
 
     stix_store = ObservablesStixStore()
