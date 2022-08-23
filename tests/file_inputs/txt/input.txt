@@ -36,10 +36,15 @@ url: https://example.com/path/index.html
 domain: test.example.com
 sub-domain: example.com
 
-registry path: HKEY_LOCAL_MACHINE \\System\\Foo\\Bar
+registry path: HKEY_LOCAL_MACHINE\System\Foo\Bar
 
 
 HKEY_LOCAL_MACHINE\SOFTWARE\Wow6432Node HKEY_LOCAL_MACHINE\SYSTEM\system32\config\system
+HKEY_CLASSES_ROOT\SYSTEM\system32\config\system
+HKEY_CURRENT_USER\SYSTEM\system32\config\system
+HKEY_LOCAL_MACHINE\SYSTEM\system32\config\system
+HKEY_USERS\SYSTEM\system32\config\system
+HKEY_CURRENT_CONFIG\SYSTEM\system32\config\system
 
 Mozilla/5.0 (Windows; U; Windows NT 5.1; en-US; rv:1.6) Gecko/20040113
 
@@ -52,6 +57,12 @@ eth address: 0xb794f5ea0ba39494ce839613fffba74279579268
 xmr address: 48Fki6gnEN1QaiWNcsm8dVfX2JMg8xmjiQvuKpcdUD9rQH8WU4AXj9HKAF5AdnhKPSPLzTV7CX1Ks25BWrDeLnHuEFmhRxV
 cve id: CVE-2022-00001
 ASN number: ASN13335
+e.g. ASN15139
+e.g. AS 15139
+e.g. ASN 15139
+
+
+
 country: AF 
 full_country_name: Bangladesh , United Arab Emirates , Central African Republic , 
 AL , DZ , AS
@@ -74,6 +85,7 @@ Credit cards
 6011111111111117
 
 IBAN - DE29100500001061045672
+GB94BARC10201530093459
 
 Yara rules
 rule dummy
