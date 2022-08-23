@@ -44,21 +44,37 @@ pip install .
 pip install -e .
 ```
 
-To make use of MITRE ATT&CK and MITRE CAPEC extractions you also need to import the latest version of the databases
+To make use of MITRE ATT&CK and MITRE CAPEC extractions you also need to import the latest version of the databases on install;
 
 ```shell
 obstracts-cli --update-mitre-cti-database
 ```
 
-You can run this command at any time to update these records (e.g. in the case of a new version of ATT&CK being published)
+To run Stixify;
 
-Run program
+```shell
+obstracts-cli --input-file PATH/TO/FILE --custom-extraction-file PATH/TO/FILE --update-mitre-cti-database
+```
+
+* `--input-file` (required): provides the path to the input file
+* `--custom-extraction-file` (optional): provides the path to the file with custom extraction logic
+* `--update-mitre-cti-database` (optional) updates the local cache with latest MITRE CTI dataset
+
+You can also run `obstracts-cli --help` to know more about these options.
+
+For example;
 
 ```shell
 obstracts-cli --input-file tests/file_inputs/txt/input.txt
 ```
 
-Creates two directories;
+Or with a custom extraction file specified;
+
+```shell
+obstracts-cli --input-file tests/file_inputs/txt/input.txt --custom-extraction-file tests/file_inputs/txt/custom_extraction_file
+````
+
+When the command executes successfully and matches are detected two directories will be created;
 
 * `stix2_extractions/`
 	* STIX Objects for observables detected. These are used for future runs of the script. In the sub-directories you will find STIX 2.1 Bundles containing individual STIX 2.1 Objects extracted.
@@ -122,19 +138,42 @@ Stixify ships with the following automatic Observable extraction types:
 
 ### Custom Extractions
 
-You can also write your own custom extractions. To create these you must specify an extraction string (case insensitive) and a STIX 2.1 Object to use when the match is detected in the format;
+You can also write your own custom extractions.
+
+Custom extractions can be written and stored in a plain text file.
+
+Inside this file you must specify an extraction string (case insensitive) and a STIX 2.1 Object to use when the match is detected in the format;
 
 ```csv
 "EXTRACTION STRING",STIX-OBJECT-TYPE
 ```
 
-For example, to extract the 
+The following STIX 2.1 Objects are supported by custom extractions:
+
+* [Attack Pattern](https://docs.oasis-open.org/cti/stix/v2.1/csprd01/stix-v2.1-csprd01.html#_Toc16070618) (`attack-pattern`)
+* [Campaign](https://docs.oasis-open.org/cti/stix/v2.1/csprd01/stix-v2.1-csprd01.html#_Toc16070621) (`campaign`)
+* [Course of Action](https://docs.oasis-open.org/cti/stix/v2.1/csprd01/stix-v2.1-csprd01.html#_Toc16070624) (`course-of-action`)
+* [Infrastructure](https://docs.oasis-open.org/cti/stix/v2.1/csprd01/stix-v2.1-csprd01.html#_Toc16070636) (`infrastructure`)
+* [Intrusion Set](https://docs.oasis-open.org/cti/stix/v2.1/csprd01/stix-v2.1-csprd01.html#_Toc16070639) (`intrustion-set`)
+* [Malware](https://docs.oasis-open.org/cti/stix/v2.1/csprd01/stix-v2.1-csprd01.html#_Toc16070645) (`malware`)
+* [Threat Actor](https://docs.oasis-open.org/cti/stix/v2.1/csprd01/stix-v2.1-csprd01.html#_Toc16070663) (`threat-actor`)
+* [Tool](https://docs.oasis-open.org/cti/stix/v2.1/csprd01/stix-v2.1-csprd01.html#_Toc16070666) (`tool`)
+
+e.g. to search a document for the string "RYUK" and create a Malware STIX 2.1 SDO if a match is identified;
 
 ```csv
-"RYUK",malware
+"ryuk",malware
 ```
 
-Would search document inputs for the strong "RYUK". If a match is identified, a STIX 2.1 Malware Object would be created.
+You can also create multiple custom extractions in the same file by adding multiple lines, e.g.
+
+```csv
+"ryuk",malware
+"darkhotel",malware
+"patch",course-of-action
+```
+
+You can see an example custom extraction file in `/tests/file_inputs/txt/custom_extraction_file.txt`.
 
 ### Updating STIX Objects
 
