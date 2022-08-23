@@ -73,7 +73,7 @@ obstracts-cli --input-file tests/file_inputs/txt/input.txt
 Or with a custom extraction file specified;
 
 ```shell
-obstracts-cli --input-file tests/file_inputs/txt/input.txt --custom-extraction-file tests/file_inputs/txt/custom_extraction_file.txt
+obstracts-cli --input-file tests/file_inputs/txt/input.txt --custom-extraction-file tests/file_inputs/custom_extractions/extractions.txt
 ````
 
 When the command executes successfully and matches are detected two directories will be created;
@@ -185,7 +185,7 @@ You can also create multiple custom extractions in the same file by adding multi
 "patch",course-of-action
 ```
 
-You can see an example custom extraction file in `/tests/file_inputs/txt/custom_extraction_file.txt`.
+You can see an example custom extraction file in `tests/file_inputs/custom_extractions/extractions.txt`
 
 ### Updating STIX Objects
 
