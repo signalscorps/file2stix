@@ -48,18 +48,18 @@ Run program
 obstracts-cli --input-file tests/file_inputs/txt/input.txt
 ```
 
-Creates two directories
+Creates two directories;
 
 * `stix2_extractions/`
-	* STIX Objects for observables detected. These are used for future runs of the script
+	* STIX Objects for observables detected. These are used for future runs of the script. In the sub-directories you will find STIX 2.1 Bundles containing individual STIX 2.1 Objects extracted.
 * `stix2_reports/`
-	* Final STIX bundles containing collections of Objects from observables extracted from reports
+	* Final STIX bundles containing collections of Objects from observables extracted from reports. In the sub-directories you will find STIX 2.1 Bundles containing all STIX 2.1 Objects extracted from a report. Some examples can be seen in the `/tests/expected_reports` directory.
 
 ## Inputs
 
 Stixify supports the following filetype inputs:
 
-* Markwdown (`.md`, `.markdown`)
+* Markdown (`.md`, `.markdown`)
 * Plain text (`.txt`)
 * CSV (`.csv`)
 * XML (`.xml`)
