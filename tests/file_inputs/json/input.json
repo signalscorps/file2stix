@@ -1,0 +1,374 @@
+[
+ {
+   "Repetitions (only one SDO object should be created)": "198.51.100.5",
+   "Extract?": true,
+   "Type expected": "ipv4",
+   "Info": ""
+ },
+ {
+   "Repetitions (only one SDO object should be created)": "198.51.100.5",
+   "Extract?": false,
+   "Type expected": "",
+   "Info": "Is dupe"
+ },
+ {
+   "Repetitions (only one SDO object should be created)": "198.51.100.5",
+   "Extract?": false,
+   "Type expected": "",
+   "Info": ""
+ },
+ {
+   "Repetitions (only one SDO object should be created)": "198.51.100.5",
+   "Extract?": false,
+   "Type expected": "",
+   "Info": ""
+ },
+ {
+   "Repetitions (only one SDO object should be created)": "198.51.100.5",
+   "Extract?": false,
+   "Type expected": "",
+   "Info": ""
+ },
+ {
+   "Repetitions (only one SDO object should be created)": "198.51.100.5",
+   "Extract?": false,
+   "Type expected": "",
+   "Info": ""
+ },
+ {
+   "Repetitions (only one SDO object should be created)": "198.51.100.5",
+   "Extract?": false,
+   "Type expected": "",
+   "Info": ""
+ },
+ {
+   "Repetitions (only one SDO object should be created)": "198.51.100.3-",
+   "Extract?": true,
+   "Type expected": "ipv4",
+   "Info": "the - char ignored"
+ },
+ {
+   "Repetitions (only one SDO object should be created)": "198.51.100.4",
+   "Extract?": true,
+   "Type expected": "ipv4",
+   "Info": ""
+ },
+ {
+   "Repetitions (only one SDO object should be created)": "198.0.103.12",
+   "Extract?": true,
+   "Type expected": "ipv4",
+   "Info": ""
+ },
+ {
+   "Repetitions (only one SDO object should be created)": "198.0.103.12/24",
+   "Extract?": true,
+   "Type expected": "ipv4 CIDR",
+   "Info": ""
+ },
+ {
+   "Repetitions (only one SDO object should be created)": "198.0.103.12:8000",
+   "Extract?": true,
+   "Type expected": "ipv4 with port",
+   "Info": ""
+ },
+ {
+   "Repetitions (only one SDO object should be created)": "2001:0db8:85a3:0000:0000:8a2e:0370:7334",
+   "Extract?": true,
+   "Type expected": "ipv6",
+   "Info": ""
+ },
+ {
+   "Repetitions (only one SDO object should be created)": "2002::abcd:ffff:c0a8:101/64",
+   "Extract?": true,
+   "Type expected": "ipv6 CIDR",
+   "Info": ""
+ },
+ {
+   "Repetitions (only one SDO object should be created)": "[2001:0db8:85a3:0000:0000:8a2e:0370:7334]:80",
+   "Extract?": true,
+   "Type expected": "ipv6 with port",
+   "Info": ""
+ },
+ {
+   "Repetitions (only one SDO object should be created)": "86F7E437FAA5A7FCE15D1DDCB9EAEAEA377667B8",
+   "Extract?": true,
+   "Type expected": "sha1",
+   "Info": ""
+ },
+ {
+   "Repetitions (only one SDO object should be created)": "4ec503be252d765ea37621a629afdaa6 4ec503be252d765ea37621a629afdaa6",
+   "Extract?": true,
+   "Type expected": "md5",
+   "Info": ""
+ },
+ {
+   "Repetitions (only one SDO object should be created)": "ba7816bf8f01cfea414140de5dae2223b00361a396177a9cb410ff61f20015ad",
+   "Extract?": true,
+   "Type expected": "sha256",
+   "Info": ""
+ },
+ {
+   "Repetitions (only one SDO object should be created)": "1f40fc92da241694750979ee6cf582f2d5d7d28e18335de05abc54d0560e0f5302860c652bf08d560252aa5e74210546f369fbbbce8c12cfc7957b2652fe9a75",
+   "Extract?": true,
+   "Type expected": "sha512",
+   "Info": ""
+ },
+ {
+   "Repetitions (only one SDO object should be created)": "96:s4Ud1Lj96tHHlZDrwciQmA+4uy1I0G4HYuL8N3TzS8QsO/wqWXLcMSx:sF1LjEtHHlZDrJzrhuyZvHYm8tKp/RWO",
+   "Extract?": true,
+   "Type expected": "ssdeep",
+   "Info": ""
+ },
+ {
+   "Repetitions (only one SDO object should be created)": "virus.exe",
+   "Extract?": true,
+   "Type expected": "filename",
+   "Info": ""
+ },
+ {
+   "Repetitions (only one SDO object should be created)": "/System/Library/LaunchDaemons",
+   "Extract?": true,
+   "Type expected": "directory path unix",
+   "Info": ""
+ },
+ {
+   "Repetitions (only one SDO object should be created)": "C:\\Windows\\System32",
+   "Extract?": true,
+   "Type expected": "directory path win",
+   "Info": ""
+ },
+ {
+   "Repetitions (only one SDO object should be created)": "example@example.com",
+   "Extract?": true,
+   "Type expected": "email",
+   "Info": ""
+ },
+ {
+   "Repetitions (only one SDO object should be created)": "test+1@google.com",
+   "Extract?": true,
+   "Type expected": "email",
+   "Info": ""
+ },
+ {
+   "Repetitions (only one SDO object should be created)": "https://example.com/research/",
+   "Extract?": true,
+   "Type expected": "url",
+   "Info": ""
+ },
+ {
+   "Repetitions (only one SDO object should be created)": "https://example.com/path/index.html",
+   "Extract?": true,
+   "Type expected": "url",
+   "Info": ""
+ },
+ {
+   "Repetitions (only one SDO object should be created)": "test.mydomain.com",
+   "Extract?": true,
+   "Type expected": "domain",
+   "Info": ""
+ },
+ {
+   "Repetitions (only one SDO object should be created)": "mydomain.com",
+   "Extract?": true,
+   "Type expected": "domain",
+   "Info": ""
+ },
+ {
+   "Repetitions (only one SDO object should be created)": "HKEY_CLASSES_ROOT\\Software\\Classes",
+   "Extract?": true,
+   "Type expected": "win registry key",
+   "Info": ""
+ },
+ {
+   "Repetitions (only one SDO object should be created)": "HKEY_CURRENT_USER\\Software\\Classes",
+   "Extract?": true,
+   "Type expected": "win registry key",
+   "Info": ""
+ },
+ {
+   "Repetitions (only one SDO object should be created)": "HKEY_USERS\\Software\\Classes",
+   "Extract?": true,
+   "Type expected": "win registry key",
+   "Info": ""
+ },
+ {
+   "Repetitions (only one SDO object should be created)": "HKEY_CURRENT_CONFIGE\\Software\\Classes",
+   "Extract?": true,
+   "Type expected": "win registry key",
+   "Info": ""
+ },
+ {
+   "Repetitions (only one SDO object should be created)": "Mozilla/5.0 (Windows; U; Windows NT 5.1; en-US; rv:1.6) Gecko/20040113",
+   "Extract?": true,
+   "Type expected": "user agent",
+   "Info": ""
+ },
+ {
+   "Repetitions (only one SDO object should be created)": "Mozilla/5.0 (Linux; Android 11; Lenovo YT-J706X) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/96.0.4664.45 Safari/537.36",
+   "Extract?": true,
+   "Type expected": "user agent",
+   "Info": ""
+ },
+ {
+   "Repetitions (only one SDO object should be created)": "Mozilla/5.0 (iPhone14,6; U; CPU iPhone OS 15_4 like Mac OS X) AppleWebKit/602.1.50 (KHTML, like Gecko) Version/10.0 Mobile/19E241 Safari/602.1",
+   "Extract?": true,
+   "Type expected": "user agent",
+   "Info": ""
+ },
+ {
+   "Repetitions (only one SDO object should be created)": "3FZbgi29cpjq2GjdwV8eyHuJJnkLtktZc5",
+   "Extract?": true,
+   "Type expected": "btc crypto",
+   "Info": ""
+ },
+ {
+   "Repetitions (only one SDO object should be created)": "0xb794f5ea0ba39494ce839613fffba74279579268",
+   "Extract?": true,
+   "Type expected": "eth crypto",
+   "Info": ""
+ },
+ {
+   "Repetitions (only one SDO object should be created)": "48Fki6gnEN1QaiWNcsm8dVfX2JMg8xmjiQvuKpcdUD9rQH8WU4AXj9HKAF5AdnhKPSPLzTV7CX1Ks25BWrDeLnHuEFmhRxV",
+   "Extract?": true,
+   "Type expected": "xmr crypto",
+   "Info": ""
+ },
+ {
+   "Repetitions (only one SDO object should be created)": "CVE-2022-00001",
+   "Extract?": true,
+   "Type expected": "cve",
+   "Info": ""
+ },
+ {
+   "Repetitions (only one SDO object should be created)": "ASN13335",
+   "Extract?": true,
+   "Type expected": "asn",
+   "Info": ""
+ },
+ {
+   "Repetitions (only one SDO object should be created)": "AS13335",
+   "Extract?": true,
+   "Type expected": "asn",
+   "Info": ""
+ },
+ {
+   "Repetitions (only one SDO object should be created)": "ASN 13335",
+   "Extract?": true,
+   "Type expected": "asn",
+   "Info": ""
+ },
+ {
+   "Repetitions (only one SDO object should be created)": "AS 13335",
+   "Extract?": true,
+   "Type expected": "asn",
+   "Info": ""
+ },
+ {
+   "Repetitions (only one SDO object should be created)": "United Kingdom",
+   "Extract?": true,
+   "Type expected": "country",
+   "Info": ""
+ },
+ {
+   "Repetitions (only one SDO object should be created)": "UK",
+   "Extract?": true,
+   "Type expected": "country",
+   "Info": ""
+ },
+ {
+   "Repetitions (only one SDO object should be created)": "Bangladesh",
+   "Extract?": true,
+   "Type expected": "country",
+   "Info": ""
+ },
+ {
+   "Repetitions (only one SDO object should be created)": "United Arab Emirates",
+   "Extract?": true,
+   "Type expected": "country",
+   "Info": ""
+ },
+ {
+   "Repetitions (only one SDO object should be created)": "Central African Republic",
+   "Extract?": true,
+   "Type expected": "country",
+   "Info": ""
+ },
+ {
+   "Repetitions (only one SDO object should be created)": "AL",
+   "Extract?": true,
+   "Type expected": "country",
+   "Info": ""
+ },
+ {
+   "Repetitions (only one SDO object should be created)": "DZ",
+   "Extract?": true,
+   "Type expected": "country",
+   "Info": ""
+ },
+ {
+   "Repetitions (only one SDO object should be created)": "AS",
+   "Extract?": true,
+   "Type expected": "country",
+   "Info": ""
+ },
+ {
+   "Repetitions (only one SDO object should be created)": "5.55556E+15",
+   "Extract?": true,
+   "Type expected": "credit card (MC)",
+   "Info": ""
+ },
+ {
+   "Repetitions (only one SDO object should be created)": "4.24242E+15",
+   "Extract?": true,
+   "Type expected": "credit card (visa)",
+   "Info": ""
+ },
+ {
+   "Repetitions (only one SDO object should be created)": "3.78282E+14",
+   "Extract?": true,
+   "Type expected": "credit card (amex)",
+   "Info": ""
+ },
+ {
+   "Repetitions (only one SDO object should be created)": "6.2E+15",
+   "Extract?": true,
+   "Type expected": "credit card (union pay)",
+   "Info": ""
+ },
+ {
+   "Repetitions (only one SDO object should be created)": "3.05693E+15",
+   "Extract?": true,
+   "Type expected": "credit card (diners)",
+   "Info": ""
+ },
+ {
+   "Repetitions (only one SDO object should be created)": "3.566E+15",
+   "Extract?": true,
+   "Type expected": "credit card (jcb)",
+   "Info": ""
+ },
+ {
+   "Repetitions (only one SDO object should be created)": "6.01111E+15",
+   "Extract?": true,
+   "Type expected": "credit card (discover)",
+   "Info": ""
+ },
+ {
+   "Repetitions (only one SDO object should be created)": "GB94BARC10201530093459",
+   "Extract?": true,
+   "Type expected": "iban (GB)",
+   "Info": ""
+ },
+ {
+   "Repetitions (only one SDO object should be created)": "DE29100500001061045672",
+   "Extract?": true,
+   "Type expected": "iban (DE)",
+   "Info": ""
+ },
+ {
+   "Repetitions (only one SDO object should be created)": "mycustomvalue",
+   "Extract?": null,
+   "Type expected": "",
+   "Info": ""
+ }
+]

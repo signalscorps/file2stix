@@ -1,0 +1,375 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<root>
+  <row>
+    <Repetitions (only one SDO object should be created)>198.51.100.5</Repetitions (only one SDO object should be created)>
+    <Extract?>TRUE</Extract?>
+    <Type expected>ipv4</Type expected>
+    <Info></Info>
+  </row>
+  <row>
+    <Repetitions (only one SDO object should be created)>198.51.100.5</Repetitions (only one SDO object should be created)>
+    <Extract?>FALSE</Extract?>
+    <Type expected></Type expected>
+    <Info>Is dupe</Info>
+  </row>
+  <row>
+    <Repetitions (only one SDO object should be created)>198.51.100.5</Repetitions (only one SDO object should be created)>
+    <Extract?>FALSE</Extract?>
+    <Type expected></Type expected>
+    <Info></Info>
+  </row>
+  <row>
+    <Repetitions (only one SDO object should be created)>198.51.100.5</Repetitions (only one SDO object should be created)>
+    <Extract?>FALSE</Extract?>
+    <Type expected></Type expected>
+    <Info></Info>
+  </row>
+  <row>
+    <Repetitions (only one SDO object should be created)>198.51.100.5</Repetitions (only one SDO object should be created)>
+    <Extract?>FALSE</Extract?>
+    <Type expected></Type expected>
+    <Info></Info>
+  </row>
+  <row>
+    <Repetitions (only one SDO object should be created)>198.51.100.5</Repetitions (only one SDO object should be created)>
+    <Extract?>FALSE</Extract?>
+    <Type expected></Type expected>
+    <Info></Info>
+  </row>
+  <row>
+    <Repetitions (only one SDO object should be created)>198.51.100.5</Repetitions (only one SDO object should be created)>
+    <Extract?>FALSE</Extract?>
+    <Type expected></Type expected>
+    <Info></Info>
+  </row>
+  <row>
+    <Repetitions (only one SDO object should be created)>198.51.100.3-</Repetitions (only one SDO object should be created)>
+    <Extract?>TRUE</Extract?>
+    <Type expected>ipv4</Type expected>
+    <Info>the - char ignored</Info>
+  </row>
+  <row>
+    <Repetitions (only one SDO object should be created)>198.51.100.4</Repetitions (only one SDO object should be created)>
+    <Extract?>TRUE</Extract?>
+    <Type expected>ipv4</Type expected>
+    <Info></Info>
+  </row>
+  <row>
+    <Repetitions (only one SDO object should be created)>198.0.103.12</Repetitions (only one SDO object should be created)>
+    <Extract?>TRUE</Extract?>
+    <Type expected>ipv4</Type expected>
+    <Info></Info>
+  </row>
+  <row>
+    <Repetitions (only one SDO object should be created)>198.0.103.12/24</Repetitions (only one SDO object should be created)>
+    <Extract?>TRUE</Extract?>
+    <Type expected>ipv4 CIDR</Type expected>
+    <Info></Info>
+  </row>
+  <row>
+    <Repetitions (only one SDO object should be created)>198.0.103.12:8000</Repetitions (only one SDO object should be created)>
+    <Extract?>TRUE</Extract?>
+    <Type expected>ipv4 with port</Type expected>
+    <Info></Info>
+  </row>
+  <row>
+    <Repetitions (only one SDO object should be created)>2001:0db8:85a3:0000:0000:8a2e:0370:7334</Repetitions (only one SDO object should be created)>
+    <Extract?>TRUE</Extract?>
+    <Type expected>ipv6</Type expected>
+    <Info></Info>
+  </row>
+  <row>
+    <Repetitions (only one SDO object should be created)>2002::abcd:ffff:c0a8:101/64</Repetitions (only one SDO object should be created)>
+    <Extract?>TRUE</Extract?>
+    <Type expected>ipv6 CIDR</Type expected>
+    <Info></Info>
+  </row>
+  <row>
+    <Repetitions (only one SDO object should be created)>[2001:0db8:85a3:0000:0000:8a2e:0370:7334]:80</Repetitions (only one SDO object should be created)>
+    <Extract?>TRUE</Extract?>
+    <Type expected>ipv6 with port</Type expected>
+    <Info></Info>
+  </row>
+  <row>
+    <Repetitions (only one SDO object should be created)>86F7E437FAA5A7FCE15D1DDCB9EAEAEA377667B8</Repetitions (only one SDO object should be created)>
+    <Extract?>TRUE</Extract?>
+    <Type expected>sha1</Type expected>
+    <Info></Info>
+  </row>
+  <row>
+    <Repetitions (only one SDO object should be created)>4ec503be252d765ea37621a629afdaa6 4ec503be252d765ea37621a629afdaa6</Repetitions (only one SDO object should be created)>
+    <Extract?>TRUE</Extract?>
+    <Type expected>md5</Type expected>
+    <Info></Info>
+  </row>
+  <row>
+    <Repetitions (only one SDO object should be created)>ba7816bf8f01cfea414140de5dae2223b00361a396177a9cb410ff61f20015ad</Repetitions (only one SDO object should be created)>
+    <Extract?>TRUE</Extract?>
+    <Type expected>sha256</Type expected>
+    <Info></Info>
+  </row>
+  <row>
+    <Repetitions (only one SDO object should be created)>1f40fc92da241694750979ee6cf582f2d5d7d28e18335de05abc54d0560e0f5302860c652bf08d560252aa5e74210546f369fbbbce8c12cfc7957b2652fe9a75</Repetitions (only one SDO object should be created)>
+    <Extract?>TRUE</Extract?>
+    <Type expected>sha512</Type expected>
+    <Info></Info>
+  </row>
+  <row>
+    <Repetitions (only one SDO object should be created)>96:s4Ud1Lj96tHHlZDrwciQmA+4uy1I0G4HYuL8N3TzS8QsO/wqWXLcMSx:sF1LjEtHHlZDrJzrhuyZvHYm8tKp/RWO</Repetitions (only one SDO object should be created)>
+    <Extract?>TRUE</Extract?>
+    <Type expected>ssdeep</Type expected>
+    <Info></Info>
+  </row>
+  <row>
+    <Repetitions (only one SDO object should be created)>virus.exe</Repetitions (only one SDO object should be created)>
+    <Extract?>TRUE</Extract?>
+    <Type expected>filename</Type expected>
+    <Info></Info>
+  </row>
+  <row>
+    <Repetitions (only one SDO object should be created)>/System/Library/LaunchDaemons</Repetitions (only one SDO object should be created)>
+    <Extract?>TRUE</Extract?>
+    <Type expected>directory path unix</Type expected>
+    <Info></Info>
+  </row>
+  <row>
+    <Repetitions (only one SDO object should be created)>C:\Windows\System32</Repetitions (only one SDO object should be created)>
+    <Extract?>TRUE</Extract?>
+    <Type expected>directory path win</Type expected>
+    <Info></Info>
+  </row>
+  <row>
+    <Repetitions (only one SDO object should be created)>example@example.com</Repetitions (only one SDO object should be created)>
+    <Extract?>TRUE</Extract?>
+    <Type expected>email</Type expected>
+    <Info></Info>
+  </row>
+  <row>
+    <Repetitions (only one SDO object should be created)>test+1@google.com</Repetitions (only one SDO object should be created)>
+    <Extract?>TRUE</Extract?>
+    <Type expected>email</Type expected>
+    <Info></Info>
+  </row>
+  <row>
+    <Repetitions (only one SDO object should be created)>https://example.com/research/</Repetitions (only one SDO object should be created)>
+    <Extract?>TRUE</Extract?>
+    <Type expected>url</Type expected>
+    <Info></Info>
+  </row>
+  <row>
+    <Repetitions (only one SDO object should be created)>https://example.com/path/index.html</Repetitions (only one SDO object should be created)>
+    <Extract?>TRUE</Extract?>
+    <Type expected>url</Type expected>
+    <Info></Info>
+  </row>
+  <row>
+    <Repetitions (only one SDO object should be created)>test.mydomain.com</Repetitions (only one SDO object should be created)>
+    <Extract?>TRUE</Extract?>
+    <Type expected>domain</Type expected>
+    <Info></Info>
+  </row>
+  <row>
+    <Repetitions (only one SDO object should be created)>mydomain.com</Repetitions (only one SDO object should be created)>
+    <Extract?>TRUE</Extract?>
+    <Type expected>domain</Type expected>
+    <Info></Info>
+  </row>
+  <row>
+    <Repetitions (only one SDO object should be created)>HKEY_CLASSES_ROOT\Software\Classes</Repetitions (only one SDO object should be created)>
+    <Extract?>TRUE</Extract?>
+    <Type expected>win registry key</Type expected>
+    <Info></Info>
+  </row>
+  <row>
+    <Repetitions (only one SDO object should be created)>HKEY_CURRENT_USER\Software\Classes</Repetitions (only one SDO object should be created)>
+    <Extract?>TRUE</Extract?>
+    <Type expected>win registry key</Type expected>
+    <Info></Info>
+  </row>
+  <row>
+    <Repetitions (only one SDO object should be created)>HKEY_USERS\Software\Classes</Repetitions (only one SDO object should be created)>
+    <Extract?>TRUE</Extract?>
+    <Type expected>win registry key</Type expected>
+    <Info></Info>
+  </row>
+  <row>
+    <Repetitions (only one SDO object should be created)>HKEY_CURRENT_CONFIGE\Software\Classes</Repetitions (only one SDO object should be created)>
+    <Extract?>TRUE</Extract?>
+    <Type expected>win registry key</Type expected>
+    <Info></Info>
+  </row>
+  <row>
+    <Repetitions (only one SDO object should be created)>Mozilla/5.0 (Windows; U; Windows NT 5.1; en-US; rv:1.6) Gecko/20040113</Repetitions (only one SDO object should be created)>
+    <Extract?>TRUE</Extract?>
+    <Type expected>user agent</Type expected>
+    <Info></Info>
+  </row>
+  <row>
+    <Repetitions (only one SDO object should be created)>Mozilla/5.0 (Linux; Android 11; Lenovo YT-J706X) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/96.0.4664.45 Safari/537.36</Repetitions (only one SDO object should be created)>
+    <Extract?>TRUE</Extract?>
+    <Type expected>user agent</Type expected>
+    <Info></Info>
+  </row>
+  <row>
+    <Repetitions (only one SDO object should be created)>Mozilla/5.0 (iPhone14,6; U; CPU iPhone OS 15_4 like Mac OS X) AppleWebKit/602.1.50 (KHTML, like Gecko) Version/10.0 Mobile/19E241 Safari/602.1</Repetitions (only one SDO object should be created)>
+    <Extract?>TRUE</Extract?>
+    <Type expected>user agent</Type expected>
+    <Info></Info>
+  </row>
+  <row>
+    <Repetitions (only one SDO object should be created)>3FZbgi29cpjq2GjdwV8eyHuJJnkLtktZc5</Repetitions (only one SDO object should be created)>
+    <Extract?>TRUE</Extract?>
+    <Type expected>btc crypto</Type expected>
+    <Info></Info>
+  </row>
+  <row>
+    <Repetitions (only one SDO object should be created)>0xb794f5ea0ba39494ce839613fffba74279579268</Repetitions (only one SDO object should be created)>
+    <Extract?>TRUE</Extract?>
+    <Type expected>eth crypto</Type expected>
+    <Info></Info>
+  </row>
+  <row>
+    <Repetitions (only one SDO object should be created)>48Fki6gnEN1QaiWNcsm8dVfX2JMg8xmjiQvuKpcdUD9rQH8WU4AXj9HKAF5AdnhKPSPLzTV7CX1Ks25BWrDeLnHuEFmhRxV</Repetitions (only one SDO object should be created)>
+    <Extract?>TRUE</Extract?>
+    <Type expected>xmr crypto</Type expected>
+    <Info></Info>
+  </row>
+  <row>
+    <Repetitions (only one SDO object should be created)>CVE-2022-00001</Repetitions (only one SDO object should be created)>
+    <Extract?>TRUE</Extract?>
+    <Type expected>cve</Type expected>
+    <Info></Info>
+  </row>
+  <row>
+    <Repetitions (only one SDO object should be created)>ASN13335</Repetitions (only one SDO object should be created)>
+    <Extract?>TRUE</Extract?>
+    <Type expected>asn</Type expected>
+    <Info></Info>
+  </row>
+  <row>
+    <Repetitions (only one SDO object should be created)>AS13335</Repetitions (only one SDO object should be created)>
+    <Extract?>TRUE</Extract?>
+    <Type expected>asn</Type expected>
+    <Info></Info>
+  </row>
+  <row>
+    <Repetitions (only one SDO object should be created)>ASN 13335</Repetitions (only one SDO object should be created)>
+    <Extract?>TRUE</Extract?>
+    <Type expected>asn</Type expected>
+    <Info></Info>
+  </row>
+  <row>
+    <Repetitions (only one SDO object should be created)>AS 13335</Repetitions (only one SDO object should be created)>
+    <Extract?>TRUE</Extract?>
+    <Type expected>asn</Type expected>
+    <Info></Info>
+  </row>
+  <row>
+    <Repetitions (only one SDO object should be created)>United Kingdom</Repetitions (only one SDO object should be created)>
+    <Extract?>TRUE</Extract?>
+    <Type expected>country</Type expected>
+    <Info></Info>
+  </row>
+  <row>
+    <Repetitions (only one SDO object should be created)>UK</Repetitions (only one SDO object should be created)>
+    <Extract?>TRUE</Extract?>
+    <Type expected>country</Type expected>
+    <Info></Info>
+  </row>
+  <row>
+    <Repetitions (only one SDO object should be created)>Bangladesh</Repetitions (only one SDO object should be created)>
+    <Extract?>TRUE</Extract?>
+    <Type expected>country</Type expected>
+    <Info></Info>
+  </row>
+  <row>
+    <Repetitions (only one SDO object should be created)>United Arab Emirates</Repetitions (only one SDO object should be created)>
+    <Extract?>TRUE</Extract?>
+    <Type expected>country</Type expected>
+    <Info></Info>
+  </row>
+  <row>
+    <Repetitions (only one SDO object should be created)>Central African Republic</Repetitions (only one SDO object should be created)>
+    <Extract?>TRUE</Extract?>
+    <Type expected>country</Type expected>
+    <Info></Info>
+  </row>
+  <row>
+    <Repetitions (only one SDO object should be created)>AL</Repetitions (only one SDO object should be created)>
+    <Extract?>TRUE</Extract?>
+    <Type expected>country</Type expected>
+    <Info></Info>
+  </row>
+  <row>
+    <Repetitions (only one SDO object should be created)>DZ</Repetitions (only one SDO object should be created)>
+    <Extract?>TRUE</Extract?>
+    <Type expected>country</Type expected>
+    <Info></Info>
+  </row>
+  <row>
+    <Repetitions (only one SDO object should be created)>AS</Repetitions (only one SDO object should be created)>
+    <Extract?>TRUE</Extract?>
+    <Type expected>country</Type expected>
+    <Info></Info>
+  </row>
+  <row>
+    <Repetitions (only one SDO object should be created)>5.55556E+15</Repetitions (only one SDO object should be created)>
+    <Extract?>TRUE</Extract?>
+    <Type expected>credit card (MC)</Type expected>
+    <Info></Info>
+  </row>
+  <row>
+    <Repetitions (only one SDO object should be created)>4.24242E+15</Repetitions (only one SDO object should be created)>
+    <Extract?>TRUE</Extract?>
+    <Type expected>credit card (visa)</Type expected>
+    <Info></Info>
+  </row>
+  <row>
+    <Repetitions (only one SDO object should be created)>3.78282E+14</Repetitions (only one SDO object should be created)>
+    <Extract?>TRUE</Extract?>
+    <Type expected>credit card (amex)</Type expected>
+    <Info></Info>
+  </row>
+  <row>
+    <Repetitions (only one SDO object should be created)>6.2E+15</Repetitions (only one SDO object should be created)>
+    <Extract?>TRUE</Extract?>
+    <Type expected>credit card (union pay)</Type expected>
+    <Info></Info>
+  </row>
+  <row>
+    <Repetitions (only one SDO object should be created)>3.05693E+15</Repetitions (only one SDO object should be created)>
+    <Extract?>TRUE</Extract?>
+    <Type expected>credit card (diners)</Type expected>
+    <Info></Info>
+  </row>
+  <row>
+    <Repetitions (only one SDO object should be created)>3.566E+15</Repetitions (only one SDO object should be created)>
+    <Extract?>TRUE</Extract?>
+    <Type expected>credit card (jcb)</Type expected>
+    <Info></Info>
+  </row>
+  <row>
+    <Repetitions (only one SDO object should be created)>6.01111E+15</Repetitions (only one SDO object should be created)>
+    <Extract?>TRUE</Extract?>
+    <Type expected>credit card (discover)</Type expected>
+    <Info></Info>
+  </row>
+  <row>
+    <Repetitions (only one SDO object should be created)>GB94BARC10201530093459</Repetitions (only one SDO object should be created)>
+    <Extract?>TRUE</Extract?>
+    <Type expected>iban (GB)</Type expected>
+    <Info></Info>
+  </row>
+  <row>
+    <Repetitions (only one SDO object should be created)>DE29100500001061045672</Repetitions (only one SDO object should be created)>
+    <Extract?>TRUE</Extract?>
+    <Type expected>iban (DE)</Type expected>
+    <Info></Info>
+  </row>
+  <row>
+    <Repetitions (only one SDO object should be created)>mycustomvalue</Repetitions (only one SDO object should be created)>
+    <Extract?></Extract?>
+    <Type expected></Type expected>
+    <Info></Info>
+  </row>
+</root>

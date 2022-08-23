@@ -50,6 +50,8 @@ To make use of MITRE ATT&CK and MITRE CAPEC extractions you also need to import 
 obstracts-cli --update-mitre-cti-database
 ```
 
+## Run
+
 To run Stixify;
 
 ```shell
@@ -71,7 +73,7 @@ obstracts-cli --input-file tests/file_inputs/txt/input.txt
 Or with a custom extraction file specified;
 
 ```shell
-obstracts-cli --input-file tests/file_inputs/txt/input.txt --custom-extraction-file tests/file_inputs/txt/custom_extraction_file
+obstracts-cli --input-file tests/file_inputs/txt/input.txt --custom-extraction-file tests/file_inputs/txt/custom_extraction_file.txt
 ````
 
 When the command executes successfully and matches are detected two directories will be created;
@@ -86,14 +88,24 @@ When the command executes successfully and matches are detected two directories 
 Stixify supports the following filetype inputs:
 
 * Markdown (`.md`, `.markdown`)
+	* e.g. `obstracts-cli --input-file tests/file_inputs/md/input.md`
+	* e.g. `obstracts-cli --input-file tests/file_inputs/md/input.markdown`
 * Plain text (`.txt`)
+	* e.g. `obstracts-cli --input-file tests/file_inputs/txt/input.txt`
 * CSV (`.csv`)
+	* e.g. `obstracts-cli --input-file tests/file_inputs/csv/input.csv`
 * XML (`.xml`)
+	* e.g. `obstracts-cli --input-file tests/file_inputs/xml/input.xml`
 * JSON (`.json`)
+	* e.g. `obstracts-cli --input-file tests/file_inputs/json/input.json`
 * PDF (`.pdf`)
+	* e.g. `obstracts-cli --input-file tests/file_inputs/pdf/input.pdf`
 * Microsoft Word (`.doc`, `.docx`)
+	* e.g. `obstracts-cli --input-file tests/file_inputs/doc/input.docx`
+	* e.g. `obstracts-cli --input-file tests/file_inputs/doc/input.doc`
 * Microsoft Excel (`.xls`, `.xlsx`)
-
+	* e.g. `obstracts-cli --input-file tests/file_inputs/xls/input.xlsx`
+	* e.g. `obstracts-cli --input-file tests/file_inputs/xls/input.xls`
 
 ## Extractions
 
@@ -125,11 +137,11 @@ Stixify ships with the following automatic Observable extraction types:
 * CVE
 * IBAN
 * YARA Rule
+* Credit Card (Mastercard, Visa, Amex, Union Pay, Diners, JCB)
 
 #### STIX 2.1 Location SDOs
 
 * Country (Name, Country Code)
-* Credit Card (Mastercard, Visa, Amex, Union Pay, Diners, JCB)
 
 #### External STIX 2.1 Objects (various types)
 
