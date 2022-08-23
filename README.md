@@ -4,6 +4,8 @@ Stixify is your automated threat intelligence analyst.
 
 Use Stixify to extract machine readable intelligence from unstructured data.
 
+![](/docs/extraction-screenshot.png)
+
 A project from the Signals Corps: https://www.signalscorps.com/ 
 
 ## Download and Install
