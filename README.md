@@ -6,7 +6,15 @@ Use Stixify to extract machine readable intelligence from unstructured data.
 
 ![](/docs/extraction-screenshot.png)
 
-A project from the Signals Corps: https://www.signalscorps.com/ 
+A project from the Signals Corps: https://www.signalscorps.com/
+
+## Support
+
+Ask a question on Slack: https://join.slack.com/t/signalscorps-public/shared_invite/zt-1exnc12ww-9RKR6aMgO57GmHcl156DAA
+
+## License
+
+[LICENSE](/LICENSE)
 
 ## Download and Install
 
@@ -187,7 +195,7 @@ For example;
         }
 ```
 
-### Running tests
+## Running tests
 
 Ensure that `pytest` is installed:
 
@@ -209,10 +217,3 @@ Need a graphical STIX Bundle Viewer? Load bundles produced for your report using
 
 Need more? Check out: https://www.obstracts.com/
 
-## License
-
-[LICENSE](/LICENSE)
-
-## Support
-
-Ask a question on Slack: https://join.slack.com/t/signalscorps-public/shared_invite/zt-1exnc12ww-9RKR6aMgO57GmHcl156DAA
