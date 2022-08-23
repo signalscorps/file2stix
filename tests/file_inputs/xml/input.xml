@@ -313,43 +313,43 @@
     <Info></Info>
   </row>
   <row>
-    <Repetitions>5.55556E+15</Repetitions>
+    <Repetitions>5555555555554444</Repetitions>
     <Extract>TRUE</Extract>
     <Type>credit card (MC)</Type>
     <Info></Info>
   </row>
   <row>
-    <Repetitions>4.24242E+15</Repetitions>
+    <Repetitions>4242424242424242</Repetitions>
     <Extract>TRUE</Extract>
     <Type>credit card (visa)</Type>
     <Info></Info>
   </row>
   <row>
-    <Repetitions>3.78282E+14</Repetitions>
+    <Repetitions>378282246310005</Repetitions>
     <Extract>TRUE</Extract>
     <Type>credit card (amex)</Type>
     <Info></Info>
   </row>
   <row>
-    <Repetitions>6.2E+15</Repetitions>
+    <Repetitions>6200000000000005</Repetitions>
     <Extract>TRUE</Extract>
     <Type>credit card (union pay)</Type>
     <Info></Info>
   </row>
   <row>
-    <Repetitions>3.05693E+15</Repetitions>
+    <Repetitions>3056930009020004</Repetitions>
     <Extract>TRUE</Extract>
     <Type>credit card (diners)</Type>
     <Info></Info>
   </row>
   <row>
-    <Repetitions>3.566E+15</Repetitions>
+    <Repetitions>3566002020360505</Repetitions>
     <Extract>TRUE</Extract>
     <Type>credit card (jcb)</Type>
     <Info></Info>
   </row>
   <row>
-    <Repetitions>6.01111E+15</Repetitions>
+    <Repetitions>6011111111111117</Repetitions>
     <Extract>TRUE</Extract>
     <Type>credit card (discover)</Type>
     <Info></Info>

@@ -312,43 +312,43 @@
    "Info": ""
  },
  {
-   "Repetitions (only one SDO object should be created)": "5.55556E+15",
+   "Repetitions (only one SDO object should be created)": "5555555555554444",
    "Extract?": true,
    "Type expected": "credit card (MC)",
    "Info": ""
  },
  {
-   "Repetitions (only one SDO object should be created)": "4.24242E+15",
+   "Repetitions (only one SDO object should be created)": "4242424242424242",
    "Extract?": true,
    "Type expected": "credit card (visa)",
    "Info": ""
  },
  {
-   "Repetitions (only one SDO object should be created)": "3.78282E+14",
+   "Repetitions (only one SDO object should be created)": "378282246310005",
    "Extract?": true,
    "Type expected": "credit card (amex)",
    "Info": ""
  },
  {
-   "Repetitions (only one SDO object should be created)": "6.2E+15",
+   "Repetitions (only one SDO object should be created)": "6200000000000005",
    "Extract?": true,
    "Type expected": "credit card (union pay)",
    "Info": ""
  },
  {
-   "Repetitions (only one SDO object should be created)": "3.05693E+15",
+   "Repetitions (only one SDO object should be created)": "3056930009020004",
    "Extract?": true,
    "Type expected": "credit card (diners)",
    "Info": ""
  },
  {
-   "Repetitions (only one SDO object should be created)": "3.566E+15",
+   "Repetitions (only one SDO object should be created)": "3566002020360505",
    "Extract?": true,
    "Type expected": "credit card (jcb)",
    "Info": ""
  },
  {
-   "Repetitions (only one SDO object should be created)": "6.01111E+15",
+   "Repetitions (only one SDO object should be created)": "6011111111111117",
    "Extract?": true,
    "Type expected": "credit card (discover)",
    "Info": ""
