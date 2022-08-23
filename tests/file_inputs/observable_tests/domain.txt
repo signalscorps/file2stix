@@ -1,0 +1,2 @@
+domain: test.example.com
+sub-domain: example.com

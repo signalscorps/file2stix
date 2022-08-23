@@ -1,0 +1,2 @@
+Unix path: /System/Library/LaunchDaemons
+windows path: C:\Windows\System32

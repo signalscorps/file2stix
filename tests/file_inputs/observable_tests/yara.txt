@@ -1,0 +1,14 @@
+rule dummy
+{
+    condition:
+        false
+}
+
+
+rule another
+{
+    test:
+        false
+    test2:
+        true
+}
