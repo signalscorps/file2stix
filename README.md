@@ -1,12 +1,29 @@
 # Stixify
 
-Stixify is your automated threat intelligence analyst.
-
-Use Stixify to extract machine readable intelligence from unstructured data.
-
 ![](/docs/extraction-screenshot.png)
 
+Stixify is your automated threat intelligence analyst.
+
+Use Stixify to extract machine readable intelligence from unstructured reports.
+
+Stixify;
+
+* is much faster than human analysis
+* can operate at volume
+* saves costs through faster threat analysis and remediation
+* is extendable
+
+Analysts still need to review the output from Stixify (probably in a threat intelligence platform), however Stixify removes the tedious part of converting it to STIX 2.1.
+
 A project from the Signals Corps: https://www.signalscorps.com/
+
+## Why use Stixify?
+
+Some example implemenations include:
+
+* Automatically converting IoC feeds to STIX 2.1 Objects
+* Extracting MITRE ATT&CK and MITRE CAPEC contect from reports
+* Creating STIX 2.1 Bundles from Reports to speed up analysis
 
 ## Support
 

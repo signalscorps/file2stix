@@ -1,0 +1,10 @@
+ASN number: ASN13335
+e.g. AS15139
+e.g. AS 15222
+e.g. ASN 15888
+
+99999 should not extract
+
+TST99999 should not extract
+
+obstracts-cli --input-file tests/file_inputs/txt/asn.txt
