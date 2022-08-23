@@ -111,7 +111,7 @@ class Observable:
                 name=f"{self.name}{self.name_delimeter}{self.extracted_observable_text}",
                 pattern_type="stix",
                 pattern=pattern,
-                indicator_types=["malicious-activity"],
+                indicator_types=["unknown"],
                 x_warning_list_match=x_warning_list_match,
                 allow_custom=True
             )
@@ -170,7 +170,7 @@ class IPv4WithPortObservable(Observable):
                 name=f"{self.name}: {self.extracted_observable_text}",
                 pattern_type="stix",
                 pattern=pattern,
-                indicator_types=["malicious-activity"],
+                indicator_types=["unknown"],
             )
             return indicator
         else:
@@ -227,7 +227,7 @@ class IPv6WithPortObservable(Observable):
                 name=f"{self.name}: {self.extracted_observable_text}",
                 pattern_type="stix",
                 pattern=pattern,
-                indicator_types=["malicious-activity"],
+                indicator_types=["unknown"],
             )
             return indicator
         else:
@@ -522,7 +522,7 @@ class YaraRuleObservable(Observable):
                 name=f"{self.name}{self.name_delimeter}{rule_name}",
                 pattern_type="yara",
                 pattern=pattern,
-                indicator_types=["malicious-activity"],
+                indicator_types=["unknown"],
             )
             return indicator
         else:
