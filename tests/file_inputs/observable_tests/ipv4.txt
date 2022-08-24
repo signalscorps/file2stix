@@ -14,3 +14,5 @@ An IP with a port 198.0.103.12:8000
 198.0.103.12:800
 198.0.103.12:8000
 198.0.103.12:80000
+
+stixify --input-file tests/file_inputs/observable_tests/ipv4.txt

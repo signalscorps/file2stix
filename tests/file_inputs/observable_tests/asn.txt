@@ -7,4 +7,4 @@ e.g. ASN 15888
 
 TST99999 should not extract
 
-obstracts-cli --input-file tests/file_inputs/observable_tests/asn.txt
+stixify --input-file tests/file_inputs/observable_tests/asn.txt
