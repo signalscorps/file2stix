@@ -4,14 +4,14 @@ Parse CLI arguments and pass to obstracts_cli.main
 import argparse
 import os
 
-import obstracts_cli
-from obstracts_cli.config import Config
-from obstracts_cli.main import main
+import stixify
+from stixify.config import Config
+from stixify.main import main
 
 
 def cli():
     arg_parser = argparse.ArgumentParser(
-        prog=obstracts_cli.__appname__,
+        prog=stixify.__appname__,
         description="Extract observables from input file and store it in a STIX bundle",
         allow_abbrev=False,
     )

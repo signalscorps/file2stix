@@ -4,9 +4,9 @@ Contains logic for extracting observables.
 
 import logging
 
-from obstracts_cli.cache import Cache
-from obstracts_cli.config import Config
-from obstracts_cli.observables import (
+from stixify.cache import Cache
+from stixify.config import Config
+from stixify.observables import (
     CustomObervable,
     MITREEnterpriseAttackObservable,
     MITREMobileAttackObservable,

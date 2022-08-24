@@ -13,12 +13,12 @@ from bs4 import BeautifulSoup
 from datetime import datetime
 from stix2 import Report
 
-from obstracts_cli.cache import Cache
-from obstracts_cli.config import Config
-from obstracts_cli.extract_observables import ExtractStixObservables
-from obstracts_cli.helper import inheritors, nested_dict_values
-from obstracts_cli.observables_stix_store import ObservablesStixStore
-from obstracts_cli.observables import Observable
+from stixify.cache import Cache
+from stixify.config import Config
+from stixify.extract_observables import ExtractStixObservables
+from stixify.helper import inheritors, nested_dict_values
+from stixify.observables_stix_store import ObservablesStixStore
+from stixify.observables import Observable
 
 logger = logging.getLogger(__name__)
 
