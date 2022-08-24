@@ -659,6 +659,7 @@ class CustomObervable(Observable):
                     pattern, sdo_object_type = [
                         text.strip() for text in line.split(",")
                     ]
+                    pattern = pattern.strip('"')
                 except:
                     logger.warning(
                         "Error in parsing this line in custom extraction file: '%s'",
