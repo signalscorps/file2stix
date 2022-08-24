@@ -132,9 +132,6 @@ dmypy.json
 # Example venv in docs
 venv
 
-obstracts-cli/
-stixify/
-
 # Ignore .vscode settings
 .vscode/
 

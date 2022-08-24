@@ -1,7 +1,7 @@
 import json
 import pytest
-import obstracts_cli.main
-from obstracts_cli.config import Config
+import stixify.main
+from stixify.config import Config
 
 # It's a tuple containing example program path and the corresponding expected reports
 testdata = [
@@ -34,7 +34,7 @@ def test_obstracts_cli(example_path, expected_report_path):
     generated report with the expected report.
     """
     config = Config(example_path, update_mitre_cti_database=True)
-    report_path = obstracts_cli.main.main(config)
+    report_path = stixify.main.main(config)
     
     with open(report_path) as f:
         report = json.load(f)

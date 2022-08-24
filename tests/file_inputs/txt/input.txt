@@ -58,8 +58,8 @@ xmr address: 48Fki6gnEN1QaiWNcsm8dVfX2JMg8xmjiQvuKpcdUD9rQH8WU4AXj9HKAF5AdnhKPSP
 cve id: CVE-2022-00001
 ASN number: ASN13335
 e.g. ASN15139
-e.g. AS 15139
-e.g. ASN 15139
+e.g. AS 23434
+e.g. ASN 53453
 
 
 

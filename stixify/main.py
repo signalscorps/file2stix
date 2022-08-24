@@ -13,12 +13,12 @@ from bs4 import BeautifulSoup
 from datetime import datetime
 from stix2 import Report
 
-from obstracts_cli.cache import Cache
-from obstracts_cli.config import Config
-from obstracts_cli.extract_observables import ExtractStixObservables
-from obstracts_cli.helper import inheritors, nested_dict_values
-from obstracts_cli.observables_stix_store import ObservablesStixStore
-from obstracts_cli.observables import Observable
+from stixify.cache import Cache
+from stixify.config import Config
+from stixify.extract_observables import ExtractStixObservables
+from stixify.helper import inheritors, nested_dict_values
+from stixify.observables_stix_store import ObservablesStixStore
+from stixify.observables import Observable
 
 logger = logging.getLogger(__name__)
 
@@ -117,7 +117,7 @@ def main(config: Config):
 
     # Create report with all observables extracted
     report = Report(
-        name=os.path.abspath(input_file_path),
+        name="File converted: " + os.path.split(input_file_path)[1],
         report_types=["threat_report"],
         published=datetime.now(),
         object_refs=[stix_object.id for stix_object in stix_observables.values()],

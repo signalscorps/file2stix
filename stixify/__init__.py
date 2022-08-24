@@ -4,7 +4,7 @@ Obstracts CLI tool.
 
 import logging
 
-__appname__ = "obsctracts-cli"
+__appname__ = "stixify"
 
 # Setup logger for obstracts CLI
 logger = logging.getLogger(__name__)

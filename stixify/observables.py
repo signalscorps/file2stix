@@ -345,7 +345,37 @@ class AutonomousSystemNumberObservable(Observable):
     name_delimeter = ""
     type = "indicator"
     pattern = "[ autonomous-system:number = '{extracted_observable_text}' ]"
-    extraction_regex = r"^((ASN?)\d+)$"
+    extraction_regex = r"(?:ASN?)(?: )?(\d+)"
+
+    def get_sdo_object(self):
+        # By default, indicator SDO objects are created.
+        if self.type == "indicator":
+            if self.pattern == None:
+                raise ValueError("pattern cannot be None for indicators.")
+
+            # Get numerical value of ASN
+            asn_number = re.search(self.extraction_regex, self.extracted_observable_text).groups()[0]
+
+            # Replace extracted_observable_text placeholder
+            pattern = self.pattern.format(
+                extracted_observable_text=asn_number
+            )
+
+            # Escape '\' in pattern
+            # https://github.com/oasis-open/cti-python-stix2/issues/260
+            pattern = pattern.replace("\\", "\\\\")
+
+            indicator = Indicator(
+                type="indicator",
+                name=f"{self.name}{asn_number}",
+                pattern_type="stix",
+                pattern=pattern,
+                indicator_types=["unknown"],
+            )
+            return indicator
+        else:
+            raise ValueError("Observable type is not supported")
+
 
 
 class CryptocurrencyBTCObservable(Observable):
@@ -659,6 +689,7 @@ class CustomObervable(Observable):
                     pattern, sdo_object_type = [
                         text.strip() for text in line.split(",")
                     ]
+                    pattern = pattern.strip('"')
                 except:
                     logger.warning(
                         "Error in parsing this line in custom extraction file: '%s'",
