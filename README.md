@@ -61,12 +61,6 @@ pip install .
 pip install -e .
 ```
 
-To make use of MITRE ATT&CK and MITRE CAPEC extractions you also need to import the latest version of the databases on install;
-
-```shell
-stixify --update-mitre-cti-database
-```
-
 ## Run
 
 To run Stixify;
@@ -77,7 +71,7 @@ stixify --input-file PATH/TO/FILE --custom-extraction-file PATH/TO/FILE --update
 
 * `--input-file` (required): provides the path to the input file
 * `--custom-extraction-file` (optional): provides the path to the file with custom extraction logic
-* `--update-mitre-cti-database` (optional) updates the local cache with latest MITRE CTI dataset
+* `--update-mitre-cti-database` (optional) updates the local cache with latest MITRE CTI dataset. To make use of MITRE ATT&CK and MITRE CAPEC extractions you should run this on the first install, and run it again when any updates when ATT&CK or CAPEC versions are updated.
 
 You can also run `stixify --help` to know more about these options.
 
@@ -293,4 +287,3 @@ Need a graphical STIX Bundle Viewer? Load bundles produced for your report using
 ## Obstracts Web
 
 Need more? Check out: https://www.obstracts.com/
-

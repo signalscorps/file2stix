@@ -1,12 +1,12 @@
 """
-Obstracts CLI tool.
+Stixify CLI tool.
 """
 
 import logging
 
 __appname__ = "stixify"
 
-# Setup logger for obstracts CLI
+# Setup logger for Stixify
 logger = logging.getLogger(__name__)
 logger.setLevel(logging.INFO)
 

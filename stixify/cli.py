@@ -1,5 +1,5 @@
 """
-Parse CLI arguments and pass to obstracts_cli.main
+Parse CLI arguments and pass to stixify_cli.main
 """
 import argparse
 import os

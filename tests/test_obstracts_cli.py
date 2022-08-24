@@ -28,9 +28,9 @@ testdata = [
 @pytest.mark.parametrize(
     "example_path,expected_report_path", testdata, ids=[t[0] for t in testdata]
 )
-def test_obstracts_cli(example_path, expected_report_path):
+def test_stixify_cli(example_path, expected_report_path):
     """
-    Run obstract-cli tool for example program and compare the 
+    Run stixify-cli tool for example program and compare the 
     generated report with the expected report.
     """
     config = Config(example_path, update_mitre_cti_database=True)
