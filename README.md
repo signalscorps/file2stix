@@ -31,7 +31,7 @@ Ask a question on Slack: https://join.slack.com/t/signalscorps-public/shared_inv
 
 ## License
 
-[LICENSE](/LICENSE)
+[MIT LICENSE](/LICENSE).
 
 ## Download and Install
 
