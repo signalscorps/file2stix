@@ -26,6 +26,8 @@ from stix2 import (
     Tool,
 )
 
+from stixify.helper import check_false_positive_domain
+
 logger = logging.getLogger(__name__)
 
 
@@ -294,7 +296,7 @@ class DomainNameObservable(Observable):
     name = "Domain"
     type = "indicator"
     pattern = "[ domain-name:value = '{extracted_observable_text}' ]"
-    extraction_function = lambda x: validators.domain(x)
+    extraction_function = lambda x: validators.domain(x) and check_false_positive_domain(x)
 
 
 class UrlObservable(Observable):
@@ -430,7 +432,7 @@ class CountryNameObservable(Observable):
             country_iso = country.alpha_2
 
         location = Location(
-            name=f"{self.extracted_observable_text}", country=country_iso
+            name=f"Country: {self.extracted_observable_text}", country=country_iso
         )
         return location
 
@@ -448,8 +450,13 @@ class CountryCodeAlpha2Observable(Observable):
         # Strip leading and trailing spaces
         extracted_observable_text = self.extracted_observable_text.strip()
 
+        country_name = extracted_observable_text
+        country = pycountry.countries.get(alpha_2=extracted_observable_text)
+        if country != None:
+            country_name = country.name
+
         location = Location(
-            name=f"{extracted_observable_text}", country=extracted_observable_text
+            name=f"Country: {country_name}", country=extracted_observable_text
         )
         return location
 
@@ -469,11 +476,13 @@ class CountryCodeAlpha3Observable(Observable):
 
         # Find country iso
         country_iso = extracted_observable_text
+        country_name = extracted_observable_text
         country = pycountry.countries.get(alpha_3=extracted_observable_text)
         if country != None:
             country_iso = country.alpha_2
+            country_name = country.name
 
-        location = Location(name=f"{extracted_observable_text}", country=country_iso)
+        location = Location(name=f"Country: {country_name}", country=country_iso)
         return location
 
 

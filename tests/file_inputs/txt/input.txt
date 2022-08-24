@@ -65,7 +65,7 @@ e.g. ASN 53453
 
 country: AF 
 full_country_name: Bangladesh , United Arab Emirates , Central African Republic , 
-AL , DZ , AS
+AL , DZ , AS , IND
 
 
 this should not extract
