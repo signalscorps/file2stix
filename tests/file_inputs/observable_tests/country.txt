@@ -1,0 +1,7 @@
+ccountry: AF 
+full_country_name: Bangladesh , United Arab Emirates , Central African Republic , 
+AL , DZ , AS
+
+France
+
+stixify --input-file tests/file_inputs/observable_tests/country.txt

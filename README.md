@@ -266,6 +266,12 @@ For example;
         }
 ```
 
+### Custom whitelists
+
+You can also create your own whitelist. This should follow the [MISP Warning List schema](https://github.com/MISP/misp-warninglists/blob/main/schema.json).
+
+An example of a custom warning list can be seen in `tests/file_inputs/custom_warning_lists/list.json`
+
 ## Running tests
 
 Ensure that `pytest` is installed:

@@ -8,3 +8,6 @@ dangerous-threat-actor , threat-actor
 dangerous-tool , tool
 "Type expected",infrastructure
 "This is some random text",intrustion-set
+
+
+stixify --input-file tests/file_inputs/txt/input.txt --custom-extraction-file tests/file_inputs/custom_extractions/extractions.txt

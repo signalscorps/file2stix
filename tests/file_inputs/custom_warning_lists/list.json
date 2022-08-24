@@ -1,0 +1,14 @@
+{
+  "name": "My Custom Warning List",
+  "version": 1,
+  "description": "Demo for Stixify",
+  "type": "string",
+  "matching_attributes": [
+    "ip-src",
+    "ip-dst"
+  ],
+  "list": [
+    "1.1.1.1",
+    "2.2.2.2"
+  ]
+}

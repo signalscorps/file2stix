@@ -1,373 +1,373 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <root>
   <row>
-    <Repetitions>198.51.100.5</Repetitions>
+    <France>198.51.100.5</France>
     <Extract>TRUE</Extract>
     <Type>ipv4</Type>
     <Info></Info>
   </row>
   <row>
-    <Repetitions>198.51.100.5</Repetitions>
+    <France>198.51.100.5</France>
     <Extract>FALSE</Extract>
     <Type></Type>
     <Info>Is dupe</Info>
   </row>
   <row>
-    <Repetitions>198.51.100.5</Repetitions>
+    <France>198.51.100.5</France>
     <Extract>FALSE</Extract>
     <Type></Type>
     <Info></Info>
   </row>
   <row>
-    <Repetitions>198.51.100.5</Repetitions>
+    <France>198.51.100.5</France>
     <Extract>FALSE</Extract>
     <Type></Type>
     <Info></Info>
   </row>
   <row>
-    <Repetitions>198.51.100.5</Repetitions>
+    <France>198.51.100.5</France>
     <Extract>FALSE</Extract>
     <Type></Type>
     <Info></Info>
   </row>
   <row>
-    <Repetitions>198.51.100.5</Repetitions>
+    <France>198.51.100.5</France>
     <Extract>FALSE</Extract>
     <Type></Type>
     <Info></Info>
   </row>
   <row>
-    <Repetitions>198.51.100.5</Repetitions>
+    <France>198.51.100.5</France>
     <Extract>FALSE</Extract>
     <Type></Type>
     <Info></Info>
   </row>
   <row>
-    <Repetitions>198.51.100.3-</Repetitions>
+    <France>198.51.100.3-</France>
     <Extract>TRUE</Extract>
     <Type>ipv4</Type>
     <Info>the - char ignored</Info>
   </row>
   <row>
-    <Repetitions>198.51.100.4</Repetitions>
+    <France>198.51.100.4</France>
     <Extract>TRUE</Extract>
     <Type>ipv4</Type>
     <Info></Info>
   </row>
   <row>
-    <Repetitions>198.0.103.12</Repetitions>
+    <France>198.0.103.12</France>
     <Extract>TRUE</Extract>
     <Type>ipv4</Type>
     <Info></Info>
   </row>
   <row>
-    <Repetitions>198.0.103.12/24</Repetitions>
+    <France>198.0.103.12/24</France>
     <Extract>TRUE</Extract>
     <Type>ipv4 CIDR</Type>
     <Info></Info>
   </row>
   <row>
-    <Repetitions>198.0.103.12:8000</Repetitions>
+    <France>198.0.103.12:8000</France>
     <Extract>TRUE</Extract>
     <Type>ipv4 with port</Type>
     <Info></Info>
   </row>
   <row>
-    <Repetitions>2001:0db8:85a3:0000:0000:8a2e:0370:7334</Repetitions>
+    <France>2001:0db8:85a3:0000:0000:8a2e:0370:7334</France>
     <Extract>TRUE</Extract>
     <Type>ipv6</Type>
     <Info></Info>
   </row>
   <row>
-    <Repetitions>2002::abcd:ffff:c0a8:101/64</Repetitions>
+    <France>2002::abcd:ffff:c0a8:101/64</France>
     <Extract>TRUE</Extract>
     <Type>ipv6 CIDR</Type>
     <Info></Info>
   </row>
   <row>
-    <Repetitions>[2001:0db8:85a3:0000:0000:8a2e:0370:7334]:80</Repetitions>
+    <France>[2001:0db8:85a3:0000:0000:8a2e:0370:7334]:80</France>
     <Extract>TRUE</Extract>
     <Type>ipv6 with port</Type>
     <Info></Info>
   </row>
   <row>
-    <Repetitions>86F7E437FAA5A7FCE15D1DDCB9EAEAEA377667B8</Repetitions>
+    <France>86F7E437FAA5A7FCE15D1DDCB9EAEAEA377667B8</France>
     <Extract>TRUE</Extract>
     <Type>sha1</Type>
     <Info></Info>
   </row>
   <row>
-    <Repetitions>4ec503be252d765ea37621a629afdaa6 4ec503be252d765ea37621a629afdaa6</Repetitions>
+    <France>4ec503be252d765ea37621a629afdaa6 4ec503be252d765ea37621a629afdaa6</France>
     <Extract>TRUE</Extract>
     <Type>md5</Type>
     <Info></Info>
   </row>
   <row>
-    <Repetitions>ba7816bf8f01cfea414140de5dae2223b00361a396177a9cb410ff61f20015ad</Repetitions>
+    <France>ba7816bf8f01cfea414140de5dae2223b00361a396177a9cb410ff61f20015ad</France>
     <Extract>TRUE</Extract>
     <Type>sha256</Type>
     <Info></Info>
   </row>
   <row>
-    <Repetitions>1f40fc92da241694750979ee6cf582f2d5d7d28e18335de05abc54d0560e0f5302860c652bf08d560252aa5e74210546f369fbbbce8c12cfc7957b2652fe9a75</Repetitions>
+    <France>1f40fc92da241694750979ee6cf582f2d5d7d28e18335de05abc54d0560e0f5302860c652bf08d560252aa5e74210546f369fbbbce8c12cfc7957b2652fe9a75</France>
     <Extract>TRUE</Extract>
     <Type>sha512</Type>
     <Info></Info>
   </row>
   <row>
-    <Repetitions>96:s4Ud1Lj96tHHlZDrwciQmA+4uy1I0G4HYuL8N3TzS8QsO/wqWXLcMSx:sF1LjEtHHlZDrJzrhuyZvHYm8tKp/RWO</Repetitions>
+    <France>96:s4Ud1Lj96tHHlZDrwciQmA+4uy1I0G4HYuL8N3TzS8QsO/wqWXLcMSx:sF1LjEtHHlZDrJzrhuyZvHYm8tKp/RWO</France>
     <Extract>TRUE</Extract>
     <Type>ssdeep</Type>
     <Info></Info>
   </row>
   <row>
-    <Repetitions>virus.exe</Repetitions>
+    <France>virus.exe</France>
     <Extract>TRUE</Extract>
     <Type>filename</Type>
     <Info></Info>
   </row>
   <row>
-    <Repetitions>/System/Library/LaunchDaemons</Repetitions>
+    <France>/System/Library/LaunchDaemons</France>
     <Extract>TRUE</Extract>
     <Type>directory path unix</Type>
     <Info></Info>
   </row>
   <row>
-    <Repetitions>C:\Windows\System32</Repetitions>
+    <France>C:\Windows\System32</France>
     <Extract>TRUE</Extract>
     <Type>directory path win</Type>
     <Info></Info>
   </row>
   <row>
-    <Repetitions>example@example.com</Repetitions>
+    <France>example@example.com</France>
     <Extract>TRUE</Extract>
     <Type>email</Type>
     <Info></Info>
   </row>
   <row>
-    <Repetitions>test+1@google.com</Repetitions>
+    <France>test+1@google.com</France>
     <Extract>TRUE</Extract>
     <Type>email</Type>
     <Info></Info>
   </row>
   <row>
-    <Repetitions>https://example.com/research/</Repetitions>
+    <France>https://example.com/research/</France>
     <Extract>TRUE</Extract>
     <Type>url</Type>
     <Info></Info>
   </row>
   <row>
-    <Repetitions>https://example.com/path/index.html</Repetitions>
+    <France>https://example.com/path/index.html</France>
     <Extract>TRUE</Extract>
     <Type>url</Type>
     <Info></Info>
   </row>
   <row>
-    <Repetitions>test.mydomain.com</Repetitions>
+    <France>test.mydomain.com</France>
     <Extract>TRUE</Extract>
     <Type>domain</Type>
     <Info></Info>
   </row>
   <row>
-    <Repetitions>mydomain.com</Repetitions>
+    <France>mydomain.com</France>
     <Extract>TRUE</Extract>
     <Type>domain</Type>
     <Info></Info>
   </row>
   <row>
-    <Repetitions>HKEY_CLASSES_ROOT\Software\Classes</Repetitions>
+    <France>HKEY_CLASSES_ROOT\Software\Classes</France>
     <Extract>TRUE</Extract>
     <Type>win registry key</Type>
     <Info></Info>
   </row>
   <row>
-    <Repetitions>HKEY_CURRENT_USER\Software\Classes</Repetitions>
+    <France>HKEY_CURRENT_USER\Software\Classes</France>
     <Extract>TRUE</Extract>
     <Type>win registry key</Type>
     <Info></Info>
   </row>
   <row>
-    <Repetitions>HKEY_USERS\Software\Classes</Repetitions>
+    <France>HKEY_USERS\Software\Classes</France>
     <Extract>TRUE</Extract>
     <Type>win registry key</Type>
     <Info></Info>
   </row>
   <row>
-    <Repetitions>HKEY_CURRENT_CONFIGE\Software\Classes</Repetitions>
+    <France>HKEY_CURRENT_CONFIGE\Software\Classes</France>
     <Extract>TRUE</Extract>
     <Type>win registry key</Type>
     <Info></Info>
   </row>
   <row>
-    <Repetitions>Mozilla/5.0 (Windows; U; Windows NT 5.1; en-US; rv:1.6) Gecko/20040113</Repetitions>
+    <France>Mozilla/5.0 (Windows; U; Windows NT 5.1; en-US; rv:1.6) Gecko/20040113</France>
     <Extract>TRUE</Extract>
     <Type>user agent</Type>
     <Info></Info>
   </row>
   <row>
-    <Repetitions>Mozilla/5.0 (Linux; Android 11; Lenovo YT-J706X) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/96.0.4664.45 Safari/537.36</Repetitions>
+    <France>Mozilla/5.0 (Linux; Android 11; Lenovo YT-J706X) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/96.0.4664.45 Safari/537.36</France>
     <Extract>TRUE</Extract>
     <Type>user agent</Type>
     <Info></Info>
   </row>
   <row>
-    <Repetitions>Mozilla/5.0 (iPhone14,6; U; CPU iPhone OS 15_4 like Mac OS X) AppleWebKit/602.1.50 (KHTML, like Gecko) Version/10.0 Mobile/19E241 Safari/602.1</Repetitions>
+    <France>Mozilla/5.0 (iPhone14,6; U; CPU iPhone OS 15_4 like Mac OS X) AppleWebKit/602.1.50 (KHTML, like Gecko) Version/10.0 Mobile/19E241 Safari/602.1</France>
     <Extract>TRUE</Extract>
     <Type>user agent</Type>
     <Info></Info>
   </row>
   <row>
-    <Repetitions>3FZbgi29cpjq2GjdwV8eyHuJJnkLtktZc5</Repetitions>
+    <France>3FZbgi29cpjq2GjdwV8eyHuJJnkLtktZc5</France>
     <Extract>TRUE</Extract>
     <Type>btc crypto</Type>
     <Info></Info>
   </row>
   <row>
-    <Repetitions>0xb794f5ea0ba39494ce839613fffba74279579268</Repetitions>
+    <France>0xb794f5ea0ba39494ce839613fffba74279579268</France>
     <Extract>TRUE</Extract>
     <Type>eth crypto</Type>
     <Info></Info>
   </row>
   <row>
-    <Repetitions>48Fki6gnEN1QaiWNcsm8dVfX2JMg8xmjiQvuKpcdUD9rQH8WU4AXj9HKAF5AdnhKPSPLzTV7CX1Ks25BWrDeLnHuEFmhRxV</Repetitions>
+    <France>48Fki6gnEN1QaiWNcsm8dVfX2JMg8xmjiQvuKpcdUD9rQH8WU4AXj9HKAF5AdnhKPSPLzTV7CX1Ks25BWrDeLnHuEFmhRxV</France>
     <Extract>TRUE</Extract>
     <Type>xmr crypto</Type>
     <Info></Info>
   </row>
   <row>
-    <Repetitions>CVE-2022-00001</Repetitions>
+    <France>CVE-2022-00001</France>
     <Extract>TRUE</Extract>
     <Type>cve</Type>
     <Info></Info>
   </row>
   <row>
-    <Repetitions>ASN13335</Repetitions>
+    <France>ASN13335</France>
     <Extract>TRUE</Extract>
     <Type>asn</Type>
     <Info></Info>
   </row>
   <row>
-    <Repetitions>AS13335</Repetitions>
+    <France>AS13335</France>
     <Extract>TRUE</Extract>
     <Type>asn</Type>
     <Info></Info>
   </row>
   <row>
-    <Repetitions>ASN 13335</Repetitions>
+    <France>ASN 13335</France>
     <Extract>TRUE</Extract>
     <Type>asn</Type>
     <Info></Info>
   </row>
   <row>
-    <Repetitions>AS 13335</Repetitions>
+    <France>AS 13335</France>
     <Extract>TRUE</Extract>
     <Type>asn</Type>
     <Info></Info>
   </row>
   <row>
-    <Repetitions>United Kingdom</Repetitions>
+    <France>United Kingdom</France>
     <Extract>TRUE</Extract>
     <Type>country</Type>
     <Info></Info>
   </row>
   <row>
-    <Repetitions>UK</Repetitions>
+    <France>UK</France>
     <Extract>TRUE</Extract>
     <Type>country</Type>
     <Info></Info>
   </row>
   <row>
-    <Repetitions>Bangladesh</Repetitions>
+    <France>Bangladesh</France>
     <Extract>TRUE</Extract>
     <Type>country</Type>
     <Info></Info>
   </row>
   <row>
-    <Repetitions>United Arab Emirates</Repetitions>
+    <France>United Arab Emirates</France>
     <Extract>TRUE</Extract>
     <Type>country</Type>
     <Info></Info>
   </row>
   <row>
-    <Repetitions>Central African Republic</Repetitions>
+    <France>Central African Republic</France>
     <Extract>TRUE</Extract>
     <Type>country</Type>
     <Info></Info>
   </row>
   <row>
-    <Repetitions>AL</Repetitions>
+    <France>AL</France>
     <Extract>TRUE</Extract>
     <Type>country</Type>
     <Info></Info>
   </row>
   <row>
-    <Repetitions>DZ</Repetitions>
+    <France>DZ</France>
     <Extract>TRUE</Extract>
     <Type>country</Type>
     <Info></Info>
   </row>
   <row>
-    <Repetitions>AS</Repetitions>
+    <France>AS</France>
     <Extract>TRUE</Extract>
     <Type>country</Type>
     <Info></Info>
   </row>
   <row>
-    <Repetitions>5555555555554444</Repetitions>
+    <France>5555555555554444</France>
     <Extract>TRUE</Extract>
     <Type>credit card (MC)</Type>
     <Info></Info>
   </row>
   <row>
-    <Repetitions>4242424242424242</Repetitions>
+    <France>4242424242424242</France>
     <Extract>TRUE</Extract>
     <Type>credit card (visa)</Type>
     <Info></Info>
   </row>
   <row>
-    <Repetitions>378282246310005</Repetitions>
+    <France>378282246310005</France>
     <Extract>TRUE</Extract>
     <Type>credit card (amex)</Type>
     <Info></Info>
   </row>
   <row>
-    <Repetitions>6200000000000005</Repetitions>
+    <France>6200000000000005</France>
     <Extract>TRUE</Extract>
     <Type>credit card (union pay)</Type>
     <Info></Info>
   </row>
   <row>
-    <Repetitions>3056930009020004</Repetitions>
+    <France>3056930009020004</France>
     <Extract>TRUE</Extract>
     <Type>credit card (diners)</Type>
     <Info></Info>
   </row>
   <row>
-    <Repetitions>3566002020360505</Repetitions>
+    <France>3566002020360505</France>
     <Extract>TRUE</Extract>
     <Type>credit card (jcb)</Type>
     <Info></Info>
   </row>
   <row>
-    <Repetitions>6011111111111117</Repetitions>
+    <France>6011111111111117</France>
     <Extract>TRUE</Extract>
     <Type>credit card (discover)</Type>
     <Info></Info>
   </row>
   <row>
-    <Repetitions>GB94BARC10201530093459</Repetitions>
+    <France>GB94BARC10201530093459</France>
     <Extract>TRUE</Extract>
     <Type>iban (GB)</Type>
     <Info></Info>
   </row>
   <row>
-    <Repetitions>DE29100500001061045672</Repetitions>
+    <France>DE29100500001061045672</France>
     <Extract>TRUE</Extract>
     <Type>iban (DE)</Type>
     <Info></Info>
   </row>
   <row>
-    <Repetitions>mycustomvalue</Repetitions>
+    <France>mycustomvalue</France>
     <Extract></Extract>
     <Type></Type>
     <Info></Info>

@@ -2,3 +2,6 @@ domain: test.example.com
 sub-domain: example.com
 
 stixify --input-file tests/file_inputs/observable_tests/domain.txt
+
+test.exe
+test.bin
