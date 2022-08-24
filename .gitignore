@@ -144,3 +144,6 @@ TODO.txt
 
 # Ignore obstracts cache
 obstracts-cache
+stixify-cache
+obstracts/
+stixify/
