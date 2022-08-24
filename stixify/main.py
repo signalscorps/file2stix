@@ -117,7 +117,7 @@ def main(config: Config):
 
     # Create report with all observables extracted
     report = Report(
-        name=os.path.abspath(input_file_path),
+        name="File converted: " + os.path.split(input_file_path)[1],
         report_types=["threat_report"],
         published=datetime.now(),
         object_refs=[stix_object.id for stix_object in stix_observables.values()],
