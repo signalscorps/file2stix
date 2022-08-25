@@ -27,7 +27,7 @@ Some example implemenations include:
 
 ## STIX Support
 
-Stixify support STIX version 2.1 [as defined by this specification](https://docs.oasis-open.org/cti/stix/v2.1/os/stix-v2.1-os.html).
+Stixify only supports STIX version 2.1 [as defined by this specification](https://docs.oasis-open.org/cti/stix/v2.1/os/stix-v2.1-os.html).
 
 ## Support
 
