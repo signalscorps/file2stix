@@ -117,6 +117,7 @@ Stixify supports the following filetype inputs:
 * Microsoft Word (`.doc`, `.docx`)
 	* e.g. `stixify --input-file tests/file_inputs/doc/input.docx`
 	* e.g. `stixify --input-file tests/file_inputs/doc/input.doc`
+		* note, on Mac you will need to install `antiword` to use `.doc` files. Install using `brew install antiword`
 * Microsoft Excel (`.xls`, `.xlsx`)
 	* e.g. `stixify --input-file tests/file_inputs/xls/input.xlsx`
 	* e.g. `stixify --input-file tests/file_inputs/xls/input.xls`
