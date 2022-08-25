@@ -1,4 +1,8 @@
-## Whitelisting
+# Whitelists
+
+Default whitelists identify potentially benign Stixify extractions. This section of the documentation explains how default whitelists work and how write your own custom whitelists.
+
+## MISP Warning Lists
 
 Stixify used MISP Warning Lists (using [PyMISPWarningLists](https://github.com/MISP/PyMISPWarningLists)) to identify potential extractions that should be whitelisted.
 
@@ -49,7 +53,7 @@ For example;
         }
 ```
 
-### Custom whitelists
+## Custom whitelists
 
 You can also create your own whitelist. This should follow the [MISP Warning List schema](https://github.com/MISP/misp-warninglists/blob/main/schema.json).
 

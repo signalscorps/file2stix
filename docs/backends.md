@@ -1,10 +1,8 @@
-# Stixify backend
+# Backends
 
-After successfully executing Stixify creates the directory `stix2_extractions/` containing records of all STIX Objects extracted from reports.
+Backends allow you to store STIX Objects in a database of your choice in addition to the local filesystem. This section of the documentation shows available backends and how to configure them.
 
-In addition to storing extracted Objects as static .json files in the local filesystem, Stixify ships with Backends. I
-
-Backends allow you to specify a running database that STIX Objects extracted by Stixify can be written to.
+## Backend struture
 
 Each Backend ships with a default initialization script that is used to create the database schema Stixify will write to. This is executed the first time the backend is used.
 
@@ -18,7 +16,16 @@ stixify --input-file tests/file_inputs/txt/input.txt --backend arangodb
 
 ## Local filesystem
 
-The default backend is filesystem storage. This backend is always used.
+The default backend is filesystem storage.
+
+When Stixify successfully executes and matches are detected two directories will be created;
+
+1. `stix2_extractions/`
+	* STIX Objects for observables detected. These are used for future runs of the script and to write Objects into other backends. In the sub-directories you will find STIX 2.1 Bundles containing individual STIX 2.1 Objects extracted.
+2. `stix2_reports/`
+	* Final STIX bundles containing collections of Objects from observables extracted from reports. In the sub-directories you will find STIX 2.1 Bundles containing all STIX 2.1 Objects extracted from a report. Some examples can be seen in the `/tests/expected_reports` directory.
+
+This backend is always used as the json files saved are used to populate other backends.
 
 ## ArangoDB (`arangodb`)
 
