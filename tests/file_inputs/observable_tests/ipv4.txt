@@ -13,6 +13,7 @@ An IP with a port 198.0.103.12:8000
 198.0.103.12:80
 198.0.103.12:800
 198.0.103.12:8000
-198.0.103.12:80000
+198.0.103.12:65535
+198.0.103.12:65536 not valid
 
 stixify --input-file tests/file_inputs/observable_tests/ipv4.txt
