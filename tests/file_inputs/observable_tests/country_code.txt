@@ -239,4 +239,4 @@ YE YEM Yemen
 ZM ZMB Zambia
 ZW ZWE Zimbabwe
 
-stixify --input-file tests/file_inputs/observable_tests/country.txt
+stixify --input-file tests/file_inputs/observable_tests/country_code.txt

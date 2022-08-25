@@ -200,7 +200,7 @@ You can also create multiple custom extractions in the same file by adding multi
 "patch",course-of-action
 ```
 
-You can see an example custom extraction file in `tests/file_inputs/custom_extractions/extractions.txt`
+You can see an example custom extraction file in `tests/file_inputs/custom_extractions/test_extractions.txt`
 
 ### Updating STIX Objects
 

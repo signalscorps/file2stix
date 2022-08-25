@@ -1,0 +1,68 @@
+phish,malware
+phishing,malware
+compromise,malware
+compromised,malware
+infect,malware
+infection,malware
+scan,malware
+scanning,malware
+inject,malware
+injection,malware
+trojan,malware
+fraud,malware
+beacon,malware
+beaconing,malware
+DDoS,malware
+exploits,malware
+exploit,malware
+exploited,malware
+c2,malware
+cnc,malware
+c&c,malware
+bot,malware
+botnet,malware
+spear phishing,malware
+"spear-phishing",malware
+hack,malware
+hacking,malware
+xss,malware
+"cross-site scripting",malware
+DoS,malware
+"denial of service",malware
+"exploit kit",malware
+spam,malware
+worm,malware
+sinkhole,malware
+spoof,malware
+spoofing,malware
+downloader,malware
+ransomware,malware
+keylogger,malware
+"social engineering",malware
+adware,malware
+deface,malware
+backdoor,malware
+spyware,malware
+amplification,malware
+probe,malware
+rootkit,malware
+exfiltrate,malware
+exfiltration,malware
+encrypt,malware
+encrypted,malware
+encryption,malware
+dropper,malware
+zero-day,malware
+"zero day",malware
+"password stealer",malware
+clickfraud,malware
+TOR,malware
+crack,malware
+cracking,malware
+erase,malware
+spy,malware
+spying,malware
+infiltrates,malware
+infiltration,malware
+sniff,malware
+sniffing
