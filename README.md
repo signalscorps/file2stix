@@ -25,9 +25,13 @@ Some example implemenations include:
 * Extracting MITRE ATT&CK and MITRE CAPEC contect from reports
 * Creating STIX 2.1 Bundles from Reports to speed up analysis
 
+## STIX Support
+
+Stixify support STIX version 2.1 [as defined by this specification](https://docs.oasis-open.org/cti/stix/v2.1/os/stix-v2.1-os.html).
+
 ## Support
 
-Ask a question on Slack: https://join.slack.com/t/signalscorps-public/shared_invite/zt-1exnc12ww-9RKR6aMgO57GmHcl156DAA
+[Ask a question on Slack](https://join.slack.com/t/signalscorps-public/shared_invite/zt-1exnc12ww-9RKR6aMgO57GmHcl156DAA).
 
 ## License
 
