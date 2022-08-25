@@ -44,4 +44,4 @@ Stixify stores files in each Collection as follows;
 * All other STIX 2.1 Objects types are stored in `stix_objects` Document Collection.
 * All `*_refs` properties are converted to custom relationship objects (not STIX Objects) and stored  in the `stix_relationships` Edge Collection
 
-
+[This implementation is described in more detail here](https://www.signalscorps.com/blog/2021/storing-stix-2_1-objects-database/).

@@ -1,6 +1,6 @@
 # Stixify
 
-![](/docs/extraction-screenshot.png)
+![](/docs/assets/img/extraction-screenshot.png)
 
 Stixify is your automated threat intelligence analyst.
 
@@ -49,20 +49,20 @@ cd stixify
 Setup virtual environment
 
 ```shell
-python -m venv stixify
+python3 -m venv stixify
 source stixify/bin/activate
 ```
 
 Install `stixify` tool
 
 ```shell
-pip install .
+pip3 install .
 ```
 
 **NOTE**: If you are a developer, install `stixify` in editable mode.
 
 ```shell
-pip install -e .
+pip3 install -e .
 ```
 
 ## Run
@@ -214,63 +214,6 @@ If the script detects an already extracted observable value present in `stix2_ex
 For example, if 1.1.1.1 detected in report 1 it would create a new object (object 1) where `created` and `modified` times were equal. Subsequently if 1.1.1.1 detected in report 2 it would use object 1 in the final bundle, but object 1 would also be updated with new `modifed` time to represent second sighting. The old bundle would remain unchanged. So bundle for report 1 would still have created and modified times equal, but report 2 would have the updated object, and so on.
 
 You will see both copies of the Object still in the `stix2_extractions/` directory.
-
-## Whitelisting
-
-Stixify used MISP Warning Lists (using [PyMISPWarningLists](https://github.com/MISP/PyMISPWarningLists)) to identify potential extractions that should be whitelisted.
-
-```json
-	"x_warning_list_match": [
-		"Top 20 000 websites from Cisco Umbrella",
-		"Top 1000 website from Alexa",
-		"List of known google domains",
-		"Top 10 000 websites from Cisco Umbrella",
-		"Top 1000 websites from Cisco Umbrella",
-		"Top 10K most-used sites from Tranco",
-		"Top 5000 websites from Cisco Umbrella",
-		"Top 1,000,000 most-used sites from Tranco",
-		"Top 10K websites from Majestic Million"
-    ]
-```
-
-Whitelisted values still appear in results, however, you will see a custom STIX 2.1 Property `x_warning_list_match` in the Object when the extraction matches to a warning list.
-
-For example;
-
-```json
-        {
-            "type": "indicator",
-            "spec_version": "2.1",
-            "id": "indicator--163a35c3-7d71-4c53-9a3d-5e6c660c9cb1",
-            "created": "2022-08-23T10:59:13.009489Z",
-            "modified": "2022-08-23T10:59:13.009489Z",
-            "name": "Domain: google.com",
-            "indicator_types": [
-                "malicious-activity"
-            ],
-            "pattern": "[ domain-name:value = 'google.com' ]",
-            "pattern_type": "stix",
-            "pattern_version": "2.1",
-            "valid_from": "2022-08-23T10:59:13.009489Z",
-            "x_warning_list_match": [
-                "Top 20 000 websites from Cisco Umbrella",
-                "Top 1000 website from Alexa",
-                "List of known google domains",
-                "Top 10 000 websites from Cisco Umbrella",
-                "Top 1000 websites from Cisco Umbrella",
-                "Top 10K most-used sites from Tranco",
-                "Top 5000 websites from Cisco Umbrella",
-                "Top 1,000,000 most-used sites from Tranco",
-                "Top 10K websites from Majestic Million"
-            ]
-        }
-```
-
-### Custom whitelists
-
-You can also create your own whitelist. This should follow the [MISP Warning List schema](https://github.com/MISP/misp-warninglists/blob/main/schema.json).
-
-An example of a custom warning list can be seen in `tests/file_inputs/custom_warning_lists/list.json`
 
 ## Running tests
 
