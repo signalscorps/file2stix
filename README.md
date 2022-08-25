@@ -72,6 +72,7 @@ stixify --input-file PATH/TO/FILE --custom-extraction-file PATH/TO/FILE --update
 * `--input-file` (required): provides the path to the input file
 * `--custom-extraction-file` (optional): provides the path to the file with custom extraction logic
 * `--update-mitre-cti-database` (optional) updates the local cache with latest MITRE CTI dataset. To make use of MITRE ATT&CK and MITRE CAPEC extractions you should run this on the first install, and run it again when any updates when ATT&CK or CAPEC versions are updated.
+* `--cache-folder` (optional) cache folder path where MITRE ATT&K, CAPEC and MISP warning list will be stored. By default MITRE dataset is stored in "stixify-cache" folder. You can specify a different folder for this using the `--cache-folder` option
 
 You can also run `stixify --help` to know more about these options.
 
