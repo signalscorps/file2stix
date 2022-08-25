@@ -13,4 +13,4 @@ rule another
         true
 }
 
-stixify --input-file tests/file_inputs/observable_tests/yara.txt
+stixify --input-file tests/file_inputs/observable_tests/yara_rule.txt
