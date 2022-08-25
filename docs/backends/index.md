@@ -32,7 +32,7 @@ username: # optional, default if blank: root
 password: # optional, default if blank: ''
 ```
 
-The intialization script `arangodb.py` configures the following in the ArangoDB instance;
+The intialization script `/backends/arangodb/arangodb.py` configures the following in the ArangoDB instance;
 
 * 1x Database named `stixify`
 * 1x Document Collection in the `stixify` Database named `stix_objects`
