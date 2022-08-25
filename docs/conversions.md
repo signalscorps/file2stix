@@ -847,7 +847,7 @@ Here is how IBAN number observables are represented in STIX 2.1 by Obstracts;
 
 e.g. 
 
-```json
+```yaml
 rule dummy
 {
     condition:
@@ -898,7 +898,7 @@ The `<RULE NAME>` is defined between the text `rule ` and first `{` (e.g. `dummy
 
 e.g. 
 
-```json
+```yaml
 title: Linux Reverse Shell Indicator
 id: 83dcd9f6-9ca8-4af7-a16e-a1c7a6b51871
 status: experimental
