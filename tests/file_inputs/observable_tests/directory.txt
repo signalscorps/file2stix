@@ -1,4 +1,8 @@
 Unix path: /System/Library/LaunchDaemons
 windows path: C:\Windows\System32
 
+/System/Library/LaunchDaemons/test.bat
+
+C:\Windows\System32\test.bat
+
 stixify --input-file tests/file_inputs/observable_tests/directory.txt
