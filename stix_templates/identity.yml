@@ -1,8 +1,12 @@
+# IF MODIFYING THIS FILE MAKE SURE TO REPLACE
+# acf55024-6bbe-486f-a27a-7967559324f4 IN THE ID PROPERTY
+# WITH A NEW UUID V4 OR BAD THINGS WILL HAPPEN
+
 type: "identity"
 spec_version: "2.1"
 id: "identity--acf55024-6bbe-486f-a27a-7967559324f4"
 created: "2022-01-01T00:00:00.000Z"
-modified: "022-01-01T00:00:00.000Z"
+modified: "2022-01-01T00:00:00.000Z"
 name: "file2stix"
 description: "https://github.com/signalscorps/file2stix/"
 identity_class: "organization"
