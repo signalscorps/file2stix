@@ -27,8 +27,8 @@ def cli():
         "--cache-folder",
         action="store",
         type=str,
-        help="cache folder path where MITRE ATT&K, CAPEC and MISP warning list will be stored",
         default=Config.cache_folder,
+        help="cache folder path where MITRE ATT&K, CAPEC and MISP warning list will be stored (default: %(default)s)",
     )
 
     arg_parser.add_argument(
@@ -44,6 +44,14 @@ def cli():
         help="path to file with custom extraction logix",
     )
 
+    arg_parser.add_argument(
+        "--tlp-level",
+        action="store",
+        choices=["WHITE", "AMBER"],
+        default=Config.tlp_level,
+        help="choose TLP level of report (default: %(default)s)"
+    )
+
     args = arg_parser.parse_args()
     
     input_file_path = os.path.abspath(args.input_file) if args.input_file != None else None
@@ -53,7 +61,8 @@ def cli():
         input_file_path = input_file_path,
         cache_folder = os.path.abspath(args.cache_folder),
         update_mitre_cti_database = args.update_mitre_cti_database,
-        custom_extraction_file=args.custom_extraction_file
+        custom_extraction_file=args.custom_extraction_file,
+        tlp_level=args.tlp_level
     )
 
     # Call main

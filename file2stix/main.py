@@ -13,6 +13,7 @@ from bs4 import BeautifulSoup
 from datetime import datetime
 from stix2 import Report, Relationship
 
+from file2stix import __appname__
 from file2stix.cache import Cache
 from file2stix.config import Config
 from file2stix.extract_observables import ExtractStixObservables
@@ -59,6 +60,7 @@ def main(config: Config):
 
     if config.input_file_path == None:
         logger.info("No input file given. Exiting...")
+        logger.info("Run '%s --help' for usage instructions", __appname__)
         sys.exit(0)
 
     input_file_path = config.input_file_path
@@ -98,7 +100,7 @@ def main(config: Config):
 
                 # If observable already present in `stix_store`, then
                 # just update the modified time
-                if stix_observable_object != None:
+                if config.tlp_level == "WHITE" and stix_observable_object != None:
                     stix_observable_object = stix_observable_object.new_version(
                         modified=pytz.utc.localize(datetime.utcnow())
                     )
@@ -119,7 +121,7 @@ def main(config: Config):
 
         # Hacky logging, but I don't want to complicate just getting pretty_name
         logger.info(
-            "Extracted all observables of type %s", observable(None).pretty_name
+            "Extracted all observables of type %s", observable(None, None).pretty_name
         )
 
     if not stix_observables:

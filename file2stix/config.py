@@ -9,4 +9,5 @@ class Config:
     custom_extraction_file: str
     cache_folder: str = "file2stix-cache"
     update_mitre_cti_database: bool = False
+    tlp_level: str = "WHITE"
     
