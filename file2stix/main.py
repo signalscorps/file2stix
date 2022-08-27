@@ -11,14 +11,14 @@ import textract
 import json
 from bs4 import BeautifulSoup
 from datetime import datetime
-from stix2 import Report
+from stix2 import Report, Relationship
 
 from file2stix.cache import Cache
 from file2stix.config import Config
 from file2stix.extract_observables import ExtractStixObservables
 from file2stix.helper import inheritors, nested_dict_values
 from file2stix.observables_stix_store import ObservablesStixStore
-from file2stix.observables import Observable
+from file2stix.observables import Observable, CustomObervable
 
 logger = logging.getLogger(__name__)
 
@@ -33,12 +33,14 @@ def get_text_from_xml(input_file_path):
     text_list = soup.find_all(text=True)
     return "".join(text_list)
 
+
 def get_text_from_json(input_file_path):
     with open(input_file_path, "r") as f:
         data = json.load(f)
-    
+
     values = list(nested_dict_values(data))
     return "\n".join([str(value) for value in values])
+
 
 def get_text_from_markdown(input_file_path):
     with open(input_file_path, "r") as f:
@@ -46,6 +48,7 @@ def get_text_from_markdown(input_file_path):
 
     text_list = soup.find_all(text=True)
     return "".join(text_list)
+
 
 def main(config: Config):
     cache = Cache(config.cache_folder)
@@ -70,7 +73,7 @@ def main(config: Config):
     elif file_extension == ".md":
         input = get_text_from_markdown(input_file_path)
     else:
-        input = textract.process(input_file_path).decode('UTF-8')
+        input = textract.process(input_file_path).decode("UTF-8")
 
     logger.info("Reading input file %s ...", input_file_path)
 
@@ -78,6 +81,7 @@ def main(config: Config):
 
     # Iterate over each observable and extract them from input file
     stix_observables = {}
+    custom_stix_observables = {}
     stix_observables_in_filestore = {}
     for observable in inheritors(Observable):
         for (
@@ -100,10 +104,17 @@ def main(config: Config):
                     )
                 else:
                     stix_observable_object = extracted_stix_observable
-                
-                stix_observables_in_filestore[stix_observable_object.name] = stix_observable_object
 
-            stix_observables[stix_observable_object.name] = stix_observable_object
+                stix_observables_in_filestore[
+                    stix_observable_object.name
+                ] = stix_observable_object
+
+            if observable == CustomObervable:
+                custom_stix_observables[
+                    stix_observable_object.name
+                ] = stix_observable_object
+            else:
+                stix_observables[stix_observable_object.name] = stix_observable_object
             logger.debug("Extracted observable: %s", stix_observable_object.name)
 
         # Hacky logging, but I don't want to complicate just getting pretty_name
@@ -123,8 +134,26 @@ def main(config: Config):
         object_refs=[stix_object.id for stix_object in stix_observables.values()],
     )
 
+    # Create Relationship SROs
+    relationship_sros = []
+    for stix_observable in stix_observables.values():
+        relationship_sro = Relationship(
+            relationship_type="default-extract",
+            source_ref=report.id,
+            target_ref=stix_observable.id,
+        )
+        relationship_sros.append(relationship_sro)
+
+    for stix_observable in custom_stix_observables.values():
+        relationship_sro = Relationship(
+            relationship_type="custom-extract",
+            source_ref=report.id,
+            target_ref=stix_observable.id,
+        )
+        relationship_sros.append(relationship_sro)
+
     # Group all stix objects and store in STIX filestore and bundle
-    stix_objects = list(stix_observables.values()) + [report]
+    stix_objects = list(stix_observables.values()) + [report] + relationship_sros
     stix_file_store_objects = list(stix_observables_in_filestore.values()) + [report]
     stix_store.store_objects_in_filestore(stix_file_store_objects)
     stix_bundle_file_path = stix_store.store_objects_in_bundle(stix_objects)

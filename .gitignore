@@ -143,5 +143,5 @@ stix2_reports/
 TODO.txt
 
 # Ignore cache
-stixify-cache
+file2stix-cache
 stixify/
