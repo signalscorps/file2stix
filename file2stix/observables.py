@@ -26,6 +26,7 @@ from stix2 import (
     Tool,
 )
 
+from file2stix.config import Config
 from file2stix.helper import check_false_positive_domain
 
 logger = logging.getLogger(__name__)
@@ -43,16 +44,17 @@ class Observable:
         "AMBER": "marking-definition--f88d31f6-486f-44da-b317-01333bde0b82"
     }
 
-    def __init__(self, extracted_observable_text, tlp_level):
+    def __init__(self, extracted_observable_text, config):
         self.extracted_observable_text = extracted_observable_text
-        self.tlp_level = tlp_level
+        self.tlp_level = config.tlp_level
+        self.identity = config.identity
 
     @property
     def pretty_name(self):
         return self.name
 
     @classmethod
-    def extract_observables_from_text(cls, text, tlp_level):
+    def extract_observables_from_text(cls, text: str, config: Config):
         extracted_observables = []
 
         # If extraction_regex is not None, then find all matches to the regular expression
@@ -66,11 +68,11 @@ class Observable:
                 # whitespaces.
                 for word in text.split():
                     if re.match(cls.extraction_regex, word):
-                        extracted_observables.append(cls(word, tlp_level))
+                        extracted_observables.append(cls(word, config))
             else:
                 # Find regex in the entire text (including whitespace)
                 for match in re.finditer(cls.extraction_regex, text):
-                    extracted_observables.append(cls(match.group(), tlp_level))
+                    extracted_observables.append(cls(match.group(), config))
 
         # If extraction_function is not None, then find matches that don't throw exception when
         # `pattern` function runs
@@ -78,7 +80,7 @@ class Observable:
             for word in text.split():
                 try:
                     if cls.extraction_function(word):
-                        extracted_observables.append(cls(word, tlp_level))
+                        extracted_observables.append(cls(word, config))
                 except Exception as error:
                     pass
 
@@ -90,6 +92,14 @@ class Observable:
         return extracted_observables
 
     def get_sdo_object(self):
+        """
+        When this method is overriden, ensure that the below keywords are
+        set in SDO objects:
+
+            object_marking_refs=Observable.object_marking_ref_map[self.tlp_level],
+            created_by_ref=self.identity
+        """
+        
         # By default, indicator SDO objects are created.
         if self.type == "indicator":
             if self.pattern == None:
@@ -122,6 +132,7 @@ class Observable:
                 x_warning_list_match=x_warning_list_match,
                 allow_custom=True,
                 object_marking_refs=Observable.object_marking_ref_map[self.tlp_level],
+                created_by_ref=self.identity,
             )
             return indicator
         else:
@@ -180,6 +191,7 @@ class IPv4WithPortObservable(Observable):
                 pattern=pattern,
                 indicator_types=["unknown"],
                 object_marking_refs=Observable.object_marking_ref_map[self.tlp_level],
+                created_by_ref=self.identity,
             )
             return indicator
         else:
@@ -238,6 +250,7 @@ class IPv6WithPortObservable(Observable):
                 pattern=pattern,
                 indicator_types=["unknown"],
                 object_marking_refs=Observable.object_marking_ref_map[self.tlp_level],
+                created_by_ref=self.identity,
             )
             return indicator
         else:
@@ -382,6 +395,7 @@ class AutonomousSystemNumberObservable(Observable):
                 pattern=pattern,
                 indicator_types=["unknown"],
                 object_marking_refs=Observable.object_marking_ref_map[self.tlp_level],
+                created_by_ref=self.identity,
             )
             return indicator
         else:
@@ -423,6 +437,7 @@ class CVEObservale(Observable):
                 external_id=self.extracted_observable_text,
             ),
             object_marking_refs=Observable.object_marking_ref_map[self.tlp_level],
+            created_by_ref=self.identity,
         )
         return vulnerability
 
@@ -446,6 +461,7 @@ class CountryNameObservable(Observable):
             name=f"Country: {self.extracted_observable_text}", 
             country=country_iso,
             object_marking_refs=Observable.object_marking_ref_map[self.tlp_level],
+            created_by_ref=self.identity,
         )
         return location
 
@@ -471,7 +487,8 @@ class CountryCodeAlpha2Observable(Observable):
         location = Location(
             name=f"Country: {country_name}", 
             country=extracted_observable_text,
-                object_marking_refs=Observable.object_marking_ref_map[self.tlp_level],
+            object_marking_refs=Observable.object_marking_ref_map[self.tlp_level],
+            created_by_ref=self.identity,
         )
         return location
 
@@ -498,9 +515,10 @@ class CountryCodeAlpha3Observable(Observable):
             country_name = country.name
 
         location = Location(
-            name=f"Country: {country_name}", 
+                name=f"Country: {country_name}", 
                 country=country_iso,
                 object_marking_refs=Observable.object_marking_ref_map[self.tlp_level],
+                created_by_ref=self.identity,
             )
         return location
 
@@ -582,6 +600,7 @@ class YaraRuleObservable(Observable):
                 pattern=pattern,
                 indicator_types=["unknown"],
                 object_marking_refs=Observable.object_marking_ref_map[self.tlp_level],
+                created_by_ref=self.identity,
             )
             return indicator
         else:
@@ -702,23 +721,59 @@ class CustomObervable(Observable):
     custom_observables_map = {}
 
     @staticmethod
-    def get_stix2_object_custom(pattern, sdo_object_type, tlp_level="WHITE"):
+    def get_stix2_object_custom(pattern, sdo_object_type, tlp_level="WHITE", identity=None):
         if sdo_object_type == "attack-pattern":
-            return AttackPattern(name=pattern, object_marking_refs=Observable.object_marking_ref_map[tlp_level])
+            return AttackPattern(
+                name=pattern, 
+                object_marking_refs=Observable.object_marking_ref_map[tlp_level],
+                created_by_ref=identity,
+            )
         elif sdo_object_type == "campaign":
-            return Campaign(name=pattern, object_marking_refs=Observable.object_marking_ref_map[tlp_level])
+            return Campaign(
+                name=pattern, 
+                object_marking_refs=Observable.object_marking_ref_map[tlp_level],
+                created_by_ref=identity,
+            )
         elif sdo_object_type == "course-of-action":
-            return CourseOfAction(name=pattern, object_marking_refs=Observable.object_marking_ref_map[tlp_level])
+            return CourseOfAction(
+                name=pattern, 
+                object_marking_refs=Observable.object_marking_ref_map[tlp_level],
+                created_by_ref=identity,
+            )
         elif sdo_object_type == "infrastructure":
-            return Infrastructure(name=pattern, infrastructure_types="undefined", object_marking_refs=Observable.object_marking_ref_map[tlp_level])
+            return Infrastructure(
+                name=pattern, 
+                infrastructure_types="undefined", 
+                object_marking_refs=Observable.object_marking_ref_map[tlp_level],
+                created_by_ref=identity,
+            )
         elif sdo_object_type == "intrustion-set":
-            return IntrusionSet(name=pattern, object_marking_refs=Observable.object_marking_ref_map[tlp_level])
+            return IntrusionSet(
+                name=pattern, 
+                object_marking_refs=Observable.object_marking_ref_map[tlp_level],
+                created_by_ref=identity,
+            )
         elif sdo_object_type == "malware":
-            return Malware(name=pattern, malware_types="unknown", is_family=False, object_marking_refs=Observable.object_marking_ref_map[tlp_level])
+            return Malware(
+                name=pattern, 
+                malware_types="unknown", 
+                is_family=False, 
+                object_marking_refs=Observable.object_marking_ref_map[tlp_level],
+                created_by_ref=identity,
+            )
         elif sdo_object_type == "threat-actor":
-            return ThreatActor(name=pattern, threat_actor_types="unknown", object_marking_refs=Observable.object_marking_ref_map[tlp_level])
+            return ThreatActor(
+                name=pattern, 
+                threat_actor_types="unknown", 
+                object_marking_refs=Observable.object_marking_ref_map[tlp_level],
+                created_by_ref=identity,
+            )
         elif sdo_object_type == "tool":
-            return Tool(name=pattern, object_marking_refs=Observable.object_marking_ref_map[tlp_level])
+            return Tool(
+                name=pattern, 
+                object_marking_refs=Observable.object_marking_ref_map[tlp_level],
+                created_by_ref=identity,
+            )
         else:
             return None
 
@@ -746,7 +801,7 @@ class CustomObervable(Observable):
     def get_sdo_object(self):
         pattern = self.extracted_observable_text
         sdo_object_type = self.custom_observables_map[pattern]
-        sdo_object = CustomObervable.get_stix2_object_custom(pattern, sdo_object_type, self.tlp_level)
+        sdo_object = CustomObervable.get_stix2_object_custom(pattern, sdo_object_type, self.tlp_level, self.identity)
         if sdo_object == None:
             raise ValueError("Parsed SDO object after custom extraction is None.")
         return sdo_object

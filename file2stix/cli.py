@@ -49,7 +49,14 @@ def cli():
         action="store",
         choices=["WHITE", "AMBER"],
         default=Config.tlp_level,
-        help="choose TLP level of report (default: %(default)s)"
+        help="choose TLP level of report (default: %(default)s)",
+    )
+
+    arg_parser.add_argument(
+        "--user-identity-file",
+        action="store",
+        default=Config.user_identity_file,
+        help="path to user identity config file (in yml format)",
     )
 
     args = arg_parser.parse_args()
@@ -62,7 +69,8 @@ def cli():
         cache_folder = os.path.abspath(args.cache_folder),
         update_mitre_cti_database = args.update_mitre_cti_database,
         custom_extraction_file=args.custom_extraction_file,
-        tlp_level=args.tlp_level
+        tlp_level=args.tlp_level,
+        user_identity_file=args.user_identity_file,
     )
 
     # Call main

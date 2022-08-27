@@ -9,9 +9,10 @@ import pytz
 import sys
 import textract
 import json
+import yaml
 from bs4 import BeautifulSoup
 from datetime import datetime
-from stix2 import Report, Relationship
+from stix2 import Report, Relationship, Identity
 
 from file2stix import __appname__
 from file2stix.cache import Cache
@@ -22,6 +23,10 @@ from file2stix.observables_stix_store import ObservablesStixStore
 from file2stix.observables import Observable, CustomObervable
 
 logger = logging.getLogger(__name__)
+
+
+class IdentityError(Exception):
+    pass
 
 
 def get_text_from_xml(input_file_path):
@@ -53,6 +58,15 @@ def get_text_from_markdown(input_file_path):
 
 def main(config: Config):
     cache = Cache(config.cache_folder)
+
+    # Set user identity
+    if config.tlp_level != "WHITE":
+        try:
+            with open(config.user_identity_file) as f:
+                identity_config = yaml.safe_load(f)
+            config.identity = Identity(**identity_config)
+        except:
+            raise IdentityError("Identity config file is not present or is in incorrect format.")
 
     # Update MITRE ATT&CK and CAPEC database
     if config.update_mitre_cti_database == True:
@@ -121,7 +135,7 @@ def main(config: Config):
 
         # Hacky logging, but I don't want to complicate just getting pretty_name
         logger.info(
-            "Extracted all observables of type %s", observable(None, None).pretty_name
+            "Extracted all observables of type %s", observable(None, config).pretty_name
         )
 
     if not stix_observables:
@@ -134,6 +148,7 @@ def main(config: Config):
         report_types=["threat_report"],
         published=datetime.now(),
         object_refs=[stix_object.id for stix_object in stix_observables.values()],
+        created_by_ref=config.identity,
     )
 
     # Create Relationship SROs
@@ -143,6 +158,7 @@ def main(config: Config):
             relationship_type="default-extract",
             source_ref=report.id,
             target_ref=stix_observable.id,
+            created_by_ref=config.identity,
         )
         relationship_sros.append(relationship_sro)
 
@@ -151,6 +167,7 @@ def main(config: Config):
             relationship_type="custom-extract",
             source_ref=report.id,
             target_ref=stix_observable.id,
+            created_by_ref=config.identity,
         )
         relationship_sros.append(relationship_sro)
 

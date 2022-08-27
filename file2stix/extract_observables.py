@@ -51,7 +51,7 @@ class ExtractStixObservables:
                 logger.info("Custom extraction file not given, hence not extracting any custom observables.")
                 return
 
-        self.extracted_observables = observable_cls.extract_observables_from_text(text, config.tlp_level)
+        self.extracted_observables = observable_cls.extract_observables_from_text(text, config)
 
         logger.debug("Extraction of observable text complete.")
 
