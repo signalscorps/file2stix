@@ -646,6 +646,18 @@ class MITREMobileAttackObservable(MITREEnterpriseAttackObservable):
     ):
         super().build_extraction_regex(cti_folder, bundle_relative_path)
 
+class MITREICSAttackObservable(MITREEnterpriseAttackObservable):
+    name = "MITRE ICS ATT&CK"
+    extraction_regex = r""
+    memory_store = None
+
+    @classmethod
+    def build_extraction_regex(
+        cls, cti_folder, bundle_relative_path="ics-attack/ics-attack.json"
+    ):
+        super().build_extraction_regex(cti_folder, bundle_relative_path)
+
+
 
 class MITRECapecObservable(MITREEnterpriseAttackObservable):
     name = "MITRE CAPEC"

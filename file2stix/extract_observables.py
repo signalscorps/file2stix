@@ -10,6 +10,7 @@ from file2stix.observables import (
     CustomObervable,
     MITREEnterpriseAttackObservable,
     MITREMobileAttackObservable,
+    MITREICSAttackObservable,
     MITRECapecObservable,
 )
 
@@ -31,6 +32,7 @@ class ExtractStixObservables:
         if (
             observable_cls == MITREEnterpriseAttackObservable
             or observable_cls == MITREMobileAttackObservable
+            or observable_cls == MITREICSAttackObservable
             or observable_cls == MITRECapecObservable
         ):
             self.update_stix2_extractions = False
