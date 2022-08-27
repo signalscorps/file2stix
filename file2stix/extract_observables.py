@@ -4,9 +4,9 @@ Contains logic for extracting observables.
 
 import logging
 
-from stixify.cache import Cache
-from stixify.config import Config
-from stixify.observables import (
+from file2stix.cache import Cache
+from file2stix.config import Config
+from file2stix.observables import (
     CustomObervable,
     MITREEnterpriseAttackObservable,
     MITREMobileAttackObservable,

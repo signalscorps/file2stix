@@ -1,12 +1,12 @@
 """
-Stixify CLI tool.
+file2stix CLI tool.
 """
 
 import logging
 
-__appname__ = "stixify"
+__appname__ = "file2stix"
 
-# Setup logger for Stixify
+# Setup logger for file2stix
 logger = logging.getLogger(__name__)
 logger.setLevel(logging.INFO)
 

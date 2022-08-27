@@ -26,7 +26,7 @@ from stix2 import (
     Tool,
 )
 
-from stixify.helper import check_false_positive_domain
+from file2stix.helper import check_false_positive_domain
 
 logger = logging.getLogger(__name__)
 

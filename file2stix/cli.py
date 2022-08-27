@@ -1,17 +1,17 @@
 """
-Parse CLI arguments and pass to stixify_cli.main
+Parse CLI arguments and pass to file2stix_cli.main
 """
 import argparse
 import os
 
-import stixify
-from stixify.config import Config
-from stixify.main import main
+import file2stix
+from file2stix.config import Config
+from file2stix.main import main
 
 
 def cli():
     arg_parser = argparse.ArgumentParser(
-        prog=stixify.__appname__,
+        prog=file2stix.__appname__,
         description="Extract observables from input file and store it in a STIX bundle",
         allow_abbrev=False,
     )
