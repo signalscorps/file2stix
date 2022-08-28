@@ -12,8 +12,8 @@ import json
 import yaml
 from bs4 import BeautifulSoup
 from datetime import datetime
+from pathlib import Path
 from stix2 import Report, Relationship, Identity
-from stix2.datastore import DataSourceError
 
 from file2stix import __appname__
 from file2stix.cache import Cache
@@ -30,7 +30,7 @@ class IdentityError(Exception):
     pass
 
 
-def get_text_from_xml(input_file_path):
+def get_text_from_xml_or_html(input_file_path):
     """
     Extracts only text content from the xml document
     """
@@ -82,13 +82,15 @@ def main(config: Config):
     file_name, file_extension = os.path.splitext(input_file_path)
     input = None
 
-    # Handle xml, json and md files specially
-    if file_extension == ".xml":
-        input = get_text_from_xml(input_file_path)
+    # Handle some file extensions specially
+    if file_extension in (".xml", ".html"):
+        input = get_text_from_xml_or_html(input_file_path)
     elif file_extension == ".json":
         input = get_text_from_json(input_file_path)
     elif file_extension == ".md":
         input = get_text_from_markdown(input_file_path)
+    elif file_extension in (".yml", ".yaml", ".yara", ".yar"):
+        input = Path(input_file_path).read_text()
     else:
         input = textract.process(input_file_path).decode("UTF-8")
 

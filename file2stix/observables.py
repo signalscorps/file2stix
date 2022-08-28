@@ -60,7 +60,7 @@ class Observable:
 
         # If extraction_regex is not None, then find all matches to the regular expression
         if cls.extraction_regex != None:
-            if cls.extraction_regex.startswith("^") and cls.extraction_regex.endswith(
+            if cls.extraction_regex.startswith("^") or cls.extraction_regex.endswith(
                 "$"
             ):
                 # If regex starts with "^" and ends with "$", it's treated specially.
@@ -68,8 +68,9 @@ class Observable:
                 # The drawback of this approach is that such regexes shouldn't contain
                 # whitespaces.
                 for word in text.split():
-                    if re.match(cls.extraction_regex, word):
-                        extracted_observables.append(cls(word, config))
+                    match = re.match(cls.extraction_regex, word)
+                    if match:
+                        extracted_observables.append(cls(match.group(0), config))
             else:
                 # Find regex in the entire text (including whitespace)
                 for match in re.finditer(cls.extraction_regex, text):
@@ -267,6 +268,11 @@ class FileNameObservable(Observable):
     file_extensions = "(?:(?:7(?:Z|z))|(?:AP(?:K|P))|(?:B(?:AT|IN|MP))|(?:C(?:LASS|AB|ER|GI|HM|MD|RX))|(?:D(?:OCX?|EB|LL))|EXE|FLV|(?:G(?:ADGET|IF|Z))|INF|(?:J(?:A(?:VA|R)|PG|S))|(?:L(?:NK|OG))|(?:M(?:O(?:F|V)|P(?:4|G)|S(?:G|I)|4V))|ODT|(?:P(?:LUGIN|PTX?|7S|DF|HP|NG|SD|F|Y))|(?:R(?:AR|PM))|(?:S(?:VG|WF|YS|O))|(?:T(?:IFF?|AR|GZ|MP|XT))|(?:V(?:BS|IR))|(?:W(?:MV|SF))|XLSX?|ZIPX?|(?:ap(?:k|p))|(?:b(?:at|in|mp))|(?:c(?:lass|ab|er|gi|hm|md|rx))|(?:d(?:ocx?|eb|ll))|exe|flv|(?:g(?:adget|if|z))|inf|(?:j(?:a(?:va|r)|pg|s))|(?:l(?:nk|og))|(?:m(?:o(?:f|v)|p(?:4|g)|s(?:g|i)|4v))|odt|(?:p(?:lugin|ptx?|7s|df|hp|ng|sd|f|y))|(?:r(?:ar|pm))|(?:s(?:vg|wf|ys|o))|(?:t(?:iff?|ar|gz|mp|xt))|(?:v(?:bs|ir))|(?:w(?:mv|sf))|xlsx?|zipx?)"
     extraction_regex = rf"([^\\/:\*\?\"\<\>\|\s]*)\.({file_extensions})"
 
+    def get_sdo_object(self):
+        # Hacky way of removing qoutes, need a better solution
+        self.extracted_observable_text = self.extracted_observable_text.replace("\'", "")
+        return super().get_sdo_object()
+
 
 class FileHashMD5Observable(Observable):
     name = "md5"
@@ -309,9 +315,14 @@ class DirectoryPathObservable(Observable):
     pattern = "[ directory:path = '{extracted_observable_text}' ]"
 
     # Windows and Unix path
-    windows_path = r"[A-Z]:(\\\\[^<>:\"/\\|\?\*]+)+"
-    unix_path = r"/?(\S+/)+"
-    extraction_regex = rf"({windows_path})|({unix_path})"
+    windows_path = r"[A-Z]:\\([^<>:\"/\\|\?\*\.]+\\)+"
+    unix_path = r"/?([^\. \n]+/)+"
+    extraction_regex = rf"^(({windows_path})|({unix_path}))"
+
+    def get_sdo_object(self):
+        # Hacky way of removing qoutes, need a better solution
+        self.extracted_observable_text = self.extracted_observable_text.replace("\'", "")
+        return super().get_sdo_object()
 
 
 class DomainNameObservable(Observable):
