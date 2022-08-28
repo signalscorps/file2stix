@@ -24,6 +24,7 @@ from stix2 import (
     Malware,
     ThreatActor,
     Tool,
+    Software
 )
 
 from file2stix.config import Config
@@ -606,6 +607,28 @@ class YaraRuleObservable(Observable):
         else:
             raise ValueError("Observable type is not supported")
 
+class CPEObservable(Observable):
+    name = "CPE"
+    type = "software"
+    extraction_regex = r"^(cpe:2\.3:[aho\*\-](:(((\?*|\*?)([a-zA-Z0-9\-\._]|(\\[\\\*\?!\"#$$%&'\(\)\+,/:;<=>@\[\]\^`\{\|}~]))+(\?*|\*?))|[\*\-])){5}(:(([a-zA-Z]{2,3}(-([a-zA-Z]{2}|[0-9]{3}))?)|[\*\-]))(:(((\?*|\*?)([a-zA-Z0-9\-\._]|(\\[\\\*\?!\"#$$%&'\(\)\+,/:;<=>@\[\]\^`\{\|}~]))+(\?*|\*?))|[\*\-])){4})$"
+
+    def get_sdo_object(self):
+        cpe_list = self.extracted_observable_text.split(":")
+        cpe_vendor = cpe_list[3]
+        cpe_product = cpe_list[4]
+        cpe_version = cpe_list[5]
+
+        # Software object don't contain created_by_ref field
+        software = Software(
+            name=f"CPE: {cpe_vendor} {cpe_product} {cpe_version}",
+            cpe=self.extracted_observable_text,
+            version=cpe_version,
+            vendor = cpe_vendor,
+            object_marking_refs=Observable.object_marking_ref_map[self.tlp_level],
+            # created_by_ref=self.identity,
+        )
+
+        return software
 
 class MITREEnterpriseAttackObservable(Observable):
     name = "MITRE Enterprise ATT&CK"

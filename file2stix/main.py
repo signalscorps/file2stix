@@ -13,6 +13,7 @@ import yaml
 from bs4 import BeautifulSoup
 from datetime import datetime
 from stix2 import Report, Relationship, Identity
+from stix2.datastore import DataSourceError
 
 from file2stix import __appname__
 from file2stix.cache import Cache
@@ -20,7 +21,7 @@ from file2stix.config import Config
 from file2stix.extract_observables import ExtractStixObservables
 from file2stix.helper import inheritors, nested_dict_values
 from file2stix.observables_stix_store import ObservablesStixStore
-from file2stix.observables import Observable, CustomObervable
+from file2stix.observables import Observable, CustomObervable, CPEObservable
 
 logger = logging.getLogger(__name__)
 
@@ -121,9 +122,11 @@ def main(config: Config):
                 else:
                     stix_observable_object = extracted_stix_observable
 
-                stix_observables_in_filestore[
-                    stix_observable_object.name
-                ] = stix_observable_object
+                # Don't overwrite CPE Observables (type software)
+                if stix_observable_object != extracted_stix_observable and observable != CPEObservable:
+                    stix_observables_in_filestore[
+                        stix_observable_object.name
+                    ] = stix_observable_object
 
             if observable == CustomObervable:
                 custom_stix_observables[
