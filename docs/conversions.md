@@ -1,16 +1,16 @@
 # Extractions
 
-Stixify extracts observables from text and translates them into STIX 2.1 Objects. This section of the documentation describes the templates of the STIX Objects created.
+file2stix extracts observables from text and translates them into STIX 2.1 Objects. This section of the documentation describes the templates of the STIX Objects created.
 
 ## STIX Support
 
-Stixify only supports STIX version 2.1 [as defined by this specification](https://docs.oasis-open.org/cti/stix/v2.1/os/stix-v2.1-os.html).
+file2stix only supports STIX version 2.1 [as defined by this specification](https://docs.oasis-open.org/cti/stix/v2.1/os/stix-v2.1-os.html).
 
 ## Identities (`identity`)
 
-Stixify assigns a `created_by_ref` property to many Objects. This value is obtained from an Identity Object generated from the template `/stix_templates/identity.yml`.
+file2stix assigns a `created_by_ref` property to many Objects. This value is obtained from an Identity Object generated from the template `/stix_templates/identity.yml`.
 
-By defaults the generic Stixify identity will be used. 
+By defaults the generic file2stix identity will be used. 
 
 You can also change the Identity by modifying the values in the template file.
 
@@ -29,12 +29,12 @@ Finally, you must regenerate the identity file using the command XXXX
 
 ## TLP (`marking-definition`)
 
-The TLP defined plays two important roles in Stixify.
+The TLP defined plays two important roles in file2stix.
 
 1. It adds a `marking-definition--` to all Objects
 2. Determines how creation of Object should work
 
-Stixify allows for `TLP:AMBER` and `TLP:WHITE` definitions to be used when adding Reports. 
+file2stix allows for `TLP:AMBER` and `TLP:WHITE` definitions to be used when adding Reports. 
 
 This determines the [STIX marking-definition](https://docs.oasis-open.org/cti/stix/v2.1/os/stix-v2.1-os.html#_yd3ar14ekwrs), either;
 
@@ -55,7 +55,7 @@ Assuming the IPv4 address (`198.51.100.3`) has not been saved as an IPv4 address
 
 Now consider the future. It is very likely the same observable (in this case IPv4 address) will also extracted from other uploads.
 
-If this IPv4 address (`198.51.100.3`) was later detected in another data source imported to Stixify and that report was marked `TLP:WHITE`, the existing SDO would be used (and updated) to represent the extraction (in this case the SDO with `id` = `ff26c055-6336-5bc5-b98d-13d6226742dd` would be updated).
+If this IPv4 address (`198.51.100.3`) was later detected in another data source imported to file2stix and that report was marked `TLP:WHITE`, the existing SDO would be used (and updated) to represent the extraction (in this case the SDO with `id` = `ff26c055-6336-5bc5-b98d-13d6226742dd` would be updated).
 
 To update the existing Object, the `created` property of the STIX Object would remain unchanged. However, the `modified` property would be updated to the timestamp of when the observable was last extracted from a report.
 
@@ -1073,7 +1073,7 @@ Inside the custom extraction file you must specify an
 2. extraction type (either `regex` or `exact`)
 3. the STIX 2.1 Object or MITRE / CAPEC Object to use when a match is detected
 
-Stixify used `re` for regex matching.
+file2stix used `re` for regex matching.
 
 You can pass multiple custom extractions on each line of the file like so;
 

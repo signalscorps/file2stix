@@ -72,4 +72,3 @@ test.vir
 test.so
 test.pf
 
-stixify --input-file tests/file_inputs/observable_tests/file.txt

@@ -9,4 +9,3 @@ HKEY_LOCAL_MACHINE\SYSTEM\system32\config\system
 HKEY_USERS\SYSTEM\system32\config\system
 HKEY_CURRENT_CONFIG\SYSTEM\system32\config\system
 
-stixify --input-file tests/file_inputs/observable_tests/registry_key.txt

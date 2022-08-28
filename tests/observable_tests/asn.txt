@@ -6,5 +6,3 @@ e.g. ASN 15888
 99999 should not extract
 
 TST99999 should not extract
-
-stixify --input-file tests/file_inputs/observable_tests/asn.txt

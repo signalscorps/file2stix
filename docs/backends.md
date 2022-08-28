@@ -4,21 +4,21 @@ Backends allow you to store STIX Objects in a database of your choice in additio
 
 ## Backend struture
 
-Each Backend ships with a default initialization script that is used to create the database schema Stixify will write to. This is executed the first time the backend is used.
+Each Backend ships with a default initialization script that is used to create the database schema file2stix will write to. This is executed the first time the backend is used.
 
 Backends authentication is specified using a backend `<CONFIG>.yml`.
 
-This configoration file is passed when running Stixify commands. For example, 
+This configoration file is passed when running file2stix commands. For example, 
 
 ```shell
-stixify --input-file tests/file_inputs/txt/input.txt --backend arangodb
+file2stix --input-file tests/file_inputs/txt/input.txt --backend arangodb
 ```
 
 ## Local filesystem
 
 The default backend is filesystem storage.
 
-When Stixify successfully executes and matches are detected two directories will be created;
+When file2stix successfully executes and matches are detected two directories will be created;
 
 1. `stix2_extractions/`
 	* STIX Objects for observables detected. These are used for future runs of the script and to write Objects into other backends. In the sub-directories you will find STIX 2.1 Bundles containing individual STIX 2.1 Objects extracted.
@@ -41,11 +41,11 @@ password: # optional, default if blank: ''
 
 The intialization script `/backends/arangodb/arangodb.py` configures the following in the ArangoDB instance;
 
-* 1x Database named `stixify`
-* 1x Document Collection in the `stixify` Database named `stix_objects`
-* 1x Edge Collection in the `stixify` Database named `stix_relationships`
+* 1x Database named `file2stix`
+* 1x Document Collection in the `file2stix` Database named `stix_objects`
+* 1x Edge Collection in the `file2stix` Database named `stix_relationships`
 
-Stixify stores files in each Collection as follows;
+file2stix stores files in each Collection as follows;
 
 * All STIX 2.1 Objects with type `relationship` are stored in the `stix_relationships` Edge Collection
 * All other STIX 2.1 Objects types are stored in `stix_objects` Document Collection.

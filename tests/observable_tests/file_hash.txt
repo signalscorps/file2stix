@@ -4,4 +4,3 @@ sha256 hash: ba7816bf8f01cfea414140de5dae2223b00361a396177a9cb410ff61f20015ad
 sha512: 1f40fc92da241694750979ee6cf582f2d5d7d28e18335de05abc54d0560e0f5302860c652bf08d560252aa5e74210546f369fbbbce8c12cfc7957b2652fe9a75
 ssdeep hash: 96:s4Ud1Lj96tHHlZDrwciQmA+4uy1I0G4HYuL8N3TzS8QsO/wqWXLcMSx:sF1LjEtHHlZDrJzrhuyZvHYm8tKp/RWO
 
-stixify --input-file tests/file_inputs/observable_tests/file_hash.txt

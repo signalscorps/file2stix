@@ -318,5 +318,3 @@ United States,United States,U.S.A
 United States,United States,USA
 North Korea,Democratic People's Republic of Korea,North Korean
 North Korea,DPRK,North Korean
-
-stixify --input-file tests/file_inputs/observable_tests/country_adjective.txt

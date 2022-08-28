@@ -68,4 +68,3 @@ tags:
 
 
 
-stixify --input-file tests/file_inputs/observable_tests/sigma_rule.txt

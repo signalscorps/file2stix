@@ -1,4 +1,0 @@
-DE29100500001061045672
-GB94BARC10201530093459
-
-stixify --input-file tests/file_inputs/observable_tests/iban.txt

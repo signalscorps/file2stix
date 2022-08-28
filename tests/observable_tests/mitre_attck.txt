@@ -16,4 +16,3 @@ TA0043
 Execution
 
 
-stixify --input-file tests/file_inputs/observable_tests/mitre_attck.txt

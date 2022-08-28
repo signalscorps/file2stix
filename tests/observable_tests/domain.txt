@@ -1311,4 +1311,3 @@ test.ZONE
 test.ZUERICH
 test.ZW
 
-stixify --input-file tests/file_inputs/observable_tests/domain.txt

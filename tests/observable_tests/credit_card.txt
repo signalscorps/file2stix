@@ -5,5 +5,3 @@
 3056930009020004
 3566002020360505
 6011111111111117
-
-stixify --input-file tests/file_inputs/observable_tests/credit_card.txt

@@ -2,4 +2,3 @@ url: https://example.com/research/
 url: https://example.com/path/index.html
 
 
-stixify --input-file tests/file_inputs/observable_tests/url.txt

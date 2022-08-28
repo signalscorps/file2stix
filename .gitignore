@@ -144,4 +144,7 @@ TODO.txt
 
 # Ignore cache
 file2stix-cache
-stixify/
+
+# Ignore venv as stated in docs
+
+file2stix_venv

@@ -1,10 +1,10 @@
 # Whitelists
 
-Default whitelists identify potentially benign Stixify extractions. This section of the documentation explains how default whitelists work and how write your own custom whitelists.
+Default whitelists identify potentially benign file2stix extractions. This section of the documentation explains how default whitelists work and how write your own custom whitelists.
 
 ## MISP Warning Lists
 
-Stixify used MISP Warning Lists (using [PyMISPWarningLists](https://github.com/MISP/PyMISPWarningLists)) to identify potential extractions that should be whitelisted.
+file2stix used MISP Warning Lists (using [PyMISPWarningLists](https://github.com/MISP/PyMISPWarningLists)) to identify potential extractions that should be whitelisted.
 
 ```json
 	"x_warning_list_match": [
