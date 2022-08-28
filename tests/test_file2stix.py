@@ -1,7 +1,7 @@
 import json
 import pytest
-import stix2file.main
-from stix2file.config import Config
+import file2stix.main
+from file2stix.config import Config
 
 # It's a tuple containing example program path and the corresponding expected reports
 testdata = [
@@ -28,13 +28,13 @@ testdata = [
 @pytest.mark.parametrize(
     "example_path,expected_report_path", testdata, ids=[t[0] for t in testdata]
 )
-def test_stix2file_cli(example_path, expected_report_path):
+def test_file2stix_cli(example_path, expected_report_path):
     """
-    Run stix2file-cli tool for example program and compare the 
+    Run file2stix-cli tool for example program and compare the 
     generated report with the expected report.
     """
     config = Config(example_path, update_mitre_cti_database=True)
-    report_path = stix2file.main.main(config)
+    report_path = file2stix.main.main(config)
     
     with open(report_path) as f:
         report = json.load(f)
