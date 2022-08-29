@@ -13,6 +13,22 @@ DS0026
 
 TA0043
 
-Execution
+Execution = TA0104 (ICS) / TA0002 (Enterprise) / TA0041 (Mobile)
 
 
+ICS ATT&CK 
+
+Drive-by Compromise
+
+T0817
+
+T0858
+
+Alarm Suppression
+
+
+Moible ATT&CK 
+
+Call Control
+
+T1471

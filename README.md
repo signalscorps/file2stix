@@ -89,15 +89,17 @@ pip3 install -e .
 To run file2stix;
 
 ```shell
-file2stix --input-file PATH/TO/FILE --custom-extraction-file PATH/TO/FILE --update-mitre-cti-database
+file2stix --input-file PATH/TO/FILE --custom-extraction-file PATH/TO/FILE --update-mitre-cti-database --cache-folder PATH/TO/DIRECTORY --tlp-level TLP --user-identity-file PATH/TO/FILE
 ```
 
 * `--input-file` (required): provides the path to the input file
-* `--custom-extraction-file` (optional): provides the path to the file with custom extraction logic
-* `--update-mitre-cti-database` (optional) updates the local cache with latest MITRE CTI dataset. To make use of MITRE ATT&CK and MITRE CAPEC extractions you should run this on the first install, and run it again when any updates when ATT&CK or CAPEC versions are updated.
-* `--cache-folder` (optional) cache folder path where MITRE ATT&K, CAPEC and MISP warning list will be stored. By default MITRE dataset is stored in "file2stix-cache" folder. You can specify a different folder for this using the `--cache-folder` option
+* `--custom-extraction-file` (optional, no default): provides the path to the file with custom extraction logic
+* `--update-mitre-cti-database` (optional, no default): updates the local cache with latest MITRE CTI dataset. To make use of MITRE ATT&CK and MITRE CAPEC extractions you should run this on the first install, and run it again when any updates when ATT&CK or CAPEC versions are updated.
+* `--cache-folder` (optional, default `file2stix-cache`): cache folder path where MITRE ATT&K, CAPEC and MISP warning list will be stored. By default MITRE dataset is stored in "file2stix-cache" folder. You can specify a different folder for this using the `--cache-folder` option
+* `--tlp-level` (optional, default `WHITE`): the TLP level of report and extracted object. Either `WHITE` or `AMBER`. IMPORTANT, the TLP level defined has an impact on how the objects are stored. Read `docs/conversions.md` for more info.
+* `--user-identity-file` (optional, default `stix_templates/identity.yml`): path to user identity config file (in yml format) to assign to objects extracted. Note, the TLP level also has an impact on how identity is assigned.
 
-You can also run `file2stix --help` to know more about these options.
+You can also run `file2stix --help` to print more about these options in the command line.
 
 For example;
 
