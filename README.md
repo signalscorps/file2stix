@@ -131,5 +131,4 @@ If you notice a bug or have a feature request, [please submit them as issues on 
 
 ## Useful supporting tools
 
-* [STIX Viewer](https://github.com/traut/stixview): Quickly load bundles produced from your report : 
-* [file2stix](https://www.file2stix.com): Our web implementation of file2stix with lots of additional features.
+* [STIX Viewer](https://github.com/traut/stixview): Quickly load bundles produced from your report.

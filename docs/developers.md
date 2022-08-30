@@ -38,3 +38,9 @@ file2stix --input-file tests/observable_tests/user_agent.txt
 file2stix --input-file tests/observable_tests/yara_rule.txt
 
 file2stix --input-file tests/custom_extractions/test_extractions.txt --custom-extraction-file tests/custom_extractions/test_extractions.txt
+
+
+file2stix --input-file tests/observable_tests/ipv4.txt --user-identity-file stix_templates/identity.yml
+
+
+file2stix --input-file tests/observable_tests/ipv4.txt --tlp-level AMBER --user-identity-file stix_templates/identity.yml
