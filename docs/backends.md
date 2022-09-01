@@ -21,7 +21,9 @@ The default backend is filesystem storage.
 When file2stix successfully executes and matches are detected two directories will be created;
 
 1. `stix2_extractions/`
-	* STIX Objects for observables detected. These are used for future runs of the script and to write Objects into other backends. In the sub-directories you will find STIX 2.1 Bundles containing individual STIX 2.1 Objects extracted.
+	* `<object_type>`
+		* `<object_id>`
+			* `<object.json>` STIX Objects for observables detected. These are used for future runs of the script and to write Objects into other backends. In the sub-directories you will find STIX 2.1 Bundles containing individual STIX 2.1 Objects extracted.
 2. `stix2_reports/`
 	* Final STIX bundles containing collections of Objects from observables extracted from reports. In the sub-directories you will find STIX 2.1 Bundles containing all STIX 2.1 Objects extracted from a report. Some examples can be seen in the `/tests/expected_reports` directory.
 

@@ -44,3 +44,17 @@ file2stix --input-file tests/observable_tests/ipv4.txt --user-identity-file stix
 
 
 file2stix --input-file tests/observable_tests/ipv4.txt --tlp-level AMBER --user-identity-file stix_templates/identity.yml
+
+
+## Testing adding custom identity
+
+### Valid identity
+
+`file2stix --input-file tests/observable_tests/ipv4.txt --user-identity-file tests/stix_templates/custom_identity_good.yml`
+
+### Invalid identity
+
+```
+file2stix --input-file tests/observable_tests/ipv4.txt --user-identity-file tests/stix_templates/custom_identity_bad.yml`
+```
+
