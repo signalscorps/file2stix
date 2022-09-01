@@ -46,6 +46,100 @@ file2stix --input-file tests/observable_tests/ipv4.txt --user-identity-file stix
 file2stix --input-file tests/observable_tests/ipv4.txt --tlp-level AMBER --user-identity-file stix_templates/identity.yml
 
 
+## Testing filetypes
+
+### Supported filetypes
+
+#### .csv
+
+```
+file2stix --input-file tests/file_inputs/csv/input.csv
+```
+
+#### .doc
+
+```
+file2stix --input-file tests/file_inputs/doc/input.doc
+```
+
+```
+file2stix --input-file tests/file_inputs/doc/input.docxs
+```
+
+#### .html
+
+```
+file2stix --input-file tests/file_inputs/html/catapult-spider-adversary-quest-walkthrough-2022.html
+```
+
+#### .json
+
+```
+file2stix --input-file tests/file_inputs/json/input.json
+```
+
+#### .md
+
+```
+file2stix --input-file tests/file_inputs/md/input.md
+```
+
+#### .pdf
+
+```
+file2stix --input-file tests/file_inputs/pdf/input.pdf
+```
+
+#### .txt
+
+```
+file2stix --input-file tests/file_inputs/txt/input.txt
+```
+
+#### .xls
+
+```
+file2stix --input-file tests/file_inputs/xls/input.xls
+```
+
+```
+file2stix --input-file tests/file_inputs/xls/input.xlsx
+```
+
+#### .xml
+
+```
+file2stix --input-file tests/file_inputs/xml/input.xml
+```
+
+#### .yaml
+
+```
+file2stix --input-file tests/file_inputs/yara/input.yaml
+```
+
+```
+file2stix --input-file tests/file_inputs/yara/input.yml
+```
+
+#### .yara
+
+```
+file2stix --input-file tests/file_inputs/yara/input.yar
+```
+
+```
+file2stix --input-file tests/file_inputs/yara/input.yara
+```
+
+### Unsupported filetypes
+
+#### .py
+
+```
+file2stix --input-file setup.py
+```
+
 ## Testing adding custom identity
 
 ### Valid identity
