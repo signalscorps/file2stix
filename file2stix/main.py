@@ -67,7 +67,9 @@ def main(config: Config):
                 identity_config = yaml.safe_load(f)
             config.identity = Identity(**identity_config)
         except:
-            raise IdentityError("Identity config file is not present or is in incorrect format.")
+            raise IdentityError(
+                "Identity config file is not present or is in incorrect format."
+            )
 
     # Update MITRE ATT&CK and CAPEC database
     if config.update_mitre_cti_database == True:
@@ -123,9 +125,9 @@ def main(config: Config):
                     )
                 else:
                     stix_observable_object = extracted_stix_observable
-
+                
                 # Don't overwrite CPE Observables (type software)
-                if stix_observable_object != extracted_stix_observable and observable != CPEObservable:
+                if observable != CPEObservable or stix_observable_object == extracted_stix_observable:
                     stix_observables_in_filestore[
                         stix_observable_object.name
                     ] = stix_observable_object
@@ -135,8 +137,15 @@ def main(config: Config):
                     stix_observable_object.name
                 ] = stix_observable_object
             else:
-                stix_observables[stix_observable_object.name] = stix_observable_object
-            logger.debug("Extracted observable: %s", stix_observable_object.name)
+                try:
+                    stix_observables[stix_observable_object.name] = stix_observable_object
+                # Figure out a better way, this is too ugly
+                except AttributeError:
+                    stix_observables[stix_observable_object["name"]] = stix_observable_object
+            try:
+                logger.debug("Extracted observable: %s", stix_observable_object.name)
+            except AttributeError:
+                logger.debug("Extracted observable: %s", stix_observable_object["name"])
 
         # Hacky logging, but I don't want to complicate just getting pretty_name
         logger.info(
@@ -180,7 +189,9 @@ def main(config: Config):
     stix_objects = list(stix_observables.values()) + [report] + relationship_sros
     stix_file_store_objects = list(stix_observables_in_filestore.values()) + [report]
     stix_store.store_objects_in_filestore(stix_file_store_objects)
-    stix_bundle_file_path = stix_store.store_objects_in_bundle(stix_objects)
+    stix_bundle_file_path = stix_store.store_objects_in_bundle(
+        stix_objects, config.output_json_file_path
+    )
     logger.info("Stored STIX report bundle at %s", stix_bundle_file_path)
 
     return stix_bundle_file_path
