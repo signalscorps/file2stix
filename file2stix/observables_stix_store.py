@@ -33,13 +33,13 @@ class ObservablesStixStore:
         """
         Query STIX2 Object based on `stix_object_name`
         """
-        self.query("name", "=", stix_object_name)
+        return self.query("name", "=", stix_object_name)
 
     def query(self, property, operation, value):
         """
         General query of stix objects
         """
-        query = [Filter(property, operation, value)]
+        query = Filter(property, operation, value)
         observables_found = self.stix_file_store.source.query(query)
 
         if observables_found == None or len(observables_found) == 0:
@@ -50,11 +50,15 @@ class ObservablesStixStore:
     def store_objects_in_filestore(self, stix_objects):
         self.stix_file_store.add(stix_objects)
 
-    def store_objects_in_bundle(self, stix_objects):
+    def store_objects_in_bundle(self, stix_objects, output_json_file_path=None):
         bundle_of_all_objects = Bundle(*stix_objects, allow_custom=True)
-        stix_bundle_file = os.path.join(
-            self.stix_bundle_path, f"{bundle_of_all_objects.id}.json"
-        )
+
+        stix_bundle_file = output_json_file_path
+
+        if stix_bundle_file == None:
+            stix_bundle_file = os.path.join(
+                self.stix_bundle_path, f"{bundle_of_all_objects.id}.json"
+            )
         with open(stix_bundle_file, "w") as f:
             f.write(json.dumps(bundle_of_all_objects, cls=STIXJSONEncoder, indent=4))
 

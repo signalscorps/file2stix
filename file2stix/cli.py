@@ -24,6 +24,13 @@ def cli():
     )
 
     arg_parser.add_argument(
+        "--output-json-file",
+        action="store",
+        type=str,
+        help="output json file path into which extracted observables will be stored",
+    )
+
+    arg_parser.add_argument(
         "--cache-folder",
         action="store",
         type=str,
@@ -63,9 +70,12 @@ def cli():
     
     input_file_path = os.path.abspath(args.input_file) if args.input_file != None else None
 
+    output_json_file_path = os.path.abspath(args.output_json_file) if args.output_json_file != None else None
+
     # Build config object
     config = Config(
         input_file_path = input_file_path,
+        output_json_file_path = output_json_file_path,
         cache_folder = os.path.abspath(args.cache_folder),
         update_mitre_cti_database = args.update_mitre_cti_database,
         custom_extraction_file=args.custom_extraction_file,
