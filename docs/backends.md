@@ -47,7 +47,7 @@ The intialization script `/backends/arangodb/arangodb.py` configures the followi
 * 1x Document Collection in the `file2stix` Database named `stix_objects`
 * 1x Edge Collection in the `file2stix` Database named `stix_relationships`
 
-file2stix stores files in each Collection as follows;
+file2stix stores json files created on each script run (in `stix2_objects/`) in each ArangoDB Collection as follows;
 
 * All STIX 2.1 Objects with type `relationship` are stored in the `stix_relationships` Edge Collection
 * All other STIX 2.1 Objects types are stored in `stix_objects` Document Collection.
