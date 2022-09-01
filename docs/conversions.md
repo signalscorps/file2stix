@@ -34,12 +34,14 @@ The TLP defined plays two important roles in file2stix.
 1. It adds a `marking-definition--` to all Objects
 2. Determines how creation of Object should work
 
-file2stix allows for `TLP:AMBER` and `TLP:WHITE` definitions to be used when adding Reports. 
+file2stix allows for `TLP:GREEN`, `TLP:AMBER`, `TLP:RED` and `TLP:WHITE` definitions to be used when adding Reports. 
 
 This determines the [STIX marking-definition](https://docs.oasis-open.org/cti/stix/v2.1/os/stix-v2.1-os.html#_yd3ar14ekwrs), either;
 
 * `TLP:WHITE` (`marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9`)
+* `TLP:GREEN` (`marking-definition--34098fce-860f-48ae-8e50-ebd3cc5e41da`)
 * `TLP:AMBER` (`marking-definition--f88d31f6-486f-44da-b317-01333bde0b82`)
+* `TLP:RED` (`marking-definition--5e57c739-391a-4eb3-b6be-7d15ca92d5ed`)
 
 The TLP value is reported in the `object_marking_refs` property for the STIX Report Object and all extracted Objects representing extracted Observables (except for ATT&CK or CAPEC, where generic MITRE Objects are used).
 
@@ -67,17 +69,17 @@ No `TLP:WHITE` Objects created from Observable extractions (that is all Objects 
 
 Extractions can be identified using the SRO linking it to the Report SDO (see: Relationships).
 
-### `TLP:AMBER`
+### `TLP:GREEN`, `TLP:AMBER` or `TLP:RED`
 
-In many cases, a person uploading a report will not want the report and the observables extracted to be shared with anyone else beyond their organisation. In such instances they would assign the report a `TLP:AMBER` designation.
+In many cases, a person uploading a report will not want the report and the observables extracted to be shared with anyone else beyond their organisation. In such instances they would assign the report a `TLP:GREEN`, `TLP:AMBER` or `TLP:RED` designation.
 
-Like before, every time a new observable is detected, a new SDO Object is created but this time with a `TLP:AMBER` marking (except for ATT&CK and CAPEC STIX Objects). 
+Like before, every time a new observable is detected, a new SDO Object is created but this time with a `TLP:GREEN`, `TLP:AMBER` or `TLP:RED` marking (except for ATT&CK and CAPEC STIX Objects). 
 
-However, in the case of an observable being detected for the second time, unlike `TLP:WHITE` reports where a single object would be updated, new observable objects are always created for `TLP:AMBER` reports.
+However, in the case of an observable being detected for the second time, unlike `TLP:WHITE` reports where a single object would be updated, new observable objects are always created for `TLP:GREEN`, `TLP:AMBER` or `TLP:RED`reports.
 
-Put another way, `TLP:AMBER` reports will always have unique Objects from extracted Observables linked to them.
+Put another way, `TLP:GREEN`, `TLP:AMBER` or `TLP:RED` reports will always have unique Objects from extracted Observables linked to them.
 
-All `TLP:AMBER` Objects created from Observable extractions contain a `created_by_ref` of the user Identity that uploaded the report.
+All `TLP:GREEN`, `TLP:AMBER` or `TLP:RED` Objects created from Observable extractions contain a `created_by_ref` of the user Identity that uploaded the report.
 
 To give an example, assume report 4 is marked as `TLP:AMBER` and contains an IPv4 address observable (`198.51.100.3`). A new Indicator SDO Object is created for it (id = `01559644-3b76-4e2a-9cdd-4b7417e95640`) with marking definition `TLP:AMBER` and the `created_by_ref` for that user.
 

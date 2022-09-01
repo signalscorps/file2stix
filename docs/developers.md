@@ -40,10 +40,7 @@ file2stix --input-file tests/observable_tests/yara_rule.txt
 file2stix --input-file tests/custom_extractions/test_extractions.txt --custom-extraction-file tests/custom_extractions/test_extractions.txt
 
 
-file2stix --input-file tests/observable_tests/ipv4.txt --user-identity-file stix_templates/identity.yml
 
-
-file2stix --input-file tests/observable_tests/ipv4.txt --tlp-level AMBER --user-identity-file stix_templates/identity.yml
 
 
 ## Testing filetypes
@@ -139,6 +136,72 @@ file2stix --input-file tests/file_inputs/yara/input.yara
 ```
 file2stix --input-file setup.py
 ```
+
+## Testing TLPs
+
+### TLP:WHITE
+
+```
+file2stix --input-file tests/observable_tests/ipv4.txt --tlp-level WHITE
+```
+
+**Expected output:**
+
+All report and relationship objects have property:
+
+```
+"object_marking_refs": "marking-definition--34098fce-860f-48ae-8e50-ebd3cc5e41da"
+```
+
+On every new run of same report input, the `modified` property of previously extracted objects is updated and the bundle includes the newly modified object.
+
+### TLP:GREEN
+
+```
+file2stix --input-file tests/observable_tests/ipv4.txt --tlp-level GREEN
+```
+
+**Expected output:**
+
+All objects have property:
+
+```
+"object_marking_refs": "marking-definition--34098fce-860f-48ae-8e50-ebd3cc5e41da"
+```
+
+On every new run of same report input, new objects are always created.
+
+### TLP:AMBER
+
+```
+file2stix --input-file tests/observable_tests/ipv4.txt --tlp-level AMBER
+```
+
+**Expected output:**
+
+All objects have property:
+
+```
+"object_marking_refs": "marking-definition--f88d31f6-486f-44da-b317-01333bde0b82"
+```
+
+On every new run of same report input, new objects are always created.
+
+### TLP:RED
+
+```
+file2stix --input-file tests/observable_tests/ipv4.txt --tlp-level RED
+```
+
+**Expected output:**
+
+All objects have property:
+
+```
+"object_marking_refs": "marking-definition--5e57c739-391a-4eb3-b6be-7d15ca92d5ed"
+```
+
+On every new run of same report input, new objects are always created.
 
 ## Testing adding custom identity
 
