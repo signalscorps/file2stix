@@ -136,8 +136,8 @@ venv
 .vscode/
 
 # Ignore stix filestore and bundle
-stix2_extractions/
-stix2_reports/
+stix2_objects/
+stix2_bundles/
 
 # Ignore TODO file
 TODO.txt
