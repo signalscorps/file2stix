@@ -9,8 +9,8 @@ from stix2 import FileSystemStore, Filter, Bundle
 from stix2.base import STIXJSONEncoder
 
 # Folders for STIX2 reports
-STIX2_EXTRACTIONS_FOLDER = os.path.abspath("stix2_extractions")
-STIX2_REPORTS_FOLDER = os.path.abspath("stix2_reports")
+STIX2_EXTRACTIONS_FOLDER = os.path.abspath("stix2_objects")
+STIX2_REPORTS_FOLDER = os.path.abspath("stix2_bundles")
 
 
 class ObservablesStixStore:
