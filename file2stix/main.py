@@ -11,6 +11,7 @@ import textract
 import json
 import yaml
 from bs4 import BeautifulSoup
+from dataclasses import dataclass
 from datetime import datetime
 from pathlib import Path
 from stix2 import Report, Relationship, Identity
@@ -57,6 +58,18 @@ def get_text_from_markdown(input_file_path):
     return "".join(text_list)
 
 
+@dataclass
+class ObservableList:
+    # General set of stix observables
+    stix_observables = {}
+
+    # Custom stix observables by the user
+    custom_stix_observables = {}
+
+    # Stix observables to be stored in file store
+    stix_observables_in_filestore = {}
+
+
 def main(config: Config):
     cache = Cache(config.cache_folder)
 
@@ -101,9 +114,7 @@ def main(config: Config):
     stix_store = ObservablesStixStore()
 
     # Iterate over each observable and extract them from input file
-    stix_observables = {}
-    custom_stix_observables = {}
-    stix_observables_in_filestore = {}
+    observables_list = ObservableList()
     for observable in inheritors(Observable):
         for (
             extracted_stix_observable,
@@ -117,31 +128,37 @@ def main(config: Config):
                     extracted_stix_observable.name
                 )
 
+                is_stix_object_in_filestore = (stix_observable_object != None)
+
                 # If observable already present in `stix_store`, then
                 # just update the modified time
-                if config.tlp_level == "WHITE" and stix_observable_object != None:
+                if config.tlp_level == "WHITE" and is_stix_object_in_filestore:
                     stix_observable_object = stix_observable_object.new_version(
                         modified=pytz.utc.localize(datetime.utcnow())
                     )
                 else:
                     stix_observable_object = extracted_stix_observable
-                
+
                 # Don't overwrite CPE Observables (type software)
-                if observable != CPEObservable or stix_observable_object == extracted_stix_observable:
-                    stix_observables_in_filestore[
+                if observable != CPEObservable or not is_stix_object_in_filestore:
+                    observables_list.stix_observables_in_filestore[
                         stix_observable_object.name
                     ] = stix_observable_object
 
             if observable == CustomObervable:
-                custom_stix_observables[
+                observables_list.custom_stix_observables[
                     stix_observable_object.name
                 ] = stix_observable_object
             else:
                 try:
-                    stix_observables[stix_observable_object.name] = stix_observable_object
+                    observables_list.stix_observables[
+                        stix_observable_object.name
+                    ] = stix_observable_object
                 # Figure out a better way, this is too ugly
                 except AttributeError:
-                    stix_observables[stix_observable_object["name"]] = stix_observable_object
+                    observables_list.stix_observables[
+                        stix_observable_object["name"]
+                    ] = stix_observable_object
             try:
                 logger.debug("Extracted observable: %s", stix_observable_object.name)
             except AttributeError:
@@ -152,7 +169,10 @@ def main(config: Config):
             "Extracted all observables of type %s", observable(None, config).pretty_name
         )
 
-    if not stix_observables:
+    if (
+        not observables_list.stix_observables
+        and not observables_list.custom_stix_observables
+    ):
         logger.warning("No Obseravbles extracted. Hence, not creating STIX report")
         return
 
@@ -161,13 +181,15 @@ def main(config: Config):
         name="File converted: " + os.path.split(input_file_path)[1],
         report_types=["threat_report"],
         published=datetime.now(),
-        object_refs=[stix_object.id for stix_object in stix_observables.values()],
+        object_refs=[
+            stix_object.id for stix_object in observables_list.stix_observables.values()
+        ],
         created_by_ref=config.identity,
     )
 
     # Create Relationship SROs
     relationship_sros = []
-    for stix_observable in stix_observables.values():
+    for stix_observable in observables_list.stix_observables.values():
         relationship_sro = Relationship(
             relationship_type="default-extract",
             source_ref=report.id,
@@ -176,7 +198,7 @@ def main(config: Config):
         )
         relationship_sros.append(relationship_sro)
 
-    for stix_observable in custom_stix_observables.values():
+    for stix_observable in observables_list.custom_stix_observables.values():
         relationship_sro = Relationship(
             relationship_type="custom-extract",
             source_ref=report.id,
@@ -186,8 +208,16 @@ def main(config: Config):
         relationship_sros.append(relationship_sro)
 
     # Group all stix objects and store in STIX filestore and bundle
-    stix_objects = list(stix_observables.values()) + [report] + relationship_sros
-    stix_file_store_objects = list(stix_observables_in_filestore.values()) + [report]
+    stix_objects = (
+        [config.identity]
+        + list(observables_list.stix_observables.values())
+        + list(observables_list.custom_stix_observables.values())
+        + [report]
+        + relationship_sros
+    )
+    stix_file_store_objects = list(
+        observables_list.stix_observables_in_filestore.values()
+    ) + [report]
     stix_store.store_objects_in_filestore(stix_file_store_objects)
     stix_bundle_file_path = stix_store.store_objects_in_bundle(
         stix_objects, config.output_json_file_path
@@ -195,7 +225,3 @@ def main(config: Config):
     logger.info("Stored STIX report bundle at %s", stix_bundle_file_path)
 
     return stix_bundle_file_path
-
-
-if __name__ == "__main__":
-    main()
