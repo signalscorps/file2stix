@@ -113,6 +113,16 @@ Or with a custom extraction file specified;
 file2stix --input-file tests/file_inputs/txt/input.txt --custom-extraction-file tests/file_inputs/custom_extractions/extractions.txt
 ````
 
+To run script for convert data from reports to ArangoDB,
+you need 3 arguments
+* login - ArangoDB login
+* password - ArangoDB password
+* arangourl - Arango URL. Optional argument. Default value - http://localhost:8529
+```shell
+python3 backends/arangodb/arangodb.py --login login_to_arango --password pass_to_arango --arangourl host
+
+```
+
 ## Documentation
 
 Please take a moment to review the comprehensive documentation included in this repository -- it covers almost all common questions people have about file2stix.
