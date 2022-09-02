@@ -11,7 +11,6 @@ import textract
 import json
 import yaml
 from bs4 import BeautifulSoup
-from dataclasses import dataclass
 from datetime import datetime
 from pathlib import Path
 from stix2 import Report, Relationship, Identity
@@ -58,16 +57,19 @@ def get_text_from_markdown(input_file_path):
     return "".join(text_list)
 
 
-@dataclass
 class ObservableList:
-    # General set of stix observables
-    stix_observables = {}
+    def __init__(self):
+        # General set of stix observables
+        self.stix_observables = {}
 
-    # Custom stix observables by the user
-    custom_stix_observables = {}
+        # Custom stix observables by the user
+        self.custom_stix_observables = {}
 
-    # Stix observables to be stored in file store
-    stix_observables_in_filestore = {}
+        # Stix observables to be stored in file store
+        self.stix_observables_in_filestore = {}
+
+    def __str__(self):
+        return f"ObservablesList({self.stix_observables}, {self.custom_stix_observables}, {self.stix_observables_in_filestore})"
 
 
 def main(config: Config):
@@ -123,27 +125,34 @@ def main(config: Config):
             stix_observable_object = extracted_stix_observable
 
             if update_stix2_extractions:
-                # Check if observable already present in `stix_store`
-                stix_observable_object = stix_store.get_object(
-                    extracted_stix_observable.name
-                )
-
-                is_stix_object_in_filestore = (stix_observable_object != None)
-
-                # If observable already present in `stix_store`, then
-                # just update the modified time
-                if config.tlp_level == "WHITE" and is_stix_object_in_filestore:
-                    stix_observable_object = stix_observable_object.new_version(
-                        modified=pytz.utc.localize(datetime.utcnow())
+                if observable != CPEObservable:
+                    # Check if observable already present in `stix_store`
+                    stix_observable_object = stix_store.get_object(
+                        extracted_stix_observable.name
                     )
-                else:
-                    stix_observable_object = extracted_stix_observable
 
-                # Don't overwrite CPE Observables (type software)
-                if observable != CPEObservable or not is_stix_object_in_filestore:
+                    # If observable already present in `stix_store`, then
+                    # just update the modified time
+                    if config.tlp_level == "WHITE" and stix_observable_object != None:
+                        stix_observable_object = stix_observable_object.new_version(
+                            modified=pytz.utc.localize(datetime.utcnow())
+                        )
+                    else:
+                        stix_observable_object = extracted_stix_observable
+
                     observables_list.stix_observables_in_filestore[
                         stix_observable_object.name
                     ] = stix_observable_object
+                else:
+                    # Check if observable already present in `stix_store`
+                    stix_observable_object = stix_store.get_object(
+                        extracted_stix_observable.name
+                    )
+
+                    if stix_observable_object == None:
+                        observables_list.stix_observables_in_filestore[
+                            extracted_stix_observable.name
+                        ] = extracted_stix_observable
 
             if observable == CustomObervable:
                 observables_list.custom_stix_observables[
@@ -207,14 +216,16 @@ def main(config: Config):
         )
         relationship_sros.append(relationship_sro)
 
+    stix_objects = [config.identity] if config.identity else []
+
     # Group all stix objects and store in STIX filestore and bundle
-    stix_objects = (
-        [config.identity]
-        + list(observables_list.stix_observables.values())
+    stix_objects += (
+        list(observables_list.stix_observables.values())
         + list(observables_list.custom_stix_observables.values())
         + [report]
         + relationship_sros
     )
+
     stix_file_store_objects = list(
         observables_list.stix_observables_in_filestore.values()
     ) + [report]
