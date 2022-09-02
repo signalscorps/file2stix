@@ -54,7 +54,7 @@ def cli():
     arg_parser.add_argument(
         "--tlp-level",
         action="store",
-        choices=["WHITE", "AMBER"],
+        choices=["WHITE", "GREEN", "AMBER", "RED"],
         default=Config.tlp_level,
         help="choose TLP level of report (default: %(default)s)",
     )

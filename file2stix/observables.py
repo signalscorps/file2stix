@@ -24,7 +24,7 @@ from stix2 import (
     Malware,
     ThreatActor,
     Tool,
-    Software
+    Software,
 )
 
 from file2stix.config import Config
@@ -42,7 +42,9 @@ class Observable:
     extraction_function = None
     object_marking_ref_map = {
         "WHITE": "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9",
-        "AMBER": "marking-definition--f88d31f6-486f-44da-b317-01333bde0b82"
+        "GREEN": "marking-definition--34098fce-860f-48ae-8e50-ebd3cc5e41da",
+        "AMBER": "marking-definition--f88d31f6-486f-44da-b317-01333bde0b82",
+        "RED": "marking-definition--5e57c739-391a-4eb3-b6be-7d15ca92d5ed",
     }
 
     def __init__(self, extracted_observable_text, config):
@@ -101,7 +103,7 @@ class Observable:
             object_marking_refs=Observable.object_marking_ref_map[self.tlp_level],
             created_by_ref=self.identity
         """
-        
+
         # By default, indicator SDO objects are created.
         if self.type == "indicator":
             if self.pattern == None:
@@ -270,7 +272,7 @@ class FileNameObservable(Observable):
 
     def get_sdo_object(self):
         # Hacky way of removing qoutes, need a better solution
-        self.extracted_observable_text = self.extracted_observable_text.replace("\'", "")
+        self.extracted_observable_text = self.extracted_observable_text.replace("'", "")
         return super().get_sdo_object()
 
 
@@ -321,7 +323,7 @@ class DirectoryPathObservable(Observable):
 
     def get_sdo_object(self):
         # Hacky way of removing qoutes, need a better solution
-        self.extracted_observable_text = self.extracted_observable_text.replace("\'", "")
+        self.extracted_observable_text = self.extracted_observable_text.replace("'", "")
         return super().get_sdo_object()
 
 
@@ -329,7 +331,9 @@ class DomainNameObservable(Observable):
     name = "Domain"
     type = "indicator"
     pattern = "[ domain-name:value = '{extracted_observable_text}' ]"
-    extraction_function = lambda x: validators.domain(x) and check_false_positive_domain(x)
+    extraction_function = lambda x: validators.domain(
+        x
+    ) and check_false_positive_domain(x)
 
 
 class UrlObservable(Observable):
@@ -389,12 +393,12 @@ class AutonomousSystemNumberObservable(Observable):
                 raise ValueError("pattern cannot be None for indicators.")
 
             # Get numerical value of ASN
-            asn_number = re.search(self.extraction_regex, self.extracted_observable_text).groups()[0]
+            asn_number = re.search(
+                self.extraction_regex, self.extracted_observable_text
+            ).groups()[0]
 
             # Replace extracted_observable_text placeholder
-            pattern = self.pattern.format(
-                extracted_observable_text=asn_number
-            )
+            pattern = self.pattern.format(extracted_observable_text=asn_number)
 
             # Escape '\' in pattern
             # https://github.com/oasis-open/cti-python-stix2/issues/260
@@ -412,7 +416,6 @@ class AutonomousSystemNumberObservable(Observable):
             return indicator
         else:
             raise ValueError("Observable type is not supported")
-
 
 
 class CryptocurrencyBTCObservable(Observable):
@@ -445,7 +448,7 @@ class CVEObservale(Observable):
         vulnerability = Vulnerability(
             name=self.extracted_observable_text,
             external_references=ExternalReference(
-                source_name="cve", 
+                source_name="cve",
                 external_id=self.extracted_observable_text,
             ),
             object_marking_refs=Observable.object_marking_ref_map[self.tlp_level],
@@ -470,7 +473,7 @@ class CountryNameObservable(Observable):
             country_iso = country.alpha_2
 
         location = Location(
-            name=f"Country: {self.extracted_observable_text}", 
+            name=f"Country: {self.extracted_observable_text}",
             country=country_iso,
             object_marking_refs=Observable.object_marking_ref_map[self.tlp_level],
             created_by_ref=self.identity,
@@ -497,7 +500,7 @@ class CountryCodeAlpha2Observable(Observable):
             country_name = country.name
 
         location = Location(
-            name=f"Country: {country_name}", 
+            name=f"Country: {country_name}",
             country=extracted_observable_text,
             object_marking_refs=Observable.object_marking_ref_map[self.tlp_level],
             created_by_ref=self.identity,
@@ -527,11 +530,11 @@ class CountryCodeAlpha3Observable(Observable):
             country_name = country.name
 
         location = Location(
-                name=f"Country: {country_name}", 
-                country=country_iso,
-                object_marking_refs=Observable.object_marking_ref_map[self.tlp_level],
-                created_by_ref=self.identity,
-            )
+            name=f"Country: {country_name}",
+            country=country_iso,
+            object_marking_refs=Observable.object_marking_ref_map[self.tlp_level],
+            created_by_ref=self.identity,
+        )
         return location
 
 
@@ -618,6 +621,7 @@ class YaraRuleObservable(Observable):
         else:
             raise ValueError("Observable type is not supported")
 
+
 class CPEObservable(Observable):
     name = "CPE"
     type = "software"
@@ -634,12 +638,13 @@ class CPEObservable(Observable):
             name=f"CPE: {cpe_vendor} {cpe_product} {cpe_version}",
             cpe=self.extracted_observable_text,
             version=cpe_version,
-            vendor = cpe_vendor,
+            vendor=cpe_vendor,
             object_marking_refs=Observable.object_marking_ref_map[self.tlp_level],
             # created_by_ref=self.identity,
         )
 
         return software
+
 
 class MITREEnterpriseAttackObservable(Observable):
     name = "MITRE Enterprise ATT&CK"
@@ -719,6 +724,7 @@ class MITREMobileAttackObservable(MITREEnterpriseAttackObservable):
     ):
         super().build_extraction_regex(cti_folder, bundle_relative_path)
 
+
 class MITREICSAttackObservable(MITREEnterpriseAttackObservable):
     name = "MITRE ICS ATT&CK"
     extraction_regex = r""
@@ -729,7 +735,6 @@ class MITREICSAttackObservable(MITREEnterpriseAttackObservable):
         cls, cti_folder, bundle_relative_path="ics-attack/ics-attack.json"
     ):
         super().build_extraction_regex(cti_folder, bundle_relative_path)
-
 
 
 class MITRECapecObservable(MITREEnterpriseAttackObservable):
@@ -755,56 +760,58 @@ class CustomObervable(Observable):
     custom_observables_map = {}
 
     @staticmethod
-    def get_stix2_object_custom(pattern, sdo_object_type, tlp_level="WHITE", identity=None):
+    def get_stix2_object_custom(
+        pattern, sdo_object_type, tlp_level="WHITE", identity=None
+    ):
         if sdo_object_type == "attack-pattern":
             return AttackPattern(
-                name=pattern, 
+                name=pattern,
                 object_marking_refs=Observable.object_marking_ref_map[tlp_level],
                 created_by_ref=identity,
             )
         elif sdo_object_type == "campaign":
             return Campaign(
-                name=pattern, 
+                name=pattern,
                 object_marking_refs=Observable.object_marking_ref_map[tlp_level],
                 created_by_ref=identity,
             )
         elif sdo_object_type == "course-of-action":
             return CourseOfAction(
-                name=pattern, 
+                name=pattern,
                 object_marking_refs=Observable.object_marking_ref_map[tlp_level],
                 created_by_ref=identity,
             )
         elif sdo_object_type == "infrastructure":
             return Infrastructure(
-                name=pattern, 
-                infrastructure_types="undefined", 
+                name=pattern,
+                infrastructure_types="undefined",
                 object_marking_refs=Observable.object_marking_ref_map[tlp_level],
                 created_by_ref=identity,
             )
         elif sdo_object_type == "intrustion-set":
             return IntrusionSet(
-                name=pattern, 
+                name=pattern,
                 object_marking_refs=Observable.object_marking_ref_map[tlp_level],
                 created_by_ref=identity,
             )
         elif sdo_object_type == "malware":
             return Malware(
-                name=pattern, 
-                malware_types="unknown", 
-                is_family=False, 
+                name=pattern,
+                malware_types="unknown",
+                is_family=False,
                 object_marking_refs=Observable.object_marking_ref_map[tlp_level],
                 created_by_ref=identity,
             )
         elif sdo_object_type == "threat-actor":
             return ThreatActor(
-                name=pattern, 
-                threat_actor_types="unknown", 
+                name=pattern,
+                threat_actor_types="unknown",
                 object_marking_refs=Observable.object_marking_ref_map[tlp_level],
                 created_by_ref=identity,
             )
         elif sdo_object_type == "tool":
             return Tool(
-                name=pattern, 
+                name=pattern,
                 object_marking_refs=Observable.object_marking_ref_map[tlp_level],
                 created_by_ref=identity,
             )
@@ -835,7 +842,9 @@ class CustomObervable(Observable):
     def get_sdo_object(self):
         pattern = self.extracted_observable_text
         sdo_object_type = self.custom_observables_map[pattern]
-        sdo_object = CustomObervable.get_stix2_object_custom(pattern, sdo_object_type, self.tlp_level, self.identity)
+        sdo_object = CustomObervable.get_stix2_object_custom(
+            pattern, sdo_object_type, self.tlp_level, self.identity
+        )
         if sdo_object == None:
             raise ValueError("Parsed SDO object after custom extraction is None.")
         return sdo_object
