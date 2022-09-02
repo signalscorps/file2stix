@@ -2,16 +2,16 @@ import json
 import logging
 import os
 from datetime import datetime
-from enum import Enum
-from typing import Dict, Union, List, Optional
+from typing import Dict, Union, List
 
 from pyArango.collection import Edges, Collection
 from pyArango.database import DBHandle
-from pydantic import BaseModel, Extra
 
 from pyArango.connection import Connection
 
 import argparse
+
+from backends.arangodb.schemas import ArangoCollections, Additional, Relationship, EmbeddedRelations
 
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
@@ -21,33 +21,6 @@ parser.add_argument("--login", help="ArangoDB login")
 parser.add_argument("--password", help="ArangoDB password")
 parser.add_argument("--arangourl", help="ArangoDB URL", default="http://127.0.0.1:8529")
 args = parser.parse_args()
-
-
-class EmbeddedRelations(BaseModel):
-    _key: str
-    _from: str
-    _to: str
-    type: str = "embedded-relationship"
-    relationship_description: Optional[str]
-
-    class Config:
-        extra = Extra.allow
-
-
-class ArangoCollections(Enum):
-    DOCUMENT = 'stix_objects'
-    EDGE = 'stix_relationships'
-    DATABASE = 'stix_database'
-
-
-class Relationship(Enum):
-    ONE = "relationship"
-    MANY = "relationships"
-
-
-class Additional(Enum):
-    MOD = "modified"
-    CLASS = "Edges"
 
 
 def get_last_modified_file() -> Dict:
