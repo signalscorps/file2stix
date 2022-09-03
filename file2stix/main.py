@@ -62,6 +62,9 @@ class ObservableList:
         # General set of stix observables
         self.stix_observables = {}
 
+        # Stix observables which are dictionaries
+        self.dict_stix_observables = {}
+
         # Custom stix observables by the user
         self.custom_stix_observables = {}
 
@@ -158,20 +161,17 @@ def main(config: Config):
                 observables_list.custom_stix_observables[
                     stix_observable_object.name
                 ] = stix_observable_object
-            else:
-                try:
-                    observables_list.stix_observables[
-                        stix_observable_object.name
-                    ] = stix_observable_object
-                # Figure out a better way, this is too ugly
-                except AttributeError:
-                    observables_list.stix_observables[
-                        stix_observable_object["name"]
-                    ] = stix_observable_object
-            try:
                 logger.debug("Extracted observable: %s", stix_observable_object.name)
-            except AttributeError:
+            elif isinstance(stix_observable_object, dict):
+                observables_list.dict_stix_observables[
+                    stix_observable_object["name"]
+                ] = stix_observable_object
                 logger.debug("Extracted observable: %s", stix_observable_object["name"])
+            else:
+                observables_list.stix_observables[
+                    stix_observable_object.name
+                ] = stix_observable_object
+                logger.debug("Extracted observable: %s", stix_observable_object.name)
 
         # Hacky logging, but I don't want to complicate just getting pretty_name
         logger.info(
@@ -186,14 +186,25 @@ def main(config: Config):
         return
 
     # Create report with all observables extracted
+
+    object_refs = (
+        [stix_object.id for stix_object in observables_list.stix_observables.values()]
+        + [
+            custom_stix_object.id
+            for custom_stix_object in observables_list.custom_stix_observables.values()
+        ]
+        + [
+            dict_stix_object["id"]
+            for dict_stix_object in observables_list.dict_stix_observables.values()
+        ]
+    )
     report = Report(
         name="File converted: " + os.path.split(input_file_path)[1],
         report_types=["threat_report"],
         published=datetime.now(),
-        object_refs=[
-            stix_object.id for stix_object in observables_list.stix_observables.values()
-        ],
+        object_refs=object_refs,
         created_by_ref=config.identity,
+        allow_custom=True,
     )
 
     # Create Relationship SROs
@@ -204,6 +215,16 @@ def main(config: Config):
             source_ref=report.id,
             target_ref=stix_observable.id,
             created_by_ref=config.identity,
+        )
+        relationship_sros.append(relationship_sro)
+
+    for stix_observable in observables_list.dict_stix_observables.values():
+        relationship_sro = Relationship(
+            relationship_type="default-extract",
+            source_ref=report.id,
+            target_ref=stix_observable["id"],
+            created_by_ref=config.identity,
+            allow_custom=True,
         )
         relationship_sros.append(relationship_sro)
 
@@ -221,6 +242,7 @@ def main(config: Config):
     # Group all stix objects and store in STIX filestore and bundle
     stix_objects += (
         list(observables_list.stix_observables.values())
+        + list(observables_list.dict_stix_observables.values())
         + list(observables_list.custom_stix_observables.values())
         + [report]
         + relationship_sros
