@@ -22,14 +22,14 @@ Why use file2stix;
 
 file2stix currently supports the following extraction types:
 
-* ipv4 (inc. CIDR, port)
-* ipv6 (inc. CIDR, port)
+* ipv4 (inc. CIDR, port) (`ipv4`, `ipv4-with-port`)
+* ipv6 (inc. CIDR, port) (`ipv6`, `ipv6-with-port`)
 * File name
-* md5 hash
-* sha1 hash
-* sha256 hash
-* sha512 hash
-* ssdeep hash
+* md5 hash (`md5`)
+* sha1 hash (`sha1`)
+* sha256 hash (`sha256`)
+* sha512 hash (`sha512`)
+* ssdeep hash (`ssdeep`)
 * Directory (Window and UNIX)
 * Domain
 * URL
@@ -89,7 +89,7 @@ pip3 install -e .
 To run file2stix;
 
 ```shell
-file2stix --input-file PATH/TO/FILE --custom-extraction-file PATH/TO/FILE --update-mitre-cti-database --cache-folder PATH/TO/DIRECTORY --tlp-level TLP --user-identity-file PATH/TO/FILE
+file2stix --input-file PATH/TO/FILE --custom-extraction-file PATH/TO/FILE --update-mitre-cti-database --cache-folder PATH/TO/DIRECTORY --tlp-level TLP --user-identity-file PATH/TO/FILE --ignore-observable-prefix observable1,observable2
 ```
 
 * `--input-file` (required): provides the path to the input file
@@ -98,6 +98,7 @@ file2stix --input-file PATH/TO/FILE --custom-extraction-file PATH/TO/FILE --upda
 * `--cache-folder` (optional, default `file2stix-cache`): cache folder path where MITRE ATT&K, CAPEC and MISP warning list will be stored. By default MITRE dataset is stored in "file2stix-cache" folder. You can specify a different folder for this using the `--cache-folder` option
 * `--tlp-level` (optional, default `WHITE`): the TLP level of report and extracted object. Either `WHITE` or `AMBER`. IMPORTANT, the TLP level defined has an impact on how the objects are stored. Read `docs/conversions.md` for more info.
 * `--user-identity-file` (optional, default `stix_templates/identity.yml`): path to user identity config file (in yml format) to assign to objects extracted. Note, the TLP level also has an impact on how identity is assigned.
+* `--ignore-observable-prefix` (optional, no default) you pass a list of obeservable types to ignore (e.g. `ipv4,ipv6`)
 
 You can also run `file2stix --help` to print more about these options in the command line.
 

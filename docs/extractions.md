@@ -2,6 +2,50 @@
 
 file2stix extracts observables from text and translates them into STIX 2.1 Objects. This section of the documentation describes the templates of the STIX Objects created.
 
+## Defanging
+
+Defanging obfuscates indicators into a safer representations so that a user reading a report does not accidentally click on a malicious URL or inadvertently run malicious code. Many cyber threat intelligence reports shared electronically employ defanging.
+
+Typical types of fanged Observables include IPv4 addresses (e.g. `1.1.1.1`), IPv6 addresses (e.g. `2001:0db8:85a3:0000:0000:8a2e:0370:7334`), domain names (e.g. `example.com`), URLs (e.g. `https://example.com/research/index.html`), email addresses (e.g. `example@example.com`), file extensions (e.g. `malicious.exe`), and directory paths (e.g. `C:\\Windows\\System32`).
+
+Unfortunately, there is no universal standard for defanging, although there are some common methods. Some samples of defanging I have observed include the following:
+
+* Wrapping one or more special characters in `[` `]`
+  * e.g. `www[.]example[.]com`
+  * e.g. `http[:]//example.com`
+  * e.g. `http[://]example.com`
+  * e.g. `1.1.1.1[/]24`
+* Wrapping one or more special characters in `{` `}`
+* Wrapping one or more special characters in `(` `)`
+* Prefixing one or more special characters with `[`
+  * e.g. `www[.example[.com`
+  * e.g. `http[://example.com`
+  * e.g. `http[://example.com`
+* Prefixing one or more special characters with `\`
+* Replacing `http` and `hxxp`
+  * e.g. `hxxps://google.com`
+* Replacing `.` with ` dot `
+  * e.g. `example@example dot com`
+  * e.g. `http://example dot com`
+* Replacing `.` with `[dot]` (or  `(dot)`, or `{dot}`)
+  * e.g. `example@example[dot]com`
+* Replacing `@` with ` at `
+  * e.g. `example at example.com`
+* Replacing `@` with `[at]` (or  `(at)`, or `{at}`)
+  * e.g. `example[at]example.com` 
+
+Note, a combination of the above techniques are also commonly implemented used. For example replacing `.` with ` dot ` and replacing `@` with ` at ` for an email like so; fanged = `example at example dot com`, defanged = `example@example.com`
+
+Another example using even more fanging technique combinations for a URL; fanged = `hxxps[:]//test\.example[.)com[/]path`, defanged = `https://test.example.com/path`
+
+file2stix can be used to defang the following observable types
+
+* ipv4
+* ipv6
+* domain
+* url
+* email-address
+
 ## STIX Support
 
 file2stix only supports STIX version 2.1 [as defined by this specification](https://docs.oasis-open.org/cti/stix/v2.1/os/stix-v2.1-os.html).
