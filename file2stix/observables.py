@@ -52,6 +52,7 @@ class Observable:
         self.tlp_level = config.tlp_level
         self.identity = config.identity
         self.misp_extension_definition = config.misp_extension_definition
+        self.misp_custom_warning_list = config.misp_custom_warning_list
 
     @property
     def pretty_name(self):
@@ -123,6 +124,14 @@ class Observable:
             misp_warning_list = WarningLists(slow_search=False)
             result = misp_warning_list.search(self.extracted_observable_text)
             x_warning_list_match = []
+
+            if result:
+                for hit in result:
+                    x_warning_list_match.append(hit.name)
+
+            # Check if observable is in custom warning list
+            custom_misp_warning_list = WarningLists(slow_search=False, lists=[self.misp_custom_warning_list])
+            result = custom_misp_warning_list.search(self.extracted_observable_text)
 
             if result:
                 for hit in result:

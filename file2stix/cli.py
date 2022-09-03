@@ -80,6 +80,12 @@ def cli():
         help="path to MISP extensions defintion file (in yml format)",
     )
 
+    arg_parser.add_argument(
+        "--misp-custom-warning-list-file",
+        action="store",
+        help="path to MISP custom warning list file",
+    )
+
     args = arg_parser.parse_args()
     
     input_file_path = os.path.abspath(args.input_file) if args.input_file != None else None
@@ -101,6 +107,7 @@ def cli():
         user_identity_file=args.user_identity_file,
         misp_extension_definition_file=args.misp_extension_definition_file,
         ignore_observables_list=ignore_observables_list,
+        misp_custom_warning_list_file=args.misp_custom_warning_list_file
     )
 
     # Call main

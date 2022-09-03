@@ -14,6 +14,9 @@ Repeatitions (only one SDO object should be created)
 198.51.100.5
 198.51.100.5
 
+17.0.0.0/8
+1.1.1.1
+
 Another ip address 198.0.103.12
 Another ip address CIDR 198.0.103.12/24
 An IP with a port 198.0.103.12:8000

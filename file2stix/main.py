@@ -14,6 +14,7 @@ from bs4 import BeautifulSoup
 from datetime import datetime
 from pathlib import Path
 from stix2 import Report, Relationship, Identity, ExtensionDefinition
+from pymispwarninglists.api import WarningList
 
 from file2stix import __appname__
 from file2stix.cache import Cache
@@ -93,10 +94,30 @@ def main(config: Config):
             misp_extension_definition_config = yaml.safe_load(f)
         if config.identity != None:
             misp_extension_definition_config["created_by_ref"] = config.identity.id
-        config.misp_extension_definition = ExtensionDefinition(**misp_extension_definition_config)
+        config.misp_extension_definition = ExtensionDefinition(
+            **misp_extension_definition_config
+        )
     except Exception as ex:
-        logger.warning("Failed to load MISP extension definition file at %s", config.misp_extension_definition_file)
+        logger.warning(
+            "Failed to load MISP extension definition file at %s",
+            config.misp_extension_definition_file,
+        )
         logger.debug("Exception caught when init MISP extension: %s", ex)
+    
+    if config.misp_custom_warning_list_file:
+        try:
+            with open(config.misp_custom_warning_list_file) as f:
+                misp_custom_warning_list = json.load(f)
+            WarningList(
+                misp_custom_warning_list
+            )  # Just to validate if the format is correct
+            config.misp_custom_warning_list = misp_custom_warning_list
+        except Exception as ex:
+            logger.warning(
+                "Failed to load MISP custom warning list file at %s",
+                config.misp_custom_warning_list_file,
+            )
+            logger.debug("Exception caught when parsing MISP custom warning list: %s", ex)
 
     # Update MITRE ATT&CK and CAPEC database
     if config.update_mitre_cti_database == True:
@@ -130,7 +151,10 @@ def main(config: Config):
     # Iterate over each observable and extract them from input file
     observables_list = ObservableList()
     for observable in inheritors(Observable):
-        if config.ignore_observables_list != None and observable in config.ignore_observables_list:
+        if (
+            config.ignore_observables_list != None
+            and observable in config.ignore_observables_list
+        ):
             logger.info("%s is ignored from extraction", observable.__name__)
             continue
         for (
