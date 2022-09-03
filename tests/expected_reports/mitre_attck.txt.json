@@ -1,0 +1,765 @@
+{
+    "type": "bundle",
+    "id": "bundle--8a55821e-d83d-4b03-9afe-ff0d45de0c3d",
+    "objects": [
+        {
+            "type": "attack-pattern",
+            "id": "attack-pattern--005a06c6-14bf-4118-afa0-ebcd8aebb0c9",
+            "created_by_ref": "identity--c78cb6e5-0c4b-4611-8297-d1b8b55e40b5",
+            "created": "2019-11-27T14:58:00.429Z",
+            "modified": "2022-04-14T20:59:17.110Z",
+            "name": "Scheduled Task",
+            "description": "Adversaries may abuse the Windows Task Scheduler to perform task scheduling for initial or recurring execution of malicious code. There are multiple ways to access the Task Scheduler in Windows. The [schtasks](https://attack.mitre.org/software/S0111) utility can be run directly on the command line, or the Task Scheduler can be opened through the GUI within the Administrator Tools section of the Control Panel. In some cases, adversaries have used a .NET wrapper for the Windows Task Scheduler, and alternatively, adversaries have used the Windows netapi32 library to create a scheduled task.\n\nThe deprecated [at](https://attack.mitre.org/software/S0110) utility could also be abused by adversaries (ex: [At](https://attack.mitre.org/techniques/T1053/002)), though <code>at.exe</code> can not access tasks created with <code>schtasks</code> or the Control Panel.\n\nAn adversary may use Windows Task Scheduler to execute programs at system startup or on a scheduled basis for persistence. The Windows Task Scheduler can also be abused to conduct remote Execution as part of Lateral Movement and/or to run a process under the context of a specified account (such as SYSTEM). Similar to [System Binary Proxy Execution](https://attack.mitre.org/techniques/T1218), adversaries have also abused the Windows Task Scheduler to potentially mask one-time execution under signed/trusted system processes.(Citation: ProofPoint Serpent)",
+            "kill_chain_phases": [
+                {
+                    "kill_chain_name": "mitre-attack",
+                    "phase_name": "execution"
+                },
+                {
+                    "kill_chain_name": "mitre-attack",
+                    "phase_name": "persistence"
+                },
+                {
+                    "kill_chain_name": "mitre-attack",
+                    "phase_name": "privilege-escalation"
+                }
+            ],
+            "external_references": [
+                {
+                    "source_name": "mitre-attack",
+                    "url": "https://attack.mitre.org/techniques/T1053/005",
+                    "external_id": "T1053.005"
+                },
+                {
+                    "source_name": "ProofPoint Serpent",
+                    "description": "Campbell, B. et al. (2022, March 21). Serpent, No Swiping! New Backdoor Targets French Entities with Unique Attack Chain. Retrieved April 11, 2022.",
+                    "url": "https://www.proofpoint.com/us/blog/threat-insight/serpent-no-swiping-new-backdoor-targets-french-entities-unique-attack-chain"
+                },
+                {
+                    "source_name": "Twitter Leoloobeek Scheduled Task",
+                    "description": "Loobeek, L. (2017, December 8). leoloobeek Status. Retrieved December 12, 2017.",
+                    "url": "https://twitter.com/leoloobeek/status/939248813465853953"
+                },
+                {
+                    "source_name": "Microsoft Scheduled Task Events Win10",
+                    "description": "Microsoft. (2017, May 28). Audit Other Object Access Events. Retrieved June 27, 2019.",
+                    "url": "https://docs.microsoft.com/en-us/windows/security/threat-protection/auditing/audit-other-object-access-events"
+                },
+                {
+                    "source_name": "TechNet Scheduled Task Events",
+                    "description": "Microsoft. (n.d.). General Task Registration. Retrieved December 12, 2017.",
+                    "url": "https://technet.microsoft.com/library/dd315590.aspx"
+                },
+                {
+                    "source_name": "TechNet Autoruns",
+                    "description": "Russinovich, M. (2016, January 4). Autoruns for Windows v13.51. Retrieved June 6, 2016.",
+                    "url": "https://technet.microsoft.com/en-us/sysinternals/bb963902"
+                },
+                {
+                    "source_name": "TechNet Forum Scheduled Task Operational Setting",
+                    "description": "Satyajit321. (2015, November 3). Scheduled Tasks History Retention settings. Retrieved December 12, 2017.",
+                    "url": "https://social.technet.microsoft.com/Forums/en-US/e5bca729-52e7-4fcb-ba12-3225c564674c/scheduled-tasks-history-retention-settings?forum=winserver8gen"
+                }
+            ],
+            "object_marking_refs": [
+                "marking-definition--fa42a846-8d90-4e51-bc29-71d5b4802168"
+            ],
+            "x_mitre_attack_spec_version": "2.1.0",
+            "x_mitre_contributors": [
+                "Andrew Northern, @ex_raritas",
+                "Bryan Campbell, @bry_campbell",
+                "Zachary Abzug, @ZackDoesML",
+                "Selena Larson, @selenalarson"
+            ],
+            "x_mitre_data_sources": [
+                "Command: Command Execution",
+                "Process: Process Creation",
+                "Scheduled Job: Scheduled Job Creation",
+                "File: File Modification"
+            ],
+            "x_mitre_deprecated": false,
+            "x_mitre_detection": "Monitor process execution from the <code>svchost.exe</code> in Windows 10 and the Windows Task Scheduler <code>taskeng.exe</code> for older versions of Windows. (Citation: Twitter Leoloobeek Scheduled Task) If scheduled tasks are not used for persistence, then the adversary is likely to remove the task when the action is complete. Monitor Windows Task Scheduler stores in %systemroot%\\System32\\Tasks for change entries related to scheduled tasks that do not correlate with known software, patch cycles, etc.\n\nConfigure event logging for scheduled task creation and changes by enabling the \"Microsoft-Windows-TaskScheduler/Operational\" setting within the event logging service. (Citation: TechNet Forum Scheduled Task Operational Setting) Several events will then be logged on scheduled task activity, including: (Citation: TechNet Scheduled Task Events)(Citation: Microsoft Scheduled Task Events Win10)\n\n* Event ID 106 on Windows 7, Server 2008 R2 - Scheduled task registered\n* Event ID 140 on Windows 7, Server 2008 R2 / 4702 on Windows 10, Server 2016 - Scheduled task updated\n* Event ID 141 on Windows 7, Server 2008 R2 / 4699 on Windows 10, Server 2016 - Scheduled task deleted\n* Event ID 4698 on Windows 10, Server 2016 - Scheduled task created\n* Event ID 4700 on Windows 10, Server 2016 - Scheduled task enabled\n* Event ID 4701 on Windows 10, Server 2016 - Scheduled task disabled\n\nTools such as Sysinternals Autoruns may also be used to detect system changes that could be attempts at persistence, including listing current scheduled tasks. (Citation: TechNet Autoruns)\n\nRemote access tools with built-in features may interact directly with the Windows API to perform these functions outside of typical system utilities. Tasks may also be created through Windows system management tools such as Windows Management Instrumentation and PowerShell, so additional logging may need to be configured to gather the appropriate data.",
+            "x_mitre_domains": [
+                "enterprise-attack"
+            ],
+            "x_mitre_is_subtechnique": true,
+            "x_mitre_modified_by_ref": "identity--c78cb6e5-0c4b-4611-8297-d1b8b55e40b5",
+            "x_mitre_permissions_required": [
+                "Administrator"
+            ],
+            "x_mitre_platforms": [
+                "Windows"
+            ],
+            "x_mitre_remote_support": true,
+            "x_mitre_version": "1.1"
+        },
+        {
+            "type": "attack-pattern",
+            "id": "attack-pattern--81033c3b-16a4-46e4-8fed-9b030dd03c4a",
+            "created_by_ref": "identity--c78cb6e5-0c4b-4611-8297-d1b8b55e40b5",
+            "created": "2020-10-01T01:17:15.965Z",
+            "modified": "2021-10-16T17:15:12.428Z",
+            "name": "Compromise Accounts",
+            "description": "Adversaries may compromise accounts with services that can be used during targeting. For operations incorporating social engineering, the utilization of an online persona may be important. Rather than creating and cultivating accounts (i.e. [Establish Accounts](https://attack.mitre.org/techniques/T1585)), adversaries may compromise existing accounts. Utilizing an existing persona may engender a level of trust in a potential victim if they have a relationship, or knowledge of, the compromised persona. \n\nA variety of methods exist for compromising accounts, such as gathering credentials via [Phishing for Information](https://attack.mitre.org/techniques/T1598), purchasing credentials from third-party sites, or by brute forcing credentials (ex: password reuse from breach credential dumps).(Citation: AnonHBGary) Prior to compromising accounts, adversaries may conduct Reconnaissance to inform decisions about which accounts to compromise to further their operation.\n\nPersonas may exist on a single site or across multiple sites (ex: Facebook, LinkedIn, Twitter, Google, etc.). Compromised accounts may require additional development, this could include filling out or modifying profile information, further developing social networks, or incorporating photos.\n\nAdversaries may directly leverage compromised email accounts for [Phishing for Information](https://attack.mitre.org/techniques/T1598) or [Phishing](https://attack.mitre.org/techniques/T1566).",
+            "kill_chain_phases": [
+                {
+                    "kill_chain_name": "mitre-attack",
+                    "phase_name": "resource-development"
+                }
+            ],
+            "external_references": [
+                {
+                    "source_name": "mitre-attack",
+                    "url": "https://attack.mitre.org/techniques/T1586",
+                    "external_id": "T1586"
+                },
+                {
+                    "source_name": "AnonHBGary",
+                    "description": "Bright, P. (2011, February 15). Anonymous speaks: the inside story of the HBGary hack. Retrieved March 9, 2017.",
+                    "url": "https://arstechnica.com/tech-policy/2011/02/anonymous-speaks-the-inside-story-of-the-hbgary-hack/"
+                }
+            ],
+            "object_marking_refs": [
+                "marking-definition--fa42a846-8d90-4e51-bc29-71d5b4802168"
+            ],
+            "x_mitre_data_sources": [
+                "Persona: Social Media",
+                "Network Traffic: Network Traffic Content"
+            ],
+            "x_mitre_detection": "Consider monitoring social media activity related to your organization. Suspicious activity may include personas claiming to work for your organization or recently modified accounts making numerous connection requests to accounts affiliated with your organization.\n\nMuch of this activity will take place outside the visibility of the target organization, making detection of this behavior difficult. Detection efforts may be focused on related stages of the adversary lifecycle, such as during Initial Access (ex: [Phishing](https://attack.mitre.org/techniques/T1566)).",
+            "x_mitre_domains": [
+                "enterprise-attack"
+            ],
+            "x_mitre_modified_by_ref": "identity--c78cb6e5-0c4b-4611-8297-d1b8b55e40b5",
+            "x_mitre_platforms": [
+                "PRE"
+            ],
+            "x_mitre_version": "1.1"
+        },
+        {
+            "type": "attack-pattern",
+            "id": "attack-pattern--274770e0-2612-4ccf-a678-ef8e7bad365d",
+            "created_by_ref": "identity--c78cb6e5-0c4b-4611-8297-d1b8b55e40b5",
+            "created": "2020-10-01T01:18:35.535Z",
+            "modified": "2021-10-16T17:15:12.169Z",
+            "name": "Social Media Accounts",
+            "description": "Adversaries may compromise social media accounts that can be used during targeting. For operations incorporating social engineering, the utilization of an online persona may be important. Rather than creating and cultivating social media profiles (i.e. [Social Media Accounts](https://attack.mitre.org/techniques/T1585/001)), adversaries may compromise existing social media accounts. Utilizing an existing persona may engender a level of trust in a potential victim if they have a relationship, or knowledge of, the compromised persona. \n\nA variety of methods exist for compromising social media accounts, such as gathering credentials via [Phishing for Information](https://attack.mitre.org/techniques/T1598), purchasing credentials from third-party sites, or by brute forcing credentials (ex: password reuse from breach credential dumps).(Citation: AnonHBGary) Prior to compromising social media accounts, adversaries may conduct Reconnaissance to inform decisions about which accounts to compromise to further their operation.\n\nPersonas may exist on a single site or across multiple sites (ex: Facebook, LinkedIn, Twitter, etc.). Compromised social media accounts may require additional development, this could include filling out or modifying profile information, further developing social networks, or incorporating photos.\n\nAdversaries can use a compromised social media profile to create new, or hijack existing, connections to targets of interest. These connections may be direct or may include trying to connect through others.(Citation: NEWSCASTER2014)(Citation: BlackHatRobinSage) Compromised profiles may be leveraged during other phases of the adversary lifecycle, such as during Initial Access (ex: [Spearphishing via Service](https://attack.mitre.org/techniques/T1566/003)).",
+            "kill_chain_phases": [
+                {
+                    "kill_chain_name": "mitre-attack",
+                    "phase_name": "resource-development"
+                }
+            ],
+            "external_references": [
+                {
+                    "source_name": "mitre-attack",
+                    "url": "https://attack.mitre.org/techniques/T1586/001",
+                    "external_id": "T1586.001"
+                },
+                {
+                    "source_name": "AnonHBGary",
+                    "description": "Bright, P. (2011, February 15). Anonymous speaks: the inside story of the HBGary hack. Retrieved March 9, 2017.",
+                    "url": "https://arstechnica.com/tech-policy/2011/02/anonymous-speaks-the-inside-story-of-the-hbgary-hack/"
+                },
+                {
+                    "source_name": "NEWSCASTER2014",
+                    "description": "Lennon, M. (2014, May 29). Iranian Hackers Targeted US Officials in Elaborate Social Media Attack Operation. Retrieved March 1, 2017.",
+                    "url": "https://www.securityweek.com/iranian-hackers-targeted-us-officials-elaborate-social-media-attack-operation"
+                },
+                {
+                    "source_name": "BlackHatRobinSage",
+                    "description": "Ryan, T. (2010). \u201cGetting In Bed with Robin Sage.\u201d. Retrieved March 6, 2017.",
+                    "url": "http://media.blackhat.com/bh-us-10/whitepapers/Ryan/BlackHat-USA-2010-Ryan-Getting-In-Bed-With-Robin-Sage-v1.0.pdf"
+                }
+            ],
+            "object_marking_refs": [
+                "marking-definition--fa42a846-8d90-4e51-bc29-71d5b4802168"
+            ],
+            "x_mitre_data_sources": [
+                "Network Traffic: Network Traffic Content",
+                "Persona: Social Media"
+            ],
+            "x_mitre_detection": "Consider monitoring social media activity related to your organization. Suspicious activity may include personas claiming to work for your organization or recently modified accounts making numerous connection requests to accounts affiliated with your organization.\n\nDetection efforts may be focused on related stages of the adversary lifecycle, such as during Initial Access (ex: [Spearphishing via Service](https://attack.mitre.org/techniques/T1566/003)).",
+            "x_mitre_domains": [
+                "enterprise-attack"
+            ],
+            "x_mitre_is_subtechnique": true,
+            "x_mitre_modified_by_ref": "identity--c78cb6e5-0c4b-4611-8297-d1b8b55e40b5",
+            "x_mitre_platforms": [
+                "PRE"
+            ],
+            "x_mitre_version": "1.1"
+        },
+        {
+            "type": "attack-pattern",
+            "id": "attack-pattern--3dc8c101-d4db-4f4d-8150-1b5a76ca5f1b",
+            "created_by_ref": "identity--c78cb6e5-0c4b-4611-8297-d1b8b55e40b5",
+            "created": "2020-10-01T01:20:53.104Z",
+            "modified": "2021-04-15T02:57:25.544Z",
+            "name": "Email Accounts",
+            "description": "Adversaries may compromise email accounts that can be used during targeting. Adversaries can use compromised email accounts to further their operations, such as leveraging them to conduct [Phishing for Information](https://attack.mitre.org/techniques/T1598) or [Phishing](https://attack.mitre.org/techniques/T1566). Utilizing an existing persona with a compromised email account may engender a level of trust in a potential victim if they have a relationship, or knowledge of, the compromised persona. Compromised email accounts can also be used in the acquisition of infrastructure (ex: [Domains](https://attack.mitre.org/techniques/T1583/001)).\n\nA variety of methods exist for compromising email accounts, such as gathering credentials via [Phishing for Information](https://attack.mitre.org/techniques/T1598), purchasing credentials from third-party sites, or by brute forcing credentials (ex: password reuse from breach credential dumps).(Citation: AnonHBGary) Prior to compromising email accounts, adversaries may conduct Reconnaissance to inform decisions about which accounts to compromise to further their operation.\n\nAdversaries can use a compromised email account to hijack existing email threads with targets of interest.",
+            "kill_chain_phases": [
+                {
+                    "kill_chain_name": "mitre-attack",
+                    "phase_name": "resource-development"
+                }
+            ],
+            "external_references": [
+                {
+                    "source_name": "mitre-attack",
+                    "url": "https://attack.mitre.org/techniques/T1586/002",
+                    "external_id": "T1586.002"
+                },
+                {
+                    "source_name": "AnonHBGary",
+                    "description": "Bright, P. (2011, February 15). Anonymous speaks: the inside story of the HBGary hack. Retrieved March 9, 2017.",
+                    "url": "https://arstechnica.com/tech-policy/2011/02/anonymous-speaks-the-inside-story-of-the-hbgary-hack/"
+                }
+            ],
+            "object_marking_refs": [
+                "marking-definition--fa42a846-8d90-4e51-bc29-71d5b4802168"
+            ],
+            "x_mitre_detection": "Much of this activity will take place outside the visibility of the target organization, making detection of this behavior difficult. Detection efforts may be focused on related stages of the adversary lifecycle, such as during Initial Access (ex: [Phishing](https://attack.mitre.org/techniques/T1566)).",
+            "x_mitre_domains": [
+                "enterprise-attack"
+            ],
+            "x_mitre_is_subtechnique": true,
+            "x_mitre_modified_by_ref": "identity--c78cb6e5-0c4b-4611-8297-d1b8b55e40b5",
+            "x_mitre_platforms": [
+                "PRE"
+            ],
+            "x_mitre_version": "1.0"
+        },
+        {
+            "type": "attack-pattern",
+            "id": "attack-pattern--7830cfcf-b268-4ac0-a69e-73c6affbae9a",
+            "created_by_ref": "identity--c78cb6e5-0c4b-4611-8297-d1b8b55e40b5",
+            "created": "2020-05-21T17:43:26.506Z",
+            "modified": "2022-05-06T17:47:23.918Z",
+            "name": "Drive-by Compromise",
+            "description": "Adversaries may gain access to a system during a drive-by compromise, when a user visits a website as part of a regular browsing session.With this technique, the user's web browser is targeted and exploited simply by visiting the compromised website.   The adversary may target a specific community, such as trusted third party suppliers or other industry specific groups, which often visit the target website. This kind of targeted attack relies on a common interest, and is known as a strategic web compromise or watering hole attack.   The National Cyber Awareness System (NCAS) has issued a Technical Alert (TA) regarding Russian government cyber activity targeting critical infrastructure sectors. (Citation: Cybersecurity & Infrastructure Security Agency March 2018) Analysis by DHS and FBI has noted two distinct categories of victims in the Dragonfly campaign on the Western energy sector: staging and intended targets. The adversary targeted the less secure networks of staging targets, including trusted third-party suppliers and related peripheral organizations. Initial access to the intended targets used watering hole attacks to target process control, ICS, and critical infrastructure related trade publications and informational websites.",
+            "kill_chain_phases": [
+                {
+                    "kill_chain_name": "mitre-ics-attack",
+                    "phase_name": "initial-access-ics"
+                }
+            ],
+            "external_references": [
+                {
+                    "source_name": "mitre-ics-attack",
+                    "url": "https://attack.mitre.org/techniques/T0817",
+                    "external_id": "T0817"
+                },
+                {
+                    "source_name": "Cybersecurity & Infrastructure Security Agency March 2018",
+                    "description": "Cybersecurity & Infrastructure Security Agency 2018, March 15 Alert (TA18-074A) Russian Government Cyber Activity Targeting Energy and Other Critical Infrastructure Sectors Retrieved. 2019/10/11 ",
+                    "url": "https://us-cert.cisa.gov/ncas/alerts/TA18-074A"
+                }
+            ],
+            "object_marking_refs": [
+                "marking-definition--fa42a846-8d90-4e51-bc29-71d5b4802168"
+            ],
+            "x_mitre_attack_spec_version": "2.1.0",
+            "x_mitre_data_sources": [
+                "Application Log: Application Log Content",
+                "File: File Creation",
+                "Network Traffic: Network Connection Creation",
+                "Network Traffic: Network Traffic Content",
+                "Process: Process Creation"
+            ],
+            "x_mitre_domains": [
+                "ics-attack"
+            ],
+            "x_mitre_modified_by_ref": "identity--c78cb6e5-0c4b-4611-8297-d1b8b55e40b5",
+            "x_mitre_platforms": [
+                "None"
+            ],
+            "x_mitre_version": "1.0"
+        },
+        {
+            "type": "attack-pattern",
+            "id": "attack-pattern--351ddf79-2d3a-41b4-9bef-82ea5d3ccd69",
+            "created_by_ref": "identity--c78cb6e5-0c4b-4611-8297-d1b8b55e40b5",
+            "created": "2021-09-20T13:42:20.824Z",
+            "modified": "2021-09-27T18:05:42.788Z",
+            "name": "Call Control",
+            "description": "Adversaries may make, forward, or block phone calls without user authorization. This could be used for adversary goals such as audio surveillance, blocking or forwarding calls from the device owner, or C2 communication.\n\nSeveral permissions may be used to programmatically control phone calls, including:\n\n* `ANSWER_PHONE_CALLS` - Allows the application to answer incoming phone calls(Citation: Android Permissions)\n* `CALL_PHONE` - Allows the application to initiate a phone call without going through the Dialer interface(Citation: Android Permissions)\n* `PROCESS_OUTGOING_CALLS` - Allows the application to see the number being dialed during an outgoing call with the option to redirect the call to a different number or abort the call altogether(Citation: Android Permissions)\n* `MANAGE_OWN_CALLS` - Allows a calling application which manages its own calls through the self-managed `ConnectionService` APIs(Citation: Android Permissions)\n* `BIND_TELECOM_CONNECTION_SERVICE` - Required permission when using a `ConnectionService`(Citation: Android Permissions)\n* `WRITE_CALL_LOG` - Allows an application to write to the device call log, potentially to hide malicious phone calls(Citation: Android Permissions)\n\nWhen granted some of these permissions, an application can make a phone call without opening the dialer first. However, if an application desires to simply redirect the user to the dialer with a phone number filled in, it can launch an Intent using `Intent.ACTION_DIAL`, which requires no specific permissions. This then requires the user to explicitly initiate the call or use some form of [Input Injection](https://attack.mitre.org/techniques/T1516) to programmatically initiate it.",
+            "kill_chain_phases": [
+                {
+                    "kill_chain_name": "mitre-mobile-attack",
+                    "phase_name": "collection"
+                },
+                {
+                    "kill_chain_name": "mitre-mobile-attack",
+                    "phase_name": "impact"
+                },
+                {
+                    "kill_chain_name": "mitre-mobile-attack",
+                    "phase_name": "command-and-control"
+                }
+            ],
+            "external_references": [
+                {
+                    "source_name": "mitre-mobile-attack",
+                    "url": "https://attack.mitre.org/techniques/T1616",
+                    "external_id": "T1616"
+                },
+                {
+                    "source_name": "NIST Mobile Threat Catalogue",
+                    "url": "https://pages.nist.gov/mobile-threat-catalogue/application-threats/APP-41.html",
+                    "external_id": "APP-41"
+                },
+                {
+                    "source_name": "NIST Mobile Threat Catalogue",
+                    "url": "https://pages.nist.gov/mobile-threat-catalogue/cellular-threats/CEL-42.html",
+                    "external_id": "CEL-42"
+                },
+                {
+                    "source_name": "NIST Mobile Threat Catalogue",
+                    "url": "https://pages.nist.gov/mobile-threat-catalogue/cellular-threats/CEL-36.html",
+                    "external_id": "CEL-36"
+                },
+                {
+                    "source_name": "NIST Mobile Threat Catalogue",
+                    "url": "https://pages.nist.gov/mobile-threat-catalogue/cellular-threats/CEL-18.html",
+                    "external_id": "CEL-18"
+                },
+                {
+                    "source_name": "Android Permissions",
+                    "description": "Google. (2021, August 11). Manifest.permission. Retrieved September 22, 2021.",
+                    "url": "https://developer.android.com/reference/android/Manifest.permission"
+                }
+            ],
+            "object_marking_refs": [
+                "marking-definition--fa42a846-8d90-4e51-bc29-71d5b4802168"
+            ],
+            "x_mitre_contributors": [
+                "Gaetan van Diemen, ThreatFabric"
+            ],
+            "x_mitre_detection": "Users can view their default phone app in device settings. Users can review available call logs for irregularities, such as missing or unrecognized calls.",
+            "x_mitre_domains": [
+                "mobile-attack"
+            ],
+            "x_mitre_modified_by_ref": "identity--c78cb6e5-0c4b-4611-8297-d1b8b55e40b5",
+            "x_mitre_platforms": [
+                "Android"
+            ],
+            "x_mitre_tactic_type": [
+                "Post-Adversary Device Access"
+            ],
+            "x_mitre_version": "1.0"
+        },
+        {
+            "type": "attack-pattern",
+            "id": "attack-pattern--d9e88203-2b5d-405f-a406-2933b1e3d7e4",
+            "created_by_ref": "identity--c78cb6e5-0c4b-4611-8297-d1b8b55e40b5",
+            "created": "2017-10-25T14:48:10.285Z",
+            "modified": "2022-04-06T13:31:22.485Z",
+            "name": "Data Encrypted for Impact",
+            "description": "An adversary may encrypt files stored on a mobile device to prevent the user from accessing them. This may be done in order to extract monetary compensation from a victim in exchange for decryption or a decryption key (ransomware) or to render data permanently inaccessible in cases where the key is not saved or transmitted.",
+            "kill_chain_phases": [
+                {
+                    "kill_chain_name": "mitre-mobile-attack",
+                    "phase_name": "impact"
+                }
+            ],
+            "external_references": [
+                {
+                    "source_name": "mitre-attack",
+                    "url": "https://attack.mitre.org/techniques/T1471",
+                    "external_id": "T1471"
+                },
+                {
+                    "source_name": "NIST Mobile Threat Catalogue",
+                    "url": "https://pages.nist.gov/mobile-threat-catalogue/application-threats/APP-28.html",
+                    "external_id": "APP-28"
+                }
+            ],
+            "object_marking_refs": [
+                "marking-definition--fa42a846-8d90-4e51-bc29-71d5b4802168"
+            ],
+            "x_mitre_attack_spec_version": "2.1.0",
+            "x_mitre_deprecated": false,
+            "x_mitre_detection": "Application vetting services may be able to detect if an application attempts to encrypt files, although this may be benign behavior.",
+            "x_mitre_domains": [
+                "mobile-attack"
+            ],
+            "x_mitre_is_subtechnique": false,
+            "x_mitre_modified_by_ref": "identity--c78cb6e5-0c4b-4611-8297-d1b8b55e40b5",
+            "x_mitre_platforms": [
+                "Android"
+            ],
+            "x_mitre_tactic_type": [
+                "Post-Adversary Device Access"
+            ],
+            "x_mitre_version": "3.1"
+        },
+        {
+            "type": "attack-pattern",
+            "id": "attack-pattern--2883c520-7957-46ca-89bd-dab1ad53b601",
+            "created_by_ref": "identity--c78cb6e5-0c4b-4611-8297-d1b8b55e40b5",
+            "created": "2020-05-21T17:43:26.506Z",
+            "modified": "2022-05-24T11:42:52.057Z",
+            "name": "Change Operating Mode",
+            "description": "Adversaries may change the operating mode of a controller to gain additional access to engineering functions such as Program Download.   Programmable controllers typically have several modes of operation that control the state of the user program and control access to the controllers API. Operating modes can be physically selected using a key switch on the face of the controller but may also be selected with calls to the controllers API. Operating modes and the mechanisms by which they are selected often vary by vendor and product line. Some commonly implemented operating modes are described below:  \n\n* Program - This mode must be enabled before changes can be made to a devices program. This allows program uploads and downloads between the device and an engineering workstation. Often the PLCs logic Is halted, and all outputs may be forced off. (Citation: N.A. October 2017)  \n* Run - Execution of the devices program occurs in this mode. Input and output (values, points, tags, elements, etc.) are monitored and used according to the programs logic. [Program Upload](https://attack.mitre.org/techniques/T0845) and [Program Download](https://attack.mitre.org/techniques/T0843) are disabled while in this mode. (Citation: Omron) (Citation: Machine Information Systems 2007)  (Citation: N.A. October 2017) (Citation: PLCgurus 2021)   \n* Remote - Allows for remote changes to a PLCs operation mode. (Citation: PLCgurus 2021)    \n* Stop - The PLC and program is stopped, while in this mode, outputs are forced off. (Citation: Machine Information Systems 2007)   \n* Reset - Conditions on the PLC are reset to their original states. Warm resets may retain some memory while cold resets will reset all I/O and data registers. (Citation: Machine Information Systems 2007)   \n* Test / Monitor mode - Similar to run mode, I/O is processed, although this mode allows for monitoring, force set, resets, and more generally tuning or debugging of the system. Often monitor mode may be used as a trial for initialization. (Citation: Omron)",
+            "kill_chain_phases": [
+                {
+                    "kill_chain_name": "mitre-ics-attack",
+                    "phase_name": "execution-ics"
+                },
+                {
+                    "kill_chain_name": "mitre-ics-attack",
+                    "phase_name": "evasion-ics"
+                }
+            ],
+            "external_references": [
+                {
+                    "source_name": "mitre-ics-attack",
+                    "url": "https://attack.mitre.org/techniques/T0858",
+                    "external_id": "T0858"
+                },
+                {
+                    "source_name": "Machine Information Systems 2007",
+                    "description": "Machine Information Systems 2007 How PLCs Work Retrieved. 2021/01/28 ",
+                    "url": "http://www.machine-information-systems.com/How_PLCs_Work.html"
+                },
+                {
+                    "source_name": "N.A. October 2017",
+                    "description": "N.A. 2017, October What are the different operating modes in PLC? Retrieved. 2021/01/28 ",
+                    "url": "https://forumautomation.com/t/what-are-the-different-operating-modes-in-plc/2489"
+                },
+                {
+                    "source_name": "Omron",
+                    "description": "Omron Machine Information Systems 2007 How PLCs Work Retrieved. 2021/01/28  PLC Different Operating Modes Retrieved. 2021/01/28 ",
+                    "url": "https://www.omron-ap.com/service_support/FAQ/FAQ00002/index.asp#:~:text=In%20PROGRAM%20mode%2C%20the%20CPU,can%20be%20created%20or%20modified."
+                },
+                {
+                    "source_name": "PLCgurus 2021",
+                    "description": "PLCgurus 2021 PLC Basics  Modes Of Operation Retrieved. 2021/01/28 ",
+                    "url": "https://www.plcgurus.net/plc-basics/"
+                }
+            ],
+            "object_marking_refs": [
+                "marking-definition--fa42a846-8d90-4e51-bc29-71d5b4802168"
+            ],
+            "x_mitre_attack_spec_version": "2.1.0",
+            "x_mitre_data_sources": [
+                "Network Traffic: Network Traffic Content",
+                "Application Log: Application Log Content",
+                "Operational Databases: Device Alarm"
+            ],
+            "x_mitre_deprecated": false,
+            "x_mitre_detection": "",
+            "x_mitre_domains": [
+                "ics-attack"
+            ],
+            "x_mitre_is_subtechnique": false,
+            "x_mitre_modified_by_ref": "identity--c78cb6e5-0c4b-4611-8297-d1b8b55e40b5",
+            "x_mitre_platforms": [
+                "Safety Instrumented System/Protection Relay",
+                "Field Controller/RTU/PLC/IED"
+            ],
+            "x_mitre_version": "1.0"
+        },
+        {
+            "type": "attack-pattern",
+            "id": "attack-pattern--2900bbd8-308a-4274-b074-5b8bde8347bc",
+            "created_by_ref": "identity--c78cb6e5-0c4b-4611-8297-d1b8b55e40b5",
+            "created": "2020-05-21T17:43:26.506Z",
+            "modified": "2022-05-06T17:47:23.889Z",
+            "name": "Alarm Suppression",
+            "description": "Adversaries may target protection function alarms to prevent them from notifying operators of critical conditions. Alarm messages may be a part of an overall reporting system and of particular interest for adversaries. Disruption of the alarm system does not imply the disruption of the reporting system as a whole.   In the Maroochy Attack, the adversary suppressed alarm reporting to the central computer. (Citation: Marshall Abrams July 2008)  A Secura presentation on targeting OT notes a dual fold goal for adversaries attempting alarm suppression: prevent outgoing alarms from being raised and prevent incoming alarms from being responded to. (Citation: Jos Wetzels, Marina Krotofil 2019)  The method of suppression may greatly depend on the type of alarm in question:  * An alarm raised by a protocol message * An alarm signaled with I/O * An alarm bit set in a flag (and read)  In ICS environments, the adversary may have to suppress or contend with multiple alarms and/or alarm propagation to achieve a specific goal to evade detection or prevent intended responses from occurring. (Citation: Jos Wetzels, Marina Krotofil 2019)  Methods of suppression may involve tampering or altering device displays and logs, modifying in memory code to fixed values, or even tampering with assembly level instruction code.",
+            "kill_chain_phases": [
+                {
+                    "kill_chain_name": "mitre-ics-attack",
+                    "phase_name": "inhibit-response-function"
+                }
+            ],
+            "external_references": [
+                {
+                    "source_name": "mitre-ics-attack",
+                    "url": "https://attack.mitre.org/techniques/T0878",
+                    "external_id": "T0878"
+                },
+                {
+                    "source_name": "Marshall Abrams July 2008",
+                    "description": "Marshall Abrams 2008, July 23 Malicious Control System Cyber Security Attack Case Study Maroochy Water Services, Australia Retrieved. 2018/03/27 ",
+                    "url": "https://www.mitre.org/sites/default/files/pdf/08_1145.pdf"
+                },
+                {
+                    "source_name": "Jos Wetzels, Marina Krotofil 2019",
+                    "description": "Jos Wetzels, Marina Krotofil 2019 A Diet of Poisoned Fruit: Designing Implants & OT Payloads for ICS Embedded Devices Retrieved. 2019/11/01 ",
+                    "url": "https://troopers.de/downloads/troopers19/TROOPERS19_NGI_IoT_diet_poisoned_fruit.pdf"
+                },
+                {
+                    "source_name": "Jos Wetzels, Marina Krotofil 2019",
+                    "description": "Jos Wetzels, Marina Krotofil 2019 A Diet of Poisoned Fruit: Designing Implants & OT Payloads for ICS Embedded Devices Retrieved. 2019/11/01 ",
+                    "url": "https://troopers.de/downloads/troopers19/TROOPERS19_NGI_IoT_diet_poisoned_fruit.pdf"
+                }
+            ],
+            "object_marking_refs": [
+                "marking-definition--fa42a846-8d90-4e51-bc29-71d5b4802168"
+            ],
+            "x_mitre_attack_spec_version": "2.1.0",
+            "x_mitre_contributors": [
+                "Marina Krotofil",
+                "Jos Wetzels - Midnight Blue"
+            ],
+            "x_mitre_data_sources": [
+                "Network Traffic: Network Traffic Content",
+                "Application Log: Application Log Content",
+                "Operational Databases: Process History/Live Data",
+                "Operational Databases: Process/Event Alarm"
+            ],
+            "x_mitre_domains": [
+                "ics-attack"
+            ],
+            "x_mitre_modified_by_ref": "identity--c78cb6e5-0c4b-4611-8297-d1b8b55e40b5",
+            "x_mitre_platforms": [
+                "Field Controller/RTU/PLC/IED",
+                "Safety Instrumented System/Protection Relay",
+                "Device Configuration/Parameters"
+            ],
+            "x_mitre_version": "1.0"
+        },
+        {
+            "x_mitre_platforms": [
+                "Azure AD",
+                "Windows"
+            ],
+            "x_mitre_domains": [
+                "enterprise-attack"
+            ],
+            "x_mitre_contributors": [
+                "Center for Threat-Informed Defense (CTID)"
+            ],
+            "x_mitre_collection_layers": [
+                "Cloud Control Plane",
+                "Host"
+            ],
+            "object_marking_refs": [
+                "marking-definition--fa42a846-8d90-4e51-bc29-71d5b4802168"
+            ],
+            "id": "x-mitre-data-source--d6188aac-17db-4861-845f-57c369f9b4c8",
+            "type": "x-mitre-data-source",
+            "created": "2021-10-20T15:05:19.274Z",
+            "created_by_ref": "identity--c78cb6e5-0c4b-4611-8297-d1b8b55e40b5",
+            "external_references": [
+                {
+                    "source_name": "mitre-attack",
+                    "url": "https://attack.mitre.org/datasources/DS0026",
+                    "external_id": "DS0026"
+                },
+                {
+                    "source_name": "Microsoft AD DS Getting Started",
+                    "description": "Foulds, I. et al. (2018, August 7). AD DS Getting Started. Retrieved September 23, 2021.",
+                    "url": "https://docs.microsoft.com/en-us/windows-server/identity/ad-ds/ad-ds-getting-started"
+                }
+            ],
+            "modified": "2022-03-30T14:26:51.803Z",
+            "name": "Active Directory",
+            "description": "A database and set of services that allows administrators to manage permissions, access to network resources, and stored data objects (user, group, application, or devices)(Citation: Microsoft AD DS Getting Started)",
+            "x_mitre_version": "1.0",
+            "x_mitre_attack_spec_version": "2.1.0",
+            "x_mitre_modified_by_ref": "identity--c78cb6e5-0c4b-4611-8297-d1b8b55e40b5"
+        },
+        {
+            "x_mitre_domains": [
+                "enterprise-attack"
+            ],
+            "object_marking_refs": [
+                "marking-definition--fa42a846-8d90-4e51-bc29-71d5b4802168"
+            ],
+            "id": "x-mitre-tactic--daa4cbb1-b4f4-4723-a824-7f1efd6e0592",
+            "type": "x-mitre-tactic",
+            "created": "2020-10-02T14:48:41.809Z",
+            "created_by_ref": "identity--c78cb6e5-0c4b-4611-8297-d1b8b55e40b5",
+            "external_references": [
+                {
+                    "external_id": "TA0043",
+                    "source_name": "mitre-attack",
+                    "url": "https://attack.mitre.org/tactics/TA0043"
+                }
+            ],
+            "modified": "2020-10-18T02:04:50.842Z",
+            "name": "Reconnaissance",
+            "description": "The adversary is trying to gather information they can use to plan future operations.\n\nReconnaissance consists of techniques that involve adversaries actively or passively gathering information that can be used to support targeting. Such information may include details of the victim organization, infrastructure, or staff/personnel. This information can be leveraged by the adversary to aid in other phases of the adversary lifecycle, such as using gathered information to plan and execute Initial Access, to scope and prioritize post-compromise objectives, or to drive and lead further Reconnaissance efforts.",
+            "x_mitre_version": "1.0",
+            "x_mitre_attack_spec_version": "2.1.0",
+            "x_mitre_modified_by_ref": "identity--c78cb6e5-0c4b-4611-8297-d1b8b55e40b5",
+            "x_mitre_shortname": "reconnaissance"
+        },
+        {
+            "x_mitre_domains": [
+                "ics-attack"
+            ],
+            "object_marking_refs": [
+                "marking-definition--fa42a846-8d90-4e51-bc29-71d5b4802168"
+            ],
+            "created": "2018-10-17T00:14:20.652Z",
+            "description": "The adversary is trying to run code or manipulate system functions, parameters, and data in an unauthorized way.\n\nExecution consists of techniques that result in adversary-controlled code running on a local or remote system, device, or other asset. This execution may also rely on unknowing end users or the manipulation of device operating modes to run. Adversaries may infect remote targets with programmed executables or malicious project files that operate according to specified behavior and may alter expected device behavior in subtle ways. Commands for execution may also be issued from command-line interfaces, APIs, GUIs, or other available interfaces. Techniques that run malicious code may also be paired with techniques from other tactics, particularly to aid network [Discovery](https://attack.mitre.org/tactics/TA0102) and [Collection](https://attack.mitre.org/tactics/TA0100), impact operations, and inhibit response functions.",
+            "created_by_ref": "identity--c78cb6e5-0c4b-4611-8297-d1b8b55e40b5",
+            "external_references": [
+                {
+                    "source_name": "mitre-ics-attack",
+                    "external_id": "TA0104",
+                    "url": "https://attack.mitre.org/tactics/TA0104"
+                }
+            ],
+            "id": "x-mitre-tactic--93bf9a8e-b14c-4587-b6d5-9efc7c12eb45",
+            "modified": "2022-05-06T17:47:24.396Z",
+            "name": "Execution",
+            "type": "x-mitre-tactic",
+            "x_mitre_shortname": "execution-ics",
+            "x_mitre_attack_spec_version": "2.1.0",
+            "x_mitre_modified_by_ref": "identity--c78cb6e5-0c4b-4611-8297-d1b8b55e40b5",
+            "x_mitre_version": "1.0"
+        },
+        {
+            "type": "report",
+            "spec_version": "2.1",
+            "id": "report--4452784c-7cdd-4f9b-afd7-dc18cf97e471",
+            "created": "2022-09-03T05:03:56.289018Z",
+            "modified": "2022-09-03T05:03:56.289018Z",
+            "name": "File converted: mitre_attck.txt",
+            "report_types": [
+                "threat_report"
+            ],
+            "published": "2022-09-03T10:33:56.289007Z",
+            "object_refs": [
+                "attack-pattern--005a06c6-14bf-4118-afa0-ebcd8aebb0c9",
+                "attack-pattern--81033c3b-16a4-46e4-8fed-9b030dd03c4a",
+                "attack-pattern--274770e0-2612-4ccf-a678-ef8e7bad365d",
+                "attack-pattern--3dc8c101-d4db-4f4d-8150-1b5a76ca5f1b",
+                "attack-pattern--7830cfcf-b268-4ac0-a69e-73c6affbae9a",
+                "attack-pattern--351ddf79-2d3a-41b4-9bef-82ea5d3ccd69",
+                "attack-pattern--d9e88203-2b5d-405f-a406-2933b1e3d7e4",
+                "attack-pattern--2883c520-7957-46ca-89bd-dab1ad53b601",
+                "attack-pattern--2900bbd8-308a-4274-b074-5b8bde8347bc",
+                "x-mitre-data-source--d6188aac-17db-4861-845f-57c369f9b4c8",
+                "x-mitre-tactic--daa4cbb1-b4f4-4723-a824-7f1efd6e0592",
+                "x-mitre-tactic--93bf9a8e-b14c-4587-b6d5-9efc7c12eb45"
+            ]
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--84378fff-88ec-4e88-af19-02f09095d22e",
+            "created": "2022-09-03T05:03:56.289365Z",
+            "modified": "2022-09-03T05:03:56.289365Z",
+            "relationship_type": "default-extract",
+            "source_ref": "report--4452784c-7cdd-4f9b-afd7-dc18cf97e471",
+            "target_ref": "attack-pattern--005a06c6-14bf-4118-afa0-ebcd8aebb0c9"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--2bfb17fb-bcc8-4a81-b89a-dfe00ecc414d",
+            "created": "2022-09-03T05:03:56.289538Z",
+            "modified": "2022-09-03T05:03:56.289538Z",
+            "relationship_type": "default-extract",
+            "source_ref": "report--4452784c-7cdd-4f9b-afd7-dc18cf97e471",
+            "target_ref": "attack-pattern--81033c3b-16a4-46e4-8fed-9b030dd03c4a"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--59df301e-6535-471c-b8c4-813217aafec0",
+            "created": "2022-09-03T05:03:56.28968Z",
+            "modified": "2022-09-03T05:03:56.28968Z",
+            "relationship_type": "default-extract",
+            "source_ref": "report--4452784c-7cdd-4f9b-afd7-dc18cf97e471",
+            "target_ref": "attack-pattern--274770e0-2612-4ccf-a678-ef8e7bad365d"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--1734b277-1d20-403e-8ae1-5fa8ba817559",
+            "created": "2022-09-03T05:03:56.289816Z",
+            "modified": "2022-09-03T05:03:56.289816Z",
+            "relationship_type": "default-extract",
+            "source_ref": "report--4452784c-7cdd-4f9b-afd7-dc18cf97e471",
+            "target_ref": "attack-pattern--3dc8c101-d4db-4f4d-8150-1b5a76ca5f1b"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--b35ddf87-4342-452f-9ab5-bcf311f18d29",
+            "created": "2022-09-03T05:03:56.28995Z",
+            "modified": "2022-09-03T05:03:56.28995Z",
+            "relationship_type": "default-extract",
+            "source_ref": "report--4452784c-7cdd-4f9b-afd7-dc18cf97e471",
+            "target_ref": "attack-pattern--7830cfcf-b268-4ac0-a69e-73c6affbae9a"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--8e194745-a21b-4602-9c49-0474ed4b96aa",
+            "created": "2022-09-03T05:03:56.290083Z",
+            "modified": "2022-09-03T05:03:56.290083Z",
+            "relationship_type": "default-extract",
+            "source_ref": "report--4452784c-7cdd-4f9b-afd7-dc18cf97e471",
+            "target_ref": "attack-pattern--351ddf79-2d3a-41b4-9bef-82ea5d3ccd69"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--533cdb4f-3c97-48f2-af51-79197f1f5207",
+            "created": "2022-09-03T05:03:56.290215Z",
+            "modified": "2022-09-03T05:03:56.290215Z",
+            "relationship_type": "default-extract",
+            "source_ref": "report--4452784c-7cdd-4f9b-afd7-dc18cf97e471",
+            "target_ref": "attack-pattern--d9e88203-2b5d-405f-a406-2933b1e3d7e4"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--836d6cac-1cc9-4543-a31d-e381059ed2a9",
+            "created": "2022-09-03T05:03:56.29035Z",
+            "modified": "2022-09-03T05:03:56.29035Z",
+            "relationship_type": "default-extract",
+            "source_ref": "report--4452784c-7cdd-4f9b-afd7-dc18cf97e471",
+            "target_ref": "attack-pattern--2883c520-7957-46ca-89bd-dab1ad53b601"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--490c4a7d-c0fb-4e19-b4f2-6d814ea905ed",
+            "created": "2022-09-03T05:03:56.290482Z",
+            "modified": "2022-09-03T05:03:56.290482Z",
+            "relationship_type": "default-extract",
+            "source_ref": "report--4452784c-7cdd-4f9b-afd7-dc18cf97e471",
+            "target_ref": "attack-pattern--2900bbd8-308a-4274-b074-5b8bde8347bc"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--37868335-e0cf-4c5d-a144-c0f936725826",
+            "created": "2022-09-03T05:03:56.290614Z",
+            "modified": "2022-09-03T05:03:56.290614Z",
+            "relationship_type": "default-extract",
+            "source_ref": "report--4452784c-7cdd-4f9b-afd7-dc18cf97e471",
+            "target_ref": "x-mitre-data-source--d6188aac-17db-4861-845f-57c369f9b4c8"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--3f13c257-f88e-4a8c-9000-7488e8dd8259",
+            "created": "2022-09-03T05:03:56.290746Z",
+            "modified": "2022-09-03T05:03:56.290746Z",
+            "relationship_type": "default-extract",
+            "source_ref": "report--4452784c-7cdd-4f9b-afd7-dc18cf97e471",
+            "target_ref": "x-mitre-tactic--daa4cbb1-b4f4-4723-a824-7f1efd6e0592"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--55fbc0ef-405f-4234-b06f-5698fe6bb2e8",
+            "created": "2022-09-03T05:03:56.290879Z",
+            "modified": "2022-09-03T05:03:56.290879Z",
+            "relationship_type": "default-extract",
+            "source_ref": "report--4452784c-7cdd-4f9b-afd7-dc18cf97e471",
+            "target_ref": "x-mitre-tactic--93bf9a8e-b14c-4587-b6d5-9efc7c12eb45"
+        }
+    ]
+}

@@ -1,0 +1,200 @@
+{
+    "type": "bundle",
+    "id": "bundle--07fc0be0-1231-41d3-9c2b-04ce6bc34018",
+    "objects": [
+        {
+            "type": "indicator",
+            "spec_version": "2.1",
+            "id": "indicator--39ab4bc8-d170-455b-bcf8-75694ff1914e",
+            "created_by_ref": "identity--acf55024-6bbe-486f-a27a-7967559324f4",
+            "created": "2022-09-03T04:42:06.585957Z",
+            "modified": "2022-09-03T05:05:10.42695Z",
+            "name": "Mastercard Credit Card: 5555555555554444",
+            "indicator_types": [
+                "unknown"
+            ],
+            "pattern": "[ artifact:payload_bin = '5555555555554444' ]",
+            "pattern_type": "stix",
+            "pattern_version": "2.1",
+            "valid_from": "2022-09-03T04:42:06.585957Z",
+            "object_marking_refs": [
+                "marking-definition--f88d31f6-486f-44da-b317-01333bde0b82"
+            ]
+        },
+        {
+            "type": "indicator",
+            "spec_version": "2.1",
+            "id": "indicator--7daf93e9-fa61-4bc0-905a-810e60ed7a16",
+            "created_by_ref": "identity--acf55024-6bbe-486f-a27a-7967559324f4",
+            "created": "2022-09-02T14:51:39.308371Z",
+            "modified": "2022-09-03T05:05:11.481076Z",
+            "name": "VISA Credit Card: 4242424242424242",
+            "indicator_types": [
+                "unknown"
+            ],
+            "pattern": "[ artifact:payload_bin = '4242424242424242' ]",
+            "pattern_type": "stix",
+            "pattern_version": "2.1",
+            "valid_from": "2022-09-02T14:51:39.308371Z",
+            "object_marking_refs": [
+                "marking-definition--f88d31f6-486f-44da-b317-01333bde0b82"
+            ]
+        },
+        {
+            "type": "indicator",
+            "spec_version": "2.1",
+            "id": "indicator--fa7cc41d-663d-4445-ab51-ef0dc0d745e3",
+            "created_by_ref": "identity--acf55024-6bbe-486f-a27a-7967559324f4",
+            "created": "2022-09-03T04:42:07.67438Z",
+            "modified": "2022-09-03T05:05:12.265419Z",
+            "name": "Amex Credit Card: 378282246310005",
+            "indicator_types": [
+                "unknown"
+            ],
+            "pattern": "[ artifact:payload_bin = '378282246310005' ]",
+            "pattern_type": "stix",
+            "pattern_version": "2.1",
+            "valid_from": "2022-09-03T04:42:07.67438Z",
+            "object_marking_refs": [
+                "marking-definition--f88d31f6-486f-44da-b317-01333bde0b82"
+            ]
+        },
+        {
+            "type": "indicator",
+            "spec_version": "2.1",
+            "id": "indicator--b5e9105a-2191-48a7-bf90-9c72e9d23e8a",
+            "created_by_ref": "identity--acf55024-6bbe-486f-a27a-7967559324f4",
+            "created": "2022-09-02T14:51:39.65933Z",
+            "modified": "2022-09-03T05:05:13.060522Z",
+            "name": "Union Pay Credit Card: 6200000000000005",
+            "indicator_types": [
+                "unknown"
+            ],
+            "pattern": "[ artifact:payload_bin = '6200000000000005' ]",
+            "pattern_type": "stix",
+            "pattern_version": "2.1",
+            "valid_from": "2022-09-02T14:51:39.65933Z",
+            "object_marking_refs": [
+                "marking-definition--f88d31f6-486f-44da-b317-01333bde0b82"
+            ]
+        },
+        {
+            "type": "indicator",
+            "spec_version": "2.1",
+            "id": "indicator--2aa28e9e-f0cf-4d38-9f10-393fbd2e21b7",
+            "created_by_ref": "identity--acf55024-6bbe-486f-a27a-7967559324f4",
+            "created": "2022-09-03T04:42:08.766385Z",
+            "modified": "2022-09-03T05:05:13.888774Z",
+            "name": "Diners Credit Card: 3056930009020004",
+            "indicator_types": [
+                "unknown"
+            ],
+            "pattern": "[ artifact:payload_bin = '3056930009020004' ]",
+            "pattern_type": "stix",
+            "pattern_version": "2.1",
+            "valid_from": "2022-09-03T04:42:08.766385Z",
+            "object_marking_refs": [
+                "marking-definition--f88d31f6-486f-44da-b317-01333bde0b82"
+            ]
+        },
+        {
+            "type": "indicator",
+            "spec_version": "2.1",
+            "id": "indicator--7de08c18-48b0-4bd1-bcf4-c44d951abd84",
+            "created_by_ref": "identity--acf55024-6bbe-486f-a27a-7967559324f4",
+            "created": "2022-09-02T14:51:40.027787Z",
+            "modified": "2022-09-03T05:05:14.71862Z",
+            "name": "JCB Credit Card: 3566002020360505",
+            "indicator_types": [
+                "unknown"
+            ],
+            "pattern": "[ artifact:payload_bin = '3566002020360505' ]",
+            "pattern_type": "stix",
+            "pattern_version": "2.1",
+            "valid_from": "2022-09-02T14:51:40.027787Z",
+            "object_marking_refs": [
+                "marking-definition--f88d31f6-486f-44da-b317-01333bde0b82"
+            ]
+        },
+        {
+            "type": "report",
+            "spec_version": "2.1",
+            "id": "report--b214d107-dbb5-44fd-a4b7-70f6f435b223",
+            "created": "2022-09-03T05:05:14.720383Z",
+            "modified": "2022-09-03T05:05:14.720383Z",
+            "name": "File converted: credit_card.txt",
+            "report_types": [
+                "threat_report"
+            ],
+            "published": "2022-09-03T10:35:14.720377Z",
+            "object_refs": [
+                "indicator--39ab4bc8-d170-455b-bcf8-75694ff1914e",
+                "indicator--7daf93e9-fa61-4bc0-905a-810e60ed7a16",
+                "indicator--fa7cc41d-663d-4445-ab51-ef0dc0d745e3",
+                "indicator--b5e9105a-2191-48a7-bf90-9c72e9d23e8a",
+                "indicator--2aa28e9e-f0cf-4d38-9f10-393fbd2e21b7",
+                "indicator--7de08c18-48b0-4bd1-bcf4-c44d951abd84"
+            ]
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--f65cf286-6a44-4792-a620-abdcf4eec050",
+            "created": "2022-09-03T05:05:14.720629Z",
+            "modified": "2022-09-03T05:05:14.720629Z",
+            "relationship_type": "default-extract",
+            "source_ref": "report--b214d107-dbb5-44fd-a4b7-70f6f435b223",
+            "target_ref": "indicator--39ab4bc8-d170-455b-bcf8-75694ff1914e"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--58ff29a0-31c1-47ec-a731-520b29240c86",
+            "created": "2022-09-03T05:05:14.720803Z",
+            "modified": "2022-09-03T05:05:14.720803Z",
+            "relationship_type": "default-extract",
+            "source_ref": "report--b214d107-dbb5-44fd-a4b7-70f6f435b223",
+            "target_ref": "indicator--7daf93e9-fa61-4bc0-905a-810e60ed7a16"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--4bd5e96d-2456-4117-ae58-0b971ba8b85e",
+            "created": "2022-09-03T05:05:14.720963Z",
+            "modified": "2022-09-03T05:05:14.720963Z",
+            "relationship_type": "default-extract",
+            "source_ref": "report--b214d107-dbb5-44fd-a4b7-70f6f435b223",
+            "target_ref": "indicator--fa7cc41d-663d-4445-ab51-ef0dc0d745e3"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--d91f9fed-8a2b-4397-bf34-53e49824c788",
+            "created": "2022-09-03T05:05:14.72112Z",
+            "modified": "2022-09-03T05:05:14.72112Z",
+            "relationship_type": "default-extract",
+            "source_ref": "report--b214d107-dbb5-44fd-a4b7-70f6f435b223",
+            "target_ref": "indicator--b5e9105a-2191-48a7-bf90-9c72e9d23e8a"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--ccc41b4d-e0f6-4dbc-b227-167dbb5e8b08",
+            "created": "2022-09-03T05:05:14.721296Z",
+            "modified": "2022-09-03T05:05:14.721296Z",
+            "relationship_type": "default-extract",
+            "source_ref": "report--b214d107-dbb5-44fd-a4b7-70f6f435b223",
+            "target_ref": "indicator--2aa28e9e-f0cf-4d38-9f10-393fbd2e21b7"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--9278c41e-77dc-451e-a0e7-d368e92adb18",
+            "created": "2022-09-03T05:05:14.721447Z",
+            "modified": "2022-09-03T05:05:14.721447Z",
+            "relationship_type": "default-extract",
+            "source_ref": "report--b214d107-dbb5-44fd-a4b7-70f6f435b223",
+            "target_ref": "indicator--7de08c18-48b0-4bd1-bcf4-c44d951abd84"
+        }
+    ]
+}

@@ -1,0 +1,80 @@
+{
+    "type": "bundle",
+    "id": "bundle--3e545547-1121-4fe7-ad87-5e96581b81ae",
+    "objects": [
+        {
+            "type": "indicator",
+            "spec_version": "2.1",
+            "id": "indicator--aa0ceb1d-d6f3-41e8-87a4-96102129f863",
+            "created_by_ref": "identity--acf55024-6bbe-486f-a27a-7967559324f4",
+            "created": "2022-09-02T14:51:35.620913Z",
+            "modified": "2022-09-03T05:05:44.112123Z",
+            "name": "Email Address: example@example.com",
+            "indicator_types": [
+                "unknown"
+            ],
+            "pattern": "[ email-addr:value = 'example@example.com' ]",
+            "pattern_type": "stix",
+            "pattern_version": "2.1",
+            "valid_from": "2022-09-02T14:51:35.620913Z",
+            "object_marking_refs": [
+                "marking-definition--f88d31f6-486f-44da-b317-01333bde0b82"
+            ]
+        },
+        {
+            "type": "indicator",
+            "spec_version": "2.1",
+            "id": "indicator--912d742c-7ad7-40f3-af57-c72fe18d6e36",
+            "created_by_ref": "identity--acf55024-6bbe-486f-a27a-7967559324f4",
+            "created": "2022-09-02T14:51:35.779656Z",
+            "modified": "2022-09-03T05:05:45.005212Z",
+            "name": "Email Address: test+1@google.com",
+            "indicator_types": [
+                "unknown"
+            ],
+            "pattern": "[ email-addr:value = 'test+1@google.com' ]",
+            "pattern_type": "stix",
+            "pattern_version": "2.1",
+            "valid_from": "2022-09-02T14:51:35.779656Z",
+            "object_marking_refs": [
+                "marking-definition--f88d31f6-486f-44da-b317-01333bde0b82"
+            ]
+        },
+        {
+            "type": "report",
+            "spec_version": "2.1",
+            "id": "report--017ea159-7cd4-485d-b6d4-a8dc660fc864",
+            "created": "2022-09-03T05:05:45.014849Z",
+            "modified": "2022-09-03T05:05:45.014849Z",
+            "name": "File converted: email.txt",
+            "report_types": [
+                "threat_report"
+            ],
+            "published": "2022-09-03T10:35:45.014842Z",
+            "object_refs": [
+                "indicator--aa0ceb1d-d6f3-41e8-87a4-96102129f863",
+                "indicator--912d742c-7ad7-40f3-af57-c72fe18d6e36"
+            ]
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--3b3f5125-af75-4b7c-be1e-c7ff57398bf4",
+            "created": "2022-09-03T05:05:45.015099Z",
+            "modified": "2022-09-03T05:05:45.015099Z",
+            "relationship_type": "default-extract",
+            "source_ref": "report--017ea159-7cd4-485d-b6d4-a8dc660fc864",
+            "target_ref": "indicator--aa0ceb1d-d6f3-41e8-87a4-96102129f863"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--022e8bcf-193d-437e-9d25-44b2c1fbef49",
+            "created": "2022-09-03T05:05:45.015275Z",
+            "modified": "2022-09-03T05:05:45.015275Z",
+            "relationship_type": "default-extract",
+            "source_ref": "report--017ea159-7cd4-485d-b6d4-a8dc660fc864",
+            "target_ref": "indicator--912d742c-7ad7-40f3-af57-c72fe18d6e36"
+        }
+    ]
+}

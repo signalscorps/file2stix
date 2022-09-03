@@ -1,0 +1,1934 @@
+{
+    "type": "bundle",
+    "id": "bundle--7768dd78-3ff8-4d15-b860-59ef42e64a62",
+    "objects": [
+        {
+            "type": "indicator",
+            "spec_version": "2.1",
+            "id": "indicator--1b6bde59-b418-45c8-9f6b-7bd83f905472",
+            "created": "2022-09-02T17:54:23.94734Z",
+            "modified": "2022-09-03T05:04:04.7526Z",
+            "name": "File name: test.bat",
+            "indicator_types": [
+                "unknown"
+            ],
+            "pattern": "[ file:name = 'test.bat' ]",
+            "pattern_type": "stix",
+            "pattern_version": "2.1",
+            "valid_from": "2022-09-02T17:54:23.94734Z",
+            "object_marking_refs": [
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
+            ]
+        },
+        {
+            "type": "indicator",
+            "spec_version": "2.1",
+            "id": "indicator--76f83ec1-2614-4029-8b8f-b5e03549b3f2",
+            "created": "2022-09-02T17:54:24.513757Z",
+            "modified": "2022-09-03T05:04:05.707283Z",
+            "name": "File name: test.bin",
+            "indicator_types": [
+                "unknown"
+            ],
+            "pattern": "[ file:name = 'test.bin' ]",
+            "pattern_type": "stix",
+            "pattern_version": "2.1",
+            "valid_from": "2022-09-02T17:54:24.513757Z",
+            "object_marking_refs": [
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
+            ]
+        },
+        {
+            "type": "indicator",
+            "spec_version": "2.1",
+            "id": "indicator--51910a83-f24a-4a86-83b5-b83cf1fe7029",
+            "created": "2022-09-02T17:54:50.659636Z",
+            "modified": "2022-09-03T05:04:41.846719Z",
+            "name": "File name: test.bmp",
+            "indicator_types": [
+                "unknown"
+            ],
+            "pattern": "[ file:name = 'test.bmp' ]",
+            "pattern_type": "stix",
+            "pattern_version": "2.1",
+            "valid_from": "2022-09-02T17:54:50.659636Z",
+            "object_marking_refs": [
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
+            ]
+        },
+        {
+            "type": "indicator",
+            "spec_version": "2.1",
+            "id": "indicator--961218dd-4919-4de2-a6b4-02c911e0d24e",
+            "created": "2022-09-02T17:54:25.522591Z",
+            "modified": "2022-09-03T05:04:07.329868Z",
+            "name": "File name: test.cer",
+            "indicator_types": [
+                "unknown"
+            ],
+            "pattern": "[ file:name = 'test.cer' ]",
+            "pattern_type": "stix",
+            "pattern_version": "2.1",
+            "valid_from": "2022-09-02T17:54:25.522591Z",
+            "object_marking_refs": [
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
+            ]
+        },
+        {
+            "type": "indicator",
+            "spec_version": "2.1",
+            "id": "indicator--8c399912-0bfa-4f0b-8cea-459be533e7dd",
+            "created": "2022-09-02T17:54:26.031238Z",
+            "modified": "2022-09-03T05:04:08.030759Z",
+            "name": "File name: test.cmd",
+            "indicator_types": [
+                "unknown"
+            ],
+            "pattern": "[ file:name = 'test.cmd' ]",
+            "pattern_type": "stix",
+            "pattern_version": "2.1",
+            "valid_from": "2022-09-02T17:54:26.031238Z",
+            "object_marking_refs": [
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
+            ]
+        },
+        {
+            "type": "indicator",
+            "spec_version": "2.1",
+            "id": "indicator--9eb6adb4-d490-4851-916a-283c0248c1e4",
+            "created": "2022-09-02T17:54:26.531347Z",
+            "modified": "2022-09-03T05:04:08.721318Z",
+            "name": "File name: test.chm",
+            "indicator_types": [
+                "unknown"
+            ],
+            "pattern": "[ file:name = 'test.chm' ]",
+            "pattern_type": "stix",
+            "pattern_version": "2.1",
+            "valid_from": "2022-09-02T17:54:26.531347Z",
+            "object_marking_refs": [
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
+            ]
+        },
+        {
+            "type": "indicator",
+            "spec_version": "2.1",
+            "id": "indicator--e456bd9e-a736-47b9-ac4c-ae0b7e1e1f74",
+            "created": "2022-09-02T17:54:27.025923Z",
+            "modified": "2022-09-03T05:04:09.410657Z",
+            "name": "File name: test.dll",
+            "indicator_types": [
+                "unknown"
+            ],
+            "pattern": "[ file:name = 'test.dll' ]",
+            "pattern_type": "stix",
+            "pattern_version": "2.1",
+            "valid_from": "2022-09-02T17:54:27.025923Z",
+            "object_marking_refs": [
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
+            ]
+        },
+        {
+            "type": "indicator",
+            "spec_version": "2.1",
+            "id": "indicator--ed4274a7-24a0-43f3-8ec2-36f3b6b0e0bc",
+            "created": "2022-09-02T17:54:27.526117Z",
+            "modified": "2022-09-03T05:04:10.099426Z",
+            "name": "File name: test.doc",
+            "indicator_types": [
+                "unknown"
+            ],
+            "pattern": "[ file:name = 'test.doc' ]",
+            "pattern_type": "stix",
+            "pattern_version": "2.1",
+            "valid_from": "2022-09-02T17:54:27.526117Z",
+            "object_marking_refs": [
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
+            ]
+        },
+        {
+            "type": "indicator",
+            "spec_version": "2.1",
+            "id": "indicator--29d66b88-c3d7-4af9-a0a5-cb630533106f",
+            "created": "2022-09-02T17:54:28.040207Z",
+            "modified": "2022-09-03T05:04:10.782991Z",
+            "name": "File name: test.docx",
+            "indicator_types": [
+                "unknown"
+            ],
+            "pattern": "[ file:name = 'test.docx' ]",
+            "pattern_type": "stix",
+            "pattern_version": "2.1",
+            "valid_from": "2022-09-02T17:54:28.040207Z",
+            "object_marking_refs": [
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
+            ]
+        },
+        {
+            "type": "indicator",
+            "spec_version": "2.1",
+            "id": "indicator--ddc845af-4747-4d4e-ad45-8b4dafc1f660",
+            "created": "2022-09-02T17:54:28.546032Z",
+            "modified": "2022-09-03T05:04:11.465321Z",
+            "name": "File name: test.exe",
+            "indicator_types": [
+                "unknown"
+            ],
+            "pattern": "[ file:name = 'test.exe' ]",
+            "pattern_type": "stix",
+            "pattern_version": "2.1",
+            "valid_from": "2022-09-02T17:54:28.546032Z",
+            "object_marking_refs": [
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
+            ]
+        },
+        {
+            "type": "indicator",
+            "spec_version": "2.1",
+            "id": "indicator--cf419d93-1160-437a-b039-bb996992f2c6",
+            "created": "2022-09-02T17:54:51.146093Z",
+            "modified": "2022-09-03T05:04:42.497154Z",
+            "name": "File name: test.gif",
+            "indicator_types": [
+                "unknown"
+            ],
+            "pattern": "[ file:name = 'test.gif' ]",
+            "pattern_type": "stix",
+            "pattern_version": "2.1",
+            "valid_from": "2022-09-02T17:54:51.146093Z",
+            "object_marking_refs": [
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
+            ]
+        },
+        {
+            "type": "indicator",
+            "spec_version": "2.1",
+            "id": "indicator--2e4be318-afd3-4dd0-b6dc-af205d35b2bd",
+            "created": "2022-09-02T17:54:51.640736Z",
+            "modified": "2022-09-03T05:04:43.161951Z",
+            "name": "File name: test.jpg",
+            "indicator_types": [
+                "unknown"
+            ],
+            "pattern": "[ file:name = 'test.jpg' ]",
+            "pattern_type": "stix",
+            "pattern_version": "2.1",
+            "valid_from": "2022-09-02T17:54:51.640736Z",
+            "object_marking_refs": [
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
+            ]
+        },
+        {
+            "type": "indicator",
+            "spec_version": "2.1",
+            "id": "indicator--3e2182e4-7167-49cc-9445-c86da276fe3a",
+            "created": "2022-09-02T17:54:45.008051Z",
+            "modified": "2022-09-03T05:04:34.594879Z",
+            "name": "File name: test.js",
+            "indicator_types": [
+                "unknown"
+            ],
+            "pattern": "[ file:name = 'test.js' ]",
+            "pattern_type": "stix",
+            "pattern_version": "2.1",
+            "valid_from": "2022-09-02T17:54:45.008051Z",
+            "object_marking_refs": [
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
+            ]
+        },
+        {
+            "type": "indicator",
+            "spec_version": "2.1",
+            "id": "indicator--80931815-e903-466b-809e-35b0a272e44d",
+            "created": "2022-09-02T17:54:30.62098Z",
+            "modified": "2022-09-03T05:04:14.192747Z",
+            "name": "File name: test.log",
+            "indicator_types": [
+                "unknown"
+            ],
+            "pattern": "[ file:name = 'test.log' ]",
+            "pattern_type": "stix",
+            "pattern_version": "2.1",
+            "valid_from": "2022-09-02T17:54:30.62098Z",
+            "object_marking_refs": [
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
+            ]
+        },
+        {
+            "type": "indicator",
+            "spec_version": "2.1",
+            "id": "indicator--edc1859b-3f3c-4ea7-8dcc-9874154ab83d",
+            "created": "2022-09-02T17:54:31.128923Z",
+            "modified": "2022-09-03T05:04:14.88392Z",
+            "name": "File name: test.p7s",
+            "indicator_types": [
+                "unknown"
+            ],
+            "pattern": "[ file:name = 'test.p7s' ]",
+            "pattern_type": "stix",
+            "pattern_version": "2.1",
+            "valid_from": "2022-09-02T17:54:31.128923Z",
+            "object_marking_refs": [
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
+            ]
+        },
+        {
+            "type": "indicator",
+            "spec_version": "2.1",
+            "id": "indicator--f90359be-8df6-4b6e-a901-aac4686f18c6",
+            "created": "2022-09-02T17:54:31.638082Z",
+            "modified": "2022-09-03T05:04:15.557066Z",
+            "name": "File name: test.pdf",
+            "indicator_types": [
+                "unknown"
+            ],
+            "pattern": "[ file:name = 'test.pdf' ]",
+            "pattern_type": "stix",
+            "pattern_version": "2.1",
+            "valid_from": "2022-09-02T17:54:31.638082Z",
+            "object_marking_refs": [
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
+            ]
+        },
+        {
+            "type": "indicator",
+            "spec_version": "2.1",
+            "id": "indicator--e04bd2b0-87ae-4f0c-987d-5f60b60531dc",
+            "created": "2022-09-02T17:54:32.198635Z",
+            "modified": "2022-09-03T05:04:16.231974Z",
+            "name": "File name: test.php",
+            "indicator_types": [
+                "unknown"
+            ],
+            "pattern": "[ file:name = 'test.php' ]",
+            "pattern_type": "stix",
+            "pattern_version": "2.1",
+            "valid_from": "2022-09-02T17:54:32.198635Z",
+            "object_marking_refs": [
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
+            ]
+        },
+        {
+            "type": "indicator",
+            "spec_version": "2.1",
+            "id": "indicator--749a78f9-d34c-46a6-a62f-303241546824",
+            "created": "2022-09-02T17:54:32.693793Z",
+            "modified": "2022-09-03T05:04:16.905312Z",
+            "name": "File name: test.ppt",
+            "indicator_types": [
+                "unknown"
+            ],
+            "pattern": "[ file:name = 'test.ppt' ]",
+            "pattern_type": "stix",
+            "pattern_version": "2.1",
+            "valid_from": "2022-09-02T17:54:32.693793Z",
+            "object_marking_refs": [
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
+            ]
+        },
+        {
+            "type": "indicator",
+            "spec_version": "2.1",
+            "id": "indicator--34495100-7ef8-4dc4-ae7d-6dca1d77ac00",
+            "created": "2022-09-02T17:54:33.192483Z",
+            "modified": "2022-09-03T05:04:17.576019Z",
+            "name": "File name: test.pptx",
+            "indicator_types": [
+                "unknown"
+            ],
+            "pattern": "[ file:name = 'test.pptx' ]",
+            "pattern_type": "stix",
+            "pattern_version": "2.1",
+            "valid_from": "2022-09-02T17:54:33.192483Z",
+            "object_marking_refs": [
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
+            ]
+        },
+        {
+            "type": "indicator",
+            "spec_version": "2.1",
+            "id": "indicator--fe6f0b0f-012c-4047-855b-bd8fde1337d6",
+            "created": "2022-09-02T17:54:33.70241Z",
+            "modified": "2022-09-03T05:04:18.247601Z",
+            "name": "File name: test.rar",
+            "indicator_types": [
+                "unknown"
+            ],
+            "pattern": "[ file:name = 'test.rar' ]",
+            "pattern_type": "stix",
+            "pattern_version": "2.1",
+            "valid_from": "2022-09-02T17:54:33.70241Z",
+            "object_marking_refs": [
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
+            ]
+        },
+        {
+            "type": "indicator",
+            "spec_version": "2.1",
+            "id": "indicator--69e59e90-12c3-43e0-adf9-668ba0d8137f",
+            "created": "2022-09-02T17:54:49.65755Z",
+            "modified": "2022-09-03T05:04:40.527453Z",
+            "name": "File name: test.swf",
+            "indicator_types": [
+                "unknown"
+            ],
+            "pattern": "[ file:name = 'test.swf' ]",
+            "pattern_type": "stix",
+            "pattern_version": "2.1",
+            "valid_from": "2022-09-02T17:54:49.65755Z",
+            "object_marking_refs": [
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
+            ]
+        },
+        {
+            "type": "indicator",
+            "spec_version": "2.1",
+            "id": "indicator--0cf3f225-af15-4919-88bd-9dcff8f1d9f3",
+            "created": "2022-09-02T17:54:34.711907Z",
+            "modified": "2022-09-03T05:04:19.586411Z",
+            "name": "File name: test.sys",
+            "indicator_types": [
+                "unknown"
+            ],
+            "pattern": "[ file:name = 'test.sys' ]",
+            "pattern_type": "stix",
+            "pattern_version": "2.1",
+            "valid_from": "2022-09-02T17:54:34.711907Z",
+            "object_marking_refs": [
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
+            ]
+        },
+        {
+            "type": "indicator",
+            "spec_version": "2.1",
+            "id": "indicator--f8c1a909-4be0-42f0-a6ed-d7047f3ee5c8",
+            "created": "2022-09-02T17:54:35.202278Z",
+            "modified": "2022-09-03T05:04:20.270266Z",
+            "name": "File name: test.tmp",
+            "indicator_types": [
+                "unknown"
+            ],
+            "pattern": "[ file:name = 'test.tmp' ]",
+            "pattern_type": "stix",
+            "pattern_version": "2.1",
+            "valid_from": "2022-09-02T17:54:35.202278Z",
+            "object_marking_refs": [
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
+            ]
+        },
+        {
+            "type": "indicator",
+            "spec_version": "2.1",
+            "id": "indicator--97d85f53-00d7-4279-a7c7-58d3ea70c36f",
+            "created": "2022-09-02T17:54:35.707004Z",
+            "modified": "2022-09-03T05:04:20.9357Z",
+            "name": "File name: test.txt",
+            "indicator_types": [
+                "unknown"
+            ],
+            "pattern": "[ file:name = 'test.txt' ]",
+            "pattern_type": "stix",
+            "pattern_version": "2.1",
+            "valid_from": "2022-09-02T17:54:35.707004Z",
+            "object_marking_refs": [
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
+            ]
+        },
+        {
+            "type": "indicator",
+            "spec_version": "2.1",
+            "id": "indicator--790e565e-b758-484a-8ec6-7309ba5668a5",
+            "created": "2022-09-02T17:54:36.193419Z",
+            "modified": "2022-09-03T05:04:21.646329Z",
+            "name": "File name: test.vbs",
+            "indicator_types": [
+                "unknown"
+            ],
+            "pattern": "[ file:name = 'test.vbs' ]",
+            "pattern_type": "stix",
+            "pattern_version": "2.1",
+            "valid_from": "2022-09-02T17:54:36.193419Z",
+            "object_marking_refs": [
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
+            ]
+        },
+        {
+            "type": "indicator",
+            "spec_version": "2.1",
+            "id": "indicator--84b2af69-3029-470d-9922-86bf7e59c4f3",
+            "created": "2022-09-02T17:54:36.67715Z",
+            "modified": "2022-09-03T05:04:22.387686Z",
+            "name": "File name: test.xls",
+            "indicator_types": [
+                "unknown"
+            ],
+            "pattern": "[ file:name = 'test.xls' ]",
+            "pattern_type": "stix",
+            "pattern_version": "2.1",
+            "valid_from": "2022-09-02T17:54:36.67715Z",
+            "object_marking_refs": [
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
+            ]
+        },
+        {
+            "type": "indicator",
+            "spec_version": "2.1",
+            "id": "indicator--844328ef-fc38-4e72-9208-b38b43fb0cb1",
+            "created": "2022-09-02T17:54:37.168095Z",
+            "modified": "2022-09-03T05:04:23.136656Z",
+            "name": "File name: test.xlsx",
+            "indicator_types": [
+                "unknown"
+            ],
+            "pattern": "[ file:name = 'test.xlsx' ]",
+            "pattern_type": "stix",
+            "pattern_version": "2.1",
+            "valid_from": "2022-09-02T17:54:37.168095Z",
+            "object_marking_refs": [
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
+            ]
+        },
+        {
+            "type": "indicator",
+            "spec_version": "2.1",
+            "id": "indicator--208bcb10-a8f5-422e-a15d-26d1c64951f0",
+            "created": "2022-09-02T17:54:57.597513Z",
+            "modified": "2022-09-03T05:04:51.113502Z",
+            "name": "File name: test.zip",
+            "indicator_types": [
+                "unknown"
+            ],
+            "pattern": "[ file:name = 'test.zip' ]",
+            "pattern_type": "stix",
+            "pattern_version": "2.1",
+            "valid_from": "2022-09-02T17:54:57.597513Z",
+            "object_marking_refs": [
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
+            ]
+        },
+        {
+            "type": "indicator",
+            "spec_version": "2.1",
+            "id": "indicator--9b025172-8bdc-450d-b47b-334552459912",
+            "created": "2022-09-02T17:54:38.145793Z",
+            "modified": "2022-09-03T05:04:24.52195Z",
+            "name": "File name: test.msg",
+            "indicator_types": [
+                "unknown"
+            ],
+            "pattern": "[ file:name = 'test.msg' ]",
+            "pattern_type": "stix",
+            "pattern_version": "2.1",
+            "valid_from": "2022-09-02T17:54:38.145793Z",
+            "object_marking_refs": [
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
+            ]
+        },
+        {
+            "type": "indicator",
+            "spec_version": "2.1",
+            "id": "indicator--b799cca5-8ec3-4973-9d05-51d9d51335c9",
+            "created": "2022-09-02T17:54:38.634399Z",
+            "modified": "2022-09-03T05:04:25.233967Z",
+            "name": "File name: test.lnk",
+            "indicator_types": [
+                "unknown"
+            ],
+            "pattern": "[ file:name = 'test.lnk' ]",
+            "pattern_type": "stix",
+            "pattern_version": "2.1",
+            "valid_from": "2022-09-02T17:54:38.634399Z",
+            "object_marking_refs": [
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
+            ]
+        },
+        {
+            "type": "indicator",
+            "spec_version": "2.1",
+            "id": "indicator--0ec3498b-ba13-49b0-9606-1530b7c97a2d",
+            "created": "2022-09-02T17:54:39.117743Z",
+            "modified": "2022-09-03T05:04:26.018712Z",
+            "name": "File name: test.odt",
+            "indicator_types": [
+                "unknown"
+            ],
+            "pattern": "[ file:name = 'test.odt' ]",
+            "pattern_type": "stix",
+            "pattern_version": "2.1",
+            "valid_from": "2022-09-02T17:54:39.117743Z",
+            "object_marking_refs": [
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
+            ]
+        },
+        {
+            "type": "indicator",
+            "spec_version": "2.1",
+            "id": "indicator--8a106d7f-1fbf-44da-ab28-5d8b0b665801",
+            "created": "2022-09-02T17:54:39.598604Z",
+            "modified": "2022-09-03T05:04:26.791991Z",
+            "name": "File name: test.inf",
+            "indicator_types": [
+                "unknown"
+            ],
+            "pattern": "[ file:name = 'test.inf' ]",
+            "pattern_type": "stix",
+            "pattern_version": "2.1",
+            "valid_from": "2022-09-02T17:54:39.598604Z",
+            "object_marking_refs": [
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
+            ]
+        },
+        {
+            "type": "indicator",
+            "spec_version": "2.1",
+            "id": "indicator--49ee60de-5b30-4a07-9d7b-846f974689fb",
+            "created": "2022-09-02T17:54:40.137638Z",
+            "modified": "2022-09-03T05:04:27.562933Z",
+            "name": "File name: test.msi",
+            "indicator_types": [
+                "unknown"
+            ],
+            "pattern": "[ file:name = 'test.msi' ]",
+            "pattern_type": "stix",
+            "pattern_version": "2.1",
+            "valid_from": "2022-09-02T17:54:40.137638Z",
+            "object_marking_refs": [
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
+            ]
+        },
+        {
+            "type": "indicator",
+            "spec_version": "2.1",
+            "id": "indicator--bfb3e0c2-1489-4213-81ae-64e80c6c97cd",
+            "created": "2022-09-02T17:54:40.624406Z",
+            "modified": "2022-09-03T05:04:28.258481Z",
+            "name": "File name: test.java",
+            "indicator_types": [
+                "unknown"
+            ],
+            "pattern": "[ file:name = 'test.java' ]",
+            "pattern_type": "stix",
+            "pattern_version": "2.1",
+            "valid_from": "2022-09-02T17:54:40.624406Z",
+            "object_marking_refs": [
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
+            ]
+        },
+        {
+            "type": "indicator",
+            "spec_version": "2.1",
+            "id": "indicator--9f2b7e8e-36ff-4cd1-a2e4-31966e9f5d6f",
+            "created": "2022-09-02T17:54:41.109595Z",
+            "modified": "2022-09-03T05:04:28.993919Z",
+            "name": "File name: test.class",
+            "indicator_types": [
+                "unknown"
+            ],
+            "pattern": "[ file:name = 'test.class' ]",
+            "pattern_type": "stix",
+            "pattern_version": "2.1",
+            "valid_from": "2022-09-02T17:54:41.109595Z",
+            "object_marking_refs": [
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
+            ]
+        },
+        {
+            "type": "indicator",
+            "spec_version": "2.1",
+            "id": "indicator--6f674f34-4233-4244-9be1-fe53181be1e0",
+            "created": "2022-09-02T17:54:41.588598Z",
+            "modified": "2022-09-03T05:04:29.911444Z",
+            "name": "File name: test.jar",
+            "indicator_types": [
+                "unknown"
+            ],
+            "pattern": "[ file:name = 'test.jar' ]",
+            "pattern_type": "stix",
+            "pattern_version": "2.1",
+            "valid_from": "2022-09-02T17:54:41.588598Z",
+            "object_marking_refs": [
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
+            ]
+        },
+        {
+            "type": "indicator",
+            "spec_version": "2.1",
+            "id": "indicator--e1065941-8b00-44b4-802f-aa67b284db19",
+            "created": "2022-09-02T17:54:42.075501Z",
+            "modified": "2022-09-03T05:04:30.623913Z",
+            "name": "File name: test.apk",
+            "indicator_types": [
+                "unknown"
+            ],
+            "pattern": "[ file:name = 'test.apk' ]",
+            "pattern_type": "stix",
+            "pattern_version": "2.1",
+            "valid_from": "2022-09-02T17:54:42.075501Z",
+            "object_marking_refs": [
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
+            ]
+        },
+        {
+            "type": "indicator",
+            "spec_version": "2.1",
+            "id": "indicator--9b5edf8c-4f5d-4573-a142-f461e90b1a6d",
+            "created": "2022-09-02T17:54:42.561215Z",
+            "modified": "2022-09-03T05:04:31.304958Z",
+            "name": "File name: test.app",
+            "indicator_types": [
+                "unknown"
+            ],
+            "pattern": "[ file:name = 'test.app' ]",
+            "pattern_type": "stix",
+            "pattern_version": "2.1",
+            "valid_from": "2022-09-02T17:54:42.561215Z",
+            "object_marking_refs": [
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
+            ]
+        },
+        {
+            "type": "indicator",
+            "spec_version": "2.1",
+            "id": "indicator--b86fefde-1860-4a4e-af27-3757f4899cc2",
+            "created": "2022-09-02T17:54:43.042869Z",
+            "modified": "2022-09-03T05:04:31.961909Z",
+            "name": "File name: test.wsf",
+            "indicator_types": [
+                "unknown"
+            ],
+            "pattern": "[ file:name = 'test.wsf' ]",
+            "pattern_type": "stix",
+            "pattern_version": "2.1",
+            "valid_from": "2022-09-02T17:54:43.042869Z",
+            "object_marking_refs": [
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
+            ]
+        },
+        {
+            "type": "indicator",
+            "spec_version": "2.1",
+            "id": "indicator--63b62742-1ece-4872-abb2-da030c1ea256",
+            "created": "2022-09-02T17:54:43.529852Z",
+            "modified": "2022-09-03T05:04:32.61746Z",
+            "name": "File name: test.gadget",
+            "indicator_types": [
+                "unknown"
+            ],
+            "pattern": "[ file:name = 'test.gadget' ]",
+            "pattern_type": "stix",
+            "pattern_version": "2.1",
+            "valid_from": "2022-09-02T17:54:43.529852Z",
+            "object_marking_refs": [
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
+            ]
+        },
+        {
+            "type": "indicator",
+            "spec_version": "2.1",
+            "id": "indicator--69401da2-a0a3-4e58-bc7e-4bbc38736aba",
+            "created": "2022-09-02T17:54:44.035094Z",
+            "modified": "2022-09-03T05:04:33.274101Z",
+            "name": "File name: test.cgi",
+            "indicator_types": [
+                "unknown"
+            ],
+            "pattern": "[ file:name = 'test.cgi' ]",
+            "pattern_type": "stix",
+            "pattern_version": "2.1",
+            "valid_from": "2022-09-02T17:54:44.035094Z",
+            "object_marking_refs": [
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
+            ]
+        },
+        {
+            "type": "indicator",
+            "spec_version": "2.1",
+            "id": "indicator--fc413bad-6f72-4518-9a49-ef0205dce7e6",
+            "created": "2022-09-02T17:54:45.486361Z",
+            "modified": "2022-09-03T05:04:35.246976Z",
+            "name": "File name: test.py",
+            "indicator_types": [
+                "unknown"
+            ],
+            "pattern": "[ file:name = 'test.py' ]",
+            "pattern_type": "stix",
+            "pattern_version": "2.1",
+            "valid_from": "2022-09-02T17:54:45.486361Z",
+            "object_marking_refs": [
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
+            ]
+        },
+        {
+            "type": "indicator",
+            "spec_version": "2.1",
+            "id": "indicator--8d1d73f9-34ed-4f5f-b3c9-80f3edf72c91",
+            "created": "2022-09-02T17:54:45.964774Z",
+            "modified": "2022-09-03T05:04:35.897336Z",
+            "name": "File name: test.crx",
+            "indicator_types": [
+                "unknown"
+            ],
+            "pattern": "[ file:name = 'test.crx' ]",
+            "pattern_type": "stix",
+            "pattern_version": "2.1",
+            "valid_from": "2022-09-02T17:54:45.964774Z",
+            "object_marking_refs": [
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
+            ]
+        },
+        {
+            "type": "indicator",
+            "spec_version": "2.1",
+            "id": "indicator--72fcc13b-18da-4e45-a94f-d8df5baa67a8",
+            "created": "2022-09-02T17:54:46.449996Z",
+            "modified": "2022-09-03T05:04:36.549608Z",
+            "name": "File name: test.plugin",
+            "indicator_types": [
+                "unknown"
+            ],
+            "pattern": "[ file:name = 'test.plugin' ]",
+            "pattern_type": "stix",
+            "pattern_version": "2.1",
+            "valid_from": "2022-09-02T17:54:46.449996Z",
+            "object_marking_refs": [
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
+            ]
+        },
+        {
+            "type": "indicator",
+            "spec_version": "2.1",
+            "id": "indicator--00df9bae-66b2-4aea-bcf2-499596f58e69",
+            "created": "2022-09-02T17:54:46.928568Z",
+            "modified": "2022-09-03T05:04:37.20255Z",
+            "name": "File name: test.flv",
+            "indicator_types": [
+                "unknown"
+            ],
+            "pattern": "[ file:name = 'test.flv' ]",
+            "pattern_type": "stix",
+            "pattern_version": "2.1",
+            "valid_from": "2022-09-02T17:54:46.928568Z",
+            "object_marking_refs": [
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
+            ]
+        },
+        {
+            "type": "indicator",
+            "spec_version": "2.1",
+            "id": "indicator--35372d5c-f267-49f8-8b70-269443d67708",
+            "created": "2022-09-02T17:54:47.40859Z",
+            "modified": "2022-09-03T05:04:37.884467Z",
+            "name": "File name: test.m4v",
+            "indicator_types": [
+                "unknown"
+            ],
+            "pattern": "[ file:name = 'test.m4v' ]",
+            "pattern_type": "stix",
+            "pattern_version": "2.1",
+            "valid_from": "2022-09-02T17:54:47.40859Z",
+            "object_marking_refs": [
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
+            ]
+        },
+        {
+            "type": "indicator",
+            "spec_version": "2.1",
+            "id": "indicator--ecc410cf-986a-4179-a60e-1ce90168a0c5",
+            "created": "2022-09-02T17:54:47.901441Z",
+            "modified": "2022-09-03T05:04:38.542961Z",
+            "name": "File name: test.mov",
+            "indicator_types": [
+                "unknown"
+            ],
+            "pattern": "[ file:name = 'test.mov' ]",
+            "pattern_type": "stix",
+            "pattern_version": "2.1",
+            "valid_from": "2022-09-02T17:54:47.901441Z",
+            "object_marking_refs": [
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
+            ]
+        },
+        {
+            "type": "indicator",
+            "spec_version": "2.1",
+            "id": "indicator--26da05f2-98c2-46fb-bb5e-77213b2bc5c4",
+            "created": "2022-09-02T17:54:48.473209Z",
+            "modified": "2022-09-03T05:04:39.21789Z",
+            "name": "File name: test.mp4",
+            "indicator_types": [
+                "unknown"
+            ],
+            "pattern": "[ file:name = 'test.mp4' ]",
+            "pattern_type": "stix",
+            "pattern_version": "2.1",
+            "valid_from": "2022-09-02T17:54:48.473209Z",
+            "object_marking_refs": [
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
+            ]
+        },
+        {
+            "type": "indicator",
+            "spec_version": "2.1",
+            "id": "indicator--1fd532b6-8ac1-4fb2-9fc0-80a28fec00fe",
+            "created": "2022-09-02T17:54:49.088684Z",
+            "modified": "2022-09-03T05:04:39.877042Z",
+            "name": "File name: test.mpg",
+            "indicator_types": [
+                "unknown"
+            ],
+            "pattern": "[ file:name = 'test.mpg' ]",
+            "pattern_type": "stix",
+            "pattern_version": "2.1",
+            "valid_from": "2022-09-02T17:54:49.088684Z",
+            "object_marking_refs": [
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
+            ]
+        },
+        {
+            "type": "indicator",
+            "spec_version": "2.1",
+            "id": "indicator--aa09dae2-2a9a-4824-a778-e758321a90c7",
+            "created": "2022-09-02T17:54:50.169256Z",
+            "modified": "2022-09-03T05:04:41.195972Z",
+            "name": "File name: test.wmv",
+            "indicator_types": [
+                "unknown"
+            ],
+            "pattern": "[ file:name = 'test.wmv' ]",
+            "pattern_type": "stix",
+            "pattern_version": "2.1",
+            "valid_from": "2022-09-02T17:54:50.169256Z",
+            "object_marking_refs": [
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
+            ]
+        },
+        {
+            "type": "indicator",
+            "spec_version": "2.1",
+            "id": "indicator--a3c2b68d-1254-4735-9f78-57c0c2f86e58",
+            "created": "2022-09-02T17:54:52.147447Z",
+            "modified": "2022-09-03T05:04:43.819853Z",
+            "name": "File name: test.png",
+            "indicator_types": [
+                "unknown"
+            ],
+            "pattern": "[ file:name = 'test.png' ]",
+            "pattern_type": "stix",
+            "pattern_version": "2.1",
+            "valid_from": "2022-09-02T17:54:52.147447Z",
+            "object_marking_refs": [
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
+            ]
+        },
+        {
+            "type": "indicator",
+            "spec_version": "2.1",
+            "id": "indicator--7b90723c-0598-48eb-a6ad-dd72bf41a9f2",
+            "created": "2022-09-02T17:54:52.632785Z",
+            "modified": "2022-09-03T05:04:44.473459Z",
+            "name": "File name: test.psd",
+            "indicator_types": [
+                "unknown"
+            ],
+            "pattern": "[ file:name = 'test.psd' ]",
+            "pattern_type": "stix",
+            "pattern_version": "2.1",
+            "valid_from": "2022-09-02T17:54:52.632785Z",
+            "object_marking_refs": [
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
+            ]
+        },
+        {
+            "type": "indicator",
+            "spec_version": "2.1",
+            "id": "indicator--001bc4c1-838b-42f9-879a-34ad7b3108b6",
+            "created": "2022-09-02T17:54:53.121222Z",
+            "modified": "2022-09-03T05:04:45.127834Z",
+            "name": "File name: test.svg",
+            "indicator_types": [
+                "unknown"
+            ],
+            "pattern": "[ file:name = 'test.svg' ]",
+            "pattern_type": "stix",
+            "pattern_version": "2.1",
+            "valid_from": "2022-09-02T17:54:53.121222Z",
+            "object_marking_refs": [
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
+            ]
+        },
+        {
+            "type": "indicator",
+            "spec_version": "2.1",
+            "id": "indicator--30539124-c114-4f28-adda-f0fc6bd6ff86",
+            "created": "2022-09-02T17:54:53.628214Z",
+            "modified": "2022-09-03T05:04:45.776999Z",
+            "name": "File name: test.tif",
+            "indicator_types": [
+                "unknown"
+            ],
+            "pattern": "[ file:name = 'test.tif' ]",
+            "pattern_type": "stix",
+            "pattern_version": "2.1",
+            "valid_from": "2022-09-02T17:54:53.628214Z",
+            "object_marking_refs": [
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
+            ]
+        },
+        {
+            "type": "indicator",
+            "spec_version": "2.1",
+            "id": "indicator--d4e9c7e2-b190-423a-b9dd-7d50f2930e2a",
+            "created": "2022-09-02T17:54:54.116254Z",
+            "modified": "2022-09-03T05:04:46.433704Z",
+            "name": "File name: test.tiff",
+            "indicator_types": [
+                "unknown"
+            ],
+            "pattern": "[ file:name = 'test.tiff' ]",
+            "pattern_type": "stix",
+            "pattern_version": "2.1",
+            "valid_from": "2022-09-02T17:54:54.116254Z",
+            "object_marking_refs": [
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
+            ]
+        },
+        {
+            "type": "indicator",
+            "spec_version": "2.1",
+            "id": "indicator--6309301a-d446-42a5-ad9d-632c05e18905",
+            "created": "2022-09-02T17:54:54.605048Z",
+            "modified": "2022-09-03T05:04:47.090865Z",
+            "name": "File name: test.7z",
+            "indicator_types": [
+                "unknown"
+            ],
+            "pattern": "[ file:name = 'test.7z' ]",
+            "pattern_type": "stix",
+            "pattern_version": "2.1",
+            "valid_from": "2022-09-02T17:54:54.605048Z",
+            "object_marking_refs": [
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
+            ]
+        },
+        {
+            "type": "indicator",
+            "spec_version": "2.1",
+            "id": "indicator--7937816f-c424-4e52-8fe2-624b3c924925",
+            "created": "2022-09-02T17:54:55.088764Z",
+            "modified": "2022-09-03T05:04:47.745Z",
+            "name": "File name: test.deb",
+            "indicator_types": [
+                "unknown"
+            ],
+            "pattern": "[ file:name = 'test.deb' ]",
+            "pattern_type": "stix",
+            "pattern_version": "2.1",
+            "valid_from": "2022-09-02T17:54:55.088764Z",
+            "object_marking_refs": [
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
+            ]
+        },
+        {
+            "type": "indicator",
+            "spec_version": "2.1",
+            "id": "indicator--01640f02-c30c-4730-bbc4-1cfd0a3e5ff0",
+            "created": "2022-09-02T17:54:55.581663Z",
+            "modified": "2022-09-03T05:04:48.465527Z",
+            "name": "File name: test.rpm",
+            "indicator_types": [
+                "unknown"
+            ],
+            "pattern": "[ file:name = 'test.rpm' ]",
+            "pattern_type": "stix",
+            "pattern_version": "2.1",
+            "valid_from": "2022-09-02T17:54:55.581663Z",
+            "object_marking_refs": [
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
+            ]
+        },
+        {
+            "type": "indicator",
+            "spec_version": "2.1",
+            "id": "indicator--cb124068-3466-45f8-85dc-189e2ef5ad6a",
+            "created": "2022-09-02T17:54:56.080091Z",
+            "modified": "2022-09-03T05:04:49.139611Z",
+            "name": "File name: test.tar",
+            "indicator_types": [
+                "unknown"
+            ],
+            "pattern": "[ file:name = 'test.tar' ]",
+            "pattern_type": "stix",
+            "pattern_version": "2.1",
+            "valid_from": "2022-09-02T17:54:56.080091Z",
+            "object_marking_refs": [
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
+            ]
+        },
+        {
+            "type": "indicator",
+            "spec_version": "2.1",
+            "id": "indicator--ce41a714-c7d5-4fff-9279-292796835674",
+            "created": "2022-09-02T17:54:56.600499Z",
+            "modified": "2022-09-03T05:04:49.791971Z",
+            "name": "File name: test.gz",
+            "indicator_types": [
+                "unknown"
+            ],
+            "pattern": "[ file:name = 'test.gz' ]",
+            "pattern_type": "stix",
+            "pattern_version": "2.1",
+            "valid_from": "2022-09-02T17:54:56.600499Z",
+            "object_marking_refs": [
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
+            ]
+        },
+        {
+            "type": "indicator",
+            "spec_version": "2.1",
+            "id": "indicator--234ff1f7-b42d-4d98-ace5-a9658675b13f",
+            "created": "2022-09-02T17:54:57.101154Z",
+            "modified": "2022-09-03T05:04:50.460241Z",
+            "name": "File name: test.tgz",
+            "indicator_types": [
+                "unknown"
+            ],
+            "pattern": "[ file:name = 'test.tgz' ]",
+            "pattern_type": "stix",
+            "pattern_version": "2.1",
+            "valid_from": "2022-09-02T17:54:57.101154Z",
+            "object_marking_refs": [
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
+            ]
+        },
+        {
+            "type": "indicator",
+            "spec_version": "2.1",
+            "id": "indicator--80c6bf03-2874-4bf6-99a5-04fe1d08f910",
+            "created": "2022-09-02T17:54:58.104757Z",
+            "modified": "2022-09-03T05:04:51.763757Z",
+            "name": "File name: test.zipx",
+            "indicator_types": [
+                "unknown"
+            ],
+            "pattern": "[ file:name = 'test.zipx' ]",
+            "pattern_type": "stix",
+            "pattern_version": "2.1",
+            "valid_from": "2022-09-02T17:54:58.104757Z",
+            "object_marking_refs": [
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
+            ]
+        },
+        {
+            "type": "indicator",
+            "spec_version": "2.1",
+            "id": "indicator--6312b3eb-c2d6-44a7-91e6-1d5f43c7fc7d",
+            "created": "2022-09-02T17:54:58.597965Z",
+            "modified": "2022-09-03T05:04:52.414283Z",
+            "name": "File name: test.cab",
+            "indicator_types": [
+                "unknown"
+            ],
+            "pattern": "[ file:name = 'test.cab' ]",
+            "pattern_type": "stix",
+            "pattern_version": "2.1",
+            "valid_from": "2022-09-02T17:54:58.597965Z",
+            "object_marking_refs": [
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
+            ]
+        },
+        {
+            "type": "indicator",
+            "spec_version": "2.1",
+            "id": "indicator--43b66b48-3886-4239-9066-f041d70cf7a1",
+            "created": "2022-09-02T17:54:59.090919Z",
+            "modified": "2022-09-03T05:04:53.068376Z",
+            "name": "File name: test.vir",
+            "indicator_types": [
+                "unknown"
+            ],
+            "pattern": "[ file:name = 'test.vir' ]",
+            "pattern_type": "stix",
+            "pattern_version": "2.1",
+            "valid_from": "2022-09-02T17:54:59.090919Z",
+            "object_marking_refs": [
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
+            ]
+        },
+        {
+            "type": "indicator",
+            "spec_version": "2.1",
+            "id": "indicator--d930266c-3caf-49ee-8089-6e59a1bc3f5e",
+            "created": "2022-09-02T17:54:59.596719Z",
+            "modified": "2022-09-03T05:04:53.719056Z",
+            "name": "File name: test.so",
+            "indicator_types": [
+                "unknown"
+            ],
+            "pattern": "[ file:name = 'test.so' ]",
+            "pattern_type": "stix",
+            "pattern_version": "2.1",
+            "valid_from": "2022-09-02T17:54:59.596719Z",
+            "object_marking_refs": [
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
+            ]
+        },
+        {
+            "type": "indicator",
+            "spec_version": "2.1",
+            "id": "indicator--745a2334-b542-40d9-a46f-7a8855ca0285",
+            "created": "2022-09-02T17:55:00.100754Z",
+            "modified": "2022-09-03T05:04:54.41982Z",
+            "name": "File name: test.pf",
+            "indicator_types": [
+                "unknown"
+            ],
+            "pattern": "[ file:name = 'test.pf' ]",
+            "pattern_type": "stix",
+            "pattern_version": "2.1",
+            "valid_from": "2022-09-02T17:55:00.100754Z",
+            "object_marking_refs": [
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
+            ]
+        },
+        {
+            "type": "report",
+            "spec_version": "2.1",
+            "id": "report--87ee39a0-8f00-48c2-b147-6c644704e71a",
+            "created": "2022-09-03T05:04:54.549875Z",
+            "modified": "2022-09-03T05:04:54.549875Z",
+            "name": "File converted: file.txt",
+            "report_types": [
+                "threat_report"
+            ],
+            "published": "2022-09-03T10:34:54.549868Z",
+            "object_refs": [
+                "indicator--1b6bde59-b418-45c8-9f6b-7bd83f905472",
+                "indicator--76f83ec1-2614-4029-8b8f-b5e03549b3f2",
+                "indicator--51910a83-f24a-4a86-83b5-b83cf1fe7029",
+                "indicator--961218dd-4919-4de2-a6b4-02c911e0d24e",
+                "indicator--8c399912-0bfa-4f0b-8cea-459be533e7dd",
+                "indicator--9eb6adb4-d490-4851-916a-283c0248c1e4",
+                "indicator--e456bd9e-a736-47b9-ac4c-ae0b7e1e1f74",
+                "indicator--ed4274a7-24a0-43f3-8ec2-36f3b6b0e0bc",
+                "indicator--29d66b88-c3d7-4af9-a0a5-cb630533106f",
+                "indicator--ddc845af-4747-4d4e-ad45-8b4dafc1f660",
+                "indicator--cf419d93-1160-437a-b039-bb996992f2c6",
+                "indicator--2e4be318-afd3-4dd0-b6dc-af205d35b2bd",
+                "indicator--3e2182e4-7167-49cc-9445-c86da276fe3a",
+                "indicator--80931815-e903-466b-809e-35b0a272e44d",
+                "indicator--edc1859b-3f3c-4ea7-8dcc-9874154ab83d",
+                "indicator--f90359be-8df6-4b6e-a901-aac4686f18c6",
+                "indicator--e04bd2b0-87ae-4f0c-987d-5f60b60531dc",
+                "indicator--749a78f9-d34c-46a6-a62f-303241546824",
+                "indicator--34495100-7ef8-4dc4-ae7d-6dca1d77ac00",
+                "indicator--fe6f0b0f-012c-4047-855b-bd8fde1337d6",
+                "indicator--69e59e90-12c3-43e0-adf9-668ba0d8137f",
+                "indicator--0cf3f225-af15-4919-88bd-9dcff8f1d9f3",
+                "indicator--f8c1a909-4be0-42f0-a6ed-d7047f3ee5c8",
+                "indicator--97d85f53-00d7-4279-a7c7-58d3ea70c36f",
+                "indicator--790e565e-b758-484a-8ec6-7309ba5668a5",
+                "indicator--84b2af69-3029-470d-9922-86bf7e59c4f3",
+                "indicator--844328ef-fc38-4e72-9208-b38b43fb0cb1",
+                "indicator--208bcb10-a8f5-422e-a15d-26d1c64951f0",
+                "indicator--9b025172-8bdc-450d-b47b-334552459912",
+                "indicator--b799cca5-8ec3-4973-9d05-51d9d51335c9",
+                "indicator--0ec3498b-ba13-49b0-9606-1530b7c97a2d",
+                "indicator--8a106d7f-1fbf-44da-ab28-5d8b0b665801",
+                "indicator--49ee60de-5b30-4a07-9d7b-846f974689fb",
+                "indicator--bfb3e0c2-1489-4213-81ae-64e80c6c97cd",
+                "indicator--9f2b7e8e-36ff-4cd1-a2e4-31966e9f5d6f",
+                "indicator--6f674f34-4233-4244-9be1-fe53181be1e0",
+                "indicator--e1065941-8b00-44b4-802f-aa67b284db19",
+                "indicator--9b5edf8c-4f5d-4573-a142-f461e90b1a6d",
+                "indicator--b86fefde-1860-4a4e-af27-3757f4899cc2",
+                "indicator--63b62742-1ece-4872-abb2-da030c1ea256",
+                "indicator--69401da2-a0a3-4e58-bc7e-4bbc38736aba",
+                "indicator--fc413bad-6f72-4518-9a49-ef0205dce7e6",
+                "indicator--8d1d73f9-34ed-4f5f-b3c9-80f3edf72c91",
+                "indicator--72fcc13b-18da-4e45-a94f-d8df5baa67a8",
+                "indicator--00df9bae-66b2-4aea-bcf2-499596f58e69",
+                "indicator--35372d5c-f267-49f8-8b70-269443d67708",
+                "indicator--ecc410cf-986a-4179-a60e-1ce90168a0c5",
+                "indicator--26da05f2-98c2-46fb-bb5e-77213b2bc5c4",
+                "indicator--1fd532b6-8ac1-4fb2-9fc0-80a28fec00fe",
+                "indicator--aa09dae2-2a9a-4824-a778-e758321a90c7",
+                "indicator--a3c2b68d-1254-4735-9f78-57c0c2f86e58",
+                "indicator--7b90723c-0598-48eb-a6ad-dd72bf41a9f2",
+                "indicator--001bc4c1-838b-42f9-879a-34ad7b3108b6",
+                "indicator--30539124-c114-4f28-adda-f0fc6bd6ff86",
+                "indicator--d4e9c7e2-b190-423a-b9dd-7d50f2930e2a",
+                "indicator--6309301a-d446-42a5-ad9d-632c05e18905",
+                "indicator--7937816f-c424-4e52-8fe2-624b3c924925",
+                "indicator--01640f02-c30c-4730-bbc4-1cfd0a3e5ff0",
+                "indicator--cb124068-3466-45f8-85dc-189e2ef5ad6a",
+                "indicator--ce41a714-c7d5-4fff-9279-292796835674",
+                "indicator--234ff1f7-b42d-4d98-ace5-a9658675b13f",
+                "indicator--80c6bf03-2874-4bf6-99a5-04fe1d08f910",
+                "indicator--6312b3eb-c2d6-44a7-91e6-1d5f43c7fc7d",
+                "indicator--43b66b48-3886-4239-9066-f041d70cf7a1",
+                "indicator--d930266c-3caf-49ee-8089-6e59a1bc3f5e",
+                "indicator--745a2334-b542-40d9-a46f-7a8855ca0285"
+            ]
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--a6716b13-8eeb-4c95-8b7d-3342ec12d57c",
+            "created": "2022-09-03T05:04:54.550494Z",
+            "modified": "2022-09-03T05:04:54.550494Z",
+            "relationship_type": "default-extract",
+            "source_ref": "report--87ee39a0-8f00-48c2-b147-6c644704e71a",
+            "target_ref": "indicator--1b6bde59-b418-45c8-9f6b-7bd83f905472"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--834caf67-ce63-4940-b8db-ec973288ddef",
+            "created": "2022-09-03T05:04:54.550653Z",
+            "modified": "2022-09-03T05:04:54.550653Z",
+            "relationship_type": "default-extract",
+            "source_ref": "report--87ee39a0-8f00-48c2-b147-6c644704e71a",
+            "target_ref": "indicator--76f83ec1-2614-4029-8b8f-b5e03549b3f2"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--b1d1b020-e434-4c08-a583-5e0f636113f3",
+            "created": "2022-09-03T05:04:54.550802Z",
+            "modified": "2022-09-03T05:04:54.550802Z",
+            "relationship_type": "default-extract",
+            "source_ref": "report--87ee39a0-8f00-48c2-b147-6c644704e71a",
+            "target_ref": "indicator--51910a83-f24a-4a86-83b5-b83cf1fe7029"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--0a5fc333-833b-4293-9107-5835cc8b6592",
+            "created": "2022-09-03T05:04:54.550945Z",
+            "modified": "2022-09-03T05:04:54.550945Z",
+            "relationship_type": "default-extract",
+            "source_ref": "report--87ee39a0-8f00-48c2-b147-6c644704e71a",
+            "target_ref": "indicator--961218dd-4919-4de2-a6b4-02c911e0d24e"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--f3e15b9b-9031-44d4-9bd1-4f6a50c279ce",
+            "created": "2022-09-03T05:04:54.551085Z",
+            "modified": "2022-09-03T05:04:54.551085Z",
+            "relationship_type": "default-extract",
+            "source_ref": "report--87ee39a0-8f00-48c2-b147-6c644704e71a",
+            "target_ref": "indicator--8c399912-0bfa-4f0b-8cea-459be533e7dd"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--fa99e225-22d9-4586-923c-d5dad8f4d977",
+            "created": "2022-09-03T05:04:54.551221Z",
+            "modified": "2022-09-03T05:04:54.551221Z",
+            "relationship_type": "default-extract",
+            "source_ref": "report--87ee39a0-8f00-48c2-b147-6c644704e71a",
+            "target_ref": "indicator--9eb6adb4-d490-4851-916a-283c0248c1e4"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--7c97a1f4-df8b-4765-ba3f-815b524c8fa5",
+            "created": "2022-09-03T05:04:54.551356Z",
+            "modified": "2022-09-03T05:04:54.551356Z",
+            "relationship_type": "default-extract",
+            "source_ref": "report--87ee39a0-8f00-48c2-b147-6c644704e71a",
+            "target_ref": "indicator--e456bd9e-a736-47b9-ac4c-ae0b7e1e1f74"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--615e5035-3695-4ba3-9e43-4172fcc25787",
+            "created": "2022-09-03T05:04:54.551491Z",
+            "modified": "2022-09-03T05:04:54.551491Z",
+            "relationship_type": "default-extract",
+            "source_ref": "report--87ee39a0-8f00-48c2-b147-6c644704e71a",
+            "target_ref": "indicator--ed4274a7-24a0-43f3-8ec2-36f3b6b0e0bc"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--ae766418-2dc2-446d-a91b-d072f96b645d",
+            "created": "2022-09-03T05:04:54.551626Z",
+            "modified": "2022-09-03T05:04:54.551626Z",
+            "relationship_type": "default-extract",
+            "source_ref": "report--87ee39a0-8f00-48c2-b147-6c644704e71a",
+            "target_ref": "indicator--29d66b88-c3d7-4af9-a0a5-cb630533106f"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--e822f117-70df-48b3-8271-280c6dbe33b8",
+            "created": "2022-09-03T05:04:54.55176Z",
+            "modified": "2022-09-03T05:04:54.55176Z",
+            "relationship_type": "default-extract",
+            "source_ref": "report--87ee39a0-8f00-48c2-b147-6c644704e71a",
+            "target_ref": "indicator--ddc845af-4747-4d4e-ad45-8b4dafc1f660"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--05fd0724-e4e0-472e-a312-8406270a977d",
+            "created": "2022-09-03T05:04:54.551894Z",
+            "modified": "2022-09-03T05:04:54.551894Z",
+            "relationship_type": "default-extract",
+            "source_ref": "report--87ee39a0-8f00-48c2-b147-6c644704e71a",
+            "target_ref": "indicator--cf419d93-1160-437a-b039-bb996992f2c6"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--2b6af052-9355-4580-be86-ed61573deffb",
+            "created": "2022-09-03T05:04:54.552028Z",
+            "modified": "2022-09-03T05:04:54.552028Z",
+            "relationship_type": "default-extract",
+            "source_ref": "report--87ee39a0-8f00-48c2-b147-6c644704e71a",
+            "target_ref": "indicator--2e4be318-afd3-4dd0-b6dc-af205d35b2bd"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--d29bd318-ad13-4589-9058-dc8df90ed767",
+            "created": "2022-09-03T05:04:54.552163Z",
+            "modified": "2022-09-03T05:04:54.552163Z",
+            "relationship_type": "default-extract",
+            "source_ref": "report--87ee39a0-8f00-48c2-b147-6c644704e71a",
+            "target_ref": "indicator--3e2182e4-7167-49cc-9445-c86da276fe3a"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--fc253c88-4b1b-443b-b658-a2ee97506fe0",
+            "created": "2022-09-03T05:04:54.552297Z",
+            "modified": "2022-09-03T05:04:54.552297Z",
+            "relationship_type": "default-extract",
+            "source_ref": "report--87ee39a0-8f00-48c2-b147-6c644704e71a",
+            "target_ref": "indicator--80931815-e903-466b-809e-35b0a272e44d"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--a3f2cd99-1d56-4936-8867-736360f28bbb",
+            "created": "2022-09-03T05:04:54.552431Z",
+            "modified": "2022-09-03T05:04:54.552431Z",
+            "relationship_type": "default-extract",
+            "source_ref": "report--87ee39a0-8f00-48c2-b147-6c644704e71a",
+            "target_ref": "indicator--edc1859b-3f3c-4ea7-8dcc-9874154ab83d"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--bd57fe9f-e8dc-4370-873c-e555e0015ba9",
+            "created": "2022-09-03T05:04:54.552565Z",
+            "modified": "2022-09-03T05:04:54.552565Z",
+            "relationship_type": "default-extract",
+            "source_ref": "report--87ee39a0-8f00-48c2-b147-6c644704e71a",
+            "target_ref": "indicator--f90359be-8df6-4b6e-a901-aac4686f18c6"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--8ca30e8a-7197-40b0-8390-ff20d1291a12",
+            "created": "2022-09-03T05:04:54.552697Z",
+            "modified": "2022-09-03T05:04:54.552697Z",
+            "relationship_type": "default-extract",
+            "source_ref": "report--87ee39a0-8f00-48c2-b147-6c644704e71a",
+            "target_ref": "indicator--e04bd2b0-87ae-4f0c-987d-5f60b60531dc"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--5bb47b5a-eb0e-49b3-9755-157bfcdabc0e",
+            "created": "2022-09-03T05:04:54.55283Z",
+            "modified": "2022-09-03T05:04:54.55283Z",
+            "relationship_type": "default-extract",
+            "source_ref": "report--87ee39a0-8f00-48c2-b147-6c644704e71a",
+            "target_ref": "indicator--749a78f9-d34c-46a6-a62f-303241546824"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--4818f081-66bb-4ce5-abfe-f843145f21af",
+            "created": "2022-09-03T05:04:54.552965Z",
+            "modified": "2022-09-03T05:04:54.552965Z",
+            "relationship_type": "default-extract",
+            "source_ref": "report--87ee39a0-8f00-48c2-b147-6c644704e71a",
+            "target_ref": "indicator--34495100-7ef8-4dc4-ae7d-6dca1d77ac00"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--87187e99-2716-47fc-bb86-29a789a93b71",
+            "created": "2022-09-03T05:04:54.553099Z",
+            "modified": "2022-09-03T05:04:54.553099Z",
+            "relationship_type": "default-extract",
+            "source_ref": "report--87ee39a0-8f00-48c2-b147-6c644704e71a",
+            "target_ref": "indicator--fe6f0b0f-012c-4047-855b-bd8fde1337d6"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--d440f251-7771-4550-aedb-f180d6bd849f",
+            "created": "2022-09-03T05:04:54.553238Z",
+            "modified": "2022-09-03T05:04:54.553238Z",
+            "relationship_type": "default-extract",
+            "source_ref": "report--87ee39a0-8f00-48c2-b147-6c644704e71a",
+            "target_ref": "indicator--69e59e90-12c3-43e0-adf9-668ba0d8137f"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--d1813c4b-f04c-4944-85d8-9fea50246b5a",
+            "created": "2022-09-03T05:04:54.553387Z",
+            "modified": "2022-09-03T05:04:54.553387Z",
+            "relationship_type": "default-extract",
+            "source_ref": "report--87ee39a0-8f00-48c2-b147-6c644704e71a",
+            "target_ref": "indicator--0cf3f225-af15-4919-88bd-9dcff8f1d9f3"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--530e860e-fda5-4782-8b4e-667c5115773b",
+            "created": "2022-09-03T05:04:54.553528Z",
+            "modified": "2022-09-03T05:04:54.553528Z",
+            "relationship_type": "default-extract",
+            "source_ref": "report--87ee39a0-8f00-48c2-b147-6c644704e71a",
+            "target_ref": "indicator--f8c1a909-4be0-42f0-a6ed-d7047f3ee5c8"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--c565770b-2ff8-4537-9da1-063850a3441d",
+            "created": "2022-09-03T05:04:54.553672Z",
+            "modified": "2022-09-03T05:04:54.553672Z",
+            "relationship_type": "default-extract",
+            "source_ref": "report--87ee39a0-8f00-48c2-b147-6c644704e71a",
+            "target_ref": "indicator--97d85f53-00d7-4279-a7c7-58d3ea70c36f"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--1a236ffc-f952-4392-af7c-3d68fd74480a",
+            "created": "2022-09-03T05:04:54.553812Z",
+            "modified": "2022-09-03T05:04:54.553812Z",
+            "relationship_type": "default-extract",
+            "source_ref": "report--87ee39a0-8f00-48c2-b147-6c644704e71a",
+            "target_ref": "indicator--790e565e-b758-484a-8ec6-7309ba5668a5"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--79e8697d-77c4-4f60-80b9-b323d654acc6",
+            "created": "2022-09-03T05:04:54.55395Z",
+            "modified": "2022-09-03T05:04:54.55395Z",
+            "relationship_type": "default-extract",
+            "source_ref": "report--87ee39a0-8f00-48c2-b147-6c644704e71a",
+            "target_ref": "indicator--84b2af69-3029-470d-9922-86bf7e59c4f3"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--28ecaa72-2411-44f1-a867-4c0dd68f2cd1",
+            "created": "2022-09-03T05:04:54.554087Z",
+            "modified": "2022-09-03T05:04:54.554087Z",
+            "relationship_type": "default-extract",
+            "source_ref": "report--87ee39a0-8f00-48c2-b147-6c644704e71a",
+            "target_ref": "indicator--844328ef-fc38-4e72-9208-b38b43fb0cb1"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--5ad9cba0-3b46-4a1b-885d-34771a8745d2",
+            "created": "2022-09-03T05:04:54.554223Z",
+            "modified": "2022-09-03T05:04:54.554223Z",
+            "relationship_type": "default-extract",
+            "source_ref": "report--87ee39a0-8f00-48c2-b147-6c644704e71a",
+            "target_ref": "indicator--208bcb10-a8f5-422e-a15d-26d1c64951f0"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--9956bfba-f15b-46b7-af8b-7dee66f3073e",
+            "created": "2022-09-03T05:04:54.55436Z",
+            "modified": "2022-09-03T05:04:54.55436Z",
+            "relationship_type": "default-extract",
+            "source_ref": "report--87ee39a0-8f00-48c2-b147-6c644704e71a",
+            "target_ref": "indicator--9b025172-8bdc-450d-b47b-334552459912"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--dce87f1b-896a-403d-83e1-6dea415a09ed",
+            "created": "2022-09-03T05:04:54.554497Z",
+            "modified": "2022-09-03T05:04:54.554497Z",
+            "relationship_type": "default-extract",
+            "source_ref": "report--87ee39a0-8f00-48c2-b147-6c644704e71a",
+            "target_ref": "indicator--b799cca5-8ec3-4973-9d05-51d9d51335c9"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--32210193-c4b9-4de2-a995-7ed04559e958",
+            "created": "2022-09-03T05:04:54.554635Z",
+            "modified": "2022-09-03T05:04:54.554635Z",
+            "relationship_type": "default-extract",
+            "source_ref": "report--87ee39a0-8f00-48c2-b147-6c644704e71a",
+            "target_ref": "indicator--0ec3498b-ba13-49b0-9606-1530b7c97a2d"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--6c80dbee-473d-4b27-bf5a-3df55e2abbae",
+            "created": "2022-09-03T05:04:54.554774Z",
+            "modified": "2022-09-03T05:04:54.554774Z",
+            "relationship_type": "default-extract",
+            "source_ref": "report--87ee39a0-8f00-48c2-b147-6c644704e71a",
+            "target_ref": "indicator--8a106d7f-1fbf-44da-ab28-5d8b0b665801"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--89a9e747-e2fe-4232-a909-b31069aa770e",
+            "created": "2022-09-03T05:04:54.554913Z",
+            "modified": "2022-09-03T05:04:54.554913Z",
+            "relationship_type": "default-extract",
+            "source_ref": "report--87ee39a0-8f00-48c2-b147-6c644704e71a",
+            "target_ref": "indicator--49ee60de-5b30-4a07-9d7b-846f974689fb"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--1977c4ad-cd9b-4237-acd7-7b962070390d",
+            "created": "2022-09-03T05:04:54.555051Z",
+            "modified": "2022-09-03T05:04:54.555051Z",
+            "relationship_type": "default-extract",
+            "source_ref": "report--87ee39a0-8f00-48c2-b147-6c644704e71a",
+            "target_ref": "indicator--bfb3e0c2-1489-4213-81ae-64e80c6c97cd"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--15a5f6a5-6a58-44c7-8607-d9cf0e573caf",
+            "created": "2022-09-03T05:04:54.55519Z",
+            "modified": "2022-09-03T05:04:54.55519Z",
+            "relationship_type": "default-extract",
+            "source_ref": "report--87ee39a0-8f00-48c2-b147-6c644704e71a",
+            "target_ref": "indicator--9f2b7e8e-36ff-4cd1-a2e4-31966e9f5d6f"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--22b868f9-9d61-4a76-9d23-ad147b26e62c",
+            "created": "2022-09-03T05:04:54.55534Z",
+            "modified": "2022-09-03T05:04:54.55534Z",
+            "relationship_type": "default-extract",
+            "source_ref": "report--87ee39a0-8f00-48c2-b147-6c644704e71a",
+            "target_ref": "indicator--6f674f34-4233-4244-9be1-fe53181be1e0"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--a53d6e79-62db-4426-8f16-482e747e8f79",
+            "created": "2022-09-03T05:04:54.555474Z",
+            "modified": "2022-09-03T05:04:54.555474Z",
+            "relationship_type": "default-extract",
+            "source_ref": "report--87ee39a0-8f00-48c2-b147-6c644704e71a",
+            "target_ref": "indicator--e1065941-8b00-44b4-802f-aa67b284db19"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--d47bd14e-3848-4be7-abdb-fd7149710b07",
+            "created": "2022-09-03T05:04:54.555606Z",
+            "modified": "2022-09-03T05:04:54.555606Z",
+            "relationship_type": "default-extract",
+            "source_ref": "report--87ee39a0-8f00-48c2-b147-6c644704e71a",
+            "target_ref": "indicator--9b5edf8c-4f5d-4573-a142-f461e90b1a6d"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--1f4bf460-6325-455b-ad62-5cbf31c4dc27",
+            "created": "2022-09-03T05:04:54.555738Z",
+            "modified": "2022-09-03T05:04:54.555738Z",
+            "relationship_type": "default-extract",
+            "source_ref": "report--87ee39a0-8f00-48c2-b147-6c644704e71a",
+            "target_ref": "indicator--b86fefde-1860-4a4e-af27-3757f4899cc2"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--b7b60164-970d-411e-8c4e-b5f70e181abd",
+            "created": "2022-09-03T05:04:54.555869Z",
+            "modified": "2022-09-03T05:04:54.555869Z",
+            "relationship_type": "default-extract",
+            "source_ref": "report--87ee39a0-8f00-48c2-b147-6c644704e71a",
+            "target_ref": "indicator--63b62742-1ece-4872-abb2-da030c1ea256"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--13622c06-fa83-455a-b248-58a2a257e8a3",
+            "created": "2022-09-03T05:04:54.556001Z",
+            "modified": "2022-09-03T05:04:54.556001Z",
+            "relationship_type": "default-extract",
+            "source_ref": "report--87ee39a0-8f00-48c2-b147-6c644704e71a",
+            "target_ref": "indicator--69401da2-a0a3-4e58-bc7e-4bbc38736aba"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--2c47b270-e21f-415a-a497-934e69dbeb33",
+            "created": "2022-09-03T05:04:54.556133Z",
+            "modified": "2022-09-03T05:04:54.556133Z",
+            "relationship_type": "default-extract",
+            "source_ref": "report--87ee39a0-8f00-48c2-b147-6c644704e71a",
+            "target_ref": "indicator--fc413bad-6f72-4518-9a49-ef0205dce7e6"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--4664d140-7b0a-4931-afa0-914a60260e4c",
+            "created": "2022-09-03T05:04:54.556264Z",
+            "modified": "2022-09-03T05:04:54.556264Z",
+            "relationship_type": "default-extract",
+            "source_ref": "report--87ee39a0-8f00-48c2-b147-6c644704e71a",
+            "target_ref": "indicator--8d1d73f9-34ed-4f5f-b3c9-80f3edf72c91"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--809cf0bb-663f-4c9c-a6a3-c7a9c7b89def",
+            "created": "2022-09-03T05:04:54.556396Z",
+            "modified": "2022-09-03T05:04:54.556396Z",
+            "relationship_type": "default-extract",
+            "source_ref": "report--87ee39a0-8f00-48c2-b147-6c644704e71a",
+            "target_ref": "indicator--72fcc13b-18da-4e45-a94f-d8df5baa67a8"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--82e7b740-fa50-40ca-9d26-0dc4019e9d43",
+            "created": "2022-09-03T05:04:54.556527Z",
+            "modified": "2022-09-03T05:04:54.556527Z",
+            "relationship_type": "default-extract",
+            "source_ref": "report--87ee39a0-8f00-48c2-b147-6c644704e71a",
+            "target_ref": "indicator--00df9bae-66b2-4aea-bcf2-499596f58e69"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--29f49956-076a-4115-ab24-6061e7e4ffd5",
+            "created": "2022-09-03T05:04:54.55666Z",
+            "modified": "2022-09-03T05:04:54.55666Z",
+            "relationship_type": "default-extract",
+            "source_ref": "report--87ee39a0-8f00-48c2-b147-6c644704e71a",
+            "target_ref": "indicator--35372d5c-f267-49f8-8b70-269443d67708"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--ff9b7f75-4876-477d-b792-244fccb855a4",
+            "created": "2022-09-03T05:04:54.556791Z",
+            "modified": "2022-09-03T05:04:54.556791Z",
+            "relationship_type": "default-extract",
+            "source_ref": "report--87ee39a0-8f00-48c2-b147-6c644704e71a",
+            "target_ref": "indicator--ecc410cf-986a-4179-a60e-1ce90168a0c5"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--bb53864a-4c88-4428-8029-efb85cd0bb14",
+            "created": "2022-09-03T05:04:54.556924Z",
+            "modified": "2022-09-03T05:04:54.556924Z",
+            "relationship_type": "default-extract",
+            "source_ref": "report--87ee39a0-8f00-48c2-b147-6c644704e71a",
+            "target_ref": "indicator--26da05f2-98c2-46fb-bb5e-77213b2bc5c4"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--f8eb53ff-a796-41dd-8674-9b80cad8b8ca",
+            "created": "2022-09-03T05:04:54.557063Z",
+            "modified": "2022-09-03T05:04:54.557063Z",
+            "relationship_type": "default-extract",
+            "source_ref": "report--87ee39a0-8f00-48c2-b147-6c644704e71a",
+            "target_ref": "indicator--1fd532b6-8ac1-4fb2-9fc0-80a28fec00fe"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--6eb98392-5163-4f11-a8f7-1cda64969d3a",
+            "created": "2022-09-03T05:04:54.557196Z",
+            "modified": "2022-09-03T05:04:54.557196Z",
+            "relationship_type": "default-extract",
+            "source_ref": "report--87ee39a0-8f00-48c2-b147-6c644704e71a",
+            "target_ref": "indicator--aa09dae2-2a9a-4824-a778-e758321a90c7"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--5c6dc7ac-2192-4365-b2f6-0664b992515a",
+            "created": "2022-09-03T05:04:54.557329Z",
+            "modified": "2022-09-03T05:04:54.557329Z",
+            "relationship_type": "default-extract",
+            "source_ref": "report--87ee39a0-8f00-48c2-b147-6c644704e71a",
+            "target_ref": "indicator--a3c2b68d-1254-4735-9f78-57c0c2f86e58"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--d3c1d743-ca55-48ba-90a4-0e1a07803fbc",
+            "created": "2022-09-03T05:04:54.557462Z",
+            "modified": "2022-09-03T05:04:54.557462Z",
+            "relationship_type": "default-extract",
+            "source_ref": "report--87ee39a0-8f00-48c2-b147-6c644704e71a",
+            "target_ref": "indicator--7b90723c-0598-48eb-a6ad-dd72bf41a9f2"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--984c9e5a-ac98-4d58-9ae9-9662ae72a3ac",
+            "created": "2022-09-03T05:04:54.557595Z",
+            "modified": "2022-09-03T05:04:54.557595Z",
+            "relationship_type": "default-extract",
+            "source_ref": "report--87ee39a0-8f00-48c2-b147-6c644704e71a",
+            "target_ref": "indicator--001bc4c1-838b-42f9-879a-34ad7b3108b6"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--49d5fd39-c64a-41f6-8850-1b3d1eb161dc",
+            "created": "2022-09-03T05:04:54.557731Z",
+            "modified": "2022-09-03T05:04:54.557731Z",
+            "relationship_type": "default-extract",
+            "source_ref": "report--87ee39a0-8f00-48c2-b147-6c644704e71a",
+            "target_ref": "indicator--30539124-c114-4f28-adda-f0fc6bd6ff86"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--ba7526a2-0167-40d0-a8da-8da7d30241f7",
+            "created": "2022-09-03T05:04:54.557865Z",
+            "modified": "2022-09-03T05:04:54.557865Z",
+            "relationship_type": "default-extract",
+            "source_ref": "report--87ee39a0-8f00-48c2-b147-6c644704e71a",
+            "target_ref": "indicator--d4e9c7e2-b190-423a-b9dd-7d50f2930e2a"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--3f06652a-2a84-4850-87f1-4e27d16c84cc",
+            "created": "2022-09-03T05:04:54.558Z",
+            "modified": "2022-09-03T05:04:54.558Z",
+            "relationship_type": "default-extract",
+            "source_ref": "report--87ee39a0-8f00-48c2-b147-6c644704e71a",
+            "target_ref": "indicator--6309301a-d446-42a5-ad9d-632c05e18905"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--7f9d34a1-d423-45aa-baa5-f919018d5581",
+            "created": "2022-09-03T05:04:54.558136Z",
+            "modified": "2022-09-03T05:04:54.558136Z",
+            "relationship_type": "default-extract",
+            "source_ref": "report--87ee39a0-8f00-48c2-b147-6c644704e71a",
+            "target_ref": "indicator--7937816f-c424-4e52-8fe2-624b3c924925"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--e419d37c-3cb8-479a-a377-4f73d2ea4511",
+            "created": "2022-09-03T05:04:54.558269Z",
+            "modified": "2022-09-03T05:04:54.558269Z",
+            "relationship_type": "default-extract",
+            "source_ref": "report--87ee39a0-8f00-48c2-b147-6c644704e71a",
+            "target_ref": "indicator--01640f02-c30c-4730-bbc4-1cfd0a3e5ff0"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--ef57a307-d0fb-4918-b9f8-e0184c354239",
+            "created": "2022-09-03T05:04:54.558403Z",
+            "modified": "2022-09-03T05:04:54.558403Z",
+            "relationship_type": "default-extract",
+            "source_ref": "report--87ee39a0-8f00-48c2-b147-6c644704e71a",
+            "target_ref": "indicator--cb124068-3466-45f8-85dc-189e2ef5ad6a"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--ac10c29d-5e67-4bb0-bf9f-ad43c180803c",
+            "created": "2022-09-03T05:04:54.558536Z",
+            "modified": "2022-09-03T05:04:54.558536Z",
+            "relationship_type": "default-extract",
+            "source_ref": "report--87ee39a0-8f00-48c2-b147-6c644704e71a",
+            "target_ref": "indicator--ce41a714-c7d5-4fff-9279-292796835674"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--b25bc40a-a78c-4529-b9da-c62e9b5bf386",
+            "created": "2022-09-03T05:04:54.558671Z",
+            "modified": "2022-09-03T05:04:54.558671Z",
+            "relationship_type": "default-extract",
+            "source_ref": "report--87ee39a0-8f00-48c2-b147-6c644704e71a",
+            "target_ref": "indicator--234ff1f7-b42d-4d98-ace5-a9658675b13f"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--f082f05e-38f5-411b-8cf7-30cd9949c5a6",
+            "created": "2022-09-03T05:04:54.558806Z",
+            "modified": "2022-09-03T05:04:54.558806Z",
+            "relationship_type": "default-extract",
+            "source_ref": "report--87ee39a0-8f00-48c2-b147-6c644704e71a",
+            "target_ref": "indicator--80c6bf03-2874-4bf6-99a5-04fe1d08f910"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--fb266110-0707-40f5-8538-29fb06b9c6e3",
+            "created": "2022-09-03T05:04:54.558945Z",
+            "modified": "2022-09-03T05:04:54.558945Z",
+            "relationship_type": "default-extract",
+            "source_ref": "report--87ee39a0-8f00-48c2-b147-6c644704e71a",
+            "target_ref": "indicator--6312b3eb-c2d6-44a7-91e6-1d5f43c7fc7d"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--b0a77154-69af-4451-8e21-443b1f58e9b6",
+            "created": "2022-09-03T05:04:54.559208Z",
+            "modified": "2022-09-03T05:04:54.559208Z",
+            "relationship_type": "default-extract",
+            "source_ref": "report--87ee39a0-8f00-48c2-b147-6c644704e71a",
+            "target_ref": "indicator--43b66b48-3886-4239-9066-f041d70cf7a1"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--8b90e4b7-8327-4b89-a7bd-57730dbbe1ed",
+            "created": "2022-09-03T05:04:54.55937Z",
+            "modified": "2022-09-03T05:04:54.55937Z",
+            "relationship_type": "default-extract",
+            "source_ref": "report--87ee39a0-8f00-48c2-b147-6c644704e71a",
+            "target_ref": "indicator--d930266c-3caf-49ee-8089-6e59a1bc3f5e"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--77db01d3-929c-4ffc-8433-84132e13cc61",
+            "created": "2022-09-03T05:04:54.559516Z",
+            "modified": "2022-09-03T05:04:54.559516Z",
+            "relationship_type": "default-extract",
+            "source_ref": "report--87ee39a0-8f00-48c2-b147-6c644704e71a",
+            "target_ref": "indicator--745a2334-b542-40d9-a46f-7a8855ca0285"
+        }
+    ]
+}

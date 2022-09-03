@@ -1,0 +1,167 @@
+{
+    "type": "bundle",
+    "id": "bundle--58cc0ceb-4727-4e6e-92e2-35ab98368556",
+    "objects": [
+        {
+            "type": "indicator",
+            "spec_version": "2.1",
+            "id": "indicator--1b6bde59-b418-45c8-9f6b-7bd83f905472",
+            "created": "2022-09-02T17:54:23.94734Z",
+            "modified": "2022-09-03T05:05:39.795329Z",
+            "name": "File name: test.bat",
+            "indicator_types": [
+                "unknown"
+            ],
+            "pattern": "[ file:name = 'test.bat' ]",
+            "pattern_type": "stix",
+            "pattern_version": "2.1",
+            "valid_from": "2022-09-02T17:54:23.94734Z",
+            "object_marking_refs": [
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
+            ]
+        },
+        {
+            "type": "indicator",
+            "spec_version": "2.1",
+            "id": "indicator--6e6dae89-c597-4ee0-9305-c65d3c6e9a7e",
+            "created_by_ref": "identity--acf55024-6bbe-486f-a27a-7967559324f4",
+            "created": "2022-09-03T04:41:41.647484Z",
+            "modified": "2022-09-03T05:05:40.650358Z",
+            "name": "Directory: /System/Library/",
+            "indicator_types": [
+                "unknown"
+            ],
+            "pattern": "[ directory:path = '/System/Library/' ]",
+            "pattern_type": "stix",
+            "pattern_version": "2.1",
+            "valid_from": "2022-09-03T04:41:41.647484Z",
+            "object_marking_refs": [
+                "marking-definition--f88d31f6-486f-44da-b317-01333bde0b82"
+            ]
+        },
+        {
+            "type": "indicator",
+            "spec_version": "2.1",
+            "id": "indicator--69581b28-6f65-44dd-89e3-a254135d6c51",
+            "created_by_ref": "identity--acf55024-6bbe-486f-a27a-7967559324f4",
+            "created": "2022-09-02T14:51:32.531672Z",
+            "modified": "2022-09-03T05:05:41.489265Z",
+            "name": "Directory: C:\\Windows\\",
+            "indicator_types": [
+                "unknown"
+            ],
+            "pattern": "[ directory:path = 'C:\\\\Windows\\\\' ]",
+            "pattern_type": "stix",
+            "pattern_version": "2.1",
+            "valid_from": "2022-09-02T14:51:32.531672Z",
+            "object_marking_refs": [
+                "marking-definition--f88d31f6-486f-44da-b317-01333bde0b82"
+            ]
+        },
+        {
+            "type": "indicator",
+            "spec_version": "2.1",
+            "id": "indicator--f6305003-668f-4c7d-bfa8-a53fa160798d",
+            "created": "2022-09-03T05:00:21.458084Z",
+            "modified": "2022-09-03T05:05:42.301907Z",
+            "name": "Directory: /System/Library/LaunchDaemons/",
+            "indicator_types": [
+                "unknown"
+            ],
+            "pattern": "[ directory:path = '/System/Library/LaunchDaemons/' ]",
+            "pattern_type": "stix",
+            "pattern_version": "2.1",
+            "valid_from": "2022-09-03T05:00:21.458084Z",
+            "object_marking_refs": [
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
+            ]
+        },
+        {
+            "type": "indicator",
+            "spec_version": "2.1",
+            "id": "indicator--d3202067-877e-47e4-898c-fb662287f9dd",
+            "created": "2022-09-03T05:00:22.168232Z",
+            "modified": "2022-09-03T05:05:43.126345Z",
+            "name": "Directory: C:\\Windows\\System32\\",
+            "indicator_types": [
+                "unknown"
+            ],
+            "pattern": "[ directory:path = 'C:\\\\Windows\\\\System32\\\\' ]",
+            "pattern_type": "stix",
+            "pattern_version": "2.1",
+            "valid_from": "2022-09-03T05:00:22.168232Z",
+            "object_marking_refs": [
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
+            ]
+        },
+        {
+            "type": "report",
+            "spec_version": "2.1",
+            "id": "report--83dd6a23-3b15-4a03-85d5-c45f718f0c97",
+            "created": "2022-09-03T05:05:43.151787Z",
+            "modified": "2022-09-03T05:05:43.151787Z",
+            "name": "File converted: directory.txt",
+            "report_types": [
+                "threat_report"
+            ],
+            "published": "2022-09-03T10:35:43.15178Z",
+            "object_refs": [
+                "indicator--1b6bde59-b418-45c8-9f6b-7bd83f905472",
+                "indicator--6e6dae89-c597-4ee0-9305-c65d3c6e9a7e",
+                "indicator--69581b28-6f65-44dd-89e3-a254135d6c51",
+                "indicator--f6305003-668f-4c7d-bfa8-a53fa160798d",
+                "indicator--d3202067-877e-47e4-898c-fb662287f9dd"
+            ]
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--21035de0-063d-4eff-9018-6ff156efeb06",
+            "created": "2022-09-03T05:05:43.152073Z",
+            "modified": "2022-09-03T05:05:43.152073Z",
+            "relationship_type": "default-extract",
+            "source_ref": "report--83dd6a23-3b15-4a03-85d5-c45f718f0c97",
+            "target_ref": "indicator--1b6bde59-b418-45c8-9f6b-7bd83f905472"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--0f4a7ae8-98be-430d-8170-c1bc70e1456d",
+            "created": "2022-09-03T05:05:43.152251Z",
+            "modified": "2022-09-03T05:05:43.152251Z",
+            "relationship_type": "default-extract",
+            "source_ref": "report--83dd6a23-3b15-4a03-85d5-c45f718f0c97",
+            "target_ref": "indicator--6e6dae89-c597-4ee0-9305-c65d3c6e9a7e"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--cb3ad25a-fa4f-4500-b2cc-5355cd48065f",
+            "created": "2022-09-03T05:05:43.152399Z",
+            "modified": "2022-09-03T05:05:43.152399Z",
+            "relationship_type": "default-extract",
+            "source_ref": "report--83dd6a23-3b15-4a03-85d5-c45f718f0c97",
+            "target_ref": "indicator--69581b28-6f65-44dd-89e3-a254135d6c51"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--be5505cf-bec0-45b4-a04f-3cda8226d57e",
+            "created": "2022-09-03T05:05:43.152542Z",
+            "modified": "2022-09-03T05:05:43.152542Z",
+            "relationship_type": "default-extract",
+            "source_ref": "report--83dd6a23-3b15-4a03-85d5-c45f718f0c97",
+            "target_ref": "indicator--f6305003-668f-4c7d-bfa8-a53fa160798d"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--39bb4377-e1c7-49d3-ab85-61c0b503497b",
+            "created": "2022-09-03T05:05:43.152682Z",
+            "modified": "2022-09-03T05:05:43.152682Z",
+            "relationship_type": "default-extract",
+            "source_ref": "report--83dd6a23-3b15-4a03-85d5-c45f718f0c97",
+            "target_ref": "indicator--d3202067-877e-47e4-898c-fb662287f9dd"
+        }
+    ]
+}

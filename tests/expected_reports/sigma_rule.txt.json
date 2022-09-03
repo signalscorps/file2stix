@@ -1,0 +1,253 @@
+{
+    "type": "bundle",
+    "id": "bundle--9695493d-a571-4ff9-a1e7-1dd73023d838",
+    "objects": [
+        {
+            "type": "indicator",
+            "spec_version": "2.1",
+            "id": "indicator--4a92ef57-a0b7-42e9-8c82-9b9a57164d83",
+            "created": "2022-09-03T05:05:45.218319Z",
+            "modified": "2022-09-03T05:05:45.218319Z",
+            "name": "File name: attack.exe",
+            "indicator_types": [
+                "unknown"
+            ],
+            "pattern": "[ file:name = 'attack.exe' ]",
+            "pattern_type": "stix",
+            "pattern_version": "2.1",
+            "valid_from": "2022-09-03T05:05:45.218319Z",
+            "object_marking_refs": [
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
+            ]
+        },
+        {
+            "type": "indicator",
+            "spec_version": "2.1",
+            "id": "indicator--b829f7e9-0840-41b2-9321-55824d629960",
+            "created_by_ref": "identity--acf55024-6bbe-486f-a27a-7967559324f4",
+            "created": "2022-09-02T14:51:34.768603Z",
+            "modified": "2022-09-03T05:05:49.384299Z",
+            "name": "Directory: https://",
+            "indicator_types": [
+                "unknown"
+            ],
+            "pattern": "[ directory:path = 'https://' ]",
+            "pattern_type": "stix",
+            "pattern_version": "2.1",
+            "valid_from": "2022-09-02T14:51:34.768603Z",
+            "object_marking_refs": [
+                "marking-definition--f88d31f6-486f-44da-b317-01333bde0b82"
+            ]
+        },
+        {
+            "type": "indicator",
+            "spec_version": "2.1",
+            "id": "indicator--2db1de87-aa70-4eda-90be-6ccfb02ee1f6",
+            "created": "2022-09-03T05:05:47.091858Z",
+            "modified": "2022-09-03T05:05:47.091858Z",
+            "name": "Directory: 2018/09/",
+            "indicator_types": [
+                "unknown"
+            ],
+            "pattern": "[ directory:path = '2018/09/' ]",
+            "pattern_type": "stix",
+            "pattern_version": "2.1",
+            "valid_from": "2022-09-03T05:05:47.091858Z",
+            "object_marking_refs": [
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
+            ]
+        },
+        {
+            "type": "indicator",
+            "spec_version": "2.1",
+            "id": "indicator--ec6efa31-bfdd-4497-b7ee-33755b9ddfa9",
+            "created": "2022-09-03T05:05:49.528093Z",
+            "modified": "2022-09-03T05:05:49.528093Z",
+            "name": "Directory: 2022/05/",
+            "indicator_types": [
+                "unknown"
+            ],
+            "pattern": "[ directory:path = '2022/05/' ]",
+            "pattern_type": "stix",
+            "pattern_version": "2.1",
+            "valid_from": "2022-09-03T05:05:49.528093Z",
+            "object_marking_refs": [
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
+            ]
+        },
+        {
+            "type": "indicator",
+            "spec_version": "2.1",
+            "id": "indicator--e1a18135-dc98-444c-bceb-4a9c3328cb67",
+            "created": "2022-09-03T05:05:50.320422Z",
+            "modified": "2022-09-03T05:05:50.320422Z",
+            "name": "Domain: attack.execution",
+            "indicator_types": [
+                "unknown"
+            ],
+            "pattern": "[ domain-name:value = 'attack.execution' ]",
+            "pattern_type": "stix",
+            "pattern_version": "2.1",
+            "valid_from": "2022-09-03T05:05:50.320422Z",
+            "object_marking_refs": [
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
+            ]
+        },
+        {
+            "type": "indicator",
+            "spec_version": "2.1",
+            "id": "indicator--480864a4-4b80-4ba5-9da9-b0971133681d",
+            "created": "2022-09-03T05:05:51.14644Z",
+            "modified": "2022-09-03T05:05:51.14644Z",
+            "name": "Domain: attack.command_and_control",
+            "indicator_types": [
+                "unknown"
+            ],
+            "pattern": "[ domain-name:value = 'attack.command_and_control' ]",
+            "pattern_type": "stix",
+            "pattern_version": "2.1",
+            "valid_from": "2022-09-03T05:05:51.14644Z",
+            "object_marking_refs": [
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
+            ]
+        },
+        {
+            "type": "indicator",
+            "spec_version": "2.1",
+            "id": "indicator--a7a67d96-8113-4dca-8a6a-0071732c93bc",
+            "created": "2022-09-03T05:05:51.922332Z",
+            "modified": "2022-09-03T05:05:51.922332Z",
+            "name": "URL: https://www.nextron-systems.com/2018/09/08/antivirus-event-analysis-cheat-sheet-v1-4/",
+            "indicator_types": [
+                "unknown"
+            ],
+            "pattern": "[ url:value = 'https://www.nextron-systems.com/2018/09/08/antivirus-event-analysis-cheat-sheet-v1-4/' ]",
+            "pattern_type": "stix",
+            "pattern_version": "2.1",
+            "valid_from": "2022-09-03T05:05:51.922332Z",
+            "object_marking_refs": [
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
+            ]
+        },
+        {
+            "type": "indicator",
+            "spec_version": "2.1",
+            "id": "indicator--c7176716-eb31-46d2-a4a5-edaaa9bea480",
+            "created": "2022-09-03T05:05:52.698354Z",
+            "modified": "2022-09-03T05:05:52.698354Z",
+            "name": "URL: https://www.nextron-systems.com/?s=antivirus",
+            "indicator_types": [
+                "unknown"
+            ],
+            "pattern": "[ url:value = 'https://www.nextron-systems.com/?s=antivirus' ]",
+            "pattern_type": "stix",
+            "pattern_version": "2.1",
+            "valid_from": "2022-09-03T05:05:52.698354Z",
+            "object_marking_refs": [
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
+            ]
+        },
+        {
+            "type": "report",
+            "spec_version": "2.1",
+            "id": "report--c99604a4-4577-41ac-b625-0b7e82854144",
+            "created": "2022-09-03T05:05:53.565654Z",
+            "modified": "2022-09-03T05:05:53.565654Z",
+            "name": "File converted: sigma_rule.txt",
+            "report_types": [
+                "threat_report"
+            ],
+            "published": "2022-09-03T10:35:53.565646Z",
+            "object_refs": [
+                "indicator--4a92ef57-a0b7-42e9-8c82-9b9a57164d83",
+                "indicator--b829f7e9-0840-41b2-9321-55824d629960",
+                "indicator--2db1de87-aa70-4eda-90be-6ccfb02ee1f6",
+                "indicator--ec6efa31-bfdd-4497-b7ee-33755b9ddfa9",
+                "indicator--e1a18135-dc98-444c-bceb-4a9c3328cb67",
+                "indicator--480864a4-4b80-4ba5-9da9-b0971133681d",
+                "indicator--a7a67d96-8113-4dca-8a6a-0071732c93bc",
+                "indicator--c7176716-eb31-46d2-a4a5-edaaa9bea480"
+            ]
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--7a2f7b8b-e76d-476d-83f8-afba0f137809",
+            "created": "2022-09-03T05:05:53.565957Z",
+            "modified": "2022-09-03T05:05:53.565957Z",
+            "relationship_type": "default-extract",
+            "source_ref": "report--c99604a4-4577-41ac-b625-0b7e82854144",
+            "target_ref": "indicator--4a92ef57-a0b7-42e9-8c82-9b9a57164d83"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--4c2b1daf-61bf-41e0-ab76-fe1e8dd7b9b2",
+            "created": "2022-09-03T05:05:53.566121Z",
+            "modified": "2022-09-03T05:05:53.566121Z",
+            "relationship_type": "default-extract",
+            "source_ref": "report--c99604a4-4577-41ac-b625-0b7e82854144",
+            "target_ref": "indicator--b829f7e9-0840-41b2-9321-55824d629960"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--066775ce-f026-4eea-9e3b-bd770226f0b3",
+            "created": "2022-09-03T05:05:53.566268Z",
+            "modified": "2022-09-03T05:05:53.566268Z",
+            "relationship_type": "default-extract",
+            "source_ref": "report--c99604a4-4577-41ac-b625-0b7e82854144",
+            "target_ref": "indicator--2db1de87-aa70-4eda-90be-6ccfb02ee1f6"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--618a5eca-4006-4c14-846b-b0578c1dd9d5",
+            "created": "2022-09-03T05:05:53.566413Z",
+            "modified": "2022-09-03T05:05:53.566413Z",
+            "relationship_type": "default-extract",
+            "source_ref": "report--c99604a4-4577-41ac-b625-0b7e82854144",
+            "target_ref": "indicator--ec6efa31-bfdd-4497-b7ee-33755b9ddfa9"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--aaed1a2f-81ff-483c-9d97-e7dce2bc285b",
+            "created": "2022-09-03T05:05:53.566555Z",
+            "modified": "2022-09-03T05:05:53.566555Z",
+            "relationship_type": "default-extract",
+            "source_ref": "report--c99604a4-4577-41ac-b625-0b7e82854144",
+            "target_ref": "indicator--e1a18135-dc98-444c-bceb-4a9c3328cb67"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--f2510759-c061-475a-b264-35700b97297a",
+            "created": "2022-09-03T05:05:53.566697Z",
+            "modified": "2022-09-03T05:05:53.566697Z",
+            "relationship_type": "default-extract",
+            "source_ref": "report--c99604a4-4577-41ac-b625-0b7e82854144",
+            "target_ref": "indicator--480864a4-4b80-4ba5-9da9-b0971133681d"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--0b1b00ca-b7dd-49c1-b25f-b9c4faf9eb9c",
+            "created": "2022-09-03T05:05:53.566837Z",
+            "modified": "2022-09-03T05:05:53.566837Z",
+            "relationship_type": "default-extract",
+            "source_ref": "report--c99604a4-4577-41ac-b625-0b7e82854144",
+            "target_ref": "indicator--a7a67d96-8113-4dca-8a6a-0071732c93bc"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--f241d7d7-4625-41a8-81f3-dd768aab20aa",
+            "created": "2022-09-03T05:05:53.566985Z",
+            "modified": "2022-09-03T05:05:53.566985Z",
+            "relationship_type": "default-extract",
+            "source_ref": "report--c99604a4-4577-41ac-b625-0b7e82854144",
+            "target_ref": "indicator--c7176716-eb31-46d2-a4a5-edaaa9bea480"
+        }
+    ]
+}

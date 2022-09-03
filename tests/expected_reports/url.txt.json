@@ -1,0 +1,110 @@
+{
+    "type": "bundle",
+    "id": "bundle--084251e0-8c89-4627-83d7-c601f8770a39",
+    "objects": [
+        {
+            "type": "indicator",
+            "spec_version": "2.1",
+            "id": "indicator--b829f7e9-0840-41b2-9321-55824d629960",
+            "created_by_ref": "identity--acf55024-6bbe-486f-a27a-7967559324f4",
+            "created": "2022-09-02T14:51:34.768603Z",
+            "modified": "2022-09-03T05:04:56.270749Z",
+            "name": "Directory: https://",
+            "indicator_types": [
+                "unknown"
+            ],
+            "pattern": "[ directory:path = 'https://' ]",
+            "pattern_type": "stix",
+            "pattern_version": "2.1",
+            "valid_from": "2022-09-02T14:51:34.768603Z",
+            "object_marking_refs": [
+                "marking-definition--f88d31f6-486f-44da-b317-01333bde0b82"
+            ]
+        },
+        {
+            "type": "indicator",
+            "spec_version": "2.1",
+            "id": "indicator--e695b8f9-706e-4747-87ca-e8b38477188f",
+            "created_by_ref": "identity--acf55024-6bbe-486f-a27a-7967559324f4",
+            "created": "2022-09-02T14:51:35.25542Z",
+            "modified": "2022-09-03T05:04:57.090665Z",
+            "name": "URL: https://example.com/research/",
+            "indicator_types": [
+                "unknown"
+            ],
+            "pattern": "[ url:value = 'https://example.com/research/' ]",
+            "pattern_type": "stix",
+            "pattern_version": "2.1",
+            "valid_from": "2022-09-02T14:51:35.25542Z",
+            "object_marking_refs": [
+                "marking-definition--f88d31f6-486f-44da-b317-01333bde0b82"
+            ]
+        },
+        {
+            "type": "indicator",
+            "spec_version": "2.1",
+            "id": "indicator--015c9795-ea0d-4a00-9fee-660bde556e18",
+            "created_by_ref": "identity--acf55024-6bbe-486f-a27a-7967559324f4",
+            "created": "2022-09-02T14:51:35.414405Z",
+            "modified": "2022-09-03T05:04:57.921958Z",
+            "name": "URL: https://example.com/path/index.html",
+            "indicator_types": [
+                "unknown"
+            ],
+            "pattern": "[ url:value = 'https://example.com/path/index.html' ]",
+            "pattern_type": "stix",
+            "pattern_version": "2.1",
+            "valid_from": "2022-09-02T14:51:35.414405Z",
+            "object_marking_refs": [
+                "marking-definition--f88d31f6-486f-44da-b317-01333bde0b82"
+            ]
+        },
+        {
+            "type": "report",
+            "spec_version": "2.1",
+            "id": "report--05cf4148-fd83-4c7b-b627-d9688e41ee95",
+            "created": "2022-09-03T05:04:57.935362Z",
+            "modified": "2022-09-03T05:04:57.935362Z",
+            "name": "File converted: url.txt",
+            "report_types": [
+                "threat_report"
+            ],
+            "published": "2022-09-03T10:34:57.935353Z",
+            "object_refs": [
+                "indicator--b829f7e9-0840-41b2-9321-55824d629960",
+                "indicator--e695b8f9-706e-4747-87ca-e8b38477188f",
+                "indicator--015c9795-ea0d-4a00-9fee-660bde556e18"
+            ]
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--33740d86-052e-43e2-9a96-3812c43375fe",
+            "created": "2022-09-03T05:04:57.93567Z",
+            "modified": "2022-09-03T05:04:57.93567Z",
+            "relationship_type": "default-extract",
+            "source_ref": "report--05cf4148-fd83-4c7b-b627-d9688e41ee95",
+            "target_ref": "indicator--b829f7e9-0840-41b2-9321-55824d629960"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--ca059caa-8504-4482-b52b-a915a76570a8",
+            "created": "2022-09-03T05:04:57.935837Z",
+            "modified": "2022-09-03T05:04:57.935837Z",
+            "relationship_type": "default-extract",
+            "source_ref": "report--05cf4148-fd83-4c7b-b627-d9688e41ee95",
+            "target_ref": "indicator--e695b8f9-706e-4747-87ca-e8b38477188f"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--60603a19-6172-4659-9d0f-63e8d84bd3ea",
+            "created": "2022-09-03T05:04:57.935985Z",
+            "modified": "2022-09-03T05:04:57.935985Z",
+            "relationship_type": "default-extract",
+            "source_ref": "report--05cf4148-fd83-4c7b-b627-d9688e41ee95",
+            "target_ref": "indicator--015c9795-ea0d-4a00-9fee-660bde556e18"
+        }
+    ]
+}

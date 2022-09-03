@@ -1,0 +1,89 @@
+{
+    "type": "bundle",
+    "id": "bundle--932d64af-36c5-4617-b322-620eb16313ec",
+    "objects": [
+        {
+            "type": "software",
+            "spec_version": "2.1",
+            "id": "software--e78aa2a6-74b2-54ff-9457-2b01f13d4274",
+            "name": "CPE: apache log4j 2.0",
+            "cpe": "cpe:2.3:a:apache:log4j:2.0:rc2:*:*:*:*:*:*",
+            "vendor": "apache",
+            "version": "2.0",
+            "object_marking_refs": [
+                "marking-definition--f88d31f6-486f-44da-b317-01333bde0b82"
+            ]
+        },
+        {
+            "type": "software",
+            "spec_version": "2.1",
+            "id": "software--c2e95080-c4cb-5a48-96ee-8a91afb3b223",
+            "name": "CPE: cisco firepower_2130 -",
+            "cpe": "cpe:2.3:h:cisco:firepower_2130:-:*:*:*:*:*:*:*",
+            "vendor": "cisco",
+            "version": "-",
+            "object_marking_refs": [
+                "marking-definition--f88d31f6-486f-44da-b317-01333bde0b82"
+            ]
+        },
+        {
+            "type": "software",
+            "spec_version": "2.1",
+            "id": "software--b50ac926-2979-58fe-be92-86f5bab0fac9",
+            "name": "CPE: cisco finesse 12.5\\(1\\)",
+            "cpe": "cpe:2.3:a:cisco:finesse:12.5\\(1\\):su2:*:*:*:*:*:*",
+            "vendor": "cisco",
+            "version": "12.5\\(1\\)",
+            "object_marking_refs": [
+                "marking-definition--f88d31f6-486f-44da-b317-01333bde0b82"
+            ]
+        },
+        {
+            "type": "report",
+            "spec_version": "2.1",
+            "id": "report--a3a0013b-17b4-492d-9a1c-38b982e626f3",
+            "created": "2022-09-03T05:03:46.135115Z",
+            "modified": "2022-09-03T05:03:46.135115Z",
+            "name": "File converted: cpe.txt",
+            "report_types": [
+                "threat_report"
+            ],
+            "published": "2022-09-03T10:33:46.13511Z",
+            "object_refs": [
+                "software--e78aa2a6-74b2-54ff-9457-2b01f13d4274",
+                "software--c2e95080-c4cb-5a48-96ee-8a91afb3b223",
+                "software--b50ac926-2979-58fe-be92-86f5bab0fac9"
+            ]
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--dee05d66-901c-47ab-9bfd-f83020d673b0",
+            "created": "2022-09-03T05:03:46.135332Z",
+            "modified": "2022-09-03T05:03:46.135332Z",
+            "relationship_type": "default-extract",
+            "source_ref": "report--a3a0013b-17b4-492d-9a1c-38b982e626f3",
+            "target_ref": "software--e78aa2a6-74b2-54ff-9457-2b01f13d4274"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--fef87431-9270-432a-82e6-1c8c17644e82",
+            "created": "2022-09-03T05:03:46.135499Z",
+            "modified": "2022-09-03T05:03:46.135499Z",
+            "relationship_type": "default-extract",
+            "source_ref": "report--a3a0013b-17b4-492d-9a1c-38b982e626f3",
+            "target_ref": "software--c2e95080-c4cb-5a48-96ee-8a91afb3b223"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--dfc695f9-b1a2-4487-87b7-76d29cfa2f5e",
+            "created": "2022-09-03T05:03:46.135653Z",
+            "modified": "2022-09-03T05:03:46.135653Z",
+            "relationship_type": "default-extract",
+            "source_ref": "report--a3a0013b-17b4-492d-9a1c-38b982e626f3",
+            "target_ref": "software--b50ac926-2979-58fe-be92-86f5bab0fac9"
+        }
+    ]
+}

@@ -1,0 +1,200 @@
+{
+    "type": "bundle",
+    "id": "bundle--c17d08e5-3eab-4946-b84a-49864b554bb7",
+    "objects": [
+        {
+            "type": "indicator",
+            "spec_version": "2.1",
+            "id": "indicator--123c6889-26f4-4c51-a774-f36055a1d860",
+            "created_by_ref": "identity--acf55024-6bbe-486f-a27a-7967559324f4",
+            "created": "2022-09-03T04:41:37.80964Z",
+            "modified": "2022-09-03T05:05:23.594449Z",
+            "name": "md5: 4ec503be252d765ea37621a629afdaa6",
+            "indicator_types": [
+                "unknown"
+            ],
+            "pattern": "[ file:hash.md5 = '4ec503be252d765ea37621a629afdaa6' ]",
+            "pattern_type": "stix",
+            "pattern_version": "2.1",
+            "valid_from": "2022-09-03T04:41:37.80964Z",
+            "object_marking_refs": [
+                "marking-definition--f88d31f6-486f-44da-b317-01333bde0b82"
+            ]
+        },
+        {
+            "type": "indicator",
+            "spec_version": "2.1",
+            "id": "indicator--0f215606-53ad-4884-a5f6-55445553bb4b",
+            "created_by_ref": "identity--acf55024-6bbe-486f-a27a-7967559324f4",
+            "created": "2022-09-02T14:51:31.292814Z",
+            "modified": "2022-09-03T05:05:24.381556Z",
+            "name": "sha1: 86F7E437FAA5A7FCE15D1DDCB9EAEAEA377667B8",
+            "indicator_types": [
+                "unknown"
+            ],
+            "pattern": "[ file:hash.sha1 = '86F7E437FAA5A7FCE15D1DDCB9EAEAEA377667B8' ]",
+            "pattern_type": "stix",
+            "pattern_version": "2.1",
+            "valid_from": "2022-09-02T14:51:31.292814Z",
+            "object_marking_refs": [
+                "marking-definition--f88d31f6-486f-44da-b317-01333bde0b82"
+            ]
+        },
+        {
+            "type": "indicator",
+            "spec_version": "2.1",
+            "id": "indicator--737749b5-8b36-4ade-9aaf-cd3f0e7aeb40",
+            "created_by_ref": "identity--acf55024-6bbe-486f-a27a-7967559324f4",
+            "created": "2022-09-02T14:51:31.51119Z",
+            "modified": "2022-09-03T05:05:25.171654Z",
+            "name": "sha256: ba7816bf8f01cfea414140de5dae2223b00361a396177a9cb410ff61f20015ad",
+            "indicator_types": [
+                "unknown"
+            ],
+            "pattern": "[ file:hash.sha256 = 'ba7816bf8f01cfea414140de5dae2223b00361a396177a9cb410ff61f20015ad' ]",
+            "pattern_type": "stix",
+            "pattern_version": "2.1",
+            "valid_from": "2022-09-02T14:51:31.51119Z",
+            "object_marking_refs": [
+                "marking-definition--f88d31f6-486f-44da-b317-01333bde0b82"
+            ]
+        },
+        {
+            "type": "indicator",
+            "spec_version": "2.1",
+            "id": "indicator--e684bcc2-db9b-42f0-8772-e9294ef1c29f",
+            "created_by_ref": "identity--acf55024-6bbe-486f-a27a-7967559324f4",
+            "created": "2022-09-03T04:41:39.481056Z",
+            "modified": "2022-09-03T05:05:25.949798Z",
+            "name": "sha512: 1f40fc92da241694750979ee6cf582f2d5d7d28e18335de05abc54d0560e0f5302860c652bf08d560252aa5e74210546f369fbbbce8c12cfc7957b2652fe9a75",
+            "indicator_types": [
+                "unknown"
+            ],
+            "pattern": "[ file:hash.sha512 = '1f40fc92da241694750979ee6cf582f2d5d7d28e18335de05abc54d0560e0f5302860c652bf08d560252aa5e74210546f369fbbbce8c12cfc7957b2652fe9a75' ]",
+            "pattern_type": "stix",
+            "pattern_version": "2.1",
+            "valid_from": "2022-09-03T04:41:39.481056Z",
+            "object_marking_refs": [
+                "marking-definition--f88d31f6-486f-44da-b317-01333bde0b82"
+            ]
+        },
+        {
+            "type": "indicator",
+            "spec_version": "2.1",
+            "id": "indicator--1eb22506-3f3b-42ef-b1eb-4bbf7cbb0f08",
+            "created_by_ref": "identity--acf55024-6bbe-486f-a27a-7967559324f4",
+            "created": "2022-09-03T04:41:40.027178Z",
+            "modified": "2022-09-03T05:05:26.733588Z",
+            "name": "ssdeep: 96:s4Ud1Lj96tHHlZDrwciQmA+4uy1I0G4HYuL8N3TzS8QsO/wqWXLcMSx:sF1LjEtHHlZDrJzrhuyZvHYm8tKp/RWO",
+            "indicator_types": [
+                "unknown"
+            ],
+            "pattern": "[ file:hash.ssdeep = '96:s4Ud1Lj96tHHlZDrwciQmA+4uy1I0G4HYuL8N3TzS8QsO/wqWXLcMSx:sF1LjEtHHlZDrJzrhuyZvHYm8tKp/RWO' ]",
+            "pattern_type": "stix",
+            "pattern_version": "2.1",
+            "valid_from": "2022-09-03T04:41:40.027178Z",
+            "object_marking_refs": [
+                "marking-definition--f88d31f6-486f-44da-b317-01333bde0b82"
+            ]
+        },
+        {
+            "type": "indicator",
+            "spec_version": "2.1",
+            "id": "indicator--6033cf49-8ef9-4c4f-8c07-9a75ce7dce3d",
+            "created_by_ref": "identity--acf55024-6bbe-486f-a27a-7967559324f4",
+            "created": "2022-09-03T04:41:41.112231Z",
+            "modified": "2022-09-03T05:05:27.538682Z",
+            "name": "Directory: 96:s4Ud1Lj96tHHlZDrwciQmA+4uy1I0G4HYuL8N3TzS8QsO/wqWXLcMSx:sF1LjEtHHlZDrJzrhuyZvHYm8tKp/",
+            "indicator_types": [
+                "unknown"
+            ],
+            "pattern": "[ directory:path = '96:s4Ud1Lj96tHHlZDrwciQmA+4uy1I0G4HYuL8N3TzS8QsO/wqWXLcMSx:sF1LjEtHHlZDrJzrhuyZvHYm8tKp/' ]",
+            "pattern_type": "stix",
+            "pattern_version": "2.1",
+            "valid_from": "2022-09-03T04:41:41.112231Z",
+            "object_marking_refs": [
+                "marking-definition--f88d31f6-486f-44da-b317-01333bde0b82"
+            ]
+        },
+        {
+            "type": "report",
+            "spec_version": "2.1",
+            "id": "report--2394e392-59c8-454a-9351-723b89f3a599",
+            "created": "2022-09-03T05:05:27.604065Z",
+            "modified": "2022-09-03T05:05:27.604065Z",
+            "name": "File converted: file_hash.txt",
+            "report_types": [
+                "threat_report"
+            ],
+            "published": "2022-09-03T10:35:27.604057Z",
+            "object_refs": [
+                "indicator--123c6889-26f4-4c51-a774-f36055a1d860",
+                "indicator--0f215606-53ad-4884-a5f6-55445553bb4b",
+                "indicator--737749b5-8b36-4ade-9aaf-cd3f0e7aeb40",
+                "indicator--e684bcc2-db9b-42f0-8772-e9294ef1c29f",
+                "indicator--1eb22506-3f3b-42ef-b1eb-4bbf7cbb0f08",
+                "indicator--6033cf49-8ef9-4c4f-8c07-9a75ce7dce3d"
+            ]
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--150c10da-a9c4-4244-9290-54c4933d8b11",
+            "created": "2022-09-03T05:05:27.604367Z",
+            "modified": "2022-09-03T05:05:27.604367Z",
+            "relationship_type": "default-extract",
+            "source_ref": "report--2394e392-59c8-454a-9351-723b89f3a599",
+            "target_ref": "indicator--123c6889-26f4-4c51-a774-f36055a1d860"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--e29bc431-014c-4777-b07d-b52ed4c65d44",
+            "created": "2022-09-03T05:05:27.604548Z",
+            "modified": "2022-09-03T05:05:27.604548Z",
+            "relationship_type": "default-extract",
+            "source_ref": "report--2394e392-59c8-454a-9351-723b89f3a599",
+            "target_ref": "indicator--0f215606-53ad-4884-a5f6-55445553bb4b"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--46bc0168-0517-444b-8d2e-a9928042eec9",
+            "created": "2022-09-03T05:05:27.6047Z",
+            "modified": "2022-09-03T05:05:27.6047Z",
+            "relationship_type": "default-extract",
+            "source_ref": "report--2394e392-59c8-454a-9351-723b89f3a599",
+            "target_ref": "indicator--737749b5-8b36-4ade-9aaf-cd3f0e7aeb40"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--af18ece1-af24-4309-8eea-3513354670ed",
+            "created": "2022-09-03T05:05:27.604845Z",
+            "modified": "2022-09-03T05:05:27.604845Z",
+            "relationship_type": "default-extract",
+            "source_ref": "report--2394e392-59c8-454a-9351-723b89f3a599",
+            "target_ref": "indicator--e684bcc2-db9b-42f0-8772-e9294ef1c29f"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--65188b05-2d25-4342-946a-21cd28acb56a",
+            "created": "2022-09-03T05:05:27.604989Z",
+            "modified": "2022-09-03T05:05:27.604989Z",
+            "relationship_type": "default-extract",
+            "source_ref": "report--2394e392-59c8-454a-9351-723b89f3a599",
+            "target_ref": "indicator--1eb22506-3f3b-42ef-b1eb-4bbf7cbb0f08"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--6fa9ca98-68a3-4c87-bfdb-bb3aee55a8f5",
+            "created": "2022-09-03T05:05:27.605135Z",
+            "modified": "2022-09-03T05:05:27.605135Z",
+            "relationship_type": "default-extract",
+            "source_ref": "report--2394e392-59c8-454a-9351-723b89f3a599",
+            "target_ref": "indicator--6033cf49-8ef9-4c4f-8c07-9a75ce7dce3d"
+        }
+    ]
+}

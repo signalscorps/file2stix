@@ -1,0 +1,200 @@
+{
+    "type": "bundle",
+    "id": "bundle--2965c22c-561e-40a4-aa89-533941766dae",
+    "objects": [
+        {
+            "type": "indicator",
+            "spec_version": "2.1",
+            "id": "indicator--df617085-29ee-4a32-87d8-f0662a165ebb",
+            "created_by_ref": "identity--acf55024-6bbe-486f-a27a-7967559324f4",
+            "created": "2022-09-03T04:41:53.985741Z",
+            "modified": "2022-09-03T05:05:15.615296Z",
+            "name": "Windows Registry Key: HKEY_LOCAL_MACHINE\\System\\Foo\\Bar",
+            "indicator_types": [
+                "unknown"
+            ],
+            "pattern": "[ windows-registry-key:key = 'HKEY_LOCAL_MACHINE\\\\System\\\\Foo\\\\Bar' ]",
+            "pattern_type": "stix",
+            "pattern_version": "2.1",
+            "valid_from": "2022-09-03T04:41:53.985741Z",
+            "object_marking_refs": [
+                "marking-definition--f88d31f6-486f-44da-b317-01333bde0b82"
+            ]
+        },
+        {
+            "type": "indicator",
+            "spec_version": "2.1",
+            "id": "indicator--9731ad27-472a-468c-ac52-eb5a2a6b2309",
+            "created_by_ref": "identity--acf55024-6bbe-486f-a27a-7967559324f4",
+            "created": "2022-09-03T04:41:54.51349Z",
+            "modified": "2022-09-03T05:05:16.596154Z",
+            "name": "Windows Registry Key: HKEY_LOCAL_MACHINE\\SOFTWARE\\Wow6432Node",
+            "indicator_types": [
+                "unknown"
+            ],
+            "pattern": "[ windows-registry-key:key = 'HKEY_LOCAL_MACHINE\\\\SOFTWARE\\\\Wow6432Node' ]",
+            "pattern_type": "stix",
+            "pattern_version": "2.1",
+            "valid_from": "2022-09-03T04:41:54.51349Z",
+            "object_marking_refs": [
+                "marking-definition--f88d31f6-486f-44da-b317-01333bde0b82"
+            ]
+        },
+        {
+            "type": "indicator",
+            "spec_version": "2.1",
+            "id": "indicator--b846afaa-1af9-4151-a63a-c51f5ad32b7a",
+            "created_by_ref": "identity--acf55024-6bbe-486f-a27a-7967559324f4",
+            "created": "2022-09-03T04:41:56.089141Z",
+            "modified": "2022-09-03T05:05:18.989607Z",
+            "name": "Windows Registry Key: HKEY_LOCAL_MACHINE\\SYSTEM\\system32\\config\\system",
+            "indicator_types": [
+                "unknown"
+            ],
+            "pattern": "[ windows-registry-key:key = 'HKEY_LOCAL_MACHINE\\\\SYSTEM\\\\system32\\\\config\\\\system' ]",
+            "pattern_type": "stix",
+            "pattern_version": "2.1",
+            "valid_from": "2022-09-03T04:41:56.089141Z",
+            "object_marking_refs": [
+                "marking-definition--f88d31f6-486f-44da-b317-01333bde0b82"
+            ]
+        },
+        {
+            "type": "indicator",
+            "spec_version": "2.1",
+            "id": "indicator--80726986-3c31-4fd7-8706-8aeed8f846f9",
+            "created_by_ref": "identity--acf55024-6bbe-486f-a27a-7967559324f4",
+            "created": "2022-09-02T14:51:36.690126Z",
+            "modified": "2022-09-03T05:05:18.217659Z",
+            "name": "Windows Registry Key: HKEY_CURRENT_USER\\SYSTEM\\system32\\config\\system",
+            "indicator_types": [
+                "unknown"
+            ],
+            "pattern": "[ windows-registry-key:key = 'HKEY_CURRENT_USER\\\\SYSTEM\\\\system32\\\\config\\\\system' ]",
+            "pattern_type": "stix",
+            "pattern_version": "2.1",
+            "valid_from": "2022-09-02T14:51:36.690126Z",
+            "object_marking_refs": [
+                "marking-definition--f88d31f6-486f-44da-b317-01333bde0b82"
+            ]
+        },
+        {
+            "type": "indicator",
+            "spec_version": "2.1",
+            "id": "indicator--f0fd2bb2-4047-41e4-92cf-135de49e3568",
+            "created_by_ref": "identity--acf55024-6bbe-486f-a27a-7967559324f4",
+            "created": "2022-09-03T04:41:56.615278Z",
+            "modified": "2022-09-03T05:05:19.75674Z",
+            "name": "Windows Registry Key: HKEY_USERS\\SYSTEM\\system32\\config\\system",
+            "indicator_types": [
+                "unknown"
+            ],
+            "pattern": "[ windows-registry-key:key = 'HKEY_USERS\\\\SYSTEM\\\\system32\\\\config\\\\system' ]",
+            "pattern_type": "stix",
+            "pattern_version": "2.1",
+            "valid_from": "2022-09-03T04:41:56.615278Z",
+            "object_marking_refs": [
+                "marking-definition--f88d31f6-486f-44da-b317-01333bde0b82"
+            ]
+        },
+        {
+            "type": "indicator",
+            "spec_version": "2.1",
+            "id": "indicator--9f329ced-5718-4746-a1f1-c0ed948048d1",
+            "created_by_ref": "identity--acf55024-6bbe-486f-a27a-7967559324f4",
+            "created": "2022-09-03T04:41:57.13861Z",
+            "modified": "2022-09-03T05:05:20.534876Z",
+            "name": "Windows Registry Key: HKEY_CURRENT_CONFIG\\SYSTEM\\system32\\config\\system",
+            "indicator_types": [
+                "unknown"
+            ],
+            "pattern": "[ windows-registry-key:key = 'HKEY_CURRENT_CONFIG\\\\SYSTEM\\\\system32\\\\config\\\\system' ]",
+            "pattern_type": "stix",
+            "pattern_version": "2.1",
+            "valid_from": "2022-09-03T04:41:57.13861Z",
+            "object_marking_refs": [
+                "marking-definition--f88d31f6-486f-44da-b317-01333bde0b82"
+            ]
+        },
+        {
+            "type": "report",
+            "spec_version": "2.1",
+            "id": "report--a6d1c0f9-77b5-40a2-a80d-283cafa66a20",
+            "created": "2022-09-03T05:05:20.584144Z",
+            "modified": "2022-09-03T05:05:20.584144Z",
+            "name": "File converted: registry_key.txt",
+            "report_types": [
+                "threat_report"
+            ],
+            "published": "2022-09-03T10:35:20.584137Z",
+            "object_refs": [
+                "indicator--df617085-29ee-4a32-87d8-f0662a165ebb",
+                "indicator--9731ad27-472a-468c-ac52-eb5a2a6b2309",
+                "indicator--b846afaa-1af9-4151-a63a-c51f5ad32b7a",
+                "indicator--80726986-3c31-4fd7-8706-8aeed8f846f9",
+                "indicator--f0fd2bb2-4047-41e4-92cf-135de49e3568",
+                "indicator--9f329ced-5718-4746-a1f1-c0ed948048d1"
+            ]
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--2bd02f7f-693d-4e24-970d-6233afce33b2",
+            "created": "2022-09-03T05:05:20.584423Z",
+            "modified": "2022-09-03T05:05:20.584423Z",
+            "relationship_type": "default-extract",
+            "source_ref": "report--a6d1c0f9-77b5-40a2-a80d-283cafa66a20",
+            "target_ref": "indicator--df617085-29ee-4a32-87d8-f0662a165ebb"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--7433553f-e39e-4bc7-a0fb-b9e5b5c3098f",
+            "created": "2022-09-03T05:05:20.584586Z",
+            "modified": "2022-09-03T05:05:20.584586Z",
+            "relationship_type": "default-extract",
+            "source_ref": "report--a6d1c0f9-77b5-40a2-a80d-283cafa66a20",
+            "target_ref": "indicator--9731ad27-472a-468c-ac52-eb5a2a6b2309"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--de534cc2-0a53-42f4-8521-5b8ff86ae6c0",
+            "created": "2022-09-03T05:05:20.584735Z",
+            "modified": "2022-09-03T05:05:20.584735Z",
+            "relationship_type": "default-extract",
+            "source_ref": "report--a6d1c0f9-77b5-40a2-a80d-283cafa66a20",
+            "target_ref": "indicator--b846afaa-1af9-4151-a63a-c51f5ad32b7a"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--77e51176-fbf8-4a3c-92d6-b707efec93c2",
+            "created": "2022-09-03T05:05:20.584884Z",
+            "modified": "2022-09-03T05:05:20.584884Z",
+            "relationship_type": "default-extract",
+            "source_ref": "report--a6d1c0f9-77b5-40a2-a80d-283cafa66a20",
+            "target_ref": "indicator--80726986-3c31-4fd7-8706-8aeed8f846f9"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--70e775fc-de0b-466e-8f66-f8c20d562efc",
+            "created": "2022-09-03T05:05:20.585027Z",
+            "modified": "2022-09-03T05:05:20.585027Z",
+            "relationship_type": "default-extract",
+            "source_ref": "report--a6d1c0f9-77b5-40a2-a80d-283cafa66a20",
+            "target_ref": "indicator--f0fd2bb2-4047-41e4-92cf-135de49e3568"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--20bef059-af08-4173-b8a7-1da6fe290793",
+            "created": "2022-09-03T05:05:20.58517Z",
+            "modified": "2022-09-03T05:05:20.58517Z",
+            "relationship_type": "default-extract",
+            "source_ref": "report--a6d1c0f9-77b5-40a2-a80d-283cafa66a20",
+            "target_ref": "indicator--9f329ced-5718-4746-a1f1-c0ed948048d1"
+        }
+    ]
+}

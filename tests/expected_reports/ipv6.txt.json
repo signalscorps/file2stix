@@ -1,0 +1,256 @@
+{
+    "type": "bundle",
+    "id": "bundle--22a2bada-9089-4fee-b632-edef5a31bb41",
+    "objects": [
+        {
+            "type": "indicator",
+            "spec_version": "2.1",
+            "id": "indicator--39471bc0-a6b5-4b59-a56f-1cbc8b7c09af",
+            "created_by_ref": "identity--acf55024-6bbe-486f-a27a-7967559324f4",
+            "created": "2022-09-02T14:51:30.190528Z",
+            "modified": "2022-09-03T05:05:28.547087Z",
+            "name": "ipv6: 2001:0db8:85a3:0000:0000:8a2e:0370:7334",
+            "indicator_types": [
+                "unknown"
+            ],
+            "pattern": "[ ipv6-addr:value = '2001:0db8:85a3:0000:0000:8a2e:0370:7334' ]",
+            "pattern_type": "stix",
+            "pattern_version": "2.1",
+            "valid_from": "2022-09-02T14:51:30.190528Z",
+            "object_marking_refs": [
+                "marking-definition--f88d31f6-486f-44da-b317-01333bde0b82"
+            ]
+        },
+        {
+            "type": "indicator",
+            "spec_version": "2.1",
+            "id": "indicator--b86f1c7a-d28e-4ebd-ab2b-3bb497d0f785",
+            "created_by_ref": "identity--acf55024-6bbe-486f-a27a-7967559324f4",
+            "created": "2022-09-03T04:41:35.269376Z",
+            "modified": "2022-09-03T05:05:29.678555Z",
+            "name": "ipv6: 2002::abcd:ffff:c0a8:101/64",
+            "indicator_types": [
+                "unknown"
+            ],
+            "pattern": "[ ipv6-addr:value = '2002::abcd:ffff:c0a8:101/64' ]",
+            "pattern_type": "stix",
+            "pattern_version": "2.1",
+            "valid_from": "2022-09-03T04:41:35.269376Z",
+            "object_marking_refs": [
+                "marking-definition--f88d31f6-486f-44da-b317-01333bde0b82"
+            ]
+        },
+        {
+            "type": "indicator",
+            "spec_version": "2.1",
+            "id": "indicator--c6026289-17dd-41da-848a-a55c3a568005",
+            "created_by_ref": "identity--acf55024-6bbe-486f-a27a-7967559324f4",
+            "created": "2022-09-02T14:51:30.4291Z",
+            "modified": "2022-09-03T05:05:31.548868Z",
+            "name": "ipv6: [2001:0db8:85a3:0000:0000:8a2e:0370:7334]:80",
+            "indicator_types": [
+                "unknown"
+            ],
+            "pattern": "[ ipv6-addr:value = '2001:0db8:85a3:0000:0000:8a2e:0370:7334' AND network-traffic:dst_port = '80' ]",
+            "pattern_type": "stix",
+            "pattern_version": "2.1",
+            "valid_from": "2022-09-02T14:51:30.4291Z",
+            "object_marking_refs": [
+                "marking-definition--f88d31f6-486f-44da-b317-01333bde0b82"
+            ]
+        },
+        {
+            "type": "indicator",
+            "spec_version": "2.1",
+            "id": "indicator--09cca27b-62da-42b7-b6b3-64417a174ea9",
+            "created": "2022-09-03T05:05:30.304423Z",
+            "modified": "2022-09-03T05:05:30.304423Z",
+            "name": "ipv6: [2001:0db8:85a3:0000:0000:8a2e:0370:7334]:8",
+            "indicator_types": [
+                "unknown"
+            ],
+            "pattern": "[ ipv6-addr:value = '2001:0db8:85a3:0000:0000:8a2e:0370:7334' AND network-traffic:dst_port = '8' ]",
+            "pattern_type": "stix",
+            "pattern_version": "2.1",
+            "valid_from": "2022-09-03T05:05:30.304423Z",
+            "object_marking_refs": [
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
+            ]
+        },
+        {
+            "type": "indicator",
+            "spec_version": "2.1",
+            "id": "indicator--58544f45-3246-4ac5-996b-43d4bd7d5e65",
+            "created": "2022-09-03T05:05:31.550287Z",
+            "modified": "2022-09-03T05:05:31.550287Z",
+            "name": "ipv6: [2001:0db8:85a3:0000:0000:8a2e:0370:7334]:800",
+            "indicator_types": [
+                "unknown"
+            ],
+            "pattern": "[ ipv6-addr:value = '2001:0db8:85a3:0000:0000:8a2e:0370:7334' AND network-traffic:dst_port = '800' ]",
+            "pattern_type": "stix",
+            "pattern_version": "2.1",
+            "valid_from": "2022-09-03T05:05:31.550287Z",
+            "object_marking_refs": [
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
+            ]
+        },
+        {
+            "type": "indicator",
+            "spec_version": "2.1",
+            "id": "indicator--449a9d30-08f1-4bb0-a6b7-d4a830356d0e",
+            "created": "2022-09-03T05:05:32.164708Z",
+            "modified": "2022-09-03T05:05:32.164708Z",
+            "name": "ipv6: [2001:0db8:85a3:0000:0000:8a2e:0370:7334]:8000",
+            "indicator_types": [
+                "unknown"
+            ],
+            "pattern": "[ ipv6-addr:value = '2001:0db8:85a3:0000:0000:8a2e:0370:7334' AND network-traffic:dst_port = '8000' ]",
+            "pattern_type": "stix",
+            "pattern_version": "2.1",
+            "valid_from": "2022-09-03T05:05:32.164708Z",
+            "object_marking_refs": [
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
+            ]
+        },
+        {
+            "type": "indicator",
+            "spec_version": "2.1",
+            "id": "indicator--5b871f44-b122-4cdd-8124-3fb1747e2d4a",
+            "created": "2022-09-03T05:05:32.779719Z",
+            "modified": "2022-09-03T05:05:32.779719Z",
+            "name": "ipv6: [2001:0db8:85a3:0000:0000:8a2e:0370:7334]:65535",
+            "indicator_types": [
+                "unknown"
+            ],
+            "pattern": "[ ipv6-addr:value = '2001:0db8:85a3:0000:0000:8a2e:0370:7334' AND network-traffic:dst_port = '65535' ]",
+            "pattern_type": "stix",
+            "pattern_version": "2.1",
+            "valid_from": "2022-09-03T05:05:32.779719Z",
+            "object_marking_refs": [
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
+            ]
+        },
+        {
+            "type": "indicator",
+            "spec_version": "2.1",
+            "id": "indicator--6c877c2f-a8ea-4337-b8d6-9ee7fb118090",
+            "created_by_ref": "identity--acf55024-6bbe-486f-a27a-7967559324f4",
+            "created": "2022-09-03T04:41:40.575359Z",
+            "modified": "2022-09-03T05:05:34.201296Z",
+            "name": "Directory: 2002::abcd:ffff:c0a8:101/",
+            "indicator_types": [
+                "unknown"
+            ],
+            "pattern": "[ directory:path = '2002::abcd:ffff:c0a8:101/' ]",
+            "pattern_type": "stix",
+            "pattern_version": "2.1",
+            "valid_from": "2022-09-03T04:41:40.575359Z",
+            "object_marking_refs": [
+                "marking-definition--f88d31f6-486f-44da-b317-01333bde0b82"
+            ]
+        },
+        {
+            "type": "report",
+            "spec_version": "2.1",
+            "id": "report--663d857c-e201-4f0e-98a8-c68afa125084",
+            "created": "2022-09-03T05:05:34.257259Z",
+            "modified": "2022-09-03T05:05:34.257259Z",
+            "name": "File converted: ipv6.txt",
+            "report_types": [
+                "threat_report"
+            ],
+            "published": "2022-09-03T10:35:34.257253Z",
+            "object_refs": [
+                "indicator--39471bc0-a6b5-4b59-a56f-1cbc8b7c09af",
+                "indicator--b86f1c7a-d28e-4ebd-ab2b-3bb497d0f785",
+                "indicator--c6026289-17dd-41da-848a-a55c3a568005",
+                "indicator--09cca27b-62da-42b7-b6b3-64417a174ea9",
+                "indicator--58544f45-3246-4ac5-996b-43d4bd7d5e65",
+                "indicator--449a9d30-08f1-4bb0-a6b7-d4a830356d0e",
+                "indicator--5b871f44-b122-4cdd-8124-3fb1747e2d4a",
+                "indicator--6c877c2f-a8ea-4337-b8d6-9ee7fb118090"
+            ]
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--acc27629-3dcf-4a90-a47c-7be47c685122",
+            "created": "2022-09-03T05:05:34.257511Z",
+            "modified": "2022-09-03T05:05:34.257511Z",
+            "relationship_type": "default-extract",
+            "source_ref": "report--663d857c-e201-4f0e-98a8-c68afa125084",
+            "target_ref": "indicator--39471bc0-a6b5-4b59-a56f-1cbc8b7c09af"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--1db9c851-aeed-4517-bf58-cd1b8c79c582",
+            "created": "2022-09-03T05:05:34.257667Z",
+            "modified": "2022-09-03T05:05:34.257667Z",
+            "relationship_type": "default-extract",
+            "source_ref": "report--663d857c-e201-4f0e-98a8-c68afa125084",
+            "target_ref": "indicator--b86f1c7a-d28e-4ebd-ab2b-3bb497d0f785"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--ceced800-7a9b-4ed4-bc71-158d8c157732",
+            "created": "2022-09-03T05:05:34.257812Z",
+            "modified": "2022-09-03T05:05:34.257812Z",
+            "relationship_type": "default-extract",
+            "source_ref": "report--663d857c-e201-4f0e-98a8-c68afa125084",
+            "target_ref": "indicator--c6026289-17dd-41da-848a-a55c3a568005"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--1c80d949-6e65-459c-b087-9723ef712c96",
+            "created": "2022-09-03T05:05:34.257953Z",
+            "modified": "2022-09-03T05:05:34.257953Z",
+            "relationship_type": "default-extract",
+            "source_ref": "report--663d857c-e201-4f0e-98a8-c68afa125084",
+            "target_ref": "indicator--09cca27b-62da-42b7-b6b3-64417a174ea9"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--87e5ecab-800c-467b-a5d6-684038ec2a92",
+            "created": "2022-09-03T05:05:34.258091Z",
+            "modified": "2022-09-03T05:05:34.258091Z",
+            "relationship_type": "default-extract",
+            "source_ref": "report--663d857c-e201-4f0e-98a8-c68afa125084",
+            "target_ref": "indicator--58544f45-3246-4ac5-996b-43d4bd7d5e65"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--dfd77c61-9895-4951-a16b-154a7cd98724",
+            "created": "2022-09-03T05:05:34.258228Z",
+            "modified": "2022-09-03T05:05:34.258228Z",
+            "relationship_type": "default-extract",
+            "source_ref": "report--663d857c-e201-4f0e-98a8-c68afa125084",
+            "target_ref": "indicator--449a9d30-08f1-4bb0-a6b7-d4a830356d0e"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--d5de0529-e245-4038-96d0-bc7dc1dea52e",
+            "created": "2022-09-03T05:05:34.258362Z",
+            "modified": "2022-09-03T05:05:34.258362Z",
+            "relationship_type": "default-extract",
+            "source_ref": "report--663d857c-e201-4f0e-98a8-c68afa125084",
+            "target_ref": "indicator--5b871f44-b122-4cdd-8124-3fb1747e2d4a"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--e4c36f5a-7a6b-4223-a0a9-f30354c1db9a",
+            "created": "2022-09-03T05:05:34.258496Z",
+            "modified": "2022-09-03T05:05:34.258496Z",
+            "relationship_type": "default-extract",
+            "source_ref": "report--663d857c-e201-4f0e-98a8-c68afa125084",
+            "target_ref": "indicator--6c877c2f-a8ea-4337-b8d6-9ee7fb118090"
+        }
+    ]
+}

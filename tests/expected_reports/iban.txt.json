@@ -1,0 +1,80 @@
+{
+    "type": "bundle",
+    "id": "bundle--b97a644b-0840-4f8b-82f5-cc00f38322b2",
+    "objects": [
+        {
+            "type": "indicator",
+            "spec_version": "2.1",
+            "id": "indicator--ae5dce92-fae4-46cd-ba34-3698c2f5ea0d",
+            "created_by_ref": "identity--acf55024-6bbe-486f-a27a-7967559324f4",
+            "created": "2022-09-02T14:51:40.196451Z",
+            "modified": "2022-09-03T05:03:32.51542Z",
+            "name": "IBAN: DE29100500001061045672",
+            "indicator_types": [
+                "unknown"
+            ],
+            "pattern": "[ artifact:payload_bin = 'DE29100500001061045672' ]",
+            "pattern_type": "stix",
+            "pattern_version": "2.1",
+            "valid_from": "2022-09-02T14:51:40.196451Z",
+            "object_marking_refs": [
+                "marking-definition--f88d31f6-486f-44da-b317-01333bde0b82"
+            ]
+        },
+        {
+            "type": "indicator",
+            "spec_version": "2.1",
+            "id": "indicator--080241d8-31a1-461b-8073-63e28e915fea",
+            "created_by_ref": "identity--acf55024-6bbe-486f-a27a-7967559324f4",
+            "created": "2022-09-03T04:42:10.384996Z",
+            "modified": "2022-09-03T05:03:33.233318Z",
+            "name": "IBAN: GB94BARC10201530093459",
+            "indicator_types": [
+                "unknown"
+            ],
+            "pattern": "[ artifact:payload_bin = 'GB94BARC10201530093459' ]",
+            "pattern_type": "stix",
+            "pattern_version": "2.1",
+            "valid_from": "2022-09-03T04:42:10.384996Z",
+            "object_marking_refs": [
+                "marking-definition--f88d31f6-486f-44da-b317-01333bde0b82"
+            ]
+        },
+        {
+            "type": "report",
+            "spec_version": "2.1",
+            "id": "report--d4f4be5e-ded0-4260-a94c-a1d84d7d0803",
+            "created": "2022-09-03T05:03:33.235559Z",
+            "modified": "2022-09-03T05:03:33.235559Z",
+            "name": "File converted: iban.txt",
+            "report_types": [
+                "threat_report"
+            ],
+            "published": "2022-09-03T10:33:33.235554Z",
+            "object_refs": [
+                "indicator--ae5dce92-fae4-46cd-ba34-3698c2f5ea0d",
+                "indicator--080241d8-31a1-461b-8073-63e28e915fea"
+            ]
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--13a5c7ad-5bb1-4a32-8819-4e1b4e7b5901",
+            "created": "2022-09-03T05:03:33.235765Z",
+            "modified": "2022-09-03T05:03:33.235765Z",
+            "relationship_type": "default-extract",
+            "source_ref": "report--d4f4be5e-ded0-4260-a94c-a1d84d7d0803",
+            "target_ref": "indicator--ae5dce92-fae4-46cd-ba34-3698c2f5ea0d"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--5dbcbb56-59f9-488d-abec-9a71f360cf79",
+            "created": "2022-09-03T05:03:33.235926Z",
+            "modified": "2022-09-03T05:03:33.235926Z",
+            "relationship_type": "default-extract",
+            "source_ref": "report--d4f4be5e-ded0-4260-a94c-a1d84d7d0803",
+            "target_ref": "indicator--080241d8-31a1-461b-8073-63e28e915fea"
+        }
+    ]
+}

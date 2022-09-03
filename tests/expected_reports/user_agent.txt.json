@@ -1,0 +1,320 @@
+{
+    "type": "bundle",
+    "id": "bundle--6ae953fe-3729-42f0-a125-6dba7a9d311a",
+    "objects": [
+        {
+            "type": "indicator",
+            "spec_version": "2.1",
+            "id": "indicator--b66df70c-f1c1-4ea5-9c0a-13eefee19f16",
+            "created_by_ref": "identity--acf55024-6bbe-486f-a27a-7967559324f4",
+            "created": "2022-09-02T14:51:33.972542Z",
+            "modified": "2022-09-03T05:03:38.734933Z",
+            "name": "Directory: Mozilla/",
+            "indicator_types": [
+                "unknown"
+            ],
+            "pattern": "[ directory:path = 'Mozilla/' ]",
+            "pattern_type": "stix",
+            "pattern_version": "2.1",
+            "valid_from": "2022-09-02T14:51:33.972542Z",
+            "object_marking_refs": [
+                "marking-definition--f88d31f6-486f-44da-b317-01333bde0b82"
+            ]
+        },
+        {
+            "type": "indicator",
+            "spec_version": "2.1",
+            "id": "indicator--e8fb4a29-50f0-4108-8e70-6744f56f1d17",
+            "created_by_ref": "identity--acf55024-6bbe-486f-a27a-7967559324f4",
+            "created": "2022-09-03T04:41:44.283141Z",
+            "modified": "2022-09-03T05:03:34.997178Z",
+            "name": "Directory: Gecko/",
+            "indicator_types": [
+                "unknown"
+            ],
+            "pattern": "[ directory:path = 'Gecko/' ]",
+            "pattern_type": "stix",
+            "pattern_version": "2.1",
+            "valid_from": "2022-09-03T04:41:44.283141Z",
+            "object_marking_refs": [
+                "marking-definition--f88d31f6-486f-44da-b317-01333bde0b82"
+            ]
+        },
+        {
+            "type": "indicator",
+            "spec_version": "2.1",
+            "id": "indicator--d4c4aa87-8a2f-4a13-95d8-e286e1c0168b",
+            "created_by_ref": "identity--acf55024-6bbe-486f-a27a-7967559324f4",
+            "created": "2022-09-03T04:41:47.504442Z",
+            "modified": "2022-09-03T05:03:39.656531Z",
+            "name": "Directory: AppleWebKit/",
+            "indicator_types": [
+                "unknown"
+            ],
+            "pattern": "[ directory:path = 'AppleWebKit/' ]",
+            "pattern_type": "stix",
+            "pattern_version": "2.1",
+            "valid_from": "2022-09-03T04:41:47.504442Z",
+            "object_marking_refs": [
+                "marking-definition--f88d31f6-486f-44da-b317-01333bde0b82"
+            ]
+        },
+        {
+            "type": "indicator",
+            "spec_version": "2.1",
+            "id": "indicator--42f2fff4-c3df-4b35-aa83-4517fe1f4443",
+            "created_by_ref": "identity--acf55024-6bbe-486f-a27a-7967559324f4",
+            "created": "2022-09-03T04:41:45.925557Z",
+            "modified": "2022-09-03T05:03:37.144692Z",
+            "name": "Directory: Chrome/",
+            "indicator_types": [
+                "unknown"
+            ],
+            "pattern": "[ directory:path = 'Chrome/' ]",
+            "pattern_type": "stix",
+            "pattern_version": "2.1",
+            "valid_from": "2022-09-03T04:41:45.925557Z",
+            "object_marking_refs": [
+                "marking-definition--f88d31f6-486f-44da-b317-01333bde0b82"
+            ]
+        },
+        {
+            "type": "indicator",
+            "spec_version": "2.1",
+            "id": "indicator--91a94165-d4f1-42ef-9bc2-067a018b7320",
+            "created_by_ref": "identity--acf55024-6bbe-486f-a27a-7967559324f4",
+            "created": "2022-09-02T14:51:34.594868Z",
+            "modified": "2022-09-03T05:03:42.041715Z",
+            "name": "Directory: Safari/",
+            "indicator_types": [
+                "unknown"
+            ],
+            "pattern": "[ directory:path = 'Safari/' ]",
+            "pattern_type": "stix",
+            "pattern_version": "2.1",
+            "valid_from": "2022-09-02T14:51:34.594868Z",
+            "object_marking_refs": [
+                "marking-definition--f88d31f6-486f-44da-b317-01333bde0b82"
+            ]
+        },
+        {
+            "type": "indicator",
+            "spec_version": "2.1",
+            "id": "indicator--5404a851-381b-47da-bd8e-65932446bf1b",
+            "created_by_ref": "identity--acf55024-6bbe-486f-a27a-7967559324f4",
+            "created": "2022-09-03T04:41:48.047192Z",
+            "modified": "2022-09-03T05:03:40.618306Z",
+            "name": "Directory: Version/",
+            "indicator_types": [
+                "unknown"
+            ],
+            "pattern": "[ directory:path = 'Version/' ]",
+            "pattern_type": "stix",
+            "pattern_version": "2.1",
+            "valid_from": "2022-09-03T04:41:48.047192Z",
+            "object_marking_refs": [
+                "marking-definition--f88d31f6-486f-44da-b317-01333bde0b82"
+            ]
+        },
+        {
+            "type": "indicator",
+            "spec_version": "2.1",
+            "id": "indicator--a7bf8222-f862-4f05-a0b3-5714dc3e700d",
+            "created_by_ref": "identity--acf55024-6bbe-486f-a27a-7967559324f4",
+            "created": "2022-09-02T14:51:34.439417Z",
+            "modified": "2022-09-03T05:03:41.332908Z",
+            "name": "Directory: Mobile/",
+            "indicator_types": [
+                "unknown"
+            ],
+            "pattern": "[ directory:path = 'Mobile/' ]",
+            "pattern_type": "stix",
+            "pattern_version": "2.1",
+            "valid_from": "2022-09-02T14:51:34.439417Z",
+            "object_marking_refs": [
+                "marking-definition--f88d31f6-486f-44da-b317-01333bde0b82"
+            ]
+        },
+        {
+            "type": "indicator",
+            "spec_version": "2.1",
+            "id": "indicator--23006afb-ca50-4bd6-aab3-bf36ae842da0",
+            "created_by_ref": "identity--acf55024-6bbe-486f-a27a-7967559324f4",
+            "created": "2022-09-03T04:41:57.670171Z",
+            "modified": "2022-09-03T05:03:42.735984Z",
+            "name": "User Agent: Mozilla/5.0 (Windows; U; Windows NT 5.1; en-US; rv:1.6) Gecko/20040113",
+            "indicator_types": [
+                "unknown"
+            ],
+            "pattern": "[ network-traffic:extensions.'http-requestext'.request_header.'User-Agent' = 'Mozilla/5.0 (Windows; U; Windows NT 5.1; en-US; rv:1.6) Gecko/20040113' ]",
+            "pattern_type": "stix",
+            "pattern_version": "2.1",
+            "valid_from": "2022-09-03T04:41:57.670171Z",
+            "object_marking_refs": [
+                "marking-definition--f88d31f6-486f-44da-b317-01333bde0b82"
+            ]
+        },
+        {
+            "type": "indicator",
+            "spec_version": "2.1",
+            "id": "indicator--ca5645fd-a74e-473e-810e-5da97fc36201",
+            "created_by_ref": "identity--acf55024-6bbe-486f-a27a-7967559324f4",
+            "created": "2022-09-03T04:41:58.193606Z",
+            "modified": "2022-09-03T05:03:43.403557Z",
+            "name": "User Agent: Mozilla/5.0 (Linux; Android 11; Lenovo YT-J706X) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/96.0.4664.45 Safari/537.36",
+            "indicator_types": [
+                "unknown"
+            ],
+            "pattern": "[ network-traffic:extensions.'http-requestext'.request_header.'User-Agent' = 'Mozilla/5.0 (Linux; Android 11; Lenovo YT-J706X) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/96.0.4664.45 Safari/537.36' ]",
+            "pattern_type": "stix",
+            "pattern_version": "2.1",
+            "valid_from": "2022-09-03T04:41:58.193606Z",
+            "object_marking_refs": [
+                "marking-definition--f88d31f6-486f-44da-b317-01333bde0b82"
+            ]
+        },
+        {
+            "type": "indicator",
+            "spec_version": "2.1",
+            "id": "indicator--07cf2ecf-08c3-4cf2-8bf3-559fdce5a448",
+            "created_by_ref": "identity--acf55024-6bbe-486f-a27a-7967559324f4",
+            "created": "2022-09-02T14:51:37.679467Z",
+            "modified": "2022-09-03T05:03:44.082378Z",
+            "name": "User Agent: Mozilla/5.0 (iPhone14,6; U; CPU iPhone OS 15_4 like Mac OS X) AppleWebKit/602.1.50 (KHTML, like Gecko) Version/10.0 Mobile/19E241 Safari/602.1",
+            "indicator_types": [
+                "unknown"
+            ],
+            "pattern": "[ network-traffic:extensions.'http-requestext'.request_header.'User-Agent' = 'Mozilla/5.0 (iPhone14,6; U; CPU iPhone OS 15_4 like Mac OS X) AppleWebKit/602.1.50 (KHTML, like Gecko) Version/10.0 Mobile/19E241 Safari/602.1' ]",
+            "pattern_type": "stix",
+            "pattern_version": "2.1",
+            "valid_from": "2022-09-02T14:51:37.679467Z",
+            "object_marking_refs": [
+                "marking-definition--f88d31f6-486f-44da-b317-01333bde0b82"
+            ]
+        },
+        {
+            "type": "report",
+            "spec_version": "2.1",
+            "id": "report--5d5c326c-c159-41c6-8f59-4ef4b6511f85",
+            "created": "2022-09-03T05:03:44.138414Z",
+            "modified": "2022-09-03T05:03:44.138414Z",
+            "name": "File converted: user_agent.txt",
+            "report_types": [
+                "threat_report"
+            ],
+            "published": "2022-09-03T10:33:44.138407Z",
+            "object_refs": [
+                "indicator--b66df70c-f1c1-4ea5-9c0a-13eefee19f16",
+                "indicator--e8fb4a29-50f0-4108-8e70-6744f56f1d17",
+                "indicator--d4c4aa87-8a2f-4a13-95d8-e286e1c0168b",
+                "indicator--42f2fff4-c3df-4b35-aa83-4517fe1f4443",
+                "indicator--91a94165-d4f1-42ef-9bc2-067a018b7320",
+                "indicator--5404a851-381b-47da-bd8e-65932446bf1b",
+                "indicator--a7bf8222-f862-4f05-a0b3-5714dc3e700d",
+                "indicator--23006afb-ca50-4bd6-aab3-bf36ae842da0",
+                "indicator--ca5645fd-a74e-473e-810e-5da97fc36201",
+                "indicator--07cf2ecf-08c3-4cf2-8bf3-559fdce5a448"
+            ]
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--b74b1e0e-58e9-4725-9f93-3f8d55fd3c61",
+            "created": "2022-09-03T05:03:44.138712Z",
+            "modified": "2022-09-03T05:03:44.138712Z",
+            "relationship_type": "default-extract",
+            "source_ref": "report--5d5c326c-c159-41c6-8f59-4ef4b6511f85",
+            "target_ref": "indicator--b66df70c-f1c1-4ea5-9c0a-13eefee19f16"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--f07c218e-e87e-4610-b404-b1c460831757",
+            "created": "2022-09-03T05:03:44.138876Z",
+            "modified": "2022-09-03T05:03:44.138876Z",
+            "relationship_type": "default-extract",
+            "source_ref": "report--5d5c326c-c159-41c6-8f59-4ef4b6511f85",
+            "target_ref": "indicator--e8fb4a29-50f0-4108-8e70-6744f56f1d17"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--fdc14560-6a8f-496c-93a6-d69ea588595d",
+            "created": "2022-09-03T05:03:44.139025Z",
+            "modified": "2022-09-03T05:03:44.139025Z",
+            "relationship_type": "default-extract",
+            "source_ref": "report--5d5c326c-c159-41c6-8f59-4ef4b6511f85",
+            "target_ref": "indicator--d4c4aa87-8a2f-4a13-95d8-e286e1c0168b"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--e70256ce-d482-43ab-a5ce-19de7c1938dd",
+            "created": "2022-09-03T05:03:44.13917Z",
+            "modified": "2022-09-03T05:03:44.13917Z",
+            "relationship_type": "default-extract",
+            "source_ref": "report--5d5c326c-c159-41c6-8f59-4ef4b6511f85",
+            "target_ref": "indicator--42f2fff4-c3df-4b35-aa83-4517fe1f4443"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--affc4a79-cb4e-4b90-b49c-5853f137c06c",
+            "created": "2022-09-03T05:03:44.139313Z",
+            "modified": "2022-09-03T05:03:44.139313Z",
+            "relationship_type": "default-extract",
+            "source_ref": "report--5d5c326c-c159-41c6-8f59-4ef4b6511f85",
+            "target_ref": "indicator--91a94165-d4f1-42ef-9bc2-067a018b7320"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--23c6147c-03ee-4f0b-88bd-630fdabd106d",
+            "created": "2022-09-03T05:03:44.139455Z",
+            "modified": "2022-09-03T05:03:44.139455Z",
+            "relationship_type": "default-extract",
+            "source_ref": "report--5d5c326c-c159-41c6-8f59-4ef4b6511f85",
+            "target_ref": "indicator--5404a851-381b-47da-bd8e-65932446bf1b"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--552b2555-70f3-4069-a701-e1aabbde6c19",
+            "created": "2022-09-03T05:03:44.139596Z",
+            "modified": "2022-09-03T05:03:44.139596Z",
+            "relationship_type": "default-extract",
+            "source_ref": "report--5d5c326c-c159-41c6-8f59-4ef4b6511f85",
+            "target_ref": "indicator--a7bf8222-f862-4f05-a0b3-5714dc3e700d"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--cf801f42-f958-44eb-bddd-f356686d196d",
+            "created": "2022-09-03T05:03:44.139735Z",
+            "modified": "2022-09-03T05:03:44.139735Z",
+            "relationship_type": "default-extract",
+            "source_ref": "report--5d5c326c-c159-41c6-8f59-4ef4b6511f85",
+            "target_ref": "indicator--23006afb-ca50-4bd6-aab3-bf36ae842da0"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--025fd036-cea5-44ef-b352-54a5acfffb55",
+            "created": "2022-09-03T05:03:44.139874Z",
+            "modified": "2022-09-03T05:03:44.139874Z",
+            "relationship_type": "default-extract",
+            "source_ref": "report--5d5c326c-c159-41c6-8f59-4ef4b6511f85",
+            "target_ref": "indicator--ca5645fd-a74e-473e-810e-5da97fc36201"
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--6ef6150a-e68c-414c-8070-ac8704bd0acd",
+            "created": "2022-09-03T05:03:44.140016Z",
+            "modified": "2022-09-03T05:03:44.140016Z",
+            "relationship_type": "default-extract",
+            "source_ref": "report--5d5c326c-c159-41c6-8f59-4ef4b6511f85",
+            "target_ref": "indicator--07cf2ecf-08c3-4cf2-8bf3-559fdce5a448"
+        }
+    ]
+}

@@ -1,0 +1,49 @@
+{
+    "type": "bundle",
+    "id": "bundle--813d8e5e-096d-4afe-842d-d88b963fda94",
+    "objects": [
+        {
+            "type": "indicator",
+            "spec_version": "2.1",
+            "id": "indicator--8835f0d1-842b-4dbe-b601-e75ea88b279d",
+            "created_by_ref": "identity--acf55024-6bbe-486f-a27a-7967559324f4",
+            "created": "2022-09-03T04:42:10.754707Z",
+            "modified": "2022-09-03T05:05:21.349831Z",
+            "name": "YARA Rule: dummy",
+            "indicator_types": [
+                "unknown"
+            ],
+            "pattern": "rule dummy\r\n{\r\n    condition:\r\n        false\r\n}",
+            "pattern_type": "yara",
+            "valid_from": "2022-09-03T04:42:10.754707Z",
+            "object_marking_refs": [
+                "marking-definition--f88d31f6-486f-44da-b317-01333bde0b82"
+            ]
+        },
+        {
+            "type": "report",
+            "spec_version": "2.1",
+            "id": "report--f4fe78e4-1eff-459e-af7c-37f58e5bf7b7",
+            "created": "2022-09-03T05:05:21.351083Z",
+            "modified": "2022-09-03T05:05:21.351083Z",
+            "name": "File converted: yara_rule.txt",
+            "report_types": [
+                "threat_report"
+            ],
+            "published": "2022-09-03T10:35:21.351075Z",
+            "object_refs": [
+                "indicator--8835f0d1-842b-4dbe-b601-e75ea88b279d"
+            ]
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--7fc348f2-582f-4017-a1a3-06c5f0fddaa2",
+            "created": "2022-09-03T05:05:21.351308Z",
+            "modified": "2022-09-03T05:05:21.351308Z",
+            "relationship_type": "default-extract",
+            "source_ref": "report--f4fe78e4-1eff-459e-af7c-37f58e5bf7b7",
+            "target_ref": "indicator--8835f0d1-842b-4dbe-b601-e75ea88b279d"
+        }
+    ]
+}
