@@ -130,12 +130,13 @@ class Observable:
                     x_warning_list_match.append(hit.name)
 
             # Check if observable is in custom warning list
-            custom_misp_warning_list = WarningLists(slow_search=False, lists=[self.misp_custom_warning_list])
-            result = custom_misp_warning_list.search(self.extracted_observable_text)
+            if self.misp_custom_warning_list:
+                custom_misp_warning_list = WarningLists(slow_search=False, lists=[self.misp_custom_warning_list])
+                result = custom_misp_warning_list.search(self.extracted_observable_text)
 
-            if result:
-                for hit in result:
-                    x_warning_list_match.append(hit.name)
+                if result:
+                    for hit in result:
+                        x_warning_list_match.append(hit.name)
 
             indicator_dict = {
                 "type": "indicator",
