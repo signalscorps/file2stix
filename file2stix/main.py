@@ -121,6 +121,9 @@ def main(config: Config):
     # Iterate over each observable and extract them from input file
     observables_list = ObservableList()
     for observable in inheritors(Observable):
+        if config.ignore_observables_list != None and observable in config.ignore_observables_list:
+            logger.info("%s observable is ignored from extraction", observable.__name__)
+            continue
         for (
             extracted_stix_observable,
             update_stix2_extractions,

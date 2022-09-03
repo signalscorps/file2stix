@@ -28,7 +28,7 @@ from stix2 import (
 )
 
 from file2stix.config import Config
-from file2stix.helper import check_false_positive_domain
+from file2stix.helper import check_false_positive_domain, inheritors
 
 logger = logging.getLogger(__name__)
 
@@ -848,3 +848,13 @@ class CustomObervable(Observable):
         if sdo_object == None:
             raise ValueError("Parsed SDO object after custom extraction is None.")
         return sdo_object
+
+
+def get_observable_class_from_name(observable_names):
+    found_observables = set()
+    observable_classes = inheritors(Observable)
+    for observable_name in observable_names:
+        for observable_class in observable_classes:
+            if observable_class.__name__.lower().startswith(observable_name.lower()):
+                found_observables.add(observable_class)
+    return list(found_observables)

@@ -7,6 +7,7 @@ import os
 import file2stix
 from file2stix.config import Config
 from file2stix.main import main
+from file2stix.observables import get_observable_class_from_name
 
 
 def cli():
@@ -66,11 +67,21 @@ def cli():
         help="path to user identity config file (in yml format)",
     )
 
+    arg_parser.add_argument(
+        "--ignore-observable-prefix",
+        action="store",
+        help="comma-separated prefixes of observables to be ignored from extraction",
+    )
+
     args = arg_parser.parse_args()
     
     input_file_path = os.path.abspath(args.input_file) if args.input_file != None else None
 
     output_json_file_path = os.path.abspath(args.output_json_file) if args.output_json_file != None else None
+
+    ignore_observables_list = None
+    if args.ignore_observable_prefix != None:
+        ignore_observables_list = get_observable_class_from_name(args.ignore_observable_prefix.split(","))
 
     # Build config object
     config = Config(
@@ -81,6 +92,7 @@ def cli():
         custom_extraction_file=args.custom_extraction_file,
         tlp_level=args.tlp_level,
         user_identity_file=args.user_identity_file,
+        ignore_observables_list=ignore_observables_list
     )
 
     # Call main
