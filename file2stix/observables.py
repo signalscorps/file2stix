@@ -51,6 +51,7 @@ class Observable:
         self.extracted_observable_text = extracted_observable_text
         self.tlp_level = config.tlp_level
         self.identity = config.identity
+        self.misp_extension_definition = config.misp_extension_definition
 
     @property
     def pretty_name(self):
@@ -127,17 +128,32 @@ class Observable:
                 for hit in result:
                     x_warning_list_match.append(hit.name)
 
-            indicator = Indicator(
-                type="indicator",
-                name=f"{self.name}{self.name_delimeter}{self.extracted_observable_text}",
-                pattern_type="stix",
-                pattern=pattern,
-                indicator_types=["unknown"],
-                x_warning_list_match=x_warning_list_match,
-                allow_custom=True,
-                object_marking_refs=Observable.object_marking_ref_map[self.tlp_level],
-                created_by_ref=self.identity,
-            )
+            indicator_dict = {
+                "type": "indicator",
+                "name": f"{self.name}{self.name_delimeter}{self.extracted_observable_text}",
+                "pattern_type": "stix",
+                "pattern": pattern,
+                "indicator_types": ["unknown"],
+                "object_marking_refs": Observable.object_marking_ref_map[
+                    self.tlp_level
+                ],
+                "created_by_ref": self.identity,
+            }
+
+            if x_warning_list_match:
+                if self.misp_extension_definition:
+                    indicator_dict["extensions"] = {
+                        self.misp_extension_definition.id: {
+                            "extension_type": "property-extension",
+                            "warning_list_match": x_warning_list_match,
+                        }
+                    }
+                else:
+                    indicator_dict["x_warning_list_match"] = x_warning_list_match
+                    indicator_dict["allow_custom"] = True
+
+            indicator = Indicator(**indicator_dict)
+
             return indicator
         else:
             raise ValueError("Observable type is not supported")

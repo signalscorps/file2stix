@@ -14,5 +14,7 @@ class Config:
     update_mitre_cti_database: bool = False
     tlp_level: str = "WHITE"
     user_identity_file: str = "stix_templates/identity.yml"
+    misp_extension_definition_file: str = "stix_templates/extension-definition.yml"
     identity: Identity = None
+    misp_extension_definition = None
     ignore_observables_list: List = None

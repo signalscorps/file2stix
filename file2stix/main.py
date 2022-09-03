@@ -13,7 +13,7 @@ import yaml
 from bs4 import BeautifulSoup
 from datetime import datetime
 from pathlib import Path
-from stix2 import Report, Relationship, Identity
+from stix2 import Report, Relationship, Identity, ExtensionDefinition
 
 from file2stix import __appname__
 from file2stix.cache import Cache
@@ -88,6 +88,15 @@ def main(config: Config):
             raise IdentityError(
                 "Identity config file is not present or is in incorrect format."
             )
+    try:
+        with open(config.misp_extension_definition_file) as f:
+            misp_extension_definition_config = yaml.safe_load(f)
+        if config.identity != None:
+            misp_extension_definition_config["created_by_ref"] = config.identity.id
+        config.misp_extension_definition = ExtensionDefinition(**misp_extension_definition_config)
+    except Exception as ex:
+        logger.warning("Failed to load MISP extension definition file at %s", config.misp_extension_definition_file)
+        logger.debug("Exception caught when init MISP extension: %s", ex)
 
     # Update MITRE ATT&CK and CAPEC database
     if config.update_mitre_cti_database == True:
@@ -122,7 +131,7 @@ def main(config: Config):
     observables_list = ObservableList()
     for observable in inheritors(Observable):
         if config.ignore_observables_list != None and observable in config.ignore_observables_list:
-            logger.info("%s observable is ignored from extraction", observable.__name__)
+            logger.info("%s is ignored from extraction", observable.__name__)
             continue
         for (
             extracted_stix_observable,
@@ -241,6 +250,8 @@ def main(config: Config):
         relationship_sros.append(relationship_sro)
 
     stix_objects = [config.identity] if config.identity else []
+    if config.misp_extension_definition != None:
+        stix_objects += [config.misp_extension_definition]
 
     # Group all stix objects and store in STIX filestore and bundle
     stix_objects += (

@@ -36,7 +36,7 @@ def cli():
         action="store",
         type=str,
         default=Config.cache_folder,
-        help="cache folder path where MITRE ATT&K, CAPEC and MISP warning list will be stored (default: %(default)s)",
+        help="cache folder path where MITRE ATT&K and CAPEC warning list will be stored (default: %(default)s)",
     )
 
     arg_parser.add_argument(
@@ -73,6 +73,13 @@ def cli():
         help="comma-separated prefixes of observables to be ignored from extraction",
     )
 
+    arg_parser.add_argument(
+        "--misp-extension-definition-file",
+        action="store",
+        default=Config.misp_extension_definition_file,
+        help="path to MISP extensions defintion file (in yml format)",
+    )
+
     args = arg_parser.parse_args()
     
     input_file_path = os.path.abspath(args.input_file) if args.input_file != None else None
@@ -92,7 +99,8 @@ def cli():
         custom_extraction_file=args.custom_extraction_file,
         tlp_level=args.tlp_level,
         user_identity_file=args.user_identity_file,
-        ignore_observables_list=ignore_observables_list
+        misp_extension_definition_file=args.misp_extension_definition_file,
+        ignore_observables_list=ignore_observables_list,
     )
 
     # Call main
