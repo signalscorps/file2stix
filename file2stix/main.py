@@ -103,7 +103,7 @@ def main(config: Config):
             config.misp_extension_definition_file,
         )
         logger.debug("Exception caught when init MISP extension: %s", ex)
-    
+
     if config.misp_custom_warning_list_file:
         try:
             with open(config.misp_custom_warning_list_file) as f:
@@ -117,7 +117,9 @@ def main(config: Config):
                 "Failed to load MISP custom warning list file at %s",
                 config.misp_custom_warning_list_file,
             )
-            logger.debug("Exception caught when parsing MISP custom warning list: %s", ex)
+            logger.debug(
+                "Exception caught when parsing MISP custom warning list: %s", ex
+            )
 
     # Update MITRE ATT&CK and CAPEC database
     if config.update_mitre_cti_database == True:
@@ -251,6 +253,7 @@ def main(config: Config):
             source_ref=report.id,
             target_ref=stix_observable.id,
             created_by_ref=config.identity,
+            object_marking_refs=Observable.object_marking_ref_map[config.tlp_level],
         )
         relationship_sros.append(relationship_sro)
 
@@ -261,6 +264,7 @@ def main(config: Config):
             target_ref=stix_observable["id"],
             created_by_ref=config.identity,
             allow_custom=True,
+            object_marking_refs=Observable.object_marking_ref_map[config.tlp_level],
         )
         relationship_sros.append(relationship_sro)
 
@@ -270,6 +274,7 @@ def main(config: Config):
             source_ref=report.id,
             target_ref=stix_observable.id,
             created_by_ref=config.identity,
+            object_marking_refs=Observable.object_marking_ref_map[config.tlp_level],
         )
         relationship_sros.append(relationship_sro)
 
