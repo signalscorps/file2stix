@@ -1,4 +1,4 @@
-name: Obstract CLI - CI
+name: file2stix
 
 on: [push]
 
