@@ -37,7 +37,7 @@ file2stix --input-file tests/observable_tests/url.txt
 file2stix --input-file tests/observable_tests/user_agent.txt
 file2stix --input-file tests/observable_tests/yara_rule.txt
 
-file2stix --input-file tests/custom_extractions/test_extractions.txt --custom-extraction-file tests/custom_extractions/test_extractions.txt
+
 
 
 
@@ -135,6 +135,12 @@ file2stix --input-file tests/file_inputs/yara/input.yara
 
 ```
 file2stix --input-file setup.py
+```
+
+## Testing custom extractions
+
+```
+file2stix --input-file tests/custom_extractions/test_extractions.txt --custom-extraction-file tests/custom_extractions/test_extractions.txt
 ```
 
 ## Testing TLPs
