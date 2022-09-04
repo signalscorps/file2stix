@@ -8,7 +8,11 @@
     "ip-dst"
   ],
   "list": [
-    "1.1.1.1",
-    "2.2.2.2"
+    "198.51.100.3",
+    "198.51.100.4",
+    "86F7E437FAA5A7FCE15D1DDCB9EAEAEA377667B8",
+    "/System/Library/LaunchDaemons",
+    "HKEY_LOCAL_MACHINE\\System\\Foo\\Bar",
+    "Mozilla/5.0 (Windows; U; Windows NT 5.1; en-US; rv:1.6) Gecko/20040113"
   ]
 }

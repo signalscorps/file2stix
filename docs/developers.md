@@ -201,8 +201,9 @@ file2stix --input-file tests/custom_extractions/test_extractions.txt --custom-ex
 
 ## Testing Warning Lists
 
-
-
+```
+file2stix --input-file tests/file_inputs/txt/input.txt --misp-custom-warning-list-file tests/custom_warning_lists/list.json
+```
 
 ## Testing TLPs
 
