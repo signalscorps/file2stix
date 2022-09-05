@@ -243,6 +243,7 @@ def main(config: Config):
         object_refs=object_refs,
         created_by_ref=config.identity,
         allow_custom=True,
+        object_marking_refs=Observable.object_marking_ref_map[config.tlp_level],
     )
 
     # Create Relationship SROs
