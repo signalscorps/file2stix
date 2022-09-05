@@ -92,8 +92,6 @@ def main(config: Config):
     try:
         with open(config.misp_extension_definition_file) as f:
             misp_extension_definition_config = yaml.safe_load(f)
-        if config.identity != None:
-            misp_extension_definition_config["created_by_ref"] = config.identity.id
         config.misp_extension_definition = ExtensionDefinition(
             **misp_extension_definition_config
         )

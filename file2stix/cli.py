@@ -74,13 +74,6 @@ def cli():
     )
 
     arg_parser.add_argument(
-        "--misp-extension-definition-file",
-        action="store",
-        default=Config.misp_extension_definition_file,
-        help="path to MISP extensions defintion file (in yml format)",
-    )
-
-    arg_parser.add_argument(
         "--misp-custom-warning-list-file",
         action="store",
         help="path to MISP custom warning list file",
@@ -105,9 +98,8 @@ def cli():
         custom_extraction_file=args.custom_extraction_file,
         tlp_level=args.tlp_level,
         user_identity_file=args.user_identity_file,
-        misp_extension_definition_file=args.misp_extension_definition_file,
         ignore_observables_list=ignore_observables_list,
-        misp_custom_warning_list_file=args.misp_custom_warning_list_file
+        misp_custom_warning_list_file=args.misp_custom_warning_list_file,
     )
 
     # Call main
