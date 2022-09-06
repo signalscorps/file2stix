@@ -192,6 +192,7 @@ def main(config: Config):
                         observables_list.stix_observables_in_filestore[
                             extracted_stix_observable.name
                         ] = extracted_stix_observable
+                        stix_observable_object = extracted_stix_observable
 
             if observable == CustomObervable:
                 observables_list.custom_stix_observables[
