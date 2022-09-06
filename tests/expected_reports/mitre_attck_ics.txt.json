@@ -1,0 +1,265 @@
+{
+    "type": "bundle",
+    "id": "bundle--7ae8ae02-7c93-46ed-85c3-8c2d69a7f2f9",
+    "objects": [
+        {
+            "type": "extension-definition",
+            "spec_version": "2.1",
+            "id": "extension-definition--c8ea5ecb-f4a3-45e7-94de-9b9ba05161af",
+            "created_by_ref": "identity--acf55024-6bbe-486f-a27a-7967559324f4",
+            "created": "2022-01-01T00:00:00.000Z",
+            "modified": "2022-01-01T00:00:00.000Z",
+            "name": "MISP Warning Lists",
+            "description": "This schema adds MISP Warning List matches to extracted Objects",
+            "schema": "https://github.com/MISP/misp-warninglists",
+            "version": "1.0",
+            "extension_types": [
+                "property-extension"
+            ]
+        },
+        {
+            "type": "marking-definition",
+            "spec_version": "2.1",
+            "id": "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9",
+            "created": "2017-01-20T00:00:00.000Z",
+            "definition_type": "tlp",
+            "name": "TLP:WHITE",
+            "definition": {
+                "tlp": "white"
+            }
+        },
+        {
+            "type": "attack-pattern",
+            "id": "attack-pattern--7830cfcf-b268-4ac0-a69e-73c6affbae9a",
+            "created_by_ref": "identity--c78cb6e5-0c4b-4611-8297-d1b8b55e40b5",
+            "created": "2020-05-21T17:43:26.506Z",
+            "modified": "2022-05-06T17:47:23.918Z",
+            "name": "Drive-by Compromise",
+            "description": "Adversaries may gain access to a system during a drive-by compromise, when a user visits a website as part of a regular browsing session.With this technique, the user's web browser is targeted and exploited simply by visiting the compromised website.   The adversary may target a specific community, such as trusted third party suppliers or other industry specific groups, which often visit the target website. This kind of targeted attack relies on a common interest, and is known as a strategic web compromise or watering hole attack.   The National Cyber Awareness System (NCAS) has issued a Technical Alert (TA) regarding Russian government cyber activity targeting critical infrastructure sectors. (Citation: Cybersecurity & Infrastructure Security Agency March 2018) Analysis by DHS and FBI has noted two distinct categories of victims in the Dragonfly campaign on the Western energy sector: staging and intended targets. The adversary targeted the less secure networks of staging targets, including trusted third-party suppliers and related peripheral organizations. Initial access to the intended targets used watering hole attacks to target process control, ICS, and critical infrastructure related trade publications and informational websites.",
+            "kill_chain_phases": [
+                {
+                    "kill_chain_name": "mitre-ics-attack",
+                    "phase_name": "initial-access-ics"
+                }
+            ],
+            "external_references": [
+                {
+                    "source_name": "mitre-ics-attack",
+                    "url": "https://attack.mitre.org/techniques/T0817",
+                    "external_id": "T0817"
+                },
+                {
+                    "source_name": "Cybersecurity & Infrastructure Security Agency March 2018",
+                    "description": "Cybersecurity & Infrastructure Security Agency 2018, March 15 Alert (TA18-074A) Russian Government Cyber Activity Targeting Energy and Other Critical Infrastructure Sectors Retrieved. 2019/10/11 ",
+                    "url": "https://us-cert.cisa.gov/ncas/alerts/TA18-074A"
+                }
+            ],
+            "object_marking_refs": [
+                "marking-definition--fa42a846-8d90-4e51-bc29-71d5b4802168"
+            ],
+            "x_mitre_attack_spec_version": "2.1.0",
+            "x_mitre_data_sources": [
+                "Application Log: Application Log Content",
+                "File: File Creation",
+                "Network Traffic: Network Connection Creation",
+                "Network Traffic: Network Traffic Content",
+                "Process: Process Creation"
+            ],
+            "x_mitre_domains": [
+                "ics-attack"
+            ],
+            "x_mitre_modified_by_ref": "identity--c78cb6e5-0c4b-4611-8297-d1b8b55e40b5",
+            "x_mitre_platforms": [
+                "None"
+            ],
+            "x_mitre_version": "1.0"
+        },
+        {
+            "type": "attack-pattern",
+            "id": "attack-pattern--2883c520-7957-46ca-89bd-dab1ad53b601",
+            "created_by_ref": "identity--c78cb6e5-0c4b-4611-8297-d1b8b55e40b5",
+            "created": "2020-05-21T17:43:26.506Z",
+            "modified": "2022-05-24T11:42:52.057Z",
+            "name": "Change Operating Mode",
+            "description": "Adversaries may change the operating mode of a controller to gain additional access to engineering functions such as Program Download.   Programmable controllers typically have several modes of operation that control the state of the user program and control access to the controllers API. Operating modes can be physically selected using a key switch on the face of the controller but may also be selected with calls to the controllers API. Operating modes and the mechanisms by which they are selected often vary by vendor and product line. Some commonly implemented operating modes are described below:  \n\n* Program - This mode must be enabled before changes can be made to a devices program. This allows program uploads and downloads between the device and an engineering workstation. Often the PLCs logic Is halted, and all outputs may be forced off. (Citation: N.A. October 2017)  \n* Run - Execution of the devices program occurs in this mode. Input and output (values, points, tags, elements, etc.) are monitored and used according to the programs logic. [Program Upload](https://attack.mitre.org/techniques/T0845) and [Program Download](https://attack.mitre.org/techniques/T0843) are disabled while in this mode. (Citation: Omron) (Citation: Machine Information Systems 2007)  (Citation: N.A. October 2017) (Citation: PLCgurus 2021)   \n* Remote - Allows for remote changes to a PLCs operation mode. (Citation: PLCgurus 2021)    \n* Stop - The PLC and program is stopped, while in this mode, outputs are forced off. (Citation: Machine Information Systems 2007)   \n* Reset - Conditions on the PLC are reset to their original states. Warm resets may retain some memory while cold resets will reset all I/O and data registers. (Citation: Machine Information Systems 2007)   \n* Test / Monitor mode - Similar to run mode, I/O is processed, although this mode allows for monitoring, force set, resets, and more generally tuning or debugging of the system. Often monitor mode may be used as a trial for initialization. (Citation: Omron)",
+            "kill_chain_phases": [
+                {
+                    "kill_chain_name": "mitre-ics-attack",
+                    "phase_name": "execution-ics"
+                },
+                {
+                    "kill_chain_name": "mitre-ics-attack",
+                    "phase_name": "evasion-ics"
+                }
+            ],
+            "external_references": [
+                {
+                    "source_name": "mitre-ics-attack",
+                    "url": "https://attack.mitre.org/techniques/T0858",
+                    "external_id": "T0858"
+                },
+                {
+                    "source_name": "Machine Information Systems 2007",
+                    "description": "Machine Information Systems 2007 How PLCs Work Retrieved. 2021/01/28 ",
+                    "url": "http://www.machine-information-systems.com/How_PLCs_Work.html"
+                },
+                {
+                    "source_name": "N.A. October 2017",
+                    "description": "N.A. 2017, October What are the different operating modes in PLC? Retrieved. 2021/01/28 ",
+                    "url": "https://forumautomation.com/t/what-are-the-different-operating-modes-in-plc/2489"
+                },
+                {
+                    "source_name": "Omron",
+                    "description": "Omron Machine Information Systems 2007 How PLCs Work Retrieved. 2021/01/28  PLC Different Operating Modes Retrieved. 2021/01/28 ",
+                    "url": "https://www.omron-ap.com/service_support/FAQ/FAQ00002/index.asp#:~:text=In%20PROGRAM%20mode%2C%20the%20CPU,can%20be%20created%20or%20modified."
+                },
+                {
+                    "source_name": "PLCgurus 2021",
+                    "description": "PLCgurus 2021 PLC Basics  Modes Of Operation Retrieved. 2021/01/28 ",
+                    "url": "https://www.plcgurus.net/plc-basics/"
+                }
+            ],
+            "object_marking_refs": [
+                "marking-definition--fa42a846-8d90-4e51-bc29-71d5b4802168"
+            ],
+            "x_mitre_attack_spec_version": "2.1.0",
+            "x_mitre_data_sources": [
+                "Network Traffic: Network Traffic Content",
+                "Application Log: Application Log Content",
+                "Operational Databases: Device Alarm"
+            ],
+            "x_mitre_deprecated": false,
+            "x_mitre_detection": "",
+            "x_mitre_domains": [
+                "ics-attack"
+            ],
+            "x_mitre_is_subtechnique": false,
+            "x_mitre_modified_by_ref": "identity--c78cb6e5-0c4b-4611-8297-d1b8b55e40b5",
+            "x_mitre_platforms": [
+                "Safety Instrumented System/Protection Relay",
+                "Field Controller/RTU/PLC/IED"
+            ],
+            "x_mitre_version": "1.0"
+        },
+        {
+            "type": "attack-pattern",
+            "id": "attack-pattern--2900bbd8-308a-4274-b074-5b8bde8347bc",
+            "created_by_ref": "identity--c78cb6e5-0c4b-4611-8297-d1b8b55e40b5",
+            "created": "2020-05-21T17:43:26.506Z",
+            "modified": "2022-05-06T17:47:23.889Z",
+            "name": "Alarm Suppression",
+            "description": "Adversaries may target protection function alarms to prevent them from notifying operators of critical conditions. Alarm messages may be a part of an overall reporting system and of particular interest for adversaries. Disruption of the alarm system does not imply the disruption of the reporting system as a whole.   In the Maroochy Attack, the adversary suppressed alarm reporting to the central computer. (Citation: Marshall Abrams July 2008)  A Secura presentation on targeting OT notes a dual fold goal for adversaries attempting alarm suppression: prevent outgoing alarms from being raised and prevent incoming alarms from being responded to. (Citation: Jos Wetzels, Marina Krotofil 2019)  The method of suppression may greatly depend on the type of alarm in question:  * An alarm raised by a protocol message * An alarm signaled with I/O * An alarm bit set in a flag (and read)  In ICS environments, the adversary may have to suppress or contend with multiple alarms and/or alarm propagation to achieve a specific goal to evade detection or prevent intended responses from occurring. (Citation: Jos Wetzels, Marina Krotofil 2019)  Methods of suppression may involve tampering or altering device displays and logs, modifying in memory code to fixed values, or even tampering with assembly level instruction code.",
+            "kill_chain_phases": [
+                {
+                    "kill_chain_name": "mitre-ics-attack",
+                    "phase_name": "inhibit-response-function"
+                }
+            ],
+            "external_references": [
+                {
+                    "source_name": "mitre-ics-attack",
+                    "url": "https://attack.mitre.org/techniques/T0878",
+                    "external_id": "T0878"
+                },
+                {
+                    "source_name": "Marshall Abrams July 2008",
+                    "description": "Marshall Abrams 2008, July 23 Malicious Control System Cyber Security Attack Case Study Maroochy Water Services, Australia Retrieved. 2018/03/27 ",
+                    "url": "https://www.mitre.org/sites/default/files/pdf/08_1145.pdf"
+                },
+                {
+                    "source_name": "Jos Wetzels, Marina Krotofil 2019",
+                    "description": "Jos Wetzels, Marina Krotofil 2019 A Diet of Poisoned Fruit: Designing Implants & OT Payloads for ICS Embedded Devices Retrieved. 2019/11/01 ",
+                    "url": "https://troopers.de/downloads/troopers19/TROOPERS19_NGI_IoT_diet_poisoned_fruit.pdf"
+                },
+                {
+                    "source_name": "Jos Wetzels, Marina Krotofil 2019",
+                    "description": "Jos Wetzels, Marina Krotofil 2019 A Diet of Poisoned Fruit: Designing Implants & OT Payloads for ICS Embedded Devices Retrieved. 2019/11/01 ",
+                    "url": "https://troopers.de/downloads/troopers19/TROOPERS19_NGI_IoT_diet_poisoned_fruit.pdf"
+                }
+            ],
+            "object_marking_refs": [
+                "marking-definition--fa42a846-8d90-4e51-bc29-71d5b4802168"
+            ],
+            "x_mitre_attack_spec_version": "2.1.0",
+            "x_mitre_contributors": [
+                "Marina Krotofil",
+                "Jos Wetzels - Midnight Blue"
+            ],
+            "x_mitre_data_sources": [
+                "Network Traffic: Network Traffic Content",
+                "Application Log: Application Log Content",
+                "Operational Databases: Process History/Live Data",
+                "Operational Databases: Process/Event Alarm"
+            ],
+            "x_mitre_domains": [
+                "ics-attack"
+            ],
+            "x_mitre_modified_by_ref": "identity--c78cb6e5-0c4b-4611-8297-d1b8b55e40b5",
+            "x_mitre_platforms": [
+                "Field Controller/RTU/PLC/IED",
+                "Safety Instrumented System/Protection Relay",
+                "Device Configuration/Parameters"
+            ],
+            "x_mitre_version": "1.0"
+        },
+        {
+            "type": "report",
+            "spec_version": "2.1",
+            "id": "report--7fad7ce3-fc41-45c4-8777-3d99e3192bb5",
+            "created": "2022-09-06T10:52:08.050175Z",
+            "modified": "2022-09-06T10:52:08.050175Z",
+            "name": "File converted: mitre_attck_ics.txt",
+            "report_types": [
+                "threat_report"
+            ],
+            "published": "2022-09-06T16:22:08.050161Z",
+            "object_refs": [
+                "attack-pattern--7830cfcf-b268-4ac0-a69e-73c6affbae9a",
+                "attack-pattern--2883c520-7957-46ca-89bd-dab1ad53b601",
+                "attack-pattern--2900bbd8-308a-4274-b074-5b8bde8347bc"
+            ],
+            "object_marking_refs": [
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
+            ]
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--76b5639d-0f42-4657-9594-9c4fc0b80ff1",
+            "created": "2022-09-06T10:52:08.050509Z",
+            "modified": "2022-09-06T10:52:08.050509Z",
+            "relationship_type": "default-extract",
+            "source_ref": "report--7fad7ce3-fc41-45c4-8777-3d99e3192bb5",
+            "target_ref": "attack-pattern--7830cfcf-b268-4ac0-a69e-73c6affbae9a",
+            "object_marking_refs": [
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
+            ]
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--52762fd3-8ba1-4518-8fdc-b06d8bf9d0fe",
+            "created": "2022-09-06T10:52:08.050688Z",
+            "modified": "2022-09-06T10:52:08.050688Z",
+            "relationship_type": "default-extract",
+            "source_ref": "report--7fad7ce3-fc41-45c4-8777-3d99e3192bb5",
+            "target_ref": "attack-pattern--2883c520-7957-46ca-89bd-dab1ad53b601",
+            "object_marking_refs": [
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
+            ]
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--53a9f381-bfde-4707-a95a-c4586ad1a37d",
+            "created": "2022-09-06T10:52:08.050841Z",
+            "modified": "2022-09-06T10:52:08.050841Z",
+            "relationship_type": "default-extract",
+            "source_ref": "report--7fad7ce3-fc41-45c4-8777-3d99e3192bb5",
+            "target_ref": "attack-pattern--2900bbd8-308a-4274-b074-5b8bde8347bc",
+            "object_marking_refs": [
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
+            ]
+        }
+    ]
+}

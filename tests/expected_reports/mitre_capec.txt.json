@@ -1,7 +1,33 @@
 {
     "type": "bundle",
-    "id": "bundle--790054f4-b49d-4678-b3f9-31caf323baa4",
+    "id": "bundle--e8e266f0-82b8-4552-821d-722489c42e70",
     "objects": [
+        {
+            "type": "extension-definition",
+            "spec_version": "2.1",
+            "id": "extension-definition--c8ea5ecb-f4a3-45e7-94de-9b9ba05161af",
+            "created_by_ref": "identity--acf55024-6bbe-486f-a27a-7967559324f4",
+            "created": "2022-01-01T00:00:00.000Z",
+            "modified": "2022-01-01T00:00:00.000Z",
+            "name": "MISP Warning Lists",
+            "description": "This schema adds MISP Warning List matches to extracted Objects",
+            "schema": "https://github.com/MISP/misp-warninglists",
+            "version": "1.0",
+            "extension_types": [
+                "property-extension"
+            ]
+        },
+        {
+            "type": "marking-definition",
+            "spec_version": "2.1",
+            "id": "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9",
+            "created": "2017-01-20T00:00:00.000Z",
+            "definition_type": "tlp",
+            "name": "TLP:WHITE",
+            "definition": {
+                "tlp": "white"
+            }
+        },
         {
             "type": "attack-pattern",
             "spec_version": "2.1",
@@ -144,38 +170,47 @@
         {
             "type": "report",
             "spec_version": "2.1",
-            "id": "report--6438b895-ec08-4708-8f6d-1bf2cff58b6b",
-            "created": "2022-09-03T05:06:03.770729Z",
-            "modified": "2022-09-03T05:06:03.770729Z",
+            "id": "report--66d34472-af2f-4cad-8480-a99dcfb3b2d5",
+            "created": "2022-09-06T10:54:20.628758Z",
+            "modified": "2022-09-06T10:54:20.628758Z",
             "name": "File converted: mitre_capec.txt",
             "report_types": [
                 "threat_report"
             ],
-            "published": "2022-09-03T10:36:03.770719Z",
+            "published": "2022-09-06T16:24:20.628739Z",
             "object_refs": [
                 "attack-pattern--00d91a4c-2645-4bf1-8db7-e7448ef25f17",
                 "attack-pattern--7b462c1f-e0bf-41a7-b811-2b676c103bda"
+            ],
+            "object_marking_refs": [
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
             ]
         },
         {
             "type": "relationship",
             "spec_version": "2.1",
-            "id": "relationship--620b0240-29a7-4f6a-883d-590482efa7d1",
-            "created": "2022-09-03T05:06:03.770991Z",
-            "modified": "2022-09-03T05:06:03.770991Z",
+            "id": "relationship--f066697c-6c30-491b-bfd2-2f4e0880a6d7",
+            "created": "2022-09-06T10:54:20.62934Z",
+            "modified": "2022-09-06T10:54:20.62934Z",
             "relationship_type": "default-extract",
-            "source_ref": "report--6438b895-ec08-4708-8f6d-1bf2cff58b6b",
-            "target_ref": "attack-pattern--00d91a4c-2645-4bf1-8db7-e7448ef25f17"
+            "source_ref": "report--66d34472-af2f-4cad-8480-a99dcfb3b2d5",
+            "target_ref": "attack-pattern--00d91a4c-2645-4bf1-8db7-e7448ef25f17",
+            "object_marking_refs": [
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
+            ]
         },
         {
             "type": "relationship",
             "spec_version": "2.1",
-            "id": "relationship--37349fbc-fab2-4d59-af33-2476c2ab6eac",
-            "created": "2022-09-03T05:06:03.771148Z",
-            "modified": "2022-09-03T05:06:03.771148Z",
+            "id": "relationship--e1af05a9-5ddf-4b44-8ed1-b24ad1ad6193",
+            "created": "2022-09-06T10:54:20.629629Z",
+            "modified": "2022-09-06T10:54:20.629629Z",
             "relationship_type": "default-extract",
-            "source_ref": "report--6438b895-ec08-4708-8f6d-1bf2cff58b6b",
-            "target_ref": "attack-pattern--7b462c1f-e0bf-41a7-b811-2b676c103bda"
+            "source_ref": "report--66d34472-af2f-4cad-8480-a99dcfb3b2d5",
+            "target_ref": "attack-pattern--7b462c1f-e0bf-41a7-b811-2b676c103bda",
+            "object_marking_refs": [
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
+            ]
         }
     ]
 }

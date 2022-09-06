@@ -1,14 +1,39 @@
 {
     "type": "bundle",
-    "id": "bundle--6ae953fe-3729-42f0-a125-6dba7a9d311a",
+    "id": "bundle--99cbf0bc-f7f5-4937-8dc3-0e5f99e06595",
     "objects": [
+        {
+            "type": "extension-definition",
+            "spec_version": "2.1",
+            "id": "extension-definition--c8ea5ecb-f4a3-45e7-94de-9b9ba05161af",
+            "created_by_ref": "identity--acf55024-6bbe-486f-a27a-7967559324f4",
+            "created": "2022-01-01T00:00:00.000Z",
+            "modified": "2022-01-01T00:00:00.000Z",
+            "name": "MISP Warning Lists",
+            "description": "This schema adds MISP Warning List matches to extracted Objects",
+            "schema": "https://github.com/MISP/misp-warninglists",
+            "version": "1.0",
+            "extension_types": [
+                "property-extension"
+            ]
+        },
+        {
+            "type": "marking-definition",
+            "spec_version": "2.1",
+            "id": "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9",
+            "created": "2017-01-20T00:00:00.000Z",
+            "definition_type": "tlp",
+            "name": "TLP:WHITE",
+            "definition": {
+                "tlp": "white"
+            }
+        },
         {
             "type": "indicator",
             "spec_version": "2.1",
-            "id": "indicator--b66df70c-f1c1-4ea5-9c0a-13eefee19f16",
-            "created_by_ref": "identity--acf55024-6bbe-486f-a27a-7967559324f4",
-            "created": "2022-09-02T14:51:33.972542Z",
-            "modified": "2022-09-03T05:03:38.734933Z",
+            "id": "indicator--deb6d145-6601-4ccf-92d7-3b11d7c8f4f1",
+            "created": "2022-09-06T10:09:59.795729Z",
+            "modified": "2022-09-06T10:52:11.407341Z",
             "name": "Directory: Mozilla/",
             "indicator_types": [
                 "unknown"
@@ -16,18 +41,17 @@
             "pattern": "[ directory:path = 'Mozilla/' ]",
             "pattern_type": "stix",
             "pattern_version": "2.1",
-            "valid_from": "2022-09-02T14:51:33.972542Z",
+            "valid_from": "2022-09-06T10:09:59.795729Z",
             "object_marking_refs": [
-                "marking-definition--f88d31f6-486f-44da-b317-01333bde0b82"
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
             ]
         },
         {
             "type": "indicator",
             "spec_version": "2.1",
-            "id": "indicator--e8fb4a29-50f0-4108-8e70-6744f56f1d17",
-            "created_by_ref": "identity--acf55024-6bbe-486f-a27a-7967559324f4",
-            "created": "2022-09-03T04:41:44.283141Z",
-            "modified": "2022-09-03T05:03:34.997178Z",
+            "id": "indicator--122567be-4eda-4d17-a261-df5b883ca739",
+            "created": "2022-09-06T10:09:58.803877Z",
+            "modified": "2022-09-06T10:52:09.627973Z",
             "name": "Directory: Gecko/",
             "indicator_types": [
                 "unknown"
@@ -35,18 +59,17 @@
             "pattern": "[ directory:path = 'Gecko/' ]",
             "pattern_type": "stix",
             "pattern_version": "2.1",
-            "valid_from": "2022-09-03T04:41:44.283141Z",
+            "valid_from": "2022-09-06T10:09:58.803877Z",
             "object_marking_refs": [
-                "marking-definition--f88d31f6-486f-44da-b317-01333bde0b82"
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
             ]
         },
         {
             "type": "indicator",
             "spec_version": "2.1",
-            "id": "indicator--d4c4aa87-8a2f-4a13-95d8-e286e1c0168b",
-            "created_by_ref": "identity--acf55024-6bbe-486f-a27a-7967559324f4",
-            "created": "2022-09-03T04:41:47.504442Z",
-            "modified": "2022-09-03T05:03:39.656531Z",
+            "id": "indicator--7e014bee-adae-41b2-8940-0ef3321ececf",
+            "created": "2022-09-06T10:09:59.993233Z",
+            "modified": "2022-09-06T10:52:11.744689Z",
             "name": "Directory: AppleWebKit/",
             "indicator_types": [
                 "unknown"
@@ -54,18 +77,17 @@
             "pattern": "[ directory:path = 'AppleWebKit/' ]",
             "pattern_type": "stix",
             "pattern_version": "2.1",
-            "valid_from": "2022-09-03T04:41:47.504442Z",
+            "valid_from": "2022-09-06T10:09:59.993233Z",
             "object_marking_refs": [
-                "marking-definition--f88d31f6-486f-44da-b317-01333bde0b82"
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
             ]
         },
         {
             "type": "indicator",
             "spec_version": "2.1",
-            "id": "indicator--42f2fff4-c3df-4b35-aa83-4517fe1f4443",
-            "created_by_ref": "identity--acf55024-6bbe-486f-a27a-7967559324f4",
-            "created": "2022-09-03T04:41:45.925557Z",
-            "modified": "2022-09-03T05:03:37.144692Z",
+            "id": "indicator--4dc07aac-7ff1-49e3-a87e-0598fd5ce466",
+            "created": "2022-09-06T10:09:59.430467Z",
+            "modified": "2022-09-06T10:52:10.705386Z",
             "name": "Directory: Chrome/",
             "indicator_types": [
                 "unknown"
@@ -73,18 +95,17 @@
             "pattern": "[ directory:path = 'Chrome/' ]",
             "pattern_type": "stix",
             "pattern_version": "2.1",
-            "valid_from": "2022-09-03T04:41:45.925557Z",
+            "valid_from": "2022-09-06T10:09:59.430467Z",
             "object_marking_refs": [
-                "marking-definition--f88d31f6-486f-44da-b317-01333bde0b82"
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
             ]
         },
         {
             "type": "indicator",
             "spec_version": "2.1",
-            "id": "indicator--91a94165-d4f1-42ef-9bc2-067a018b7320",
-            "created_by_ref": "identity--acf55024-6bbe-486f-a27a-7967559324f4",
-            "created": "2022-09-02T14:51:34.594868Z",
-            "modified": "2022-09-03T05:03:42.041715Z",
+            "id": "indicator--a61ed925-758a-4b0c-bf58-0db65da3711c",
+            "created": "2022-09-06T10:10:00.536298Z",
+            "modified": "2022-09-06T10:52:12.784303Z",
             "name": "Directory: Safari/",
             "indicator_types": [
                 "unknown"
@@ -92,18 +113,17 @@
             "pattern": "[ directory:path = 'Safari/' ]",
             "pattern_type": "stix",
             "pattern_version": "2.1",
-            "valid_from": "2022-09-02T14:51:34.594868Z",
+            "valid_from": "2022-09-06T10:10:00.536298Z",
             "object_marking_refs": [
-                "marking-definition--f88d31f6-486f-44da-b317-01333bde0b82"
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
             ]
         },
         {
             "type": "indicator",
             "spec_version": "2.1",
-            "id": "indicator--5404a851-381b-47da-bd8e-65932446bf1b",
-            "created_by_ref": "identity--acf55024-6bbe-486f-a27a-7967559324f4",
-            "created": "2022-09-03T04:41:48.047192Z",
-            "modified": "2022-09-03T05:03:40.618306Z",
+            "id": "indicator--c9c11fc9-5c9f-4a13-9586-bb60016ec50d",
+            "created": "2022-09-06T10:10:00.170474Z",
+            "modified": "2022-09-06T10:52:12.097414Z",
             "name": "Directory: Version/",
             "indicator_types": [
                 "unknown"
@@ -111,18 +131,17 @@
             "pattern": "[ directory:path = 'Version/' ]",
             "pattern_type": "stix",
             "pattern_version": "2.1",
-            "valid_from": "2022-09-03T04:41:48.047192Z",
+            "valid_from": "2022-09-06T10:10:00.170474Z",
             "object_marking_refs": [
-                "marking-definition--f88d31f6-486f-44da-b317-01333bde0b82"
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
             ]
         },
         {
             "type": "indicator",
             "spec_version": "2.1",
-            "id": "indicator--a7bf8222-f862-4f05-a0b3-5714dc3e700d",
-            "created_by_ref": "identity--acf55024-6bbe-486f-a27a-7967559324f4",
-            "created": "2022-09-02T14:51:34.439417Z",
-            "modified": "2022-09-03T05:03:41.332908Z",
+            "id": "indicator--7a168310-4eff-4e0e-8809-32f25cee1fa1",
+            "created": "2022-09-06T10:10:00.356565Z",
+            "modified": "2022-09-06T10:52:12.432818Z",
             "name": "Directory: Mobile/",
             "indicator_types": [
                 "unknown"
@@ -130,18 +149,17 @@
             "pattern": "[ directory:path = 'Mobile/' ]",
             "pattern_type": "stix",
             "pattern_version": "2.1",
-            "valid_from": "2022-09-02T14:51:34.439417Z",
+            "valid_from": "2022-09-06T10:10:00.356565Z",
             "object_marking_refs": [
-                "marking-definition--f88d31f6-486f-44da-b317-01333bde0b82"
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
             ]
         },
         {
             "type": "indicator",
             "spec_version": "2.1",
-            "id": "indicator--23006afb-ca50-4bd6-aab3-bf36ae842da0",
-            "created_by_ref": "identity--acf55024-6bbe-486f-a27a-7967559324f4",
-            "created": "2022-09-03T04:41:57.670171Z",
-            "modified": "2022-09-03T05:03:42.735984Z",
+            "id": "indicator--fa1214a8-2df9-46b9-ac50-d40bc7865bfc",
+            "created": "2022-09-06T10:10:02.109042Z",
+            "modified": "2022-09-06T10:52:13.122125Z",
             "name": "User Agent: Mozilla/5.0 (Windows; U; Windows NT 5.1; en-US; rv:1.6) Gecko/20040113",
             "indicator_types": [
                 "unknown"
@@ -149,18 +167,17 @@
             "pattern": "[ network-traffic:extensions.'http-requestext'.request_header.'User-Agent' = 'Mozilla/5.0 (Windows; U; Windows NT 5.1; en-US; rv:1.6) Gecko/20040113' ]",
             "pattern_type": "stix",
             "pattern_version": "2.1",
-            "valid_from": "2022-09-03T04:41:57.670171Z",
+            "valid_from": "2022-09-06T10:10:02.109042Z",
             "object_marking_refs": [
-                "marking-definition--f88d31f6-486f-44da-b317-01333bde0b82"
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
             ]
         },
         {
             "type": "indicator",
             "spec_version": "2.1",
-            "id": "indicator--ca5645fd-a74e-473e-810e-5da97fc36201",
-            "created_by_ref": "identity--acf55024-6bbe-486f-a27a-7967559324f4",
-            "created": "2022-09-03T04:41:58.193606Z",
-            "modified": "2022-09-03T05:03:43.403557Z",
+            "id": "indicator--79e870a2-11ba-49c9-8dbf-db86c8b5eff5",
+            "created": "2022-09-06T10:10:02.335411Z",
+            "modified": "2022-09-06T10:52:13.471974Z",
             "name": "User Agent: Mozilla/5.0 (Linux; Android 11; Lenovo YT-J706X) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/96.0.4664.45 Safari/537.36",
             "indicator_types": [
                 "unknown"
@@ -168,18 +185,17 @@
             "pattern": "[ network-traffic:extensions.'http-requestext'.request_header.'User-Agent' = 'Mozilla/5.0 (Linux; Android 11; Lenovo YT-J706X) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/96.0.4664.45 Safari/537.36' ]",
             "pattern_type": "stix",
             "pattern_version": "2.1",
-            "valid_from": "2022-09-03T04:41:58.193606Z",
+            "valid_from": "2022-09-06T10:10:02.335411Z",
             "object_marking_refs": [
-                "marking-definition--f88d31f6-486f-44da-b317-01333bde0b82"
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
             ]
         },
         {
             "type": "indicator",
             "spec_version": "2.1",
-            "id": "indicator--07cf2ecf-08c3-4cf2-8bf3-559fdce5a448",
-            "created_by_ref": "identity--acf55024-6bbe-486f-a27a-7967559324f4",
-            "created": "2022-09-02T14:51:37.679467Z",
-            "modified": "2022-09-03T05:03:44.082378Z",
+            "id": "indicator--f37d157a-cb18-458c-bf05-ab634d14259e",
+            "created": "2022-09-06T10:10:02.558674Z",
+            "modified": "2022-09-06T10:52:13.821399Z",
             "name": "User Agent: Mozilla/5.0 (iPhone14,6; U; CPU iPhone OS 15_4 like Mac OS X) AppleWebKit/602.1.50 (KHTML, like Gecko) Version/10.0 Mobile/19E241 Safari/602.1",
             "indicator_types": [
                 "unknown"
@@ -187,134 +203,167 @@
             "pattern": "[ network-traffic:extensions.'http-requestext'.request_header.'User-Agent' = 'Mozilla/5.0 (iPhone14,6; U; CPU iPhone OS 15_4 like Mac OS X) AppleWebKit/602.1.50 (KHTML, like Gecko) Version/10.0 Mobile/19E241 Safari/602.1' ]",
             "pattern_type": "stix",
             "pattern_version": "2.1",
-            "valid_from": "2022-09-02T14:51:37.679467Z",
+            "valid_from": "2022-09-06T10:10:02.558674Z",
             "object_marking_refs": [
-                "marking-definition--f88d31f6-486f-44da-b317-01333bde0b82"
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
             ]
         },
         {
             "type": "report",
             "spec_version": "2.1",
-            "id": "report--5d5c326c-c159-41c6-8f59-4ef4b6511f85",
-            "created": "2022-09-03T05:03:44.138414Z",
-            "modified": "2022-09-03T05:03:44.138414Z",
+            "id": "report--503a7fc4-833a-4af3-b57a-689b83e2b280",
+            "created": "2022-09-06T10:52:13.870022Z",
+            "modified": "2022-09-06T10:52:13.870022Z",
             "name": "File converted: user_agent.txt",
             "report_types": [
                 "threat_report"
             ],
-            "published": "2022-09-03T10:33:44.138407Z",
+            "published": "2022-09-06T16:22:13.870015Z",
             "object_refs": [
-                "indicator--b66df70c-f1c1-4ea5-9c0a-13eefee19f16",
-                "indicator--e8fb4a29-50f0-4108-8e70-6744f56f1d17",
-                "indicator--d4c4aa87-8a2f-4a13-95d8-e286e1c0168b",
-                "indicator--42f2fff4-c3df-4b35-aa83-4517fe1f4443",
-                "indicator--91a94165-d4f1-42ef-9bc2-067a018b7320",
-                "indicator--5404a851-381b-47da-bd8e-65932446bf1b",
-                "indicator--a7bf8222-f862-4f05-a0b3-5714dc3e700d",
-                "indicator--23006afb-ca50-4bd6-aab3-bf36ae842da0",
-                "indicator--ca5645fd-a74e-473e-810e-5da97fc36201",
-                "indicator--07cf2ecf-08c3-4cf2-8bf3-559fdce5a448"
+                "indicator--deb6d145-6601-4ccf-92d7-3b11d7c8f4f1",
+                "indicator--122567be-4eda-4d17-a261-df5b883ca739",
+                "indicator--7e014bee-adae-41b2-8940-0ef3321ececf",
+                "indicator--4dc07aac-7ff1-49e3-a87e-0598fd5ce466",
+                "indicator--a61ed925-758a-4b0c-bf58-0db65da3711c",
+                "indicator--c9c11fc9-5c9f-4a13-9586-bb60016ec50d",
+                "indicator--7a168310-4eff-4e0e-8809-32f25cee1fa1",
+                "indicator--fa1214a8-2df9-46b9-ac50-d40bc7865bfc",
+                "indicator--79e870a2-11ba-49c9-8dbf-db86c8b5eff5",
+                "indicator--f37d157a-cb18-458c-bf05-ab634d14259e"
+            ],
+            "object_marking_refs": [
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
             ]
         },
         {
             "type": "relationship",
             "spec_version": "2.1",
-            "id": "relationship--b74b1e0e-58e9-4725-9f93-3f8d55fd3c61",
-            "created": "2022-09-03T05:03:44.138712Z",
-            "modified": "2022-09-03T05:03:44.138712Z",
+            "id": "relationship--b1579295-7f26-4238-9087-3097ae4e30a8",
+            "created": "2022-09-06T10:52:13.870285Z",
+            "modified": "2022-09-06T10:52:13.870285Z",
             "relationship_type": "default-extract",
-            "source_ref": "report--5d5c326c-c159-41c6-8f59-4ef4b6511f85",
-            "target_ref": "indicator--b66df70c-f1c1-4ea5-9c0a-13eefee19f16"
+            "source_ref": "report--503a7fc4-833a-4af3-b57a-689b83e2b280",
+            "target_ref": "indicator--deb6d145-6601-4ccf-92d7-3b11d7c8f4f1",
+            "object_marking_refs": [
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
+            ]
         },
         {
             "type": "relationship",
             "spec_version": "2.1",
-            "id": "relationship--f07c218e-e87e-4610-b404-b1c460831757",
-            "created": "2022-09-03T05:03:44.138876Z",
-            "modified": "2022-09-03T05:03:44.138876Z",
+            "id": "relationship--b4e43eab-105b-4d31-bd46-f2595179d1b8",
+            "created": "2022-09-06T10:52:13.87045Z",
+            "modified": "2022-09-06T10:52:13.87045Z",
             "relationship_type": "default-extract",
-            "source_ref": "report--5d5c326c-c159-41c6-8f59-4ef4b6511f85",
-            "target_ref": "indicator--e8fb4a29-50f0-4108-8e70-6744f56f1d17"
+            "source_ref": "report--503a7fc4-833a-4af3-b57a-689b83e2b280",
+            "target_ref": "indicator--122567be-4eda-4d17-a261-df5b883ca739",
+            "object_marking_refs": [
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
+            ]
         },
         {
             "type": "relationship",
             "spec_version": "2.1",
-            "id": "relationship--fdc14560-6a8f-496c-93a6-d69ea588595d",
-            "created": "2022-09-03T05:03:44.139025Z",
-            "modified": "2022-09-03T05:03:44.139025Z",
+            "id": "relationship--11458e1c-9a88-4fc9-8814-221b3324894f",
+            "created": "2022-09-06T10:52:13.870601Z",
+            "modified": "2022-09-06T10:52:13.870601Z",
             "relationship_type": "default-extract",
-            "source_ref": "report--5d5c326c-c159-41c6-8f59-4ef4b6511f85",
-            "target_ref": "indicator--d4c4aa87-8a2f-4a13-95d8-e286e1c0168b"
+            "source_ref": "report--503a7fc4-833a-4af3-b57a-689b83e2b280",
+            "target_ref": "indicator--7e014bee-adae-41b2-8940-0ef3321ececf",
+            "object_marking_refs": [
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
+            ]
         },
         {
             "type": "relationship",
             "spec_version": "2.1",
-            "id": "relationship--e70256ce-d482-43ab-a5ce-19de7c1938dd",
-            "created": "2022-09-03T05:03:44.13917Z",
-            "modified": "2022-09-03T05:03:44.13917Z",
+            "id": "relationship--d40a164e-685d-414f-8921-598d9a8de97d",
+            "created": "2022-09-06T10:52:13.870749Z",
+            "modified": "2022-09-06T10:52:13.870749Z",
             "relationship_type": "default-extract",
-            "source_ref": "report--5d5c326c-c159-41c6-8f59-4ef4b6511f85",
-            "target_ref": "indicator--42f2fff4-c3df-4b35-aa83-4517fe1f4443"
+            "source_ref": "report--503a7fc4-833a-4af3-b57a-689b83e2b280",
+            "target_ref": "indicator--4dc07aac-7ff1-49e3-a87e-0598fd5ce466",
+            "object_marking_refs": [
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
+            ]
         },
         {
             "type": "relationship",
             "spec_version": "2.1",
-            "id": "relationship--affc4a79-cb4e-4b90-b49c-5853f137c06c",
-            "created": "2022-09-03T05:03:44.139313Z",
-            "modified": "2022-09-03T05:03:44.139313Z",
+            "id": "relationship--c1e8bdaf-4ff6-49cc-87d6-8beec48da4fc",
+            "created": "2022-09-06T10:52:13.870901Z",
+            "modified": "2022-09-06T10:52:13.870901Z",
             "relationship_type": "default-extract",
-            "source_ref": "report--5d5c326c-c159-41c6-8f59-4ef4b6511f85",
-            "target_ref": "indicator--91a94165-d4f1-42ef-9bc2-067a018b7320"
+            "source_ref": "report--503a7fc4-833a-4af3-b57a-689b83e2b280",
+            "target_ref": "indicator--a61ed925-758a-4b0c-bf58-0db65da3711c",
+            "object_marking_refs": [
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
+            ]
         },
         {
             "type": "relationship",
             "spec_version": "2.1",
-            "id": "relationship--23c6147c-03ee-4f0b-88bd-630fdabd106d",
-            "created": "2022-09-03T05:03:44.139455Z",
-            "modified": "2022-09-03T05:03:44.139455Z",
+            "id": "relationship--39a9385c-1aba-43d3-b121-52f444c6185c",
+            "created": "2022-09-06T10:52:13.871045Z",
+            "modified": "2022-09-06T10:52:13.871045Z",
             "relationship_type": "default-extract",
-            "source_ref": "report--5d5c326c-c159-41c6-8f59-4ef4b6511f85",
-            "target_ref": "indicator--5404a851-381b-47da-bd8e-65932446bf1b"
+            "source_ref": "report--503a7fc4-833a-4af3-b57a-689b83e2b280",
+            "target_ref": "indicator--c9c11fc9-5c9f-4a13-9586-bb60016ec50d",
+            "object_marking_refs": [
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
+            ]
         },
         {
             "type": "relationship",
             "spec_version": "2.1",
-            "id": "relationship--552b2555-70f3-4069-a701-e1aabbde6c19",
-            "created": "2022-09-03T05:03:44.139596Z",
-            "modified": "2022-09-03T05:03:44.139596Z",
+            "id": "relationship--a2f66384-013c-406c-a34b-38fb182382ae",
+            "created": "2022-09-06T10:52:13.87119Z",
+            "modified": "2022-09-06T10:52:13.87119Z",
             "relationship_type": "default-extract",
-            "source_ref": "report--5d5c326c-c159-41c6-8f59-4ef4b6511f85",
-            "target_ref": "indicator--a7bf8222-f862-4f05-a0b3-5714dc3e700d"
+            "source_ref": "report--503a7fc4-833a-4af3-b57a-689b83e2b280",
+            "target_ref": "indicator--7a168310-4eff-4e0e-8809-32f25cee1fa1",
+            "object_marking_refs": [
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
+            ]
         },
         {
             "type": "relationship",
             "spec_version": "2.1",
-            "id": "relationship--cf801f42-f958-44eb-bddd-f356686d196d",
-            "created": "2022-09-03T05:03:44.139735Z",
-            "modified": "2022-09-03T05:03:44.139735Z",
+            "id": "relationship--a77ae698-68b3-489e-b09c-28ea63053b9a",
+            "created": "2022-09-06T10:52:13.871332Z",
+            "modified": "2022-09-06T10:52:13.871332Z",
             "relationship_type": "default-extract",
-            "source_ref": "report--5d5c326c-c159-41c6-8f59-4ef4b6511f85",
-            "target_ref": "indicator--23006afb-ca50-4bd6-aab3-bf36ae842da0"
+            "source_ref": "report--503a7fc4-833a-4af3-b57a-689b83e2b280",
+            "target_ref": "indicator--fa1214a8-2df9-46b9-ac50-d40bc7865bfc",
+            "object_marking_refs": [
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
+            ]
         },
         {
             "type": "relationship",
             "spec_version": "2.1",
-            "id": "relationship--025fd036-cea5-44ef-b352-54a5acfffb55",
-            "created": "2022-09-03T05:03:44.139874Z",
-            "modified": "2022-09-03T05:03:44.139874Z",
+            "id": "relationship--3b36809a-56b3-4b02-bcb6-259bf995a8fc",
+            "created": "2022-09-06T10:52:13.871473Z",
+            "modified": "2022-09-06T10:52:13.871473Z",
             "relationship_type": "default-extract",
-            "source_ref": "report--5d5c326c-c159-41c6-8f59-4ef4b6511f85",
-            "target_ref": "indicator--ca5645fd-a74e-473e-810e-5da97fc36201"
+            "source_ref": "report--503a7fc4-833a-4af3-b57a-689b83e2b280",
+            "target_ref": "indicator--79e870a2-11ba-49c9-8dbf-db86c8b5eff5",
+            "object_marking_refs": [
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
+            ]
         },
         {
             "type": "relationship",
             "spec_version": "2.1",
-            "id": "relationship--6ef6150a-e68c-414c-8070-ac8704bd0acd",
-            "created": "2022-09-03T05:03:44.140016Z",
-            "modified": "2022-09-03T05:03:44.140016Z",
+            "id": "relationship--5aae51db-b3d4-48ce-9a91-3800078b98cb",
+            "created": "2022-09-06T10:52:13.871614Z",
+            "modified": "2022-09-06T10:52:13.871614Z",
             "relationship_type": "default-extract",
-            "source_ref": "report--5d5c326c-c159-41c6-8f59-4ef4b6511f85",
-            "target_ref": "indicator--07cf2ecf-08c3-4cf2-8bf3-559fdce5a448"
+            "source_ref": "report--503a7fc4-833a-4af3-b57a-689b83e2b280",
+            "target_ref": "indicator--f37d157a-cb18-458c-bf05-ab634d14259e",
+            "object_marking_refs": [
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
+            ]
         }
     ]
 }

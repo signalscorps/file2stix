@@ -1,13 +1,39 @@
 {
     "type": "bundle",
-    "id": "bundle--58cc0ceb-4727-4e6e-92e2-35ab98368556",
+    "id": "bundle--b33e2277-fe09-4a25-bbd4-dbbf182f9a77",
     "objects": [
+        {
+            "type": "extension-definition",
+            "spec_version": "2.1",
+            "id": "extension-definition--c8ea5ecb-f4a3-45e7-94de-9b9ba05161af",
+            "created_by_ref": "identity--acf55024-6bbe-486f-a27a-7967559324f4",
+            "created": "2022-01-01T00:00:00.000Z",
+            "modified": "2022-01-01T00:00:00.000Z",
+            "name": "MISP Warning Lists",
+            "description": "This schema adds MISP Warning List matches to extracted Objects",
+            "schema": "https://github.com/MISP/misp-warninglists",
+            "version": "1.0",
+            "extension_types": [
+                "property-extension"
+            ]
+        },
+        {
+            "type": "marking-definition",
+            "spec_version": "2.1",
+            "id": "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9",
+            "created": "2017-01-20T00:00:00.000Z",
+            "definition_type": "tlp",
+            "name": "TLP:WHITE",
+            "definition": {
+                "tlp": "white"
+            }
+        },
         {
             "type": "indicator",
             "spec_version": "2.1",
-            "id": "indicator--1b6bde59-b418-45c8-9f6b-7bd83f905472",
-            "created": "2022-09-02T17:54:23.94734Z",
-            "modified": "2022-09-03T05:05:39.795329Z",
+            "id": "indicator--03573aa7-c88c-481c-863c-37c09025ed0a",
+            "created": "2022-09-06T10:52:18.285223Z",
+            "modified": "2022-09-06T10:53:25.67559Z",
             "name": "File name: test.bat",
             "indicator_types": [
                 "unknown"
@@ -15,7 +41,7 @@
             "pattern": "[ file:name = 'test.bat' ]",
             "pattern_type": "stix",
             "pattern_version": "2.1",
-            "valid_from": "2022-09-02T17:54:23.94734Z",
+            "valid_from": "2022-09-06T10:52:18.285223Z",
             "object_marking_refs": [
                 "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
             ]
@@ -23,10 +49,9 @@
         {
             "type": "indicator",
             "spec_version": "2.1",
-            "id": "indicator--6e6dae89-c597-4ee0-9305-c65d3c6e9a7e",
-            "created_by_ref": "identity--acf55024-6bbe-486f-a27a-7967559324f4",
-            "created": "2022-09-03T04:41:41.647484Z",
-            "modified": "2022-09-03T05:05:40.650358Z",
+            "id": "indicator--370dcbb2-acfd-412a-8af5-8ab389aa1fdb",
+            "created": "2022-09-06T10:09:57.760595Z",
+            "modified": "2022-09-06T10:53:26.181942Z",
             "name": "Directory: /System/Library/",
             "indicator_types": [
                 "unknown"
@@ -34,18 +59,17 @@
             "pattern": "[ directory:path = '/System/Library/' ]",
             "pattern_type": "stix",
             "pattern_version": "2.1",
-            "valid_from": "2022-09-03T04:41:41.647484Z",
+            "valid_from": "2022-09-06T10:09:57.760595Z",
             "object_marking_refs": [
-                "marking-definition--f88d31f6-486f-44da-b317-01333bde0b82"
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
             ]
         },
         {
             "type": "indicator",
             "spec_version": "2.1",
-            "id": "indicator--69581b28-6f65-44dd-89e3-a254135d6c51",
-            "created_by_ref": "identity--acf55024-6bbe-486f-a27a-7967559324f4",
-            "created": "2022-09-02T14:51:32.531672Z",
-            "modified": "2022-09-03T05:05:41.489265Z",
+            "id": "indicator--5632043b-773a-4095-8330-56000368d047",
+            "created": "2022-09-06T10:09:57.957785Z",
+            "modified": "2022-09-06T10:53:26.665369Z",
             "name": "Directory: C:\\Windows\\",
             "indicator_types": [
                 "unknown"
@@ -53,17 +77,17 @@
             "pattern": "[ directory:path = 'C:\\\\Windows\\\\' ]",
             "pattern_type": "stix",
             "pattern_version": "2.1",
-            "valid_from": "2022-09-02T14:51:32.531672Z",
+            "valid_from": "2022-09-06T10:09:57.957785Z",
             "object_marking_refs": [
-                "marking-definition--f88d31f6-486f-44da-b317-01333bde0b82"
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
             ]
         },
         {
             "type": "indicator",
             "spec_version": "2.1",
-            "id": "indicator--f6305003-668f-4c7d-bfa8-a53fa160798d",
-            "created": "2022-09-03T05:00:21.458084Z",
-            "modified": "2022-09-03T05:05:42.301907Z",
+            "id": "indicator--56233fb6-dd48-4a02-84f8-7e389685912b",
+            "created": "2022-09-06T10:53:26.815847Z",
+            "modified": "2022-09-06T10:53:26.815847Z",
             "name": "Directory: /System/Library/LaunchDaemons/",
             "indicator_types": [
                 "unknown"
@@ -71,7 +95,7 @@
             "pattern": "[ directory:path = '/System/Library/LaunchDaemons/' ]",
             "pattern_type": "stix",
             "pattern_version": "2.1",
-            "valid_from": "2022-09-03T05:00:21.458084Z",
+            "valid_from": "2022-09-06T10:53:26.815847Z",
             "object_marking_refs": [
                 "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
             ]
@@ -79,9 +103,9 @@
         {
             "type": "indicator",
             "spec_version": "2.1",
-            "id": "indicator--d3202067-877e-47e4-898c-fb662287f9dd",
-            "created": "2022-09-03T05:00:22.168232Z",
-            "modified": "2022-09-03T05:05:43.126345Z",
+            "id": "indicator--1370e7fa-4721-4a4b-b856-cf0f53252ecf",
+            "created": "2022-09-06T10:53:27.263724Z",
+            "modified": "2022-09-06T10:53:27.263724Z",
             "name": "Directory: C:\\Windows\\System32\\",
             "indicator_types": [
                 "unknown"
@@ -89,7 +113,7 @@
             "pattern": "[ directory:path = 'C:\\\\Windows\\\\System32\\\\' ]",
             "pattern_type": "stix",
             "pattern_version": "2.1",
-            "valid_from": "2022-09-03T05:00:22.168232Z",
+            "valid_from": "2022-09-06T10:53:27.263724Z",
             "object_marking_refs": [
                 "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
             ]
@@ -97,71 +121,89 @@
         {
             "type": "report",
             "spec_version": "2.1",
-            "id": "report--83dd6a23-3b15-4a03-85d5-c45f718f0c97",
-            "created": "2022-09-03T05:05:43.151787Z",
-            "modified": "2022-09-03T05:05:43.151787Z",
+            "id": "report--be8486bd-ae13-4cd0-b352-13d1c7849932",
+            "created": "2022-09-06T10:53:27.650712Z",
+            "modified": "2022-09-06T10:53:27.650712Z",
             "name": "File converted: directory.txt",
             "report_types": [
                 "threat_report"
             ],
-            "published": "2022-09-03T10:35:43.15178Z",
+            "published": "2022-09-06T16:23:27.650703Z",
             "object_refs": [
-                "indicator--1b6bde59-b418-45c8-9f6b-7bd83f905472",
-                "indicator--6e6dae89-c597-4ee0-9305-c65d3c6e9a7e",
-                "indicator--69581b28-6f65-44dd-89e3-a254135d6c51",
-                "indicator--f6305003-668f-4c7d-bfa8-a53fa160798d",
-                "indicator--d3202067-877e-47e4-898c-fb662287f9dd"
+                "indicator--03573aa7-c88c-481c-863c-37c09025ed0a",
+                "indicator--370dcbb2-acfd-412a-8af5-8ab389aa1fdb",
+                "indicator--5632043b-773a-4095-8330-56000368d047",
+                "indicator--56233fb6-dd48-4a02-84f8-7e389685912b",
+                "indicator--1370e7fa-4721-4a4b-b856-cf0f53252ecf"
+            ],
+            "object_marking_refs": [
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
             ]
         },
         {
             "type": "relationship",
             "spec_version": "2.1",
-            "id": "relationship--21035de0-063d-4eff-9018-6ff156efeb06",
-            "created": "2022-09-03T05:05:43.152073Z",
-            "modified": "2022-09-03T05:05:43.152073Z",
+            "id": "relationship--d596d805-8629-42c4-8b91-61f920ec080f",
+            "created": "2022-09-06T10:53:27.651011Z",
+            "modified": "2022-09-06T10:53:27.651011Z",
             "relationship_type": "default-extract",
-            "source_ref": "report--83dd6a23-3b15-4a03-85d5-c45f718f0c97",
-            "target_ref": "indicator--1b6bde59-b418-45c8-9f6b-7bd83f905472"
+            "source_ref": "report--be8486bd-ae13-4cd0-b352-13d1c7849932",
+            "target_ref": "indicator--03573aa7-c88c-481c-863c-37c09025ed0a",
+            "object_marking_refs": [
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
+            ]
         },
         {
             "type": "relationship",
             "spec_version": "2.1",
-            "id": "relationship--0f4a7ae8-98be-430d-8170-c1bc70e1456d",
-            "created": "2022-09-03T05:05:43.152251Z",
-            "modified": "2022-09-03T05:05:43.152251Z",
+            "id": "relationship--e564bbd3-bd73-430d-857d-cc5ffa17daac",
+            "created": "2022-09-06T10:53:27.651187Z",
+            "modified": "2022-09-06T10:53:27.651187Z",
             "relationship_type": "default-extract",
-            "source_ref": "report--83dd6a23-3b15-4a03-85d5-c45f718f0c97",
-            "target_ref": "indicator--6e6dae89-c597-4ee0-9305-c65d3c6e9a7e"
+            "source_ref": "report--be8486bd-ae13-4cd0-b352-13d1c7849932",
+            "target_ref": "indicator--370dcbb2-acfd-412a-8af5-8ab389aa1fdb",
+            "object_marking_refs": [
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
+            ]
         },
         {
             "type": "relationship",
             "spec_version": "2.1",
-            "id": "relationship--cb3ad25a-fa4f-4500-b2cc-5355cd48065f",
-            "created": "2022-09-03T05:05:43.152399Z",
-            "modified": "2022-09-03T05:05:43.152399Z",
+            "id": "relationship--463b46e3-e486-4188-965b-673c9c913873",
+            "created": "2022-09-06T10:53:27.65136Z",
+            "modified": "2022-09-06T10:53:27.65136Z",
             "relationship_type": "default-extract",
-            "source_ref": "report--83dd6a23-3b15-4a03-85d5-c45f718f0c97",
-            "target_ref": "indicator--69581b28-6f65-44dd-89e3-a254135d6c51"
+            "source_ref": "report--be8486bd-ae13-4cd0-b352-13d1c7849932",
+            "target_ref": "indicator--5632043b-773a-4095-8330-56000368d047",
+            "object_marking_refs": [
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
+            ]
         },
         {
             "type": "relationship",
             "spec_version": "2.1",
-            "id": "relationship--be5505cf-bec0-45b4-a04f-3cda8226d57e",
-            "created": "2022-09-03T05:05:43.152542Z",
-            "modified": "2022-09-03T05:05:43.152542Z",
+            "id": "relationship--10f25b63-9699-4bef-ab18-8da852099123",
+            "created": "2022-09-06T10:53:27.651519Z",
+            "modified": "2022-09-06T10:53:27.651519Z",
             "relationship_type": "default-extract",
-            "source_ref": "report--83dd6a23-3b15-4a03-85d5-c45f718f0c97",
-            "target_ref": "indicator--f6305003-668f-4c7d-bfa8-a53fa160798d"
+            "source_ref": "report--be8486bd-ae13-4cd0-b352-13d1c7849932",
+            "target_ref": "indicator--56233fb6-dd48-4a02-84f8-7e389685912b",
+            "object_marking_refs": [
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
+            ]
         },
         {
             "type": "relationship",
             "spec_version": "2.1",
-            "id": "relationship--39bb4377-e1c7-49d3-ab85-61c0b503497b",
-            "created": "2022-09-03T05:05:43.152682Z",
-            "modified": "2022-09-03T05:05:43.152682Z",
+            "id": "relationship--632fff72-075e-442a-a84e-6db72eb25831",
+            "created": "2022-09-06T10:53:27.651674Z",
+            "modified": "2022-09-06T10:53:27.651674Z",
             "relationship_type": "default-extract",
-            "source_ref": "report--83dd6a23-3b15-4a03-85d5-c45f718f0c97",
-            "target_ref": "indicator--d3202067-877e-47e4-898c-fb662287f9dd"
+            "source_ref": "report--be8486bd-ae13-4cd0-b352-13d1c7849932",
+            "target_ref": "indicator--1370e7fa-4721-4a4b-b856-cf0f53252ecf",
+            "object_marking_refs": [
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
+            ]
         }
     ]
 }

@@ -1,7 +1,33 @@
 {
     "type": "bundle",
-    "id": "bundle--932d64af-36c5-4617-b322-620eb16313ec",
+    "id": "bundle--f52f080e-bb04-40cf-a2b2-c015df7ea0f8",
     "objects": [
+        {
+            "type": "extension-definition",
+            "spec_version": "2.1",
+            "id": "extension-definition--c8ea5ecb-f4a3-45e7-94de-9b9ba05161af",
+            "created_by_ref": "identity--acf55024-6bbe-486f-a27a-7967559324f4",
+            "created": "2022-01-01T00:00:00.000Z",
+            "modified": "2022-01-01T00:00:00.000Z",
+            "name": "MISP Warning Lists",
+            "description": "This schema adds MISP Warning List matches to extracted Objects",
+            "schema": "https://github.com/MISP/misp-warninglists",
+            "version": "1.0",
+            "extension_types": [
+                "property-extension"
+            ]
+        },
+        {
+            "type": "marking-definition",
+            "spec_version": "2.1",
+            "id": "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9",
+            "created": "2017-01-20T00:00:00.000Z",
+            "definition_type": "tlp",
+            "name": "TLP:WHITE",
+            "definition": {
+                "tlp": "white"
+            }
+        },
         {
             "type": "software",
             "spec_version": "2.1",
@@ -11,7 +37,7 @@
             "vendor": "apache",
             "version": "2.0",
             "object_marking_refs": [
-                "marking-definition--f88d31f6-486f-44da-b317-01333bde0b82"
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
             ]
         },
         {
@@ -23,7 +49,7 @@
             "vendor": "cisco",
             "version": "-",
             "object_marking_refs": [
-                "marking-definition--f88d31f6-486f-44da-b317-01333bde0b82"
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
             ]
         },
         {
@@ -35,55 +61,67 @@
             "vendor": "cisco",
             "version": "12.5\\(1\\)",
             "object_marking_refs": [
-                "marking-definition--f88d31f6-486f-44da-b317-01333bde0b82"
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
             ]
         },
         {
             "type": "report",
             "spec_version": "2.1",
-            "id": "report--a3a0013b-17b4-492d-9a1c-38b982e626f3",
-            "created": "2022-09-03T05:03:46.135115Z",
-            "modified": "2022-09-03T05:03:46.135115Z",
+            "id": "report--65a2c693-1afd-45d6-a3bb-48668ed71483",
+            "created": "2022-09-06T10:52:14.489351Z",
+            "modified": "2022-09-06T10:52:14.489351Z",
             "name": "File converted: cpe.txt",
             "report_types": [
                 "threat_report"
             ],
-            "published": "2022-09-03T10:33:46.13511Z",
+            "published": "2022-09-06T16:22:14.489344Z",
             "object_refs": [
                 "software--e78aa2a6-74b2-54ff-9457-2b01f13d4274",
                 "software--c2e95080-c4cb-5a48-96ee-8a91afb3b223",
                 "software--b50ac926-2979-58fe-be92-86f5bab0fac9"
+            ],
+            "object_marking_refs": [
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
             ]
         },
         {
             "type": "relationship",
             "spec_version": "2.1",
-            "id": "relationship--dee05d66-901c-47ab-9bfd-f83020d673b0",
-            "created": "2022-09-03T05:03:46.135332Z",
-            "modified": "2022-09-03T05:03:46.135332Z",
+            "id": "relationship--fe2bac6c-6d2b-4e33-8f24-2a2dbeb7558a",
+            "created": "2022-09-06T10:52:14.489565Z",
+            "modified": "2022-09-06T10:52:14.489565Z",
             "relationship_type": "default-extract",
-            "source_ref": "report--a3a0013b-17b4-492d-9a1c-38b982e626f3",
-            "target_ref": "software--e78aa2a6-74b2-54ff-9457-2b01f13d4274"
+            "source_ref": "report--65a2c693-1afd-45d6-a3bb-48668ed71483",
+            "target_ref": "software--e78aa2a6-74b2-54ff-9457-2b01f13d4274",
+            "object_marking_refs": [
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
+            ]
         },
         {
             "type": "relationship",
             "spec_version": "2.1",
-            "id": "relationship--fef87431-9270-432a-82e6-1c8c17644e82",
-            "created": "2022-09-03T05:03:46.135499Z",
-            "modified": "2022-09-03T05:03:46.135499Z",
+            "id": "relationship--86b04931-a7fd-40e8-8dc4-5ac2b0678b6a",
+            "created": "2022-09-06T10:52:14.489733Z",
+            "modified": "2022-09-06T10:52:14.489733Z",
             "relationship_type": "default-extract",
-            "source_ref": "report--a3a0013b-17b4-492d-9a1c-38b982e626f3",
-            "target_ref": "software--c2e95080-c4cb-5a48-96ee-8a91afb3b223"
+            "source_ref": "report--65a2c693-1afd-45d6-a3bb-48668ed71483",
+            "target_ref": "software--c2e95080-c4cb-5a48-96ee-8a91afb3b223",
+            "object_marking_refs": [
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
+            ]
         },
         {
             "type": "relationship",
             "spec_version": "2.1",
-            "id": "relationship--dfc695f9-b1a2-4487-87b7-76d29cfa2f5e",
-            "created": "2022-09-03T05:03:46.135653Z",
-            "modified": "2022-09-03T05:03:46.135653Z",
+            "id": "relationship--8fda8c37-fadd-48d6-9851-b7d5495b7c27",
+            "created": "2022-09-06T10:52:14.489887Z",
+            "modified": "2022-09-06T10:52:14.489887Z",
             "relationship_type": "default-extract",
-            "source_ref": "report--a3a0013b-17b4-492d-9a1c-38b982e626f3",
-            "target_ref": "software--b50ac926-2979-58fe-be92-86f5bab0fac9"
+            "source_ref": "report--65a2c693-1afd-45d6-a3bb-48668ed71483",
+            "target_ref": "software--b50ac926-2979-58fe-be92-86f5bab0fac9",
+            "object_marking_refs": [
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
+            ]
         }
     ]
 }

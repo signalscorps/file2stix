@@ -1,14 +1,39 @@
 {
     "type": "bundle",
-    "id": "bundle--f555fafd-18b2-46b5-a7a8-3df80e16a5ad",
+    "id": "bundle--a5e18a9a-6cfe-4ce4-9fc8-2aad53ce4b4d",
     "objects": [
+        {
+            "type": "extension-definition",
+            "spec_version": "2.1",
+            "id": "extension-definition--c8ea5ecb-f4a3-45e7-94de-9b9ba05161af",
+            "created_by_ref": "identity--acf55024-6bbe-486f-a27a-7967559324f4",
+            "created": "2022-01-01T00:00:00.000Z",
+            "modified": "2022-01-01T00:00:00.000Z",
+            "name": "MISP Warning Lists",
+            "description": "This schema adds MISP Warning List matches to extracted Objects",
+            "schema": "https://github.com/MISP/misp-warninglists",
+            "version": "1.0",
+            "extension_types": [
+                "property-extension"
+            ]
+        },
+        {
+            "type": "marking-definition",
+            "spec_version": "2.1",
+            "id": "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9",
+            "created": "2017-01-20T00:00:00.000Z",
+            "definition_type": "tlp",
+            "name": "TLP:WHITE",
+            "definition": {
+                "tlp": "white"
+            }
+        },
         {
             "type": "indicator",
             "spec_version": "2.1",
-            "id": "indicator--13811d8f-253e-4d46-b41f-d93ad9f454ba",
-            "created_by_ref": "identity--acf55024-6bbe-486f-a27a-7967559324f4",
-            "created": "2022-09-03T04:41:59.085674Z",
-            "modified": "2022-09-03T05:05:34.936453Z",
+            "id": "indicator--4e5f7faa-c8b4-491f-ad95-68096102563b",
+            "created": "2022-09-06T10:10:02.661313Z",
+            "modified": "2022-09-06T10:53:23.278533Z",
             "name": "AS13335",
             "indicator_types": [
                 "unknown"
@@ -16,18 +41,17 @@
             "pattern": "[ autonomous-system:number = '13335' ]",
             "pattern_type": "stix",
             "pattern_version": "2.1",
-            "valid_from": "2022-09-03T04:41:59.085674Z",
+            "valid_from": "2022-09-06T10:10:02.661313Z",
             "object_marking_refs": [
-                "marking-definition--f88d31f6-486f-44da-b317-01333bde0b82"
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
             ]
         },
         {
             "type": "indicator",
             "spec_version": "2.1",
-            "id": "indicator--cc097626-59f8-443e-9ca8-e4194af3882f",
-            "created_by_ref": "identity--acf55024-6bbe-486f-a27a-7967559324f4",
-            "created": "2022-09-03T04:41:59.449595Z",
-            "modified": "2022-09-03T05:05:35.832333Z",
+            "id": "indicator--48f7a621-2eb7-47e9-9f86-25f03004e1fe",
+            "created": "2022-09-06T10:31:56.8632Z",
+            "modified": "2022-09-06T10:53:23.574852Z",
             "name": "AS15139",
             "indicator_types": [
                 "unknown"
@@ -35,17 +59,17 @@
             "pattern": "[ autonomous-system:number = '15139' ]",
             "pattern_type": "stix",
             "pattern_version": "2.1",
-            "valid_from": "2022-09-03T04:41:59.449595Z",
+            "valid_from": "2022-09-06T10:31:56.8632Z",
             "object_marking_refs": [
-                "marking-definition--f88d31f6-486f-44da-b317-01333bde0b82"
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
             ]
         },
         {
             "type": "indicator",
             "spec_version": "2.1",
-            "id": "indicator--77e11b65-5f0b-46b1-8755-7cd27c732ea5",
-            "created": "2022-09-03T04:23:47.542294Z",
-            "modified": "2022-09-03T05:05:36.512178Z",
+            "id": "indicator--4dc160bb-0a73-4165-89be-51bd5d0886dc",
+            "created": "2022-09-06T10:31:57.004423Z",
+            "modified": "2022-09-06T10:53:23.87216Z",
             "name": "AS15222",
             "indicator_types": [
                 "unknown"
@@ -53,7 +77,7 @@
             "pattern": "[ autonomous-system:number = '15222' ]",
             "pattern_type": "stix",
             "pattern_version": "2.1",
-            "valid_from": "2022-09-03T04:23:47.542294Z",
+            "valid_from": "2022-09-06T10:31:57.004423Z",
             "object_marking_refs": [
                 "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
             ]
@@ -61,9 +85,9 @@
         {
             "type": "indicator",
             "spec_version": "2.1",
-            "id": "indicator--c0b15e58-8746-4ba8-92b5-ded3de1da58c",
-            "created": "2022-09-03T04:23:47.880424Z",
-            "modified": "2022-09-03T05:05:37.159265Z",
+            "id": "indicator--ec54e742-678d-414f-a456-359514963007",
+            "created": "2022-09-06T10:31:57.12628Z",
+            "modified": "2022-09-06T10:53:24.235978Z",
             "name": "AS15888",
             "indicator_types": [
                 "unknown"
@@ -71,7 +95,7 @@
             "pattern": "[ autonomous-system:number = '15888' ]",
             "pattern_type": "stix",
             "pattern_version": "2.1",
-            "valid_from": "2022-09-03T04:23:47.880424Z",
+            "valid_from": "2022-09-06T10:31:57.12628Z",
             "object_marking_refs": [
                 "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
             ]
@@ -79,84 +103,101 @@
         {
             "type": "location",
             "spec_version": "2.1",
-            "id": "location--1864a4da-b1bb-4369-a077-55d4a02bb856",
-            "created_by_ref": "identity--acf55024-6bbe-486f-a27a-7967559324f4",
-            "created": "2022-09-03T04:42:05.459844Z",
-            "modified": "2022-09-03T05:05:37.851749Z",
+            "id": "location--1debebdd-3c9e-4e8e-b9c8-70dfaddffdfb",
+            "created": "2022-09-06T10:10:03.636775Z",
+            "modified": "2022-09-06T10:53:24.578327Z",
             "name": "Country: American Samoa",
             "country": "AS",
             "object_marking_refs": [
-                "marking-definition--f88d31f6-486f-44da-b317-01333bde0b82"
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
             ]
         },
         {
             "type": "report",
             "spec_version": "2.1",
-            "id": "report--f9791dc7-f3e6-4335-88f6-02c0b1a04b73",
-            "created": "2022-09-03T05:05:37.865397Z",
-            "modified": "2022-09-03T05:05:37.865397Z",
+            "id": "report--6265a213-015a-4c07-a094-ead93df3213f",
+            "created": "2022-09-06T10:53:24.590084Z",
+            "modified": "2022-09-06T10:53:24.590084Z",
             "name": "File converted: asn.txt",
             "report_types": [
                 "threat_report"
             ],
-            "published": "2022-09-03T10:35:37.865393Z",
+            "published": "2022-09-06T16:23:24.590074Z",
             "object_refs": [
-                "indicator--13811d8f-253e-4d46-b41f-d93ad9f454ba",
-                "indicator--cc097626-59f8-443e-9ca8-e4194af3882f",
-                "indicator--77e11b65-5f0b-46b1-8755-7cd27c732ea5",
-                "indicator--c0b15e58-8746-4ba8-92b5-ded3de1da58c",
-                "location--1864a4da-b1bb-4369-a077-55d4a02bb856"
+                "indicator--4e5f7faa-c8b4-491f-ad95-68096102563b",
+                "indicator--48f7a621-2eb7-47e9-9f86-25f03004e1fe",
+                "indicator--4dc160bb-0a73-4165-89be-51bd5d0886dc",
+                "indicator--ec54e742-678d-414f-a456-359514963007",
+                "location--1debebdd-3c9e-4e8e-b9c8-70dfaddffdfb"
+            ],
+            "object_marking_refs": [
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
             ]
         },
         {
             "type": "relationship",
             "spec_version": "2.1",
-            "id": "relationship--80f6c9a5-fa02-46ca-a91d-79fac3defc30",
-            "created": "2022-09-03T05:05:37.865643Z",
-            "modified": "2022-09-03T05:05:37.865643Z",
+            "id": "relationship--98bc4739-a49d-459d-b000-e4c8ada20f12",
+            "created": "2022-09-06T10:53:24.590377Z",
+            "modified": "2022-09-06T10:53:24.590377Z",
             "relationship_type": "default-extract",
-            "source_ref": "report--f9791dc7-f3e6-4335-88f6-02c0b1a04b73",
-            "target_ref": "indicator--13811d8f-253e-4d46-b41f-d93ad9f454ba"
+            "source_ref": "report--6265a213-015a-4c07-a094-ead93df3213f",
+            "target_ref": "indicator--4e5f7faa-c8b4-491f-ad95-68096102563b",
+            "object_marking_refs": [
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
+            ]
         },
         {
             "type": "relationship",
             "spec_version": "2.1",
-            "id": "relationship--5933970c-b196-48cd-a567-3c8803cb4d99",
-            "created": "2022-09-03T05:05:37.865824Z",
-            "modified": "2022-09-03T05:05:37.865824Z",
+            "id": "relationship--5df33936-a799-4ffa-8aad-c72b12cbe621",
+            "created": "2022-09-06T10:53:24.590554Z",
+            "modified": "2022-09-06T10:53:24.590554Z",
             "relationship_type": "default-extract",
-            "source_ref": "report--f9791dc7-f3e6-4335-88f6-02c0b1a04b73",
-            "target_ref": "indicator--cc097626-59f8-443e-9ca8-e4194af3882f"
+            "source_ref": "report--6265a213-015a-4c07-a094-ead93df3213f",
+            "target_ref": "indicator--48f7a621-2eb7-47e9-9f86-25f03004e1fe",
+            "object_marking_refs": [
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
+            ]
         },
         {
             "type": "relationship",
             "spec_version": "2.1",
-            "id": "relationship--457002b0-3d92-458f-9037-4602dc65f11e",
-            "created": "2022-09-03T05:05:37.865972Z",
-            "modified": "2022-09-03T05:05:37.865972Z",
+            "id": "relationship--fbd57c60-23f4-4969-9c4e-2f89965b6f2d",
+            "created": "2022-09-06T10:53:24.590716Z",
+            "modified": "2022-09-06T10:53:24.590716Z",
             "relationship_type": "default-extract",
-            "source_ref": "report--f9791dc7-f3e6-4335-88f6-02c0b1a04b73",
-            "target_ref": "indicator--77e11b65-5f0b-46b1-8755-7cd27c732ea5"
+            "source_ref": "report--6265a213-015a-4c07-a094-ead93df3213f",
+            "target_ref": "indicator--4dc160bb-0a73-4165-89be-51bd5d0886dc",
+            "object_marking_refs": [
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
+            ]
         },
         {
             "type": "relationship",
             "spec_version": "2.1",
-            "id": "relationship--494a2675-f820-4388-85c4-1490d04a9d19",
-            "created": "2022-09-03T05:05:37.866115Z",
-            "modified": "2022-09-03T05:05:37.866115Z",
+            "id": "relationship--ee80b9ef-aa7e-427f-a6b8-d8270f8d83dc",
+            "created": "2022-09-06T10:53:24.590897Z",
+            "modified": "2022-09-06T10:53:24.590897Z",
             "relationship_type": "default-extract",
-            "source_ref": "report--f9791dc7-f3e6-4335-88f6-02c0b1a04b73",
-            "target_ref": "indicator--c0b15e58-8746-4ba8-92b5-ded3de1da58c"
+            "source_ref": "report--6265a213-015a-4c07-a094-ead93df3213f",
+            "target_ref": "indicator--ec54e742-678d-414f-a456-359514963007",
+            "object_marking_refs": [
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
+            ]
         },
         {
             "type": "relationship",
             "spec_version": "2.1",
-            "id": "relationship--63d82125-b6d4-4823-a743-6d109fe46ba0",
-            "created": "2022-09-03T05:05:37.866255Z",
-            "modified": "2022-09-03T05:05:37.866255Z",
+            "id": "relationship--15f6eeaf-f242-4d4d-a2f7-d8d1fe7be5a1",
+            "created": "2022-09-06T10:53:24.591052Z",
+            "modified": "2022-09-06T10:53:24.591052Z",
             "relationship_type": "default-extract",
-            "source_ref": "report--f9791dc7-f3e6-4335-88f6-02c0b1a04b73",
-            "target_ref": "location--1864a4da-b1bb-4369-a077-55d4a02bb856"
+            "source_ref": "report--6265a213-015a-4c07-a094-ead93df3213f",
+            "target_ref": "location--1debebdd-3c9e-4e8e-b9c8-70dfaddffdfb",
+            "object_marking_refs": [
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
+            ]
         }
     ]
 }

@@ -1,13 +1,39 @@
 {
     "type": "bundle",
-    "id": "bundle--be6eb830-46ae-4086-9372-9a9ec67bcba8",
+    "id": "bundle--cd42aa93-b8ae-46ad-a0a6-a2068356380e",
     "objects": [
+        {
+            "type": "extension-definition",
+            "spec_version": "2.1",
+            "id": "extension-definition--c8ea5ecb-f4a3-45e7-94de-9b9ba05161af",
+            "created_by_ref": "identity--acf55024-6bbe-486f-a27a-7967559324f4",
+            "created": "2022-01-01T00:00:00.000Z",
+            "modified": "2022-01-01T00:00:00.000Z",
+            "name": "MISP Warning Lists",
+            "description": "This schema adds MISP Warning List matches to extracted Objects",
+            "schema": "https://github.com/MISP/misp-warninglists",
+            "version": "1.0",
+            "extension_types": [
+                "property-extension"
+            ]
+        },
+        {
+            "type": "marking-definition",
+            "spec_version": "2.1",
+            "id": "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9",
+            "created": "2017-01-20T00:00:00.000Z",
+            "definition_type": "tlp",
+            "name": "TLP:WHITE",
+            "definition": {
+                "tlp": "white"
+            }
+        },
         {
             "type": "indicator",
             "spec_version": "2.1",
-            "id": "indicator--2c737b29-8348-4cb1-8abe-e14d3098b724",
-            "created": "2022-09-02T17:19:29.879182Z",
-            "modified": "2022-09-03T05:03:57.155158Z",
+            "id": "indicator--3dd3fc7f-5102-4ffd-ace1-2fb157d25e2d",
+            "created": "2022-09-06T10:52:14.722217Z",
+            "modified": "2022-09-06T10:52:14.722217Z",
             "name": "Directory: `http[:]//",
             "indicator_types": [
                 "unknown"
@@ -15,7 +41,7 @@
             "pattern": "[ directory:path = '`http[:]//' ]",
             "pattern_type": "stix",
             "pattern_version": "2.1",
-            "valid_from": "2022-09-02T17:19:29.879182Z",
+            "valid_from": "2022-09-06T10:52:14.722217Z",
             "object_marking_refs": [
                 "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
             ]
@@ -23,9 +49,9 @@
         {
             "type": "indicator",
             "spec_version": "2.1",
-            "id": "indicator--ec760961-e636-4c8e-b7dc-ce63cfc6562f",
-            "created": "2022-09-02T17:19:31.081486Z",
-            "modified": "2022-09-03T05:03:59.836606Z",
+            "id": "indicator--4fdadaa6-6620-4d60-86fb-b7ba2bb0efca",
+            "created": "2022-09-06T10:52:15.893482Z",
+            "modified": "2022-09-06T10:52:15.893482Z",
             "name": "Directory: `http[://",
             "indicator_types": [
                 "unknown"
@@ -33,7 +59,7 @@
             "pattern": "[ directory:path = '`http[://' ]",
             "pattern_type": "stix",
             "pattern_version": "2.1",
-            "valid_from": "2022-09-02T17:19:31.081486Z",
+            "valid_from": "2022-09-06T10:52:15.893482Z",
             "object_marking_refs": [
                 "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
             ]
@@ -41,9 +67,9 @@
         {
             "type": "indicator",
             "spec_version": "2.1",
-            "id": "indicator--86d51133-28f7-4d01-b878-057b3f4e469e",
-            "created": "2022-09-02T17:19:31.417082Z",
-            "modified": "2022-09-03T05:04:00.546883Z",
+            "id": "indicator--d3c34435-dd13-44c1-a880-f28b5e2c4121",
+            "created": "2022-09-06T10:52:16.260605Z",
+            "modified": "2022-09-06T10:52:16.260605Z",
             "name": "Directory: `hxxps://",
             "indicator_types": [
                 "unknown"
@@ -51,7 +77,7 @@
             "pattern": "[ directory:path = '`hxxps://' ]",
             "pattern_type": "stix",
             "pattern_version": "2.1",
-            "valid_from": "2022-09-02T17:19:31.417082Z",
+            "valid_from": "2022-09-06T10:52:16.260605Z",
             "object_marking_refs": [
                 "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
             ]
@@ -59,9 +85,9 @@
         {
             "type": "indicator",
             "spec_version": "2.1",
-            "id": "indicator--f4a3c329-9186-4f9e-a170-0d2d6f27fc82",
-            "created": "2022-09-02T17:19:31.749962Z",
-            "modified": "2022-09-03T05:04:01.280066Z",
+            "id": "indicator--489fc7ce-bf62-4a85-bef7-cd2c874484dc",
+            "created": "2022-09-06T10:52:16.619468Z",
+            "modified": "2022-09-06T10:52:16.619468Z",
             "name": "Directory: `http://",
             "indicator_types": [
                 "unknown"
@@ -69,7 +95,7 @@
             "pattern": "[ directory:path = '`http://' ]",
             "pattern_type": "stix",
             "pattern_version": "2.1",
-            "valid_from": "2022-09-02T17:19:31.749962Z",
+            "valid_from": "2022-09-06T10:52:16.619468Z",
             "object_marking_refs": [
                 "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
             ]
@@ -77,9 +103,9 @@
         {
             "type": "indicator",
             "spec_version": "2.1",
-            "id": "indicator--5bd11487-19a9-4c02-86ae-3632068c7676",
-            "created": "2022-09-02T17:19:32.083291Z",
-            "modified": "2022-09-03T05:04:02.007897Z",
+            "id": "indicator--64d62508-0591-4b7f-b7d6-532912b3590d",
+            "created": "2022-09-06T10:52:16.976062Z",
+            "modified": "2022-09-06T10:52:16.976062Z",
             "name": "Directory: `hxxps[:]//",
             "indicator_types": [
                 "unknown"
@@ -87,7 +113,7 @@
             "pattern": "[ directory:path = '`hxxps[:]//' ]",
             "pattern_type": "stix",
             "pattern_version": "2.1",
-            "valid_from": "2022-09-02T17:19:32.083291Z",
+            "valid_from": "2022-09-06T10:52:16.976062Z",
             "object_marking_refs": [
                 "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
             ]
@@ -95,9 +121,9 @@
         {
             "type": "indicator",
             "spec_version": "2.1",
-            "id": "indicator--03d1487a-ba56-4ed5-ad17-ab68ae63fa4e",
-            "created": "2022-09-02T17:19:32.415816Z",
-            "modified": "2022-09-03T05:04:02.765766Z",
+            "id": "indicator--ede19375-2fd4-437f-98b8-f5103523f8a1",
+            "created": "2022-09-06T10:52:17.331277Z",
+            "modified": "2022-09-06T10:52:17.331277Z",
             "name": "Directory: `https://",
             "indicator_types": [
                 "unknown"
@@ -105,7 +131,7 @@
             "pattern": "[ directory:path = '`https://' ]",
             "pattern_type": "stix",
             "pattern_version": "2.1",
-            "valid_from": "2022-09-02T17:19:32.415816Z",
+            "valid_from": "2022-09-06T10:52:17.331277Z",
             "object_marking_refs": [
                 "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
             ]
@@ -113,9 +139,9 @@
         {
             "type": "indicator",
             "spec_version": "2.1",
-            "id": "indicator--d8b02b68-aa52-468d-8b08-4bfd538ecd85",
-            "created": "2022-09-02T17:19:32.776798Z",
-            "modified": "2022-09-03T05:04:03.617845Z",
+            "id": "indicator--76192d33-5332-411b-88ed-47867bfb1652",
+            "created": "2022-09-06T10:52:17.69961Z",
+            "modified": "2022-09-06T10:52:17.69961Z",
             "name": "Email Address: `example@example.com`",
             "indicator_types": [
                 "unknown"
@@ -123,7 +149,7 @@
             "pattern": "[ email-addr:value = '`example@example.com`' ]",
             "pattern_type": "stix",
             "pattern_version": "2.1",
-            "valid_from": "2022-09-02T17:19:32.776798Z",
+            "valid_from": "2022-09-06T10:52:17.69961Z",
             "object_marking_refs": [
                 "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
             ]
@@ -131,93 +157,117 @@
         {
             "type": "report",
             "spec_version": "2.1",
-            "id": "report--f0791935-3ec4-4d9f-9da3-1831b506c8ae",
-            "created": "2022-09-03T05:04:03.90912Z",
-            "modified": "2022-09-03T05:04:03.90912Z",
+            "id": "report--1b6c0bab-520e-4381-a551-aae0ee2d5563",
+            "created": "2022-09-06T10:52:18.10554Z",
+            "modified": "2022-09-06T10:52:18.10554Z",
             "name": "File converted: fanged-data.txt",
             "report_types": [
                 "threat_report"
             ],
-            "published": "2022-09-03T10:34:03.909111Z",
+            "published": "2022-09-06T16:22:18.105532Z",
             "object_refs": [
-                "indicator--2c737b29-8348-4cb1-8abe-e14d3098b724",
-                "indicator--ec760961-e636-4c8e-b7dc-ce63cfc6562f",
-                "indicator--86d51133-28f7-4d01-b878-057b3f4e469e",
-                "indicator--f4a3c329-9186-4f9e-a170-0d2d6f27fc82",
-                "indicator--5bd11487-19a9-4c02-86ae-3632068c7676",
-                "indicator--03d1487a-ba56-4ed5-ad17-ab68ae63fa4e",
-                "indicator--d8b02b68-aa52-468d-8b08-4bfd538ecd85"
+                "indicator--3dd3fc7f-5102-4ffd-ace1-2fb157d25e2d",
+                "indicator--4fdadaa6-6620-4d60-86fb-b7ba2bb0efca",
+                "indicator--d3c34435-dd13-44c1-a880-f28b5e2c4121",
+                "indicator--489fc7ce-bf62-4a85-bef7-cd2c874484dc",
+                "indicator--64d62508-0591-4b7f-b7d6-532912b3590d",
+                "indicator--ede19375-2fd4-437f-98b8-f5103523f8a1",
+                "indicator--76192d33-5332-411b-88ed-47867bfb1652"
+            ],
+            "object_marking_refs": [
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
             ]
         },
         {
             "type": "relationship",
             "spec_version": "2.1",
-            "id": "relationship--e4f6655f-fc6b-44e0-99af-15aa985d4333",
-            "created": "2022-09-03T05:04:03.90944Z",
-            "modified": "2022-09-03T05:04:03.90944Z",
+            "id": "relationship--a0b54c36-f251-41c1-b32c-49d63d08c8c8",
+            "created": "2022-09-06T10:52:18.105813Z",
+            "modified": "2022-09-06T10:52:18.105813Z",
             "relationship_type": "default-extract",
-            "source_ref": "report--f0791935-3ec4-4d9f-9da3-1831b506c8ae",
-            "target_ref": "indicator--2c737b29-8348-4cb1-8abe-e14d3098b724"
+            "source_ref": "report--1b6c0bab-520e-4381-a551-aae0ee2d5563",
+            "target_ref": "indicator--3dd3fc7f-5102-4ffd-ace1-2fb157d25e2d",
+            "object_marking_refs": [
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
+            ]
         },
         {
             "type": "relationship",
             "spec_version": "2.1",
-            "id": "relationship--f7d5c4e4-a985-40f8-8afc-e979fcef508f",
-            "created": "2022-09-03T05:04:03.909621Z",
-            "modified": "2022-09-03T05:04:03.909621Z",
+            "id": "relationship--a5e95969-b6ab-4fac-8dad-47ebd4f2fafd",
+            "created": "2022-09-06T10:52:18.105981Z",
+            "modified": "2022-09-06T10:52:18.105981Z",
             "relationship_type": "default-extract",
-            "source_ref": "report--f0791935-3ec4-4d9f-9da3-1831b506c8ae",
-            "target_ref": "indicator--ec760961-e636-4c8e-b7dc-ce63cfc6562f"
+            "source_ref": "report--1b6c0bab-520e-4381-a551-aae0ee2d5563",
+            "target_ref": "indicator--4fdadaa6-6620-4d60-86fb-b7ba2bb0efca",
+            "object_marking_refs": [
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
+            ]
         },
         {
             "type": "relationship",
             "spec_version": "2.1",
-            "id": "relationship--63a9aa56-29d3-461b-adef-22ebb1b8be04",
-            "created": "2022-09-03T05:04:03.909787Z",
-            "modified": "2022-09-03T05:04:03.909787Z",
+            "id": "relationship--a12a45a3-f3a0-4a47-998a-86bf70648a7d",
+            "created": "2022-09-06T10:52:18.106132Z",
+            "modified": "2022-09-06T10:52:18.106132Z",
             "relationship_type": "default-extract",
-            "source_ref": "report--f0791935-3ec4-4d9f-9da3-1831b506c8ae",
-            "target_ref": "indicator--86d51133-28f7-4d01-b878-057b3f4e469e"
+            "source_ref": "report--1b6c0bab-520e-4381-a551-aae0ee2d5563",
+            "target_ref": "indicator--d3c34435-dd13-44c1-a880-f28b5e2c4121",
+            "object_marking_refs": [
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
+            ]
         },
         {
             "type": "relationship",
             "spec_version": "2.1",
-            "id": "relationship--5a9d725a-e7d1-4ab7-90dc-f87bcde44503",
-            "created": "2022-09-03T05:04:03.909971Z",
-            "modified": "2022-09-03T05:04:03.909971Z",
+            "id": "relationship--d41405fe-1ccc-41ba-8678-c5030b372a6d",
+            "created": "2022-09-06T10:52:18.106279Z",
+            "modified": "2022-09-06T10:52:18.106279Z",
             "relationship_type": "default-extract",
-            "source_ref": "report--f0791935-3ec4-4d9f-9da3-1831b506c8ae",
-            "target_ref": "indicator--f4a3c329-9186-4f9e-a170-0d2d6f27fc82"
+            "source_ref": "report--1b6c0bab-520e-4381-a551-aae0ee2d5563",
+            "target_ref": "indicator--489fc7ce-bf62-4a85-bef7-cd2c874484dc",
+            "object_marking_refs": [
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
+            ]
         },
         {
             "type": "relationship",
             "spec_version": "2.1",
-            "id": "relationship--a59f725a-98a4-4bd3-ae1c-0f21370f13fd",
-            "created": "2022-09-03T05:04:03.910131Z",
-            "modified": "2022-09-03T05:04:03.910131Z",
+            "id": "relationship--381e380c-454d-4ca6-81cf-152138ff9e41",
+            "created": "2022-09-06T10:52:18.106423Z",
+            "modified": "2022-09-06T10:52:18.106423Z",
             "relationship_type": "default-extract",
-            "source_ref": "report--f0791935-3ec4-4d9f-9da3-1831b506c8ae",
-            "target_ref": "indicator--5bd11487-19a9-4c02-86ae-3632068c7676"
+            "source_ref": "report--1b6c0bab-520e-4381-a551-aae0ee2d5563",
+            "target_ref": "indicator--64d62508-0591-4b7f-b7d6-532912b3590d",
+            "object_marking_refs": [
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
+            ]
         },
         {
             "type": "relationship",
             "spec_version": "2.1",
-            "id": "relationship--38b12437-a043-4195-b691-59dd5bd75179",
-            "created": "2022-09-03T05:04:03.910294Z",
-            "modified": "2022-09-03T05:04:03.910294Z",
+            "id": "relationship--f46f3378-9687-4224-afd9-2b21055bc0b1",
+            "created": "2022-09-06T10:52:18.106564Z",
+            "modified": "2022-09-06T10:52:18.106564Z",
             "relationship_type": "default-extract",
-            "source_ref": "report--f0791935-3ec4-4d9f-9da3-1831b506c8ae",
-            "target_ref": "indicator--03d1487a-ba56-4ed5-ad17-ab68ae63fa4e"
+            "source_ref": "report--1b6c0bab-520e-4381-a551-aae0ee2d5563",
+            "target_ref": "indicator--ede19375-2fd4-437f-98b8-f5103523f8a1",
+            "object_marking_refs": [
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
+            ]
         },
         {
             "type": "relationship",
             "spec_version": "2.1",
-            "id": "relationship--82b4cd90-8c10-4509-a399-a91b7262e70b",
-            "created": "2022-09-03T05:04:03.910465Z",
-            "modified": "2022-09-03T05:04:03.910465Z",
+            "id": "relationship--e1b139da-a4ac-4c42-b544-b8a78bf72137",
+            "created": "2022-09-06T10:52:18.106706Z",
+            "modified": "2022-09-06T10:52:18.106706Z",
             "relationship_type": "default-extract",
-            "source_ref": "report--f0791935-3ec4-4d9f-9da3-1831b506c8ae",
-            "target_ref": "indicator--d8b02b68-aa52-468d-8b08-4bfd538ecd85"
+            "source_ref": "report--1b6c0bab-520e-4381-a551-aae0ee2d5563",
+            "target_ref": "indicator--76192d33-5332-411b-88ed-47867bfb1652",
+            "object_marking_refs": [
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
+            ]
         }
     ]
 }

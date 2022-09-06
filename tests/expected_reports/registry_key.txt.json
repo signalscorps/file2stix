@@ -1,14 +1,39 @@
 {
     "type": "bundle",
-    "id": "bundle--2965c22c-561e-40a4-aa89-533941766dae",
+    "id": "bundle--b24a2877-d8fe-461e-af9d-f3c34f2a64d5",
     "objects": [
+        {
+            "type": "extension-definition",
+            "spec_version": "2.1",
+            "id": "extension-definition--c8ea5ecb-f4a3-45e7-94de-9b9ba05161af",
+            "created_by_ref": "identity--acf55024-6bbe-486f-a27a-7967559324f4",
+            "created": "2022-01-01T00:00:00.000Z",
+            "modified": "2022-01-01T00:00:00.000Z",
+            "name": "MISP Warning Lists",
+            "description": "This schema adds MISP Warning List matches to extracted Objects",
+            "schema": "https://github.com/MISP/misp-warninglists",
+            "version": "1.0",
+            "extension_types": [
+                "property-extension"
+            ]
+        },
+        {
+            "type": "marking-definition",
+            "spec_version": "2.1",
+            "id": "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9",
+            "created": "2017-01-20T00:00:00.000Z",
+            "definition_type": "tlp",
+            "name": "TLP:WHITE",
+            "definition": {
+                "tlp": "white"
+            }
+        },
         {
             "type": "indicator",
             "spec_version": "2.1",
-            "id": "indicator--df617085-29ee-4a32-87d8-f0662a165ebb",
-            "created_by_ref": "identity--acf55024-6bbe-486f-a27a-7967559324f4",
-            "created": "2022-09-03T04:41:53.985741Z",
-            "modified": "2022-09-03T05:05:15.615296Z",
+            "id": "indicator--f76e6edc-af18-4a76-b726-849705e8e3c3",
+            "created": "2022-09-06T10:48:47.659239Z",
+            "modified": "2022-09-06T10:53:03.766059Z",
             "name": "Windows Registry Key: HKEY_LOCAL_MACHINE\\System\\Foo\\Bar",
             "indicator_types": [
                 "unknown"
@@ -16,18 +41,25 @@
             "pattern": "[ windows-registry-key:key = 'HKEY_LOCAL_MACHINE\\\\System\\\\Foo\\\\Bar' ]",
             "pattern_type": "stix",
             "pattern_version": "2.1",
-            "valid_from": "2022-09-03T04:41:53.985741Z",
+            "valid_from": "2022-09-06T10:48:47.659239Z",
             "object_marking_refs": [
-                "marking-definition--f88d31f6-486f-44da-b317-01333bde0b82"
-            ]
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
+            ],
+            "extensions": {
+                "extension-definition--c8ea5ecb-f4a3-45e7-94de-9b9ba05161af": {
+                    "extension_type": "property-extension",
+                    "warning_list_match": [
+                        "My Custom Warning List"
+                    ]
+                }
+            }
         },
         {
             "type": "indicator",
             "spec_version": "2.1",
-            "id": "indicator--9731ad27-472a-468c-ac52-eb5a2a6b2309",
-            "created_by_ref": "identity--acf55024-6bbe-486f-a27a-7967559324f4",
-            "created": "2022-09-03T04:41:54.51349Z",
-            "modified": "2022-09-03T05:05:16.596154Z",
+            "id": "indicator--9c16f288-13c1-40c1-b6a8-16403ac070e5",
+            "created": "2022-09-06T10:48:47.938037Z",
+            "modified": "2022-09-06T10:53:04.216432Z",
             "name": "Windows Registry Key: HKEY_LOCAL_MACHINE\\SOFTWARE\\Wow6432Node",
             "indicator_types": [
                 "unknown"
@@ -35,18 +67,17 @@
             "pattern": "[ windows-registry-key:key = 'HKEY_LOCAL_MACHINE\\\\SOFTWARE\\\\Wow6432Node' ]",
             "pattern_type": "stix",
             "pattern_version": "2.1",
-            "valid_from": "2022-09-03T04:41:54.51349Z",
+            "valid_from": "2022-09-06T10:48:47.938037Z",
             "object_marking_refs": [
-                "marking-definition--f88d31f6-486f-44da-b317-01333bde0b82"
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
             ]
         },
         {
             "type": "indicator",
             "spec_version": "2.1",
-            "id": "indicator--b846afaa-1af9-4151-a63a-c51f5ad32b7a",
-            "created_by_ref": "identity--acf55024-6bbe-486f-a27a-7967559324f4",
-            "created": "2022-09-03T04:41:56.089141Z",
-            "modified": "2022-09-03T05:05:18.989607Z",
+            "id": "indicator--223a0416-26aa-4bdc-9b6d-39cb4a5d3e2b",
+            "created": "2022-09-06T10:48:48.738052Z",
+            "modified": "2022-09-06T10:53:05.531745Z",
             "name": "Windows Registry Key: HKEY_LOCAL_MACHINE\\SYSTEM\\system32\\config\\system",
             "indicator_types": [
                 "unknown"
@@ -54,18 +85,17 @@
             "pattern": "[ windows-registry-key:key = 'HKEY_LOCAL_MACHINE\\\\SYSTEM\\\\system32\\\\config\\\\system' ]",
             "pattern_type": "stix",
             "pattern_version": "2.1",
-            "valid_from": "2022-09-03T04:41:56.089141Z",
+            "valid_from": "2022-09-06T10:48:48.738052Z",
             "object_marking_refs": [
-                "marking-definition--f88d31f6-486f-44da-b317-01333bde0b82"
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
             ]
         },
         {
             "type": "indicator",
             "spec_version": "2.1",
-            "id": "indicator--80726986-3c31-4fd7-8706-8aeed8f846f9",
-            "created_by_ref": "identity--acf55024-6bbe-486f-a27a-7967559324f4",
-            "created": "2022-09-02T14:51:36.690126Z",
-            "modified": "2022-09-03T05:05:18.217659Z",
+            "id": "indicator--d861ded7-641d-436d-84bf-de6d2f0286ef",
+            "created": "2022-09-06T10:48:48.461181Z",
+            "modified": "2022-09-06T10:53:05.092508Z",
             "name": "Windows Registry Key: HKEY_CURRENT_USER\\SYSTEM\\system32\\config\\system",
             "indicator_types": [
                 "unknown"
@@ -73,18 +103,17 @@
             "pattern": "[ windows-registry-key:key = 'HKEY_CURRENT_USER\\\\SYSTEM\\\\system32\\\\config\\\\system' ]",
             "pattern_type": "stix",
             "pattern_version": "2.1",
-            "valid_from": "2022-09-02T14:51:36.690126Z",
+            "valid_from": "2022-09-06T10:48:48.461181Z",
             "object_marking_refs": [
-                "marking-definition--f88d31f6-486f-44da-b317-01333bde0b82"
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
             ]
         },
         {
             "type": "indicator",
             "spec_version": "2.1",
-            "id": "indicator--f0fd2bb2-4047-41e4-92cf-135de49e3568",
-            "created_by_ref": "identity--acf55024-6bbe-486f-a27a-7967559324f4",
-            "created": "2022-09-03T04:41:56.615278Z",
-            "modified": "2022-09-03T05:05:19.75674Z",
+            "id": "indicator--b3670efd-9d45-4c85-87e3-29cd9bcd8809",
+            "created": "2022-09-06T10:48:48.999685Z",
+            "modified": "2022-09-06T10:53:05.968699Z",
             "name": "Windows Registry Key: HKEY_USERS\\SYSTEM\\system32\\config\\system",
             "indicator_types": [
                 "unknown"
@@ -92,18 +121,17 @@
             "pattern": "[ windows-registry-key:key = 'HKEY_USERS\\\\SYSTEM\\\\system32\\\\config\\\\system' ]",
             "pattern_type": "stix",
             "pattern_version": "2.1",
-            "valid_from": "2022-09-03T04:41:56.615278Z",
+            "valid_from": "2022-09-06T10:48:48.999685Z",
             "object_marking_refs": [
-                "marking-definition--f88d31f6-486f-44da-b317-01333bde0b82"
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
             ]
         },
         {
             "type": "indicator",
             "spec_version": "2.1",
-            "id": "indicator--9f329ced-5718-4746-a1f1-c0ed948048d1",
-            "created_by_ref": "identity--acf55024-6bbe-486f-a27a-7967559324f4",
-            "created": "2022-09-03T04:41:57.13861Z",
-            "modified": "2022-09-03T05:05:20.534876Z",
+            "id": "indicator--a2800a0f-036f-47df-bcf2-25a65182ee09",
+            "created": "2022-09-06T10:48:49.261963Z",
+            "modified": "2022-09-06T10:53:06.402985Z",
             "name": "Windows Registry Key: HKEY_CURRENT_CONFIG\\SYSTEM\\system32\\config\\system",
             "indicator_types": [
                 "unknown"
@@ -111,90 +139,111 @@
             "pattern": "[ windows-registry-key:key = 'HKEY_CURRENT_CONFIG\\\\SYSTEM\\\\system32\\\\config\\\\system' ]",
             "pattern_type": "stix",
             "pattern_version": "2.1",
-            "valid_from": "2022-09-03T04:41:57.13861Z",
+            "valid_from": "2022-09-06T10:48:49.261963Z",
             "object_marking_refs": [
-                "marking-definition--f88d31f6-486f-44da-b317-01333bde0b82"
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
             ]
         },
         {
             "type": "report",
             "spec_version": "2.1",
-            "id": "report--a6d1c0f9-77b5-40a2-a80d-283cafa66a20",
-            "created": "2022-09-03T05:05:20.584144Z",
-            "modified": "2022-09-03T05:05:20.584144Z",
+            "id": "report--d157aa87-5f32-470f-87e3-038696b2cbdf",
+            "created": "2022-09-06T10:53:06.448267Z",
+            "modified": "2022-09-06T10:53:06.448267Z",
             "name": "File converted: registry_key.txt",
             "report_types": [
                 "threat_report"
             ],
-            "published": "2022-09-03T10:35:20.584137Z",
+            "published": "2022-09-06T16:23:06.448259Z",
             "object_refs": [
-                "indicator--df617085-29ee-4a32-87d8-f0662a165ebb",
-                "indicator--9731ad27-472a-468c-ac52-eb5a2a6b2309",
-                "indicator--b846afaa-1af9-4151-a63a-c51f5ad32b7a",
-                "indicator--80726986-3c31-4fd7-8706-8aeed8f846f9",
-                "indicator--f0fd2bb2-4047-41e4-92cf-135de49e3568",
-                "indicator--9f329ced-5718-4746-a1f1-c0ed948048d1"
+                "indicator--f76e6edc-af18-4a76-b726-849705e8e3c3",
+                "indicator--9c16f288-13c1-40c1-b6a8-16403ac070e5",
+                "indicator--223a0416-26aa-4bdc-9b6d-39cb4a5d3e2b",
+                "indicator--d861ded7-641d-436d-84bf-de6d2f0286ef",
+                "indicator--b3670efd-9d45-4c85-87e3-29cd9bcd8809",
+                "indicator--a2800a0f-036f-47df-bcf2-25a65182ee09"
+            ],
+            "object_marking_refs": [
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
             ]
         },
         {
             "type": "relationship",
             "spec_version": "2.1",
-            "id": "relationship--2bd02f7f-693d-4e24-970d-6233afce33b2",
-            "created": "2022-09-03T05:05:20.584423Z",
-            "modified": "2022-09-03T05:05:20.584423Z",
+            "id": "relationship--0b54b20c-1675-4877-aa7b-1f91582ddd9a",
+            "created": "2022-09-06T10:53:06.44854Z",
+            "modified": "2022-09-06T10:53:06.44854Z",
             "relationship_type": "default-extract",
-            "source_ref": "report--a6d1c0f9-77b5-40a2-a80d-283cafa66a20",
-            "target_ref": "indicator--df617085-29ee-4a32-87d8-f0662a165ebb"
+            "source_ref": "report--d157aa87-5f32-470f-87e3-038696b2cbdf",
+            "target_ref": "indicator--f76e6edc-af18-4a76-b726-849705e8e3c3",
+            "object_marking_refs": [
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
+            ]
         },
         {
             "type": "relationship",
             "spec_version": "2.1",
-            "id": "relationship--7433553f-e39e-4bc7-a0fb-b9e5b5c3098f",
-            "created": "2022-09-03T05:05:20.584586Z",
-            "modified": "2022-09-03T05:05:20.584586Z",
+            "id": "relationship--0cf6b3c4-f28f-4024-970f-481cd1d6d31c",
+            "created": "2022-09-06T10:53:06.448706Z",
+            "modified": "2022-09-06T10:53:06.448706Z",
             "relationship_type": "default-extract",
-            "source_ref": "report--a6d1c0f9-77b5-40a2-a80d-283cafa66a20",
-            "target_ref": "indicator--9731ad27-472a-468c-ac52-eb5a2a6b2309"
+            "source_ref": "report--d157aa87-5f32-470f-87e3-038696b2cbdf",
+            "target_ref": "indicator--9c16f288-13c1-40c1-b6a8-16403ac070e5",
+            "object_marking_refs": [
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
+            ]
         },
         {
             "type": "relationship",
             "spec_version": "2.1",
-            "id": "relationship--de534cc2-0a53-42f4-8521-5b8ff86ae6c0",
-            "created": "2022-09-03T05:05:20.584735Z",
-            "modified": "2022-09-03T05:05:20.584735Z",
+            "id": "relationship--87ca1e6e-1661-43c2-b71b-8269f2fd4072",
+            "created": "2022-09-06T10:53:06.448856Z",
+            "modified": "2022-09-06T10:53:06.448856Z",
             "relationship_type": "default-extract",
-            "source_ref": "report--a6d1c0f9-77b5-40a2-a80d-283cafa66a20",
-            "target_ref": "indicator--b846afaa-1af9-4151-a63a-c51f5ad32b7a"
+            "source_ref": "report--d157aa87-5f32-470f-87e3-038696b2cbdf",
+            "target_ref": "indicator--223a0416-26aa-4bdc-9b6d-39cb4a5d3e2b",
+            "object_marking_refs": [
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
+            ]
         },
         {
             "type": "relationship",
             "spec_version": "2.1",
-            "id": "relationship--77e51176-fbf8-4a3c-92d6-b707efec93c2",
-            "created": "2022-09-03T05:05:20.584884Z",
-            "modified": "2022-09-03T05:05:20.584884Z",
+            "id": "relationship--9c1109e5-2225-43e6-b43f-2be568b4cec9",
+            "created": "2022-09-06T10:53:06.449001Z",
+            "modified": "2022-09-06T10:53:06.449001Z",
             "relationship_type": "default-extract",
-            "source_ref": "report--a6d1c0f9-77b5-40a2-a80d-283cafa66a20",
-            "target_ref": "indicator--80726986-3c31-4fd7-8706-8aeed8f846f9"
+            "source_ref": "report--d157aa87-5f32-470f-87e3-038696b2cbdf",
+            "target_ref": "indicator--d861ded7-641d-436d-84bf-de6d2f0286ef",
+            "object_marking_refs": [
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
+            ]
         },
         {
             "type": "relationship",
             "spec_version": "2.1",
-            "id": "relationship--70e775fc-de0b-466e-8f66-f8c20d562efc",
-            "created": "2022-09-03T05:05:20.585027Z",
-            "modified": "2022-09-03T05:05:20.585027Z",
+            "id": "relationship--0d3a68b2-b6b1-4a9c-a074-0b9717dd49d8",
+            "created": "2022-09-06T10:53:06.449142Z",
+            "modified": "2022-09-06T10:53:06.449142Z",
             "relationship_type": "default-extract",
-            "source_ref": "report--a6d1c0f9-77b5-40a2-a80d-283cafa66a20",
-            "target_ref": "indicator--f0fd2bb2-4047-41e4-92cf-135de49e3568"
+            "source_ref": "report--d157aa87-5f32-470f-87e3-038696b2cbdf",
+            "target_ref": "indicator--b3670efd-9d45-4c85-87e3-29cd9bcd8809",
+            "object_marking_refs": [
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
+            ]
         },
         {
             "type": "relationship",
             "spec_version": "2.1",
-            "id": "relationship--20bef059-af08-4173-b8a7-1da6fe290793",
-            "created": "2022-09-03T05:05:20.58517Z",
-            "modified": "2022-09-03T05:05:20.58517Z",
+            "id": "relationship--e7863774-3289-481d-bd49-d30825423ed4",
+            "created": "2022-09-06T10:53:06.449283Z",
+            "modified": "2022-09-06T10:53:06.449283Z",
             "relationship_type": "default-extract",
-            "source_ref": "report--a6d1c0f9-77b5-40a2-a80d-283cafa66a20",
-            "target_ref": "indicator--9f329ced-5718-4746-a1f1-c0ed948048d1"
+            "source_ref": "report--d157aa87-5f32-470f-87e3-038696b2cbdf",
+            "target_ref": "indicator--a2800a0f-036f-47df-bcf2-25a65182ee09",
+            "object_marking_refs": [
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
+            ]
         }
     ]
 }

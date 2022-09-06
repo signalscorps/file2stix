@@ -1,14 +1,39 @@
 {
     "type": "bundle",
-    "id": "bundle--296a0de2-9bfc-4c97-92db-5049fa7cc02a",
+    "id": "bundle--39c03dd7-906e-4191-aeef-62bf42240d20",
     "objects": [
+        {
+            "type": "extension-definition",
+            "spec_version": "2.1",
+            "id": "extension-definition--c8ea5ecb-f4a3-45e7-94de-9b9ba05161af",
+            "created_by_ref": "identity--acf55024-6bbe-486f-a27a-7967559324f4",
+            "created": "2022-01-01T00:00:00.000Z",
+            "modified": "2022-01-01T00:00:00.000Z",
+            "name": "MISP Warning Lists",
+            "description": "This schema adds MISP Warning List matches to extracted Objects",
+            "schema": "https://github.com/MISP/misp-warninglists",
+            "version": "1.0",
+            "extension_types": [
+                "property-extension"
+            ]
+        },
+        {
+            "type": "marking-definition",
+            "spec_version": "2.1",
+            "id": "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9",
+            "created": "2017-01-20T00:00:00.000Z",
+            "definition_type": "tlp",
+            "name": "TLP:WHITE",
+            "definition": {
+                "tlp": "white"
+            }
+        },
         {
             "type": "indicator",
             "spec_version": "2.1",
-            "id": "indicator--e9dca59f-4796-456e-a4f1-1f1518c9b615",
-            "created_by_ref": "identity--acf55024-6bbe-486f-a27a-7967559324f4",
-            "created": "2022-09-02T14:51:29.569286Z",
-            "modified": "2022-09-03T05:05:04.118859Z",
+            "id": "indicator--97d1cc23-cef7-4c06-8617-b66dac90e649",
+            "created": "2022-09-06T09:33:51.947118Z",
+            "modified": "2022-09-06T10:52:49.158713Z",
             "name": "ipv4: 198.51.100.5",
             "indicator_types": [
                 "unknown"
@@ -16,18 +41,17 @@
             "pattern": "[ ipv4-addr:value = '198.51.100.5' ]",
             "pattern_type": "stix",
             "pattern_version": "2.1",
-            "valid_from": "2022-09-02T14:51:29.569286Z",
+            "valid_from": "2022-09-06T09:33:51.947118Z",
             "object_marking_refs": [
-                "marking-definition--f88d31f6-486f-44da-b317-01333bde0b82"
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
             ]
         },
         {
             "type": "indicator",
             "spec_version": "2.1",
-            "id": "indicator--00e4bc0f-2e69-4ac8-b8d5-963ec2ddbd40",
-            "created_by_ref": "identity--acf55024-6bbe-486f-a27a-7967559324f4",
-            "created": "2022-09-02T14:51:29.764361Z",
-            "modified": "2022-09-03T05:05:04.841565Z",
+            "id": "indicator--31fa29c0-c5e4-42ac-bc56-c1dd8bb855c4",
+            "created": "2022-09-06T09:33:52.159351Z",
+            "modified": "2022-09-06T10:52:49.565981Z",
             "name": "ipv4: 198.0.103.12",
             "indicator_types": [
                 "unknown"
@@ -35,18 +59,17 @@
             "pattern": "[ ipv4-addr:value = '198.0.103.12' ]",
             "pattern_type": "stix",
             "pattern_version": "2.1",
-            "valid_from": "2022-09-02T14:51:29.764361Z",
+            "valid_from": "2022-09-06T09:33:52.159351Z",
             "object_marking_refs": [
-                "marking-definition--f88d31f6-486f-44da-b317-01333bde0b82"
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
             ]
         },
         {
             "type": "indicator",
             "spec_version": "2.1",
-            "id": "indicator--edbb94b9-12f7-4845-944c-630557617c7c",
-            "created_by_ref": "identity--acf55024-6bbe-486f-a27a-7967559324f4",
-            "created": "2022-09-02T14:51:29.9804Z",
-            "modified": "2022-09-03T05:05:05.574482Z",
+            "id": "indicator--37fe7ffb-7d6a-45b0-8416-04bcf5000759",
+            "created": "2022-09-06T09:33:52.352127Z",
+            "modified": "2022-09-06T10:52:49.987287Z",
             "name": "ipv4: 198.0.103.12/24",
             "indicator_types": [
                 "unknown"
@@ -54,18 +77,17 @@
             "pattern": "[ ipv4-addr:value = '198.0.103.12/24' ]",
             "pattern_type": "stix",
             "pattern_version": "2.1",
-            "valid_from": "2022-09-02T14:51:29.9804Z",
+            "valid_from": "2022-09-06T09:33:52.352127Z",
             "object_marking_refs": [
-                "marking-definition--f88d31f6-486f-44da-b317-01333bde0b82"
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
             ]
         },
         {
             "type": "indicator",
             "spec_version": "2.1",
-            "id": "indicator--0a7e20c2-407b-4b48-8537-598f68b3e8b8",
-            "created_by_ref": "identity--acf55024-6bbe-486f-a27a-7967559324f4",
-            "created": "2022-09-02T14:51:30.006761Z",
-            "modified": "2022-09-03T05:05:08.728049Z",
+            "id": "indicator--f077c130-3fce-45b4-9d0c-7bd699f895e5",
+            "created": "2022-09-06T09:33:52.394241Z",
+            "modified": "2022-09-06T10:52:51.253388Z",
             "name": "ipv4: 198.0.103.12:8000",
             "indicator_types": [
                 "unknown"
@@ -73,17 +95,17 @@
             "pattern": "[ ipv4-addr:value = '198.0.103.12' AND network-traffic:dst_port = '8000' ]",
             "pattern_type": "stix",
             "pattern_version": "2.1",
-            "valid_from": "2022-09-02T14:51:30.006761Z",
+            "valid_from": "2022-09-06T09:33:52.394241Z",
             "object_marking_refs": [
-                "marking-definition--f88d31f6-486f-44da-b317-01333bde0b82"
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
             ]
         },
         {
             "type": "indicator",
             "spec_version": "2.1",
-            "id": "indicator--9796e369-c551-4ec3-9141-a34d42cec462",
-            "created": "2022-09-03T05:05:06.244348Z",
-            "modified": "2022-09-03T05:05:06.244348Z",
+            "id": "indicator--6b74d840-81f2-4c82-a6f8-4bb26677415a",
+            "created": "2022-09-06T09:33:52.388574Z",
+            "modified": "2022-09-06T10:52:50.490605Z",
             "name": "ipv4: 198.0.103.12:8",
             "indicator_types": [
                 "unknown"
@@ -91,7 +113,7 @@
             "pattern": "[ ipv4-addr:value = '198.0.103.12' AND network-traffic:dst_port = '8' ]",
             "pattern_type": "stix",
             "pattern_version": "2.1",
-            "valid_from": "2022-09-03T05:05:06.244348Z",
+            "valid_from": "2022-09-06T09:33:52.388574Z",
             "object_marking_refs": [
                 "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
             ]
@@ -99,9 +121,9 @@
         {
             "type": "indicator",
             "spec_version": "2.1",
-            "id": "indicator--f013c3f2-052a-45dc-bd01-2895256103a2",
-            "created": "2022-09-03T05:05:06.866715Z",
-            "modified": "2022-09-03T05:05:06.866715Z",
+            "id": "indicator--caf2e44b-de71-468c-ace0-2620860ad595",
+            "created": "2022-09-06T09:33:52.390395Z",
+            "modified": "2022-09-06T10:52:50.744991Z",
             "name": "ipv4: 198.0.103.12:80",
             "indicator_types": [
                 "unknown"
@@ -109,7 +131,7 @@
             "pattern": "[ ipv4-addr:value = '198.0.103.12' AND network-traffic:dst_port = '80' ]",
             "pattern_type": "stix",
             "pattern_version": "2.1",
-            "valid_from": "2022-09-03T05:05:06.866715Z",
+            "valid_from": "2022-09-06T09:33:52.390395Z",
             "object_marking_refs": [
                 "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
             ]
@@ -117,9 +139,9 @@
         {
             "type": "indicator",
             "spec_version": "2.1",
-            "id": "indicator--90e9d3b5-53aa-494d-829c-4b97c728c0c6",
-            "created": "2022-09-03T05:05:07.484239Z",
-            "modified": "2022-09-03T05:05:07.484239Z",
+            "id": "indicator--273bcd53-e105-4c14-9931-56e4c00cb32f",
+            "created": "2022-09-06T09:33:52.392406Z",
+            "modified": "2022-09-06T10:52:50.997082Z",
             "name": "ipv4: 198.0.103.12:800",
             "indicator_types": [
                 "unknown"
@@ -127,7 +149,7 @@
             "pattern": "[ ipv4-addr:value = '198.0.103.12' AND network-traffic:dst_port = '800' ]",
             "pattern_type": "stix",
             "pattern_version": "2.1",
-            "valid_from": "2022-09-03T05:05:07.484239Z",
+            "valid_from": "2022-09-06T09:33:52.392406Z",
             "object_marking_refs": [
                 "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
             ]
@@ -135,9 +157,9 @@
         {
             "type": "indicator",
             "spec_version": "2.1",
-            "id": "indicator--5f4c212b-fcfe-4d96-91f5-845a92c1b71d",
-            "created": "2022-09-03T05:05:08.729302Z",
-            "modified": "2022-09-03T05:05:08.729302Z",
+            "id": "indicator--a63614ec-b2e6-4b7d-b0f0-b311f18724f3",
+            "created": "2022-09-06T09:33:52.395881Z",
+            "modified": "2022-09-06T10:52:51.505398Z",
             "name": "ipv4: 198.0.103.12:65535",
             "indicator_types": [
                 "unknown"
@@ -145,7 +167,7 @@
             "pattern": "[ ipv4-addr:value = '198.0.103.12' AND network-traffic:dst_port = '65535' ]",
             "pattern_type": "stix",
             "pattern_version": "2.1",
-            "valid_from": "2022-09-03T05:05:08.729302Z",
+            "valid_from": "2022-09-06T09:33:52.395881Z",
             "object_marking_refs": [
                 "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
             ]
@@ -153,104 +175,131 @@
         {
             "type": "report",
             "spec_version": "2.1",
-            "id": "report--773cf804-ee4e-4e4e-ae73-6c16756c3c7c",
-            "created": "2022-09-03T05:05:09.42654Z",
-            "modified": "2022-09-03T05:05:09.42654Z",
+            "id": "report--91e36c23-f1c1-41c5-94f6-033d93e8b2f8",
+            "created": "2022-09-06T10:52:51.557101Z",
+            "modified": "2022-09-06T10:52:51.557101Z",
             "name": "File converted: ipv4.txt",
             "report_types": [
                 "threat_report"
             ],
-            "published": "2022-09-03T10:35:09.426533Z",
+            "published": "2022-09-06T16:22:51.557091Z",
             "object_refs": [
-                "indicator--e9dca59f-4796-456e-a4f1-1f1518c9b615",
-                "indicator--00e4bc0f-2e69-4ac8-b8d5-963ec2ddbd40",
-                "indicator--edbb94b9-12f7-4845-944c-630557617c7c",
-                "indicator--0a7e20c2-407b-4b48-8537-598f68b3e8b8",
-                "indicator--9796e369-c551-4ec3-9141-a34d42cec462",
-                "indicator--f013c3f2-052a-45dc-bd01-2895256103a2",
-                "indicator--90e9d3b5-53aa-494d-829c-4b97c728c0c6",
-                "indicator--5f4c212b-fcfe-4d96-91f5-845a92c1b71d"
+                "indicator--97d1cc23-cef7-4c06-8617-b66dac90e649",
+                "indicator--31fa29c0-c5e4-42ac-bc56-c1dd8bb855c4",
+                "indicator--37fe7ffb-7d6a-45b0-8416-04bcf5000759",
+                "indicator--f077c130-3fce-45b4-9d0c-7bd699f895e5",
+                "indicator--6b74d840-81f2-4c82-a6f8-4bb26677415a",
+                "indicator--caf2e44b-de71-468c-ace0-2620860ad595",
+                "indicator--273bcd53-e105-4c14-9931-56e4c00cb32f",
+                "indicator--a63614ec-b2e6-4b7d-b0f0-b311f18724f3"
+            ],
+            "object_marking_refs": [
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
             ]
         },
         {
             "type": "relationship",
             "spec_version": "2.1",
-            "id": "relationship--c5049c48-b932-4cdc-8997-9a777150c8ac",
-            "created": "2022-09-03T05:05:09.426832Z",
-            "modified": "2022-09-03T05:05:09.426832Z",
+            "id": "relationship--58a9a8d4-0196-4864-9643-13bfdebea947",
+            "created": "2022-09-06T10:52:51.5574Z",
+            "modified": "2022-09-06T10:52:51.5574Z",
             "relationship_type": "default-extract",
-            "source_ref": "report--773cf804-ee4e-4e4e-ae73-6c16756c3c7c",
-            "target_ref": "indicator--e9dca59f-4796-456e-a4f1-1f1518c9b615"
+            "source_ref": "report--91e36c23-f1c1-41c5-94f6-033d93e8b2f8",
+            "target_ref": "indicator--97d1cc23-cef7-4c06-8617-b66dac90e649",
+            "object_marking_refs": [
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
+            ]
         },
         {
             "type": "relationship",
             "spec_version": "2.1",
-            "id": "relationship--eccb42fd-22e8-43ab-8a93-e6cde87f3213",
-            "created": "2022-09-03T05:05:09.427004Z",
-            "modified": "2022-09-03T05:05:09.427004Z",
+            "id": "relationship--8f076d1b-1dea-4b63-a3eb-9d1f9c28ba30",
+            "created": "2022-09-06T10:52:51.557578Z",
+            "modified": "2022-09-06T10:52:51.557578Z",
             "relationship_type": "default-extract",
-            "source_ref": "report--773cf804-ee4e-4e4e-ae73-6c16756c3c7c",
-            "target_ref": "indicator--00e4bc0f-2e69-4ac8-b8d5-963ec2ddbd40"
+            "source_ref": "report--91e36c23-f1c1-41c5-94f6-033d93e8b2f8",
+            "target_ref": "indicator--31fa29c0-c5e4-42ac-bc56-c1dd8bb855c4",
+            "object_marking_refs": [
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
+            ]
         },
         {
             "type": "relationship",
             "spec_version": "2.1",
-            "id": "relationship--8e656bab-6a3a-412f-9a0c-c004fa177970",
-            "created": "2022-09-03T05:05:09.42716Z",
-            "modified": "2022-09-03T05:05:09.42716Z",
+            "id": "relationship--998ad23f-57d4-43db-a38a-31dbccfbb9bd",
+            "created": "2022-09-06T10:52:51.557734Z",
+            "modified": "2022-09-06T10:52:51.557734Z",
             "relationship_type": "default-extract",
-            "source_ref": "report--773cf804-ee4e-4e4e-ae73-6c16756c3c7c",
-            "target_ref": "indicator--edbb94b9-12f7-4845-944c-630557617c7c"
+            "source_ref": "report--91e36c23-f1c1-41c5-94f6-033d93e8b2f8",
+            "target_ref": "indicator--37fe7ffb-7d6a-45b0-8416-04bcf5000759",
+            "object_marking_refs": [
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
+            ]
         },
         {
             "type": "relationship",
             "spec_version": "2.1",
-            "id": "relationship--ee8b9c34-22d2-4080-9a03-10056959d222",
-            "created": "2022-09-03T05:05:09.427308Z",
-            "modified": "2022-09-03T05:05:09.427308Z",
+            "id": "relationship--7e754a49-d509-40ba-bc6d-3e2c1bd575bc",
+            "created": "2022-09-06T10:52:51.557885Z",
+            "modified": "2022-09-06T10:52:51.557885Z",
             "relationship_type": "default-extract",
-            "source_ref": "report--773cf804-ee4e-4e4e-ae73-6c16756c3c7c",
-            "target_ref": "indicator--0a7e20c2-407b-4b48-8537-598f68b3e8b8"
+            "source_ref": "report--91e36c23-f1c1-41c5-94f6-033d93e8b2f8",
+            "target_ref": "indicator--f077c130-3fce-45b4-9d0c-7bd699f895e5",
+            "object_marking_refs": [
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
+            ]
         },
         {
             "type": "relationship",
             "spec_version": "2.1",
-            "id": "relationship--941abb2c-6e8e-49c0-9285-e40440a5ca98",
-            "created": "2022-09-03T05:05:09.427452Z",
-            "modified": "2022-09-03T05:05:09.427452Z",
+            "id": "relationship--02c3a2eb-e39c-40ac-b154-0a04ba3fd9c3",
+            "created": "2022-09-06T10:52:51.558034Z",
+            "modified": "2022-09-06T10:52:51.558034Z",
             "relationship_type": "default-extract",
-            "source_ref": "report--773cf804-ee4e-4e4e-ae73-6c16756c3c7c",
-            "target_ref": "indicator--9796e369-c551-4ec3-9141-a34d42cec462"
+            "source_ref": "report--91e36c23-f1c1-41c5-94f6-033d93e8b2f8",
+            "target_ref": "indicator--6b74d840-81f2-4c82-a6f8-4bb26677415a",
+            "object_marking_refs": [
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
+            ]
         },
         {
             "type": "relationship",
             "spec_version": "2.1",
-            "id": "relationship--795adb6e-ba02-4566-aa60-56605e00112a",
-            "created": "2022-09-03T05:05:09.427595Z",
-            "modified": "2022-09-03T05:05:09.427595Z",
+            "id": "relationship--cf245645-652c-49a3-b344-9492843c327f",
+            "created": "2022-09-06T10:52:51.558182Z",
+            "modified": "2022-09-06T10:52:51.558182Z",
             "relationship_type": "default-extract",
-            "source_ref": "report--773cf804-ee4e-4e4e-ae73-6c16756c3c7c",
-            "target_ref": "indicator--f013c3f2-052a-45dc-bd01-2895256103a2"
+            "source_ref": "report--91e36c23-f1c1-41c5-94f6-033d93e8b2f8",
+            "target_ref": "indicator--caf2e44b-de71-468c-ace0-2620860ad595",
+            "object_marking_refs": [
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
+            ]
         },
         {
             "type": "relationship",
             "spec_version": "2.1",
-            "id": "relationship--8a472009-d485-4207-9e48-3966d0c86bca",
-            "created": "2022-09-03T05:05:09.427737Z",
-            "modified": "2022-09-03T05:05:09.427737Z",
+            "id": "relationship--fd1c5fdd-962b-475a-82f9-59c151aa6528",
+            "created": "2022-09-06T10:52:51.558326Z",
+            "modified": "2022-09-06T10:52:51.558326Z",
             "relationship_type": "default-extract",
-            "source_ref": "report--773cf804-ee4e-4e4e-ae73-6c16756c3c7c",
-            "target_ref": "indicator--90e9d3b5-53aa-494d-829c-4b97c728c0c6"
+            "source_ref": "report--91e36c23-f1c1-41c5-94f6-033d93e8b2f8",
+            "target_ref": "indicator--273bcd53-e105-4c14-9931-56e4c00cb32f",
+            "object_marking_refs": [
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
+            ]
         },
         {
             "type": "relationship",
             "spec_version": "2.1",
-            "id": "relationship--a44fb211-91fa-4b93-9a2a-d65e2a705bb8",
-            "created": "2022-09-03T05:05:09.427875Z",
-            "modified": "2022-09-03T05:05:09.427875Z",
+            "id": "relationship--d45278c1-6eb3-4f28-b901-ffd6f8567316",
+            "created": "2022-09-06T10:52:51.558469Z",
+            "modified": "2022-09-06T10:52:51.558469Z",
             "relationship_type": "default-extract",
-            "source_ref": "report--773cf804-ee4e-4e4e-ae73-6c16756c3c7c",
-            "target_ref": "indicator--5f4c212b-fcfe-4d96-91f5-845a92c1b71d"
+            "source_ref": "report--91e36c23-f1c1-41c5-94f6-033d93e8b2f8",
+            "target_ref": "indicator--a63614ec-b2e6-4b7d-b0f0-b311f18724f3",
+            "object_marking_refs": [
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
+            ]
         }
     ]
 }

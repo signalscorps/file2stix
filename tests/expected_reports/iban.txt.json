@@ -1,14 +1,39 @@
 {
     "type": "bundle",
-    "id": "bundle--b97a644b-0840-4f8b-82f5-cc00f38322b2",
+    "id": "bundle--d34a9571-2e13-4dbe-9e7d-4cd3cdf3e74d",
     "objects": [
+        {
+            "type": "extension-definition",
+            "spec_version": "2.1",
+            "id": "extension-definition--c8ea5ecb-f4a3-45e7-94de-9b9ba05161af",
+            "created_by_ref": "identity--acf55024-6bbe-486f-a27a-7967559324f4",
+            "created": "2022-01-01T00:00:00.000Z",
+            "modified": "2022-01-01T00:00:00.000Z",
+            "name": "MISP Warning Lists",
+            "description": "This schema adds MISP Warning List matches to extracted Objects",
+            "schema": "https://github.com/MISP/misp-warninglists",
+            "version": "1.0",
+            "extension_types": [
+                "property-extension"
+            ]
+        },
+        {
+            "type": "marking-definition",
+            "spec_version": "2.1",
+            "id": "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9",
+            "created": "2017-01-20T00:00:00.000Z",
+            "definition_type": "tlp",
+            "name": "TLP:WHITE",
+            "definition": {
+                "tlp": "white"
+            }
+        },
         {
             "type": "indicator",
             "spec_version": "2.1",
-            "id": "indicator--ae5dce92-fae4-46cd-ba34-3698c2f5ea0d",
-            "created_by_ref": "identity--acf55024-6bbe-486f-a27a-7967559324f4",
-            "created": "2022-09-02T14:51:40.196451Z",
-            "modified": "2022-09-03T05:03:32.51542Z",
+            "id": "indicator--dd6cf2d3-0dda-45f9-b57d-c9f85020d8f2",
+            "created": "2022-09-06T10:10:05.312934Z",
+            "modified": "2022-09-06T10:52:08.508653Z",
             "name": "IBAN: DE29100500001061045672",
             "indicator_types": [
                 "unknown"
@@ -16,18 +41,17 @@
             "pattern": "[ artifact:payload_bin = 'DE29100500001061045672' ]",
             "pattern_type": "stix",
             "pattern_version": "2.1",
-            "valid_from": "2022-09-02T14:51:40.196451Z",
+            "valid_from": "2022-09-06T10:10:05.312934Z",
             "object_marking_refs": [
-                "marking-definition--f88d31f6-486f-44da-b317-01333bde0b82"
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
             ]
         },
         {
             "type": "indicator",
             "spec_version": "2.1",
-            "id": "indicator--080241d8-31a1-461b-8073-63e28e915fea",
-            "created_by_ref": "identity--acf55024-6bbe-486f-a27a-7967559324f4",
-            "created": "2022-09-03T04:42:10.384996Z",
-            "modified": "2022-09-03T05:03:33.233318Z",
+            "id": "indicator--e238fa58-cd90-4ebc-8cc3-08b08b508674",
+            "created": "2022-09-06T10:10:05.128334Z",
+            "modified": "2022-09-06T10:52:08.867354Z",
             "name": "IBAN: GB94BARC10201530093459",
             "indicator_types": [
                 "unknown"
@@ -35,46 +59,55 @@
             "pattern": "[ artifact:payload_bin = 'GB94BARC10201530093459' ]",
             "pattern_type": "stix",
             "pattern_version": "2.1",
-            "valid_from": "2022-09-03T04:42:10.384996Z",
+            "valid_from": "2022-09-06T10:10:05.128334Z",
             "object_marking_refs": [
-                "marking-definition--f88d31f6-486f-44da-b317-01333bde0b82"
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
             ]
         },
         {
             "type": "report",
             "spec_version": "2.1",
-            "id": "report--d4f4be5e-ded0-4260-a94c-a1d84d7d0803",
-            "created": "2022-09-03T05:03:33.235559Z",
-            "modified": "2022-09-03T05:03:33.235559Z",
+            "id": "report--02e056a8-239d-4d1d-a412-6b0148805919",
+            "created": "2022-09-06T10:52:08.868621Z",
+            "modified": "2022-09-06T10:52:08.868621Z",
             "name": "File converted: iban.txt",
             "report_types": [
                 "threat_report"
             ],
-            "published": "2022-09-03T10:33:33.235554Z",
+            "published": "2022-09-06T16:22:08.868615Z",
             "object_refs": [
-                "indicator--ae5dce92-fae4-46cd-ba34-3698c2f5ea0d",
-                "indicator--080241d8-31a1-461b-8073-63e28e915fea"
+                "indicator--dd6cf2d3-0dda-45f9-b57d-c9f85020d8f2",
+                "indicator--e238fa58-cd90-4ebc-8cc3-08b08b508674"
+            ],
+            "object_marking_refs": [
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
             ]
         },
         {
             "type": "relationship",
             "spec_version": "2.1",
-            "id": "relationship--13a5c7ad-5bb1-4a32-8819-4e1b4e7b5901",
-            "created": "2022-09-03T05:03:33.235765Z",
-            "modified": "2022-09-03T05:03:33.235765Z",
+            "id": "relationship--25521164-bf34-4d13-ba91-7e19260c7584",
+            "created": "2022-09-06T10:52:08.86883Z",
+            "modified": "2022-09-06T10:52:08.86883Z",
             "relationship_type": "default-extract",
-            "source_ref": "report--d4f4be5e-ded0-4260-a94c-a1d84d7d0803",
-            "target_ref": "indicator--ae5dce92-fae4-46cd-ba34-3698c2f5ea0d"
+            "source_ref": "report--02e056a8-239d-4d1d-a412-6b0148805919",
+            "target_ref": "indicator--dd6cf2d3-0dda-45f9-b57d-c9f85020d8f2",
+            "object_marking_refs": [
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
+            ]
         },
         {
             "type": "relationship",
             "spec_version": "2.1",
-            "id": "relationship--5dbcbb56-59f9-488d-abec-9a71f360cf79",
-            "created": "2022-09-03T05:03:33.235926Z",
-            "modified": "2022-09-03T05:03:33.235926Z",
+            "id": "relationship--c2b7807d-d5a3-42cd-abdc-dfdcaa8802f8",
+            "created": "2022-09-06T10:52:08.868996Z",
+            "modified": "2022-09-06T10:52:08.868996Z",
             "relationship_type": "default-extract",
-            "source_ref": "report--d4f4be5e-ded0-4260-a94c-a1d84d7d0803",
-            "target_ref": "indicator--080241d8-31a1-461b-8073-63e28e915fea"
+            "source_ref": "report--02e056a8-239d-4d1d-a412-6b0148805919",
+            "target_ref": "indicator--e238fa58-cd90-4ebc-8cc3-08b08b508674",
+            "object_marking_refs": [
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
+            ]
         }
     ]
 }
