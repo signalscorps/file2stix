@@ -290,10 +290,12 @@ def main(config: Config):
         + relationship_sros
     )
 
-    stix_file_store_objects = list(
-        observables_list.stix_observables_in_filestore.values()
-    ) + [report]
-    stix_store.store_objects_in_filestore(stix_file_store_objects)
+    if config.tlp_level == "WHITE":
+        stix_file_store_objects = list(
+            observables_list.stix_observables_in_filestore.values()
+        ) + [report]
+        stix_store.store_objects_in_filestore(stix_file_store_objects)
+    
     stix_bundle_file_path = stix_store.store_objects_in_bundle(
         stix_objects, config.output_json_file_path
     )
