@@ -25,6 +25,7 @@ from stix2 import (
     ThreatActor,
     Tool,
     Software,
+    TLP_WHITE, TLP_AMBER, TLP_RED, TLP_GREEN
 )
 
 from file2stix.config import Config
@@ -41,10 +42,10 @@ class Observable:
     extraction_regex = None
     extraction_function = None
     object_marking_ref_map = {
-        "WHITE": "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9",
-        "GREEN": "marking-definition--34098fce-860f-48ae-8e50-ebd3cc5e41da",
-        "AMBER": "marking-definition--f88d31f6-486f-44da-b317-01333bde0b82",
-        "RED": "marking-definition--5e57c739-391a-4eb3-b6be-7d15ca92d5ed",
+        "WHITE": TLP_WHITE,
+        "GREEN": TLP_GREEN,
+        "AMBER": TLP_AMBER,
+        "RED": TLP_RED,
     }
 
     def __init__(self, extracted_observable_text, config):

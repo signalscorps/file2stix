@@ -283,7 +283,8 @@ def main(config: Config):
 
     # Group all stix objects and store in STIX filestore and bundle
     stix_objects += (
-        list(observables_list.stix_observables.values())
+        [Observable.object_marking_ref_map[config.tlp_level]]
+        + list(observables_list.stix_observables.values())
         + list(observables_list.dict_stix_observables.values())
         + list(observables_list.custom_stix_observables.values())
         + [report]
