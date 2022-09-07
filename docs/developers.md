@@ -296,8 +296,76 @@ Warning message: no observables extracted
 ### Ignore IPv4 and Url
 
 ```
-file2stix --input-file tests/file_inputs/txt/input.txt --ignore-observable-prefix ipv4,ipv6,asn,url,domain
+file2stix --input-file tests/file_inputs/txt/input.txt --ignore-observable-prefix \
+  IPv4Observable,IPv4WithPortObservable,\
+  IPv6Observable,IPv6WithPortObservable,\
+  FileNameObservable,FileHashMD5Observable,\
+  FileHashSHA1Observable,\
+  FileHashSHA256Observable,\
+  FileHashSHA512Observable,\
+  FileHashSsDeepObservable,\
+  DirectoryPathObservable,\
+  DomainNameObservable,\
+  UrlObservable,\
+  EmailAddressObservable,\
+  MacAddressObservable,\
+  WindowsRegistryKeyObservable,\
+  UserAgentObservable,\
+  AutonomousSystemNumberObservable,\
+  CryptocurrencyBTCObservable,\
+  CryptocurrencyETHObservable,\
+  CryptocurrencyXMRObservable,\
+  CountryNameObservable,\
+  CountryCodeAlpha2Observable,\
+  CountryCodeAlpha3Observable,\
+  MastercardCreditCardObservable,\
+  VisaCreditCardObservable,\
+  AmexCreditCardObservable,\
+  UnionPayCreditCardObservable,\
+  DinersCreditCardObservable,\
+  JCBCreditCardObservable,\
+  IBANCodeObservable,\
+  YaraRuleObservable,\
+  CPEObservable,\
+  MITREEnterpriseAttackObservable,\
+  MITREMobileAttackObservable,\
+  MITREICSAttackObservable,\
+  MITRECapecObservable,\
+  CustomObservable
 ```
+
+
+
+
+* ipv4 (inc. CIDR, port) (`IPv4`, `IPv4WithPort`)
+* ipv6 (inc. CIDR, port) (`IPv6`, `IPv6WithPort`)
+* File name (`FileName`)
+* md5 hash (`FileHashMD5`)
+* sha1 hash (`FileHashSHA1`)
+* sha256 hash (`FileHashSHA256`)
+* sha512 hash (`FileHashSHA512`)
+* ssdeep hash (`FileHashSsDeep`)
+* Directory (Window and UNIX) (`DirectoryPath`)
+* Domain (`DomainName`)
+* URL (`Url`)
+* Email Address (`EmailAddress`)
+* MAC Address (`MacAddress`)
+* Windows Registry Key (`WindowsRegistryKey`)
+* User Agent (`UserAgent`)
+* Autonomous System Number (ASN) (`AutonomousSystemNumber`)
+* Bitcoin address (BTC) (`CryptocurrencyBTC`)
+* Ethereum address (ETH) (`CryptocurrencyETH`)
+* Monero address (XMR) (`CryptocurrencyXMR`)
+* International Bank Account Number (IBAN) (`IBAN`)
+* CVE (`CVE`)
+* CPE (`CPE`)
+* Credit Card (Mastercard, Visa, Amex, Union Pay, Diners, JCB) (`MastercardCreditCard`,`VisaCreditCard`,`AmexCreditCard`, `UnionPayCreditCard`, `DinersCreditCard`, `JCBCreditCard`)
+* YARA Rule (`YaraRule`)
+* SIGMA Rule (`SigmaRule`)
+* Countries (`CountryName`, `CountryCode`)
+* MITRE ATT&CK (Enterprise ATT&CK, Mobile ATT&CK, ICS ATT&CK) (`MITREEnterpriseAttack`, `MITREMobileAttack`, `MITREICSAttack`)
+* MITRE CAPEC (`MITRECapec`)
+* Custom extractions (`Custom`)
 
 
 ## Testing adding custom identity

@@ -7,7 +7,7 @@ import logging
 from file2stix.cache import Cache
 from file2stix.config import Config
 from file2stix.observables import (
-    CustomObervable,
+    CustomObservable,
     MITREEnterpriseAttackObservable,
     MITREMobileAttackObservable,
     MITREICSAttackObservable,
@@ -44,7 +44,7 @@ class ExtractStixObservables:
                     "Use --update-mitre-cti-database option to update MITRE CTI database." 
                 )
                 return
-        if observable_cls == CustomObervable:
+        if observable_cls == CustomObservable:
             if config.custom_extraction_file != None:
                 observable_cls.build_extraction_regex(config.custom_extraction_file)
             else:

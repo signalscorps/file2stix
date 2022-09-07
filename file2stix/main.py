@@ -22,7 +22,7 @@ from file2stix.config import Config
 from file2stix.extract_observables import ExtractStixObservables
 from file2stix.helper import inheritors, nested_dict_values
 from file2stix.observables_stix_store import ObservablesStixStore
-from file2stix.observables import Observable, CustomObervable, CPEObservable
+from file2stix.observables import Observable, CustomObservable, CPEObservable
 
 logger = logging.getLogger(__name__)
 
@@ -194,7 +194,7 @@ def main(config: Config):
                         ] = extracted_stix_observable
                         stix_observable_object = extracted_stix_observable
 
-            if observable == CustomObervable:
+            if observable == CustomObservable:
                 observables_list.custom_stix_observables[
                     stix_observable_object.name
                 ] = stix_observable_object

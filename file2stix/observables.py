@@ -466,7 +466,7 @@ class CryptocurrencyXMRObservable(Observable):
     extraction_regex = r"^(4[0-9AB][1-9A-HJ-NP-Za-km-z]{93})$"
 
 
-class CVEObservale(Observable):
+class CVEObservable(Observable):
     name = "CVE"
     type = "vulnerability"
     extraction_regex = r"^(CVE-(19|20)\d{2}-\d{4,7})$"
@@ -781,7 +781,7 @@ class MITRECapecObservable(MITREEnterpriseAttackObservable):
         )
 
 
-class CustomObervable(Observable):
+class CustomObservable(Observable):
     name = "Custom Observable"
     extraction_regex = r""
     custom_observables_map = {}
@@ -859,7 +859,7 @@ class CustomObervable(Observable):
                         "Error in parsing this line in custom extraction file: '%s'",
                         line,
                     )
-                if CustomObervable.get_stix2_object_custom(pattern, sdo_object_type):
+                if CustomObservable.get_stix2_object_custom(pattern, sdo_object_type):
                     cls.extraction_regex += rf"({pattern})|"
                     cls.custom_observables_map[pattern] = sdo_object_type
 
@@ -869,7 +869,7 @@ class CustomObervable(Observable):
     def get_sdo_object(self):
         pattern = self.extracted_observable_text
         sdo_object_type = self.custom_observables_map[pattern]
-        sdo_object = CustomObervable.get_stix2_object_custom(
+        sdo_object = CustomObservable.get_stix2_object_custom(
             pattern, sdo_object_type, self.tlp_level, self.identity
         )
         if sdo_object == None:
