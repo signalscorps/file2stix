@@ -25,7 +25,6 @@ class ExtractStixObservables:
 
     def __init__(self, observable_cls, text, cache: Cache, config: Config):
         self.index = 0
-        self.update_stix2_extractions = True
         self.extracted_observables = []
 
         # Handling special observables like MITRE ATT&CK and CAPEC
@@ -35,7 +34,6 @@ class ExtractStixObservables:
             or observable_cls == MITREICSAttackObservable
             or observable_cls == MITRECapecObservable
         ):
-            self.update_stix2_extractions = False
             if cache.is_mitre_cti_database_in_cache():
                 observable_cls.build_extraction_regex(cache.cti_folder_path)
             else:
@@ -62,5 +60,5 @@ class ExtractStixObservables:
         if self.index < len(self.extracted_observables):
             extracted_observable = self.extracted_observables[self.index]
             self.index += 1
-            return extracted_observable.get_sdo_object(), self.update_stix2_extractions
+            return extracted_observable.get_sdo_object()
         raise StopIteration

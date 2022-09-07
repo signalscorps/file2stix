@@ -154,28 +154,25 @@ def main(config: Config):
         ):
             logger.info("%s is ignored from extraction", observable.__name__)
             continue
-        for (
-            extracted_stix_observable,
-            update_stix2_extractions,
-        ) in ExtractStixObservables(observable, input, cache, config):
-
+        for extracted_stix_observable in ExtractStixObservables(
+            observable, input, cache, config
+        ):
             stix_observable_object = extracted_stix_observable
 
-            if update_stix2_extractions:
-                # Check if observable already present in `stix_store`
-                if config.tlp_level == "WHITE":
-                    stix_observable_object = stix_store.get_object(
-                        extracted_stix_observable.name,
-                        Observable.object_marking_ref_map[config.tlp_level].id
-                    )
+            # Check if observable already present in `stix_store`
+            if config.tlp_level == "WHITE":
+                stix_observable_object = stix_store.get_object(
+                    extracted_stix_observable.name,
+                    Observable.object_marking_ref_map[config.tlp_level].id,
+                )
 
-                    # Don't create a new version for CPE Observable
-                    if stix_observable_object != None and observable != CPEObservable:
-                        stix_observable_object = stix_observable_object.new_version(
-                            modified=pytz.utc.localize(datetime.utcnow())
-                        )
-                    else:
-                        stix_observable_object = extracted_stix_observable
+                # Don't create a new version for CPE Observable
+                if stix_observable_object != None and observable != CPEObservable:
+                    stix_observable_object = stix_observable_object.new_version(
+                        modified=pytz.utc.localize(datetime.utcnow())
+                    )
+                else:
+                    stix_observable_object = extracted_stix_observable
 
             if observable == CustomObservable:
                 observables_list.custom_stix_observables[
