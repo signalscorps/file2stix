@@ -1,6 +1,10 @@
 name: file2stix
 
-on: [push]
+on:
+  push:
+    branches:
+    - main
+    - beta-1
 
 jobs:
   build:
