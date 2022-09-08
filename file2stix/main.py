@@ -69,11 +69,8 @@ class ObservableList:
         # Custom stix observables by the user
         self.custom_stix_observables = {}
 
-        # Stix observables to be stored in file store
-        self.stix_observables_in_filestore = {}
-
     def __str__(self):
-        return f"ObservablesList({self.stix_observables}, {self.custom_stix_observables}, {self.stix_observables_in_filestore})"
+        return f"ObservablesList({self.stix_observables}, {self.dict_stix_observables}, {self.custom_stix_observables})"
 
 
 def main(config: Config):
@@ -157,42 +154,25 @@ def main(config: Config):
         ):
             logger.info("%s is ignored from extraction", observable.__name__)
             continue
-        for (
-            extracted_stix_observable,
-            update_stix2_extractions,
-        ) in ExtractStixObservables(observable, input, cache, config):
+        for extracted_stix_observable in ExtractStixObservables(
+            observable, input, cache, config
+        ):
             stix_observable_object = extracted_stix_observable
 
-            if update_stix2_extractions:
-                if observable != CPEObservable:
-                    # Check if observable already present in `stix_store`
-                    stix_observable_object = stix_store.get_object(
-                        extracted_stix_observable.name
+            # Check if observable already present in `stix_store`
+            if config.tlp_level == "WHITE":
+                stix_observable_object = stix_store.get_object(
+                    extracted_stix_observable.name,
+                    Observable.object_marking_ref_map[config.tlp_level].id,
+                )
+
+                # Don't create a new version for CPE Observable
+                if stix_observable_object != None and observable != CPEObservable:
+                    stix_observable_object = stix_observable_object.new_version(
+                        modified=pytz.utc.localize(datetime.utcnow())
                     )
-
-                    # If observable already present in `stix_store`, then
-                    # just update the modified time
-                    if config.tlp_level == "WHITE" and stix_observable_object != None:
-                        stix_observable_object = stix_observable_object.new_version(
-                            modified=pytz.utc.localize(datetime.utcnow())
-                        )
-                    else:
-                        stix_observable_object = extracted_stix_observable
-
-                    observables_list.stix_observables_in_filestore[
-                        stix_observable_object.name
-                    ] = stix_observable_object
                 else:
-                    # Check if observable already present in `stix_store`
-                    stix_observable_object = stix_store.get_object(
-                        extracted_stix_observable.name
-                    )
-
-                    if stix_observable_object == None:
-                        observables_list.stix_observables_in_filestore[
-                            extracted_stix_observable.name
-                        ] = extracted_stix_observable
-                        stix_observable_object = extracted_stix_observable
+                    stix_observable_object = extracted_stix_observable
 
             if observable == CustomObservable:
                 observables_list.custom_stix_observables[
@@ -291,13 +271,8 @@ def main(config: Config):
         + [report]
         + relationship_sros
     )
+    stix_store.store_objects_in_filestore(stix_objects)
 
-    if config.tlp_level == "WHITE":
-        stix_file_store_objects = list(
-            observables_list.stix_observables_in_filestore.values()
-        ) + [report]
-        stix_store.store_objects_in_filestore(stix_file_store_objects)
-    
     stix_bundle_file_path = stix_store.store_objects_in_bundle(
         stix_objects, config.output_json_file_path
     )

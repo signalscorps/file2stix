@@ -5,8 +5,12 @@ getting stored observables.
 
 import json
 import os
+import logging
 from stix2 import FileSystemStore, Filter, Bundle
 from stix2.base import STIXJSONEncoder
+from stix2.datastore import DataSourceError
+
+logger = logging.getLogger(__name__)
 
 # Folders for STIX2 reports
 STIX2_EXTRACTIONS_FOLDER = os.path.abspath("stix2_objects")
@@ -29,17 +33,14 @@ class ObservablesStixStore:
             os.makedirs(bundle_path)
         self.stix_bundle_path = bundle_path
 
-    def get_object(self, stix_object_name):
+    def get_object(self, stix_object_name, object_marking_refs):
         """
         Query STIX2 Object based on `stix_object_name`
         """
-        return self.query("name", "=", stix_object_name)
-
-    def query(self, property, operation, value):
-        """
-        General query of stix objects
-        """
-        query = Filter(property, operation, value)
+        query = [
+            Filter("name", "=", stix_object_name),
+            Filter("object_marking_refs", "=", object_marking_refs),
+        ]
         observables_found = self.stix_file_store.source.query(query)
 
         if observables_found == None or len(observables_found) == 0:
@@ -48,7 +49,17 @@ class ObservablesStixStore:
         return observables_found[0]
 
     def store_objects_in_filestore(self, stix_objects):
-        self.stix_file_store.add(stix_objects)
+        for stix_object in stix_objects:
+            try:
+                self.stix_file_store.add(stix_object)
+            except DataSourceError as ex:
+                # Ignoring error, since it occurs when file is already
+                # present in the file store, which is OK
+                if hasattr(stix_object, "id"):
+                    logger.debug("Exception caught while storing stix object %s: %s", stix_object.id, ex)
+                else:
+                    logger.debug("Exception caught while storing stix object %s: %s", stix_object, ex)
+
 
     def store_objects_in_bundle(self, stix_objects, output_json_file_path=None):
         bundle_of_all_objects = Bundle(*stix_objects, allow_custom=True)
