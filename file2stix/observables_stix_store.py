@@ -27,7 +27,7 @@ class ObservablesStixStore:
     ):
         if os.path.exists(file_store_path) == False:
             os.makedirs(file_store_path)
-        self.stix_file_store = FileSystemStore(file_store_path)
+        self.stix_file_store = FileSystemStore(file_store_path, allow_custom=True)
 
         if os.path.exists(bundle_path) == False:
             os.makedirs(bundle_path)
