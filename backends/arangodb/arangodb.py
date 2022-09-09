@@ -1,44 +1,46 @@
 import json
 import logging
 import os
-from datetime import datetime
 from typing import Dict, Union, List
 
 from pyArango.collection import Edges, Collection
 from pyArango.database import DBHandle
 
 from pyArango.connection import Connection
+from dotenv import load_dotenv
 
 import argparse
 
-from backends.arangodb.schemas import ArangoCollections, Additional, Relationship, EmbeddedRelations
+from backends.arangodb.schemas import ArangoCollections, Relationship, EmbeddedRelations, Additional
+
+load_dotenv()
 
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
 parser = argparse.ArgumentParser()
-parser.add_argument("--login", help="ArangoDB login")
-parser.add_argument("--password", help="ArangoDB password")
-parser.add_argument("--arangourl", help="ArangoDB URL", default="http://127.0.0.1:8529")
+parser.add_argument("--login", help="ArangoDB login", default=os.getenv("ARANGO_USER"))
+parser.add_argument("--password", help="ArangoDB password", default=os.getenv("ARANGO_PASS"))
+parser.add_argument("--arangourl", help="ArangoDB URL", default=os.getenv("ARANGO_URL"))
+
 args = parser.parse_args()
 
 
-def get_last_modified_file() -> Dict:
+def get_files_list() -> List[str]:
     """
     Go to stix2_reports dir,
     Find last added file,
     Get list of objects from this file
     """
-    PATH = "./stix2_reports"
-    files = os.listdir(PATH)
-    if not files:
-        raise FileExistsError
-    files = [file for file in [os.path.join(PATH, file) for file in files] if os.path.isfile(file)]
-
-    file = max(files, key=os.path.getctime)
-    logger.info(f"Start to process file: {file}")
-    with open(file) as file:
-        return json.load(file).get('objects')
+    PATH = "./stix2_objects" if os.path.exists("stix2_objects") else None
+    if not PATH:
+        raise FileExistsError()
+    files_list = list()
+    for root, dirs, files in os.walk(PATH):
+        files = [os.path.join(root, file) for file in files]
+        if files:
+            files_list.append(max(files, key=os.path.getctime))
+    return files_list
 
 
 class ArangoConverter:
@@ -47,7 +49,7 @@ class ArangoConverter:
                  user: str = args.login,
                  password: str = args.password,
                  arango_url: str = args.arangourl):
-        self.objects = get_last_modified_file()
+        self.files = get_files_list()
         self.arango_user = user
         self.arango_pass = password
         self.arangoURL = arango_url
@@ -92,17 +94,25 @@ class ArangoConverter:
         self.check_collections(db)
         return db
 
-    def create_update_key(self, input_dict: Dict, collection: Union[Edges, Collection]):
+    def get_arango_model(self) -> None:
         """
-        Try to update element from input dict.
+        Add _key to stix objects
+        """
+        for file in self.files:
+            with open(file) as stix:
+                stix_object = json.load(stix)
+                stix_object.update({"_key": f"{stix_object.get('id')}"})
+                self.validate_json(stix_object=stix_object)
+
+    @staticmethod
+    def create_update_key(input_dict: Dict, collection: Union[Edges, Collection]):
+        """
+        Try to get element from collection.
         If _key not found - create new Edge/Document"""
         try:
-            doc = collection[input_dict.get('_key')]
+            doc = collection[input_dict.get("_key")]
             for k, v in input_dict.items():
-                if k not in self.skip_fields:
-                    doc[k] = v
-            if Additional.MOD.value not in input_dict:
-                doc[Additional.MOD.value] = datetime.now()
+                doc[k] = v
             doc.save()
         except:
             collection.createEdge(input_dict).save() if collection == ArangoCollections.EDGE \
@@ -111,13 +121,18 @@ class ArangoConverter:
     def save_to_arango(self, collection: ArangoCollections, input_dict: Dict) -> None:
         """
         Connect to collection,
-        Adding _key field if it not exist,
+        Check, do we need to add a relationship or it alreadt exist
         Save element
         """
         db = self.get_arango_database()
-        collection = db[collection.value]
-        input_dict.update({'_key': input_dict.get('id')}) if not input_dict.get('_key') else None
-        self.create_update_key(input_dict=input_dict, collection=collection)
+        collection_db = db[collection.value]
+        if collection == ArangoCollections.EDGE:
+            try:
+                collection_db[input_dict.get("_key")]
+            except:
+                self.create_update_key(input_dict=input_dict, collection=collection_db)
+        else:
+            self.create_update_key(input_dict=input_dict, collection=collection_db)
 
     def create_document_relation_model(self,
                                        collection: ArangoCollections,
@@ -129,7 +144,7 @@ class ArangoConverter:
         """
         to_collection = collection.value if Relationship.MANY.value not in relationships \
             else ArangoCollections.EDGE.value
-        if type(relationships) is not list:
+        if not isinstance(relationships, list):
             model = (EmbeddedRelations(_key=f"{stix_object.get('id')}+{relationships}",
                                        _from=f"{collection.value}/{stix_object.get('id')}",
                                        _to=f"{to_collection}/{relationships}",
@@ -157,30 +172,33 @@ class ArangoConverter:
         model.update(stix_object)
         self.save_to_arango(collection=ArangoCollections.EDGE, input_dict=model)
 
-    def validate_json(self) -> None:
+    @staticmethod
+    def is_ref(key: str):
+        return '_ref' in key[-5::]
+
+    def validate_json(self, stix_object: Dict) -> None:
         """
         Save full object if it's not relationship type,
         Create Edge format from relationship type,
         Validate Embedded relationships
         """
-        for stix_object in self.objects:
-            if stix_object.get('type') != Relationship.ONE.value:
-                self.save_to_arango(ArangoCollections.DOCUMENT, stix_object)
-                for k, v in stix_object.items():
-                    if '_ref' in k[-5::]:
-                        self.create_document_relation_model(collection=ArangoCollections.DOCUMENT,
-                                                            stix_object=stix_object,
-                                                            parameter=k,
-                                                            relationships=v)
+        if stix_object.get('type') != Relationship.ONE.value:
+            self.save_to_arango(ArangoCollections.DOCUMENT, stix_object)
+            for k, v in stix_object.items():
+                if self.is_ref(key=k):
+                    self.create_document_relation_model(collection=ArangoCollections.DOCUMENT,
+                                                        stix_object=stix_object,
+                                                        parameter=k,
+                                                        relationships=v)
 
-            else:
-                self.create_relation_model(collection=ArangoCollections.DOCUMENT,
-                                           stix_object=stix_object)
+        else:
+            self.create_relation_model(collection=ArangoCollections.DOCUMENT,
+                                       stix_object=stix_object)
 
 
 def main():
     converter = ArangoConverter()
-    converter.validate_json()
+    converter.get_arango_model()
     logger.info(f"Database successfully updated!")
 
 
