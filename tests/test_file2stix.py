@@ -88,7 +88,9 @@ def test_file2stix_cli(test_file_path, update_expected_reports):
             report["objects"], expected_report["objects"]
         ):
             assert sdo_object["type"] == expected_sdo_object["type"]
-            assert sdo_object["spec_version"] == expected_sdo_object["spec_version"]
+
+            if "spec_version" in expected_sdo_object:
+                assert sdo_object["spec_version"] == expected_sdo_object["spec_version"]
 
             if "name" in expected_sdo_object:
                 assert sdo_object["name"] == expected_sdo_object["name"]

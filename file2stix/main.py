@@ -160,7 +160,7 @@ def main(config: Config):
             stix_observable_object = extracted_stix_observable
 
             # Check if observable already present in `stix_store`
-            if config.tlp_level == "WHITE":
+            if config.tlp_level == "WHITE" and hasattr(extracted_stix_observable, "name"):
                 stix_observable_object = stix_store.get_object(
                     extracted_stix_observable.name,
                     Observable.object_marking_ref_map[config.tlp_level].id,
