@@ -68,3 +68,29 @@ file2stix stores newly created json files (representing STIX 2.1 Objects) create
 file2stix only ever creates one version of an Object (with unique `id`), therefore no only one version of an Object will ever exist in the `stix_objects` and `stix_relationships` ArangoDB Collections.
 
 ## MongoDB (`mongodb`)
+
+This backend is built to support the MongoDB community server.
+
+To do this user should supply a config file named `mongodb.yml` with the following structure
+
+```yml
+host: # optional, default if blank: 'http://127.0.0.1:27017'
+username: # optional, default if blank: ''
+password: # optional, default if blank: ''
+```
+
+The `username` supplied must have permissions in MongoDB to create new Databases and Collections.
+
+An example can be seen in `/tests/backends/mongodb.yml`.
+
+By passing the `--backend` flag, the backend will be invoked. For example;
+
+```shell
+file2stix --input-file tests/file_inputs/txt/input.txt --backend tests/backends/mongodb.yml
+```
+
+The initialisation script `/backends/arangodb/arangodb.py` checks for the following in the ArangoDB instance;
+
+* 1x Database named `file2stix`
+* 1x Document Collection in the `file2stix` Database named `stix_objects`
+* 1x Edge Collection in the `file2stix` Database named `stix_relationships`
