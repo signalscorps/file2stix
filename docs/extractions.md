@@ -217,13 +217,86 @@ All individual data sources ingested or uploaded are represented as a unique [ST
     }
 ```
 
-Note, the `object_refs` contains all references that are referenced by objects in the report. This includes extracted objects (i.e. Indicator SDOs, Vulnerability SDOs, Software SCOs, etc.), but also meta Objects (i.e. Identity SCOs, Extension Definitions, Marking Definitions, etc.)
+Note, the `object_refs` contains all references that are referenced by objects in the report. This includes extracted objects (i.e. Indicator SDOs, Vulnerability SDOs, Software SCOs, Relationship SROs etc.), but also meta Objects (i.e. Identity SCOs, Extension Definitions, Marking Definitions, etc.)
 
 ## Extracted Objects
+
+### General Properties
 
 For Reports marked TLP White, STIX 2.1 Objects representing extracted values do not contain `created`, `modified` or `created_by_ref` properties.
 
 For Reports marked TLP Green, Amber or Red STIX 2.1 Objects representing extracted values contain `created`, `modified` and `created_by_ref` properties that matches that of the report Object.
+
+## Warning Lists
+
+Warning Lists identify potentially benign file2stix extractions.
+
+file2stix used MISP Warning Lists (using [PyMISPWarningLists](https://github.com/MISP/PyMISPWarningLists)) to identify potential extractions that should be whitelisted using a custom Extension definition.
+
+```json
+{
+    "type": "extension-definition",
+    "spec_version": "2.1",
+    "id": "extension-definition--c8ea5ecb-f4a3-45e7-94de-9b9ba05161af",
+    "created_by_ref": "identity--<FILE2STIX ID>",
+    "created": "2022-01-01T00:00:00.000Z",
+    "modified": "2022-01-01T00:00:00.000Z",
+    "name": "MISP Warning Lists",
+    "description": "This schema adds MISP Warning List matches to extracted Objects",
+    "schema": "https://github.com/MISP/misp-warninglists",
+    "version": "1.0",
+    "extension_types": [
+        "property-extension"
+    ]
+}
+```
+
+Extracted values that match a Warning List are still converted to STIX 2.1 Objects, however, will contain the custom property listing the Warning Lists the extracted value matches with.
+
+For example;
+
+```json
+        {
+            "type": "indicator",
+            "spec_version": "2.1",
+            "id": "indicator--fb715301-acf3-4add-a70a-2b96f5ac15f5",
+            "created": "2022-09-07T06:18:21.997149Z",
+            "modified": "2022-09-08T06:13:24.191194Z",
+            "name": "Domain: google.com",
+            "indicator_types": [
+                "unknown"
+            ],
+            "pattern": "[ domain-name:value = 'google.com' ]",
+            "pattern_type": "stix",
+            "pattern_version": "2.1",
+            "valid_from": "2022-09-07T06:18:21.997149Z",
+            "object_marking_refs": [
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
+            ],
+            "extensions": {
+                "extension-definition--c8ea5ecb-f4a3-45e7-94de-9b9ba05161af": {
+                    "extension_type": "property-extension",
+                    "warning_list_match": [
+                        "Top 20 000 websites from Cisco Umbrella",
+                        "Top 1000 website from Alexa",
+                        "List of known google domains",
+                        "Top 10 000 websites from Cisco Umbrella",
+                        "Top 1000 websites from Cisco Umbrella",
+                        "Top 10K most-used sites from Tranco",
+                        "Top 5000 websites from Cisco Umbrella",
+                        "Top 1,000,000 most-used sites from Tranco",
+                        "Top 10K websites from Majestic Million"
+                    ]
+                }
+            }
+        },
+```
+
+### Custom Warning Lists
+
+You can also create your own Warning Lists. Custom Warning Lists must follow the [MISP Warning List schema](https://github.com/MISP/misp-warninglists/blob/main/schema.json).
+
+An example of a custom warning list can be seen in `tests/file_inputs/custom_warning_lists/list.json`
 
 ### 1.1 IPv4 Address Observables without port (`indicator`)
 
@@ -976,7 +1049,10 @@ As STIX 2.1 does not natively have an extension for cryptocurrency, file2stix us
   "created_by_ref": "identity--<FILE2STIX IDENTITY>",
   "schema": "https://github.com/signalscorps/file2stix",
   "version": "1.0",
-  "extension_types": [ "new-sco" ]
+  "extension_types": [ "new-sco" ],
+  "object_marking_refs": [
+    "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
+  ]
 }
 ```
 
@@ -1138,7 +1214,10 @@ As STIX 2.1 does not natively have an extension for credit cards, file2stix uses
   "created_by_ref": "identity--<FILE2STIX IDENTITY>",
   "schema": "https://github.com/signalscorps/file2stix",
   "version": "1.0",
-  "extension_types": [ "new-sco" ]
+  "extension_types": [ "new-sco" ],
+  "object_marking_refs": [
+    "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
+  ]
 }
 ```
 
@@ -1199,7 +1278,7 @@ Here is how IBAN number observables are represented in STIX 2.1 by file2stix;
 
 #### STIX 2.1 extension-definition
 
-As STIX 2.1 does not natively have an extension for IBANscredit cards, file2stix uses a custom SCO;
+As STIX 2.1 does not natively have an extension for IBANs, file2stix uses a custom SCO;
 
 ```json
 {
@@ -1213,7 +1292,10 @@ As STIX 2.1 does not natively have an extension for IBANscredit cards, file2stix
   "created_by_ref": "identity--<FILE2STIX IDENTITY>",
   "schema": "https://github.com/signalscorps/file2stix",
   "version": "1.0",
-  "extension_types": [ "new-sco" ]
+  "extension_types": [ "new-sco" ],
+  "object_marking_refs": [
+    "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
+  ]
 }
 ```
 
