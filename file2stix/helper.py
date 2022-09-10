@@ -117,7 +117,7 @@ def check_false_positive_domain(domain):
         "pf",
     ]
 
-    file_name, file_extension = domain.split(".")
+    file_extension = domain.split(".")[-1]
 
     if file_extension in known_file_extensions:
         return False

@@ -65,7 +65,8 @@ class Observable:
             return word
         else:
             dot = r"\[\.\]|{\.}|\(\.\)|\[\.|\\\.|\[dot\]|\(dot\)|\{dot\}"
-            return re.sub(dot, ".", word)
+            word = re.sub(dot, ".", word)
+            return word
 
     @classmethod
     def extract_observables_from_text(cls, text: str, config: Config):
