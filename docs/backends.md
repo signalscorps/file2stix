@@ -140,7 +140,7 @@ Note, `<FULL STIX RELATIONSHIP OBJECT PAYLOAD>` refers to the json key/values of
 
 ### `*_ref` and `*_refs` properties
 
-All `*_ref` and `*_refs` properties are converted to custom relationship objects (not STIX Objects) and stored in the `stix_relationships` Edge Collection
+All `*_ref` and `*_refs` properties are converted to custom relationship objects (not STIX Objects) and stored in the Edge Collection as follows;
 
 ```json
 {
@@ -198,4 +198,43 @@ If these exist, then they script will start writing data. If they do not exist, 
 
 file2stix stores newly created json files (representing STIX 2.1 Objects) created on each script run (in `stix2_objects/`) in the `stix_objects` Collection.
 
-file2stix only ever creates one version of an Object (with unique `id`), therefore no only one version of an Object will ever exist in the `stix_objects` and `stix_relationships` ArangoDB Collections.
+file2stix only ever creates one version of an Object (with unique `id`), therefore only one version of an Object will ever exist in a MongoDB Collection.
+
+Here is how the STIX 2.1 Objects are stored in MongoDB;
+
+### STIX 2.1 Objects
+
+All STIX 2.1 Objects types are stored in the Document Collection like so;
+
+```json
+{
+	"_id": "<STIX OBJECT ID>",
+	"<FULL STIX OBJECT PAYLOAD>"
+}
+```
+
+For example;
+
+```json
+{
+	"_id": "indicator--0eaa7158-bd7d-492f-b7c3-cb47f4ed85ab",
+	"type": "indicator",
+	"spec_version": "2.1",
+	"id": "indicator--0eaa7158-bd7d-492f-b7c3-cb47f4ed85ab",
+	"created": "2022-09-07T06:11:36.285448Z",
+	"modified": "2022-09-07T09:27:21.741076Z",
+	"name": "ipv4: 198.0.103.12:8000",
+	"indicator_types": [
+		"unknown"
+	],
+	"pattern": "[ ipv4-addr:value = '198.0.103.12' AND network-traffic:dst_port = '8000' ]",
+	"pattern_type": "stix",
+	"pattern_version": "2.1",
+	"valid_from": "2022-09-07T06:11:36.285448Z",
+	"object_marking_refs": [
+		"marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
+	]
+}
+```
+
+## Elasticsearch (`elasticsearch`)
