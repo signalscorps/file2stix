@@ -238,3 +238,13 @@ For example;
 ```
 
 ## Elasticsearch (`elasticsearch`)
+
+TODO
+
+## neo4j (`neo4j`)
+
+TODO
+
+## TypeDB (`typedb`)
+
+TODO
