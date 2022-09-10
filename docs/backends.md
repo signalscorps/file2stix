@@ -58,8 +58,8 @@ file2stix --input-file tests/file_inputs/txt/input.txt --backend tests/backends/
 The initialisation script `/backends/arangodb/arangodb.py` checks for the following in the ArangoDB instance;
 
 * 1x Database (name defined in backend config file, default is `file2stix`)
-* 1x Document Collection in the `file2stix` Database (name defined in backend config file, default is `stix_objects`)
-* 1x Edge Collection in the `file2stix` Database (name defined in backend config file, default is `stix_relationships`)
+* 1x Document Collection in the Database (name defined in backend config file, default is `stix_objects`)
+* 1x Edge Collection in the Database (name defined in backend config file, default is `stix_relationships`)
 
 If these exist, then they script will start writing data. If they do not exist, the script will create them and then start writing data.
 
@@ -138,10 +138,31 @@ Note, `<FULL STIX RELATIONSHIP OBJECT PAYLOAD>` refers to the json key/values of
 }
 ```
 
-### 
-* All `*_ref` and `*_refs` properties are converted to custom relationship objects (not STIX Objects) and stored in the `stix_relationships` Edge Collection
+### `*_ref` and `*_refs` properties
 
+All `*_ref` and `*_refs` properties are converted to custom relationship objects (not STIX Objects) and stored in the `stix_relationships` Edge Collection
 
+```json
+{
+	"_key": "<OBJECT WITH REF PROPERTY>+<OBJECT BEING REFERENCED>",
+	"_from": "stix_objects/<OBJECT WITH REF PROPERTY>",
+	"_to": "stix_objects/<OBJECT BEING REFERENCED>",
+	"type": "embedded-relationship",
+	"relationship_description": "<PROPERTY NAME>"
+}
+```
+
+For example;
+
+```json
+{
+	"_key": "report--b5d4d317-510f-4413-8d88-388e46cfa18b+indicator--945df870-12cd-4e28-a90a-46fb6918278c",
+	"_from": "stix_objects/report--84e4d88f-44ea-4bcd-bbf3-b2c1c320bcb3",
+	"_to": "stix_objects/indicator--26ffb872-1dd9-446e-b6f5-d58527e5b5d2",
+	"type": "embedded-relationship",
+	"relationship_description": "object_refs"
+}
+```
 
 ## MongoDB (`mongodb`)
 
@@ -154,6 +175,8 @@ backend: mongodb # specifies config is for mongodb backend
 host: # optional, default if blank: 'http://127.0.0.1:27017'
 username: # optional, default if blank: ''
 password: # optional, default if blank: ''
+database_name: # optional, default if blank: 'file2stix'
+collection_name: # optional, default if blank: 'stix_objects'
 ```
 
 The `username` supplied must have permissions in MongoDB to create new Databases and Collections.
@@ -168,8 +191,8 @@ file2stix --input-file tests/file_inputs/txt/input.txt --backend tests/backends/
 
 The initialisation script `/backends/arangodb/arangodb.py` checks for the following in the ArangoDB instance;
 
-* 1x Database named `file2stix`
-* 1x Collection in the `file2stix` Database named `stix_objects`
+* 1x Database (name defined in backend config file, default is `file2stix`)
+* 1x Collection in the Database (name defined in backend config file, default is `stix_objects`)
 
 If these exist, then they script will start writing data. If they do not exist, the script will create them and then start writing data.
 

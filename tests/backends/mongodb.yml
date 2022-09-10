@@ -2,3 +2,5 @@ backend: mongodb
 host: http://127.0.0.1:27017
 username: 
 password: 
+database_name: file2stix
+collection_name: stix_objects
