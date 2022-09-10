@@ -64,8 +64,25 @@ class Observable:
         if cls.defangable == False:
             return word
         else:
+            http = r"hxxp"
             dot = r"\[\.\]|{\.}|\(\.\)|\[\.|\\\.|\[dot\]|\(dot\)|\{dot\}"
+            at    = r"\[\@\]|{\@}|\(\@\)|\[\@|\\\@|\[at\]|\(at\)|\{at\}"
+            slash = r"\[\/\]|{\/}|\(\/\)|\[\/|\\\/"
+            colon = r"\[\:\]|{\:}|\(\:\)|\[\:|\\\:"
+            open_bracket = r"\[|\{|\("
+            close_bracket = r"\]|\}|\)"
+
+            word = re.sub(http, "http", word)
             word = re.sub(dot, ".", word)
+            word = re.sub(at, "@", word)
+            word = re.sub(slash, "/", word)
+            word = re.sub(colon, ":", word)
+
+            # General strategy, might cause unexpected results,
+            # but will keep them for now
+            word = re.sub(open_bracket, "", word)
+            word = re.sub(close_bracket, "", word)
+
             return word
 
     @classmethod
