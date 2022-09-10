@@ -41,6 +41,14 @@ username: # optional, default if blank: root
 password: # optional, default if blank: ''
 ```
 
+An example can be seen in `/tests/backends/arangodb.yml`.
+
+By passing the `--backend` flag, the backend will be invoked. For example;
+
+```shell
+file2stix --input-file tests/file_inputs/txt/input.txt --backend tests/backends/arangodb.yml
+```
+
 The intialization script `/backends/arangodb/arangodb.py` configures the following in the ArangoDB instance;
 
 * 1x Database named `file2stix`
@@ -53,4 +61,4 @@ file2stix stores json files created on each script run (in `stix2_objects/`) in 
 * All other STIX 2.1 Objects types are stored in `stix_objects` Document Collection.
 * All `*_ref` and `*_refs` properties are converted to custom relationship objects (not STIX Objects) and stored in the `stix_relationships` Edge Collection
 
-[This implementation is described in more detail here](https://www.signalscorps.com/blog/2021/storing-stix-2_1-objects-database/).s
+file2stix only ever creates one version of an Object (with unique `id`), therefore no only one version of an Object will ever exist in the `stix_objects` and `stix_relationships` ArangoDB Collections.
