@@ -297,41 +297,42 @@ Warning message: no observables extracted
 
 ```
 file2stix --input-file tests/file_inputs/txt/input.txt --ignore-observable-prefix \
-  IPv4Observable,IPv4WithPortObservable,\
-  IPv6Observable,IPv6WithPortObservable,\
-  FileNameObservable,FileHashMD5Observable,\
-  FileHashSHA1Observable,\
-  FileHashSHA256Observable,\
-  FileHashSHA512Observable,\
-  FileHashSsDeepObservable,\
-  DirectoryPathObservable,\
-  DomainNameObservable,\
-  UrlObservable,\
-  EmailAddressObservable,\
-  MacAddressObservable,\
-  WindowsRegistryKeyObservable,\
-  UserAgentObservable,\
-  AutonomousSystemNumberObservable,\
-  CryptocurrencyBTCObservable,\
-  CryptocurrencyETHObservable,\
-  CryptocurrencyXMRObservable,\
-  CountryNameObservable,\
-  CountryCodeAlpha2Observable,\
-  CountryCodeAlpha3Observable,\
-  MastercardCreditCardObservable,\
-  VisaCreditCardObservable,\
-  AmexCreditCardObservable,\
-  UnionPayCreditCardObservable,\
-  DinersCreditCardObservable,\
-  JCBCreditCardObservable,\
-  IBANCodeObservable,\
-  YaraRuleObservable,\
-  CPEObservable,\
-  MITREEnterpriseAttackObservable,\
-  MITREMobileAttackObservable,\
-  MITREICSAttackObservable,\
-  MITRECapecObservable,\
-  CustomObservable
+IPv4Observable,IPv4WithPortObservable,\
+IPv6Observable,IPv6WithPortObservable,\
+FileNameObservable,FileHashMD5Observable,\
+FileHashSHA1Observable,\
+FileHashSHA256Observable,\
+FileHashSHA512Observable,\
+FileHashSsDeepObservable,\
+DirectoryPathObservable,\
+DomainNameObservable,\
+UrlObservable,\
+EmailAddressObservable,\
+MacAddressObservable,\
+WindowsRegistryKeyObservable,\
+UserAgentObservable,\
+AutonomousSystemNumberObservable,\
+CryptocurrencyBTCObservable,\
+CryptocurrencyETHObservable,\
+CryptocurrencyXMRObservable,\
+CountryNameObservable,\
+CountryCodeAlpha2Observable,\
+CountryCodeAlpha3Observable,\
+MastercardCreditCardObservable,\
+VisaCreditCardObservable,\
+AmexCreditCardObservable,\
+UnionPayCreditCardObservable,\
+DinersCreditCardObservable,\
+JCBCreditCardObservable,\
+IBANCodeObservable,\
+YaraRuleObservable,\
+CPEObservable,\
+CVEObservable,\
+MITREEnterpriseAttackObservable,\
+MITREMobileAttackObservable,\
+MITREICSAttackObservable,\
+MITRECapecObservable,\
+CustomObservable
 ```
 
 
