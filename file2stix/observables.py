@@ -107,7 +107,7 @@ class Observable:
                         extracted_observables.append(cls(match.group(0), config))
 
                     # Check if word is defanged
-                    if cls.defangable:
+                    if config.refang_observables and cls.defangable:
                         refanged_word = cls.refang_word(word)
                         if word != refanged_word:
                             match = re.match(cls.extraction_regex, refanged_word)
@@ -135,7 +135,7 @@ class Observable:
                     pass
 
                 # Check if word is defanged
-                if cls.defangable:
+                if config.refang_observables and cls.defangable:
                     refanged_word = cls.refang_word(word)
                     if word != refanged_word:
                         try:

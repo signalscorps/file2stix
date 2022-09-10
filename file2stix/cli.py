@@ -43,8 +43,8 @@ def cli():
     arg_parser.add_argument(
         "--update-mitre-cti-database",
         action="store_true",
-        help="update MITRE ATT&CK and CAPEC database",
         default=Config.update_mitre_cti_database,
+        help="update MITRE ATT&CK and CAPEC database",
     )
 
     arg_parser.add_argument(
@@ -78,6 +78,13 @@ def cli():
         "--misp-custom-warning-list-file",
         action="store",
         help="path to MISP custom warning list file",
+    )
+
+    arg_parser.add_argument(
+        "--refang-observables",
+        action="store_true",
+        default=Config.refang_observables,
+        help="refang 'defanged' observables in input file",
     )
 
     args = arg_parser.parse_args()
@@ -117,6 +124,7 @@ def cli():
         user_identity_file=args.user_identity_file,
         ignore_observables_list=ignore_observables_list,
         misp_custom_warning_list_file=args.misp_custom_warning_list_file,
+        refang_observables=args.refang_observables
     )
 
     # Call main
