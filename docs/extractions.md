@@ -217,6 +217,8 @@ All individual data sources ingested or uploaded are represented as a unique [ST
     }
 ```
 
+Note, the `object_refs` contains all references that are referenced by objects in the report. This includes extracted objects (i.e. Indicator SDOs, Vulnerability SDOs, Software SCOs, etc.), but also meta Objects (i.e. Identity SCOs, Extension Definitions, Marking Definitions, etc.)
+
 ## Extracted Objects
 
 For Reports marked TLP White, STIX 2.1 Objects representing extracted values do not contain `created`, `modified` or `created_by_ref` properties.
