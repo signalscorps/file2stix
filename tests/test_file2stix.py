@@ -52,6 +52,7 @@ def test_file2stix_cli(test_file_path, update_expected_reports):
     expected_report_path = "tests/expected_reports/" + test_file_name + ".json"
     output_json_file_path = None
     update_mitre_cti_database = False
+    refang_observables = False
     ignore_observables_list = [
         MITREEnterpriseAttackObservable, 
         MITRECapecObservable, 
@@ -67,12 +68,15 @@ def test_file2stix_cli(test_file_path, update_expected_reports):
         update_mitre_cti_database = True
         ignore_observables_list = None
 
+    if "fanged" in test_file_path:
+        refang_observables = True
 
     config = Config(
         test_file_path,
         update_mitre_cti_database=update_mitre_cti_database,
         output_json_file_path=output_json_file_path,
-        ignore_observables_list=ignore_observables_list
+        ignore_observables_list=ignore_observables_list,
+        refang_observables=refang_observables,
     )
 
     report_path = file2stix.main.main(config)
