@@ -25,7 +25,7 @@ from stix2 import (
     ThreatActor,
     Tool,
     Software,
-    TLP_WHITE, TLP_AMBER, TLP_RED, TLP_GREEN
+    TLP_WHITE,
 )
 
 from file2stix.config import Config
@@ -41,23 +41,31 @@ class Observable:
     pattern = None  # Valid for indicators
     extraction_regex = None
     extraction_function = None
-    object_marking_ref_map = {
-        "WHITE": TLP_WHITE,
-        "GREEN": TLP_GREEN,
-        "AMBER": TLP_AMBER,
-        "RED": TLP_RED,
-    }
+    # This field can be set to true for only "word by word" pattern matches
+    defangable = False
 
-    def __init__(self, extracted_observable_text, config):
+    def __init__(self, extracted_observable_text, config, defanged=False):
         self.extracted_observable_text = extracted_observable_text
         self.tlp_level = config.tlp_level
         self.identity = config.identity
         self.misp_extension_definition = config.misp_extension_definition
         self.misp_custom_warning_list = config.misp_custom_warning_list
+        self.defanged = defanged
 
     @property
     def pretty_name(self):
         return self.name
+
+    @classmethod
+    def refang_word(cls, word):
+        """
+        If `word` is defanged, then refang it
+        """
+        if cls.defangable == False:
+            return word
+        else:
+            dot = r"\[\.\]|{\.}|\(\.\)|\[\.|\\\.|\[dot\]|\(dot\)|\{dot\}"
+            return re.sub(dot, ".", word)
 
     @classmethod
     def extract_observables_from_text(cls, text: str, config: Config):
@@ -65,6 +73,9 @@ class Observable:
 
         # If extraction_regex is not None, then find all matches to the regular expression
         if cls.extraction_regex != None:
+            # Word by word pattern match
+            # This means each word is taken from the input and the word is
+            # matched with the given regex
             if cls.extraction_regex.startswith("^") or cls.extraction_regex.endswith(
                 "$"
             ):
@@ -76,6 +87,18 @@ class Observable:
                     match = re.match(cls.extraction_regex, word)
                     if match:
                         extracted_observables.append(cls(match.group(0), config))
+
+                    # Check if word is defanged
+                    if cls.defangable:
+                        refanged_word = cls.refang_word(word)
+                        if word != refanged_word:
+                            match = re.match(cls.extraction_regex, refanged_word)
+                            if match:
+                                extracted_observables.append(
+                                    cls(match.group(0), config, defanged=True)
+                                )
+            # Full text pattern match
+            # The full text is matched with the given regex
             else:
                 # Find regex in the entire text (including whitespace)
                 for match in re.finditer(cls.extraction_regex, text):
@@ -84,6 +107,8 @@ class Observable:
         # If extraction_function is not None, then find matches that don't throw exception when
         # `pattern` function runs
         elif cls.extraction_function != None:
+            # Word by word pattern match
+            # The extraction_function is run on each word in text
             for word in text.split():
                 try:
                     if cls.extraction_function(word):
@@ -91,6 +116,17 @@ class Observable:
                 except Exception as error:
                     pass
 
+                # Check if word is defanged
+                if cls.defangable:
+                    refanged_word = cls.refang_word(word)
+                    if word != refanged_word:
+                        try:
+                            if cls.extraction_function(refanged_word):
+                                extracted_observables.append(
+                                    cls(refanged_word, config, defanged=True)
+                                )
+                        except Exception as error:
+                            pass
         else:
             raise ValueError(
                 "Both extraction_regex and extraction_function can't be None."
@@ -103,7 +139,7 @@ class Observable:
         When this method is overriden, ensure that the below keywords are
         set in SDO objects:
 
-            object_marking_refs=Observable.object_marking_ref_map[self.tlp_level],
+            object_marking_refs=self.tlp_level,
             created_by_ref=self.identity
         """
 
@@ -132,7 +168,9 @@ class Observable:
 
             # Check if observable is in custom warning list
             if self.misp_custom_warning_list:
-                custom_misp_warning_list = WarningLists(slow_search=False, lists=[self.misp_custom_warning_list])
+                custom_misp_warning_list = WarningLists(
+                    slow_search=False, lists=[self.misp_custom_warning_list]
+                )
                 result = custom_misp_warning_list.search(self.extracted_observable_text)
 
                 if result:
@@ -145,9 +183,7 @@ class Observable:
                 "pattern_type": "stix",
                 "pattern": pattern,
                 "indicator_types": ["unknown"],
-                "object_marking_refs": Observable.object_marking_ref_map[
-                    self.tlp_level
-                ],
+                "object_marking_refs": self.tlp_level,
                 "created_by_ref": self.identity,
             }
 
@@ -175,6 +211,7 @@ class IPv4Observable(Observable):
     type = "indicator"
     pattern = "[ ipv4-addr:value = '{extracted_observable_text}' ]"
     extraction_function = lambda x: IPv4Interface(x)
+    defangable = True
 
 
 class IPv4WithPortObservable(Observable):
@@ -182,6 +219,7 @@ class IPv4WithPortObservable(Observable):
     type = "indicator"
     pattern = "[ ipv4-addr:value = '{extracted_ip_address}' AND network-traffic:dst_port = '{extracted_ip_port}' ]"
     extraction_function = lambda x: IPv4WithPortObservable.validate_ipv4_with_port(x)
+    defangable = True
 
     @property
     def pretty_name(self):
@@ -221,7 +259,7 @@ class IPv4WithPortObservable(Observable):
                 pattern_type="stix",
                 pattern=pattern,
                 indicator_types=["unknown"],
-                object_marking_refs=Observable.object_marking_ref_map[self.tlp_level],
+                object_marking_refs=self.tlp_level,
                 created_by_ref=self.identity,
             )
             return indicator
@@ -234,6 +272,7 @@ class IPv6Observable(Observable):
     type = "indicator"
     pattern = "[ ipv6-addr:value = '{extracted_observable_text}' ]"
     extraction_function = lambda x: IPv6Interface(x)
+    defangable = True
 
 
 class IPv6WithPortObservable(Observable):
@@ -241,6 +280,7 @@ class IPv6WithPortObservable(Observable):
     type = "indicator"
     pattern = "[ ipv6-addr:value = '{extracted_ip_address}' AND network-traffic:dst_port = '{extracted_ip_port}' ]"
     extraction_function = lambda x: IPv6WithPortObservable.validate_ipv6_with_port(x)
+    defangable = True
 
     @property
     def pretty_name(self):
@@ -280,7 +320,7 @@ class IPv6WithPortObservable(Observable):
                 pattern_type="stix",
                 pattern=pattern,
                 indicator_types=["unknown"],
-                object_marking_refs=Observable.object_marking_ref_map[self.tlp_level],
+                object_marking_refs=self.tlp_level,
                 created_by_ref=self.identity,
             )
             return indicator
@@ -361,6 +401,7 @@ class DomainNameObservable(Observable):
     extraction_function = lambda x: validators.domain(
         x
     ) and check_false_positive_domain(x)
+    defangable = True
 
 
 class UrlObservable(Observable):
@@ -368,6 +409,7 @@ class UrlObservable(Observable):
     type = "indicator"
     pattern = "[ url:value = '{extracted_observable_text}' ]"
     extraction_function = lambda x: validators.url(x)
+    defangable = True
 
 
 class EmailAddressObservable(Observable):
@@ -375,6 +417,7 @@ class EmailAddressObservable(Observable):
     type = "indicator"
     pattern = "[ email-addr:value = '{extracted_observable_text}' ]"
     extraction_function = lambda x: validators.email(x)
+    defangable = True
 
 
 class MacAddressObservable(Observable):
@@ -437,7 +480,7 @@ class AutonomousSystemNumberObservable(Observable):
                 pattern_type="stix",
                 pattern=pattern,
                 indicator_types=["unknown"],
-                object_marking_refs=Observable.object_marking_ref_map[self.tlp_level],
+                object_marking_refs=self.tlp_level,
                 created_by_ref=self.identity,
             )
             return indicator
@@ -478,7 +521,7 @@ class CVEObservable(Observable):
                 source_name="cve",
                 external_id=self.extracted_observable_text,
             ),
-            object_marking_refs=Observable.object_marking_ref_map[self.tlp_level],
+            object_marking_refs=self.tlp_level,
             created_by_ref=self.identity,
         )
         return vulnerability
@@ -502,7 +545,7 @@ class CountryNameObservable(Observable):
         location = Location(
             name=f"Country: {self.extracted_observable_text}",
             country=country_iso,
-            object_marking_refs=Observable.object_marking_ref_map[self.tlp_level],
+            object_marking_refs=self.tlp_level,
             created_by_ref=self.identity,
         )
         return location
@@ -529,7 +572,7 @@ class CountryCodeAlpha2Observable(Observable):
         location = Location(
             name=f"Country: {country_name}",
             country=extracted_observable_text,
-            object_marking_refs=Observable.object_marking_ref_map[self.tlp_level],
+            object_marking_refs=self.tlp_level,
             created_by_ref=self.identity,
         )
         return location
@@ -559,7 +602,7 @@ class CountryCodeAlpha3Observable(Observable):
         location = Location(
             name=f"Country: {country_name}",
             country=country_iso,
-            object_marking_refs=Observable.object_marking_ref_map[self.tlp_level],
+            object_marking_refs=self.tlp_level,
             created_by_ref=self.identity,
         )
         return location
@@ -641,7 +684,7 @@ class YaraRuleObservable(Observable):
                 pattern_type="yara",
                 pattern=pattern,
                 indicator_types=["unknown"],
-                object_marking_refs=Observable.object_marking_ref_map[self.tlp_level],
+                object_marking_refs=self.tlp_level,
                 created_by_ref=self.identity,
             )
             return indicator
@@ -666,7 +709,7 @@ class CPEObservable(Observable):
             cpe=self.extracted_observable_text,
             version=cpe_version,
             vendor=cpe_vendor,
-            object_marking_refs=Observable.object_marking_ref_map[self.tlp_level],
+            object_marking_refs=self.tlp_level,
             # created_by_ref=self.identity,
         )
 
@@ -788,37 +831,37 @@ class CustomObservable(Observable):
 
     @staticmethod
     def get_stix2_object_custom(
-        pattern, sdo_object_type, tlp_level="WHITE", identity=None
+        pattern, sdo_object_type, tlp_level=TLP_WHITE, identity=None
     ):
         if sdo_object_type == "attack-pattern":
             return AttackPattern(
                 name=pattern,
-                object_marking_refs=Observable.object_marking_ref_map[tlp_level],
+                object_marking_refs=tlp_level,
                 created_by_ref=identity,
             )
         elif sdo_object_type == "campaign":
             return Campaign(
                 name=pattern,
-                object_marking_refs=Observable.object_marking_ref_map[tlp_level],
+                object_marking_refs=tlp_level,
                 created_by_ref=identity,
             )
         elif sdo_object_type == "course-of-action":
             return CourseOfAction(
                 name=pattern,
-                object_marking_refs=Observable.object_marking_ref_map[tlp_level],
+                object_marking_refs=tlp_level,
                 created_by_ref=identity,
             )
         elif sdo_object_type == "infrastructure":
             return Infrastructure(
                 name=pattern,
                 infrastructure_types="undefined",
-                object_marking_refs=Observable.object_marking_ref_map[tlp_level],
+                object_marking_refs=tlp_level,
                 created_by_ref=identity,
             )
         elif sdo_object_type == "intrustion-set":
             return IntrusionSet(
                 name=pattern,
-                object_marking_refs=Observable.object_marking_ref_map[tlp_level],
+                object_marking_refs=tlp_level,
                 created_by_ref=identity,
             )
         elif sdo_object_type == "malware":
@@ -826,20 +869,20 @@ class CustomObservable(Observable):
                 name=pattern,
                 malware_types="unknown",
                 is_family=False,
-                object_marking_refs=Observable.object_marking_ref_map[tlp_level],
+                object_marking_refs=tlp_level,
                 created_by_ref=identity,
             )
         elif sdo_object_type == "threat-actor":
             return ThreatActor(
                 name=pattern,
                 threat_actor_types="unknown",
-                object_marking_refs=Observable.object_marking_ref_map[tlp_level],
+                object_marking_refs=tlp_level,
                 created_by_ref=identity,
             )
         elif sdo_object_type == "tool":
             return Tool(
                 name=pattern,
-                object_marking_refs=Observable.object_marking_ref_map[tlp_level],
+                object_marking_refs=tlp_level,
                 created_by_ref=identity,
             )
         else:

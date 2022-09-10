@@ -3,6 +3,7 @@ Parse CLI arguments and pass to file2stix_cli.main
 """
 import argparse
 import os
+from stix2 import TLP_WHITE, TLP_AMBER, TLP_GREEN, TLP_RED
 
 import file2stix
 from file2stix.config import Config
@@ -43,7 +44,7 @@ def cli():
         "--update-mitre-cti-database",
         action="store_true",
         help="update MITRE ATT&CK and CAPEC database",
-        default=Config.update_mitre_cti_database
+        default=Config.update_mitre_cti_database,
     )
 
     arg_parser.add_argument(
@@ -56,7 +57,7 @@ def cli():
         "--tlp-level",
         action="store",
         choices=["WHITE", "GREEN", "AMBER", "RED"],
-        default=Config.tlp_level,
+        default="WHITE",
         help="choose TLP level of report (default: %(default)s)",
     )
 
@@ -80,23 +81,39 @@ def cli():
     )
 
     args = arg_parser.parse_args()
-    
-    input_file_path = os.path.abspath(args.input_file) if args.input_file != None else None
 
-    output_json_file_path = os.path.abspath(args.output_json_file) if args.output_json_file != None else None
+    input_file_path = (
+        os.path.abspath(args.input_file) if args.input_file != None else None
+    )
+
+    output_json_file_path = (
+        os.path.abspath(args.output_json_file)
+        if args.output_json_file != None
+        else None
+    )
 
     ignore_observables_list = None
     if args.ignore_observable_prefix != None:
-        ignore_observables_list = get_observable_class_from_name(args.ignore_observable_prefix.split(","))
+        ignore_observables_list = get_observable_class_from_name(
+            args.ignore_observable_prefix.split(",")
+        )
+
+    tlp_level_map = {
+        "WHITE": TLP_WHITE,
+        "GREEN": TLP_GREEN,
+        "AMBER": TLP_AMBER,
+        "RED": TLP_RED,
+    }
+    tlp_level = tlp_level_map[args.tlp_level]
 
     # Build config object
     config = Config(
-        input_file_path = input_file_path,
-        output_json_file_path = output_json_file_path,
-        cache_folder = os.path.abspath(args.cache_folder),
-        update_mitre_cti_database = args.update_mitre_cti_database,
+        input_file_path=input_file_path,
+        output_json_file_path=output_json_file_path,
+        cache_folder=os.path.abspath(args.cache_folder),
+        update_mitre_cti_database=args.update_mitre_cti_database,
         custom_extraction_file=args.custom_extraction_file,
-        tlp_level=args.tlp_level,
+        tlp_level=tlp_level,
         user_identity_file=args.user_identity_file,
         ignore_observables_list=ignore_observables_list,
         misp_custom_warning_list_file=args.misp_custom_warning_list_file,
@@ -104,6 +121,7 @@ def cli():
 
     # Call main
     main(config)
+
 
 if __name__ == "__main__":
     cli()

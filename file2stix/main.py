@@ -13,7 +13,7 @@ import yaml
 from bs4 import BeautifulSoup
 from datetime import datetime
 from pathlib import Path
-from stix2 import Report, Relationship, Identity, ExtensionDefinition
+from stix2 import Report, Relationship, Identity, ExtensionDefinition, TLP_WHITE
 from pymispwarninglists.api import WarningList
 
 from file2stix import __appname__
@@ -77,7 +77,7 @@ def main(config: Config):
     cache = Cache(config.cache_folder)
 
     # Set user identity
-    if config.tlp_level != "WHITE":
+    if config.tlp_level != TLP_WHITE:
         try:
             with open(config.user_identity_file) as f:
                 identity_config = yaml.safe_load(f)
@@ -160,10 +160,10 @@ def main(config: Config):
             stix_observable_object = extracted_stix_observable
 
             # Check if observable already present in `stix_store`
-            if config.tlp_level == "WHITE" and hasattr(extracted_stix_observable, "name"):
+            if config.tlp_level == TLP_WHITE and hasattr(extracted_stix_observable, "name"):
                 stix_observable_object = stix_store.get_object(
                     extracted_stix_observable.name,
-                    Observable.object_marking_ref_map[config.tlp_level].id,
+                    config.tlp_level.id,
                 )
 
                 # Don't create a new version for CPE Observable
@@ -222,7 +222,7 @@ def main(config: Config):
         object_refs=object_refs,
         created_by_ref=config.identity,
         allow_custom=True,
-        object_marking_refs=Observable.object_marking_ref_map[config.tlp_level],
+        object_marking_refs=config.tlp_level,
     )
 
     # Create Relationship SROs
@@ -233,7 +233,7 @@ def main(config: Config):
             source_ref=report.id,
             target_ref=stix_observable.id,
             created_by_ref=config.identity,
-            object_marking_refs=Observable.object_marking_ref_map[config.tlp_level],
+            object_marking_refs=config.tlp_level,
         )
         relationship_sros.append(relationship_sro)
 
@@ -244,7 +244,7 @@ def main(config: Config):
             target_ref=stix_observable["id"],
             created_by_ref=config.identity,
             allow_custom=True,
-            object_marking_refs=Observable.object_marking_ref_map[config.tlp_level],
+            object_marking_refs=config.tlp_level,
         )
         relationship_sros.append(relationship_sro)
 
@@ -254,7 +254,7 @@ def main(config: Config):
             source_ref=report.id,
             target_ref=stix_observable.id,
             created_by_ref=config.identity,
-            object_marking_refs=Observable.object_marking_ref_map[config.tlp_level],
+            object_marking_refs=config.tlp_level,
         )
         relationship_sros.append(relationship_sro)
 
@@ -264,7 +264,7 @@ def main(config: Config):
 
     # Group all stix objects and store in STIX filestore and bundle
     stix_objects += (
-        [Observable.object_marking_ref_map[config.tlp_level]]
+        [config.tlp_level]
         + list(observables_list.stix_observables.values())
         + list(observables_list.dict_stix_observables.values())
         + list(observables_list.custom_stix_observables.values())

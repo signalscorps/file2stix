@@ -2,7 +2,7 @@
 Stores the config of file2stix-cli tool
 """
 from dataclasses import dataclass
-from stix2 import Identity, ExtensionDefinition
+from stix2 import Identity, ExtensionDefinition, MarkingDefinition, TLP_WHITE
 from typing import List
 from pathlib import Path
 import os
@@ -17,7 +17,7 @@ class Config:
     custom_extraction_file: str = None
     cache_folder: str = "file2stix-cache"
 
-    tlp_level: str = "WHITE"
+    tlp_level: MarkingDefinition = TLP_WHITE
     user_identity_file: str = "stix_templates/identity.yml"
     identity: Identity = None
 
