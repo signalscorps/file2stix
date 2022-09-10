@@ -33,9 +33,10 @@ This backend is always used as the json files saved are used to populate other b
 
 This backend is built to support the ArangoDB community version.
 
-To do this user should supply a config file named `arangodb.yml` with the following structure
+To do this user should supply a backend config file with the following structure;
 
 ```yml
+backend: arangodb # specifies config is for arangodb backend
 host: # optional, default if blank: 'http://127.0.0.1:8529'
 username: # optional, default if blank: root
 password: # optional, default if blank: ''
@@ -71,9 +72,10 @@ file2stix only ever creates one version of an Object (with unique `id`), therefo
 
 This backend is built to support the MongoDB community server.
 
-To do this user should supply a config file named `mongodb.yml` with the following structure
+To do this user should supply a backend config file with the following structure;
 
 ```yml
+backend: mongodb # specifies config is for mongodb backend
 host: # optional, default if blank: 'http://127.0.0.1:27017'
 username: # optional, default if blank: ''
 password: # optional, default if blank: ''
@@ -92,5 +94,10 @@ file2stix --input-file tests/file_inputs/txt/input.txt --backend tests/backends/
 The initialisation script `/backends/arangodb/arangodb.py` checks for the following in the ArangoDB instance;
 
 * 1x Database named `file2stix`
-* 1x Document Collection in the `file2stix` Database named `stix_objects`
-* 1x Edge Collection in the `file2stix` Database named `stix_relationships`
+* 1x Collection in the `file2stix` Database named `stix_objects`
+
+If these exist, then they script will start writing data. If they do not exist, the script will create them and then start writing data.
+
+file2stix stores newly created json files (representing STIX 2.1 Objects) created on each script run (in `stix2_objects/`) in the `stix_objects` Collection.
+
+file2stix only ever creates one version of an Object (with unique `id`), therefore no only one version of an Object will ever exist in the `stix_objects` and `stix_relationships` ArangoDB Collections.
