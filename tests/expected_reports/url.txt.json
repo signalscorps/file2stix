@@ -1,0 +1,145 @@
+{
+    "type": "bundle",
+    "id": "bundle--0cbe8745-c25f-4460-8275-3bf1b19f04af",
+    "objects": [
+        {
+            "type": "extension-definition",
+            "spec_version": "2.1",
+            "id": "extension-definition--c8ea5ecb-f4a3-45e7-94de-9b9ba05161af",
+            "created_by_ref": "identity--acf55024-6bbe-486f-a27a-7967559324f4",
+            "created": "2022-01-01T00:00:00.000Z",
+            "modified": "2022-01-01T00:00:00.000Z",
+            "name": "MISP Warning Lists",
+            "description": "This schema adds MISP Warning List matches to extracted Objects",
+            "schema": "https://github.com/MISP/misp-warninglists",
+            "version": "1.0",
+            "extension_types": [
+                "property-extension"
+            ]
+        },
+        {
+            "type": "marking-definition",
+            "spec_version": "2.1",
+            "id": "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9",
+            "created": "2017-01-20T00:00:00.000Z",
+            "definition_type": "tlp",
+            "name": "TLP:WHITE",
+            "definition": {
+                "tlp": "white"
+            }
+        },
+        {
+            "type": "indicator",
+            "spec_version": "2.1",
+            "id": "indicator--0bec7f88-6b83-404d-a953-8e8b052407dd",
+            "created": "2022-09-06T10:09:58.422064Z",
+            "modified": "2022-09-06T10:52:45.362438Z",
+            "name": "Directory: https://",
+            "indicator_types": [
+                "unknown"
+            ],
+            "pattern": "[ directory:path = 'https://' ]",
+            "pattern_type": "stix",
+            "pattern_version": "2.1",
+            "valid_from": "2022-09-06T10:09:58.422064Z",
+            "object_marking_refs": [
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
+            ]
+        },
+        {
+            "type": "indicator",
+            "spec_version": "2.1",
+            "id": "indicator--19d45896-ac84-4046-971e-fac565440f29",
+            "created": "2022-09-06T10:10:00.938406Z",
+            "modified": "2022-09-06T10:52:45.76851Z",
+            "name": "URL: https://example.com/research/",
+            "indicator_types": [
+                "unknown"
+            ],
+            "pattern": "[ url:value = 'https://example.com/research/' ]",
+            "pattern_type": "stix",
+            "pattern_version": "2.1",
+            "valid_from": "2022-09-06T10:10:00.938406Z",
+            "object_marking_refs": [
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
+            ]
+        },
+        {
+            "type": "indicator",
+            "spec_version": "2.1",
+            "id": "indicator--dffb98db-6e3b-4766-8f89-70e77c2535f6",
+            "created": "2022-09-06T10:10:01.146955Z",
+            "modified": "2022-09-06T10:52:46.170247Z",
+            "name": "URL: https://example.com/path/index.html",
+            "indicator_types": [
+                "unknown"
+            ],
+            "pattern": "[ url:value = 'https://example.com/path/index.html' ]",
+            "pattern_type": "stix",
+            "pattern_version": "2.1",
+            "valid_from": "2022-09-06T10:10:01.146955Z",
+            "object_marking_refs": [
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
+            ]
+        },
+        {
+            "type": "report",
+            "spec_version": "2.1",
+            "id": "report--22eda012-c4f8-43a3-8298-d86dd435da12",
+            "created": "2022-09-06T10:52:46.182577Z",
+            "modified": "2022-09-06T10:52:46.182577Z",
+            "name": "File converted: url.txt",
+            "report_types": [
+                "threat_report"
+            ],
+            "published": "2022-09-06T16:22:46.182571Z",
+            "object_refs": [
+                "indicator--0bec7f88-6b83-404d-a953-8e8b052407dd",
+                "indicator--19d45896-ac84-4046-971e-fac565440f29",
+                "indicator--dffb98db-6e3b-4766-8f89-70e77c2535f6"
+            ],
+            "object_marking_refs": [
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
+            ]
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--3dd50915-ffc2-441d-9f3b-f0b3f621693a",
+            "created": "2022-09-06T10:52:46.182803Z",
+            "modified": "2022-09-06T10:52:46.182803Z",
+            "relationship_type": "default-extract",
+            "source_ref": "report--22eda012-c4f8-43a3-8298-d86dd435da12",
+            "target_ref": "indicator--0bec7f88-6b83-404d-a953-8e8b052407dd",
+            "object_marking_refs": [
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
+            ]
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--96511577-5b3f-491c-865c-f2b59026c191",
+            "created": "2022-09-06T10:52:46.182976Z",
+            "modified": "2022-09-06T10:52:46.182976Z",
+            "relationship_type": "default-extract",
+            "source_ref": "report--22eda012-c4f8-43a3-8298-d86dd435da12",
+            "target_ref": "indicator--19d45896-ac84-4046-971e-fac565440f29",
+            "object_marking_refs": [
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
+            ]
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--1fc23d01-d674-4cc0-8308-627011bb847f",
+            "created": "2022-09-06T10:52:46.183134Z",
+            "modified": "2022-09-06T10:52:46.183134Z",
+            "relationship_type": "default-extract",
+            "source_ref": "report--22eda012-c4f8-43a3-8298-d86dd435da12",
+            "target_ref": "indicator--dffb98db-6e3b-4766-8f89-70e77c2535f6",
+            "object_marking_refs": [
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
+            ]
+        }
+    ]
+}

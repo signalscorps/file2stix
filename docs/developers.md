@@ -16,10 +16,9 @@ Then run `pytest` command in the command line to run all tests:
 pytest
 ```
 
-file2stix --input-file tests/observable_tests/asn.txt
-file2stix --input-file tests/observable_tests/country_adjective.txt
-file2stix --input-file tests/observable_tests/country_code.txt
-file2stix --input-file tests/observable_tests/cpe.txt
+
+
+
 file2stix --input-file tests/observable_tests/credit_card.txt
 file2stix --input-file tests/observable_tests/directory.txt
 file2stix --input-file tests/observable_tests/domain.txt
@@ -29,7 +28,6 @@ file2stix --input-file tests/observable_tests/file_hash.txt
 file2stix --input-file tests/observable_tests/iban.txt
 file2stix --input-file tests/observable_tests/ipv4.txt
 file2stix --input-file tests/observable_tests/ipv6.txt
-file2stix --input-file tests/observable_tests/mitre_attck.txt
 file2stix --input-file tests/observable_tests/mitre_capec.txt
 file2stix --input-file tests/observable_tests/registry_key.txt
 file2stix --input-file tests/observable_tests/sigma_rule.txt
@@ -37,10 +35,62 @@ file2stix --input-file tests/observable_tests/url.txt
 file2stix --input-file tests/observable_tests/user_agent.txt
 file2stix --input-file tests/observable_tests/yara_rule.txt
 
-file2stix --input-file tests/custom_extractions/test_extractions.txt --custom-extraction-file tests/custom_extractions/test_extractions.txt
+
+## Testing obeservable types
+
+### Supported observables
+
+#### ASN
+
+```
+file2stix --input-file tests/observable_tests/asn.txt
+```
+
+#### Country
+
+```
+file2stix --input-file tests/observable_tests/country_adjective.txt
+```
+
+```
+file2stix --input-file tests/observable_tests/country_code.txt
+```
+
+#### CPE
+
+```
+file2stix --input-file tests/observable_tests/cpe.txt
+```
 
 
 
+
+
+#### MITRE ATT&CK
+
+##### Shared Matrices
+
+```
+file2stix --input-file tests/observable_tests/mitre_attck_all.txt
+```
+
+##### Enterprise Matrix
+
+```
+file2stix --input-file tests/observable_tests/mitre_attck_enterprise.txt
+```
+
+##### ICS Matrix
+
+```
+file2stix --input-file tests/observable_tests/mitre_attck_ics.txt
+```
+
+##### Mobile Matrix
+
+```
+file2stix --input-file tests/observable_tests/mitre_attck_mobile.txt
+```
 
 
 ## Testing filetypes
@@ -64,6 +114,12 @@ file2stix --input-file tests/file_inputs/doc/input.docxs
 ```
 
 #### .html
+
+```
+file2stix --input-file tests/file_inputs/html/input.html
+```
+
+##### Large complex HTML
 
 ```
 file2stix --input-file tests/file_inputs/html/catapult-spider-adversary-quest-walkthrough-2022.html
@@ -137,6 +193,18 @@ file2stix --input-file tests/file_inputs/yara/input.yara
 file2stix --input-file setup.py
 ```
 
+## Testing custom extractions
+
+```
+file2stix --input-file tests/custom_extractions/test_extractions.txt --custom-extraction-file tests/custom_extractions/test_extractions.txt
+```
+
+## Testing Warning Lists
+
+```
+file2stix --input-file tests/file_inputs/txt/input.txt --misp-custom-warning-list-file tests/custom_warning_lists/list.json
+```
+
 ## Testing TLPs
 
 ### TLP:WHITE
@@ -202,6 +270,104 @@ All objects have property:
 ```
 
 On every new run of same report input, new objects are always created.
+
+### TLP:BAD
+
+```
+file2stix --input-file tests/observable_tests/ipv4.txt --tlp-level BAD
+```
+
+**Expected output:**
+
+Error message: Invalid choice
+
+## Testing ignore observable
+
+### Ignore IPv4
+
+```
+file2stix --input-file tests/observable_tests/ipv4.txt --ignore-observable-prefix ipv4
+```
+
+**Expected output:**
+
+Warning message: no observables extracted
+
+### Ignore IPv4 and Url
+
+```
+file2stix --input-file tests/file_inputs/txt/input.txt --ignore-observable-prefix \
+IPv4Observable,IPv4WithPortObservable,\
+IPv6Observable,IPv6WithPortObservable,\
+FileNameObservable,FileHashMD5Observable,\
+FileHashSHA1Observable,\
+FileHashSHA256Observable,\
+FileHashSHA512Observable,\
+FileHashSsDeepObservable,\
+DirectoryPathObservable,\
+DomainNameObservable,\
+UrlObservable,\
+EmailAddressObservable,\
+MacAddressObservable,\
+WindowsRegistryKeyObservable,\
+UserAgentObservable,\
+AutonomousSystemNumberObservable,\
+CryptocurrencyBTCObservable,\
+CryptocurrencyETHObservable,\
+CryptocurrencyXMRObservable,\
+CountryNameObservable,\
+CountryCodeAlpha2Observable,\
+CountryCodeAlpha3Observable,\
+MastercardCreditCardObservable,\
+VisaCreditCardObservable,\
+AmexCreditCardObservable,\
+UnionPayCreditCardObservable,\
+DinersCreditCardObservable,\
+JCBCreditCardObservable,\
+IBANCodeObservable,\
+YaraRuleObservable,\
+CPEObservable,\
+CVEObservable,\
+MITREEnterpriseAttackObservable,\
+MITREMobileAttackObservable,\
+MITREICSAttackObservable,\
+MITRECapecObservable,\
+CustomObservable
+```
+
+
+
+
+* ipv4 (inc. CIDR, port) (`IPv4`, `IPv4WithPort`)
+* ipv6 (inc. CIDR, port) (`IPv6`, `IPv6WithPort`)
+* File name (`FileName`)
+* md5 hash (`FileHashMD5`)
+* sha1 hash (`FileHashSHA1`)
+* sha256 hash (`FileHashSHA256`)
+* sha512 hash (`FileHashSHA512`)
+* ssdeep hash (`FileHashSsDeep`)
+* Directory (Window and UNIX) (`DirectoryPath`)
+* Domain (`DomainName`)
+* URL (`Url`)
+* Email Address (`EmailAddress`)
+* MAC Address (`MacAddress`)
+* Windows Registry Key (`WindowsRegistryKey`)
+* User Agent (`UserAgent`)
+* Autonomous System Number (ASN) (`AutonomousSystemNumber`)
+* Bitcoin address (BTC) (`CryptocurrencyBTC`)
+* Ethereum address (ETH) (`CryptocurrencyETH`)
+* Monero address (XMR) (`CryptocurrencyXMR`)
+* International Bank Account Number (IBAN) (`IBAN`)
+* CVE (`CVE`)
+* CPE (`CPE`)
+* Credit Card (Mastercard, Visa, Amex, Union Pay, Diners, JCB) (`MastercardCreditCard`,`VisaCreditCard`,`AmexCreditCard`, `UnionPayCreditCard`, `DinersCreditCard`, `JCBCreditCard`)
+* YARA Rule (`YaraRule`)
+* SIGMA Rule (`SigmaRule`)
+* Countries (`CountryName`, `CountryCode`)
+* MITRE ATT&CK (Enterprise ATT&CK, Mobile ATT&CK, ICS ATT&CK) (`MITREEnterpriseAttack`, `MITREMobileAttack`, `MITREICSAttack`)
+* MITRE CAPEC (`MITRECapec`)
+* Custom extractions (`Custom`)
+
 
 ## Testing adding custom identity
 

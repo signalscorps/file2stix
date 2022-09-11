@@ -1,0 +1,369 @@
+{
+    "type": "bundle",
+    "id": "bundle--99cbf0bc-f7f5-4937-8dc3-0e5f99e06595",
+    "objects": [
+        {
+            "type": "extension-definition",
+            "spec_version": "2.1",
+            "id": "extension-definition--c8ea5ecb-f4a3-45e7-94de-9b9ba05161af",
+            "created_by_ref": "identity--acf55024-6bbe-486f-a27a-7967559324f4",
+            "created": "2022-01-01T00:00:00.000Z",
+            "modified": "2022-01-01T00:00:00.000Z",
+            "name": "MISP Warning Lists",
+            "description": "This schema adds MISP Warning List matches to extracted Objects",
+            "schema": "https://github.com/MISP/misp-warninglists",
+            "version": "1.0",
+            "extension_types": [
+                "property-extension"
+            ]
+        },
+        {
+            "type": "marking-definition",
+            "spec_version": "2.1",
+            "id": "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9",
+            "created": "2017-01-20T00:00:00.000Z",
+            "definition_type": "tlp",
+            "name": "TLP:WHITE",
+            "definition": {
+                "tlp": "white"
+            }
+        },
+        {
+            "type": "indicator",
+            "spec_version": "2.1",
+            "id": "indicator--deb6d145-6601-4ccf-92d7-3b11d7c8f4f1",
+            "created": "2022-09-06T10:09:59.795729Z",
+            "modified": "2022-09-06T10:52:11.407341Z",
+            "name": "Directory: Mozilla/",
+            "indicator_types": [
+                "unknown"
+            ],
+            "pattern": "[ directory:path = 'Mozilla/' ]",
+            "pattern_type": "stix",
+            "pattern_version": "2.1",
+            "valid_from": "2022-09-06T10:09:59.795729Z",
+            "object_marking_refs": [
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
+            ]
+        },
+        {
+            "type": "indicator",
+            "spec_version": "2.1",
+            "id": "indicator--122567be-4eda-4d17-a261-df5b883ca739",
+            "created": "2022-09-06T10:09:58.803877Z",
+            "modified": "2022-09-06T10:52:09.627973Z",
+            "name": "Directory: Gecko/",
+            "indicator_types": [
+                "unknown"
+            ],
+            "pattern": "[ directory:path = 'Gecko/' ]",
+            "pattern_type": "stix",
+            "pattern_version": "2.1",
+            "valid_from": "2022-09-06T10:09:58.803877Z",
+            "object_marking_refs": [
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
+            ]
+        },
+        {
+            "type": "indicator",
+            "spec_version": "2.1",
+            "id": "indicator--7e014bee-adae-41b2-8940-0ef3321ececf",
+            "created": "2022-09-06T10:09:59.993233Z",
+            "modified": "2022-09-06T10:52:11.744689Z",
+            "name": "Directory: AppleWebKit/",
+            "indicator_types": [
+                "unknown"
+            ],
+            "pattern": "[ directory:path = 'AppleWebKit/' ]",
+            "pattern_type": "stix",
+            "pattern_version": "2.1",
+            "valid_from": "2022-09-06T10:09:59.993233Z",
+            "object_marking_refs": [
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
+            ]
+        },
+        {
+            "type": "indicator",
+            "spec_version": "2.1",
+            "id": "indicator--4dc07aac-7ff1-49e3-a87e-0598fd5ce466",
+            "created": "2022-09-06T10:09:59.430467Z",
+            "modified": "2022-09-06T10:52:10.705386Z",
+            "name": "Directory: Chrome/",
+            "indicator_types": [
+                "unknown"
+            ],
+            "pattern": "[ directory:path = 'Chrome/' ]",
+            "pattern_type": "stix",
+            "pattern_version": "2.1",
+            "valid_from": "2022-09-06T10:09:59.430467Z",
+            "object_marking_refs": [
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
+            ]
+        },
+        {
+            "type": "indicator",
+            "spec_version": "2.1",
+            "id": "indicator--a61ed925-758a-4b0c-bf58-0db65da3711c",
+            "created": "2022-09-06T10:10:00.536298Z",
+            "modified": "2022-09-06T10:52:12.784303Z",
+            "name": "Directory: Safari/",
+            "indicator_types": [
+                "unknown"
+            ],
+            "pattern": "[ directory:path = 'Safari/' ]",
+            "pattern_type": "stix",
+            "pattern_version": "2.1",
+            "valid_from": "2022-09-06T10:10:00.536298Z",
+            "object_marking_refs": [
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
+            ]
+        },
+        {
+            "type": "indicator",
+            "spec_version": "2.1",
+            "id": "indicator--c9c11fc9-5c9f-4a13-9586-bb60016ec50d",
+            "created": "2022-09-06T10:10:00.170474Z",
+            "modified": "2022-09-06T10:52:12.097414Z",
+            "name": "Directory: Version/",
+            "indicator_types": [
+                "unknown"
+            ],
+            "pattern": "[ directory:path = 'Version/' ]",
+            "pattern_type": "stix",
+            "pattern_version": "2.1",
+            "valid_from": "2022-09-06T10:10:00.170474Z",
+            "object_marking_refs": [
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
+            ]
+        },
+        {
+            "type": "indicator",
+            "spec_version": "2.1",
+            "id": "indicator--7a168310-4eff-4e0e-8809-32f25cee1fa1",
+            "created": "2022-09-06T10:10:00.356565Z",
+            "modified": "2022-09-06T10:52:12.432818Z",
+            "name": "Directory: Mobile/",
+            "indicator_types": [
+                "unknown"
+            ],
+            "pattern": "[ directory:path = 'Mobile/' ]",
+            "pattern_type": "stix",
+            "pattern_version": "2.1",
+            "valid_from": "2022-09-06T10:10:00.356565Z",
+            "object_marking_refs": [
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
+            ]
+        },
+        {
+            "type": "indicator",
+            "spec_version": "2.1",
+            "id": "indicator--fa1214a8-2df9-46b9-ac50-d40bc7865bfc",
+            "created": "2022-09-06T10:10:02.109042Z",
+            "modified": "2022-09-06T10:52:13.122125Z",
+            "name": "User Agent: Mozilla/5.0 (Windows; U; Windows NT 5.1; en-US; rv:1.6) Gecko/20040113",
+            "indicator_types": [
+                "unknown"
+            ],
+            "pattern": "[ network-traffic:extensions.'http-requestext'.request_header.'User-Agent' = 'Mozilla/5.0 (Windows; U; Windows NT 5.1; en-US; rv:1.6) Gecko/20040113' ]",
+            "pattern_type": "stix",
+            "pattern_version": "2.1",
+            "valid_from": "2022-09-06T10:10:02.109042Z",
+            "object_marking_refs": [
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
+            ]
+        },
+        {
+            "type": "indicator",
+            "spec_version": "2.1",
+            "id": "indicator--79e870a2-11ba-49c9-8dbf-db86c8b5eff5",
+            "created": "2022-09-06T10:10:02.335411Z",
+            "modified": "2022-09-06T10:52:13.471974Z",
+            "name": "User Agent: Mozilla/5.0 (Linux; Android 11; Lenovo YT-J706X) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/96.0.4664.45 Safari/537.36",
+            "indicator_types": [
+                "unknown"
+            ],
+            "pattern": "[ network-traffic:extensions.'http-requestext'.request_header.'User-Agent' = 'Mozilla/5.0 (Linux; Android 11; Lenovo YT-J706X) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/96.0.4664.45 Safari/537.36' ]",
+            "pattern_type": "stix",
+            "pattern_version": "2.1",
+            "valid_from": "2022-09-06T10:10:02.335411Z",
+            "object_marking_refs": [
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
+            ]
+        },
+        {
+            "type": "indicator",
+            "spec_version": "2.1",
+            "id": "indicator--f37d157a-cb18-458c-bf05-ab634d14259e",
+            "created": "2022-09-06T10:10:02.558674Z",
+            "modified": "2022-09-06T10:52:13.821399Z",
+            "name": "User Agent: Mozilla/5.0 (iPhone14,6; U; CPU iPhone OS 15_4 like Mac OS X) AppleWebKit/602.1.50 (KHTML, like Gecko) Version/10.0 Mobile/19E241 Safari/602.1",
+            "indicator_types": [
+                "unknown"
+            ],
+            "pattern": "[ network-traffic:extensions.'http-requestext'.request_header.'User-Agent' = 'Mozilla/5.0 (iPhone14,6; U; CPU iPhone OS 15_4 like Mac OS X) AppleWebKit/602.1.50 (KHTML, like Gecko) Version/10.0 Mobile/19E241 Safari/602.1' ]",
+            "pattern_type": "stix",
+            "pattern_version": "2.1",
+            "valid_from": "2022-09-06T10:10:02.558674Z",
+            "object_marking_refs": [
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
+            ]
+        },
+        {
+            "type": "report",
+            "spec_version": "2.1",
+            "id": "report--503a7fc4-833a-4af3-b57a-689b83e2b280",
+            "created": "2022-09-06T10:52:13.870022Z",
+            "modified": "2022-09-06T10:52:13.870022Z",
+            "name": "File converted: user_agent.txt",
+            "report_types": [
+                "threat_report"
+            ],
+            "published": "2022-09-06T16:22:13.870015Z",
+            "object_refs": [
+                "indicator--deb6d145-6601-4ccf-92d7-3b11d7c8f4f1",
+                "indicator--122567be-4eda-4d17-a261-df5b883ca739",
+                "indicator--7e014bee-adae-41b2-8940-0ef3321ececf",
+                "indicator--4dc07aac-7ff1-49e3-a87e-0598fd5ce466",
+                "indicator--a61ed925-758a-4b0c-bf58-0db65da3711c",
+                "indicator--c9c11fc9-5c9f-4a13-9586-bb60016ec50d",
+                "indicator--7a168310-4eff-4e0e-8809-32f25cee1fa1",
+                "indicator--fa1214a8-2df9-46b9-ac50-d40bc7865bfc",
+                "indicator--79e870a2-11ba-49c9-8dbf-db86c8b5eff5",
+                "indicator--f37d157a-cb18-458c-bf05-ab634d14259e"
+            ],
+            "object_marking_refs": [
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
+            ]
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--b1579295-7f26-4238-9087-3097ae4e30a8",
+            "created": "2022-09-06T10:52:13.870285Z",
+            "modified": "2022-09-06T10:52:13.870285Z",
+            "relationship_type": "default-extract",
+            "source_ref": "report--503a7fc4-833a-4af3-b57a-689b83e2b280",
+            "target_ref": "indicator--deb6d145-6601-4ccf-92d7-3b11d7c8f4f1",
+            "object_marking_refs": [
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
+            ]
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--b4e43eab-105b-4d31-bd46-f2595179d1b8",
+            "created": "2022-09-06T10:52:13.87045Z",
+            "modified": "2022-09-06T10:52:13.87045Z",
+            "relationship_type": "default-extract",
+            "source_ref": "report--503a7fc4-833a-4af3-b57a-689b83e2b280",
+            "target_ref": "indicator--122567be-4eda-4d17-a261-df5b883ca739",
+            "object_marking_refs": [
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
+            ]
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--11458e1c-9a88-4fc9-8814-221b3324894f",
+            "created": "2022-09-06T10:52:13.870601Z",
+            "modified": "2022-09-06T10:52:13.870601Z",
+            "relationship_type": "default-extract",
+            "source_ref": "report--503a7fc4-833a-4af3-b57a-689b83e2b280",
+            "target_ref": "indicator--7e014bee-adae-41b2-8940-0ef3321ececf",
+            "object_marking_refs": [
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
+            ]
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--d40a164e-685d-414f-8921-598d9a8de97d",
+            "created": "2022-09-06T10:52:13.870749Z",
+            "modified": "2022-09-06T10:52:13.870749Z",
+            "relationship_type": "default-extract",
+            "source_ref": "report--503a7fc4-833a-4af3-b57a-689b83e2b280",
+            "target_ref": "indicator--4dc07aac-7ff1-49e3-a87e-0598fd5ce466",
+            "object_marking_refs": [
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
+            ]
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--c1e8bdaf-4ff6-49cc-87d6-8beec48da4fc",
+            "created": "2022-09-06T10:52:13.870901Z",
+            "modified": "2022-09-06T10:52:13.870901Z",
+            "relationship_type": "default-extract",
+            "source_ref": "report--503a7fc4-833a-4af3-b57a-689b83e2b280",
+            "target_ref": "indicator--a61ed925-758a-4b0c-bf58-0db65da3711c",
+            "object_marking_refs": [
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
+            ]
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--39a9385c-1aba-43d3-b121-52f444c6185c",
+            "created": "2022-09-06T10:52:13.871045Z",
+            "modified": "2022-09-06T10:52:13.871045Z",
+            "relationship_type": "default-extract",
+            "source_ref": "report--503a7fc4-833a-4af3-b57a-689b83e2b280",
+            "target_ref": "indicator--c9c11fc9-5c9f-4a13-9586-bb60016ec50d",
+            "object_marking_refs": [
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
+            ]
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--a2f66384-013c-406c-a34b-38fb182382ae",
+            "created": "2022-09-06T10:52:13.87119Z",
+            "modified": "2022-09-06T10:52:13.87119Z",
+            "relationship_type": "default-extract",
+            "source_ref": "report--503a7fc4-833a-4af3-b57a-689b83e2b280",
+            "target_ref": "indicator--7a168310-4eff-4e0e-8809-32f25cee1fa1",
+            "object_marking_refs": [
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
+            ]
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--a77ae698-68b3-489e-b09c-28ea63053b9a",
+            "created": "2022-09-06T10:52:13.871332Z",
+            "modified": "2022-09-06T10:52:13.871332Z",
+            "relationship_type": "default-extract",
+            "source_ref": "report--503a7fc4-833a-4af3-b57a-689b83e2b280",
+            "target_ref": "indicator--fa1214a8-2df9-46b9-ac50-d40bc7865bfc",
+            "object_marking_refs": [
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
+            ]
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--3b36809a-56b3-4b02-bcb6-259bf995a8fc",
+            "created": "2022-09-06T10:52:13.871473Z",
+            "modified": "2022-09-06T10:52:13.871473Z",
+            "relationship_type": "default-extract",
+            "source_ref": "report--503a7fc4-833a-4af3-b57a-689b83e2b280",
+            "target_ref": "indicator--79e870a2-11ba-49c9-8dbf-db86c8b5eff5",
+            "object_marking_refs": [
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
+            ]
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--5aae51db-b3d4-48ce-9a91-3800078b98cb",
+            "created": "2022-09-06T10:52:13.871614Z",
+            "modified": "2022-09-06T10:52:13.871614Z",
+            "relationship_type": "default-extract",
+            "source_ref": "report--503a7fc4-833a-4af3-b57a-689b83e2b280",
+            "target_ref": "indicator--f37d157a-cb18-458c-bf05-ab634d14259e",
+            "object_marking_refs": [
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
+            ]
+        }
+    ]
+}

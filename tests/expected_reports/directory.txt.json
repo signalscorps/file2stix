@@ -1,0 +1,209 @@
+{
+    "type": "bundle",
+    "id": "bundle--b33e2277-fe09-4a25-bbd4-dbbf182f9a77",
+    "objects": [
+        {
+            "type": "extension-definition",
+            "spec_version": "2.1",
+            "id": "extension-definition--c8ea5ecb-f4a3-45e7-94de-9b9ba05161af",
+            "created_by_ref": "identity--acf55024-6bbe-486f-a27a-7967559324f4",
+            "created": "2022-01-01T00:00:00.000Z",
+            "modified": "2022-01-01T00:00:00.000Z",
+            "name": "MISP Warning Lists",
+            "description": "This schema adds MISP Warning List matches to extracted Objects",
+            "schema": "https://github.com/MISP/misp-warninglists",
+            "version": "1.0",
+            "extension_types": [
+                "property-extension"
+            ]
+        },
+        {
+            "type": "marking-definition",
+            "spec_version": "2.1",
+            "id": "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9",
+            "created": "2017-01-20T00:00:00.000Z",
+            "definition_type": "tlp",
+            "name": "TLP:WHITE",
+            "definition": {
+                "tlp": "white"
+            }
+        },
+        {
+            "type": "indicator",
+            "spec_version": "2.1",
+            "id": "indicator--03573aa7-c88c-481c-863c-37c09025ed0a",
+            "created": "2022-09-06T10:52:18.285223Z",
+            "modified": "2022-09-06T10:53:25.67559Z",
+            "name": "File name: test.bat",
+            "indicator_types": [
+                "unknown"
+            ],
+            "pattern": "[ file:name = 'test.bat' ]",
+            "pattern_type": "stix",
+            "pattern_version": "2.1",
+            "valid_from": "2022-09-06T10:52:18.285223Z",
+            "object_marking_refs": [
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
+            ]
+        },
+        {
+            "type": "indicator",
+            "spec_version": "2.1",
+            "id": "indicator--370dcbb2-acfd-412a-8af5-8ab389aa1fdb",
+            "created": "2022-09-06T10:09:57.760595Z",
+            "modified": "2022-09-06T10:53:26.181942Z",
+            "name": "Directory: /System/Library/",
+            "indicator_types": [
+                "unknown"
+            ],
+            "pattern": "[ directory:path = '/System/Library/' ]",
+            "pattern_type": "stix",
+            "pattern_version": "2.1",
+            "valid_from": "2022-09-06T10:09:57.760595Z",
+            "object_marking_refs": [
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
+            ]
+        },
+        {
+            "type": "indicator",
+            "spec_version": "2.1",
+            "id": "indicator--5632043b-773a-4095-8330-56000368d047",
+            "created": "2022-09-06T10:09:57.957785Z",
+            "modified": "2022-09-06T10:53:26.665369Z",
+            "name": "Directory: C:\\Windows\\",
+            "indicator_types": [
+                "unknown"
+            ],
+            "pattern": "[ directory:path = 'C:\\\\Windows\\\\' ]",
+            "pattern_type": "stix",
+            "pattern_version": "2.1",
+            "valid_from": "2022-09-06T10:09:57.957785Z",
+            "object_marking_refs": [
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
+            ]
+        },
+        {
+            "type": "indicator",
+            "spec_version": "2.1",
+            "id": "indicator--56233fb6-dd48-4a02-84f8-7e389685912b",
+            "created": "2022-09-06T10:53:26.815847Z",
+            "modified": "2022-09-06T10:53:26.815847Z",
+            "name": "Directory: /System/Library/LaunchDaemons/",
+            "indicator_types": [
+                "unknown"
+            ],
+            "pattern": "[ directory:path = '/System/Library/LaunchDaemons/' ]",
+            "pattern_type": "stix",
+            "pattern_version": "2.1",
+            "valid_from": "2022-09-06T10:53:26.815847Z",
+            "object_marking_refs": [
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
+            ]
+        },
+        {
+            "type": "indicator",
+            "spec_version": "2.1",
+            "id": "indicator--1370e7fa-4721-4a4b-b856-cf0f53252ecf",
+            "created": "2022-09-06T10:53:27.263724Z",
+            "modified": "2022-09-06T10:53:27.263724Z",
+            "name": "Directory: C:\\Windows\\System32\\",
+            "indicator_types": [
+                "unknown"
+            ],
+            "pattern": "[ directory:path = 'C:\\\\Windows\\\\System32\\\\' ]",
+            "pattern_type": "stix",
+            "pattern_version": "2.1",
+            "valid_from": "2022-09-06T10:53:27.263724Z",
+            "object_marking_refs": [
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
+            ]
+        },
+        {
+            "type": "report",
+            "spec_version": "2.1",
+            "id": "report--be8486bd-ae13-4cd0-b352-13d1c7849932",
+            "created": "2022-09-06T10:53:27.650712Z",
+            "modified": "2022-09-06T10:53:27.650712Z",
+            "name": "File converted: directory.txt",
+            "report_types": [
+                "threat_report"
+            ],
+            "published": "2022-09-06T16:23:27.650703Z",
+            "object_refs": [
+                "indicator--03573aa7-c88c-481c-863c-37c09025ed0a",
+                "indicator--370dcbb2-acfd-412a-8af5-8ab389aa1fdb",
+                "indicator--5632043b-773a-4095-8330-56000368d047",
+                "indicator--56233fb6-dd48-4a02-84f8-7e389685912b",
+                "indicator--1370e7fa-4721-4a4b-b856-cf0f53252ecf"
+            ],
+            "object_marking_refs": [
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
+            ]
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--d596d805-8629-42c4-8b91-61f920ec080f",
+            "created": "2022-09-06T10:53:27.651011Z",
+            "modified": "2022-09-06T10:53:27.651011Z",
+            "relationship_type": "default-extract",
+            "source_ref": "report--be8486bd-ae13-4cd0-b352-13d1c7849932",
+            "target_ref": "indicator--03573aa7-c88c-481c-863c-37c09025ed0a",
+            "object_marking_refs": [
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
+            ]
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--e564bbd3-bd73-430d-857d-cc5ffa17daac",
+            "created": "2022-09-06T10:53:27.651187Z",
+            "modified": "2022-09-06T10:53:27.651187Z",
+            "relationship_type": "default-extract",
+            "source_ref": "report--be8486bd-ae13-4cd0-b352-13d1c7849932",
+            "target_ref": "indicator--370dcbb2-acfd-412a-8af5-8ab389aa1fdb",
+            "object_marking_refs": [
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
+            ]
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--463b46e3-e486-4188-965b-673c9c913873",
+            "created": "2022-09-06T10:53:27.65136Z",
+            "modified": "2022-09-06T10:53:27.65136Z",
+            "relationship_type": "default-extract",
+            "source_ref": "report--be8486bd-ae13-4cd0-b352-13d1c7849932",
+            "target_ref": "indicator--5632043b-773a-4095-8330-56000368d047",
+            "object_marking_refs": [
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
+            ]
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--10f25b63-9699-4bef-ab18-8da852099123",
+            "created": "2022-09-06T10:53:27.651519Z",
+            "modified": "2022-09-06T10:53:27.651519Z",
+            "relationship_type": "default-extract",
+            "source_ref": "report--be8486bd-ae13-4cd0-b352-13d1c7849932",
+            "target_ref": "indicator--56233fb6-dd48-4a02-84f8-7e389685912b",
+            "object_marking_refs": [
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
+            ]
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--632fff72-075e-442a-a84e-6db72eb25831",
+            "created": "2022-09-06T10:53:27.651674Z",
+            "modified": "2022-09-06T10:53:27.651674Z",
+            "relationship_type": "default-extract",
+            "source_ref": "report--be8486bd-ae13-4cd0-b352-13d1c7849932",
+            "target_ref": "indicator--1370e7fa-4721-4a4b-b856-cf0f53252ecf",
+            "object_marking_refs": [
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
+            ]
+        }
+    ]
+}

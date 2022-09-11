@@ -1,0 +1,7 @@
+backend: arangodb
+host: http://127.0.0.1:8529
+username: root
+password: 
+database_name: file2stix
+document_collection_name: stix_objects
+edge_collection_name: stix_relationships
