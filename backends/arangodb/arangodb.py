@@ -1,6 +1,7 @@
 import json
 import logging
 import os
+from enum import Enum
 from typing import Dict, Union, List
 
 from pyArango.collection import Edges, Collection
@@ -11,7 +12,9 @@ from dotenv import load_dotenv
 
 import argparse
 
-from backends.arangodb.schemas import ArangoCollections, Relationship, EmbeddedRelations, Additional
+import yaml
+
+from schemas import ConfigData, Additional, Relationship, EmbeddedRelations
 
 load_dotenv()
 
@@ -19,11 +22,31 @@ logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
 parser = argparse.ArgumentParser()
-parser.add_argument("--login", help="ArangoDB login", default=os.getenv("ARANGO_USER"))
-parser.add_argument("--password", help="ArangoDB password", default=os.getenv("ARANGO_PASS"))
-parser.add_argument("--arangourl", help="ArangoDB URL", default=os.getenv("ARANGO_URL"))
+parser.add_argument("--backend", help="Path to ArangoDB config file")
 
 args = parser.parse_args()
+
+
+def get_config_data():
+    """
+    Parse data from config
+    """
+    with open(args.backend, "r") as stream:
+        try:
+            data = yaml.safe_load(stream)
+            clear_dict = {k: v for k, v in data.items() if v is not None}
+            return ConfigData(**clear_dict)
+        except yaml.YAMLError:
+            raise ValueError("Incorrect YML file")
+
+
+config = get_config_data()
+
+
+class ArangoCollections(Enum):
+    DOCUMENT = config.document_collection_name
+    EDGE = config.edge_collection_name
+    DATABASE = config.database_name
 
 
 def get_files_list() -> List[str]:
@@ -46,9 +69,9 @@ def get_files_list() -> List[str]:
 class ArangoConverter:
 
     def __init__(self,
-                 user: str = args.login,
-                 password: str = args.password,
-                 arango_url: str = args.arangourl):
+                 user: str = config.username,
+                 password: str = config.password,
+                 arango_url: str = config.host):
         self.files = get_files_list()
         self.arango_user = user
         self.arango_pass = password
@@ -59,7 +82,7 @@ class ArangoConverter:
                                    password=self.arango_pass,
                                    arangoURL=self.arangoURL)
         except:
-            raise ValueError("Incorrect arguments")
+            raise ValueError("Connection to Arango is failed")
 
     def get_db(self) -> DBHandle:
         """
@@ -163,7 +186,7 @@ class ArangoConverter:
         """
         Create Embedded relationship from relation type
         """
-        to_collection = collection.value if Relationship.MANY.value not in stix_object.get('target_ref')\
+        to_collection = collection.value if Relationship.MANY.value not in stix_object.get('target_ref') \
             else ArangoCollections.EDGE.value
         model = EmbeddedRelations(_key=f"{stix_object.get('id')}",
                                   _from=f"{collection.value}/{stix_object.get('source_ref')}",

@@ -15,10 +15,13 @@ class EmbeddedRelations(BaseModel):
         extra = Extra.allow
 
 
-class ArangoCollections(Enum):
-    DOCUMENT = 'stix_objects'
-    EDGE = 'stix_relationships'
-    DATABASE = 'stix_database'
+class ConfigData(BaseModel):
+    host: Optional[str] = 'http://127.0.0.1:8529'
+    username: Optional[str] = "root"
+    password: Optional[str] = ''
+    database_name: Optional[str] = 'file2stix'
+    document_collection_name: Optional[str] = 'stix_objects'
+    edge_collection_name: Optional[str] = 'stix_relationships'
 
 
 class Relationship(Enum):

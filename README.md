@@ -113,16 +113,13 @@ Or with a custom extraction file specified;
 file2stix --input-file tests/file_inputs/txt/input.txt --custom-extraction-file tests/file_inputs/custom_extractions/extractions.txt
 ````
 
-To run script for convert data from reports to ArangoDB, you should create `.env` file and add keys from `.env.sample`
-Change values for keys in `.env` file and run the script:
+To run script for convert data from reports to ArangoDB, you should add in `arangodb.yml` file your config values and run the script:
 
 ```shell
-python3 backends/arangodb/arangodb.py
+python3 backends/arangodb/arangodb.py --backend backends/arangodb/arangodb.yml
 ```
-you can use optional 3 arguments
-* --login - ArangoDB login
-* --password - ArangoDB password
-* --arangourl - Arango URL
+* --backend - Path to your Arango YML config file
+
 
 ## Documentation
 
