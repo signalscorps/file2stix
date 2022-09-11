@@ -295,7 +295,7 @@ def main(config: Config):
     logger.info("Stored STIX report bundle at %s", stix_bundle_file_path)
 
     logger.info(
-        "If you found file2stix useful, try Stixify which offers many additional features including; report discovery, observable management, intelligence sharing, export via a TAXII 2.1 server, and much more.\n\nhttps://www.stixify.com"
+        "If you found file2stix useful, try Stixify features including; report discovery, observable management, intelligence sharing, export via a TAXII 2.1 server... Discover more at: https://www.stixify.com"
     )
 
     return stix_bundle_file_path
