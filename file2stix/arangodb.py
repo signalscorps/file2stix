@@ -1,52 +1,72 @@
 import json
 import logging
 import os
-from enum import Enum
 from typing import Dict, Union, List
 
 from pyArango.collection import Edges, Collection
 from pyArango.database import DBHandle
 
 from pyArango.connection import Connection
-from dotenv import load_dotenv
-
-import argparse
 
 import yaml
 
-from schemas import ConfigData, Additional, Relationship, EmbeddedRelations
+from enum import Enum
+from typing import Optional
 
-load_dotenv()
+from pydantic import BaseModel, Extra
+
+
+class EmbeddedRelations(BaseModel):
+    _key: str
+    _from: str
+    _to: str
+    type: str = "embedded-relationship"
+    relationship_description: Optional[str]
+
+    class Config:
+        extra = Extra.allow
+
+
+class ConfigData(BaseModel):
+    host: Optional[str] = 'http://127.0.0.1:8529'
+    username: Optional[str] = "root"
+    password: Optional[str] = ''
+    database_name: Optional[str] = 'file2stix'
+    document_collection_name: Optional[str] = 'stix_objects'
+    edge_collection_name: Optional[str] = 'stix_relationships'
+
+
+class ArangoCollections(BaseModel):
+    DOCUMENT: str
+    EDGE: str
+    DATABASE: str
+
+
+class Relationship(Enum):
+    ONE = "relationship"
+    MANY = "relationships"
+
+
+class Additional(Enum):
+    MOD = "modified"
+    CLASS = "Edges"
+
 
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
-parser = argparse.ArgumentParser()
-parser.add_argument("--backend", help="Path to ArangoDB config file")
 
-args = parser.parse_args()
-
-
-def get_config_data():
+def get_config_data(path: str):
     """
     Parse data from config
     """
-    with open(args.backend, "r") as stream:
+    with open(path, "r") as stream:
         try:
             data = yaml.safe_load(stream)
             clear_dict = {k: v for k, v in data.items() if v is not None}
             return ConfigData(**clear_dict)
         except yaml.YAMLError:
             raise ValueError("Incorrect YML file")
-
-
-config = get_config_data()
-
-
-class ArangoCollections(Enum):
-    DOCUMENT = config.document_collection_name
-    EDGE = config.edge_collection_name
-    DATABASE = config.database_name
 
 
 def get_files_list() -> List[str]:
@@ -57,7 +77,7 @@ def get_files_list() -> List[str]:
     """
     PATH = "./stix2_objects" if os.path.exists("stix2_objects") else None
     if not PATH:
-        raise FileExistsError()
+        raise FileExistsError("stix2_objects directory not found")
     files_list = list()
     for root, dirs, files in os.walk(PATH):
         files = [os.path.join(root, file) for file in files]
@@ -69,13 +89,14 @@ def get_files_list() -> List[str]:
 class ArangoConverter:
 
     def __init__(self,
-                 user: str = config.username,
-                 password: str = config.password,
-                 arango_url: str = config.host):
+                 config: ConfigData):
         self.files = get_files_list()
-        self.arango_user = user
-        self.arango_pass = password
-        self.arangoURL = arango_url
+        self.arango_user = config.username
+        self.arango_pass = config.password
+        self.arangoURL = config.host
+        self.db_name = config.database_name
+        self.document_collection = config.document_collection_name
+        self.edge_collection = config.edge_collection_name
         self.skip_fields = ["_id", "_key", "_rev", "created"]
         try:
             self.conn = Connection(username=self.arango_user,
@@ -90,27 +111,26 @@ class ArangoConverter:
         If not exist - create new
         """
         try:
-            database = self.conn[ArangoCollections.DATABASE.value]
+            database = self.conn[self.db_name]
         except KeyError:
-            logger.info(f"Create Database: {ArangoCollections.DATABASE.value}")
-            database = self.conn.createDatabase(name=ArangoCollections.DATABASE.value)
+            logger.info(f"Create Database: {self.db_name}")
+            database = self.conn.createDatabase(name=self.db_name)
         return database
 
-    @staticmethod
-    def check_collections(db: DBHandle) -> None:
+    def check_collections(self, db: DBHandle) -> None:
         """
         Check Collections. If not exist - create new
         """
         try:
-            _ = db[ArangoCollections.DOCUMENT.value]
+            _ = db[self.document_collection]
         except KeyError:
-            logger.info(f"Create Document Collection: {ArangoCollections.DOCUMENT.value}")
-            db.createCollection(name=ArangoCollections.DOCUMENT.value)
+            logger.info(f"Create Document Collection: {self.document_collection}")
+            db.createCollection(name=self.document_collection)
         try:
-            _ = db[ArangoCollections.EDGE.value]
+            _ = db[self.edge_collection]
         except KeyError:
-            logger.info(f"Create Edge Collection: {ArangoCollections.EDGE.value}")
-            db.createCollection(className=Additional.CLASS.value, name=ArangoCollections.EDGE.value)
+            logger.info(f"Create Edge Collection: {self.edge_collection}")
+            db.createCollection(className=Additional.CLASS.value, name=self.edge_collection)
 
     def get_arango_database(self) -> DBHandle:
         db = self.get_db()
@@ -127,8 +147,7 @@ class ArangoConverter:
                 stix_object.update({"_key": f"{stix_object.get('id')}"})
                 self.validate_json(stix_object=stix_object)
 
-    @staticmethod
-    def create_update_key(input_dict: Dict, collection: Union[Edges, Collection]):
+    def create_update_key(self, input_dict: Dict, collection: Union[Edges, Collection]):
         """
         Try to get element from collection.
         If _key not found - create new Edge/Document"""
@@ -138,18 +157,18 @@ class ArangoConverter:
                 doc[k] = v
             doc.save()
         except:
-            collection.createEdge(input_dict).save() if collection == ArangoCollections.EDGE \
+            collection.createEdge(input_dict).save() if collection == self.edge_collection \
                 else collection.createDocument(input_dict).save()
 
-    def save_to_arango(self, collection: ArangoCollections, input_dict: Dict) -> None:
+    def save_to_arango(self, collection: str, input_dict: Dict) -> None:
         """
         Connect to collection,
         Check, do we need to add a relationship or it alreadt exist
         Save element
         """
         db = self.get_arango_database()
-        collection_db = db[collection.value]
-        if collection == ArangoCollections.EDGE:
+        collection_db = db[collection]
+        if collection == self.edge_collection:
             try:
                 collection_db[input_dict.get("_key")]
             except:
@@ -158,42 +177,42 @@ class ArangoConverter:
             self.create_update_key(input_dict=input_dict, collection=collection_db)
 
     def create_document_relation_model(self,
-                                       collection: ArangoCollections,
+                                       collection: str,
                                        stix_object: Dict[str, str],
                                        parameter: str,
                                        relationships: Union[str, List]) -> None:
         """
         Create Embedded relationship from _ref fields
         """
-        to_collection = collection.value if Relationship.MANY.value not in relationships \
-            else ArangoCollections.EDGE.value
+        to_collection = collection if Relationship.MANY.value not in relationships \
+            else self.edge_collection
         if not isinstance(relationships, list):
             model = (EmbeddedRelations(_key=f"{stix_object.get('id')}+{relationships}",
-                                       _from=f"{collection.value}/{stix_object.get('id')}",
+                                       _from=f"{collection}/{stix_object.get('id')}",
                                        _to=f"{to_collection}/{relationships}",
                                        relationship_description=parameter))
-            self.save_to_arango(collection=ArangoCollections.EDGE,
+            self.save_to_arango(collection=self.edge_collection,
                                 input_dict=model.dict())
         else:
-            [self.create_document_relation_model(collection=ArangoCollections.DOCUMENT,
+            [self.create_document_relation_model(collection=self.document_collection,
                                                  stix_object=stix_object,
                                                  parameter=parameter,
                                                  relationships=relation) for relation in relationships]
 
     def create_relation_model(self,
-                              collection: ArangoCollections,
+                              collection: str,
                               stix_object: Dict[str, str]) -> None:
         """
         Create Embedded relationship from relation type
         """
-        to_collection = collection.value if Relationship.MANY.value not in stix_object.get('target_ref') \
-            else ArangoCollections.EDGE.value
+        to_collection = collection if Relationship.MANY.value not in stix_object.get('target_ref') \
+            else self.edge_collection
         model = EmbeddedRelations(_key=f"{stix_object.get('id')}",
-                                  _from=f"{collection.value}/{stix_object.get('source_ref')}",
+                                  _from=f"{collection}/{stix_object.get('source_ref')}",
                                   _to=f"{to_collection}/{stix_object.get('target_ref')}",
                                   type=Relationship.ONE.value).dict()
         model.update(stix_object)
-        self.save_to_arango(collection=ArangoCollections.EDGE, input_dict=model)
+        self.save_to_arango(collection=self.edge_collection, input_dict=model)
 
     @staticmethod
     def is_ref(key: str):
@@ -206,24 +225,26 @@ class ArangoConverter:
         Validate Embedded relationships
         """
         if stix_object.get('type') != Relationship.ONE.value:
-            self.save_to_arango(ArangoCollections.DOCUMENT, stix_object)
+            self.save_to_arango(self.document_collection, stix_object)
             for k, v in stix_object.items():
                 if self.is_ref(key=k):
-                    self.create_document_relation_model(collection=ArangoCollections.DOCUMENT,
+                    self.create_document_relation_model(collection=self.document_collection,
                                                         stix_object=stix_object,
                                                         parameter=k,
                                                         relationships=v)
 
         else:
-            self.create_relation_model(collection=ArangoCollections.DOCUMENT,
+            self.create_relation_model(collection=self.document_collection,
                                        stix_object=stix_object)
 
 
-def main():
-    converter = ArangoConverter()
+def check_arango_connection(path: str):
+    config = get_config_data(path)
+    ArangoConverter(config=config)
+
+
+def start_saving_to_arango(path: str):
+    config = get_config_data(path)
+    converter = ArangoConverter(config=config)
     converter.get_arango_model()
-    logger.info(f"Database successfully updated!")
 
-
-if __name__ == '__main__':
-    main()

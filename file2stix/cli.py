@@ -7,6 +7,7 @@ import yaml
 from stix2 import TLP_WHITE, TLP_AMBER, TLP_GREEN, TLP_RED, Identity
 
 import file2stix
+from file2stix.arangodb import check_arango_connection
 from file2stix.config import DEFAULT_USER_IDENTITY_FILE, Config
 from file2stix.main import main
 from file2stix.observables import get_observable_class_from_name
@@ -92,6 +93,12 @@ def cli():
         help="refang 'defanged' observables in input file",
     )
 
+    arg_parser.add_argument(
+        "--backend",
+        action="store",
+        help="cache folder path where MITRE ATT&K and CAPEC warning list will be stored (default: %(default)s)",
+    )
+
     args = arg_parser.parse_args()
 
     input_file_path = (
@@ -132,6 +139,11 @@ def cli():
             "Identity config file is not present or is in incorrect format."
         ) from error
 
+    if args.backend:
+        if not os.path.exists(args.backend):
+            raise FileExistsError("Backend file not found")
+        check_arango_connection(args.backend)
+
     # Build config object
     config = Config(
         input_file_path=input_file_path,
@@ -145,6 +157,7 @@ def cli():
         ignore_observables_list=ignore_observables_list,
         misp_custom_warning_list_file=args.misp_custom_warning_list_file,
         refang_observables=args.refang_observables,
+        backend=args.backend
     )
 
     # Call main

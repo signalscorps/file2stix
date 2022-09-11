@@ -17,6 +17,7 @@ from stix2 import Report, Relationship, ExtensionDefinition, TLP_WHITE
 from pymispwarninglists.api import WarningList
 
 from file2stix import __appname__
+from file2stix.arangodb import start_saving_to_arango
 from file2stix.cache import Cache
 from file2stix.config import Config
 from file2stix.extract_observables import ExtractStixObservables
@@ -294,6 +295,9 @@ def main(config: Config):
     )
     logger.info("Stored STIX report bundle at %s", stix_bundle_file_path)
 
+    if config.backend:
+        start_saving_to_arango(config.backend)
+        logger.info(f"Database successfully updated!")
     logger.info(
         "If you found file2stix useful, try Stixify features including; report discovery, observable management, intelligence sharing, export via a TAXII 2.1 server... Discover more at: https://www.stixify.com"
     )
