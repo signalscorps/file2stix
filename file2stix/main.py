@@ -160,7 +160,9 @@ def main(config: Config):
             stix_observable_object = extracted_stix_observable
 
             # Check if observable already present in `stix_store`
-            if config.tlp_level == TLP_WHITE and hasattr(extracted_stix_observable, "name"):
+            if config.tlp_level == TLP_WHITE and hasattr(
+                extracted_stix_observable, "name"
+            ):
                 stix_observable_object = stix_store.get_object(
                     extracted_stix_observable.name,
                     config.tlp_level.id,
@@ -277,5 +279,9 @@ def main(config: Config):
         stix_objects, config.output_json_file_path
     )
     logger.info("Stored STIX report bundle at %s", stix_bundle_file_path)
+
+    logger.info(
+        "If you found file2stix useful, try Stixify which offers many additional features including; report discovery, observable management, intelligence sharing, export via a TAXII 2.1 server, and much more.\n\nhttps://www.stixify.com"
+    )
 
     return stix_bundle_file_path
