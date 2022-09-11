@@ -317,7 +317,12 @@ Here is how ipv4 observables are represented in STIX 2.1 by file2stix;
     "extensions": {
       "extension-definition--d83fce45-ef58-4c6c-a3f4-1fbc32e98c6e": {
         "extension_type": "property-extension",
-        "warning_list_match": ["MISP WARNING LIST[0]"]
+        "misp_warning_list_match": [
+          "MISP WARNING LIST MATCH[0]"
+        ],
+        "custom_warning_list_match": [
+          "CUSTOM WARNING LIST MATCH[0]"
+        ]
       }
     }
   }
@@ -362,7 +367,12 @@ Note for ipv4 and port observables, the representation is slightly different. Wh
     "extensions": {
       "extension-definition--d83fce45-ef58-4c6c-a3f4-1fbc32e98c6e": {
         "extension_type": "property-extension",
-        "warning_list_match": ["MISP WARNING LIST[0]"]
+        "misp_warning_list_match": [
+          "MISP WARNING LIST MATCH[0]"
+        ],
+        "custom_warning_list_match": [
+          "CUSTOM WARNING LIST MATCH[0]"
+        ]
       }
     }
   }
@@ -422,7 +432,12 @@ Here is how ipv6 observables are represented in STIX 2.1 by file2stix;
     "extensions": {
       "extension-definition--d83fce45-ef58-4c6c-a3f4-1fbc32e98c6e": {
         "extension_type": "property-extension",
-        "warning_list_match": ["MISP WARNING LIST[0]"]
+        "misp_warning_list_match": [
+          "MISP WARNING LIST MATCH[0]"
+        ],
+        "custom_warning_list_match": [
+          "CUSTOM WARNING LIST MATCH[0]"
+        ]
       }
     }
   }
@@ -467,7 +482,12 @@ Note for ipv6 and port observables, the representation is slightly different. Wh
     "extensions": {
       "extension-definition--d83fce45-ef58-4c6c-a3f4-1fbc32e98c6e": {
         "extension_type": "property-extension",
-        "warning_list_match": ["MISP WARNING LIST[0]"]
+        "misp_warning_list_match": [
+          "MISP WARNING LIST MATCH[0]"
+        ],
+        "custom_warning_list_match": [
+          "CUSTOM WARNING LIST MATCH[0]"
+        ]
       }
     }
   }
@@ -527,7 +547,12 @@ Here is how domain name observables are represented in STIX 2.1 by file2stix;
     "extensions": {
       "extension-definition--d83fce45-ef58-4c6c-a3f4-1fbc32e98c6e": {
         "extension_type": "property-extension",
-        "warning_list_match": ["MISP WARNING LIST[0]"]
+        "misp_warning_list_match": [
+          "MISP WARNING LIST MATCH[0]"
+        ],
+        "custom_warning_list_match": [
+          "CUSTOM WARNING LIST MATCH[0]"
+        ]
       }
     }
   }
@@ -577,7 +602,12 @@ Here is how URL observables are represented in STIX 2.1 by file2stix;
     "extensions": {
       "extension-definition--d83fce45-ef58-4c6c-a3f4-1fbc32e98c6e": {
         "extension_type": "property-extension",
-        "warning_list_match": ["MISP WARNING LIST[0]"]
+        "misp_warning_list_match": [
+          "MISP WARNING LIST MATCH[0]"
+        ],
+        "custom_warning_list_match": [
+          "CUSTOM WARNING LIST MATCH[0]"
+        ]
       }
     }
   }
@@ -626,7 +656,12 @@ Here is how file names are represented in STIX 2.1 by file2stix;
     "extensions": {
       "extension-definition--d83fce45-ef58-4c6c-a3f4-1fbc32e98c6e": {
         "extension_type": "property-extension",
-        "warning_list_match": ["MISP WARNING LIST[0]"]
+        "misp_warning_list_match": [
+          "MISP WARNING LIST MATCH[0]"
+        ],
+        "custom_warning_list_match": [
+          "CUSTOM WARNING LIST MATCH[0]"
+        ]
       }
     }
   }
@@ -676,7 +711,12 @@ Here is how directory observables are represented in STIX 2.1 by file2stix;
     "extensions": {
       "extension-definition--d83fce45-ef58-4c6c-a3f4-1fbc32e98c6e": {
         "extension_type": "property-extension",
-        "warning_list_match": ["MISP WARNING LIST[0]"]
+        "misp_warning_list_match": [
+          "MISP WARNING LIST MATCH[0]"
+        ],
+        "custom_warning_list_match": [
+          "CUSTOM WARNING LIST MATCH[0]"
+        ]
       }
     }
   }
@@ -728,7 +768,12 @@ Here is how file hashes are represented in STIX 2.1 by file2stix (note, `<FILE H
     "extensions": {
       "extension-definition--d83fce45-ef58-4c6c-a3f4-1fbc32e98c6e": {
         "extension_type": "property-extension",
-        "warning_list_match": ["MISP WARNING LIST[0]"]
+        "misp_warning_list_match": [
+          "MISP WARNING LIST MATCH[0]"
+        ],
+        "custom_warning_list_match": [
+          "CUSTOM WARNING LIST MATCH[0]"
+        ]
       }
     }
   }
@@ -778,7 +823,12 @@ Here is how email address observables are represented in STIX 2.1 by file2stix;
     "extensions": {
       "extension-definition--d83fce45-ef58-4c6c-a3f4-1fbc32e98c6e": {
         "extension_type": "property-extension",
-        "warning_list_match": ["MISP WARNING LIST[0]"]
+        "misp_warning_list_match": [
+          "MISP WARNING LIST MATCH[0]"
+        ],
+        "custom_warning_list_match": [
+          "CUSTOM WARNING LIST MATCH[0]"
+        ]
       }
     }
   }
@@ -827,7 +877,12 @@ Here is how MAC Address observables are represented in STIX 2.1 by file2stix;
     "extensions": {
       "extension-definition--d83fce45-ef58-4c6c-a3f4-1fbc32e98c6e": {
         "extension_type": "property-extension",
-        "warning_list_match": ["MISP WARNING LIST[0]"]
+        "misp_warning_list_match": [
+          "MISP WARNING LIST MATCH[0]"
+        ],
+        "custom_warning_list_match": [
+          "CUSTOM WARNING LIST MATCH[0]"
+        ]
       }
     }
   }
@@ -875,7 +930,12 @@ Here is how Windows Registry Key observables are represented in STIX 2.1 by file
     "extensions": {
       "extension-definition--d83fce45-ef58-4c6c-a3f4-1fbc32e98c6e": {
         "extension_type": "property-extension",
-        "warning_list_match": ["MISP WARNING LIST[0]"]
+        "misp_warning_list_match": [
+          "MISP WARNING LIST MATCH[0]"
+        ],
+        "custom_warning_list_match": [
+          "CUSTOM WARNING LIST MATCH[0]"
+        ]
       }
     }
   }
@@ -923,7 +983,12 @@ Here is how User Agent observables are represented in STIX 2.1 by file2stix;
     "extensions": {
       "extension-definition--d83fce45-ef58-4c6c-a3f4-1fbc32e98c6e": {
         "extension_type": "property-extension",
-        "warning_list_match": ["MISP WARNING LIST[0]"]
+        "misp_warning_list_match": [
+          "MISP WARNING LIST MATCH[0]"
+        ],
+        "custom_warning_list_match": [
+          "CUSTOM WARNING LIST MATCH[0]"
+        ]
       }
     }
   }
@@ -989,7 +1054,12 @@ Here is how AS observables are represented in STIX 2.1 by file2stix;
     "extensions": {
       "extension-definition--d83fce45-ef58-4c6c-a3f4-1fbc32e98c6e": {
         "extension_type": "property-extension",
-        "warning_list_match": ["MISP WARNING LIST[0]"]
+        "misp_warning_list_match": [
+          "MISP WARNING LIST MATCH[0]"
+        ],
+        "custom_warning_list_match": [
+          "CUSTOM WARNING LIST MATCH[0]"
+        ]
       }
     }
   }
@@ -1064,7 +1134,12 @@ https://raw.githubusercontent.com/signalscorps/stix2-objects/main/extension-defi
     "extensions": {
       "extension-definition--d83fce45-ef58-4c6c-a3f4-1fbc32e98c6e": {
         "extension_type": "property-extension",
-        "warning_list_match": ["MISP WARNING LIST[0]"]
+        "misp_warning_list_match": [
+          "MISP WARNING LIST MATCH[0]"
+        ],
+        "custom_warning_list_match": [
+          "CUSTOM WARNING LIST MATCH[0]"
+        ]
       }
     }
   }
@@ -1079,6 +1154,13 @@ CVE's always follow the format `CVE-YYYY-DDDDD`, where `YYYY` is the year and `D
 CVE Observables are represented by the [STIX Vulnerability SDOs (`"type": "vulnerability"`)](https://docs.oasis-open.org/cti/stix/v2.1/csprd01/stix-v2.1-csprd01.html#_Toc16070669).
 
 Here is how CVE observables are represented in STIX 2.1 by file2stix;
+
+#### STIX 2.1 extension-definition
+
+As STIX 2.1 does not natively have an extension for credit cards, file2stix uses a custom SCO;
+
+https://raw.githubusercontent.com/signalscorps/stix2-objects/main/extension-definition/extension-definition--b2b5f2cd-49e6-4091-a0e0-c0bb71543e23/20220101000000000.json
+
 
 #### STIX 2.1 vulnerability SDO
 
@@ -1107,7 +1189,21 @@ Here is how CVE observables are represented in STIX 2.1 by file2stix;
     "extensions": {
       "extension-definition--d83fce45-ef58-4c6c-a3f4-1fbc32e98c6e": {
         "extension_type": "property-extension",
-        "warning_list_match": ["MISP WARNING LIST[0]"]
+        "misp_warning_list_match": [
+          "MISP WARNING LIST MATCH[0]"
+        ],
+        "custom_warning_list_match": [
+          "CUSTOM WARNING LIST MATCH[0]"
+        ]
+      },
+      "extension-definition--b2b5f2cd-49e6-4091-a0e0-c0bb71543e23": {
+        "extension_type": "property-extension",
+        "cve": {
+          "data_type": "CVE",
+          "CVE_data_meta": {
+            "ID": "<EXTRACTED CVE OBSERVABLE VALUE>"
+          }
+        }
       }
     }
 }
@@ -1144,7 +1240,12 @@ Here is how Country observables are represented in STIX 2.1 by file2stix;
     "extensions": {
       "extension-definition--d83fce45-ef58-4c6c-a3f4-1fbc32e98c6e": {
         "extension_type": "property-extension",
-        "warning_list_match": ["MISP WARNING LIST[0]"]
+        "misp_warning_list_match": [
+          "MISP WARNING LIST MATCH[0]"
+        ],
+        "custom_warning_list_match": [
+          "CUSTOM WARNING LIST MATCH[0]"
+        ]
       }
     }
 }
@@ -1212,7 +1313,12 @@ https://raw.githubusercontent.com/signalscorps/stix2-objects/main/extension-defi
     "extensions": {
       "extension-definition--d83fce45-ef58-4c6c-a3f4-1fbc32e98c6e": {
         "extension_type": "property-extension",
-        "warning_list_match": ["MISP WARNING LIST[0]"]
+        "misp_warning_list_match": [
+          "MISP WARNING LIST MATCH[0]"
+        ],
+        "custom_warning_list_match": [
+          "CUSTOM WARNING LIST MATCH[0]"
+        ]
       }
     }
   }
@@ -1273,7 +1379,12 @@ https://raw.githubusercontent.com/signalscorps/stix2-objects/main/extension-defi
     "extensions": {
       "extension-definition--d83fce45-ef58-4c6c-a3f4-1fbc32e98c6e": {
         "extension_type": "property-extension",
-        "warning_list_match": ["MISP WARNING LIST[0]"]
+        "misp_warning_list_match": [
+          "MISP WARNING LIST MATCH[0]"
+        ],
+        "custom_warning_list_match": [
+          "CUSTOM WARNING LIST MATCH[0]"
+        ]
       }
     }
   }
@@ -1318,7 +1429,12 @@ Here is how YARA Rule observables are represented in STIX 2.1 by file2stix;
     "extensions": {
       "extension-definition--d83fce45-ef58-4c6c-a3f4-1fbc32e98c6e": {
         "extension_type": "property-extension",
-        "warning_list_match": ["MISP WARNING LIST[0]"]
+        "misp_warning_list_match": [
+          "MISP WARNING LIST MATCH[0]"
+        ],
+        "custom_warning_list_match": [
+          "CUSTOM WARNING LIST MATCH[0]"
+        ]
       }
     }
   }
@@ -1362,6 +1478,10 @@ SIGMA Rules are represented by [STIX Indicator SDOs (`"type": "indicator"`)](htt
 
 Here is how SIGMA Rule observables are represented in STIX 2.1 by file2stix;
 
+#### STIX 2.1 extension-definition
+
+https://raw.githubusercontent.com/signalscorps/stix2-objects/main/extension-definition/extension-definition--94f4bdb6-7f39-4d0a-b103-f787026963a6/20220101000000000.json
+
 #### STIX 2.1 indicator SDO
 
 ```json
@@ -1373,7 +1493,7 @@ Here is how SIGMA Rule observables are represented in STIX 2.1 by file2stix;
     "created": "<REPORT CREATED PROPERTY VALUE>",
     "modified": "<REPORT MODIFIED PROPERTY VALUE>",
     "indicator_types": ["unknown"],
-    "name": "SIGMA Rule: <RULE NAME>",
+    "name": "SIGMA Rule: <SIGMA RULE TITLE>",
     "pattern_type": "sigma",
     "pattern": "<SIGMA RULE>",
     "valid_from": "<REPORT CREATED PROPERTY VALUE>",
@@ -1383,7 +1503,51 @@ Here is how SIGMA Rule observables are represented in STIX 2.1 by file2stix;
     "extensions": {
       "extension-definition--d83fce45-ef58-4c6c-a3f4-1fbc32e98c6e": {
         "extension_type": "property-extension",
-        "warning_list_match": ["MISP WARNING LIST[0]"]
+        "misp_warning_list_match": [
+          "MISP WARNING LIST MATCH[0]"
+        ],
+        "custom_warning_list_match": [
+          "CUSTOM WARNING LIST MATCH[0]"
+        ]
+      },
+      "extension-definition--94f4bdb6-7f39-4d0a-b103-f787026963a6": {
+        "extension_type": "property-extension",
+        "title": "<SIGMA RULE TITLE>",
+        "id": "<SIGMA RULE ID>",
+        "date": "<SIGMA RULE DATE>",
+        "modified": "<SIGMA RULE MODIFIED>",
+        "related": [
+            {
+                "id": "<SIGMA RULE RELATED.ID[0]>",
+                "type": "<SIGMA RULE RELATED.TYPE[0]>"
+            }
+        ],
+        "status": "<SIGMA RULE STATUS>",
+        "description": "<SIGMA RULE DESCRIPTION>",
+        "license": "<SIGMA RULE LICENSE>",
+        "author": "<SIGMA RULE AUTHOR>",
+        "references": [
+            "<SIGMA RULE REFERENCES[0]>"
+        ],
+        "fields": [
+            "<SIGMA RULE FIELDS[0]>"
+        ],
+        "falsepositives": [
+            "<SIGMA RULE FALSEPOSITIVES[0]>"
+        ],
+        "level": "<SIGMA RULE LEVEL>",
+        "tags": [
+            "<SIGMA RULE TAGS[0]>"
+        ],
+        "logsource": {
+            "category": "<SIGMA RULE LOGSOURCE.CATEGORY>",
+            "product": "<SIGMA RULE LOGSOURCE.PRODUCT>",
+            "service": "<SIGMA RULE LOGSOURCE.SERVICE>",
+            "definition": "<SIGMA RULE LOGSOURCE.DEFINITION>"
+        },
+        "detection": {
+            "<SIGMA RULE DETECTION.[0]>"
+        }
       }
     }
   }
@@ -1406,6 +1570,10 @@ CPEs can be identified as they start with `cpe:` and have 12 separators `:` in t
 
 CPEs are represented by [STIX Software SCOs (`"type": "software"`)](https://docs.oasis-open.org/cti/stix/v2.1/csprd01/stix-v2.1-csprd01.html#_Toc16070740)
 
+#### STIX 2.1 extension-definition
+
+https://raw.githubusercontent.com/signalscorps/stix2-objects/main/extension-definition/extension-definition--6c453e0f-9895-498f-a273-2e2dda473377/20220101000000000.json
+
 #### STIX 2.1 software SCO
 
 ```json
@@ -1420,13 +1588,38 @@ CPEs are represented by [STIX Software SCOs (`"type": "software"`)](https://docs
     "extensions": {
       "extension-definition--d83fce45-ef58-4c6c-a3f4-1fbc32e98c6e": {
         "extension_type": "property-extension",
-        "warning_list_match": ["MISP WARNING LIST[0]"]
+        "misp_warning_list_match": [
+          "MISP WARNING LIST MATCH[0]"
+        ],
+        "custom_warning_list_match": [
+          "CUSTOM WARNING LIST MATCH[0]"
+        ]
+      },
+      "extension-definition--6c453e0f-9895-498f-a273-2e2dda473377": {
+        "extension_type": "property-extension",
+        "cpe23Uri": "<EXTRACTED CPE OBSERVABLE VALUE>",
+        "part": "<EXTRACTED CPE PART>",
+        "vendor": "<EXTRACTED CPE VENDOR>",
+        "product": "<EXTRACTED CPE PRODUCT>",
+        "version": "<EXTRACTED CPE VERSION>",
+        "update": "<EXTRACTED CPE UPDATE>",
+        "edition": "<EXTRACTED CPE EDITION>",
+        "language": "<EXTRACTED CPE LANGUAGE>",
+        "sw_edition": "<EXTRACTED CPE SW_EDITION>",
+        "target_sw": "<EXTRACTED CPE TARGET_SW>",
+        "target_hw": "<EXTRACTED CPE TARGET_HW>",
+        "other": "<EXTRACTED CPE OTHER>"
       }
     }
 }
 ```
 
-Note, `<EXTRACTED CPE VENDOR>` is the 4th value in the CPE string, `<EXTRACTED CPE PRODUCT>` is the 5th, and `<EXTRACTED CPE VERSION>` is 6th place.
+Here is the CPE 2.3 URI schema;
+
+```
+cpe:2.3:<part>:<vendor>:<product>:
+<version>:<update>:<edition>:<language>:<sw_edition>:<target_sw:>:<target_hw>:<other>
+```
 
 ### 21. MITRE ATT&CK Observables
 
