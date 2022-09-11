@@ -118,7 +118,7 @@ file2stix --input-file tests/file_inputs/txt/input.txt --custom-extraction-file 
 To run script for convert data from reports to ArangoDB, you should add in `arangodb.yml` file your config values and run the script:
 
 ```shell
-python3 backends/arangodb/arangodb.py --backend backends/arangodb/arangodb.yml
+file2stix --input-file tests/observable_tests/asn.txt --update-mitre-cti-database --backend backends/arangodb/arangodb.yml
 ```
 * --backend - Path to your Arango YML config file
 
