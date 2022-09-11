@@ -14,6 +14,7 @@ from bs4 import BeautifulSoup
 from datetime import datetime
 from pathlib import Path
 from stix2 import Report, Relationship, Identity, ExtensionDefinition, TLP_WHITE
+from stix2.v21.base import _DomainObject
 from pymispwarninglists.api import WarningList
 
 from file2stix import __appname__
@@ -31,12 +32,22 @@ class IdentityError(Exception):
     pass
 
 
-def get_text_from_xml_or_html(input_file_path):
+def get_text_from_xml(input_file_path):
     """
     Extracts only text content from the xml document
     """
     with open(input_file_path, "r") as f:
         soup = BeautifulSoup(f, "xml")
+
+    text_list = soup.find_all(text=True)
+    return "".join(text_list)
+
+def get_text_from_html(input_file_path):
+    """
+    Extracts only text content from the xml document
+    """
+    with open(input_file_path, "r") as f:
+        soup = BeautifulSoup(f, "html.parser")
 
     text_list = soup.find_all(text=True)
     return "".join(text_list)
@@ -130,8 +141,10 @@ def main(config: Config):
     input = None
 
     # Handle some file extensions specially
-    if file_extension in (".xml", ".html"):
-        input = get_text_from_xml_or_html(input_file_path)
+    if file_extension == ".xml":
+        input = get_text_from_xml(input_file_path)
+    elif file_extension == ".html":
+        input = get_text_from_html(input_file_path)
     elif file_extension == ".json":
         input = get_text_from_json(input_file_path)
     elif file_extension == ".md":
@@ -259,6 +272,7 @@ def main(config: Config):
         )
         relationship_sros.append(relationship_sro)
 
+    # Add identity and misp_extension_definition in stix_objects
     stix_objects = [config.identity] if config.identity else []
     if config.misp_extension_definition != None:
         stix_objects += [config.misp_extension_definition]
@@ -272,8 +286,11 @@ def main(config: Config):
         + relationship_sros
     )
 
+    # Build object_refs for report
     object_refs = []
     for stix_object in stix_objects:
+        # Ignore config.tlp_level, since MarkingDefinition is not supported
+        # in report object_refs
         if stix_object != config.tlp_level:
             if hasattr(stix_object, "id"):
                 object_refs.append(stix_object.id)
