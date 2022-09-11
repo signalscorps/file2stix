@@ -233,23 +233,7 @@ Warning Lists identify potentially benign file2stix extractions.
 
 file2stix used MISP Warning Lists (using [PyMISPWarningLists](https://github.com/MISP/PyMISPWarningLists)) to identify potential extractions that should be whitelisted using a custom Extension definition.
 
-```json
-{
-    "type": "extension-definition",
-    "spec_version": "2.1",
-    "id": "extension-definition--c8ea5ecb-f4a3-45e7-94de-9b9ba05161af",
-    "created_by_ref": "identity--<FILE2STIX ID>",
-    "created": "2022-01-01T00:00:00.000Z",
-    "modified": "2022-01-01T00:00:00.000Z",
-    "name": "MISP Warning Lists",
-    "description": "This schema adds MISP Warning List matches to extracted Objects",
-    "schema": "https://github.com/MISP/misp-warninglists",
-    "version": "1.0",
-    "extension_types": [
-        "property-extension"
-    ]
-}
-```
+https://raw.githubusercontent.com/signalscorps/stix2-objects/main/extension-definition/extension-definition--c8ea5ecb-f4a3-45e7-94de-9b9ba05161af/20220101000000000.json
 
 Extracted values that match a Warning List are still converted to STIX 2.1 Objects, however, will contain the custom property listing the Warning Lists the extracted value matches with.
 
@@ -286,6 +270,9 @@ For example;
                         "Top 5000 websites from Cisco Umbrella",
                         "Top 1,000,000 most-used sites from Tranco",
                         "Top 10K websites from Majestic Million"
+                    ],
+                    "custom_warning_list_match": [
+                        "My custom list"
                     ]
                 }
             }
@@ -1029,7 +1016,7 @@ Including:
 
 Each of these address formats has a defined length and allowed characters that can be extracted using a regex pattern. For example, [Bitcoin addresses is 58 characters](https://github.com/kvesteri/validators/blob/master/validators/btc_address.py).
 
-Cryptocurrency Observables are represented by [STIX Indicator SDOs (`"type": "indicator"`)](https://docs.oasis-open.org/cti/stix/v2.1/csprd01/stix-v2.1-csprd01.html#_Toc16070633), using the [STIX Artifact Object SCO (`"type": "artifact"` because there are no types that represent cryptocurrency)](https://docs.oasis-open.org/cti/stix/v2.1/csprd01/stix-v2.1-csprd01.html#_Toc16070681) to create the Indicator SDO `pattern` property.
+Cryptocurrency Observables are represented by [STIX Indicator SDOs (`"type": "indicator"`)](https://docs.oasis-open.org/cti/stix/v2.1/csprd01/stix-v2.1-csprd01.html#_Toc16070633)/
 
 Here is how cryptocurrency observables are represented in STIX 2.1 by file2stix;
 
@@ -1037,24 +1024,7 @@ Here is how cryptocurrency observables are represented in STIX 2.1 by file2stix;
 
 As STIX 2.1 does not natively have an extension for cryptocurrency, file2stix uses a custom SCO;
 
-```json
-{
-  "id": "extension-definition--532ae28d-137b-4b89-afb7-9cf9b504191b",
-  "type": "extension-definition",
-  "spec_version": "2.1",
-  "name": "Cryptocurrency SCO",
-  "description": "This schema creates a new SCO type called cryptocurrency",
-  "created": "2022-01-01T00:00:00.000Z",
-  "modified": "2022-01-01T00:00:00.000Z",
-  "created_by_ref": "identity--<FILE2STIX IDENTITY>",
-  "schema": "https://github.com/signalscorps/file2stix",
-  "version": "1.0",
-  "extension_types": [ "new-sco" ],
-  "object_marking_refs": [
-    "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
-  ]
-}
-```
+https://raw.githubusercontent.com/signalscorps/stix2-objects/main/extension-definition/extension-definition--532ae28d-137b-4b89-afb7-9cf9b504191b/20220101000000000.json
 
 #### STIX 2.1 cryptocurrency SCO
 
@@ -1086,7 +1056,7 @@ As STIX 2.1 does not natively have an extension for cryptocurrency, file2stix us
     "indicator_types": ["unknown"],
     "name": "<CRYPTO TYPE>: <EXTRACTED CRYPTOCURRENCY OBSERVABLE VALUE>",
     "pattern_type": "stix",
-    "pattern": "[ cryptocurrency:type = '<EXTRACTED CRYPTOCURRENCY TYPE>' AND cryptocurrency:address = '<EXTRACTED CRYPTOCURRENCY OBSERVABLE VALUE>' ]",
+    "pattern": "[ cryptocurrency:symbol = '<EXTRACTED CRYPTOCURRENCY TYPE>' AND cryptocurrency:address = '<EXTRACTED CRYPTOCURRENCY OBSERVABLE VALUE>' ]",
     "valid_from": "<REPORT CREATED PROPERTY VALUE>",
     "object_marking_refs": [
       "marking-definition--<TLP LEVEL SET>"
@@ -1194,7 +1164,7 @@ Note, in the case of Country Name extractions, the country name needs to be conv
 
 Card Numbers are always 16 digits long and the type of card can be determined by the first four digits (e.g. `4242` for Visa). [Therefore it is easy to identify card numbers using regular expressions](https://github.com/kvesteri/validators/blob/master/validators/validators/card.py).
 
-These are represented by [STIX Indicator SDOs (`"type": "indicator"`)](https://docs.oasis-open.org/cti/stix/v2.1/csprd01/stix-v2.1-csprd01.html#_Toc16070633), using the [STIX Artifact Object SCO (`"type": "artifact"` because there are no types that represent credit cards)](https://docs.oasis-open.org/cti/stix/v2.1/csprd01/stix-v2.1-csprd01.html#_Toc16070681) to create the Indicator SDO `pattern` property.
+These are represented by [STIX Indicator SDOs (`"type": "indicator"`)](https://docs.oasis-open.org/cti/stix/v2.1/csprd01/stix-v2.1-csprd01.html#_Toc16070633).
 
 Here is how credit card observables are represented in STIX 2.1 by file2stix;
 
@@ -1202,24 +1172,7 @@ Here is how credit card observables are represented in STIX 2.1 by file2stix;
 
 As STIX 2.1 does not natively have an extension for credit cards, file2stix uses a custom SCO;
 
-```json
-{
-  "id": "extension-definition--abd6fc0e-749e-4e6c-a20c-1faa419f5ee4",
-  "type": "extension-definition",
-  "spec_version": "2.1",
-  "name": "Credit Card SCO",
-  "description": "This schema creates a new SCO type called credit-card",
-  "created": "2022-01-01T00:00:00.000Z",
-  "modified": "2022-01-01T00:00:00.000Z",
-  "created_by_ref": "identity--<FILE2STIX IDENTITY>",
-  "schema": "https://github.com/signalscorps/file2stix",
-  "version": "1.0",
-  "extension_types": [ "new-sco" ],
-  "object_marking_refs": [
-    "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
-  ]
-}
-```
+https://raw.githubusercontent.com/signalscorps/stix2-objects/main/extension-definition/extension-definition--abd6fc0e-749e-4e6c-a20c-1faa419f5ee4/20220101000000000.json
 
 #### STIX 2.1 credit-card SCO
 
@@ -1272,7 +1225,7 @@ As STIX 2.1 does not natively have an extension for credit cards, file2stix uses
 
 IBAN numbers start with the country code. The country determines the length of the IBAN number and the structure (they are not all the same). However, as each countries structure must follow the same format [a regular expression can be used to match all IBAN country variations](https://github.com/kvesteri/validators/blob/master/validators/iban.py).
 
-IBANs are represented by [STIX Indicator SDOs (`"type": "indicator"`)](https://docs.oasis-open.org/cti/stix/v2.1/csprd01/stix-v2.1-csprd01.html#_Toc16070633), using the [STIX Artifact Object SCO (`"type": "artifact"` because there are no types that represent IBAN numbers)](https://docs.oasis-open.org/cti/stix/v2.1/csprd01/stix-v2.1-csprd01.html#_Toc16070681) to create the Indicator SDO `pattern` property.
+IBANs are represented by [STIX Indicator SDOs (`"type": "indicator"`)](https://docs.oasis-open.org/cti/stix/v2.1/csprd01/stix-v2.1-csprd01.html#_Toc16070633).
 
 Here is how IBAN number observables are represented in STIX 2.1 by file2stix;
 
@@ -1280,24 +1233,7 @@ Here is how IBAN number observables are represented in STIX 2.1 by file2stix;
 
 As STIX 2.1 does not natively have an extension for IBANs, file2stix uses a custom SCO;
 
-```json
-{
-  "id": "extension-definition--349c1029-4052-4635-a064-263cb17290ea",
-  "type": "extension-definition",
-  "spec_version": "2.1",
-  "name": "IBAN SCO",
-  "description": "This schema creates a new SCO type called iban",
-  "created": "2022-01-01T00:00:00.000Z",
-  "modified": "2022-01-01T00:00:00.000Z",
-  "created_by_ref": "identity--<FILE2STIX IDENTITY>",
-  "schema": "https://github.com/signalscorps/file2stix",
-  "version": "1.0",
-  "extension_types": [ "new-sco" ],
-  "object_marking_refs": [
-    "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
-  ]
-}
-```
+https://raw.githubusercontent.com/signalscorps/stix2-objects/main/extension-definition/extension-definition--349c1029-4052-4635-a064-263cb17290ea/20220101000000000.json
 
 #### STIX 2.1 iban SCO
 
@@ -1306,7 +1242,7 @@ As STIX 2.1 does not natively have an extension for IBANs, file2stix uses a cust
   "type": "iban",
   "spec_version": "2.1",
   "id": "iban--<GENERATED BY STIX2 LIBRARY>",
-  "country": "<FIRST 2 CHARACHTERS OF IBAN>",
+  "country_code": "<FIRST 2 CHARACHTERS OF IBAN>",
   "number": "<FULL IBAN NUMBER INCLUDING COUNTRY CODE>",
   "extensions": {
     "extension-definition--349c1029-4052-4635-a064-263cb17290ea" : {
