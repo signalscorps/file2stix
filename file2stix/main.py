@@ -204,8 +204,7 @@ def main(config: Config):
         logger.warning("No Obseravbles extracted. Hence, not creating STIX report")
         return
 
-    # Create report with all observables extracted
-
+    # Below code is bit redundant, but doesn't lead to errors so will keep it
     object_refs = (
         [stix_object.id for stix_object in observables_list.stix_observables.values()]
         + [
@@ -270,9 +269,23 @@ def main(config: Config):
         + list(observables_list.stix_observables.values())
         + list(observables_list.dict_stix_observables.values())
         + list(observables_list.custom_stix_observables.values())
-        + [report]
         + relationship_sros
     )
+
+    object_refs = []
+    for stix_object in stix_objects:
+        if stix_object != config.tlp_level:
+            if hasattr(stix_object, "id"):
+                object_refs.append(stix_object.id)
+            else:
+                object_refs.append(stix_object["id"])
+
+    report = report.new_version(
+        object_refs = object_refs
+    )
+
+    stix_objects += [report]
+
     stix_store.store_objects_in_filestore(stix_objects)
 
     stix_bundle_file_path = stix_store.store_objects_in_bundle(
