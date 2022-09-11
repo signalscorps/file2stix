@@ -217,7 +217,7 @@ All individual data sources ingested or uploaded are represented as a unique [ST
     }
 ```
 
-Note, the `object_refs` contains all references that are referenced by objects in the report. This includes extracted objects (i.e. Indicator SDOs, Vulnerability SDOs, Software SCOs, Relationship SROs etc.), but also meta Objects (i.e. Identity SCOs, Extension Definitions, Marking Definitions, etc.)
+Note, the `object_refs` contains all references that are referenced by objects in the report (SDOs, SROs, SCOs). This includes extracted objects (i.e. Indicator SDOs, Vulnerability SDOs, Software SCOs, Relationship SROs etc.).
 
 ## Extracted Objects
 
@@ -1160,7 +1160,6 @@ Here is how CVE observables are represented in STIX 2.1 by file2stix;
 As STIX 2.1 does not natively have an extension for credit cards, file2stix uses a custom SCO;
 
 https://raw.githubusercontent.com/signalscorps/stix2-objects/main/extension-definition/extension-definition--b2b5f2cd-49e6-4091-a0e0-c0bb71543e23/20220101000000000.json
-
 
 #### STIX 2.1 vulnerability SDO
 

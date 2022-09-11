@@ -31,7 +31,6 @@ file2stix supports the following filetype inputs:
 	* e.g. `file2stix --input-file tests/file_inputs/xls/input.xls`
 * YAML (`.yml`, `.yaml`)
 	* e.g. `file2stix --input-file tests/file_inputs/yaml/input.yml`
-	* e.g. `file2stix --input-file tests/file_inputs/yaml/input.yml`
 	* e.g. `file2stix --input-file tests/file_inputs/yaml/input.yaml`
 	* note, only key values are considered. e.g. `KEY: VALUE`, only `VALUE` would remain.
 * YARA (`.yar`, `.yara`)
