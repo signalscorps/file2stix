@@ -10,6 +10,8 @@ import os
 FILE2STIX_FOLDER = Path(os.path.abspath(__file__)).parent
 STIX_TEMPLATES_FOLDER = FILE2STIX_FOLDER / "stix_templates"
 
+DEFAULT_USER_IDENTITY_FILE = STIX_TEMPLATES_FOLDER / "file2stix-identity.yml"
+
 @dataclass
 class Config:
     input_file_path: str = None
@@ -18,7 +20,7 @@ class Config:
     cache_folder: str = "file2stix-cache"
 
     tlp_level: MarkingDefinition = TLP_WHITE
-    user_identity_file: str = "stix_templates/identity.yml"
+    user_identity_file: str = DEFAULT_USER_IDENTITY_FILE
     identity: Identity = None
 
     misp_extension_definition_file: str = STIX_TEMPLATES_FOLDER / "extension-definition.yml"

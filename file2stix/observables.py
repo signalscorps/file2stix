@@ -47,7 +47,11 @@ class Observable:
     def __init__(self, extracted_observable_text, config, defanged=False):
         self.extracted_observable_text = extracted_observable_text
         self.tlp_level = config.tlp_level
-        self.identity = config.identity
+        if self.tlp_level == TLP_WHITE:
+            self.identity = None
+        else:
+            self.identity = config.identity
+
         self.misp_extension_definition = config.misp_extension_definition
         self.misp_custom_warning_list = config.misp_custom_warning_list
         self.defanged = defanged
@@ -66,7 +70,7 @@ class Observable:
         else:
             http = r"hxxp"
             dot = r"\[\.\]|{\.}|\(\.\)|\[\.|\\\.|\[dot\]|\(dot\)|\{dot\}"
-            at    = r"\[\@\]|{\@}|\(\@\)|\[\@|\\\@|\[at\]|\(at\)|\{at\}"
+            at = r"\[\@\]|{\@}|\(\@\)|\[\@|\\\@|\[at\]|\(at\)|\{at\}"
             slash = r"\[\/\]|{\/}|\(\/\)|\[\/|\\\/"
             colon = r"\[\:\]|{\:}|\(\:\)|\[\:|\\\:"
             open_bracket = r"\[|\{|\("

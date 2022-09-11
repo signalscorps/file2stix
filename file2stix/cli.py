@@ -3,12 +3,17 @@ Parse CLI arguments and pass to file2stix_cli.main
 """
 import argparse
 import os
-from stix2 import TLP_WHITE, TLP_AMBER, TLP_GREEN, TLP_RED
+import yaml
+from stix2 import TLP_WHITE, TLP_AMBER, TLP_GREEN, TLP_RED, Identity
 
 import file2stix
-from file2stix.config import Config
+from file2stix.config import DEFAULT_USER_IDENTITY_FILE, Config
 from file2stix.main import main
 from file2stix.observables import get_observable_class_from_name
+
+
+class IdentityError(Exception):
+    pass
 
 
 def cli():
@@ -113,6 +118,20 @@ def cli():
     }
     tlp_level = tlp_level_map[args.tlp_level]
 
+    user_identity_file = args.user_identity_file
+    if tlp_level == TLP_WHITE:
+        user_identity_file = DEFAULT_USER_IDENTITY_FILE
+
+    # Set user identity
+    try:
+        with open(user_identity_file) as f:
+            identity_config = yaml.safe_load(f)
+        identity = Identity(**identity_config)
+    except Exception as error:
+        raise IdentityError(
+            "Identity config file is not present or is in incorrect format."
+        ) from error
+
     # Build config object
     config = Config(
         input_file_path=input_file_path,
@@ -122,9 +141,10 @@ def cli():
         custom_extraction_file=args.custom_extraction_file,
         tlp_level=tlp_level,
         user_identity_file=args.user_identity_file,
+        identity=identity,
         ignore_observables_list=ignore_observables_list,
         misp_custom_warning_list_file=args.misp_custom_warning_list_file,
-        refang_observables=args.refang_observables
+        refang_observables=args.refang_observables,
     )
 
     # Call main

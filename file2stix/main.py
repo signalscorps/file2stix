@@ -13,8 +13,7 @@ import yaml
 from bs4 import BeautifulSoup
 from datetime import datetime
 from pathlib import Path
-from stix2 import Report, Relationship, Identity, ExtensionDefinition, TLP_WHITE
-from stix2.v21.base import _DomainObject
+from stix2 import Report, Relationship, ExtensionDefinition, TLP_WHITE
 from pymispwarninglists.api import WarningList
 
 from file2stix import __appname__
@@ -28,10 +27,6 @@ from file2stix.observables import Observable, CustomObservable, CPEObservable
 logger = logging.getLogger(__name__)
 
 
-class IdentityError(Exception):
-    pass
-
-
 def get_text_from_xml(input_file_path):
     """
     Extracts only text content from the xml document
@@ -41,6 +36,7 @@ def get_text_from_xml(input_file_path):
 
     text_list = soup.find_all(text=True)
     return "".join(text_list)
+
 
 def get_text_from_html(input_file_path):
     """
@@ -87,16 +83,6 @@ class ObservableList:
 def main(config: Config):
     cache = Cache(config.cache_folder)
 
-    # Set user identity
-    if config.tlp_level != TLP_WHITE:
-        try:
-            with open(config.user_identity_file) as f:
-                identity_config = yaml.safe_load(f)
-            config.identity = Identity(**identity_config)
-        except:
-            raise IdentityError(
-                "Identity config file is not present or is in incorrect format."
-            )
     try:
         with open(config.misp_extension_definition_file) as f:
             misp_extension_definition_config = yaml.safe_load(f)
@@ -272,19 +258,19 @@ def main(config: Config):
         )
         relationship_sros.append(relationship_sro)
 
-    # Add identity and misp_extension_definition in stix_objects
-    stix_objects = [config.identity] if config.identity else []
-    if config.misp_extension_definition != None:
-        stix_objects += [config.misp_extension_definition]
-
     # Group all stix objects and store in STIX filestore and bundle
-    stix_objects += (
-        [config.tlp_level]
+    stix_objects = (
+        [config.identity]
+        + [config.tlp_level]
         + list(observables_list.stix_observables.values())
         + list(observables_list.dict_stix_observables.values())
         + list(observables_list.custom_stix_observables.values())
         + relationship_sros
     )
+
+    # Add misp_extension_definition in stix_objects
+    if config.misp_extension_definition != None:
+        stix_objects += [config.misp_extension_definition]
 
     # Build object_refs for report
     object_refs = []
@@ -297,9 +283,7 @@ def main(config: Config):
             else:
                 object_refs.append(stix_object["id"])
 
-    report = report.new_version(
-        object_refs = object_refs
-    )
+    report = report.new_version(object_refs=object_refs)
 
     stix_objects += [report]
 
