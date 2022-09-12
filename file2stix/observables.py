@@ -7,6 +7,7 @@ import pycountry
 import validators
 import logging
 import stix2
+import yaml
 from pymispwarninglists import WarningLists
 from ipaddress import IPv4Address, IPv4Interface, IPv6Address, IPv6Interface
 from stix2 import (
@@ -736,6 +737,53 @@ class CPEObservable(Observable):
         )
 
         return software
+
+
+class SIGMARuleObservable(Observable):
+    name = "SIGMA Rule"
+    type = "indicator"
+    pattern = "{extracted_observable_text}"
+    extraction_regex = r"((.*:.*\n)|(\s*- .*\n))+"
+
+    def get_sdo_object(self):
+        # Check if the extracted text is a valid yaml file
+        yaml_dict = yaml.safe_load(self.extracted_observable_text)
+        if not isinstance(yaml_dict, dict):
+            return None
+
+        # Check if yaml is valid SIGMA rule
+        if (
+            "title" not in yaml_dict
+            or "logsource" not in yaml_dict
+            or "detection" not in yaml_dict
+        ):
+            return None
+
+        if self.pattern == None:
+            raise ValueError("pattern cannot be None for indicators.")
+
+        # Replace extracted_observable_text placeholder
+        pattern = self.pattern.format(
+            extracted_observable_text=self.extracted_observable_text
+        )
+
+        # Escape '\' in pattern
+        # https://github.com/oasis-open/cti-python-stix2/issues/260
+        pattern = pattern.replace("\\", "\\\\")
+
+        indicator_dict = {
+            "type": "indicator",
+            "name": f"{self.name}{self.name_delimeter}{yaml_dict['title']}",
+            "pattern_type": "sigma",
+            "pattern": pattern,
+            "indicator_types": ["unknown"],
+            "object_marking_refs": self.tlp_level,
+            "created_by_ref": self.identity,
+        }
+
+        indicator = Indicator(**indicator_dict)
+
+        return indicator
 
 
 class MITREEnterpriseAttackObservable(Observable):

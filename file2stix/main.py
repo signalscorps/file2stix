@@ -156,6 +156,10 @@ def main(config: Config):
         for extracted_stix_observable in ExtractStixObservables(
             observable, input, cache, config
         ):
+            # Below case is possible if extracted observable fails last-minute checks
+            if extracted_stix_observable == None:
+                continue
+
             stix_observable_object = extracted_stix_observable
 
             # Check if observable already present in `stix_store`
