@@ -358,9 +358,12 @@ class FileNameObservable(Observable):
 
     # Suspicious file extensions
     file_extensions = "(?:(?:7(?:Z|z))|(?:AP(?:K|P))|(?:B(?:AT|IN|MP))|(?:C(?:LASS|AB|ER|GI|HM|MD|RX))|(?:D(?:OCX?|EB|LL))|EXE|FLV|(?:G(?:ADGET|IF|Z))|INF|(?:J(?:A(?:VA|R)|PG|S))|(?:L(?:NK|OG))|(?:M(?:O(?:F|V)|P(?:4|G)|S(?:G|I)|4V))|ODT|(?:P(?:LUGIN|PTX?|7S|DF|HP|NG|SD|F|Y))|(?:R(?:AR|PM))|(?:S(?:VG|WF|YS|O))|(?:T(?:IFF?|AR|GZ|MP|XT))|(?:V(?:BS|IR))|(?:W(?:MV|SF))|XLSX?|ZIPX?|(?:ap(?:k|p))|(?:b(?:at|in|mp))|(?:c(?:lass|ab|er|gi|hm|md|rx))|(?:d(?:ocx?|eb|ll))|exe|flv|(?:g(?:adget|if|z))|inf|(?:j(?:a(?:va|r)|pg|s))|(?:l(?:nk|og))|(?:m(?:o(?:f|v)|p(?:4|g)|s(?:g|i)|4v))|odt|(?:p(?:lugin|ptx?|7s|df|hp|ng|sd|f|y))|(?:r(?:ar|pm))|(?:s(?:vg|wf|ys|o))|(?:t(?:iff?|ar|gz|mp|xt))|(?:v(?:bs|ir))|(?:w(?:mv|sf))|xlsx?|zipx?)"
-    extraction_regex = rf"([^\\/:\*\?\"\<\>\|\s]*)\.({file_extensions})"
+    extraction_regex = rf"([^\\/:\*\?\"\<\>\|\s]*)\.({file_extensions})[^0-9A-Za-z]"
 
     def get_sdo_object(self):
+        # Removing extract non alphanumerical extracted in regex
+        self.extracted_observable_text = self.extracted_observable_text[:-1]
+
         # Hacky way of removing qoutes, need a better solution
         self.extracted_observable_text = self.extracted_observable_text.replace("'", "")
         return super().get_sdo_object()
