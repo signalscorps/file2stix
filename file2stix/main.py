@@ -5,6 +5,8 @@ and outputs observables found (in STIX format).
 
 import logging
 import os
+from enum import Enum
+
 import pytz
 import sys
 import textract
@@ -16,8 +18,8 @@ from pathlib import Path
 from stix2 import Report, Relationship, ExtensionDefinition, TLP_WHITE
 from pymispwarninglists.api import WarningList
 
+from file2stix.backends import arangodb
 from file2stix import __appname__
-from file2stix.arangodb import start_saving_to_arango
 from file2stix.cache import Cache
 from file2stix.config import Config
 from file2stix.extract_observables import ExtractStixObservables
@@ -64,6 +66,10 @@ def get_text_from_markdown(input_file_path):
 
     text_list = soup.find_all(text=True)
     return "".join(text_list)
+
+
+class Backends(Enum):
+    ARANGO = 'arangodb'
 
 
 class ObservableList:
@@ -295,9 +301,18 @@ def main(config: Config):
     )
     logger.info("Stored STIX report bundle at %s", stix_bundle_file_path)
 
+    backends_func = {
+        Backends.ARANGO.value: arangodb.start_saving_to_arango(config.backend)
+    }
+
     if config.backend:
-        start_saving_to_arango(config.backend)
-        logger.info(f"Database successfully updated!")
+        with open(config.backend, "r") as stream:
+            try:
+                data = yaml.safe_load(stream)
+            except yaml.YAMLError:
+                raise ValueError("Incorrect YML file")
+            backends_func.get(data.get("backend"))
+            logger.info(f"Database successfully updated!")
     logger.info(
         "If you found file2stix useful, try Stixify features including; report discovery, observable management, intelligence sharing, export via a TAXII 2.1 server... Discover more at: https://www.stixify.com"
     )

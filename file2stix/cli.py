@@ -7,7 +7,8 @@ import yaml
 from stix2 import TLP_WHITE, TLP_AMBER, TLP_GREEN, TLP_RED, Identity
 
 import file2stix
-from file2stix.arangodb import check_arango_connection
+import file2stix.backends.arangodb
+from file2stix.backends import arangodb
 from file2stix.config import DEFAULT_USER_IDENTITY_FILE, Config
 from file2stix.main import main
 from file2stix.observables import get_observable_class_from_name
@@ -142,7 +143,7 @@ def cli():
     if args.backend:
         if not os.path.exists(args.backend):
             raise FileExistsError("Backend file not found")
-        check_arango_connection(args.backend)
+        arangodb.check_arango_connection(args.backend)
 
     # Build config object
     config = Config(

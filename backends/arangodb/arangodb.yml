@@ -1,7 +1,0 @@
-backend: arangodb # specifies config is for arangodb backend
-host: # optional, default if blank: 'http://127.0.0.1:8529'
-username: # optional, default if blank: root
-password: # optional, default if blank: ''
-database_name: # optional, default if blank: 'file2stix'
-document_collection_name: # optional, default if blank: 'stix_objects'
-edge_collection_name: # optional, default if blank: 'stix_relationships'

@@ -1,6 +1,7 @@
 import json
 import logging
 import os
+from datetime import datetime
 from typing import Dict, Union, List
 
 from pyArango.collection import Edges, Collection
@@ -90,7 +91,7 @@ class ArangoConverter:
 
     def __init__(self,
                  config: ConfigData):
-        self.files = get_files_list()
+        self.files = []
         self.arango_user = config.username
         self.arango_pass = config.password
         self.arangoURL = config.host
@@ -104,6 +105,24 @@ class ArangoConverter:
                                    arangoURL=self.arangoURL)
         except:
             raise ValueError("Connection to Arango is failed")
+
+    def get_files_list(self):
+        """
+        Go to stix2_reports dir,
+        Find last added file,
+        Get list of objects from this file
+        """
+        PATH = "./stix2_objects" if os.path.exists("stix2_objects") else None
+        if not PATH:
+            raise FileExistsError("stix2_objects directory not found")
+        files_list = list()
+        for root, dirs, files in os.walk(PATH):
+            files = [os.path.join(root, file) for file in files]
+            if files:
+                files_list.append(max(files, key=os.path.getctime))
+        self.files = files_list
+
+
 
     def get_db(self) -> DBHandle:
         """
@@ -144,8 +163,24 @@ class ArangoConverter:
         for file in self.files:
             with open(file) as stix:
                 stix_object = json.load(stix)
+                if stix_object.get('type') != Relationship.ONE.value:
+                    if not stix_object.get(Additional.MOD.value):
+                        stix_object.update({Additional.MOD.value: datetime.now().isoformat()})
+                    stix_object.update({"_key": f"{stix_object.get('id')}+{stix_object.get(Additional.MOD.value)}"})
+                    self.create_doc(input_dict=stix_object)
                 stix_object.update({"_key": f"{stix_object.get('id')}"})
                 self.validate_json(stix_object=stix_object)
+
+    def get_arango_collection(self, collection: str):
+        db = self.get_arango_database()
+        return db[collection]
+
+    def create_doc(self, input_dict: Dict):
+        collection = self.get_arango_collection(collection=self.document_collection)
+        try:
+            collection[input_dict.get("_key")]
+        except:
+            collection.createDocument(input_dict).save()
 
     def create_update_key(self, input_dict: Dict, collection: Union[Edges, Collection]):
         """
@@ -166,8 +201,8 @@ class ArangoConverter:
         Check, do we need to add a relationship or it alreadt exist
         Save element
         """
-        db = self.get_arango_database()
-        collection_db = db[collection]
+        collection_db = self.get_arango_collection(collection=collection)
+
         if collection == self.edge_collection:
             try:
                 collection_db[input_dict.get("_key")]
@@ -246,5 +281,6 @@ def check_arango_connection(path: str):
 def start_saving_to_arango(path: str):
     config = get_config_data(path)
     converter = ArangoConverter(config=config)
+    converter.get_files_list()
     converter.get_arango_model()
 
