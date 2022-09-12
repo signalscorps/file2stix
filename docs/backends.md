@@ -11,7 +11,7 @@ Backends authentication is specified using a backend `<CONFIG>.yml`.
 This configuration file is passed when running file2stix commands. For example, 
 
 ```shell
-file2stix --input-file tests/file_inputs/txt/input.txt --backend arangodb
+file2stix --input-file tests/file_inputs/txt/input.txt --backend tests/backends/arangodb.yml
 ```
 
 ## Local filesystem
