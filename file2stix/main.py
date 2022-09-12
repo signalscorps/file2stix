@@ -21,11 +21,11 @@ from file2stix.config import Config
 from file2stix.extract_observables import ExtractStixObservables
 from file2stix.helper import (
     inheritors,
-    nested_dict_values,
     get_text_from_html,
     get_text_from_json,
     get_text_from_markdown,
     get_text_from_xml,
+    get_text_from_yaml,
     update_stix_object,
 )
 from file2stix.observables_stix_store import ObservablesStixStore
@@ -107,7 +107,9 @@ def main(config: Config):
         input = get_text_from_json(input_file_path)
     elif file_extension == ".md":
         input = get_text_from_markdown(input_file_path)
-    elif file_extension in (".yml", ".yaml", ".yara", ".yar"):
+    elif file_extension in (".yml", ".yaml"):
+        input = get_text_from_yaml(input_file_path)
+    elif file_extension in (".yara", ".yar"):
         input = Path(input_file_path).read_text()
     else:
         input = textract.process(input_file_path).decode("UTF-8")
