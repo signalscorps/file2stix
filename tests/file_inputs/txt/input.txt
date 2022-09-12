@@ -112,6 +112,10 @@ dangerous-intrustion-set
 dangerous-malware
 dangerous-threat-actor
 dangerous-tool
+phish
+scan
+beacon
+cnc
 
 whitelist: google.com
 

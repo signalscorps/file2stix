@@ -44,7 +44,7 @@ class ExtractStixObservables:
                 return
         if observable_cls == CustomObservable:
             if config.custom_extraction_file != None:
-                observable_cls.build_extraction_regex(config.custom_extraction_file)
+                observable_cls.build_extraction_regex(config.custom_extraction_file, cache.cti_folder_path)
             else:
                 logger.info("Custom extraction file not given, hence not extracting any custom observables.")
                 return
