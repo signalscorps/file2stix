@@ -408,6 +408,7 @@ class DirectoryPathObservable(Observable):
     name = "Directory"
     type = "indicator"
     pattern = "[ directory:path = '{extracted_observable_text}' ]"
+    ignore_list = ["http://", "https://"]
 
     # Windows and Unix path
     windows_path = r"[A-Z]:\\([^<>:\"/\\|\?\*\.]+\\)+"
@@ -415,6 +416,9 @@ class DirectoryPathObservable(Observable):
     extraction_regex = rf"^(({windows_path})|({unix_path}))"
 
     def get_sdo_object(self):
+        if self.extracted_observable_text in self.ignore_list:
+            return None
+
         # Hacky way of removing qoutes, need a better solution
         self.extracted_observable_text = self.extracted_observable_text.replace("'", "")
         return super().get_sdo_object()
