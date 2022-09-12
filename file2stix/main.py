@@ -281,7 +281,6 @@ def main(config: Config):
 
     # Update object_refs in report
     report = update_stix_object(report, object_refs=object_refs, allow_custom=True)
-    print(type(report))
     stix_objects += [report]
 
     stix_store.store_objects_in_filestore(stix_objects)
