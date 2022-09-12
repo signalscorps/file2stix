@@ -747,7 +747,13 @@ class SIGMARuleObservable(Observable):
 
     def get_sdo_object(self):
         # Check if the extracted text is a valid yaml file
-        yaml_dict = yaml.safe_load(self.extracted_observable_text)
+        try:
+            yaml_dict = yaml.safe_load(self.extracted_observable_text)
+        except yaml.scanner.ScannerError:
+            logger.debug(
+                "Got error while parsing a prospective SIGMA Rule. Skipping it..."
+            )
+            return None
         if not isinstance(yaml_dict, dict):
             return None
 
@@ -792,6 +798,21 @@ class MITREEnterpriseAttackObservable(Observable):
     # Regex will be updated by ExtractStixObservables Iterator
     extraction_regex = r""
     memory_store = None
+
+    @classmethod
+    def get_stix_object_from_id(
+        cls,
+        stix_id,
+        cti_folder,
+        bundle_relative_path="enterprise-attack/enterprise-attack.json",
+    ):
+        memory_store = MemoryStore()
+        memory_store.load_from_file(f"{cti_folder}/{bundle_relative_path}")
+        sdo_objects = memory_store.query(Filter("id", "=", stix_id))
+        if sdo_objects != None and len(sdo_objects) > 0:
+            return sdo_objects[0]
+        else:
+            return None
 
     @classmethod
     def build_extraction_regex(
@@ -859,6 +880,15 @@ class MITREMobileAttackObservable(MITREEnterpriseAttackObservable):
     memory_store = None
 
     @classmethod
+    def get_stix_object_from_id(
+        cls,
+        stix_id,
+        cti_folder,
+        bundle_relative_path="mobile-attack/mobile-attack.json",
+    ):
+        return super().get_stix_object_from_id(stix_id, cti_folder, bundle_relative_path)
+
+    @classmethod
     def build_extraction_regex(
         cls, cti_folder, bundle_relative_path="mobile-attack/mobile-attack.json"
     ):
@@ -871,6 +901,15 @@ class MITREICSAttackObservable(MITREEnterpriseAttackObservable):
     memory_store = None
 
     @classmethod
+    def get_stix_object_from_id(
+        cls,
+        stix_id,
+        cti_folder,
+        bundle_relative_path="ics-attack/ics-attack.json",
+    ):
+        return super().get_stix_object_from_id(stix_id, cti_folder, bundle_relative_path)
+
+    @classmethod
     def build_extraction_regex(
         cls, cti_folder, bundle_relative_path="ics-attack/ics-attack.json"
     ):
@@ -881,6 +920,15 @@ class MITRECapecObservable(MITREEnterpriseAttackObservable):
     name = "MITRE CAPEC"
     extraction_regex = r""
     memory_store = None
+
+    @classmethod
+    def get_stix_object_from_id(
+        cls,
+        stix_id,
+        cti_folder,
+        bundle_relative_path="capec/2.1/stix-capec.json",
+    ):
+        return super().get_stix_object_from_id(stix_id, cti_folder, bundle_relative_path)
 
     @classmethod
     def build_extraction_regex(
@@ -898,10 +946,15 @@ class CustomObservable(Observable):
     name = "Custom Observable"
     extraction_regex = r""
     custom_observables_map = {}
+    cti_folder_path = None
 
     @staticmethod
     def get_stix2_object_custom(
-        pattern, sdo_object_type, tlp_level=TLP_WHITE, identity=None
+        pattern,
+        sdo_object_type,
+        tlp_level=TLP_WHITE,
+        identity=None,
+        cti_folder_path=None,
     ):
         if sdo_object_type == "attack-pattern":
             return AttackPattern(
@@ -955,11 +1008,45 @@ class CustomObservable(Observable):
                 object_marking_refs=tlp_level,
                 created_by_ref=identity,
             )
+        elif cti_folder_path != None:
+            stix_id = sdo_object_type
+
+            sdo_object = MITREEnterpriseAttackObservable.get_stix_object_from_id(
+                stix_id, cti_folder_path
+            )
+            if sdo_object != None:
+                return sdo_object
+
+            sdo_object = MITREMobileAttackObservable.get_stix_object_from_id(
+                stix_id, cti_folder_path
+            )
+            if sdo_object != None:
+                return sdo_object
+
+            sdo_object = MITREICSAttackObservable.get_stix_object_from_id(
+                stix_id, cti_folder_path
+            )
+            if sdo_object != None:
+                return sdo_object
+
+            sdo_object = MITRECapecObservable.get_stix_object_from_id(
+                stix_id, cti_folder_path
+            )
+            if sdo_object != None:
+                return sdo_object
+
+            return None
         else:
             return None
 
     @classmethod
-    def build_extraction_regex(cls, custom_extraction_file):
+    def build_extraction_regex(cls, custom_extraction_file, cti_folder_path):
+        """
+        Build a regex with all the custom match strings
+        """
+        if cls.cti_folder_path == None:
+            cls.cti_folder_path = cti_folder_path
+
         with open(custom_extraction_file) as file:
             for line in file:
                 try:
@@ -967,26 +1054,29 @@ class CustomObservable(Observable):
                         text.strip() for text in line.split(",")
                     ]
                     pattern = pattern.strip('"')
-                except:
-                    logger.warning(
-                        "Error in parsing this line in custom extraction file: '%s'",
-                        line,
-                    )
-                if CustomObservable.get_stix2_object_custom(pattern, sdo_object_type):
                     cls.extraction_regex += rf"({pattern})|"
                     cls.custom_observables_map[pattern] = sdo_object_type
+                except Exception as error:
+                    logger.warning(
+                        "Error in parsing line in custom extraction file: '%s', Error: %s",
+                        line,
+                        error,
+                    )
 
         # Trim last "|" symbols
         cls.extraction_regex = cls.extraction_regex[:-1]
+        # cls.extraction_regex = f"^({cls.extraction_regex})$"
 
     def get_sdo_object(self):
         pattern = self.extracted_observable_text
         sdo_object_type = self.custom_observables_map[pattern]
         sdo_object = CustomObservable.get_stix2_object_custom(
-            pattern, sdo_object_type, self.tlp_level, self.identity
+            pattern,
+            sdo_object_type,
+            self.tlp_level,
+            self.identity,
+            cti_folder_path=self.cti_folder_path,
         )
-        if sdo_object == None:
-            raise ValueError("Parsed SDO object after custom extraction is None.")
         return sdo_object
 
 

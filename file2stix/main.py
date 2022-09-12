@@ -76,8 +76,11 @@ class ObservableList:
         # Custom stix observables by the user
         self.custom_stix_observables = {}
 
+        # Custom dict stix observables by the user
+        self.custom_dict_stix_observables = {}
+
     def __str__(self):
-        return f"ObservablesList({self.stix_observables}, {self.dict_stix_observables}, {self.custom_stix_observables})"
+        return f"ObservablesList({self.stix_observables}, {self.dict_stix_observables}, {self.custom_stix_observables}, {self.custom_dict_stix_observables})"
 
 
 def main(config: Config):
@@ -179,7 +182,12 @@ def main(config: Config):
                 else:
                     stix_observable_object = extracted_stix_observable
 
-            if observable == CustomObservable:
+            if isinstance(stix_observable_object, dict) and observable == CustomObservable:
+                observables_list.custom_dict_stix_observables[
+                    stix_observable_object["name"]
+                ] = stix_observable_object
+                logger.debug("Extracted observable: %s", stix_observable_object["name"])
+            elif observable == CustomObservable:
                 observables_list.custom_stix_observables[
                     stix_observable_object.name
                 ] = stix_observable_object
@@ -207,23 +215,11 @@ def main(config: Config):
         logger.warning("No Obseravbles extracted. Hence, not creating STIX report")
         return
 
-    # Below code is bit redundant, but doesn't lead to errors so will keep it
-    object_refs = (
-        [stix_object.id for stix_object in observables_list.stix_observables.values()]
-        + [
-            custom_stix_object.id
-            for custom_stix_object in observables_list.custom_stix_observables.values()
-        ]
-        + [
-            dict_stix_object["id"]
-            for dict_stix_object in observables_list.dict_stix_observables.values()
-        ]
-    )
     report = Report(
         name="File converted: " + os.path.split(input_file_path)[1],
         report_types=["threat_report"],
         published=datetime.now(),
-        object_refs=object_refs,
+        object_refs=[config.identity],
         created_by_ref=config.identity,
         allow_custom=True,
         object_marking_refs=config.tlp_level,
@@ -247,8 +243,8 @@ def main(config: Config):
             source_ref=report.id,
             target_ref=stix_observable["id"],
             created_by_ref=config.identity,
-            allow_custom=True,
             object_marking_refs=config.tlp_level,
+            allow_custom=True,
         )
         relationship_sros.append(relationship_sro)
 
@@ -262,6 +258,17 @@ def main(config: Config):
         )
         relationship_sros.append(relationship_sro)
 
+    for stix_observable in observables_list.custom_dict_stix_observables.values():
+        relationship_sro = Relationship(
+            relationship_type="custom-extract",
+            source_ref=report.id,
+            target_ref=stix_observable["id"],
+            created_by_ref=config.identity,
+            object_marking_refs=config.tlp_level,
+            allow_custom=True,
+        )
+        relationship_sros.append(relationship_sro)
+
     # Group all stix objects and store in STIX filestore and bundle
     stix_objects = (
         [config.identity]
@@ -269,6 +276,7 @@ def main(config: Config):
         + list(observables_list.stix_observables.values())
         + list(observables_list.dict_stix_observables.values())
         + list(observables_list.custom_stix_observables.values())
+        + list(observables_list.custom_dict_stix_observables.values())
         + relationship_sros
     )
 
@@ -279,15 +287,12 @@ def main(config: Config):
     # Build object_refs for report
     object_refs = []
     for stix_object in stix_objects:
-        # Ignore config.tlp_level, since MarkingDefinition is not supported
-        # in report object_refs
-        if stix_object != config.tlp_level:
-            if hasattr(stix_object, "id"):
-                object_refs.append(stix_object.id)
-            else:
-                object_refs.append(stix_object["id"])
+        if hasattr(stix_object, "id"):
+            object_refs.append(stix_object.id)
+        else:
+            object_refs.append(stix_object["id"])
 
-    report = report.new_version(object_refs=object_refs)
+    report = report.new_version(object_refs=object_refs, allow_custom=True)
 
     stix_objects += [report]
 
