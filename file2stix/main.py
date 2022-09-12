@@ -10,7 +10,6 @@ import sys
 import textract
 import json
 import yaml
-from bs4 import BeautifulSoup
 from datetime import datetime
 from pathlib import Path
 from stix2 import Report, Relationship, ExtensionDefinition, TLP_WHITE
@@ -20,49 +19,19 @@ from file2stix import __appname__
 from file2stix.cache import Cache
 from file2stix.config import Config
 from file2stix.extract_observables import ExtractStixObservables
-from file2stix.helper import inheritors, nested_dict_values
+from file2stix.helper import (
+    inheritors,
+    nested_dict_values,
+    get_text_from_html,
+    get_text_from_json,
+    get_text_from_markdown,
+    get_text_from_xml,
+    update_stix_object,
+)
 from file2stix.observables_stix_store import ObservablesStixStore
 from file2stix.observables import Observable, CustomObservable, CPEObservable
 
 logger = logging.getLogger(__name__)
-
-
-def get_text_from_xml(input_file_path):
-    """
-    Extracts only text content from the xml document
-    """
-    with open(input_file_path, "r") as f:
-        soup = BeautifulSoup(f, "xml")
-
-    text_list = soup.find_all(text=True)
-    return "".join(text_list)
-
-
-def get_text_from_html(input_file_path):
-    """
-    Extracts only text content from the xml document
-    """
-    with open(input_file_path, "r") as f:
-        soup = BeautifulSoup(f, "html.parser")
-
-    text_list = soup.find_all(text=True)
-    return "".join(text_list)
-
-
-def get_text_from_json(input_file_path):
-    with open(input_file_path, "r") as f:
-        data = json.load(f)
-
-    values = list(nested_dict_values(data))
-    return "\n".join([str(value) for value in values])
-
-
-def get_text_from_markdown(input_file_path):
-    with open(input_file_path, "r") as f:
-        soup = BeautifulSoup(f, "lxml")
-
-    text_list = soup.find_all(text=True)
-    return "".join(text_list)
 
 
 class ObservableList:
@@ -192,8 +161,17 @@ def main(config: Config):
                     )
                 else:
                     stix_observable_object = extracted_stix_observable
+            else:
+                stix_observable_object = update_stix_object(
+                    stix_observable_object,
+                    created=report.created,
+                    modified=report.modified,
+                )
 
-            if isinstance(stix_observable_object, dict) and observable == CustomObservable:
+            if (
+                isinstance(stix_observable_object, dict)
+                and observable == CustomObservable
+            ):
                 observables_list.custom_dict_stix_observables[
                     stix_observable_object["name"]
                 ] = stix_observable_object
@@ -302,12 +280,8 @@ def main(config: Config):
             object_refs.append(stix_object["id"])
 
     # Update object_refs in report
-    # Below approach seems hacky, but works :)
-    report_properties_string = report.serialize()
-    report_properties = json.loads(report_properties_string)
-    report_properties["object_refs"] = object_refs
-    report_properties["allow_custom"] = True
-    report = Report(**report_properties)
+    report = update_stix_object(report, object_refs=object_refs, allow_custom=True)
+    print(type(report))
     stix_objects += [report]
 
     stix_store.store_objects_in_filestore(stix_objects)
