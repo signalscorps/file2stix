@@ -145,6 +145,17 @@ def main(config: Config):
 
     logger.info("Reading input file %s ...", input_file_path)
 
+    # Create report early, because we need to use it's created and modified time
+    report = Report(
+        name="File converted: " + os.path.split(input_file_path)[1],
+        report_types=["threat_report"],
+        published=datetime.now(),
+        object_refs=[config.identity],
+        created_by_ref=config.identity,
+        allow_custom=True,
+        object_marking_refs=config.tlp_level,
+    )
+
     stix_store = ObservablesStixStore()
 
     # Iterate over each observable and extract them from input file
@@ -215,21 +226,13 @@ def main(config: Config):
         logger.warning("No Obseravbles extracted. Hence, not creating STIX report")
         return
 
-    report = Report(
-        name="File converted: " + os.path.split(input_file_path)[1],
-        report_types=["threat_report"],
-        published=datetime.now(),
-        object_refs=[config.identity],
-        created_by_ref=config.identity,
-        allow_custom=True,
-        object_marking_refs=config.tlp_level,
-    )
-
     # Create Relationship SROs
     relationship_sros = []
     for stix_observable in observables_list.stix_observables.values():
         relationship_sro = Relationship(
             relationship_type="default-extract",
+            created=report.created,
+            modified=report.modified,
             source_ref=report.id,
             target_ref=stix_observable.id,
             created_by_ref=config.identity,
@@ -240,6 +243,8 @@ def main(config: Config):
     for stix_observable in observables_list.dict_stix_observables.values():
         relationship_sro = Relationship(
             relationship_type="default-extract",
+            created=report.created,
+            modified=report.modified,
             source_ref=report.id,
             target_ref=stix_observable["id"],
             created_by_ref=config.identity,
@@ -251,6 +256,8 @@ def main(config: Config):
     for stix_observable in observables_list.custom_stix_observables.values():
         relationship_sro = Relationship(
             relationship_type="custom-extract",
+            created=report.created,
+            modified=report.modified,
             source_ref=report.id,
             target_ref=stix_observable.id,
             created_by_ref=config.identity,
@@ -261,6 +268,8 @@ def main(config: Config):
     for stix_observable in observables_list.custom_dict_stix_observables.values():
         relationship_sro = Relationship(
             relationship_type="custom-extract",
+            created=report.created,
+            modified=report.modified,
             source_ref=report.id,
             target_ref=stix_observable["id"],
             created_by_ref=config.identity,
@@ -292,8 +301,13 @@ def main(config: Config):
         else:
             object_refs.append(stix_object["id"])
 
-    report = report.new_version(object_refs=object_refs, allow_custom=True)
-
+    # Update object_refs in report
+    # Below approach seems hacky, but works :)
+    report_properties_string = report.serialize()
+    report_properties = json.loads(report_properties_string)
+    report_properties["object_refs"] = object_refs
+    report_properties["allow_custom"] = True
+    report = Report(**report_properties)
     stix_objects += [report]
 
     stix_store.store_objects_in_filestore(stix_objects)
