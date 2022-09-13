@@ -163,7 +163,8 @@ def main(config: Config):
                     )
                 else:
                     stix_observable_object = extracted_stix_observable
-            else:
+            elif hasattr(extracted_stix_observable, "created"):
+                # elif condition above to avoid dict observables
                 stix_observable_object = update_stix_object(
                     stix_observable_object,
                     created=report.created,
