@@ -1,0 +1,7 @@
+backend: arangodb
+host: http://127.0.0.1:8529
+username: root
+password: 
+database_name: anotherdb
+document_collection_name: doc_collection
+edge_collection_name: edge_collection
