@@ -119,15 +119,12 @@ class ArangoConverter:
             raise FileExistsError("stix2_objects directory not found")
         files_list = list()
         for root, dirs, files in os.walk(PATH):
-            for directory in dirs:
-                if directory[0] == ".":
-                    dirs.remove(directory)
+            [dirs.remove(d) for d in list(dirs) if d[0] == "."]
+            [files.remove(f) for f in list(files) if f[0] == "."]
             files = [os.path.join(root, file) for file in files]
             if files:
                 files_list.append(max(files, key=os.path.getctime))
         self.files = files_list
-
-
 
     def get_db(self) -> DBHandle:
         """
