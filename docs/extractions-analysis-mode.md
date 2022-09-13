@@ -6,6 +6,8 @@ It is recommended this mode is used when inputting generic threat intel into fil
 
 ## Domain (SDOs) and Cyber Observable (SCOs) Object Extractions
 
+Note, SCOs are created from Patterns in SDOs. e.g. `[ipv4-addr:value='1.1.1.1']` become an SCO of `"type": "ipv4-addr` with a `"value": "1.1.1.1"`
+
 ### 1.1 IPv4 Address Observables without port (`indicator`)
 
 * e.g. `198.51.100.3`
