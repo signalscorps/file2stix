@@ -301,11 +301,10 @@ def main(config: Config):
     )
     logger.info("Stored STIX report bundle at %s", stix_bundle_file_path)
 
-    backends_func = {
-        Backends.ARANGO.value: arangodb.start_saving_to_arango(config.backend)
-    }
-
     if config.backend:
+        backends_func = {
+            Backends.ARANGO.value: arangodb.start_saving_to_arango(config.backend)
+        }
         with open(config.backend, "r") as stream:
             data = yaml.safe_load(stream)
         backends_func.get(data.get("backend"))
