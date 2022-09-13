@@ -62,9 +62,9 @@ class Observable:
         return self.name
 
     @classmethod
-    def refang_word(cls, word):
+    def defang_word(cls, word):
         """
-        If `word` is defanged, then refang it
+        If `word` is 'fanged', then defang it
         """
         if cls.defangable == False:
             return word
@@ -112,10 +112,10 @@ class Observable:
                         extracted_observables.append(cls(match.group(0), config))
 
                     # Check if word is defanged
-                    if config.refang_observables and cls.defangable:
-                        refanged_word = cls.refang_word(word)
-                        if word != refanged_word:
-                            match = re.match(cls.extraction_regex, refanged_word)
+                    if config.defang_observables and cls.defangable:
+                        defanged_word = cls.defang_word(word)
+                        if word != defanged_word:
+                            match = re.match(cls.extraction_regex, defanged_word)
                             if match:
                                 extracted_observables.append(
                                     cls(match.group(0), config, defanged=True)
@@ -140,13 +140,13 @@ class Observable:
                     pass
 
                 # Check if word is defanged
-                if config.refang_observables and cls.defangable:
-                    refanged_word = cls.refang_word(word)
-                    if word != refanged_word:
+                if config.defang_observables and cls.defangable:
+                    defanged_word = cls.defang_word(word)
+                    if word != defanged_word:
                         try:
-                            if cls.extraction_function(refanged_word):
+                            if cls.extraction_function(defanged_word):
                                 extracted_observables.append(
-                                    cls(refanged_word, config, defanged=True)
+                                    cls(defanged_word, config, defanged=True)
                                 )
                         except Exception as error:
                             pass
