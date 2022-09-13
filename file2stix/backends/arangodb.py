@@ -16,6 +16,8 @@ from typing import Optional
 
 from pydantic import BaseModel, Extra
 
+from file2stix import logger
+
 
 class EmbeddedRelations(BaseModel):
     _key: str
@@ -51,10 +53,6 @@ class Relationship(Enum):
 class Additional(Enum):
     MOD = "modified"
     CLASS = "Edges"
-
-
-logging.basicConfig(level=logging.INFO)
-logger = logging.getLogger(__name__)
 
 
 def get_config_data(path: str):
