@@ -307,12 +307,9 @@ def main(config: Config):
 
     if config.backend:
         with open(config.backend, "r") as stream:
-            try:
-                data = yaml.safe_load(stream)
-            except yaml.YAMLError:
-                raise ValueError("Incorrect YML file")
-            backends_func.get(data.get("backend"))
-            logger.info(f"Database successfully updated!")
+            data = yaml.safe_load(stream)
+        backends_func.get(data.get("backend"))
+
     logger.info(
         "If you found file2stix useful, try Stixify features including; report discovery, observable management, intelligence sharing, export via a TAXII 2.1 server... Discover more at: https://www.stixify.com"
     )
