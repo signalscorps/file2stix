@@ -382,7 +382,7 @@ file2stix --input-file setup.py
 ## Testing defanging of data
 
 ```shell
-file2stix --input-file tests/file_inputs/fanged_data/fanged_data.txt --refang-observables
+file2stix --input-file tests/file_inputs/fanged_data/fanged_data.txt --defang-observables
 ```
 
 ---

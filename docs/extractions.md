@@ -101,7 +101,7 @@ To update the existing Object, the `created` property of the STIX Object would r
 
 This happens in custom extractions too, where a user has set the same extraction string and Object type.
 
-Note in the case of SCOs (e.g. Software Objects), the existing Object would be used, but no update to the Object would happen (because they do not contain `created` or `modified` properties).
+This includes SCOs but in the case of SCOs (e.g. Software Objects), the existing Object would be used, but no update to the Object would happen (because they do not contain `created` or `modified` properties).
  
 To demonstrate how this works in practice, lets assume in report 1 an IPv4 address observable (`198.51.100.3`) is detected.
 
