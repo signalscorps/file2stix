@@ -81,6 +81,8 @@ def get_files_list() -> List[str]:
         raise FileExistsError("stix2_objects directory not found")
     files_list = list()
     for root, dirs, files in os.walk(PATH):
+        [dirs.remove(d) for d in list(dirs) if d[0] == "."]
+        [files.remove(f) for f in list(files) if f[0] == "."]
         files = [os.path.join(root, file) for file in files]
         if files:
             files_list.append(max(files, key=os.path.getctime))
