@@ -269,7 +269,11 @@ file2stix --input-file tests/custom_extractions/test_extractions.txt --custom-ex
 ```
 
 
+### Extracting explicit ATT&CK Objects
 
+```shell
+file2stix --input-file tests/custom_extractions/extract_as_attack_capec_objects.txt --custom-extraction-file tests/custom_extractions/extract_as_attack_capec_objects.txt
+````
 
 ---
 
@@ -378,10 +382,10 @@ file2stix --input-file setup.py
 ## Testing defanging of data
 
 ```shell
-file2stix --input-file tests/file_inputs/fanged_data/fanged_data.txt
+file2stix --input-file tests/file_inputs/fanged_data/fanged_data.txt --refang-observables
 ```
 
-
+---
 
 ## Testing Warning Lists
 
