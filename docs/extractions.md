@@ -321,6 +321,8 @@ You can also create your own Warning Lists. Custom Warning Lists must follow the
 
 An example of a custom warning list can be seen in `tests/file_inputs/custom_warning_lists/list.json`
 
+Due to the way data is shared, only Reports marked TLP GREEN, TLP AMBER, or TLP RED can be used with custom warning lists. As TLP WHITE reports are shared without attribution, printing a Warning List name will not be enough for a downstream user to determine what/who/and where the Warning List came from.
+
 ## Extracted Object logic
 
 If the same Observable is identified more than once in the same report, only one extraction is made. For example, if 1.1.1.1 is seen 3 times in a report, only one Indicator SDO is created for it. Similarly, for Observed Data counts, despite being mentioned 3 times in the same report, it will only add 1 to the `number_observed` field.
