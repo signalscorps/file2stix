@@ -7,8 +7,10 @@ import yaml
 from stix2 import TLP_WHITE, TLP_AMBER, TLP_GREEN, TLP_RED, Identity
 
 import file2stix
+import file2stix.backends.arangodb
+from file2stix.backends import arangodb
 from file2stix.config import DEFAULT_USER_IDENTITY_FILE, Config
-from file2stix.main import main
+from file2stix.main import main, Backends
 from file2stix.observables import get_observable_class_from_name
 
 
@@ -92,6 +94,12 @@ def cli():
         help="defang 'fanged' observables in input file",
     )
 
+    arg_parser.add_argument(
+        "--backend",
+        action="store",
+        help="cache folder path where MITRE ATT&K and CAPEC warning list will be stored (default: %(default)s)",
+    )
+
     args = arg_parser.parse_args()
 
     input_file_path = (
@@ -132,6 +140,18 @@ def cli():
             "Identity config file is not present or is in incorrect format."
         ) from error
 
+    if args.backend:
+        if not os.path.exists(args.backend):
+            raise FileExistsError("Backend file not found")
+        with open(args.backend, "r") as stream:
+            try:
+                data = yaml.safe_load(stream)
+            except yaml.YAMLError:
+                raise ValueError("Incorrect YML file")
+            if data.get("backend") not in [e.value for e in Backends]:
+                raise ValueError("Backend in YML doesn't match any available backends")
+        arangodb.check_arango_connection(args.backend)
+
     # Build config object
     config = Config(
         input_file_path=input_file_path,
@@ -145,6 +165,7 @@ def cli():
         ignore_observables_list=ignore_observables_list,
         misp_custom_warning_list_file=args.misp_custom_warning_list_file,
         defang_observables=args.defang_observables,
+        backend=args.backend
     )
 
     # Call main

@@ -128,6 +128,14 @@ Or with a custom extraction file specified;
 file2stix --input-file tests/file_inputs/txt/input.txt --custom-extraction-file tests/file_inputs/custom_extractions/extractions.txt
 ````
 
+To run script for convert data from reports to ArangoDB, you should add in `arangodb.yml` file your config values and run the script:
+
+```shell
+file2stix --input-file tests/observable_tests/asn.txt --update-mitre-cti-database --backend backends/arangodb/arangodb.yml
+```
+* --backend - Path to your Arango YML config file
+
+
 ## Documentation
 
 Please take a moment to review the comprehensive documentation included in this repository -- it covers almost all common questions people have about file2stix.

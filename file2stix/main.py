@@ -5,6 +5,8 @@ and outputs observables found (in STIX format).
 
 import logging
 import os
+from enum import Enum
+
 import pytz
 import sys
 import textract
@@ -15,6 +17,7 @@ from pathlib import Path
 from stix2 import Report, Relationship, ExtensionDefinition, TLP_WHITE
 from pymispwarninglists.api import WarningList
 
+from file2stix.backends import arangodb
 from file2stix import __appname__
 from file2stix.cache import Cache
 from file2stix.config import Config
@@ -33,6 +36,10 @@ from file2stix.observables import Observable, CustomObservable, CPEObservable
 
 logger = logging.getLogger(__name__)
 
+
+class Backends(Enum):
+    ARANGO = 'arangodb'
+    
 
 class ObservableList:
     def __init__(self):
@@ -292,6 +299,14 @@ def main(config: Config):
         stix_objects, config.output_json_file_path
     )
     logger.info("Stored STIX report bundle at %s", stix_bundle_file_path)
+
+    if config.backend:
+        backends_func = {
+            Backends.ARANGO.value: arangodb.start_saving_to_arango(config.backend)
+        }
+        with open(config.backend, "r") as stream:
+            data = yaml.safe_load(stream)
+        backends_func.get(data.get("backend"))
 
     logger.info(
         "If you found file2stix useful, try Stixify features including; report discovery, observable management, intelligence sharing, export via a TAXII 2.1 server... Discover more at: https://www.stixify.com"
