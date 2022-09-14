@@ -88,10 +88,10 @@ def cli():
     )
 
     arg_parser.add_argument(
-        "--refang-observables",
+        "--defang-observables",
         action="store_true",
-        default=Config.refang_observables,
-        help="refang 'defanged' observables in input file",
+        default=Config.defang_observables,
+        help="defang 'fanged' observables in input file",
     )
 
     arg_parser.add_argument(
@@ -164,7 +164,7 @@ def cli():
         identity=identity,
         ignore_observables_list=ignore_observables_list,
         misp_custom_warning_list_file=args.misp_custom_warning_list_file,
-        refang_observables=args.refang_observables,
+        defang_observables=args.defang_observables,
         backend=args.backend
     )
 

@@ -12,7 +12,6 @@ import sys
 import textract
 import json
 import yaml
-from bs4 import BeautifulSoup
 from datetime import datetime
 from pathlib import Path
 from stix2 import Report, Relationship, ExtensionDefinition, TLP_WHITE
@@ -23,54 +22,24 @@ from file2stix import __appname__
 from file2stix.cache import Cache
 from file2stix.config import Config
 from file2stix.extract_observables import ExtractStixObservables
-from file2stix.helper import inheritors, nested_dict_values
+from file2stix.helper import (
+    inheritors,
+    get_text_from_html,
+    get_text_from_json,
+    get_text_from_markdown,
+    get_text_from_xml,
+    get_text_from_yaml,
+    update_stix_object,
+)
 from file2stix.observables_stix_store import ObservablesStixStore
 from file2stix.observables import Observable, CustomObservable, CPEObservable
 
 logger = logging.getLogger(__name__)
 
 
-def get_text_from_xml(input_file_path):
-    """
-    Extracts only text content from the xml document
-    """
-    with open(input_file_path, "r") as f:
-        soup = BeautifulSoup(f, "xml")
-
-    text_list = soup.find_all(text=True)
-    return "".join(text_list)
-
-
-def get_text_from_html(input_file_path):
-    """
-    Extracts only text content from the xml document
-    """
-    with open(input_file_path, "r") as f:
-        soup = BeautifulSoup(f, "html.parser")
-
-    text_list = soup.find_all(text=True)
-    return "".join(text_list)
-
-
-def get_text_from_json(input_file_path):
-    with open(input_file_path, "r") as f:
-        data = json.load(f)
-
-    values = list(nested_dict_values(data))
-    return "\n".join([str(value) for value in values])
-
-
-def get_text_from_markdown(input_file_path):
-    with open(input_file_path, "r") as f:
-        soup = BeautifulSoup(f, "lxml")
-
-    text_list = soup.find_all(text=True)
-    return "".join(text_list)
-
-
 class Backends(Enum):
     ARANGO = 'arangodb'
-
+    
 
 class ObservableList:
     def __init__(self):
@@ -83,8 +52,11 @@ class ObservableList:
         # Custom stix observables by the user
         self.custom_stix_observables = {}
 
+        # Custom dict stix observables by the user
+        self.custom_dict_stix_observables = {}
+
     def __str__(self):
-        return f"ObservablesList({self.stix_observables}, {self.dict_stix_observables}, {self.custom_stix_observables})"
+        return f"ObservablesList({self.stix_observables}, {self.dict_stix_observables}, {self.custom_stix_observables}, {self.custom_dict_stix_observables})"
 
 
 def main(config: Config):
@@ -142,12 +114,25 @@ def main(config: Config):
         input = get_text_from_json(input_file_path)
     elif file_extension == ".md":
         input = get_text_from_markdown(input_file_path)
-    elif file_extension in (".yml", ".yaml", ".yara", ".yar"):
+    elif file_extension in (".yml", ".yaml"):
+        input = get_text_from_yaml(input_file_path)
+    elif file_extension in (".yara", ".yar"):
         input = Path(input_file_path).read_text()
     else:
         input = textract.process(input_file_path).decode("UTF-8")
 
     logger.info("Reading input file %s ...", input_file_path)
+
+    # Create report early, because we need to use it's created and modified time
+    report = Report(
+        name="File converted: " + os.path.split(input_file_path)[1],
+        report_types=["threat_report"],
+        published=datetime.now(),
+        object_refs=[config.identity],
+        created_by_ref=config.identity,
+        allow_custom=True,
+        object_marking_refs=config.tlp_level,
+    )
 
     stix_store = ObservablesStixStore()
 
@@ -163,6 +148,10 @@ def main(config: Config):
         for extracted_stix_observable in ExtractStixObservables(
             observable, input, cache, config
         ):
+            # Below case is possible if extracted observable fails last-minute checks
+            if extracted_stix_observable == None:
+                continue
+
             stix_observable_object = extracted_stix_observable
 
             # Check if observable already present in `stix_store`
@@ -181,8 +170,23 @@ def main(config: Config):
                     )
                 else:
                     stix_observable_object = extracted_stix_observable
+            elif hasattr(extracted_stix_observable, "created"):
+                # elif condition above to avoid dict observables
+                stix_observable_object = update_stix_object(
+                    stix_observable_object,
+                    created=report.created,
+                    modified=report.modified,
+                )
 
-            if observable == CustomObservable:
+            if (
+                isinstance(stix_observable_object, dict)
+                and observable == CustomObservable
+            ):
+                observables_list.custom_dict_stix_observables[
+                    stix_observable_object["name"]
+                ] = stix_observable_object
+                logger.debug("Extracted observable: %s", stix_observable_object["name"])
+            elif observable == CustomObservable:
                 observables_list.custom_stix_observables[
                     stix_observable_object.name
                 ] = stix_observable_object
@@ -210,33 +214,13 @@ def main(config: Config):
         logger.warning("No Obseravbles extracted. Hence, not creating STIX report")
         return
 
-    # Below code is bit redundant, but doesn't lead to errors so will keep it
-    object_refs = (
-        [stix_object.id for stix_object in observables_list.stix_observables.values()]
-        + [
-            custom_stix_object.id
-            for custom_stix_object in observables_list.custom_stix_observables.values()
-        ]
-        + [
-            dict_stix_object["id"]
-            for dict_stix_object in observables_list.dict_stix_observables.values()
-        ]
-    )
-    report = Report(
-        name="File converted: " + os.path.split(input_file_path)[1],
-        report_types=["threat_report"],
-        published=datetime.now(),
-        object_refs=object_refs,
-        created_by_ref=config.identity,
-        allow_custom=True,
-        object_marking_refs=config.tlp_level,
-    )
-
     # Create Relationship SROs
     relationship_sros = []
     for stix_observable in observables_list.stix_observables.values():
         relationship_sro = Relationship(
             relationship_type="default-extract",
+            created=report.created,
+            modified=report.modified,
             source_ref=report.id,
             target_ref=stix_observable.id,
             created_by_ref=config.identity,
@@ -247,21 +231,38 @@ def main(config: Config):
     for stix_observable in observables_list.dict_stix_observables.values():
         relationship_sro = Relationship(
             relationship_type="default-extract",
+            created=report.created,
+            modified=report.modified,
             source_ref=report.id,
             target_ref=stix_observable["id"],
             created_by_ref=config.identity,
-            allow_custom=True,
             object_marking_refs=config.tlp_level,
+            allow_custom=True,
         )
         relationship_sros.append(relationship_sro)
 
     for stix_observable in observables_list.custom_stix_observables.values():
         relationship_sro = Relationship(
             relationship_type="custom-extract",
+            created=report.created,
+            modified=report.modified,
             source_ref=report.id,
             target_ref=stix_observable.id,
             created_by_ref=config.identity,
             object_marking_refs=config.tlp_level,
+        )
+        relationship_sros.append(relationship_sro)
+
+    for stix_observable in observables_list.custom_dict_stix_observables.values():
+        relationship_sro = Relationship(
+            relationship_type="custom-extract",
+            created=report.created,
+            modified=report.modified,
+            source_ref=report.id,
+            target_ref=stix_observable["id"],
+            created_by_ref=config.identity,
+            object_marking_refs=config.tlp_level,
+            allow_custom=True,
         )
         relationship_sros.append(relationship_sro)
 
@@ -272,6 +273,7 @@ def main(config: Config):
         + list(observables_list.stix_observables.values())
         + list(observables_list.dict_stix_observables.values())
         + list(observables_list.custom_stix_observables.values())
+        + list(observables_list.custom_dict_stix_observables.values())
         + relationship_sros
     )
 
@@ -282,16 +284,13 @@ def main(config: Config):
     # Build object_refs for report
     object_refs = []
     for stix_object in stix_objects:
-        # Ignore config.tlp_level, since MarkingDefinition is not supported
-        # in report object_refs
-        if stix_object != config.tlp_level:
-            if hasattr(stix_object, "id"):
-                object_refs.append(stix_object.id)
-            else:
-                object_refs.append(stix_object["id"])
+        if hasattr(stix_object, "id"):
+            object_refs.append(stix_object.id)
+        else:
+            object_refs.append(stix_object["id"])
 
-    report = report.new_version(object_refs=object_refs)
-
+    # Update object_refs in report
+    report = update_stix_object(report, object_refs=object_refs, allow_custom=True)
     stix_objects += [report]
 
     stix_store.store_objects_in_filestore(stix_objects)

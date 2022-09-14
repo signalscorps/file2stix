@@ -16,25 +16,7 @@ Then run `pytest` command in the command line to run all tests:
 pytest
 ```
 
-
-
-
-file2stix --input-file tests/observable_tests/credit_card.txt
-file2stix --input-file tests/observable_tests/directory.txt
-file2stix --input-file tests/observable_tests/domain.txt
-file2stix --input-file tests/observable_tests/email.txt
-file2stix --input-file tests/observable_tests/file.txt
-file2stix --input-file tests/observable_tests/file_hash.txt
-file2stix --input-file tests/observable_tests/iban.txt
-file2stix --input-file tests/observable_tests/ipv4.txt
-file2stix --input-file tests/observable_tests/ipv6.txt
-file2stix --input-file tests/observable_tests/mitre_capec.txt
-file2stix --input-file tests/observable_tests/registry_key.txt
-file2stix --input-file tests/observable_tests/sigma_rule.txt
-file2stix --input-file tests/observable_tests/url.txt
-file2stix --input-file tests/observable_tests/user_agent.txt
-file2stix --input-file tests/observable_tests/yara_rule.txt
-
+---
 
 ## Testing obeservable types
 
@@ -42,56 +24,258 @@ file2stix --input-file tests/observable_tests/yara_rule.txt
 
 #### ASN
 
-```
+```shell
 file2stix --input-file tests/observable_tests/asn.txt
 ```
 
 #### Country
 
-```
+```shell
 file2stix --input-file tests/observable_tests/country_adjective.txt
 ```
 
-```
+```shell
 file2stix --input-file tests/observable_tests/country_code.txt
 ```
 
 #### CPE
 
-```
+```shell
 file2stix --input-file tests/observable_tests/cpe.txt
 ```
 
+#### Credit Card
 
+##### Amex
 
+```shell
+file2stix --input-file tests/observable_tests/credit_card_amex.txt
+```
 
+##### Mastercard
+
+```shell
+file2stix --input-file tests/observable_tests/credit_card_mastercard.txt
+```
+
+##### Visa
+
+```shell
+file2stix --input-file tests/observable_tests/credit_card_visa.txt
+```
+
+##### Discover
+
+```shell
+file2stix --input-file tests/observable_tests/credit_card_discover.txt
+```
+
+##### Diners
+
+```shell
+file2stix --input-file tests/observable_tests/diners.txt
+```
+
+##### Union Pay
+
+```shell
+file2stix --input-file tests/observable_tests/credit_card_union_pay.txt
+```
+
+##### JCB
+
+```shell
+file2stix --input-file tests/observable_tests/credit_card_jcb.txt
+```
+
+#### Directory
+
+```shell
+file2stix --input-file tests/observable_tests/directory.txt
+```
+
+#### Domain / sub-domain
+
+##### Domain
+
+```shell
+file2stix --input-file tests/observable_tests/domain.txt
+```
+
+##### Subdomain
+
+```shell
+file2stix --input-file tests/observable_tests/domain_sub.txt
+```
+
+#### Email
+
+```shell
+file2stix --input-file tests/observable_tests/email.txt
+```
+
+#### Filehash
+
+##### md5
+
+```shell
+file2stix --input-file tests/observable_tests/file_hash_md5.txt
+```
+
+##### sha1
+
+```shell
+file2stix --input-file tests/observable_tests/file_hash_sha1.txt
+```
+
+##### sha256
+
+```shell
+file2stix --input-file tests/observable_tests/file_hash_sha256.txt
+```
+
+##### sha512
+
+```shell
+file2stix --input-file tests/observable_tests/file_hash_sha512.txt
+```
+
+##### ssdeep
+
+```shell
+file2stix --input-file tests/observable_tests/file_hash_ssdeep.txt
+```
+
+#### File 
+
+```shell
+file2stix --input-file tests/observable_tests/file.txt
+```
+
+#### IBAN
+
+```shell
+file2stix --input-file tests/observable_tests/iban.txt
+```
+
+#### IPv4
+
+##### IPv4
+
+```shell
+file2stix --input-file tests/observable_tests/ipv4.txt
+```
+
+##### IPv4 with port
+
+```shell
+file2stix --input-file tests/observable_tests/ipv4_port.txt
+```
+
+##### IPv4 with CIDR
+
+```shell
+file2stix --input-file tests/observable_tests/ipv4_cidr.txt
+```
+
+#### IPv6
+
+##### IPv6
+
+```shell
+file2stix --input-file tests/observable_tests/ipv6.txt
+```
+
+##### IPv6 with port
+
+```shell
+file2stix --input-file tests/observable_tests/ipv6_port.txt
+```
+
+##### IPv6 with CIDR
+
+```shell
+file2stix --input-file tests/observable_tests/ipv6_cidr.txt
+```
 
 #### MITRE ATT&CK
 
 ##### Shared Matrices
 
-```
+```shell
 file2stix --input-file tests/observable_tests/mitre_attck_all.txt
 ```
 
 ##### Enterprise Matrix
 
-```
+```shell
 file2stix --input-file tests/observable_tests/mitre_attck_enterprise.txt
 ```
 
 ##### ICS Matrix
 
-```
+```shell
 file2stix --input-file tests/observable_tests/mitre_attck_ics.txt
 ```
 
 ##### Mobile Matrix
 
-```
+```shell
 file2stix --input-file tests/observable_tests/mitre_attck_mobile.txt
 ```
 
+#### MITRE CAPEC
+
+```shell
+file2stix --input-file tests/observable_tests/mitre_capec.txt
+```
+
+#### Windows Registry Key
+
+```shell
+file2stix --input-file tests/observable_tests/registry_key.txt
+```
+
+#### Sigma Rule
+
+```shell
+file2stix --input-file tests/observable_tests/sigma_rule.txt
+```
+
+#### URL
+
+```shell
+file2stix --input-file tests/observable_tests/url.txt
+```
+
+#### User Agent
+
+```shell
+file2stix --input-file tests/observable_tests/user_agent.txt
+```
+
+#### YARA Rule
+
+```shell
+file2stix --input-file tests/observable_tests/yara_rule.txt
+```
+
+---
+
+## Testing custom extractions
+
+```shell
+file2stix --input-file tests/custom_extractions/test_extractions.txt --custom-extraction-file tests/custom_extractions/test_extractions.txt
+```
+
+
+### Extracting explicit ATT&CK Objects
+
+```shell
+file2stix --input-file tests/custom_extractions/extract_as_attack_capec_objects.txt --custom-extraction-file tests/custom_extractions/extract_as_attack_capec_objects.txt
+````
+
+---
 
 ## Testing filetypes
 
@@ -99,89 +283,89 @@ file2stix --input-file tests/observable_tests/mitre_attck_mobile.txt
 
 #### .csv
 
-```
+```shell
 file2stix --input-file tests/file_inputs/csv/input.csv
 ```
 
 #### .doc
 
-```
+```shell
 file2stix --input-file tests/file_inputs/doc/input.doc
 ```
 
-```
+```shell
 file2stix --input-file tests/file_inputs/doc/input.docxs
 ```
 
 #### .html
 
-```
+```shell
 file2stix --input-file tests/file_inputs/html/input.html
 ```
 
 ##### Large complex HTML
 
-```
+```shell
 file2stix --input-file tests/file_inputs/html/catapult-spider-adversary-quest-walkthrough-2022.html
 ```
 
 #### .json
 
-```
+```shell
 file2stix --input-file tests/file_inputs/json/input.json
 ```
 
 #### .md
 
-```
+```shell
 file2stix --input-file tests/file_inputs/md/input.md
 ```
 
 #### .pdf
 
-```
+```shell
 file2stix --input-file tests/file_inputs/pdf/input.pdf
 ```
 
 #### .txt
 
-```
+```shell
 file2stix --input-file tests/file_inputs/txt/input.txt
 ```
 
 #### .xls
 
-```
+```shell
 file2stix --input-file tests/file_inputs/xls/input.xls
 ```
 
-```
+```shell
 file2stix --input-file tests/file_inputs/xls/input.xlsx
 ```
 
 #### .xml
 
-```
+```shell
 file2stix --input-file tests/file_inputs/xml/input.xml
 ```
 
 #### .yaml
 
-```
+```shell
 file2stix --input-file tests/file_inputs/yara/input.yaml
 ```
 
-```
+```shell
 file2stix --input-file tests/file_inputs/yara/input.yml
 ```
 
 #### .yara
 
-```
+```shell
 file2stix --input-file tests/file_inputs/yara/input.yar
 ```
 
-```
+```shell
 file2stix --input-file tests/file_inputs/yara/input.yara
 ```
 
@@ -189,27 +373,33 @@ file2stix --input-file tests/file_inputs/yara/input.yara
 
 #### .py
 
-```
+```shell
 file2stix --input-file setup.py
 ```
 
-## Testing custom extractions
+---
 
+## Testing defanging of data
+
+```shell
+file2stix --input-file tests/file_inputs/fanged_data/fanged_data.txt --defang-observables
 ```
-file2stix --input-file tests/custom_extractions/test_extractions.txt --custom-extraction-file tests/custom_extractions/test_extractions.txt
-```
+
+---
 
 ## Testing Warning Lists
 
+```shell
+file2stix --input-file tests/custom_warning_lists/list.json --misp-custom-warning-list-file tests/custom_warning_lists/list.json
 ```
-file2stix --input-file tests/file_inputs/txt/input.txt --misp-custom-warning-list-file tests/custom_warning_lists/list.json
-```
+
+---
 
 ## Testing TLPs
 
 ### TLP:WHITE
 
-```
+```shell
 file2stix --input-file tests/observable_tests/ipv4.txt --tlp-level WHITE
 ```
 
@@ -225,7 +415,7 @@ On every new run of same report input, the `modified` property of previously ext
 
 ### TLP:GREEN
 
-```
+```shell
 file2stix --input-file tests/observable_tests/ipv4.txt --tlp-level GREEN
 ```
 
@@ -241,7 +431,7 @@ On every new run of same report input, new objects are always created.
 
 ### TLP:AMBER
 
-```
+```shell
 file2stix --input-file tests/observable_tests/ipv4.txt --tlp-level AMBER
 ```
 
@@ -257,7 +447,7 @@ On every new run of same report input, new objects are always created.
 
 ### TLP:RED
 
-```
+```shell
 file2stix --input-file tests/observable_tests/ipv4.txt --tlp-level RED
 ```
 
@@ -273,7 +463,7 @@ On every new run of same report input, new objects are always created.
 
 ### TLP:BAD
 
-```
+```shell
 file2stix --input-file tests/observable_tests/ipv4.txt --tlp-level BAD
 ```
 
@@ -285,7 +475,7 @@ Error message: Invalid choice
 
 ### Ignore IPv4
 
-```
+```shell
 file2stix --input-file tests/observable_tests/ipv4.txt --ignore-observable-prefix ipv4
 ```
 
@@ -295,7 +485,7 @@ Warning message: no observables extracted
 
 ### Ignore IPv4 and Url
 
-```
+```shell
 file2stix --input-file tests/file_inputs/txt/input.txt --ignore-observable-prefix \
 IPv4Observable,IPv4WithPortObservable,\
 IPv6Observable,IPv6WithPortObservable,\
@@ -373,11 +563,20 @@ CustomObservable
 
 ### Valid identity
 
-`file2stix --input-file tests/observable_tests/ipv4.txt --user-identity-file tests/stix_templates/custom_identity_good.yml`
+`file2stix --input-file tests/observable_tests/ipv4.txt --user-identity-file tests/stix_templates/custom_identity_good.yml` 
 
 ### Invalid identity
 
+```shell
+file2stix --input-file tests/observable_tests/ipv4.txt --user-identity-file tests/stix_templates/custom_identity_good.yml --tlp-level GREEN
 ```
-file2stix --input-file tests/observable_tests/ipv4.txt --user-identity-file tests/stix_templates/custom_identity_bad.yml`
+
+## Testing backends
+
+### Valid arangodb backend
+
+```shell
+file2stix --input-file tests/observable_tests/ipv4.txt --backend tests/backends/arangodb.yml
 ```
+
 

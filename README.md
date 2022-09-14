@@ -25,11 +25,12 @@ file2stix currently supports the following extraction types:
 * ipv4 (inc. CIDR, port) (`IPv4`, `IPv4WithPort`)
 * ipv6 (inc. CIDR, port) (`IPv6`, `IPv6WithPort`)
 * File name (`FileName`)
-* md5 hash (`FileHashMD5`)
-* sha1 hash (`FileHashSHA1`)
-* sha256 hash (`FileHashSHA256`)
-* sha512 hash (`FileHashSHA512`)
-* ssdeep hash (`FileHashSsDeep`)
+* File hase
+	* md5 hash (`FileHashMD5`)
+	* sha1 hash (`FileHashSHA1`)
+	* sha256 hash (`FileHashSHA256`)
+	* sha512 hash (`FileHashSHA512`)
+	* ssdeep hash (`FileHashSsDeep`)
 * Directory (Window and UNIX) (`DirectoryPath`)
 * Domain (`DomainName`)
 * URL (`Url`)
@@ -38,17 +39,27 @@ file2stix currently supports the following extraction types:
 * Windows Registry Key (`WindowsRegistryKey`)
 * User Agent (`UserAgent`)
 * Autonomous System Number (ASN) (`AutonomousSystemNumber`)
-* Bitcoin address (BTC) (`CryptocurrencyBTC`)
-* Ethereum address (ETH) (`CryptocurrencyETH`)
-* Monero address (XMR) (`CryptocurrencyXMR`)
+* Cyptocurrency
+	* Bitcoin address (BTC) (`CryptocurrencyBTC`)
+	* Ethereum address (ETH) (`CryptocurrencyETH`)
+	* Monero address (XMR) (`CryptocurrencyXMR`)
 * International Bank Account Number (IBAN) (`IBAN`)
 * CVE (`CVE`)
 * CPE (`CPE`)
-* Credit Card (Mastercard, Visa, Amex, Union Pay, Diners, JCB) (`MastercardCreditCard`,`VisaCreditCard`,`AmexCreditCard`, `UnionPayCreditCard`, `DinersCreditCard`, `JCBCreditCard`)
+* Credit Card
+	* Mastercard (`MastercardCreditCard`)
+	* Visa (`VisaCreditCard`)
+	* Amex (`AmexCreditCard`)
+	* Union Pay (`UnionPayCreditCard`)
+	* Diners (`DinersCreditCard`)
+	* JCB (`JCBCreditCard`)
 * YARA Rule (`YaraRule`)
 * SIGMA Rule (`SigmaRule`)
 * Countries (`CountryName`, `CountryCode`)
-* MITRE ATT&CK (Enterprise ATT&CK, Mobile ATT&CK, ICS ATT&CK) (`MITREEnterpriseAttack`, `MITREMobileAttack`, `MITREICSAttack`)
+* MITRE ATT&CK
+	* Enterprise ATT&CK (`MITREEnterpriseAttack`)
+	* Mobile ATT&CK (`MITREMobileAttack`)
+	* ICS ATT&CK (`MITREICSAttack`)
 * MITRE CAPEC (`MITRECapec`)
 * Custom extractions (`Custom`)
 
@@ -89,7 +100,7 @@ pip3 install -e .
 To run file2stix;
 
 ```shell
-file2stix --input-file PATH/TO/FILE --custom-extraction-file PATH/TO/FILE --update-mitre-cti-database --cache-folder PATH/TO/DIRECTORY --tlp-level TLP --user-identity-file PATH/TO/FILE --ignore-observable-prefix observable1,observable2 --backend PATH/TO/FILE
+file2stix --input-file PATH/TO/FILE --custom-extraction-file PATH/TO/FILE --update-mitre-cti-database --cache-folder PATH/TO/DIRECTORY --tlp-level TLP --user-identity-file PATH/TO/FILE --ignore-observable-prefix observable1,observable2 --backend PATH/TO/CONFIG.yml
 ```
 
 * `--input-file` (required): provides the path to the input file
@@ -98,8 +109,10 @@ file2stix --input-file PATH/TO/FILE --custom-extraction-file PATH/TO/FILE --upda
 * `--cache-folder` (optional, default `file2stix-cache`): cache folder path where MITRE ATT&K, CAPEC and MISP warning list will be stored. By default MITRE dataset is stored in "file2stix-cache" folder. You can specify a different folder for this using the `--cache-folder` option
 * `--tlp-level` (optional, default `WHITE`): the TLP level of report and extracted object. Either `WHITE` or `AMBER`. IMPORTANT, the TLP level defined has an impact on how the objects are stored. Read `docs/conversions.md` for more info.
 * `--user-identity-file` (optional, default `stix_templates/identity.yml`): path to user identity config file (in yml format) to assign to objects extracted. Note, the TLP level also has an impact on how identity is assigned.
-* `--ignore-observable-prefix` (optional, none): you pass a list of obeservable types to ignore (e.g. `ipv4,ipv6`). The field matches on value passed against class names in `file2stix/observables.py`, so you can pass many options to this parameter. e.g. you can pass a  "i", " ip", "ipv", "ipv4", "ipv4o", ..., "ipv4observable" (note that these are case insensitive) as parameter. By passing a very short prefix like "ip", this could ignore several observables (in this case, both ipv4 and ipv6 observables). You should check `file2stix/observables.py` for a full list of class names (e.g `class IPv4Observable`).
-* `--misp-custom-warning-list-file` (optional): a custom Warning List used to whitelist indicators. Must be in the same format as MISP Warning Lists. An example can be seen here `tests/custom_warning_lists/list.json`
+* `--ignore-observable-prefix` (optional, default none): you pass a list of obeservable types to ignore (e.g. `ipv4,ipv6`). The field matches on value passed against class names in `file2stix/observables.py`, so you can pass many options to this parameter. e.g. you can pass a  "i", " ip", "ipv", "ipv4", "ipv4o", ..., "ipv4observable" (note that these are case insensitive) as parameter. By passing a very short prefix like "ip", this could ignore several observables (in this case, both ipv4 and ipv6 observables). You should check `file2stix/observables.py` for a full list of class names (e.g `class IPv4Observable`).
+* `--misp-custom-warning-list-file` (optional, default none): a custom Warning List used to whitelist indicators. Must be in the same format as MISP Warning Lists. An example can be seen here `tests/custom_warning_lists/list.json`
+* `--defang-observables` (optional, default false): If any 'fanged' Observables are detected, these will be defanged before extraction to ensure they are detected correctly as Observables (e.g. `1[.]1[.]1[.]1` defanged becomes `1.1.1.1`)
+* `--backend` (optional, default none): Defines wether output should be stored to a supported backend (in addition to file store). Should be path to backend config file, e.g. `tests/backends/arangodb.yml`
 
 You can also run `file2stix --help` to print more about these options in the command line.
 

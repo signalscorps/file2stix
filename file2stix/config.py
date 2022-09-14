@@ -30,6 +30,6 @@ class Config:
 
     update_mitre_cti_database: bool = False
     ignore_observables_list: List = None
-    refang_observables: bool = False
-
+    defang_observables: bool = False
+ 
     backend: str = None
