@@ -42,6 +42,7 @@ class Observable:
     pattern = None  # Valid for indicators
     extraction_regex = None
     extraction_function = None
+    common_strippable_elements = "\"'.,"
     # This field can be set to true for only "word by word" pattern matches
     defangable = False
 
@@ -110,6 +111,14 @@ class Observable:
                     match = re.match(cls.extraction_regex, word)
                     if match:
                         extracted_observables.append(cls(match.group(0), config))
+                    else:
+                        stripped_word = word.strip(cls.common_strippable_elements)
+                        match = re.match(
+                            cls.extraction_regex,
+                            stripped_word,
+                        )
+                        if match:
+                            extracted_observables.append(cls(match.group(0), config))
 
                     # Check if word is defanged
                     if config.defang_observables and cls.defangable:
@@ -133,11 +142,21 @@ class Observable:
             # Word by word pattern match
             # The extraction_function is run on each word in text
             for word in text.split():
+                added_observable = False
                 try:
                     if cls.extraction_function(word):
                         extracted_observables.append(cls(word, config))
+                        added_observable = True
                 except Exception as error:
                     pass
+
+                if not added_observable:
+                    try:
+                        stripped_word = word.strip(cls.common_strippable_elements)
+                        if cls.extraction_function(stripped_word):
+                            extracted_observables.append(cls(stripped_word, config))
+                    except Exception as error:
+                        pass
 
                 # Check if word is defanged
                 if config.defang_observables and cls.defangable:
@@ -475,7 +494,7 @@ class UserAgentObservable(Observable):
     # User agent
     platforms = r"([a-zA-Z]+)"
     user_agent_details = r"\([\w;\s\,.:-]+\)"
-    user_agent = rf"((User-Agent: )|(user-agent: ))?Mozilla/5.0([ ](({user_agent_details})|(({platforms}/)\S+)))+"
+    user_agent = rf"((User-Agent: )|(user-agent: ))?Mozilla/5.0([ ](({user_agent_details})|(({platforms}/)[^\s\"\',]+)))+"
     extraction_regex = rf"({user_agent})"
 
 
