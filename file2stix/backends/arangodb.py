@@ -1,6 +1,7 @@
 import json
 import logging
 import os
+import time
 from datetime import datetime
 from typing import Dict, Union, List
 
@@ -121,7 +122,9 @@ class ArangoConverter:
             [files.remove(f) for f in list(files) if f[0] == "."]
             files = [os.path.join(root, file) for file in files]
             if files:
-                files_list.append(max(files, key=os.path.getctime))
+                new_file = max(files, key=os.path.getctime)
+                if time.time() - os.path.getctime(new_file) < 60:
+                    files_list.append(new_file)
         self.files = files_list
 
     def get_db(self) -> DBHandle:
