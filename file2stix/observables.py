@@ -893,7 +893,9 @@ class MITREMobileAttackObservable(MITREEnterpriseAttackObservable):
         cti_folder,
         bundle_relative_path="mobile-attack/mobile-attack.json",
     ):
-        return super().get_stix_object_from_id(stix_id, cti_folder, bundle_relative_path)
+        return super().get_stix_object_from_id(
+            stix_id, cti_folder, bundle_relative_path
+        )
 
     @classmethod
     def build_extraction_regex(
@@ -914,7 +916,9 @@ class MITREICSAttackObservable(MITREEnterpriseAttackObservable):
         cti_folder,
         bundle_relative_path="ics-attack/ics-attack.json",
     ):
-        return super().get_stix_object_from_id(stix_id, cti_folder, bundle_relative_path)
+        return super().get_stix_object_from_id(
+            stix_id, cti_folder, bundle_relative_path
+        )
 
     @classmethod
     def build_extraction_regex(
@@ -935,7 +939,9 @@ class MITRECapecObservable(MITREEnterpriseAttackObservable):
         cti_folder,
         bundle_relative_path="capec/2.1/stix-capec.json",
     ):
-        return super().get_stix_object_from_id(stix_id, cti_folder, bundle_relative_path)
+        return super().get_stix_object_from_id(
+            stix_id, cti_folder, bundle_relative_path
+        )
 
     @classmethod
     def build_extraction_regex(
@@ -951,7 +957,7 @@ class MITRECapecObservable(MITREEnterpriseAttackObservable):
 
 class CustomObservable(Observable):
     name = "Custom Observable"
-    extraction_regex = r""
+    extraction_pattern_list = []
     custom_observables_map = {}
     cti_folder_path = None
 
@@ -1047,7 +1053,7 @@ class CustomObservable(Observable):
             return None
 
     @classmethod
-    def build_extraction_regex(cls, custom_extraction_file, cti_folder_path):
+    def build_extraction_pattern_list(cls, custom_extraction_file, cti_folder_path):
         """
         Build a regex with all the custom match strings
         """
@@ -1061,7 +1067,7 @@ class CustomObservable(Observable):
                         text.strip() for text in line.split(",")
                     ]
                     pattern = pattern.strip('"')
-                    cls.extraction_regex += rf"({pattern})|"
+                    cls.extraction_pattern_list += [pattern]
                     cls.custom_observables_map[pattern] = sdo_object_type
                 except Exception as error:
                     logger.warning(
@@ -1070,9 +1076,13 @@ class CustomObservable(Observable):
                         error,
                     )
 
-        # Trim last "|" symbols
-        cls.extraction_regex = cls.extraction_regex[:-1]
-        # cls.extraction_regex = f"^({cls.extraction_regex})$"
+    @classmethod
+    def extract_observables_from_text(cls, text: str, config: Config):
+        extracted_observables = []
+        for pattern in cls.extraction_pattern_list:
+            if pattern in text:
+                extracted_observables.append(cls(pattern, config))
+        return extracted_observables
 
     def get_sdo_object(self):
         pattern = self.extracted_observable_text

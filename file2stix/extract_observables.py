@@ -39,17 +39,23 @@ class ExtractStixObservables:
             else:
                 logger.warning(
                     "Not extracting MITRE Observable since MITRE CTI database is not present in cache. "
-                    "Use --update-mitre-cti-database option to update MITRE CTI database." 
+                    "Use --update-mitre-cti-database option to update MITRE CTI database."
                 )
                 return
         if observable_cls == CustomObservable:
             if config.custom_extraction_file != None:
-                observable_cls.build_extraction_regex(config.custom_extraction_file, cache.cti_folder_path)
+                observable_cls.build_extraction_pattern_list(
+                    config.custom_extraction_file, cache.cti_folder_path
+                )
             else:
-                logger.info("Custom extraction file not given, hence not extracting any custom observables.")
+                logger.info(
+                    "Custom extraction file not given, hence not extracting any custom observables."
+                )
                 return
 
-        self.extracted_observables = observable_cls.extract_observables_from_text(text, config)
+        self.extracted_observables = observable_cls.extract_observables_from_text(
+            text, config
+        )
 
         logger.debug("Extraction of observable text complete.")
 
