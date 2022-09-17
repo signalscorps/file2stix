@@ -1,6 +1,5 @@
 import re
-from sys import maxsize
-from stix2 import Indicator, IPv4Address, NetworkTraffic, IPv6Address
+from stix2 import Indicator, IPv4Address, NetworkTraffic, IPv6Address, DomainName
 
 
 def get_sco_objects(sdo_object, defanged=False):
@@ -59,5 +58,14 @@ def get_sco_objects(sdo_object, defanged=False):
                 ]
             except Exception as error:
                 pass
+        
+        if sdo_object.name.startswith("Domain"):
+            domain_regex = r"domain-name:value = '(.*)'"
+            domain_name = re.search(domain_regex, sdo_object.pattern).groups()[0]
+            sco_objects += [DomainName(
+                value=domain_name,
+                defanged=defanged,
+                object_marking_refs=sdo_object.object_marking_refs,
+            )]
 
     return sco_objects
