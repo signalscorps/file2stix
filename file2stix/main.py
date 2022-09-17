@@ -170,6 +170,12 @@ def main(config: Config):
                     modified=report.modified,
                 )
 
+            observable_id = None
+            if isinstance(stix_observable_object, dict):
+                observable_id = stix_observable_object["id"]
+            else:
+                observable_id = stix_observable_object.id
+
             if (
                 isinstance(stix_observable_object, dict)
                 and observable == CustomObservable
@@ -197,12 +203,7 @@ def main(config: Config):
             sco_objects = stix_observable_objects["sco_objects"]
             if sco_objects != None and len(sco_objects) > 0:
                 for sco_object in sco_objects:
-                    if isinstance(sco_object, NetworkTraffic):
-                        observables_list.sco_observables[
-                            sco_object.dst_port
-                        ] = sco_object
-                    else:
-                        observables_list.sco_observables[sco_object.value] = sco_object
+                    observables_list.sco_observables[observable_id] = sco_object
 
         # Hacky logging, but I don't want to complicate just getting pretty_name
         logger.info(
@@ -220,11 +221,11 @@ def main(config: Config):
     relationship_sros = []
     for stix_observable in observables_list.stix_observables.values():
         relationship_sro = Relationship(
-            relationship_type="default-extract",
+            relationship_type="default-extract-from",
             created=report.created,
             modified=report.modified,
-            source_ref=report.id,
-            target_ref=stix_observable.id,
+            source_ref=stix_observable.id,
+            target_ref=report.id,
             created_by_ref=config.identity,
             object_marking_refs=config.tlp_level,
         )
@@ -232,11 +233,11 @@ def main(config: Config):
 
     for stix_observable in observables_list.dict_stix_observables.values():
         relationship_sro = Relationship(
-            relationship_type="default-extract",
+            relationship_type="default-extract-from",
             created=report.created,
             modified=report.modified,
-            source_ref=report.id,
-            target_ref=stix_observable["id"],
+            source_ref=stix_observable["id"],
+            target_ref=report.id,
             created_by_ref=config.identity,
             object_marking_refs=config.tlp_level,
             allow_custom=True,
@@ -245,11 +246,11 @@ def main(config: Config):
 
     for stix_observable in observables_list.custom_stix_observables.values():
         relationship_sro = Relationship(
-            relationship_type="custom-extract",
+            relationship_type="custom-extract-from",
             created=report.created,
             modified=report.modified,
-            source_ref=report.id,
-            target_ref=stix_observable.id,
+            source_ref=stix_observable.id,
+            target_ref=report.id,
             created_by_ref=config.identity,
             object_marking_refs=config.tlp_level,
         )
@@ -257,24 +258,24 @@ def main(config: Config):
 
     for stix_observable in observables_list.custom_dict_stix_observables.values():
         relationship_sro = Relationship(
-            relationship_type="custom-extract",
+            relationship_type="custom-extract-from",
             created=report.created,
             modified=report.modified,
-            source_ref=report.id,
-            target_ref=stix_observable["id"],
+            source_ref=stix_observable["id"],
+            target_ref=report.id,
             created_by_ref=config.identity,
             object_marking_refs=config.tlp_level,
             allow_custom=True,
         )
         relationship_sros.append(relationship_sro)
 
-    for stix_observable in observables_list.sco_observables.values():
+    for stix_observable_id, sco_object in observables_list.sco_observables.items():
         relationship_sro = Relationship(
-            relationship_type="default-extract",
+            relationship_type="pattern-contains",
             created=report.created,
             modified=report.modified,
-            source_ref=report.id,
-            target_ref=stix_observable.id,
+            source_ref=stix_observable_id,
+            target_ref=sco_object.id,
             created_by_ref=config.identity,
             object_marking_refs=config.tlp_level,
         )

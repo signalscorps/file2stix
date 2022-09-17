@@ -125,14 +125,10 @@ def cli():
     }
     tlp_level = tlp_level_map[args.tlp_level]
 
-    identity = None
-    if tlp_level == TLP_WHITE:
-        identity = STIX2_OBJECTS_STORE.get_object("file2stix")
-    else:
+    identity = STIX2_OBJECTS_STORE.get_object("file2stix")
+    if args.user_identity_file != None:
         # Set user identity
-        try:
-            if args.user_identity_file == None:
-                raise
+        try:   
             with open(args.user_identity_file) as f:
                 identity_config = yaml.safe_load(f)
             identity = Identity(**identity_config)
