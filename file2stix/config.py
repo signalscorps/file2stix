@@ -6,11 +6,12 @@ from stix2 import Identity, ExtensionDefinition, MarkingDefinition, TLP_WHITE
 from typing import List
 from pathlib import Path
 import os
+from file2stix.observables_stix_store import ObservablesStixStore
 
 FILE2STIX_FOLDER = Path(os.path.abspath(__file__)).parent
-STIX_TEMPLATES_FOLDER = FILE2STIX_FOLDER / "stix_templates"
+STIX2_OBJECTS_FOLDER = FILE2STIX_FOLDER / "stix2-objects"
+STIX2_OBJECTS_STORE = ObservablesStixStore(STIX2_OBJECTS_FOLDER)
 
-DEFAULT_USER_IDENTITY_FILE = STIX_TEMPLATES_FOLDER / "file2stix-identity.yml"
 
 @dataclass
 class Config:
@@ -20,16 +21,16 @@ class Config:
     cache_folder: str = "file2stix-cache"
 
     tlp_level: MarkingDefinition = TLP_WHITE
-    user_identity_file: str = DEFAULT_USER_IDENTITY_FILE
     identity: Identity = None
 
-    misp_extension_definition_file: str = STIX_TEMPLATES_FOLDER / "extension-definition.yml"
-    misp_extension_definition: ExtensionDefinition = None
+    misp_extension_definition: ExtensionDefinition = STIX2_OBJECTS_STORE.get_object(
+        "MISP Warning Lists"
+    )
     misp_custom_warning_list_file: str = None
     misp_custom_warning_list: dict = None
 
     update_mitre_cti_database: bool = False
     ignore_observables_list: List = None
     defang_observables: bool = False
- 
+
     backend: str = None

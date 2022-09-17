@@ -62,19 +62,6 @@ class ObservableList:
 def main(config: Config):
     cache = Cache(config.cache_folder)
 
-    try:
-        with open(config.misp_extension_definition_file) as f:
-            misp_extension_definition_config = yaml.safe_load(f)
-        config.misp_extension_definition = ExtensionDefinition(
-            **misp_extension_definition_config
-        )
-    except Exception as ex:
-        logger.warning(
-            "Failed to load MISP extension definition file at %s",
-            config.misp_extension_definition_file,
-        )
-        logger.debug("Exception caught when init MISP extension: %s", ex)
-
     if config.misp_custom_warning_list_file:
         try:
             with open(config.misp_custom_warning_list_file) as f:

@@ -33,14 +33,16 @@ class ObservablesStixStore:
             os.makedirs(bundle_path)
         self.stix_bundle_path = bundle_path
 
-    def get_object(self, stix_object_name, object_marking_refs):
+    def get_object(self, stix_object_name, object_marking_refs=None):
         """
         Query STIX2 Object based on `stix_object_name`
         """
         query = [
             Filter("name", "=", stix_object_name),
-            Filter("object_marking_refs", "=", object_marking_refs),
         ]
+        if object_marking_refs:
+            query += [Filter("object_marking_refs", "=", object_marking_refs)]
+            
         observables_found = self.stix_file_store.source.query(query)
 
         if observables_found == None or len(observables_found) == 0:

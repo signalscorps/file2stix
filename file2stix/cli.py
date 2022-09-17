@@ -9,7 +9,7 @@ from stix2 import TLP_WHITE, TLP_AMBER, TLP_GREEN, TLP_RED, Identity
 import file2stix
 import file2stix.backends.arangodb
 from file2stix.backends import arangodb
-from file2stix.config import DEFAULT_USER_IDENTITY_FILE, Config
+from file2stix.config import Config, STIX2_OBJECTS_STORE
 from file2stix.main import main, Backends
 from file2stix.observables import get_observable_class_from_name
 
@@ -57,7 +57,7 @@ def cli():
     arg_parser.add_argument(
         "--custom-extraction-file",
         action="store",
-        help="path to file with custom extraction logix",
+        help="path to file with custom extraction logic",
     )
 
     arg_parser.add_argument(
@@ -71,7 +71,6 @@ def cli():
     arg_parser.add_argument(
         "--user-identity-file",
         action="store",
-        default=Config.user_identity_file,
         help="path to user identity config file (in yml format)",
     )
 
@@ -126,19 +125,21 @@ def cli():
     }
     tlp_level = tlp_level_map[args.tlp_level]
 
-    user_identity_file = args.user_identity_file
+    identity = None
     if tlp_level == TLP_WHITE:
-        user_identity_file = DEFAULT_USER_IDENTITY_FILE
-
-    # Set user identity
-    try:
-        with open(user_identity_file) as f:
-            identity_config = yaml.safe_load(f)
-        identity = Identity(**identity_config)
-    except Exception as error:
-        raise IdentityError(
-            "Identity config file is not present or is in incorrect format."
-        ) from error
+        identity = STIX2_OBJECTS_STORE.get_object("file2stix")
+    else:
+        # Set user identity
+        try:
+            if args.user_identity_file == None:
+                raise
+            with open(args.user_identity_file) as f:
+                identity_config = yaml.safe_load(f)
+            identity = Identity(**identity_config)
+        except Exception as error:
+            raise IdentityError(
+                "Identity config file is not present or is in incorrect format."
+            ) from error
 
     if args.backend:
         if not os.path.exists(args.backend):
@@ -160,12 +161,11 @@ def cli():
         update_mitre_cti_database=args.update_mitre_cti_database,
         custom_extraction_file=args.custom_extraction_file,
         tlp_level=tlp_level,
-        user_identity_file=args.user_identity_file,
         identity=identity,
         ignore_observables_list=ignore_observables_list,
         misp_custom_warning_list_file=args.misp_custom_warning_list_file,
         defang_observables=args.defang_observables,
-        backend=args.backend
+        backend=args.backend,
     )
 
     # Call main
