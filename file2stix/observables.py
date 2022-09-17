@@ -774,7 +774,9 @@ class SIGMARuleObservable(Observable):
         # Check if the extracted text is a valid yaml file
         try:
             yaml_dict = yaml.safe_load(self.extracted_observable_text)
-        except yaml.scanner.ScannerError:
+        # except yaml.scanner.ScannerError:
+        except:
+            # Failing on any kind of error during yaml parsing
             logger.debug(
                 "Got error while parsing a prospective SIGMA Rule. Skipping it..."
             )
