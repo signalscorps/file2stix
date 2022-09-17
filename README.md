@@ -113,8 +113,7 @@ file2stix --input-file PATH/TO/FILE --custom-extraction-file PATH/TO/FILE --upda
 * `--misp-custom-warning-list-file` (optional, default none): a custom Warning List used to whitelist indicators. Must be in the same format as MISP Warning Lists. An example can be seen here `tests/custom_warning_lists/list.json`. Only available for Reports marked `TLP GREEN`, `TLP AMBER`, or `TLP RED`
 * `--defang-observables` (optional, default false): If any 'fanged' Observables are detected, these will be defanged before extraction to ensure they are detected correctly as Observables (e.g. `1[.]1[.]1[.]1` defanged becomes `1.1.1.1`)
 * `--backend` (optional, default none): Defines wether output should be stored to a supported backend (in addition to file store). Should be path to backend config file, e.g. `tests/backends/arangodb.yml`
-
-You can also run `file2stix --help` to print more about these options in the command line.
+* `--help` (optional, default false) to print more about these options in the command line.
 
 For example;
 
@@ -133,8 +132,6 @@ To run script for convert data from reports to ArangoDB, you should add in `aran
 ```shell
 file2stix --input-file tests/observable_tests/asn.txt --update-mitre-cti-database --backend backends/arangodb/arangodb.yml
 ```
-* --backend - Path to your Arango YML config file
-
 
 ## Documentation
 
@@ -154,4 +151,7 @@ If you notice a bug or have a feature request, [please submit them as issues on 
 
 ## Useful supporting tools
 
+* [STIX 2](https://pypi.org/project/stix2/): APIs for serializing and de-serializing STIX2 JSON content
+* [STIX 2 Pattern Validator](https://pypi.org/project/stix2-patterns/): a tool for checking the syntax of the Cyber Threat Intelligence (CTI) STIX Pattern expressions
+* [MISP Warning Lists](https://github.com/MISP/misp-warninglists): Warning lists to inform users of MISP about potential false-positives or other information in indicators
 * [STIX Viewer](https://github.com/traut/stixview): Quickly load bundles produced from your report.
