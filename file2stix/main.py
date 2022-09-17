@@ -14,7 +14,7 @@ import json
 import yaml
 from datetime import datetime
 from pathlib import Path
-from stix2 import Report, Relationship, ExtensionDefinition, TLP_WHITE
+from stix2 import Report, Relationship, TLP_WHITE, NetworkTraffic
 from pymispwarninglists.api import WarningList
 
 from file2stix.backends import arangodb
@@ -197,7 +197,12 @@ def main(config: Config):
             sco_objects = stix_observable_objects["sco_objects"]
             if sco_objects != None and len(sco_objects) > 0:
                 for sco_object in sco_objects:
-                    observables_list.sco_observables[sco_object.value] = sco_object
+                    if isinstance(sco_object, NetworkTraffic):
+                        observables_list.sco_observables[
+                            sco_object.dst_port
+                        ] = sco_object
+                    else:
+                        observables_list.sco_observables[sco_object.value] = sco_object
 
         # Hacky logging, but I don't want to complicate just getting pretty_name
         logger.info(
