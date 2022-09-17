@@ -13,6 +13,7 @@ from file2stix.observables import (
     MITREICSAttackObservable,
     MITRECapecObservable,
 )
+import pattern2sco
 
 logger = logging.getLogger(__name__)
 
@@ -66,5 +67,10 @@ class ExtractStixObservables:
         if self.index < len(self.extracted_observables):
             extracted_observable = self.extracted_observables[self.index]
             self.index += 1
-            return extracted_observable.get_sdo_object()
+            sdo_object = extracted_observable.get_sdo_object()
+            sco_objects = pattern2sco.get_sco_objects(sdo_object, extracted_observable.defanged)
+            return {
+                "stix_observable": sdo_object,
+                "sco_objects": sco_objects
+            }
         raise StopIteration

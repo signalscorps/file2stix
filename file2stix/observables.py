@@ -247,7 +247,6 @@ class Observable:
         else:
             raise ValueError("Observable type is not supported")
 
-
 class IPv4Observable(Observable):
     name = "ipv4"
     type = "indicator"

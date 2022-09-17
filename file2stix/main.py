@@ -38,8 +38,8 @@ logger = logging.getLogger(__name__)
 
 
 class Backends(Enum):
-    ARANGO = 'arangodb'
-    
+    ARANGO = "arangodb"
+
 
 class ObservableList:
     def __init__(self):
@@ -54,6 +54,9 @@ class ObservableList:
 
         # Custom dict stix observables by the user
         self.custom_dict_stix_observables = {}
+
+        # SCO observables
+        self.sco_observables = {}
 
     def __str__(self):
         return f"ObservablesList({self.stix_observables}, {self.dict_stix_observables}, {self.custom_stix_observables}, {self.custom_dict_stix_observables})"
@@ -132,9 +135,11 @@ def main(config: Config):
         ):
             logger.info("%s is ignored from extraction", observable.__name__)
             continue
-        for extracted_stix_observable in ExtractStixObservables(
+        for stix_observable_objects in ExtractStixObservables(
             observable, input, cache, config
         ):
+            extracted_stix_observable = stix_observable_objects["stix_observable"]
+
             # Below case is possible if extracted observable fails last-minute checks
             if extracted_stix_observable == None:
                 continue
@@ -188,6 +193,11 @@ def main(config: Config):
                     stix_observable_object.name
                 ] = stix_observable_object
                 logger.debug("Extracted observable: %s", stix_observable_object.name)
+
+            sco_objects = stix_observable_objects["sco_objects"]
+            if sco_objects != None and len(sco_objects) > 0:
+                for sco_object in sco_objects:
+                    observables_list.sco_observables[sco_object.value] = sco_object
 
         # Hacky logging, but I don't want to complicate just getting pretty_name
         logger.info(
@@ -253,24 +263,37 @@ def main(config: Config):
         )
         relationship_sros.append(relationship_sro)
 
+    for stix_observable in observables_list.sco_observables.values():
+        relationship_sro = Relationship(
+            relationship_type="default-extract",
+            created=report.created,
+            modified=report.modified,
+            source_ref=report.id,
+            target_ref=stix_observable.id,
+            created_by_ref=config.identity,
+            object_marking_refs=config.tlp_level,
+        )
+        relationship_sros.append(relationship_sro)
+
     # Group all stix objects and store in STIX filestore and bundle
-    stix_objects = (
+    stix_observable_objects = (
         [config.identity]
         + [config.tlp_level]
         + list(observables_list.stix_observables.values())
         + list(observables_list.dict_stix_observables.values())
         + list(observables_list.custom_stix_observables.values())
         + list(observables_list.custom_dict_stix_observables.values())
+        + list(observables_list.sco_observables.values())
         + relationship_sros
     )
 
     # Add misp_extension_definition in stix_objects
     if config.misp_extension_definition != None:
-        stix_objects += [config.misp_extension_definition]
+        stix_observable_objects += [config.misp_extension_definition]
 
     # Build object_refs for report
     object_refs = []
-    for stix_object in stix_objects:
+    for stix_object in stix_observable_objects:
         if hasattr(stix_object, "id"):
             object_refs.append(stix_object.id)
         else:
@@ -278,12 +301,12 @@ def main(config: Config):
 
     # Update object_refs in report
     report = update_stix_object(report, object_refs=object_refs, allow_custom=True)
-    stix_objects += [report]
+    stix_observable_objects += [report]
 
-    stix_store.store_objects_in_filestore(stix_objects)
+    stix_store.store_objects_in_filestore(stix_observable_objects)
 
     stix_bundle_file_path = stix_store.store_objects_in_bundle(
-        stix_objects, config.output_json_file_path
+        stix_observable_objects, config.output_json_file_path
     )
     logger.info("Stored STIX report bundle at %s", stix_bundle_file_path)
 
