@@ -101,7 +101,7 @@ To update the existing Object, the `created` property of the STIX Object would r
 
 This happens in custom extractions too, where a user has set the same extraction string and Object type.
 
-This includes SCOs but in the case of SCOs (e.g. Software Objects), the existing Object would be used, but no update to the Object would happen (because they do not contain `created` or `modified` properties).
+This does not include SCOs (e.g. Software Objects). Here the existing Object would be used, but not updated (because they do not contain `created` or `modified` properties).
  
 To demonstrate how this works in practice, lets assume in report 1 an IPv4 address observable (`198.51.100.3`) is detected.
 
@@ -115,9 +115,9 @@ For Reports marked TLP White, STIX 2.1 Objects representing extracted values do 
 
 In many cases, a person uploading a report will not want the report and the observables extracted to be shared with anyone else beyond their organisation. In file2stix we treat an Organisation as a single `identity` Object. In such instances they would assign the report a `TLP:GREEN`, `TLP:AMBER` or `TLP:RED` designation.
 
-For Reports marked TLP Green, Amber or Red STIX 2.1 Objects representing extracted values always contain `created_by_ref` property to ensure proper attribution when sharing.
+For Reports marked TLP Green, Amber or Red STIX 2.1 Objects representing extracted values always contain `created_by_ref` property to ensure proper attribution when sharing. This only applies to STIX Domain an STIX Relationship Objects (SCOs never contain a `created_by_ref` property).
 
-Like before, every time a new observable is detected, a new SDO Object is created but this time with a `TLP:GREEN`, `TLP:AMBER` or `TLP:RED` marking (except for ATT&CK and CAPEC STIX Objects). 
+Like before, every time a new observable is detected, a new STIX Object is created but this time with a `TLP:GREEN`, `TLP:AMBER` or `TLP:RED` marking (except for ATT&CK and CAPEC STIX Objects). 
 
 However, in the case of an observable being detected for the second time, unlike `TLP:WHITE` reports where a single object would be updated, it is possible new observable objects are created.
 
@@ -127,9 +127,7 @@ If the previously created extracted object matches a previous extracted value AN
 
 If the previously created extracted object matches a previous extracted value AND has the same `identity` BUT a different TLP level to one that matches then a new Object is created.
 
-Put another way, if the same combination of TLP and identity exists, a previously created object is updated, else a new one is created for reports marked `TLP:GREEN`, `TLP:AMBER` or `TLP:RED`.
-
-This includes SCOs.
+Put another way, if the same combination of TLP and identity exists, a previously created object is updated, else a new one is created for reports marked `TLP:GREEN`, `TLP:AMBER` or `TLP:RED`. In the case of SCOs only the TLP level is considered (because no `created_by_ref` field exists).
 
 To give an example, assume report 4 is marked as `TLP:AMBER` is created by `identity-1234` and contains an IPv4 address observable (`198.51.100.3`). A new Indicator SDO Object is created for it (id = `01559644-3b76-4e2a-9cdd-4b7417e95640`) with marking definition `TLP:AMBER` and the `created_by_ref` for that `identity`.
 
