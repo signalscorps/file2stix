@@ -1,6 +1,8 @@
 import re
-from stix2 import Indicator, IPv4Address, NetworkTraffic, IPv6Address, DomainName
+from stix2 import Indicator, IPv4Address, NetworkTraffic, IPv6Address, DomainName, URL, File, Directory
 
+def extract_name_from_regex(regex, pattern):
+    return re.search(regex, pattern).groups()[0]
 
 def get_sco_objects(sdo_object, defanged=False):
     sco_objects = []
@@ -64,6 +66,33 @@ def get_sco_objects(sdo_object, defanged=False):
             domain_name = re.search(domain_regex, sdo_object.pattern).groups()[0]
             sco_objects += [DomainName(
                 value=domain_name,
+                defanged=defanged,
+                object_marking_refs=sdo_object.object_marking_refs,
+            )]
+        
+        if sdo_object.name.startswith("URL"):
+            url_regex = r"url:value = '(.*)'"
+            url_name = re.search(url_regex, sdo_object.pattern).groups()[0]
+            sco_objects += [URL(
+                value=url_name,
+                defanged=defanged,
+                object_marking_refs=sdo_object.object_marking_refs,
+            )]
+        
+        if sdo_object.name.startswith("File name"):
+            regex = r"file:name = '(.*)'"
+            name = extract_name_from_regex(regex, sdo_object.pattern)
+            sco_objects += [File(
+                name=name,
+                defanged=defanged,
+                object_marking_refs=sdo_object.object_marking_refs,
+            )]
+
+        if sdo_object.name.startswith("Directory"):
+            regex = r"directory:path = '(.*)'"
+            name = extract_name_from_regex(regex, sdo_object.pattern)
+            sco_objects += [Directory(
+                path=name,
                 defanged=defanged,
                 object_marking_refs=sdo_object.object_marking_refs,
             )]
