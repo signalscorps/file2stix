@@ -96,5 +96,60 @@ def get_sco_objects(sdo_object, defanged=False):
                 defanged=defanged,
                 object_marking_refs=sdo_object.object_marking_refs,
             )]
+        
+        if sdo_object.name.startswith("md5"):
+            regex = r"file:hash.md5 = '(.*)'"
+            name = extract_name_from_regex(regex, sdo_object.pattern)
+            sco_objects += [File(
+                hashes={
+                    "md5": name,
+                },
+                defanged=defanged,
+                object_marking_refs=sdo_object.object_marking_refs,
+            )]
+        
+        if sdo_object.name.startswith("sha1"):
+            regex = r"file:hash.sha1 = '(.*)'"
+            name = extract_name_from_regex(regex, sdo_object.pattern)
+            sco_objects += [File(
+                hashes={
+                    "sha1": name,
+                },
+                defanged=defanged,
+                object_marking_refs=sdo_object.object_marking_refs,
+            )]
+        
+        if sdo_object.name.startswith("sha256"):
+            regex = r"file:hash.sha256 = '(.*)'"
+            name = extract_name_from_regex(regex, sdo_object.pattern)
+            sco_objects += [File(
+                hashes={
+                    "sha256": name,
+                },
+                defanged=defanged,
+                object_marking_refs=sdo_object.object_marking_refs,
+            )]
+
+        if sdo_object.name.startswith("sha512"):
+            regex = r"file:hash.sha512 = '(.*)'"
+            name = extract_name_from_regex(regex, sdo_object.pattern)
+            sco_objects += [File(
+                hashes={
+                    "sha512": name,
+                },
+                defanged=defanged,
+                object_marking_refs=sdo_object.object_marking_refs,
+            )]
+
+        if sdo_object.name.startswith("ssdeep"):
+            regex = r"file:hash.ssdeep = '(.*)'"
+            name = extract_name_from_regex(regex, sdo_object.pattern)
+            sco_objects += [File(
+                hashes={
+                    "ssdeep": name,
+                },
+                defanged=defanged,
+                object_marking_refs=sdo_object.object_marking_refs,
+            )]
 
     return sco_objects
