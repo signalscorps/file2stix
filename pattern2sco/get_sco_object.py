@@ -11,6 +11,7 @@ from stix2 import (
     EmailAddress,
     MACAddress,
     WindowsRegistryKey,
+    AutonomousSystem,
 )
 
 
@@ -247,5 +248,16 @@ def get_sco_objects(sdo_object, defanged=False):
         #             object_marking_refs=sdo_object.object_marking_refs,
         #         )
         #     ]
+
+        if sdo_object.name.startswith("AS"):
+            regex = r"autonomous-system:number = '(.*)'"
+            name = extract_name_from_regex(regex, sdo_object.pattern)
+            sco_objects += [
+                AutonomousSystem(
+                    number=name,
+                    defanged=defanged,
+                    object_marking_refs=sdo_object.object_marking_refs,
+                )
+            ]
 
     return sco_objects
