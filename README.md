@@ -72,7 +72,7 @@ file2stix project from the [Signals Corps](https://www.signalscorps.com/). We ho
 Download
 
 ```shell
-git clone https://github.com/signalscorps/file2stix
+git clone --recurse-submodules https://github.com/signalscorps/file2stix
 cd file2stix
 ```
 
