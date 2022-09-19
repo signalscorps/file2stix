@@ -9,6 +9,8 @@ from stix2 import (
     File,
     Directory,
     EmailAddress,
+    MACAddress,
+    WindowsRegistryKey,
 )
 
 
@@ -181,7 +183,7 @@ def get_sco_objects(sdo_object, defanged=False):
                     object_marking_refs=sdo_object.object_marking_refs,
                 )
             ]
-        
+
         if sdo_object.name.startswith("ssdeep"):
             regex = r"file:hash.ssdeep = '(.*)'"
             name = extract_name_from_regex(regex, sdo_object.pattern)
@@ -194,7 +196,7 @@ def get_sco_objects(sdo_object, defanged=False):
                     object_marking_refs=sdo_object.object_marking_refs,
                 )
             ]
-        
+
         if sdo_object.name.startswith("Email Address"):
             regex = r"email-addr:value = '(.*)'"
             name = extract_name_from_regex(regex, sdo_object.pattern)
@@ -205,5 +207,45 @@ def get_sco_objects(sdo_object, defanged=False):
                     object_marking_refs=sdo_object.object_marking_refs,
                 )
             ]
+
+        if sdo_object.name.startswith("MAC Address"):
+            regex = r"mac-addr:value = '(.*)'"
+            name = extract_name_from_regex(regex, sdo_object.pattern)
+            sco_objects += [
+                MACAddress(
+                    value=name,
+                    defanged=defanged,
+                    object_marking_refs=sdo_object.object_marking_refs,
+                )
+            ]
+
+        if sdo_object.name.startswith("Windows Registry Key"):
+            regex = r"windows-registry-key:key = '(.*)'"
+            name = extract_name_from_regex(regex, sdo_object.pattern)
+            sco_objects += [
+                WindowsRegistryKey(
+                    key=name,
+                    defanged=defanged,
+                    object_marking_refs=sdo_object.object_marking_refs,
+                )
+            ]
+
+        # if sdo_object.name.startswith("User Agent"):
+        #     regex = r"network-traffic:extensions.'http-requestext'.request_header.'User-Agent' = '(.*)'"
+        #     name = extract_name_from_regex(regex, sdo_object.pattern)
+        #     sco_objects += [
+        #         NetworkTraffic(
+        #             protocols=["http", "https", "tcp", "udp"],
+        #             extensions={
+        #                 "http-request-ext": {
+        #                     "request_method": "",
+        #                     "request_value": "",
+        #                     "request_header": {"User-Agent": name},
+        #                 }
+        #             },
+        #             defanged=defanged,
+        #             object_marking_refs=sdo_object.object_marking_refs,
+        #         )
+        #     ]
 
     return sco_objects
