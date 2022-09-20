@@ -89,7 +89,7 @@ This determines the [STIX marking-definition](https://docs.oasis-open.org/cti/st
 
 The TLP value is reported in the `object_marking_refs` property for the STIX Report Object and all extracted Objects representing extracted Observables (except for ATT&CK or CAPEC, where generic MITRE Objects are used).
 
-The selection of TLP for the Report alongside the `identity` also has an impact on how the extracted observable STIX Objects are stored and represented. This is to ensure proper sharing protocols are Observed.
+The selection of TLP for the Report alongside the `identity`, confidence, and custom warning lists also has an impact on how the extracted observable STIX Objects are stored and represented. This is to ensure proper sharing protocols are Observed.
 
 ### `TLP:WHITE`
 
@@ -109,7 +109,9 @@ Assuming the IPv4 address (`198.51.100.3`) has not been saved as an IPv4 address
 
 If this IPv4 address (`198.51.100.3`) was later detected in another data source imported to file2stix and that report was marked `TLP:WHITE`, the existing SDO would be used (and updated) to represent the extraction (in this case the SDO with `id` = `ff26c055-6336-5bc5-b98d-13d6226742dd` would be updated).
 
-For Reports marked TLP White, STIX 2.1 Objects representing extracted values do not contain a `created_by_ref` property. Extractions can be attributed to an identity using the SRO linking it to the Report SDO (see: Relationships).
+For Reports marked TLP White, STIX 2.1 Objects representing extracted values (not the Report Object itself) do not contain a `created_by_ref` property. Extractions can be attributed to an identity using the SRO linking it to the Report SDO (see: Relationships).
+
+As a result, confidence and custom whitelists cannot be applied to Reports marked TLP:WHITE.
 
 ### `TLP:GREEN`, `TLP:AMBER` or `TLP:RED`
 
@@ -121,13 +123,13 @@ Like before, every time a new observable is detected, a new STIX Object is creat
 
 However, in the case of an observable being detected for the second time, unlike `TLP:WHITE` reports where a single object would be updated, it is possible new observable objects are created.
 
-If the previously created extracted object matches a previous extracted value AND has the same `identity` and TLP level as previously extracted, the previously created Object will be used and updated to reflect the new extraction time (in the same way as TLP White is handled).
+If the previously created extracted object matches a previous extracted value AND has the same `identity` AND TLP level as previously extracted AND has the same warning list matches AND has the same `confidence` score, the previously created Object will be used and updated to reflect the new extraction time (in the same way as TLP White is handled).
 
-If the previously created extracted object matches a previous extracted value AND has the same TLP level BUT a different `identity` to one that matches then a new Object is created.
+If the previously created extracted object matches a previous extracted value AND has the same TLP level BUT a different `identity` (or `confidence` score, or whitelist match) to one that matches then a new Object is created.
 
-If the previously created extracted object matches a previous extracted value AND has the same `identity` BUT a different TLP level to one that matches then a new Object is created.
+If the previously created extracted object matches a previous extracted value AND has the same `identity` BUT a different TLP level (or `confidence` score, or whitelist match) to one that matches  then a new Object is created.
 
-Put another way, if the same combination of TLP and identity exists, a previously created object is updated, else a new one is created for reports marked `TLP:GREEN`, `TLP:AMBER` or `TLP:RED`. In the case of SCOs only the TLP level is considered (because no `created_by_ref` field exists).
+Put another way, if the same combination of TLP, identity confidence and warning list exists, a previously created object is updated, else a new one is created for reports marked `TLP:GREEN`, `TLP:AMBER` or `TLP:RED`. In the case of SCOs only the TLP level is considered (because no `created_by_ref` field exists).
 
 To give an example, assume report 4 is marked as `TLP:AMBER` is created by `identity-1234` and contains an IPv4 address observable (`198.51.100.3`). A new Indicator SDO Object is created for it (id = `01559644-3b76-4e2a-9cdd-4b7417e95640`) with marking definition `TLP:AMBER` and the `created_by_ref` for that `identity`.
 
@@ -147,6 +149,7 @@ All individual data sources ingested or uploaded are represented as a unique [ST
       "created_by_ref": "identity--<IDENTITY ID>",
       "created": "<ITEM INGEST DATE>",
       "modified": "<ITEM INGEST DATE>",
+      "confidence": "<CONFIDENCE SCORE IF SET AND TLP RED/AMBER/GREEN>",
       "name": "File converted: <FILENAME>",
       "published": "<ITEM INGEST DATE>",
       "report_types": ["threat-report"],
@@ -183,7 +186,7 @@ For every extraction type where an SCO is created (ipv4, ipv6, File name, File h
 }
 ```
 
-Note, the `number_observed` property is dependant on TLP level set and `identity` used.
+Note, the `number_observed` property is dependant on TLP level set , `identity` used and any custom white lists or confidence scoring applied at time of upload.
 
 Everytime file2stix creates an SCO it contains an `object_marking_refs` with the same TLP as the report uploaded and if TLP Green/Amber/Red a `created_by_ref` of the identity that created it.
 
