@@ -1,3 +1,6 @@
 [submodule "file2stix/stix2-objects"]
 	path = file2stix/stix2-objects
 	url = https://github.com/signalscorps/stix2-objects.git
+[submodule "pattern2sco/stix2-objects"]
+	path = pattern2sco/stix2-objects
+	url = https://github.com/signalscorps/stix2-objects.git

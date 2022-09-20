@@ -23,6 +23,8 @@ class Config:
     tlp_level: MarkingDefinition = TLP_WHITE
     identity: Identity = None
 
+    cve_extension_definition = STIX2_OBJECTS_STORE.get_object("NVD CVEs")
+
     misp_extension_definition: ExtensionDefinition = STIX2_OBJECTS_STORE.get_object(
         "MISP Warning Lists"
     )

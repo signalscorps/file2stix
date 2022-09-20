@@ -13,6 +13,7 @@ from stix2 import (
     WindowsRegistryKey,
     AutonomousSystem,
 )
+from pattern2sco.custom_objects import Cryptocurrency, CRYPTOCURRENCY_EXTENSION
 
 
 def extract_name_from_regex(regex, pattern):
@@ -257,6 +258,51 @@ def get_sco_objects(sdo_object, defanged=False):
                     number=name,
                     defanged=defanged,
                     object_marking_refs=sdo_object.object_marking_refs,
+                )
+            ]
+
+        if sdo_object.name.startswith("BTC"):
+            regex = r"artifact:payload_bin = '(.*)'"
+            name = extract_name_from_regex(regex, sdo_object.pattern)
+            sco_objects += [
+                Cryptocurrency(
+                    symbol="BTC",
+                    address=name,
+                    defanged=defanged,
+                    object_marking_refs=sdo_object.object_marking_refs,
+                    extensions={
+                        CRYPTOCURRENCY_EXTENSION.id: {"extension_type": "new-sco"}
+                    },
+                )
+            ]
+        
+        if sdo_object.name.startswith("ETH"):
+            regex = r"artifact:payload_bin = '(.*)'"
+            name = extract_name_from_regex(regex, sdo_object.pattern)
+            sco_objects += [
+                Cryptocurrency(
+                    symbol="ETH",
+                    address=name,
+                    defanged=defanged,
+                    object_marking_refs=sdo_object.object_marking_refs,
+                    extensions={
+                        CRYPTOCURRENCY_EXTENSION.id: {"extension_type": "new-sco"}
+                    },
+                )
+            ]
+        
+        if sdo_object.name.startswith("XMR"):
+            regex = r"artifact:payload_bin = '(.*)'"
+            name = extract_name_from_regex(regex, sdo_object.pattern)
+            sco_objects += [
+                Cryptocurrency(
+                    symbol="XMR",
+                    address=name,
+                    defanged=defanged,
+                    object_marking_refs=sdo_object.object_marking_refs,
+                    extensions={
+                        CRYPTOCURRENCY_EXTENSION.id: {"extension_type": "new-sco"}
+                    },
                 )
             ]
 
