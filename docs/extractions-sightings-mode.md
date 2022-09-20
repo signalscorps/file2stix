@@ -29,6 +29,13 @@ This is because these Objects do not directly refer to an atomic observables.
     "object_marking_refs": [
     	"marking-definition--<TLP LEVEL SET>"
     ],
+    "external_references": [
+      {
+        "source_name": "file2stix",
+        "description": "This object was created using file2stix from the Signals Corps.",
+        "url": "https://github.com/signalscorps/file2stix"
+      }
+    ]
 }
 ```
 
