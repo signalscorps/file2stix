@@ -247,6 +247,7 @@ class Observable:
         else:
             raise ValueError("Observable type is not supported")
 
+
 class IPv4Observable(Observable):
     name = "ipv4"
     type = "indicator"
@@ -562,6 +563,10 @@ class CVEObservable(Observable):
     type = "vulnerability"
     extraction_regex = r"^(CVE-(19|20)\d{2}-\d{4,7})$"
 
+    def __init__(self, extracted_observable_text, config):
+        super().__init__(extracted_observable_text, config)
+        self.cve_extension_definition = config.cve_extension_definition
+
     def get_sdo_object(self):
         vulnerability = Vulnerability(
             name=self.extracted_observable_text,
@@ -571,6 +576,16 @@ class CVEObservable(Observable):
             ),
             object_marking_refs=self.tlp_level,
             created_by_ref=self.identity,
+            extensions={
+                self.cve_extension_definition.id: {
+                    "extension_type": "property-extension",
+                    "cve": {
+                        "data_type": "CVE",
+                        "CVE_data_meta": {"ID": "<EXTRACTED CVE OBSERVABLE VALUE>"},
+                    },
+                }
+            },
+            allow_custom=True,
         )
         return vulnerability
 
