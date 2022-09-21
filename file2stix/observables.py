@@ -715,49 +715,49 @@ class CountryCodeAlpha3Observable(Observable):
 class MastercardCreditCardObservable(Observable):
     name = "Mastercard Credit Card"
     type = "indicator"
-    pattern = "[ artifact:payload_bin = '{extracted_observable_text}' ]"
+    pattern = "[ credit-card:provider = 'Mastercard' AND credit-card:number = '{extracted_observable_text}' ]"
     extraction_function = lambda x: validators.mastercard(x)
 
 
 class VisaCreditCardObservable(Observable):
     name = "VISA Credit Card"
     type = "indicator"
-    pattern = "[ artifact:payload_bin = '{extracted_observable_text}' ]"
+    pattern = "[ credit-card:provider = 'VISA' AND credit-card:number = '{extracted_observable_text}' ]"
     extraction_function = lambda x: validators.visa(x)
 
 
 class AmexCreditCardObservable(Observable):
     name = "Amex Credit Card"
     type = "indicator"
-    pattern = "[ artifact:payload_bin = '{extracted_observable_text}' ]"
+    pattern = "[ credit-card:provider = 'Amex' AND credit-card:number = '{extracted_observable_text}' ]"
     extraction_function = lambda x: validators.amex(x)
 
 
 class UnionPayCreditCardObservable(Observable):
     name = "Union Pay Credit Card"
     type = "indicator"
-    pattern = "[ artifact:payload_bin = '{extracted_observable_text}' ]"
+    pattern = "[ credit-card:provider = 'Union' AND credit-card:number = '{extracted_observable_text}' ]"
     extraction_function = lambda x: validators.unionpay(x)
 
 
 class DinersCreditCardObservable(Observable):
     name = "Diners Credit Card"
     type = "indicator"
-    pattern = "[ artifact:payload_bin = '{extracted_observable_text}' ]"
+    pattern = "[ credit-card:provider = 'Diners' AND credit-card:number = '{extracted_observable_text}' ]"
     extraction_function = lambda x: validators.diners(x)
 
 
 class JCBCreditCardObservable(Observable):
     name = "JCB Credit Card"
     type = "indicator"
-    pattern = "[ artifact:payload_bin = '{extracted_observable_text}' ]"
+    pattern = "[ credit-card:provider = 'JCB' AND credit-card:number = '{extracted_observable_text}' ]"
     extraction_function = lambda x: validators.jcb(x)
 
 
 class IBANCodeObservable(Observable):
     name = "IBAN"
     type = "indicator"
-    pattern = "[ artifact:payload_bin = '{extracted_observable_text}' ]"
+    pattern = "[ iban:number = '{extracted_observable_text}' ]"
     extraction_function = lambda x: validators.iban(x)
 
 

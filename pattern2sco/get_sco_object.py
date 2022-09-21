@@ -16,6 +16,7 @@ from stix2 import (
 from pattern2sco.custom_objects import (
     Cryptocurrency,
     CreditCard,
+    IBAN,
 )
 
 
@@ -301,7 +302,7 @@ def get_sco_objects(sdo_object, defanged=False):
             ]
 
         if sdo_object.name.startswith("Mastercard Credit Card"):
-            regex = r"artifact:payload_bin = '(.*)'"
+            regex = r"credit-card:number = '(.*)'"
             name = extract_name_from_regex(regex, sdo_object.pattern)
             sco_objects += [
                 CreditCard(
@@ -313,7 +314,7 @@ def get_sco_objects(sdo_object, defanged=False):
             ]
 
         if sdo_object.name.startswith("VISA Credit Card"):
-            regex = r"artifact:payload_bin = '(.*)'"
+            regex = r"credit-card:number = '(.*)'"
             name = extract_name_from_regex(regex, sdo_object.pattern)
             sco_objects += [
                 CreditCard(
@@ -325,7 +326,7 @@ def get_sco_objects(sdo_object, defanged=False):
             ]
 
         if sdo_object.name.startswith("Amex Credit Card"):
-            regex = r"artifact:payload_bin = '(.*)'"
+            regex = r"credit-card:number = '(.*)'"
             name = extract_name_from_regex(regex, sdo_object.pattern)
             sco_objects += [
                 CreditCard(
@@ -337,7 +338,7 @@ def get_sco_objects(sdo_object, defanged=False):
             ]
 
         if sdo_object.name.startswith("Union Pay Credit Card"):
-            regex = r"artifact:payload_bin = '(.*)'"
+            regex = r"credit-card:number = '(.*)'"
             name = extract_name_from_regex(regex, sdo_object.pattern)
             sco_objects += [
                 CreditCard(
@@ -349,7 +350,7 @@ def get_sco_objects(sdo_object, defanged=False):
             ]
 
         if sdo_object.name.startswith("Diners Credit Card"):
-            regex = r"artifact:payload_bin = '(.*)'"
+            regex = r"credit-card:number = '(.*)'"
             name = extract_name_from_regex(regex, sdo_object.pattern)
             sco_objects += [
                 CreditCard(
@@ -361,11 +362,23 @@ def get_sco_objects(sdo_object, defanged=False):
             ]
 
         if sdo_object.name.startswith("JCB Credit Card"):
-            regex = r"artifact:payload_bin = '(.*)'"
+            regex = r"credit-card:number = '(.*)'"
             name = extract_name_from_regex(regex, sdo_object.pattern)
             sco_objects += [
                 CreditCard(
                     provider="JCB",
+                    number=name,
+                    defanged=defanged,
+                    object_marking_refs=sdo_object.object_marking_refs,
+                )
+            ]
+        
+        if sdo_object.name.startswith("IBAN"):
+            regex = r"iban:number = '(.*)'"
+            name = extract_name_from_regex(regex, sdo_object.pattern)
+            sco_objects += [
+                IBAN(
+                    country_code=name[:2],
                     number=name,
                     defanged=defanged,
                     object_marking_refs=sdo_object.object_marking_refs,
