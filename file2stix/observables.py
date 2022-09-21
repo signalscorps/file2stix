@@ -45,11 +45,6 @@ class Observable:
     common_strippable_elements = "\"'.,"
     # This field can be set to true for only "word by word" pattern matches
     defangable = False
-    branding_external_ref = {
-        "source_name": "file2stix",
-        "description": "This object was created using file2stix from the Signals Corps.",
-        "url": "https://github.com/signalscorps/file2stix",
-    }
 
     def __init__(self, extracted_observable_text, config, defanged=False):
         self.extracted_observable_text = extracted_observable_text
@@ -62,6 +57,7 @@ class Observable:
         self.misp_extension_definition = config.misp_extension_definition
         self.misp_custom_warning_list = config.misp_custom_warning_list
         self.defanged = defanged
+        self.branding_external_ref = config.branding_external_ref
 
     @property
     def pretty_name(self):
@@ -232,7 +228,7 @@ class Observable:
                 "indicator_types": ["unknown"],
                 "object_marking_refs": self.tlp_level,
                 "created_by_ref": self.identity,
-                "external_references": [Observable.branding_external_ref],
+                "external_references": self.branding_external_ref,
             }
 
             if x_warning_list_match:
@@ -537,7 +533,7 @@ class AutonomousSystemNumberObservable(Observable):
                 indicator_types=["unknown"],
                 object_marking_refs=self.tlp_level,
                 created_by_ref=self.identity,
-                external_references=[Observable.branding_external_ref],
+                external_references=self.branding_external_ref,
                 allow_custom=True,
             )
             return indicator

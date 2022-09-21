@@ -123,6 +123,7 @@ def main(config: Config):
         created_by_ref=config.identity,
         allow_custom=True,
         object_marking_refs=config.tlp_level,
+        external_references=config.branding_external_ref,
     )
 
     stix_store = ObservablesStixStore()
@@ -230,6 +231,7 @@ def main(config: Config):
             target_ref=report.id,
             created_by_ref=config.identity,
             object_marking_refs=config.tlp_level,
+            external_references=config.branding_external_ref,
         )
         relationship_sros.append(relationship_sro)
 
@@ -243,6 +245,7 @@ def main(config: Config):
             created_by_ref=config.identity,
             object_marking_refs=config.tlp_level,
             allow_custom=True,
+            external_references=config.branding_external_ref,
         )
         relationship_sros.append(relationship_sro)
 
@@ -255,6 +258,7 @@ def main(config: Config):
             target_ref=report.id,
             created_by_ref=config.identity,
             object_marking_refs=config.tlp_level,
+            external_references=config.branding_external_ref,
         )
         relationship_sros.append(relationship_sro)
 
@@ -268,6 +272,7 @@ def main(config: Config):
             created_by_ref=config.identity,
             object_marking_refs=config.tlp_level,
             allow_custom=True,
+            external_references=config.branding_external_ref,
         )
         relationship_sros.append(relationship_sro)
 
@@ -284,6 +289,7 @@ def main(config: Config):
                 target_ref=sco_object.id,
                 created_by_ref=config.identity,
                 object_marking_refs=config.tlp_level,
+                external_references=config.branding_external_ref,
             )
             relationship_sros.append(relationship_sro)
 
@@ -296,6 +302,7 @@ def main(config: Config):
                 number_observed=1, # TODO: Fix this
                 object_refs = [sco_object],
                 object_marking_refs=config.tlp_level,
+                external_references=config.branding_external_ref,
             )
             temp_observed_datas.append(observed_data)
         
@@ -309,6 +316,7 @@ def main(config: Config):
                 sighting_of_ref=stix_observable_id,
                 observed_data_refs=temp_observed_datas,
                 object_marking_refs=config.tlp_level,
+                external_references=config.branding_external_ref,
             )
             relationship_sros.append(sighting_sro)
 

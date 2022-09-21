@@ -107,6 +107,13 @@ def cli():
         help="choose extraction mode of report (default: %(default)s)",
     )
 
+    arg_parser.add_argument(
+        "--no-branding",
+        action="store_true",
+        default=False,
+        help="remove file2stix branding in report bundle (default: %(default)s)",
+    )
+
     args = arg_parser.parse_args()
 
     input_file_path = (
@@ -156,6 +163,10 @@ def cli():
             if data.get("backend") not in [e.value for e in Backends]:
                 raise ValueError("Backend in YML doesn't match any available backends")
         arangodb.check_arango_connection(args.backend)
+    
+    branding_external_ref = Config.branding_external_ref
+    if args.no_branding == True:
+        branding_external_ref = None
 
     # Build config object
     config = Config(
@@ -169,9 +180,12 @@ def cli():
         ignore_observables_list=ignore_observables_list,
         misp_custom_warning_list_file=args.misp_custom_warning_list_file,
         defang_observables=args.defang_observables,
-        backend=args.backend,
         extraction_mode=args.extraction_mode,
+        backend=args.backend,
+        # branding_external_ref=branding_external_ref,
     )
+
+    config.branding_external_ref = branding_external_ref
 
     # Call main
     main(config)
