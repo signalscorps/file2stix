@@ -206,12 +206,11 @@ class Observable:
             misp_warning_list = WarningLists(slow_search=False)
             result = misp_warning_list.search(self.extracted_observable_text)
             x_warning_list_match = []
+            x_custom_warning_list_match = []
 
             if result:
                 for hit in result:
                     x_warning_list_match.append(hit.name)
-                
-            is_benign = (len(x_warning_list_match) > 0)
 
             # Check if observable is in custom warning list
             if self.misp_custom_warning_list:
@@ -222,7 +221,7 @@ class Observable:
 
                 if result:
                     for hit in result:
-                        x_warning_list_match.append(hit.name)
+                        x_custom_warning_list_match.append(hit.name)
 
             indicator_dict = {
                 "type": "indicator",
@@ -236,23 +235,27 @@ class Observable:
                 "confidence": self.confidence,
             }
 
+            warning_list_dict = {}
             if x_warning_list_match:
+                warning_list_dict["misp_warning_list_match"] = x_warning_list_match
+
+            if x_custom_warning_list_match:
+                warning_list_dict[
+                    "custom_warning_list_match"
+                ] = x_custom_warning_list_match
+
+            if warning_list_dict:
+                warning_list_dict["extension_type"] = "property-extension"
+                indicator_dict["extensions"] = {
+                    self.misp_extension_definition.id: warning_list_dict
+                }
+
                 if self.ignore_whitelisted_observables == True:
                     # If user specifes to ignore whitelisted observable,
                     # then we should return nothing in this function call
                     return None
-                if self.misp_extension_definition:
-                    indicator_dict["extensions"] = {
-                        self.misp_extension_definition.id: {
-                            "extension_type": "property-extension",
-                            "warning_list_match": x_warning_list_match,
-                        }
-                    }
-                else:
-                    indicator_dict["x_warning_list_match"] = x_warning_list_match
-                    indicator_dict["allow_custom"] = True
-                
-            if is_benign:
+
+            if len(x_warning_list_match) > 0:
                 indicator_dict["indicator_types"] += ["benign"]
 
             indicator = Indicator(**indicator_dict)
@@ -608,7 +611,7 @@ class CVEObservable(Observable):
                     "extension_type": "property-extension",
                     "cve": {
                         "data_type": "CVE",
-                        "CVE_data_meta": {"ID": "<EXTRACTED CVE OBSERVABLE VALUE>"},
+                        "CVE_data_meta": {"ID": self.extracted_observable_text},
                     },
                 }
             },
