@@ -25,7 +25,7 @@ CREDIT_CARD_EXTENSION = STIX_OBJECTS_STORE.get(
         ("symbol", properties.StringProperty(required=True)),
         ("address", properties.StringProperty(required=True)),
     ],
-    extension_name="extension-definition--532ae28d-137b-4b89-afb7-9cf9b504191b",
+    id_contrib_props=["symbol", "address"]
 )
 class Cryptocurrency(object):
     def __init__(self, symbol, **kwargs):

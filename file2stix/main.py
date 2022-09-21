@@ -150,12 +150,16 @@ def main(config: Config):
 
             # Check if observable already present in `stix_store`
             if hasattr(extracted_stix_observable, "name"):
+                confidence = None
+                if hasattr(extracted_stix_observable, "confidence"):
+                    confidence = extracted_stix_observable.confidence
+
                 stix_observable_object = stix_store.get_object(
                     extracted_stix_observable.name,
                     stix_object_identity=config.identity.id,
                     tlp_level=config.tlp_level.id,
                     # extensions=extracted_stix_observable.extensions.id,
-                    confidence=extracted_stix_observable.confidence,
+                    confidence=confidence,
                 )
 
                 # Don't create a new version for CPE Observable
@@ -218,7 +222,7 @@ def main(config: Config):
         not observables_list.stix_observables
         and not observables_list.custom_stix_observables
     ):
-        logger.warning("No Obseravbles extracted. Hence, not creating STIX report")
+        logger.warning("No Observables extracted. Hence, not creating STIX report")
         return
 
     # Create Relationship SROs
@@ -278,10 +282,18 @@ def main(config: Config):
         relationship_sros.append(relationship_sro)
 
     observed_datas = []
+    sco_object_ids_seen_so_far = set()
+    sco_objects_seen_so_far = []
 
     for stix_observable_id, sco_objects in observables_list.sco_observables.items():
         temp_observed_datas = []
         for sco_object in sco_objects:
+            
+            if sco_object.id in sco_object_ids_seen_so_far:
+                continue
+            sco_object_ids_seen_so_far.add(sco_object.id)
+            sco_objects_seen_so_far.append(sco_object)
+
             relationship_sro = Relationship(
                 relationship_type="pattern-contains",
                 created=report.created,
@@ -329,7 +341,7 @@ def main(config: Config):
         + list(observables_list.dict_stix_observables.values())
         + list(observables_list.custom_stix_observables.values())
         + list(observables_list.custom_dict_stix_observables.values())
-        + list(combine_list(observables_list.sco_observables.values()))
+        + sco_objects_seen_so_far
         + observed_datas
         + relationship_sros
     )
