@@ -209,6 +209,8 @@ class Observable:
             if result:
                 for hit in result:
                     x_warning_list_match.append(hit.name)
+                
+            is_benign = (len(x_warning_list_match) > 0)
 
             # Check if observable is in custom warning list
             if self.misp_custom_warning_list:
@@ -244,6 +246,9 @@ class Observable:
                 else:
                     indicator_dict["x_warning_list_match"] = x_warning_list_match
                     indicator_dict["allow_custom"] = True
+                
+            if is_benign:
+                indicator_dict["indicator_types"] += ["benign"]
 
             indicator = Indicator(**indicator_dict)
 
