@@ -308,6 +308,7 @@ class IPv4WithPortObservable(Observable):
                 object_marking_refs=self.tlp_level,
                 created_by_ref=self.identity,
                 confidence=self.confidence,
+                external_references=self.branding_external_ref,
             )
             return indicator
         else:
@@ -370,6 +371,7 @@ class IPv6WithPortObservable(Observable):
                 object_marking_refs=self.tlp_level,
                 created_by_ref=self.identity,
                 confidence=self.confidence,
+                external_references=self.branding_external_ref,
             )
             return indicator
         else:
@@ -540,6 +542,7 @@ class AutonomousSystemNumberObservable(Observable):
                 external_references=self.branding_external_ref,
                 allow_custom=True,
                 confidence=self.confidence,
+                external_references=self.branding_external_ref,
             )
             return indicator
         else:
@@ -577,12 +580,18 @@ class CVEObservable(Observable):
         self.cve_extension_definition = config.cve_extension_definition
 
     def get_sdo_object(self):
-        vulnerability = Vulnerability(
-            name=self.extracted_observable_text,
-            external_references=ExternalReference(
+        external_references = [
+            ExternalReference(
                 source_name="cve",
                 external_id=self.extracted_observable_text,
-            ),
+            )
+        ]
+        if self.branding_external_ref:
+            external_references += [self.branding_external_ref]
+
+        vulnerability = Vulnerability(
+            name=self.extracted_observable_text,
+            external_references=external_references,
             object_marking_refs=self.tlp_level,
             created_by_ref=self.identity,
             extensions={
@@ -621,6 +630,7 @@ class CountryNameObservable(Observable):
             object_marking_refs=self.tlp_level,
             created_by_ref=self.identity,
             confidence=self.confidence,
+            external_references=self.branding_external_ref,
         )
         return location
 
@@ -649,6 +659,7 @@ class CountryCodeAlpha2Observable(Observable):
             object_marking_refs=self.tlp_level,
             created_by_ref=self.identity,
             confidence=self.confidence,
+            external_references=self.branding_external_ref,
         )
         return location
 
@@ -680,6 +691,7 @@ class CountryCodeAlpha3Observable(Observable):
             object_marking_refs=self.tlp_level,
             created_by_ref=self.identity,
             confidence=self.confidence,
+            external_references=self.branding_external_ref,
         )
         return location
 
@@ -763,6 +775,7 @@ class YaraRuleObservable(Observable):
                 object_marking_refs=self.tlp_level,
                 created_by_ref=self.identity,
                 confidence=self.confidence,
+                external_references=self.branding_external_ref,
             )
             return indicator
         else:
@@ -789,6 +802,7 @@ class CPEObservable(Observable):
             object_marking_refs=self.tlp_level,
             # created_by_ref=self.identity,
             confidence=self.confidence,
+            external_references=self.branding_external_ref,
         )
 
         return software
@@ -843,6 +857,7 @@ class SIGMARuleObservable(Observable):
             "object_marking_refs": self.tlp_level,
             "created_by_ref": self.identity,
             "confidence": self.confidence,
+            "external_references": self.branding_external_ref,
         }
 
         indicator = Indicator(**indicator_dict)
@@ -1012,98 +1027,98 @@ class CustomObservable(Observable):
     custom_observables_map = {}
     cti_folder_path = None
 
-    @staticmethod
-    def get_stix2_object_custom(
-        pattern,
-        sdo_object_type,
-        tlp_level=TLP_WHITE,
-        identity=None,
-        cti_folder_path=None,
-        confidence=None,
-    ):
+    def get_stix2_object_custom(self, pattern, sdo_object_type):
         if sdo_object_type == "attack-pattern":
             return AttackPattern(
                 name=pattern,
-                object_marking_refs=tlp_level,
-                created_by_ref=identity,
-                confidence=confidence,
+                object_marking_refs=self.tlp_level,
+                created_by_ref=self.identity,
+                confidence=self.confidence,
+                external_references=self.branding_external_ref,
             )
         elif sdo_object_type == "campaign":
             return Campaign(
                 name=pattern,
-                object_marking_refs=tlp_level,
-                created_by_ref=identity,
-                confidence=confidence,
+                object_marking_refs=self.tlp_level,
+                created_by_ref=self.identity,
+                confidence=self.confidence,
+                external_references=self.branding_external_ref,
             )
         elif sdo_object_type == "course-of-action":
             return CourseOfAction(
                 name=pattern,
-                object_marking_refs=tlp_level,
-                created_by_ref=identity,
-                confidence=confidence,
+                object_marking_refs=self.tlp_level,
+                created_by_ref=self.identity,
+                confidence=self.confidence,
+                external_references=self.branding_external_ref,
             )
         elif sdo_object_type == "infrastructure":
             return Infrastructure(
                 name=pattern,
                 infrastructure_types="undefined",
-                object_marking_refs=tlp_level,
-                created_by_ref=identity,
-                confidence=confidence,
+                object_marking_refs=self.tlp_level,
+                created_by_ref=self.identity,
+                confidence=self.confidence,
+                external_references=self.branding_external_ref,
             )
         elif sdo_object_type == "intrustion-set":
             return IntrusionSet(
                 name=pattern,
-                object_marking_refs=tlp_level,
-                created_by_ref=identity,
-                confidence=confidence,
+                object_marking_refs=self.tlp_level,
+                created_by_ref=self.identity,
+                confidence=self.confidence,
+                external_references=self.branding_external_ref,
             )
         elif sdo_object_type == "malware":
             return Malware(
                 name=pattern,
                 malware_types="unknown",
                 is_family=False,
-                object_marking_refs=tlp_level,
-                created_by_ref=identity,
-                confidence=confidence,
+                object_marking_refs=self.tlp_level,
+                created_by_ref=self.identity,
+                confidence=self.confidence,
+                external_references=self.branding_external_ref,
             )
         elif sdo_object_type == "threat-actor":
             return ThreatActor(
                 name=pattern,
                 threat_actor_types="unknown",
-                object_marking_refs=tlp_level,
-                created_by_ref=identity,
-                confidence=confidence,
+                object_marking_refs=self.tlp_level,
+                created_by_ref=self.identity,
+                confidence=self.confidence,
+                external_references=self.branding_external_ref,
             )
         elif sdo_object_type == "tool":
             return Tool(
                 name=pattern,
-                object_marking_refs=tlp_level,
-                created_by_ref=identity,
-                confidence=confidence,
+                object_marking_refs=self.tlp_level,
+                created_by_ref=self.identity,
+                confidence=self.confidence,
+                external_references=self.branding_external_ref,
             )
-        elif cti_folder_path != None:
+        elif self.cti_folder_path != None:
             stix_id = sdo_object_type
 
             sdo_object = MITREEnterpriseAttackObservable.get_stix_object_from_id(
-                stix_id, cti_folder_path
+                stix_id, self.cti_folder_path
             )
             if sdo_object != None:
                 return sdo_object
 
             sdo_object = MITREMobileAttackObservable.get_stix_object_from_id(
-                stix_id, cti_folder_path
+                stix_id, self.cti_folder_path
             )
             if sdo_object != None:
                 return sdo_object
 
             sdo_object = MITREICSAttackObservable.get_stix_object_from_id(
-                stix_id, cti_folder_path
+                stix_id, self.cti_folder_path
             )
             if sdo_object != None:
                 return sdo_object
 
             sdo_object = MITRECapecObservable.get_stix_object_from_id(
-                stix_id, cti_folder_path
+                stix_id, self.cti_folder_path
             )
             if sdo_object != None:
                 return sdo_object
@@ -1147,14 +1162,7 @@ class CustomObservable(Observable):
     def get_sdo_object(self):
         pattern = self.extracted_observable_text
         sdo_object_type = self.custom_observables_map[pattern]
-        sdo_object = CustomObservable.get_stix2_object_custom(
-            pattern,
-            sdo_object_type,
-            self.tlp_level,
-            self.identity,
-            cti_folder_path=self.cti_folder_path,
-            confidence=self.confidence,
-        )
+        sdo_object = self.get_stix2_object_custom(pattern, sdo_object_type)
         return sdo_object
 
 
