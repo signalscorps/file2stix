@@ -123,6 +123,8 @@ file2stix --input-file PATH/TO/FILE --custom-extraction-file PATH/TO/FILE --upda
 * `--no-branding` (optional, default true): file2stix prints an `external_references` in each object it creates. By setting this to false, this reference will be removed.
 * `--confidence` (optional, default none): you can assign a static confidence score to all Indicator SDOs extracted from a report. This value must be within the range >= 0 <= 100.
 * `--ignore-warninglist-observables` (optional, default false): file2stix will keep any extracted objects that match to default and custom warning lists (and marks them as matching and benign). If you would like to ignore any extractions that match to warning lists (and not create STIX Objects from them) then set this to true.
+* `--extraction-mode` (optional, default analysis): please read the docs for more information about modes. You can set either `analysis` (the default) or `sighting`
+* `--output-processed-input-file` (optional, default false): this is useful for debugging extractions. It will show you the actual text considered for text extraction (because file2stix performs some preprocessing on files, see docs)
 * `--help` (optional, default false) to print more about these options in the command line.
 
 For example;

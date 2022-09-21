@@ -449,6 +449,41 @@ file2stix --input-file tests/warning_lists/custom_list.json --misp-custom-warnin
 file2stix --input-file tests/warning_lists/known_matches.txt --ignore-warninglist-observables
 ```
 
+---
+
+## Testing script modes
+
+### Sighting Mode
+
+Single extraction (sighting)
+
+```shell
+file2stix --input-file tests/observable_tests/crypto_btc.txt --extraction-mode sighting
+```
+
+Multiple extractions (sightings)
+
+```shell
+file2stix --input-file tests/observable_tests/ipv4.txt --extraction-mode sighting
+```
+
+### Analysis Mode
+
+```shell
+file2stix --input-file tests/observable_tests/ipv4.txt --extraction-mode analysis
+```
+
+_Should be the same output as `file2stix --input-file tests/observable_tests/ipv4.txt`_
+
+
+---
+
+## Testing processed file
+
+```shell
+file2stix --input-file tests/file_inputs/html/catapult-spider-adversary-quest-walkthrough-2022.html --output-processed-input-file
+```
+
 
 ---
 

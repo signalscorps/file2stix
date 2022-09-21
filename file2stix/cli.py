@@ -43,10 +43,10 @@ def cli():
     )
 
     arg_parser.add_argument(
-        "--ouptut-preprocessed-file",
+        "--output-processed-input-file",
         action="store",
         type=str,
-        help="output the given input file after file2stix preprocesses it"
+        help="Output the given input file after file2stix preprocesses it"
     )
 
     arg_parser.add_argument(
@@ -54,20 +54,20 @@ def cli():
         action="store",
         type=str,
         default=Config.cache_folder,
-        help="cache folder path where MITRE ATT&K and CAPEC warning list will be stored (default: %(default)s)",
+        help="Cache folder path where MITRE ATT&CK and CAPEC warning list will be stored (default: %(default)s)",
     )
 
     arg_parser.add_argument(
         "--update-mitre-cti-database",
         action="store_true",
         default=Config.update_mitre_cti_database,
-        help="update MITRE ATT&CK and CAPEC database",
+        help="Update MITRE ATT&CK and CAPEC database",
     )
 
     arg_parser.add_argument(
         "--custom-extraction-file",
         action="store",
-        help="path to file with custom extraction logic",
+        help="Path to file with custom extraction logic",
     )
 
     arg_parser.add_argument(
@@ -75,38 +75,38 @@ def cli():
         action="store",
         choices=["WHITE", "GREEN", "AMBER", "RED"],
         default="WHITE",
-        help="choose TLP level of report (default: %(default)s)",
+        help="Choose TLP level of report (default: %(default)s)",
     )
 
     arg_parser.add_argument(
         "--user-identity-file",
         action="store",
-        help="path to user identity config file (in yml format)",
+        help="Path to a custom user STIX Identity config file (in yml format)",
     )
 
     arg_parser.add_argument(
         "--ignore-observable-prefix",
         action="store",
-        help="comma-separated prefixes of observables to be ignored from extraction",
+        help="Comma-separated prefixes of observables to be ignored from extraction",
     )
 
     arg_parser.add_argument(
         "--misp-custom-warning-list-file",
         action="store",
-        help="path to MISP custom warning list file",
+        help="Path to custom warning list file in MISP Warning List format",
     )
 
     arg_parser.add_argument(
         "--defang-observables",
         action="store_true",
         default=Config.defang_observables,
-        help="defang 'fanged' observables in input file",
+        help="Defang 'fanged' observables in input file.",
     )
 
     arg_parser.add_argument(
         "--backend",
         action="store",
-        help="cache folder path where MITRE ATT&K and CAPEC warning list will be stored (default: %(default)s)",
+        help="Cache folder path where MITRE ATT&K and CAPEC warning list will be stored (default: %(default)s)",
     )
 
     arg_parser.add_argument(
@@ -114,28 +114,28 @@ def cli():
         action="store",
         choices=["analysis", "sighting"],
         default=Config.extraction_mode,
-        help="choose extraction mode of report (default: %(default)s)",
+        help="Choose extraction mode of report (default: %(default)s)",
     )
 
     arg_parser.add_argument(
         "--no-branding",
         action="store_true",
         default=False,
-        help="remove file2stix branding in report bundle (default: %(default)s)",
+        help="Remove file2stix branding in external_reference property for each extracted object (default: %(default)s)",
     )
 
     arg_parser.add_argument(
         "--confidence",
         action="store",
         type=int,
-        help="set report confidence",
+        help="Set confidence to be assigned to Indicator SDOs. Must be >= 0 <= 100",
     )
 
     arg_parser.add_argument(
         "--ignore-warninglist-observables",
         action="store_true",
         default=Config.ignore_warninglist_observables,
-        help="ignore whitelisted observables in report",
+        help="Do not extract observables in a report the match to a warning list",
     )
 
     args = arg_parser.parse_args()
