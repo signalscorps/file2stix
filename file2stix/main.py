@@ -149,12 +149,13 @@ def main(config: Config):
             stix_observable_object = extracted_stix_observable
 
             # Check if observable already present in `stix_store`
-            if config.tlp_level == TLP_WHITE and hasattr(
-                extracted_stix_observable, "name"
-            ):
+            if hasattr(extracted_stix_observable, "name"):
                 stix_observable_object = stix_store.get_object(
                     extracted_stix_observable.name,
-                    config.tlp_level.id,
+                    stix_object_identity=config.identity.id,
+                    tlp_level=config.tlp_level.id,
+                    # extensions=extracted_stix_observable.extensions.id,
+                    confidence=extracted_stix_observable.confidence,
                 )
 
                 # Don't create a new version for CPE Observable
@@ -298,14 +299,14 @@ def main(config: Config):
                 modified=report.modified,
                 created_by_ref=config.identity,
                 first_observed=report.created,  # TODO: Fix this
-                last_observed= report.created,
-                number_observed=1, # TODO: Fix this
-                object_refs = [sco_object],
+                last_observed=report.created,
+                number_observed=1,  # TODO: Fix this
+                object_refs=[sco_object],
                 object_marking_refs=config.tlp_level,
                 external_references=config.branding_external_ref,
             )
             temp_observed_datas.append(observed_data)
-        
+
         observed_datas += temp_observed_datas
 
         if config.extraction_mode == "sighting":
@@ -319,7 +320,6 @@ def main(config: Config):
                 external_references=config.branding_external_ref,
             )
             relationship_sros.append(sighting_sro)
-
 
     # Group all stix objects and store in STIX filestore and bundle
     stix_observable_objects = (

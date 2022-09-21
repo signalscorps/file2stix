@@ -19,6 +19,7 @@ class Config:
     output_json_file_path: str = None
     custom_extraction_file: str = None
     cache_folder: str = "file2stix-cache"
+    confidence: int = None
 
     extraction_mode: str = "analysis"
     tlp_level: MarkingDefinition = TLP_WHITE

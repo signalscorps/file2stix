@@ -2,6 +2,7 @@
 Parse CLI arguments and pass to file2stix_cli.main
 """
 import argparse
+import logging
 import os
 import yaml
 from stix2 import TLP_WHITE, TLP_AMBER, TLP_GREEN, TLP_RED, Identity
@@ -12,6 +13,8 @@ from file2stix.backends import arangodb
 from file2stix.config import Config, STIX2_OBJECTS_STORE
 from file2stix.main import main, Backends
 from file2stix.observables import get_observable_class_from_name
+
+logger = logging.getLogger(__name__)
 
 
 class IdentityError(Exception):
@@ -114,6 +117,13 @@ def cli():
         help="remove file2stix branding in report bundle (default: %(default)s)",
     )
 
+    arg_parser.add_argument(
+        "--confidence",
+        action="store",
+        type=int,
+        help="set report confidence",
+    )
+
     args = arg_parser.parse_args()
 
     input_file_path = (
@@ -168,6 +178,11 @@ def cli():
     if args.no_branding == True:
         branding_external_ref = None
 
+    confidence = args.confidence
+    if tlp_level == TLP_WHITE and confidence != None:
+        logger.warning("Confidence property ignored, since TLP level is WHITE.")
+        confidence = None
+
     # Build config object
     config = Config(
         input_file_path=input_file_path,
@@ -182,6 +197,7 @@ def cli():
         defang_observables=args.defang_observables,
         extraction_mode=args.extraction_mode,
         backend=args.backend,
+        confidence=confidence,
         # branding_external_ref=branding_external_ref,
     )
 
