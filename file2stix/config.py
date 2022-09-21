@@ -15,33 +15,37 @@ STIX2_OBJECTS_STORE = ObservablesStixStore(STIX2_OBJECTS_FOLDER)
 
 @dataclass
 class Config:
+    # File-handling related options
     input_file_path: str = None
     output_json_file_path: str = None
+    ouptut_preprocessed_file: str = None
     custom_extraction_file: str = None
     cache_folder: str = "file2stix-cache"
+    update_mitre_cti_database: bool = False
+
+    # STIX2 Report related options
+    identity: Identity = None
+    tlp_level: MarkingDefinition = TLP_WHITE
+    extraction_mode: str = "analysis"
     confidence: int = None
 
-    extraction_mode: str = "analysis"
-    tlp_level: MarkingDefinition = TLP_WHITE
-    identity: Identity = None
+    # Observable related options
+    ignore_observables_list: List = None
+    defang_observables: bool = False
+    ignore_whitelisted_observables: bool = False
 
-    cve_extension_definition = STIX2_OBJECTS_STORE.get_object("NVD CVEs")
-
+    # MISP extension and warning list options
     misp_extension_definition: ExtensionDefinition = STIX2_OBJECTS_STORE.get_object(
         "MISP Warning Lists"
     )
     misp_custom_warning_list_file: str = None
     misp_custom_warning_list: dict = None
+    cve_extension_definition = STIX2_OBJECTS_STORE.get_object("NVD CVEs")
 
-    update_mitre_cti_database: bool = False
-    ignore_observables_list: List = None
-    defang_observables: bool = False
-    ignore_whitelisted_observables: bool = False
-
-    backend: str = None
-
+    # Miscellaneous options
     branding_external_ref = ExternalReference(
         source_name="file2stix",
         description="This object was created using file2stix from the Signals Corps.",
         url="https://github.com/signalscorps/file2stix",
     )
+    backend: str = None

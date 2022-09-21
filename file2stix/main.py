@@ -30,7 +30,6 @@ from file2stix.helper import (
     get_text_from_xml,
     get_text_from_yaml,
     update_stix_object,
-    combine_list,
 )
 from file2stix.observables_stix_store import ObservablesStixStore
 from file2stix.observables import Observable, CustomObservable, CPEObservable
@@ -111,6 +110,10 @@ def main(config: Config):
         input = Path(input_file_path).read_text()
     else:
         input = textract.process(input_file_path).decode("UTF-8")
+    
+    if config.ouptut_preprocessed_file:
+        with open(config.ouptut_preprocessed_file, "w") as f:
+            f.write(input)
 
     logger.info("Reading input file %s ...", input_file_path)
 

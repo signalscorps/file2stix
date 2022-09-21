@@ -43,6 +43,13 @@ def cli():
     )
 
     arg_parser.add_argument(
+        "--ouptut-preprocessed-file",
+        action="store",
+        type=str,
+        help="output the given input file after file2stix preprocesses it"
+    )
+
+    arg_parser.add_argument(
         "--cache-folder",
         action="store",
         type=str,
@@ -200,6 +207,7 @@ def cli():
     config = Config(
         input_file_path=input_file_path,
         output_json_file_path=output_json_file_path,
+        ouptut_preprocessed_file=args.ouptut_preprocessed_file,
         cache_folder=os.path.abspath(args.cache_folder),
         update_mitre_cti_database=args.update_mitre_cti_database,
         custom_extraction_file=args.custom_extraction_file,
@@ -211,7 +219,7 @@ def cli():
         extraction_mode=args.extraction_mode,
         backend=args.backend,
         confidence=confidence,
-        ignore_whitelisted_observables=args.ignore_whitelisted_observables
+        ignore_whitelisted_observables=args.ignore_whitelisted_observables,
         # branding_external_ref=branding_external_ref,
     )
 
