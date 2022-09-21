@@ -203,31 +203,31 @@ file2stix --input-file tests/observable_tests/ipv6_cidr.txt
 ##### Shared Matrices
 
 ```shell
-file2stix --input-file tests/observable_tests/mitre_attck_all.txt
+file2stix --input-file tests/observable_tests/mitre_attck_all.txt --update-mitre-cti-database
 ```
 
 ##### Enterprise Matrix
 
 ```shell
-file2stix --input-file tests/observable_tests/mitre_attck_enterprise.txt
+file2stix --input-file tests/observable_tests/mitre_attck_enterprise.txt --update-mitre-cti-database
 ```
 
 ##### ICS Matrix
 
 ```shell
-file2stix --input-file tests/observable_tests/mitre_attck_ics.txt
+file2stix --input-file tests/observable_tests/mitre_attck_ics.txt --update-mitre-cti-database
 ```
 
 ##### Mobile Matrix
 
 ```shell
-file2stix --input-file tests/observable_tests/mitre_attck_mobile.txt
+file2stix --input-file tests/observable_tests/mitre_attck_mobile.txt --update-mitre-cti-database
 ```
 
 #### MITRE CAPEC
 
 ```shell
-file2stix --input-file tests/observable_tests/mitre_capec.txt
+file2stix --input-file tests/observable_tests/mitre_capec.txt --update-mitre-cti-database
 ```
 
 #### Windows Registry Key
@@ -273,9 +273,17 @@ file2stix --input-file tests/custom_extractions/test_extractions.txt --custom-ex
 
 ```shell
 file2stix --input-file tests/custom_extractions/extract_as_attack_capec_objects.txt --custom-extraction-file tests/custom_extractions/extract_as_attack_capec_objects.txt
-````
+```
+---
+
+## Testing branding
+
+```shell
+file2stix --input-file tests/observable_tests/ipv4.txt
+```
 
 ---
+
 
 ## Testing filetypes
 
@@ -352,11 +360,11 @@ file2stix --input-file tests/file_inputs/xml/input.xml
 #### .yaml
 
 ```shell
-file2stix --input-file tests/file_inputs/yara/input.yaml
+file2stix --input-file tests/file_inputs/yaml/input.yaml
 ```
 
 ```shell
-file2stix --input-file tests/file_inputs/yara/input.yml
+file2stix --input-file tests/file_inputs/yaml/input.yml
 ```
 
 #### .yara
@@ -389,8 +397,16 @@ file2stix --input-file tests/file_inputs/fanged_data/fanged_data.txt --defang-ob
 
 ## Testing Warning Lists
 
+### Default Warning List
+
 ```shell
-file2stix --input-file tests/custom_warning_lists/list.json --misp-custom-warning-list-file tests/custom_warning_lists/list.json
+file2stix --input-file tests/warning_lists/known_matches.txt --misp-custom-warning-list-file tests/warning_lists/known_matches.txt
+```
+
+### Custom Warning List
+
+```shell
+file2stix --input-file tests/warning_lists/custom_list.json --misp-custom-warning-list-file tests/warning_lists/custom_list.json --tlp-level GREEN
 ```
 
 ---

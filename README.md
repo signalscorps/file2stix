@@ -83,7 +83,7 @@ python3 -m venv file2stix_venv
 source file2stix_venv/bin/activate
 ```
 
-Install `file2stix` tool
+Install `file2stix` tool;
 
 ```shell
 pip3 install .
@@ -93,6 +93,13 @@ pip3 install .
 
 ```shell
 pip3 install -e .
+```
+
+And finally, install the required git sub-modules ([stix2-objects](https://github.com/signalscorps/stix2-objects) and [pattern2sco](https://github.com/signalscorps/pattern2sco));
+
+```shell
+git submodule init
+git submodule update
 ```
 
 ## Run
@@ -113,6 +120,8 @@ file2stix --input-file PATH/TO/FILE --custom-extraction-file PATH/TO/FILE --upda
 * `--misp-custom-warning-list-file` (optional, default none): a custom Warning List used to whitelist indicators. Must be in the same format as MISP Warning Lists. An example can be seen here `tests/custom_warning_lists/list.json`. Only available for Reports marked `TLP GREEN`, `TLP AMBER`, or `TLP RED`
 * `--defang-observables` (optional, default false): If any 'fanged' Observables are detected, these will be defanged before extraction to ensure they are detected correctly as Observables (e.g. `1[.]1[.]1[.]1` defanged becomes `1.1.1.1`)
 * `--backend` (optional, default none): Defines wether output should be stored to a supported backend (in addition to file store). Should be path to backend config file, e.g. `tests/backends/arangodb.yml`
+* `--no-branding` (optional, default true): file2stix prints an `external_references` in each object it creates. By setting this to false, this reference will be removed.
+* `--confidence` (optional, default none): you can assign a static confidence score to all Indicator SDOs extracted from a report. This value must be within the range >= 0 <= 100
 * `--help` (optional, default false) to print more about these options in the command line.
 
 For example;

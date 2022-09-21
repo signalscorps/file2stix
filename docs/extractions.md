@@ -69,7 +69,9 @@ If you do modify the file make sure to;
 6. The `identity_class` property [must match one shown here](https://docs.oasis-open.org/cti/stix/v2.1/os/stix-v2.1-os.html#_be1dktvcmyu)
 7. The `sectors` property [must match one shown here](https://docs.oasis-open.org/cti/stix/v2.1/os/stix-v2.1-os.html#_oogrswk3onck)
 
-Finally, you must regenerate the identity file using the command XXXX
+## Confidence scoring
+
+file2stix also optionally allows you to add the `confidence` property to all extracted Indicator SDOs. You can set confidence between 0 - 100. [Consult the STIX 2.1 Specification for more information](https://docs.oasis-open.org/cti/stix/v2.1/stix-v2.1.html).
 
 ## TLP (`marking-definition`)
 
@@ -149,7 +151,6 @@ All individual data sources ingested or uploaded are represented as a unique [ST
       "created_by_ref": "identity--<IDENTITY ID>",
       "created": "<ITEM INGEST DATE>",
       "modified": "<ITEM INGEST DATE>",
-      "confidence": "<CONFIDENCE SCORE IF SET AND TLP RED/AMBER/GREEN>",
       "name": "File converted: <FILENAME>",
       "published": "<ITEM INGEST DATE>",
       "report_types": ["threat-report"],
