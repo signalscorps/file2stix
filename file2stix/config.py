@@ -32,7 +32,7 @@ class Config:
     # Observable related options
     ignore_observables_list: List = None
     defang_observables: bool = False
-    ignore_whitelisted_observables: bool = False
+    ignore_warninglist_observables: bool = False
 
     # MISP extension and warning list options
     misp_extension_definition: ExtensionDefinition = STIX2_OBJECTS_STORE.get_object(

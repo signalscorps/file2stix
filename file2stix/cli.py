@@ -132,9 +132,9 @@ def cli():
     )
 
     arg_parser.add_argument(
-        "--ignore-whitelisted-observables",
+        "--ignore-warninglist-observables",
         action="store_true",
-        default=Config.ignore_whitelisted_observables,
+        default=Config.ignore_warninglist_observables,
         help="ignore whitelisted observables in report",
     )
 
@@ -219,7 +219,7 @@ def cli():
         extraction_mode=args.extraction_mode,
         backend=args.backend,
         confidence=confidence,
-        ignore_whitelisted_observables=args.ignore_whitelisted_observables,
+        ignore_warninglist_observables=args.ignore_warninglist_observables,
         # branding_external_ref=branding_external_ref,
     )
 

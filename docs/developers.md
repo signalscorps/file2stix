@@ -44,6 +44,32 @@ file2stix --input-file tests/observable_tests/country_code.txt
 file2stix --input-file tests/observable_tests/cpe.txt
 ```
 
+#### Cyptocurrency
+
+##### BTC
+
+```shell
+file2stix --input-file tests/observable_tests/crypto_btc.txt
+```
+
+##### ETH
+
+```shell
+file2stix --input-file tests/observable_tests/crypto_eth.txt
+```
+
+##### XMR
+
+```shell
+file2stix --input-file tests/observable_tests/crypto_xmr.txt
+```
+
+##### IPv6
+
+```shell
+file2stix --input-file tests/observable_tests/ipv6.txt
+```
+
 #### Credit Card
 
 ##### Amex
@@ -284,6 +310,14 @@ file2stix --input-file tests/observable_tests/ipv4.txt
 
 ---
 
+## Test import of custom extension-definition objects
+
+### Crypto SCO
+
+### Crypto SDO
+
+
+---
 
 ## Testing filetypes
 
@@ -400,7 +434,7 @@ file2stix --input-file tests/file_inputs/fanged_data/fanged_data.txt --defang-ob
 ### Default Warning List
 
 ```shell
-file2stix --input-file tests/warning_lists/known_matches.txt --misp-custom-warning-list-file tests/warning_lists/known_matches.txt
+file2stix --input-file tests/warning_lists/known_matches.txt
 ```
 
 ### Custom Warning List
@@ -408,6 +442,13 @@ file2stix --input-file tests/warning_lists/known_matches.txt --misp-custom-warni
 ```shell
 file2stix --input-file tests/warning_lists/custom_list.json --misp-custom-warning-list-file tests/warning_lists/custom_list.json --tlp-level GREEN
 ```
+
+### Ignore warning list match extractions
+
+```shell
+file2stix --input-file tests/warning_lists/known_matches.txt --ignore-warninglist-observables
+```
+
 
 ---
 

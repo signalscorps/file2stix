@@ -59,7 +59,7 @@ class Observable:
         self.defanged = defanged
         self.branding_external_ref = config.branding_external_ref
         self.confidence = config.confidence
-        self.ignore_whitelisted_observables = config.ignore_whitelisted_observables
+        self.ignore_warninglist_observables = config.ignore_warninglist_observables
 
     @property
     def pretty_name(self):
@@ -250,7 +250,7 @@ class Observable:
                     self.misp_extension_definition.id: warning_list_dict
                 }
 
-                if self.ignore_whitelisted_observables == True:
+                if self.ignore_warninglist_observables == True:
                     # If user specifes to ignore whitelisted observable,
                     # then we should return nothing in this function call
                     return None

@@ -304,7 +304,7 @@ file2stix used MISP Warning Lists (using [PyMISPWarningLists](https://github.com
 
 https://raw.githubusercontent.com/signalscorps/stix2-objects/main/extension-definition/extension-definition--c8ea5ecb-f4a3-45e7-94de-9b9ba05161af/20220101000000000.json
 
-Extracted values that match a Warning List are still converted to STIX 2.1 Objects, however, will contain the custom property listing the Warning Lists the extracted value matches with.
+Extracted values that match a Warning List are still converted to STIX 2.1 Objects, however, will contain the custom property listing the Warning Lists the extracted value matches with and will also contain `indicator_types` = `benign`.
 
 For example;
 
@@ -317,7 +317,7 @@ For example;
             "modified": "2022-09-08T06:13:24.191194Z",
             "name": "Domain: google.com",
             "indicator_types": [
-                "unknown"
+                "unknown", "benign"
             ],
             "pattern": "[ domain-name:value = 'google.com' ]",
             "pattern_type": "stix",
@@ -354,6 +354,8 @@ For example;
             ]
         },
 ```
+
+It is possible to completely ignore extractions that match to warning lists (and not create a STIX Object from them) using the flag `--ignore-warninglist-observables`.
 
 ### Custom Warning Lists
 
