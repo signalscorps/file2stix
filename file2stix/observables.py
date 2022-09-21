@@ -542,7 +542,6 @@ class AutonomousSystemNumberObservable(Observable):
                 external_references=self.branding_external_ref,
                 allow_custom=True,
                 confidence=self.confidence,
-                external_references=self.branding_external_ref,
             )
             return indicator
         else:

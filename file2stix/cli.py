@@ -173,7 +173,7 @@ def cli():
             if data.get("backend") not in [e.value for e in Backends]:
                 raise ValueError("Backend in YML doesn't match any available backends")
         arangodb.check_arango_connection(args.backend)
-    
+
     branding_external_ref = Config.branding_external_ref
     if args.no_branding == True:
         branding_external_ref = None
@@ -182,6 +182,12 @@ def cli():
     if tlp_level == TLP_WHITE and confidence != None:
         logger.warning("Confidence property ignored, since TLP level is WHITE.")
         confidence = None
+
+    if tlp_level == TLP_WHITE and args.misp_custom_warning_list_file != None:
+        raise argparse.ArgumentError(
+            argument=None,
+            message="MISP custom warning list file cannot be specified in TLP LEVEL WHITE reports."
+        )
 
     # Build config object
     config = Config(
