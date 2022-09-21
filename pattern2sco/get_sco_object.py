@@ -266,7 +266,7 @@ def get_sco_objects(sdo_object, defanged=False):
             ]
 
         if sdo_object.name.startswith("BTC"):
-            regex = r"artifact:payload_bin = '(.*)'"
+            regex = r"cryptocurrency:address = '(.*)'"
             name = extract_name_from_regex(regex, sdo_object.pattern)
             sco_objects += [
                 Cryptocurrency(
@@ -278,7 +278,7 @@ def get_sco_objects(sdo_object, defanged=False):
             ]
 
         if sdo_object.name.startswith("ETH"):
-            regex = r"artifact:payload_bin = '(.*)'"
+            regex = r"cryptocurrency:address = '(.*)'"
             name = extract_name_from_regex(regex, sdo_object.pattern)
             sco_objects += [
                 Cryptocurrency(
@@ -290,7 +290,7 @@ def get_sco_objects(sdo_object, defanged=False):
             ]
 
         if sdo_object.name.startswith("XMR"):
-            regex = r"artifact:payload_bin = '(.*)'"
+            regex = r"cryptocurrency:address = '(.*)'"
             name = extract_name_from_regex(regex, sdo_object.pattern)
             sco_objects += [
                 Cryptocurrency(

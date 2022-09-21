@@ -564,21 +564,21 @@ class AutonomousSystemNumberObservable(Observable):
 class CryptocurrencyBTCObservable(Observable):
     name = "BTC"
     type = "indicator"
-    pattern = "[ artifact:payload_bin = '{extracted_observable_text}' ]"
+    pattern = "[ cryptocurrency:symbol = 'BTC' AND cryptocurrency:address = '{extracted_observable_text}' ]"
     extraction_function = lambda x: validators.btc_address(x)
 
 
 class CryptocurrencyETHObservable(Observable):
     name = "ETH"
     type = "indicator"
-    pattern = "[ artifact:payload_bin = '{extracted_observable_text}' ]"
+    pattern = "[ cryptocurrency:symbol = 'ETH' AND cryptocurrency:address = '{extracted_observable_text}' ]"
     extraction_regex = r"^(0x[a-f0-9]{40})$"
 
 
 class CryptocurrencyXMRObservable(Observable):
     name = "XMR"
     type = "indicator"
-    pattern = "[ artifact:payload_bin = '{extracted_observable_text}' ]"
+    pattern = "[ cryptocurrency:symbol = 'XMR' AND cryptocurrency:address = '{extracted_observable_text}' ]"
     extraction_regex = r"^(4[0-9AB][1-9A-HJ-NP-Za-km-z]{93})$"
 
 
