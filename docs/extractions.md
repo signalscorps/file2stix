@@ -71,7 +71,7 @@ If you do modify the file make sure to;
 
 ## Confidence scoring
 
-file2stix also optionally allows you to add the `confidence` property to all extracted Indicator SDOs. You can set confidence between 0 - 100. [Consult the STIX 2.1 Specification for more information](https://docs.oasis-open.org/cti/stix/v2.1/stix-v2.1.html).
+file2stix also optionally allows you to add the `confidence` property to all extracted Indicator SDOs. You can set confidence between 0 - 100. [Consult the STIX 2.1 Specification for more information](https://docs.oasis-open.org/cti/stix/v2.1/os/stix-v2.1-os.html#_1v6elyto0uqg).
 
 ## TLP (`marking-definition`)
 
