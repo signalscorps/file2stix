@@ -124,6 +124,13 @@ def cli():
         help="set report confidence",
     )
 
+    arg_parser.add_argument(
+        "--ignore-whitelisted-observables",
+        action="store_true",
+        default=Config.ignore_whitelisted_observables,
+        help="ignore whitelisted observables in report",
+    )
+
     args = arg_parser.parse_args()
 
     input_file_path = (
@@ -204,6 +211,7 @@ def cli():
         extraction_mode=args.extraction_mode,
         backend=args.backend,
         confidence=confidence,
+        ignore_whitelisted_observables=args.ignore_whitelisted_observables
         # branding_external_ref=branding_external_ref,
     )
 
