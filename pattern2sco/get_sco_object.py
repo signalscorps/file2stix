@@ -13,7 +13,10 @@ from stix2 import (
     WindowsRegistryKey,
     AutonomousSystem,
 )
-from pattern2sco.custom_objects import Cryptocurrency, CRYPTOCURRENCY_EXTENSION
+from pattern2sco.custom_objects import (
+    Cryptocurrency,
+    CreditCard,
+)
 
 
 def extract_name_from_regex(regex, pattern):
@@ -270,9 +273,6 @@ def get_sco_objects(sdo_object, defanged=False):
                     address=name,
                     defanged=defanged,
                     object_marking_refs=sdo_object.object_marking_refs,
-                    extensions={
-                        CRYPTOCURRENCY_EXTENSION.id: {"extension_type": "new-sco"}
-                    },
                 )
             ]
 
@@ -285,9 +285,6 @@ def get_sco_objects(sdo_object, defanged=False):
                     address=name,
                     defanged=defanged,
                     object_marking_refs=sdo_object.object_marking_refs,
-                    extensions={
-                        CRYPTOCURRENCY_EXTENSION.id: {"extension_type": "new-sco"}
-                    },
                 )
             ]
 
@@ -300,9 +297,78 @@ def get_sco_objects(sdo_object, defanged=False):
                     address=name,
                     defanged=defanged,
                     object_marking_refs=sdo_object.object_marking_refs,
-                    extensions={
-                        CRYPTOCURRENCY_EXTENSION.id: {"extension_type": "new-sco"}
-                    },
+                )
+            ]
+
+        if sdo_object.name.startswith("Mastercard Credit Card"):
+            regex = r"artifact:payload_bin = '(.*)'"
+            name = extract_name_from_regex(regex, sdo_object.pattern)
+            sco_objects += [
+                CreditCard(
+                    provider="Mastercard",
+                    number=name,
+                    defanged=defanged,
+                    object_marking_refs=sdo_object.object_marking_refs,
+                )
+            ]
+
+        if sdo_object.name.startswith("VISA Credit Card"):
+            regex = r"artifact:payload_bin = '(.*)'"
+            name = extract_name_from_regex(regex, sdo_object.pattern)
+            sco_objects += [
+                CreditCard(
+                    provider="VISA",
+                    number=name,
+                    defanged=defanged,
+                    object_marking_refs=sdo_object.object_marking_refs,
+                )
+            ]
+
+        if sdo_object.name.startswith("Amex Credit Card"):
+            regex = r"artifact:payload_bin = '(.*)'"
+            name = extract_name_from_regex(regex, sdo_object.pattern)
+            sco_objects += [
+                CreditCard(
+                    provider="Amex",
+                    number=name,
+                    defanged=defanged,
+                    object_marking_refs=sdo_object.object_marking_refs,
+                )
+            ]
+
+        if sdo_object.name.startswith("Union Pay Credit Card"):
+            regex = r"artifact:payload_bin = '(.*)'"
+            name = extract_name_from_regex(regex, sdo_object.pattern)
+            sco_objects += [
+                CreditCard(
+                    provider="Union Pay",
+                    number=name,
+                    defanged=defanged,
+                    object_marking_refs=sdo_object.object_marking_refs,
+                )
+            ]
+
+        if sdo_object.name.startswith("Diners Credit Card"):
+            regex = r"artifact:payload_bin = '(.*)'"
+            name = extract_name_from_regex(regex, sdo_object.pattern)
+            sco_objects += [
+                CreditCard(
+                    provider="Diners",
+                    number=name,
+                    defanged=defanged,
+                    object_marking_refs=sdo_object.object_marking_refs,
+                )
+            ]
+
+        if sdo_object.name.startswith("JCB Credit Card"):
+            regex = r"artifact:payload_bin = '(.*)'"
+            name = extract_name_from_regex(regex, sdo_object.pattern)
+            sco_objects += [
+                CreditCard(
+                    provider="JCB",
+                    number=name,
+                    defanged=defanged,
+                    object_marking_refs=sdo_object.object_marking_refs,
                 )
             ]
 
