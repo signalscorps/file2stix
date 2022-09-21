@@ -171,7 +171,7 @@ Note, the `object_refs` contains all references that are referenced by objects i
 
 ## Observed Data SDOs (`observed-data`)
 
-For every extraction type where an SCO is created (ipv4, ipv6, File name, File hash, Directory, Domain, URL, Email Address, MAC Address, Windows Registry Key, User Agent, Autonomous System Number, Cryptocurrency, IBAN, CPE, Credit Card) and Observed Data Object is also created.
+For every extraction type where an SCO is created (ipv4, ipv6, File name, File hash, Directory, Domain, URL, Email Address, MAC Address, Windows Registry Key, User Agent, Autonomous System Number, Cryptocurrency, IBAN, CPE, Credit Card) an Observed Data Object is also created for each unique SCO (note, if reusing old SCO a new Observed Data Object is not created, see following section).
 
 ```json
 {
@@ -200,19 +200,15 @@ For every extraction type where an SCO is created (ipv4, ipv6, File name, File h
 }
 ```
 
-Note, the `number_observed` property is dependant on TLP level set , `identity` used and any custom white lists or confidence scoring applied at time of upload.
+The `number_observed` property is set to 1 on creation.
 
-Everytime file2stix creates an SCO it contains an `object_marking_refs` with the same TLP as the report uploaded and if TLP Green/Amber/Red a `created_by_ref` of the identity that created it.
+Everytime file2stix reuses an SCO in a bundle, the related Observed data objects `number_observed` property is increased by one.
 
-These two values influence the count field. This is to ensure sensitive data (e.g. TLP Red), even if anonomised through a count, is not potentially inferred.
+For example, if the same SCO is seen in 5 reports all marked TLP White (and all all properties are identical), then this will represent 1 SCO, thus one Observed Data SCO, and therefore `number_observed` will be 5 for the 5 reports. If it is seen again in a report marked TLP white, then the count will increase to 6.
 
-When calculating the `number_observed`, file2stix only counts the SCOs that match the same TLP and `identity` as the SCO being considered.
+Using another example to illustrate the influence of TLP level; If 1 of these 5 reports in TLP Green and the rest are TLP White (with all other properties at upload the same), 2 SCOs and 2 Observed Data Objects will exist. The `number_observed` in the TLP White Observed data Object will be 4, and in the TLP Green Object the `number_observed` will be one (assuming these are the only 5 reports with this observable detected).
 
-If the same SCO is seen in 5 reports all marked TLP White (where no SCOs have a `created_by_ref` property as TLP white), then this will represent 1 SCO, thus one Observed Data SCO, and therefore `number_observed` will be 5 for the 5 reports. If it is seen again in a report marked TLP white, then the count will increase to 6.
-
-Using another example to illustrate the influence of TLP level; If 1 of these 5 reports in TLP Green and the rest are TLP White, 2 SCOs and 2 Observed Data Objects will exist. The `number_observed` in the TLP White Observed data Object will be 4, and in the TLP Green Object the `number_observed` will be one (assuming these are the only 5 reports with this observable detected).
-
-One final example; If 2 reports are uploaded as TLP Red and attributed to two different identities both containing the same Observable then 2 SCOs will be created, 2 Observed Data Objects will be created. Assuming these are the only 2 reports that contain this observable, then the `number_observed` will be 1 in each Observed Data Object.
+One final example; If 2 reports are uploaded as TLP Red and attributed to two different identities both containing the same Observable (with all other properties at upload the same) then 2 SCOs will be created, 2 Observed Data Objects will be created. Assuming these are the only 2 reports that contain this observable, then the `number_observed` will be 1 in each Observed Data Object.
 
 ## Relationship SROS (`relationship`)
 
