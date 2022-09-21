@@ -173,7 +173,7 @@ def main(config: Config):
                 # Don't create a new version for CPE Observable
                 if stix_observable_object != None and observable != CPEObservable:
                     stix_observable_object = stix_observable_object.new_version(
-                        modified=pytz.utc.localize(datetime.utcnow())
+                        modified=report.modified
                     )
                 else:
                     stix_observable_object = extracted_stix_observable
