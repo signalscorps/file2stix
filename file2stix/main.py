@@ -14,7 +14,7 @@ import json
 import yaml
 from datetime import datetime
 from pathlib import Path
-from stix2 import Report, Relationship, TLP_WHITE, NetworkTraffic
+from stix2 import Report, Relationship, TLP_WHITE, Sighting, ObservedData
 from pymispwarninglists.api import WarningList
 
 from file2stix.backends import arangodb
@@ -30,6 +30,7 @@ from file2stix.helper import (
     get_text_from_xml,
     get_text_from_yaml,
     update_stix_object,
+    combine_list,
 )
 from file2stix.observables_stix_store import ObservablesStixStore
 from file2stix.observables import Observable, CustomObservable, CPEObservable
@@ -122,6 +123,7 @@ def main(config: Config):
         created_by_ref=config.identity,
         allow_custom=True,
         object_marking_refs=config.tlp_level,
+        external_references=config.branding_external_ref,
     )
 
     stix_store = ObservablesStixStore()
@@ -147,12 +149,13 @@ def main(config: Config):
             stix_observable_object = extracted_stix_observable
 
             # Check if observable already present in `stix_store`
-            if config.tlp_level == TLP_WHITE and hasattr(
-                extracted_stix_observable, "name"
-            ):
+            if hasattr(extracted_stix_observable, "name"):
                 stix_observable_object = stix_store.get_object(
                     extracted_stix_observable.name,
-                    config.tlp_level.id,
+                    stix_object_identity=config.identity.id,
+                    tlp_level=config.tlp_level.id,
+                    # extensions=extracted_stix_observable.extensions.id,
+                    confidence=extracted_stix_observable.confidence,
                 )
 
                 # Don't create a new version for CPE Observable
@@ -201,9 +204,10 @@ def main(config: Config):
                 logger.debug("Extracted observable: %s", stix_observable_object.name)
 
             sco_objects = stix_observable_objects["sco_objects"]
-            if sco_objects != None and len(sco_objects) > 0:
-                for sco_object in sco_objects:
-                    observables_list.sco_observables[observable_id] = sco_object
+            observables_list.sco_observables[observable_id] = sco_objects
+            # if sco_objects != None and len(sco_objects) > 0:
+            #     for sco_object in sco_objects:
+            #         observables_list.sco_observables[observable_id] = sco_object
 
         # Hacky logging, but I don't want to complicate just getting pretty_name
         logger.info(
@@ -228,6 +232,7 @@ def main(config: Config):
             target_ref=report.id,
             created_by_ref=config.identity,
             object_marking_refs=config.tlp_level,
+            external_references=config.branding_external_ref,
         )
         relationship_sros.append(relationship_sro)
 
@@ -241,6 +246,7 @@ def main(config: Config):
             created_by_ref=config.identity,
             object_marking_refs=config.tlp_level,
             allow_custom=True,
+            external_references=config.branding_external_ref,
         )
         relationship_sros.append(relationship_sro)
 
@@ -253,6 +259,7 @@ def main(config: Config):
             target_ref=report.id,
             created_by_ref=config.identity,
             object_marking_refs=config.tlp_level,
+            external_references=config.branding_external_ref,
         )
         relationship_sros.append(relationship_sro)
 
@@ -266,20 +273,53 @@ def main(config: Config):
             created_by_ref=config.identity,
             object_marking_refs=config.tlp_level,
             allow_custom=True,
+            external_references=config.branding_external_ref,
         )
         relationship_sros.append(relationship_sro)
 
-    for stix_observable_id, sco_object in observables_list.sco_observables.items():
-        relationship_sro = Relationship(
-            relationship_type="pattern-contains",
-            created=report.created,
-            modified=report.modified,
-            source_ref=stix_observable_id,
-            target_ref=sco_object.id,
-            created_by_ref=config.identity,
-            object_marking_refs=config.tlp_level,
-        )
-        relationship_sros.append(relationship_sro)
+    observed_datas = []
+
+    for stix_observable_id, sco_objects in observables_list.sco_observables.items():
+        temp_observed_datas = []
+        for sco_object in sco_objects:
+            relationship_sro = Relationship(
+                relationship_type="pattern-contains",
+                created=report.created,
+                modified=report.modified,
+                source_ref=stix_observable_id,
+                target_ref=sco_object.id,
+                created_by_ref=config.identity,
+                object_marking_refs=config.tlp_level,
+                external_references=config.branding_external_ref,
+            )
+            relationship_sros.append(relationship_sro)
+
+            observed_data = ObservedData(
+                created=report.created,
+                modified=report.modified,
+                created_by_ref=config.identity,
+                first_observed=report.created,  # TODO: Fix this
+                last_observed=report.created,
+                number_observed=1,  # TODO: Fix this
+                object_refs=[sco_object],
+                object_marking_refs=config.tlp_level,
+                external_references=config.branding_external_ref,
+            )
+            temp_observed_datas.append(observed_data)
+
+        observed_datas += temp_observed_datas
+
+        if config.extraction_mode == "sighting":
+            sighting_sro = Sighting(
+                created=report.created,
+                modified=report.modified,
+                created_by_ref=config.identity,
+                sighting_of_ref=stix_observable_id,
+                observed_data_refs=temp_observed_datas,
+                object_marking_refs=config.tlp_level,
+                external_references=config.branding_external_ref,
+            )
+            relationship_sros.append(sighting_sro)
 
     # Group all stix objects and store in STIX filestore and bundle
     stix_observable_objects = (
@@ -289,7 +329,8 @@ def main(config: Config):
         + list(observables_list.dict_stix_observables.values())
         + list(observables_list.custom_stix_observables.values())
         + list(observables_list.custom_dict_stix_observables.values())
-        + list(observables_list.sco_observables.values())
+        + list(combine_list(observables_list.sco_observables.values()))
+        + observed_datas
         + relationship_sros
     )
 
@@ -303,7 +344,11 @@ def main(config: Config):
         if hasattr(stix_object, "id"):
             object_refs.append(stix_object.id)
         else:
-            object_refs.append(stix_object["id"])
+            try:
+                object_refs.append(stix_object["id"])
+            except Exception:
+                print(stix_object)
+                raise
 
     # Update object_refs in report
     report = update_stix_object(report, object_refs=object_refs, allow_custom=True)

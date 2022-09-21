@@ -2,6 +2,7 @@
 Parse CLI arguments and pass to file2stix_cli.main
 """
 import argparse
+import logging
 import os
 import yaml
 from stix2 import TLP_WHITE, TLP_AMBER, TLP_GREEN, TLP_RED, Identity
@@ -12,6 +13,8 @@ from file2stix.backends import arangodb
 from file2stix.config import Config, STIX2_OBJECTS_STORE
 from file2stix.main import main, Backends
 from file2stix.observables import get_observable_class_from_name
+
+logger = logging.getLogger(__name__)
 
 
 class IdentityError(Exception):
@@ -99,6 +102,28 @@ def cli():
         help="cache folder path where MITRE ATT&K and CAPEC warning list will be stored (default: %(default)s)",
     )
 
+    arg_parser.add_argument(
+        "--extraction-mode",
+        action="store",
+        choices=["analysis", "sighting"],
+        default=Config.extraction_mode,
+        help="choose extraction mode of report (default: %(default)s)",
+    )
+
+    arg_parser.add_argument(
+        "--no-branding",
+        action="store_true",
+        default=False,
+        help="remove file2stix branding in report bundle (default: %(default)s)",
+    )
+
+    arg_parser.add_argument(
+        "--confidence",
+        action="store",
+        type=int,
+        help="set report confidence",
+    )
+
     args = arg_parser.parse_args()
 
     input_file_path = (
@@ -128,7 +153,7 @@ def cli():
     identity = STIX2_OBJECTS_STORE.get_object("file2stix")
     if args.user_identity_file != None:
         # Set user identity
-        try:   
+        try:
             with open(args.user_identity_file) as f:
                 identity_config = yaml.safe_load(f)
             identity = Identity(**identity_config)
@@ -149,6 +174,21 @@ def cli():
                 raise ValueError("Backend in YML doesn't match any available backends")
         arangodb.check_arango_connection(args.backend)
 
+    branding_external_ref = Config.branding_external_ref
+    if args.no_branding == True:
+        branding_external_ref = None
+
+    confidence = args.confidence
+    if tlp_level == TLP_WHITE and confidence != None:
+        logger.warning("Confidence property ignored, since TLP level is WHITE.")
+        confidence = None
+
+    if tlp_level == TLP_WHITE and args.misp_custom_warning_list_file != None:
+        raise argparse.ArgumentError(
+            argument=None,
+            message="MISP custom warning list file cannot be specified in TLP LEVEL WHITE reports."
+        )
+
     # Build config object
     config = Config(
         input_file_path=input_file_path,
@@ -161,8 +201,13 @@ def cli():
         ignore_observables_list=ignore_observables_list,
         misp_custom_warning_list_file=args.misp_custom_warning_list_file,
         defang_observables=args.defang_observables,
+        extraction_mode=args.extraction_mode,
         backend=args.backend,
+        confidence=confidence,
+        # branding_external_ref=branding_external_ref,
     )
+
+    config.branding_external_ref = branding_external_ref
 
     # Call main
     main(config)

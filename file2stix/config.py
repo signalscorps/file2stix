@@ -2,7 +2,7 @@
 Stores the config of file2stix-cli tool
 """
 from dataclasses import dataclass
-from stix2 import Identity, ExtensionDefinition, MarkingDefinition, TLP_WHITE
+from stix2 import Identity, ExtensionDefinition, MarkingDefinition, TLP_WHITE, ExternalReference
 from typing import List
 from pathlib import Path
 import os
@@ -19,7 +19,9 @@ class Config:
     output_json_file_path: str = None
     custom_extraction_file: str = None
     cache_folder: str = "file2stix-cache"
+    confidence: int = None
 
+    extraction_mode: str = "analysis"
     tlp_level: MarkingDefinition = TLP_WHITE
     identity: Identity = None
 
@@ -36,3 +38,9 @@ class Config:
     defang_observables: bool = False
 
     backend: str = None
+
+    branding_external_ref = ExternalReference(
+        source_name="file2stix",
+        description="This object was created using file2stix from the Signals Corps.",
+        url="https://github.com/signalscorps/file2stix",
+    )

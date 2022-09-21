@@ -33,16 +33,30 @@ class ObservablesStixStore:
             os.makedirs(bundle_path)
         self.stix_bundle_path = bundle_path
 
-    def get_object(self, stix_object_name, object_marking_refs=None):
+    def get_object(
+        self,
+        stix_object_name,
+        stix_object_identity=None,
+        tlp_level=None,
+        # extensions=None,
+        confidence=None,        
+    ):
         """
         Query STIX2 Object based on `stix_object_name`
         """
         query = [
             Filter("name", "=", stix_object_name),
         ]
-        if object_marking_refs:
-            query += [Filter("object_marking_refs", "=", object_marking_refs)]
-            
+
+        if stix_object_identity:
+            query += [Filter("created_by_ref", "=", stix_object_identity)]
+
+        if confidence:
+            query += [Filter("confidence", "=", confidence)]
+        
+        if tlp_level:
+            query += [Filter("object_marking_refs", "=", tlp_level)]
+
         observables_found = self.stix_file_store.source.query(query)
 
         if observables_found == None or len(observables_found) == 0:
@@ -58,10 +72,17 @@ class ObservablesStixStore:
                 # Ignoring error, since it occurs when file is already
                 # present in the file store, which is OK
                 if hasattr(stix_object, "id"):
-                    logger.debug("Exception caught while storing stix object %s: %s", stix_object.id, ex)
+                    logger.debug(
+                        "Exception caught while storing stix object %s: %s",
+                        stix_object.id,
+                        ex,
+                    )
                 else:
-                    logger.debug("Exception caught while storing stix object %s: %s", stix_object, ex)
-
+                    logger.debug(
+                        "Exception caught while storing stix object %s: %s",
+                        stix_object,
+                        ex,
+                    )
 
     def store_objects_in_bundle(self, stix_objects, output_json_file_path=None):
         bundle_of_all_objects = Bundle(*stix_objects, allow_custom=True)
