@@ -20,6 +20,7 @@ class Config:
     custom_extraction_file: str = None
     cache_folder: str = "file2stix-cache"
 
+    extraction_mode: str = "analysis"
     tlp_level: MarkingDefinition = TLP_WHITE
     identity: Identity = None
 

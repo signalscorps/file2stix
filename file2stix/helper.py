@@ -207,3 +207,9 @@ def update_stix_object(stix_object, **kwargs):
     stix_definition = type(stix_object)
     updated_stix_object = stix_definition(**stix_object_properties)
     return updated_stix_object
+
+def combine_list(lists):
+    result = []
+    for list in lists:
+        result += list
+    return result

@@ -45,6 +45,11 @@ class Observable:
     common_strippable_elements = "\"'.,"
     # This field can be set to true for only "word by word" pattern matches
     defangable = False
+    branding_external_ref = {
+        "source_name": "file2stix",
+        "description": "This object was created using file2stix from the Signals Corps.",
+        "url": "https://github.com/signalscorps/file2stix",
+    }
 
     def __init__(self, extracted_observable_text, config, defanged=False):
         self.extracted_observable_text = extracted_observable_text
@@ -227,6 +232,7 @@ class Observable:
                 "indicator_types": ["unknown"],
                 "object_marking_refs": self.tlp_level,
                 "created_by_ref": self.identity,
+                "external_references": [Observable.branding_external_ref],
             }
 
             if x_warning_list_match:
@@ -531,6 +537,8 @@ class AutonomousSystemNumberObservable(Observable):
                 indicator_types=["unknown"],
                 object_marking_refs=self.tlp_level,
                 created_by_ref=self.identity,
+                external_references=[Observable.branding_external_ref],
+                allow_custom=True,
             )
             return indicator
         else:

@@ -377,4 +377,4 @@ The type of Objects created during extraction depends on the mode used. file2sti
 1. `analysis` (default): used during research to create STIX 2.1 Objects from general threat research
   * [View Analysis Mode documentation here](./extractions-analysis-mode.md)
 2. `sighting`: used to denote that extractions from a report represent real instances of an observable being seen in your environment (generally used for log inputs)
-  * [View Sighting Mode documentation here](./extractions-sighting-mode.md)
+  * [View Sighting Mode documentation here](./extractions-sightings-mode.md)

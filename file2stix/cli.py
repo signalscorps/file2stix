@@ -99,6 +99,14 @@ def cli():
         help="cache folder path where MITRE ATT&K and CAPEC warning list will be stored (default: %(default)s)",
     )
 
+    arg_parser.add_argument(
+        "--extraction-mode",
+        action="store",
+        choices=["analysis", "sighting"],
+        default=Config.extraction_mode,
+        help="choose extraction mode of report (default: %(default)s)",
+    )
+
     args = arg_parser.parse_args()
 
     input_file_path = (
@@ -128,7 +136,7 @@ def cli():
     identity = STIX2_OBJECTS_STORE.get_object("file2stix")
     if args.user_identity_file != None:
         # Set user identity
-        try:   
+        try:
             with open(args.user_identity_file) as f:
                 identity_config = yaml.safe_load(f)
             identity = Identity(**identity_config)
@@ -162,6 +170,7 @@ def cli():
         misp_custom_warning_list_file=args.misp_custom_warning_list_file,
         defang_observables=args.defang_observables,
         backend=args.backend,
+        extraction_mode=args.extraction_mode,
     )
 
     # Call main
