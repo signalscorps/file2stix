@@ -599,8 +599,8 @@ class CVEObservable(Observable):
             ),
             ExternalReference(
                 source_name="vulmatch",
-                url=f"https://app.vulmatch.com/cve/{self.extracted_observable_text}"
-            )
+                url=f"https://app.vulmatch.com/cve/{self.extracted_observable_text}",
+            ),
         ]
         if self.branding_external_ref:
             external_references += [self.branding_external_ref]
@@ -805,9 +805,17 @@ class CPEObservable(Observable):
 
     def get_sdo_object(self):
         cpe_list = self.extracted_observable_text.split(":")
+        cpe_part = cpe_list[2]
         cpe_vendor = cpe_list[3]
         cpe_product = cpe_list[4]
         cpe_version = cpe_list[5]
+        cpe_update = cpe_list[6]
+        cpe_edition = cpe_list[7]
+        cpe_language = cpe_list[8]
+        cpe_sw_edition = cpe_list[9]
+        cpe_target_sw = cpe_list[10]
+        cpe_target_hw = cpe_list[11]
+        cpe_other = cpe_list[12]
 
         # Software object don't contain created_by_ref field
         software = Software(
@@ -817,8 +825,25 @@ class CPEObservable(Observable):
             vendor=cpe_vendor,
             object_marking_refs=self.tlp_level,
             # created_by_ref=self.identity,
-            confidence=self.confidence,
-            external_references=self.branding_external_ref,
+            # confidence=self.confidence,
+            # external_references=self.branding_external_ref,
+            extensions={
+                "extension-definition--6c453e0f-9895-498f-a273-2e2dda473377": {
+                    "extension_type": "property-extension",
+                    "cpe23Uri": self.extracted_observable_text,
+                    "part": cpe_part,
+                    "vendor": cpe_vendor,
+                    "product": cpe_product,
+                    "version": cpe_version,
+                    "update": cpe_update,
+                    "edition": cpe_edition,
+                    "language": cpe_language,
+                    "sw_edition": cpe_sw_edition,
+                    "target_sw": cpe_target_sw,
+                    "target_hw": cpe_target_hw,
+                    "other": cpe_other,
+                }
+            },
         )
 
         return software
@@ -864,6 +889,9 @@ class SIGMARuleObservable(Observable):
         # https://github.com/oasis-open/cti-python-stix2/issues/260
         pattern = pattern.replace("\\", "\\\\")
 
+        # Add "property-extension extension_type"
+        yaml_dict["extension_type"] = "property-extension"
+
         indicator_dict = {
             "type": "indicator",
             "name": f"{self.name}{self.name_delimeter}{yaml_dict['title']}",
@@ -874,6 +902,9 @@ class SIGMARuleObservable(Observable):
             "created_by_ref": self.identity,
             "confidence": self.confidence,
             "external_references": self.branding_external_ref,
+            "extensions": {
+                "extension-definition--94f4bdb6-7f39-4d0a-b103-f787026963a6": yaml_dict
+            },
         }
 
         indicator = Indicator(**indicator_dict)

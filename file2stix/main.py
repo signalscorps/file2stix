@@ -215,11 +215,9 @@ def main(config: Config):
                 ] = stix_observable_object
                 logger.debug("Extracted observable: %s", stix_observable_object.name)
 
-            sco_objects = stix_observable_objects["sco_objects"]
-            observables_list.sco_observables[observable_id] = sco_objects
-            # if sco_objects != None and len(sco_objects) > 0:
-            #     for sco_object in sco_objects:
-            #         observables_list.sco_observables[observable_id] = sco_object
+            if observable != CPEObservable:
+                sco_objects = stix_observable_objects["sco_objects"]
+                observables_list.sco_observables[observable_id] = sco_objects
 
         # Hacky logging, but I don't want to complicate just getting pretty_name
         logger.info(
