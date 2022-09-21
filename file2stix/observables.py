@@ -596,6 +596,10 @@ class CVEObservable(Observable):
             ExternalReference(
                 source_name="cve",
                 external_id=self.extracted_observable_text,
+            ),
+            ExternalReference(
+                source_name="vulmatch",
+                url=f"https://app.vulmatch.com/cve/{self.extracted_observable_text}"
             )
         ]
         if self.branding_external_ref:
@@ -615,8 +619,8 @@ class CVEObservable(Observable):
                     },
                 }
             },
-            allow_custom=True,
             confidence=self.confidence,
+            # allow_custom=True,
         )
         return vulnerability
 

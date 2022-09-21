@@ -38,7 +38,6 @@ class ObservablesStixStore:
         stix_object_name,
         stix_object_identity=None,
         tlp_level=None,
-        # extensions=None,
         confidence=None,        
     ):
         """

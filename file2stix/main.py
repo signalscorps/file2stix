@@ -156,14 +156,19 @@ def main(config: Config):
                 confidence = None
                 if hasattr(extracted_stix_observable, "confidence"):
                     confidence = extracted_stix_observable.confidence
-
+                
+                identity_id = None
+                if config.tlp_level != TLP_WHITE:
+                    identity_id = extracted_stix_observable.identity.id
+                    
                 stix_observable_object = stix_store.get_object(
                     extracted_stix_observable.name,
-                    stix_object_identity=config.identity.id,
+                    stix_object_identity=identity_id,
                     tlp_level=config.tlp_level.id,
-                    # extensions=extracted_stix_observable.extensions.id,
                     confidence=confidence,
                 )
+
+                # TODO: Check if the stix object has same warning list matches
 
                 # Don't create a new version for CPE Observable
                 if stix_observable_object != None and observable != CPEObservable:
