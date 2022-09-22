@@ -42,7 +42,7 @@ class Observable:
     pattern = None  # Valid for indicators
     extraction_regex = None
     extraction_function = None
-    common_strippable_elements = "\"'.,"
+    common_strippable_elements = "\"'.,:"
     # This field can be set to true for only "word by word" pattern matches
     defangable = False
 

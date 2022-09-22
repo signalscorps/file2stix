@@ -104,9 +104,9 @@ def main(config: Config):
         input = get_text_from_json(input_file_path)
     elif file_extension == ".md":
         input = get_text_from_markdown(input_file_path)
-    elif file_extension in (".yml", ".yaml"):
-        input = get_text_from_yaml(input_file_path)
-    elif file_extension in (".yara", ".yar"):
+    # elif file_extension in (".yml", ".yaml"):
+    #     input = get_text_from_yaml(input_file_path)
+    elif file_extension in (".yara", ".yar", ".yml", ".yaml"):
         input = Path(input_file_path).read_text()
     else:
         input = textract.process(input_file_path).decode("UTF-8")
