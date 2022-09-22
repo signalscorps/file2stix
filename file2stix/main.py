@@ -111,8 +111,8 @@ def main(config: Config):
     else:
         input = textract.process(input_file_path).decode("UTF-8")
     
-    if config.ouptut_preprocessed_file:
-        with open(config.ouptut_preprocessed_file, "w") as f:
+    if config.output_preprocessed_file:
+        with open(config.output_preprocessed_file, "w") as f:
             f.write(input)
 
     logger.info("Reading input file %s ...", input_file_path)

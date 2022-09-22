@@ -18,7 +18,7 @@ class Config:
     # File-handling related options
     input_file_path: str = None
     output_json_file_path: str = None
-    ouptut_preprocessed_file: str = None
+    output_preprocessed_file: str = None
     custom_extraction_file: str = None
     cache_folder: str = "file2stix-cache"
     update_mitre_cti_database: bool = False

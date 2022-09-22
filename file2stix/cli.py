@@ -194,6 +194,9 @@ def cli():
         branding_external_ref = None
 
     confidence = args.confidence
+    if confidence != None and not(0 <= confidence <= 100):
+        logger.error("--confidence option should be between 0 and 100")
+        sys.exit(1)
     if tlp_level == TLP_WHITE and confidence != None:
         logger.warning("Confidence property ignored, since TLP level is WHITE.")
         confidence = None
@@ -206,7 +209,7 @@ def cli():
     config = Config(
         input_file_path=input_file_path,
         output_json_file_path=output_json_file_path,
-        ouptut_preprocessed_file=args.ouptut_preprocessed_file,
+        output_preprocessed_file=args.output_processed_input_file,
         cache_folder=os.path.abspath(args.cache_folder),
         update_mitre_cti_database=args.update_mitre_cti_database,
         custom_extraction_file=args.custom_extraction_file,
