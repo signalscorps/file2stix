@@ -159,7 +159,7 @@ def main(config: Config):
                 
                 identity_id = None
                 if config.tlp_level != TLP_WHITE:
-                    identity_id = extracted_stix_observable.identity.id
+                    identity_id = extracted_stix_observable.created_by_ref
                     
                 stix_observable_object = stix_store.get_object(
                     extracted_stix_observable.name,
