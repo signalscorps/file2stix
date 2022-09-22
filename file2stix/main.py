@@ -110,7 +110,7 @@ def main(config: Config):
         input = Path(input_file_path).read_text()
     else:
         input = textract.process(input_file_path).decode("UTF-8")
-    
+
     if config.output_preprocessed_file:
         with open(config.output_preprocessed_file, "w") as f:
             f.write(input)
@@ -156,11 +156,11 @@ def main(config: Config):
                 confidence = None
                 if hasattr(extracted_stix_observable, "confidence"):
                     confidence = extracted_stix_observable.confidence
-                
+
                 identity_id = None
                 if config.tlp_level != TLP_WHITE:
                     identity_id = extracted_stix_observable.created_by_ref
-                    
+
                 stix_observable_object = stix_store.get_object(
                     extracted_stix_observable.name,
                     stix_object_identity=identity_id,
@@ -176,14 +176,16 @@ def main(config: Config):
                         modified=report.modified
                     )
                 else:
-                    stix_observable_object = extracted_stix_observable
-            elif hasattr(extracted_stix_observable, "created"):
-                # elif condition above to avoid dict observables
-                stix_observable_object = update_stix_object(
-                    stix_observable_object,
-                    created=report.created,
-                    modified=report.modified,
-                )
+                    if (
+                        hasattr(extracted_stix_observable, "created")
+                        and observable != CPEObservable
+                    ):
+                        # if condition above to avoid dict observables
+                        stix_observable_object = update_stix_object(
+                            extracted_stix_observable,
+                            created=report.created,
+                            modified=report.modified,
+                        )
 
             observable_id = None
             if isinstance(stix_observable_object, dict):
@@ -294,7 +296,7 @@ def main(config: Config):
     for stix_observable_id, sco_objects in observables_list.sco_observables.items():
         temp_observed_datas = []
         for sco_object in sco_objects:
-            
+
             if sco_object.id in sco_object_ids_seen_so_far:
                 continue
             sco_object_ids_seen_so_far.add(sco_object.id)
