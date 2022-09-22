@@ -5,6 +5,7 @@ import argparse
 import logging
 import os
 import yaml
+import sys
 from stix2 import TLP_WHITE, TLP_AMBER, TLP_GREEN, TLP_RED, Identity
 
 import file2stix
@@ -198,10 +199,8 @@ def cli():
         confidence = None
 
     if tlp_level == TLP_WHITE and args.misp_custom_warning_list_file != None:
-        raise argparse.ArgumentError(
-            argument=None,
-            message="MISP custom warning list file cannot be specified in TLP LEVEL WHITE reports."
-        )
+        logger.error("MISP custom warning list file cannot be specified in TLP LEVEL WHITE reports.")
+        sys.exit(1)
 
     # Build config object
     config = Config(
