@@ -192,6 +192,11 @@ file2stix --input-file tests/observable_tests/iban.txt
 file2stix --input-file tests/observable_tests/ipv4.txt
 ```
 
+```shell
+file2stix --input-file tests/observable_tests/ipv4-multi.txt
+```
+
+
 ##### IPv4 with port
 
 ```shell
@@ -670,5 +675,89 @@ file2stix --input-file tests/observable_tests/ipv4.txt --user-identity-file test
 ```shell
 file2stix --input-file tests/observable_tests/ipv4.txt --backend tests/backends/arangodb.yml
 ```
+
+---
+
+## Testing alternative bundle directory
+
+```shell
+file2stix --input-file tests/observable_tests/ipv4.txt --output-json-file stix2_bundles_alt
+```
+
+---
+
+## Testing confidence
+
+### TLP Green
+
+```shell
+file2stix --input-file tests/observable_tests/ipv4.txt --tlp-level GREEN --confidence 100
+```
+
+### TLP Amber
+
+```shell
+file2stix --input-file tests/observable_tests/ipv4.txt --tlp-level AMBER --confidence 100
+```
+
+### TLP Red
+
+```shell
+file2stix --input-file tests/observable_tests/ipv4.txt --tlp-level RED --confidence 100
+```
+
+### TLP White Warning
+
+```shell
+file2stix --input-file tests/observable_tests/ipv4.txt --confidence 100
+```
+
+_Should process the file, but throw a warning that it won't include confidence scores in CLI_
+
+---
+
+## Testing custom defintions for SCOs
+
+### Cryptocurrency SCO
+
+```shell
+file2stix --input-file tests/observable_tests/crypto_btc.txt
+```
+
+### Credit Card SCO
+
+```shell
+file2stix --input-file tests/observable_tests/credit_card_mastercard.txt
+```
+
+### ASN SCO
+
+```shell
+file2stix --input-file tests/observable_tests/asn.txt
+```
+
+### IBAN SCO
+
+```shell
+file2stix --input-file tests/observable_tests/iban.txt
+```
+
+### User Agent SCO
+
+```shell
+file2stix --input-file tests/observable_tests/user_agent.txt
+```
+
+---
+
+## Testing custom defintions for SDOs
+
+MISP Warning Lists Properties
+
+
+Sigma Rule Properties
+
+
+MISP Warning Lists Properties
 
 

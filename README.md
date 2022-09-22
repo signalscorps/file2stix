@@ -125,6 +125,7 @@ file2stix --input-file PATH/TO/FILE --custom-extraction-file PATH/TO/FILE --upda
 * `--ignore-warninglist-observables` (optional, default false): file2stix will keep any extracted objects that match to default and custom warning lists (and marks them as matching and benign). If you would like to ignore any extractions that match to warning lists (and not create STIX Objects from them) then set this to true.
 * `--extraction-mode` (optional, default analysis): please read the docs for more information about modes. You can set either `analysis` (the default) or `sighting`
 * `--output-processed-input-file` (optional, default false): this is useful for debugging extractions. It will show you the actual text considered for text extraction (because file2stix performs some preprocessing on files, see docs)
+* `--output-json-file` (optional, default stix2bundles): this is where the bundles for each report will be stored. By default is `$FILE2STIX/stix2bundles` but can be changed by specifying a directory path for this flag.
 * `--help` (optional, default false) to print more about these options in the command line.
 
 For example;

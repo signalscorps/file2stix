@@ -1,6 +1,6 @@
 # in this test the type, id and identity_class are bad
 
-type: "identity-bad"
+type: "identity-bad" # required must be identity
 spec_version: "2.1"
 id: "identity--"
 created: "2022-01-01T00:00:00.000Z"

@@ -148,3 +148,7 @@ file2stix-cache
 # Ignore venv as stated in docs
 
 file2stix_venv
+
+# Ignore tests
+
+stix2_bundles_alt
