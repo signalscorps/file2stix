@@ -28,6 +28,10 @@ pytest
 file2stix --input-file tests/observable_tests/asn.txt
 ```
 
+```shell
+file2stix --input-file tests/observable_tests/asn.txt
+```
+
 #### Country
 
 ```shell
@@ -448,11 +452,17 @@ file2stix --input-file tests/warning_lists/known_matches.txt
 file2stix --input-file tests/warning_lists/custom_list.json --misp-custom-warning-list-file tests/warning_lists/custom_list.json --tlp-level GREEN
 ```
 
+```shell
+file2stix --input-file tests/warning_lists/custom_list_matches.txt --misp-custom-warning-list-file tests/warning_lists/custom_list.json --tlp-level GREEN
+```
+
 ### Ignore warning list match extractions
 
 ```shell
 file2stix --input-file tests/warning_lists/known_matches.txt --ignore-warninglist-observables
 ```
+
+
 
 ---
 
