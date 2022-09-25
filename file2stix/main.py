@@ -7,7 +7,6 @@ import logging
 import os
 from enum import Enum
 
-import pytz
 import sys
 import textract
 import json
@@ -18,10 +17,12 @@ from stix2 import Report, Relationship, TLP_WHITE, Sighting, ObservedData
 from stix2.exceptions import ExtraPropertiesError
 from pymispwarninglists.api import WarningList
 
+from pattern2sco.custom_objects import Cryptocurrency, CreditCard, IBAN, UserAgent
+
 from file2stix.backends import arangodb
 from file2stix import __appname__
 from file2stix.cache import Cache
-from file2stix.config import Config
+from file2stix.config import Config, STIX2_OBJECTS_STORE
 from file2stix.extract_observables import ExtractStixObservables
 from file2stix.helper import (
     inheritors,
@@ -61,6 +62,9 @@ class ObservableList:
 
         # SCO observables
         self.sco_observables = {}
+
+        # Extension definition objects
+        self.extension_definition_objects = {}
 
     def __str__(self):
         return f"ObservablesList({self.stix_observables}, {self.dict_stix_observables}, {self.custom_stix_observables}, {self.custom_dict_stix_observables})"
@@ -135,8 +139,13 @@ def main(config: Config):
 
     stix_store = ObservablesStixStore()
 
-    # Iterate over each observable and extract them from input file
     observables_list = ObservableList()
+    if config.misp_extension_definition != None:
+        observables_list.extension_definition_objects[
+            config.misp_extension_definition.id
+        ] = config.misp_extension_definition
+
+    # Iterate over each observable and extract them from input file
     for observable in inheritors(Observable):
         if (
             config.ignore_observables_list != None
@@ -228,9 +237,43 @@ def main(config: Config):
                 ] = stix_observable_object
                 logger.debug("Extracted observable: %s", stix_observable_object.name)
 
+            # Add respective SCO objects if present
             if observable != CPEObservable:
                 sco_objects = stix_observable_objects["sco_objects"]
                 observables_list.sco_observables[observable_id] = sco_objects
+
+            # Add respective extension definitions if present
+            for sco_object in stix_observable_objects["sco_objects"]:
+                if isinstance(sco_object, Cryptocurrency):
+                    observables_list.extension_definition_objects[
+                        "extension-definition--532ae28d-137b-4b89-afb7-9cf9b504191b"
+                    ] = STIX2_OBJECTS_STORE.get_object_by_id(
+                        "extension-definition--532ae28d-137b-4b89-afb7-9cf9b504191b"
+                    )
+                if isinstance(sco_object, Cryptocurrency):
+                    observables_list.extension_definition_objects[
+                        "extension-definition--532ae28d-137b-4b89-afb7-9cf9b504191b"
+                    ] = STIX2_OBJECTS_STORE.get_object_by_id(
+                        "extension-definition--532ae28d-137b-4b89-afb7-9cf9b504191b"
+                    )
+                if isinstance(sco_object, CreditCard):
+                    observables_list.extension_definition_objects[
+                        "extension-definition--abd6fc0e-749e-4e6c-a20c-1faa419f5ee4"
+                    ] = STIX2_OBJECTS_STORE.get_object_by_id(
+                        "extension-definition--abd6fc0e-749e-4e6c-a20c-1faa419f5ee4"
+                    )
+                if isinstance(sco_object, IBAN):
+                    observables_list.extension_definition_objects[
+                        "extension-definition--349c1029-4052-4635-a064-263cb17290ea"
+                    ] = STIX2_OBJECTS_STORE.get_object_by_id(
+                        "extension-definition--349c1029-4052-4635-a064-263cb17290ea"
+                    )
+                if isinstance(sco_object, UserAgent):
+                    observables_list.extension_definition_objects[
+                        "extension-definition--6cea4dc9-9517-44b8-b021-ae82e2f1de43"
+                    ] = STIX2_OBJECTS_STORE.get_object_by_id(
+                        "extension-definition--6cea4dc9-9517-44b8-b021-ae82e2f1de43"
+                    )
 
         # Hacky logging, but I don't want to complicate just getting pretty_name
         logger.info(
@@ -363,11 +406,8 @@ def main(config: Config):
         + sco_objects_seen_so_far
         + observed_datas
         + relationship_sros
+        + list(observables_list.extension_definition_objects.values())
     )
-
-    # Add misp_extension_definition in stix_objects
-    if config.misp_extension_definition != None:
-        stix_observable_objects += [config.misp_extension_definition]
 
     # Build object_refs for report
     object_refs = []

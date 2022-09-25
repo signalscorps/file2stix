@@ -44,3 +44,18 @@ class CreditCard(object):
 )
 class IBAN(object):
     pass
+
+@CustomObservable(
+    "user-agent",
+    [
+        ("string", properties.StringProperty(required=True)),
+        ("software", properties.StringProperty(required=True)),
+        ("system", properties.StringProperty(required=False)),
+        ("platform", properties.StringProperty(required=False)),
+        ("browser", properties.StringProperty(required=False)),
+        ("browser_enhancements", properties.StringProperty(required=False)),
+    ],
+    extension_name="extension-definition--6cea4dc9-9517-44b8-b021-ae82e2f1de43",
+)
+class UserAgent(object):
+    pass

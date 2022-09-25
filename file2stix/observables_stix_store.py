@@ -38,7 +38,7 @@ class ObservablesStixStore:
         stix_object_name,
         stix_object_identity=None,
         tlp_level=None,
-        confidence=None,        
+        confidence=None,
     ):
         """
         Query STIX2 Object based on `stix_object_name`
@@ -52,10 +52,24 @@ class ObservablesStixStore:
 
         if confidence:
             query += [Filter("confidence", "=", confidence)]
-        
+
         if tlp_level:
             query += [Filter("object_marking_refs", "=", tlp_level)]
 
+        observables_found = self.stix_file_store.source.query(query)
+
+        if observables_found == None or len(observables_found) == 0:
+            return None
+
+        return observables_found[0]
+
+    def get_object_by_id(
+        self,
+        stix_object_id,
+    ):
+        query = [
+            Filter("id", "=", stix_object_id),
+        ]
         observables_found = self.stix_file_store.source.query(query)
 
         if observables_found == None or len(observables_found) == 0:

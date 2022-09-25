@@ -1,3 +1,4 @@
+from configparser import NoOptionError
 import re
 from stix2 import (
     Indicator,
@@ -17,6 +18,7 @@ from pattern2sco.custom_objects import (
     Cryptocurrency,
     CreditCard,
     IBAN,
+    UserAgent,
 )
 
 
@@ -236,23 +238,55 @@ def get_sco_objects(sdo_object, defanged=False):
                 )
             ]
 
-        # if sdo_object.name.startswith("User Agent"):
-        #     regex = r"network-traffic:extensions.'http-requestext'.request_header.'User-Agent' = '(.*)'"
-        #     name = extract_name_from_regex(regex, sdo_object.pattern)
-        #     sco_objects += [
-        #         NetworkTraffic(
-        #             protocols=["http", "https", "tcp", "udp"],
-        #             extensions={
-        #                 "http-request-ext": {
-        #                     "request_method": "",
-        #                     "request_value": "",
-        #                     "request_header": {"User-Agent": name},
-        #                 }
-        #             },
-        #             defanged=defanged,
-        #             object_marking_refs=sdo_object.object_marking_refs,
-        #         )
-        #     ]
+        if sdo_object.name.startswith("User Agent"):
+            regex = r"network-traffic:extensions.'http-requestext'.request_header.'User-Agent' = '(.*)'"
+            name = extract_name_from_regex(regex, sdo_object.pattern)
+
+            # extract each component of user_agent
+            software = None
+            system = None
+            platform = None
+            browser = None
+            browser_enhancements = None
+
+            user_agent_search = re.search("(Mozilla/5\.0) \((.*)\)", name)
+            if user_agent_search != None:
+                software = user_agent_search.groups()[0]
+                system = user_agent_search.groups()[1]
+
+            user_agent_search = re.search("(Mozilla/5\.0) \((.*)\) (.*)", name)
+            if user_agent_search != None:
+                software = user_agent_search.groups()[0]
+                system = user_agent_search.groups()[1]
+                platform = user_agent_search.groups()[2]
+
+            user_agent_search = re.search("(Mozilla/5\.0) \((.*)\) (.*) \((.*)\)", name)
+            if user_agent_search != None:
+                software = user_agent_search.groups()[0]
+                system = user_agent_search.groups()[1]
+                platform = user_agent_search.groups()[2]
+                browser = user_agent_search.groups()[3]
+
+            user_agent_search = re.search("(Mozilla/5\.0) \((.*)\) (.*) \((.*)\) (.*)", name)
+            if user_agent_search != None:
+                software = user_agent_search.groups()[0]
+                system = user_agent_search.groups()[1]
+                platform = user_agent_search.groups()[2]
+                browser = user_agent_search.groups()[3]
+                browser_enhancements = user_agent_search.groups()[4]
+
+            sco_objects += [
+                UserAgent(
+                    string=name,
+                    software=software,
+                    system=system,
+                    platform=platform,
+                    browser=browser,
+                    browser_enhancements=browser_enhancements,
+                    defanged=defanged,
+                    object_marking_refs=sdo_object.object_marking_refs,
+                )
+            ]
 
         if sdo_object.name.startswith("AS"):
             regex = r"autonomous-system:number = '(.*)'"
@@ -372,7 +406,7 @@ def get_sco_objects(sdo_object, defanged=False):
                     object_marking_refs=sdo_object.object_marking_refs,
                 )
             ]
-        
+
         if sdo_object.name.startswith("IBAN"):
             regex = r"iban:number = '(.*)'"
             name = extract_name_from_regex(regex, sdo_object.pattern)
