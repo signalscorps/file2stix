@@ -28,6 +28,7 @@ class Cryptocurrency(object):
         ("provider", properties.StringProperty(required=True)),
         ("number", properties.StringProperty(required=True)),
     ],
+    id_contrib_props=["provider", "number"],
     extension_name="extension-definition--abd6fc0e-749e-4e6c-a20c-1faa419f5ee4",
 )
 class CreditCard(object):
@@ -40,6 +41,7 @@ class CreditCard(object):
         ("country_code", properties.StringProperty(required=True)),
         ("number", properties.StringProperty(required=True)),
     ],
+    id_contrib_props=["country_code", "number"],
     extension_name="extension-definition--349c1029-4052-4635-a064-263cb17290ea",
 )
 class IBAN(object):
@@ -55,6 +57,7 @@ class IBAN(object):
         ("browser", properties.StringProperty(required=False)),
         ("browser_enhancements", properties.StringProperty(required=False)),
     ],
+    id_contrib_props=["string", "software", "system", "platform", "browser", "browser_enhancements"],
     extension_name="extension-definition--6cea4dc9-9517-44b8-b021-ae82e2f1de43",
 )
 class UserAgent(object):

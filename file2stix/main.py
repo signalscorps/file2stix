@@ -13,7 +13,7 @@ import json
 import yaml
 from datetime import datetime
 from pathlib import Path
-from stix2 import Report, Relationship, TLP_WHITE, Sighting, ObservedData
+from stix2 import Report, Relationship, TLP_WHITE, Sighting, ObservedData, Filter
 from stix2.exceptions import ExtraPropertiesError
 from pymispwarninglists.api import WarningList
 
@@ -173,7 +173,7 @@ def main(config: Config):
                 identity_id = None
                 if config.tlp_level != TLP_WHITE:
                     identity_id = extracted_stix_observable.created_by_ref
-                
+
                 extensions = None
                 if hasattr(extracted_stix_observable, "extensions"):
                     extensions = extracted_stix_observable.extensions
@@ -373,22 +373,38 @@ def main(config: Config):
             )
             relationship_sros.append(relationship_sro)
 
-            observed_data = ObservedData(
-                created=report.created,
-                modified=report.modified,
-                created_by_ref=config.identity,
-                first_observed=report.created,  # TODO: Fix this
-                last_observed=report.created,
-                number_observed=1,  # TODO: Fix this
-                object_refs=[sco_object],
-                object_marking_refs=config.tlp_level,
-                external_references=config.branding_external_ref,
+            # Check if observed_data is already present
+            observed_data = stix_store.get_object_custom_query(
+                [
+                    Filter("type", "=", "observed-data"),
+                    Filter("object_refs", "contains", sco_object.id),
+                    Filter("object_marking_refs", "=", config.tlp_level.id),
+                ]
             )
+
+            if observed_data != None:
+                observed_data = observed_data.new_version(
+                    modified=report.modified,
+                    last_observed=report.modified,
+                    number_observed=observed_data.number_observed + 1,
+                )
+            else:
+                observed_data = ObservedData(
+                    created=report.created,
+                    modified=report.modified,
+                    created_by_ref=config.identity,
+                    first_observed=report.created,
+                    last_observed=report.created,
+                    number_observed=1,
+                    object_refs=[sco_object],
+                    object_marking_refs=config.tlp_level,
+                    external_references=config.branding_external_ref,
+                )
             temp_observed_datas.append(observed_data)
 
         observed_datas += temp_observed_datas
 
-        if config.extraction_mode == "sighting":
+        if config.extraction_mode == "sighting" and len(temp_observed_datas) > 0:
             sighting_sro = Sighting(
                 created=report.created,
                 modified=report.modified,

@@ -80,6 +80,17 @@ class ObservablesStixStore:
             return None
 
         return observables_found[0]
+    
+    def get_object_custom_query(
+        self,
+        filters,
+    ):
+        observables_found = self.stix_file_store.source.query(filters)
+
+        if observables_found == None or len(observables_found) == 0:
+            return None
+
+        return observables_found[0]
 
     def store_objects_in_filestore(self, stix_objects):
         for stix_object in stix_objects:
