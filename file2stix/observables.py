@@ -239,7 +239,6 @@ class Observable:
             if x_warning_list_match:
                 warning_list_dict["misp_warning_list_match"] = x_warning_list_match
 
-            print(x_custom_warning_list_match)
             if x_custom_warning_list_match:
                 warning_list_dict[
                     "custom_warning_list_match"
@@ -250,7 +249,6 @@ class Observable:
                 indicator_dict["extensions"] = {
                     self.misp_extension_definition.id: warning_list_dict
                 }
-                print(indicator_dict["extensions"])
 
                 if self.ignore_warninglist_observables == True:
                     # If user specifes to ignore whitelisted observable,
