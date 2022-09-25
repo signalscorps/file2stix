@@ -39,6 +39,7 @@ class ObservablesStixStore:
         stix_object_identity=None,
         tlp_level=None,
         confidence=None,
+        extensions=None,
     ):
         """
         Query STIX2 Object based on `stix_object_name`
@@ -55,6 +56,9 @@ class ObservablesStixStore:
 
         if tlp_level:
             query += [Filter("object_marking_refs", "=", tlp_level)]
+        
+        if extensions:
+            query += [Filter("extensions", "=", extensions)]
 
         observables_found = self.stix_file_store.source.query(query)
 

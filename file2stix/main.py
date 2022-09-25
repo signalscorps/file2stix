@@ -173,12 +173,17 @@ def main(config: Config):
                 identity_id = None
                 if config.tlp_level != TLP_WHITE:
                     identity_id = extracted_stix_observable.created_by_ref
+                
+                extensions = None
+                if hasattr(extracted_stix_observable, "extensions"):
+                    extensions = extracted_stix_observable.extensions
 
                 stix_observable_object = stix_store.get_object(
                     extracted_stix_observable.name,
                     stix_object_identity=identity_id,
                     tlp_level=config.tlp_level.id,
                     confidence=confidence,
+                    extensions=extensions,
                 )
 
                 # TODO: Check if the stix object has same warning list matches
