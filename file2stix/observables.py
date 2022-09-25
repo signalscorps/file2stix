@@ -66,37 +66,40 @@ class Observable:
         return self.name
 
     @classmethod
-    def defang_word(cls, word):
+    def defang_text(cls, text):
         """
         If `word` is 'fanged', then defang it
         """
-        if cls.defangable == False:
-            return word
-        else:
-            http = r"hxxp"
-            dot = r"\[\.\]|{\.}|\(\.\)|\[\.|\\\.|\[dot\]|\(dot\)|\{dot\}"
-            at = r"\[\@\]|{\@}|\(\@\)|\[\@|\\\@|\[at\]|\(at\)|\{at\}"
-            slash = r"\[\/\]|{\/}|\(\/\)|\[\/|\\\/"
-            colon = r"\[\:\]|{\:}|\(\:\)|\[\:|\\\:"
-            open_bracket = r"\[|\{|\("
-            close_bracket = r"\]|\}|\)"
+        http = r"hxxp"
+        dot = r"\[\.\]|{\.}|\(\.\)|\[\.|\\\.|\[dot\]|\(dot\)|\{dot\}"
+        at = r"\[\@\]|{\@}|\(\@\)|\[\@|\\\@|\[at\]|\(at\)|\{at\}"
+        slash = r"\[\/\]|{\/}|\(\/\)|\[\/|\\\/"
+        colon = r"\[\:\]|{\:}|\(\:\)|\[\:|\\\:"
+        open_bracket = r"\[|\{|\("
+        close_bracket = r"\]|\}|\)"
+        double_back_slash = r"\\\\"
 
-            word = re.sub(http, "http", word)
-            word = re.sub(dot, ".", word)
-            word = re.sub(at, "@", word)
-            word = re.sub(slash, "/", word)
-            word = re.sub(colon, ":", word)
+        text = re.sub(http, "http", text)
+        text = re.sub(dot, ".", text)
+        text = re.sub(at, "@", text)
+        text = re.sub(slash, "/", text)
+        text = re.sub(colon, ":", text)
+        text = re.sub(double_back_slash, r"\\", text)
 
-            # General strategy, might cause unexpected results,
-            # but will keep them for now
-            word = re.sub(open_bracket, "", word)
-            word = re.sub(close_bracket, "", word)
+        # General strategy, might cause unexpected results,
+        # but will keep them for now
+        text = re.sub(open_bracket, "", text)
+        text = re.sub(close_bracket, "", text)
 
-            return word
+        return text
 
     @classmethod
     def extract_observables_from_text(cls, text: str, config: Config):
         extracted_observables = []
+
+        # Defang the words if the class is not defangable
+        if cls.defangable == False:
+            text = cls.defang_text(text)
 
         # If extraction_regex is not None, then find all matches to the regular expression
         if cls.extraction_regex != None:
@@ -111,6 +114,17 @@ class Observable:
                 # The drawback of this approach is that such regexes shouldn't contain
                 # whitespaces.
                 for word in text.split():
+                    # Check if word is defanged
+                    if config.defang_observables and cls.defangable:
+                        defanged_word = cls.defang_text(word)
+                        if word != defanged_word:
+                            match = re.match(cls.extraction_regex, defanged_word)
+                            if match:
+                                extracted_observables.append(
+                                    cls(match.group(0), config, defanged=True)
+                                )
+                        continue
+                    
                     match = re.match(cls.extraction_regex, word)
                     if match:
                         extracted_observables.append(cls(match.group(0), config))
@@ -123,15 +137,6 @@ class Observable:
                         if match:
                             extracted_observables.append(cls(match.group(0), config))
 
-                    # Check if word is defanged
-                    if config.defang_observables and cls.defangable:
-                        defanged_word = cls.defang_word(word)
-                        if word != defanged_word:
-                            match = re.match(cls.extraction_regex, defanged_word)
-                            if match:
-                                extracted_observables.append(
-                                    cls(match.group(0), config, defanged=True)
-                                )
             # Full text pattern match
             # The full text is matched with the given regex
             else:
@@ -145,6 +150,19 @@ class Observable:
             # Word by word pattern match
             # The extraction_function is run on each word in text
             for word in text.split():
+                # Check if word is defanged
+                if config.defang_observables and cls.defangable:
+                    defanged_word = cls.defang_text(word)
+                    if word != defanged_word:
+                        try:
+                            if cls.extraction_function(defanged_word):
+                                extracted_observables.append(
+                                    cls(defanged_word, config, defanged=True)
+                                )
+                        except Exception as error:
+                            pass
+                    continue
+
                 added_observable = False
                 try:
                     if cls.extraction_function(word):
@@ -161,17 +179,6 @@ class Observable:
                     except Exception as error:
                         pass
 
-                # Check if word is defanged
-                if config.defang_observables and cls.defangable:
-                    defanged_word = cls.defang_word(word)
-                    if word != defanged_word:
-                        try:
-                            if cls.extraction_function(defanged_word):
-                                extracted_observables.append(
-                                    cls(defanged_word, config, defanged=True)
-                                )
-                        except Exception as error:
-                            pass
         else:
             raise ValueError(
                 "Both extraction_regex and extraction_function can't be None."
@@ -449,18 +456,34 @@ class DirectoryPathObservable(Observable):
     type = "indicator"
     pattern = "[ directory:path = '{extracted_observable_text}' ]"
     ignore_list = ["http://", "https://"]
+    defangable = True
 
     # Windows and Unix path
-    windows_path = r"[A-Z]:\\([^<>:\"/\\|\?\*\.]+\\)+"
-    unix_path = r"/?([^\. \n]+/)+"
+    windows_path = r"[A-Z]:\\([^<>:\"/\\|\?\*\.]+\\)+([^<>:\"/\\|\?\*]+)?"
+    unix_path = r"/?([^\. \n]+/)+([^ \n]+)?"
     extraction_regex = rf"^(({windows_path})|({unix_path}))"
 
     def get_sdo_object(self):
-        if self.extracted_observable_text in self.ignore_list:
-            return None
+        for ignore_word in self.ignore_list:
+            if self.extracted_observable_text.startswith(ignore_word):
+                return None
 
         # Hacky way of removing qoutes, need a better solution
         self.extracted_observable_text = self.extracted_observable_text.replace("'", "")
+
+        # Remove filename at the end if present
+        try:
+            if self.extracted_observable_text.startswith("/"):
+                split_text = self.extracted_observable_text.rsplit("/", 1)
+                if "." in split_text[1]:
+                    self.extracted_observable_text = split_text[0] + "/"
+            else:
+                split_text = self.extracted_observable_text.rsplit("\\", 1)
+                if "." in split_text[1]:
+                    self.extracted_observable_text = split_text[0] + "\\"
+        except:
+            logger.debug("Got exception while removing file name from directory, ignoring it.")
+
         return super().get_sdo_object()
 
 
