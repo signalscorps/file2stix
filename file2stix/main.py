@@ -15,6 +15,7 @@ import yaml
 from datetime import datetime
 from pathlib import Path
 from stix2 import Report, Relationship, TLP_WHITE, Sighting, ObservedData
+from stix2.exceptions import ExtraPropertiesError
 from pymispwarninglists.api import WarningList
 
 from file2stix.backends import arangodb
@@ -28,11 +29,14 @@ from file2stix.helper import (
     get_text_from_json,
     get_text_from_markdown,
     get_text_from_xml,
-    get_text_from_yaml,
     update_stix_object,
 )
 from file2stix.observables_stix_store import ObservablesStixStore
-from file2stix.observables import Observable, CustomObservable, CPEObservable
+from file2stix.observables import (
+    Observable,
+    CustomObservable,
+    CPEObservable,
+)
 
 logger = logging.getLogger(__name__)
 
@@ -176,16 +180,23 @@ def main(config: Config):
                         modified=report.modified
                     )
                 else:
+                    stix_observable_object = extracted_stix_observable
                     if (
                         hasattr(extracted_stix_observable, "created")
                         and observable != CPEObservable
                     ):
                         # if condition above to avoid dict observables
-                        stix_observable_object = update_stix_object(
-                            extracted_stix_observable,
-                            created=report.created,
-                            modified=report.modified,
-                        )
+                        try:
+                            stix_observable_object = update_stix_object(
+                                extracted_stix_observable,
+                                created=report.created,
+                                modified=report.modified,
+                            )
+                        except ExtraPropertiesError:
+                            logger.debug(
+                                "Unable to update created and modified time in stix2 observable."
+                                "Ignoring this exception since it's most likely a MITRE observable."
+                            )
 
             observable_id = None
             if isinstance(stix_observable_object, dict):
