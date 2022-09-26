@@ -301,6 +301,12 @@ file2stix --input-file tests/observable_tests/user_agent.txt
 file2stix --input-file tests/observable_tests/yara_rule.txt
 ```
 
+#### MAC Address
+
+```shell
+file2stix --input-file tests/observable_tests/mac_address.txt
+```
+
 ---
 
 ## Testing custom extractions
@@ -322,14 +328,6 @@ file2stix --input-file tests/custom_extractions/extract_as_attack_capec_objects.
 ```shell
 file2stix --input-file tests/observable_tests/ipv4.txt
 ```
-
----
-
-## Test import of custom extension-definition objects
-
-### Crypto SCO
-
-### Crypto SDO
 
 
 ---
@@ -450,21 +448,38 @@ file2stix --input-file tests/file_inputs/fanged_data/fanged_data.txt --defang-ob
 
 ## Testing Warning Lists
 
-### Default Warning List
+#### Default Warning List - String
 
 ```shell
-file2stix --input-file tests/warning_lists/known_matches.txt
+file2stix --input-file tests/warning_lists/default_list_matches-string.txt
+```
+
+#### Default Warning List - Sub-string
+
+```shell
+file2stix --input-file tests/warning_lists/default_list_matches-substring.txt
+```
+
+#### Default Warning List - Hostname
+
+```shell
+file2stix --input-file tests/warning_lists/default_list_matches-hostname.txt
+```
+
+#### Default Warning List - CIDR
+
+```shell
+file2stix --input-file tests/warning_lists/default_list_matches-cidr.txt
 ```
 
 ### Custom Warning List
 
 ```shell
-file2stix --input-file tests/warning_lists/custom_list.json --misp-custom-warning-list-file tests/warning_lists/custom_list.json --tlp-level GREEN
-```
-
-```shell
 file2stix --input-file tests/warning_lists/custom_list_matches.txt --misp-custom-warning-list-file tests/warning_lists/custom_list.json --tlp-level GREEN
 ```
+
+
+
 
 ### Ignore warning list match extractions
 
@@ -775,12 +790,25 @@ file2stix --input-file tests/observable_tests/user_agent.txt
 
 ## Testing custom defintions for SDOs
 
-MISP Warning Lists Properties
+### MISP Warning Lists Properties
+
+```shell
+file2stix --input-file tests/warning_lists/default_list_matches-string.txt
+```
+
+```shell
+file2stix --input-file tests/warning_lists/custom_list_matches.txt --misp-custom-warning-list-file tests/warning_lists/custom_list.json --tlp-level GREEN
+```
+
+### Sigma Rule Properties
+
+```shell
+file2stix --input-file tests/observable_tests/sigma_rule.txt
+```
+
+### Vulnerability Properties
 
 
-Sigma Rule Properties
 
-
-MISP Warning Lists Properties
 
 
