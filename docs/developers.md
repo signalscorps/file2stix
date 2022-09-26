@@ -42,6 +42,12 @@ file2stix --input-file tests/observable_tests/country_adjective.txt
 file2stix --input-file tests/observable_tests/country_code.txt
 ```
 
+#### CVE
+
+```shell
+file2stix --input-file tests/observable_tests/cve.txt
+```
+
 #### CPE
 
 ```shell
@@ -358,6 +364,10 @@ file2stix --input-file tests/file_inputs/html/input.html
 
 ```shell
 file2stix --input-file tests/file_inputs/html/catapult-spider-adversary-quest-walkthrough-2022.html
+```
+
+```shell
+file2stix --input-file tests/file_inputs/html/OriginLogger-A-Look-at-Agent-Teslas-Successor.html
 ```
 
 #### .json
