@@ -1,0 +1,4 @@
+Should match to entries in: https://github.com/MISP/misp-warninglists/blob/main/lists/whats-my-ip/list.json
+
+https://aboutmyip.com/hello
+http://api.ipify.org/

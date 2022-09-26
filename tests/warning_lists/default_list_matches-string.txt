@@ -1,0 +1,4 @@
+Should match to entries in: https://github.com/MISP/misp-warninglists/blob/main/lists/microsoft/list.json
+
+powerusers-staging.microsoft.com
+powerusers.microsoft.com

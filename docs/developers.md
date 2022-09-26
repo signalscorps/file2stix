@@ -506,9 +506,12 @@ _Should be the same output as `file2stix --input-file tests/observable_tests/ipv
 ## Testing processed file
 
 ```shell
-file2stix --input-file tests/file_inputs/html/catapult-spider-adversary-quest-walkthrough-2022.html --output-processed-input-file
+file2stix --input-file tests/file_inputs/html/catapult-spider-adversary-quest-walkthrough-2022.html --output-processed-input-file output.txt
 ```
 
+```shell
+file2stix --input-file tests/observable_tests/ipv4.txt --output-processed-input-file ipv4-output.txt
+```
 
 ---
 

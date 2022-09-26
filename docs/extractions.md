@@ -357,8 +357,8 @@ For example;
 
 Note, MISP Warning Lists contain a `type` value (defined in the Warning List JSON). file2stix treats each Warning List differently, depending on its type as follows;
 
-* `string`: extracted observable must be exact match to Warning List value (e.g. warning list: google.com -> observable: google.com = match)
-* `substring`: extracted observable must contain Warning List value (e.g. warning list: google -> observable: google.com = match)
+* `string`: extracted observables must be exact match to Warning List value (e.g. warning list: google.com -> observable: google.com = match)
+* `substring`: extracted observable must contain Warning List value (e.g. warning list: google -> observable: api.google.com = match)
 * `hostname`: extracted observable must contain Warning List value
 * `cidr`: extracted observable must be exact match to Warning List value
 * `regex`: file2stix does not consider warning lists of type `regex`
