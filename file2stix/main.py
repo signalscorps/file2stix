@@ -37,6 +37,8 @@ from file2stix.observables import (
     Observable,
     CustomObservable,
     CPEObservable,
+    CVEObservable,
+    SIGMARuleObservable,
 )
 
 logger = logging.getLogger(__name__)
@@ -279,6 +281,26 @@ def main(config: Config):
                     ] = STIX2_OBJECTS_STORE.get_object_by_id(
                         "extension-definition--6cea4dc9-9517-44b8-b021-ae82e2f1de43"
                     )
+
+            if observable == CPEObservable:
+                observables_list.extension_definition_objects[
+                    "extension-definition--6c453e0f-9895-498f-a273-2e2dda473377"
+                ] = STIX2_OBJECTS_STORE.get_object_by_id(
+                    "extension-definition--6c453e0f-9895-498f-a273-2e2dda473377"
+                )
+            if observable == CVEObservable:
+                observables_list.extension_definition_objects[
+                    "extension-definition--b2b5f2cd-49e6-4091-a0e0-c0bb71543e23"
+                ] = STIX2_OBJECTS_STORE.get_object_by_id(
+                    "extension-definition--b2b5f2cd-49e6-4091-a0e0-c0bb71543e23"
+                )
+            if observable == SIGMARuleObservable:
+                observables_list.extension_definition_objects[
+                    "extension-definition--94f4bdb6-7f39-4d0a-b103-f787026963a6"
+                ] = STIX2_OBJECTS_STORE.get_object_by_id(
+                    "extension-definition--94f4bdb6-7f39-4d0a-b103-f787026963a6"
+                )
+            
 
         # Hacky logging, but I don't want to complicate just getting pretty_name
         logger.info(
