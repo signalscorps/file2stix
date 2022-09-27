@@ -124,7 +124,7 @@ class Observable:
                                     cls(match.group(0), config, defanged=True)
                                 )
                         continue
-                    
+
                     match = re.match(cls.extraction_regex, word)
                     if match:
                         extracted_observables.append(cls(match.group(0), config))
@@ -210,7 +210,8 @@ class Observable:
             pattern = pattern.replace("\\", "\\\\")
 
             # Check if observable is in warning list
-            misp_warning_list = WarningLists(slow_search=False)
+            # Setting slow_search=True below so that all types of matches are checked in MISP WarningList
+            misp_warning_list = WarningLists(slow_search=True)
             result = misp_warning_list.search(self.extracted_observable_text)
             x_warning_list_match = []
             x_custom_warning_list_match = []
@@ -222,7 +223,7 @@ class Observable:
             # Check if observable is in custom warning list
             if self.misp_custom_warning_list:
                 custom_misp_warning_list = WarningLists(
-                    slow_search=False, lists=[self.misp_custom_warning_list]
+                    slow_search=True, lists=[self.misp_custom_warning_list]
                 )
                 result = custom_misp_warning_list.search(self.extracted_observable_text)
 
@@ -265,7 +266,7 @@ class Observable:
             if len(x_warning_list_match) > 0 or len(x_custom_warning_list_match) > 0:
                 indicator_dict["indicator_types"] += ["benign"]
 
-            indicator = Indicator(**indicator_dict)
+                indicator = Indicator(**indicator_dict)
 
             return indicator
         else:
@@ -482,7 +483,9 @@ class DirectoryPathObservable(Observable):
                 if "." in split_text[1]:
                     self.extracted_observable_text = split_text[0] + "\\"
         except:
-            logger.debug("Got exception while removing file name from directory, ignoring it.")
+            logger.debug(
+                "Got exception while removing file name from directory, ignoring it."
+            )
 
         return super().get_sdo_object()
 
