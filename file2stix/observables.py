@@ -98,7 +98,7 @@ class Observable:
         extracted_observables = []
 
         # Defang the words if the class is not defangable
-        if cls.defangable == False:
+        if config.defang_observables and cls.defangable == False:
             text = cls.defang_text(text)
 
         # If extraction_regex is not None, then find all matches to the regular expression
