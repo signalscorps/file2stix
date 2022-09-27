@@ -142,10 +142,6 @@ def main(config: Config):
     stix_store = ObservablesStixStore()
 
     observables_list = ObservableList()
-    if config.misp_extension_definition != None:
-        observables_list.extension_definition_objects[
-            config.misp_extension_definition.id
-        ] = config.misp_extension_definition
 
     # Iterate over each observable and extract them from input file
     for observable in inheritors(Observable):
@@ -187,8 +183,6 @@ def main(config: Config):
                     confidence=confidence,
                     extensions=extensions,
                 )
-
-                # TODO: Check if the stix object has same warning list matches
 
                 # Don't create a new version for CPE Observable
                 if stix_observable_object != None and observable != CPEObservable:
@@ -300,7 +294,15 @@ def main(config: Config):
                 ] = STIX2_OBJECTS_STORE.get_object_by_id(
                     "extension-definition--94f4bdb6-7f39-4d0a-b103-f787026963a6"
                 )
-            
+
+            if (
+                hasattr(stix_observable_object, "extensions")
+                and config.misp_extension_definition.id
+                in stix_observable_object.extensions
+            ):
+                observables_list.extension_definition_objects[
+                    config.misp_extension_definition.id
+                ] = config.misp_extension_definition
 
         # Hacky logging, but I don't want to complicate just getting pretty_name
         logger.info(
