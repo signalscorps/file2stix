@@ -28,9 +28,11 @@ pytest
 file2stix --input-file tests/observable_tests/asn.txt
 ```
 
-```shell
-file2stix --input-file tests/observable_tests/asn.txt
-```
+Expected:
+
+* Indicator SDO
+* ASN SCO
+* R
 
 #### Country
 
@@ -72,12 +74,6 @@ file2stix --input-file tests/observable_tests/crypto_eth.txt
 
 ```shell
 file2stix --input-file tests/observable_tests/crypto_xmr.txt
-```
-
-##### IPv6
-
-```shell
-file2stix --input-file tests/observable_tests/ipv6.txt
 ```
 
 #### Credit Card
@@ -662,38 +658,6 @@ CustomObservable
 
 
 
-
-* ipv4 (inc. CIDR, port) (`IPv4`, `IPv4WithPort`)
-* ipv6 (inc. CIDR, port) (`IPv6`, `IPv6WithPort`)
-* File name (`FileName`)
-* md5 hash (`FileHashMD5`)
-* sha1 hash (`FileHashSHA1`)
-* sha256 hash (`FileHashSHA256`)
-* sha512 hash (`FileHashSHA512`)
-* ssdeep hash (`FileHashSsDeep`)
-* Directory (Window and UNIX) (`DirectoryPath`)
-* Domain (`DomainName`)
-* URL (`Url`)
-* Email Address (`EmailAddress`)
-* MAC Address (`MacAddress`)
-* Windows Registry Key (`WindowsRegistryKey`)
-* User Agent (`UserAgent`)
-* Autonomous System Number (ASN) (`AutonomousSystemNumber`)
-* Bitcoin address (BTC) (`CryptocurrencyBTC`)
-* Ethereum address (ETH) (`CryptocurrencyETH`)
-* Monero address (XMR) (`CryptocurrencyXMR`)
-* International Bank Account Number (IBAN) (`IBAN`)
-* CVE (`CVE`)
-* CPE (`CPE`)
-* Credit Card (Mastercard, Visa, Amex, Union Pay, Diners, JCB) (`MastercardCreditCard`,`VisaCreditCard`,`AmexCreditCard`, `UnionPayCreditCard`, `DinersCreditCard`, `JCBCreditCard`)
-* YARA Rule (`YaraRule`)
-* SIGMA Rule (`SigmaRule`)
-* Countries (`CountryName`, `CountryCode`)
-* MITRE ATT&CK (Enterprise ATT&CK, Mobile ATT&CK, ICS ATT&CK) (`MITREEnterpriseAttack`, `MITREMobileAttack`, `MITREICSAttack`)
-* MITRE CAPEC (`MITRECapec`)
-* Custom extractions (`Custom`)
-
-
 ## Testing adding custom identity
 
 ### Valid identity
@@ -754,6 +718,20 @@ _Should process the file, but throw a warning that it won't include confidence s
 
 ---
 
+## Testing reuse of STIX Object
+
+The following test use the sam
+
+#### Test 1
+
+Note, the following commands should all create a different `id` property for the Indicator Observable 
+
+```shell
+file2stix --input-file tests/extraction_tests/test_a.txt --confidence 100 --user-identity-file tests/stix_templates/custom_identity_good.yml --tlp-level GREEN --no-branding --defang-observables --misp-custom-warning-list-file tests/warning_lists/custom_list.json
+```
+
+
+
 ## Testing custom defintions for SCOs
 
 ### Cryptocurrency SCO
@@ -786,11 +764,17 @@ file2stix --input-file tests/observable_tests/iban.txt
 file2stix --input-file tests/observable_tests/user_agent.txt
 ```
 
+### CPE Properties (Software SCO)
+
+```shell
+file2stix --input-file tests/observable_tests/cpe.txt
+```
+
 ---
 
 ## Testing custom defintions for SDOs
 
-### MISP Warning Lists Properties
+### MISP Warning Lists Properties (Indicator SDO)
 
 ```shell
 file2stix --input-file tests/warning_lists/default_list_matches-string.txt
@@ -800,13 +784,18 @@ file2stix --input-file tests/warning_lists/default_list_matches-string.txt
 file2stix --input-file tests/warning_lists/custom_list_matches.txt --misp-custom-warning-list-file tests/warning_lists/custom_list.json --tlp-level GREEN
 ```
 
-### Sigma Rule Properties
+### Sigma Rule Properties (Indicator SDO)
 
 ```shell
 file2stix --input-file tests/observable_tests/sigma_rule.txt
 ```
 
-### Vulnerability Properties
+### CVE Properties (Vulnerability SCO)
+
+```shell
+file2stix --input-file tests/observable_tests/cve.txt
+```
+
 
 
 

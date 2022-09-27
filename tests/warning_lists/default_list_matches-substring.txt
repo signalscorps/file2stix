@@ -1,4 +1,4 @@
-Should match to entries in: https://github.com/MISP/misp-warninglists/blob/main/lists/disposable-email/list.json
+From disposable email list
 
 david@zasod.com
 
