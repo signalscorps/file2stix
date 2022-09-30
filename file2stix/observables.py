@@ -266,7 +266,7 @@ class Observable:
             if len(x_warning_list_match) > 0 or len(x_custom_warning_list_match) > 0:
                 indicator_dict["indicator_types"] += ["benign"]
 
-                indicator = Indicator(**indicator_dict)
+            indicator = Indicator(**indicator_dict)
 
             return indicator
         else:
