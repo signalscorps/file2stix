@@ -739,6 +739,10 @@ file2stix --input-file tests/extraction_tests/test_a.txt --tlp-level GREEN
 ```shell
 file2stix --input-file tests/extraction_tests/test_a.txt --confidence 100 --user-identity-file tests/stix_templates/custom_identity_good.yml --tlp-level GREEN --no-branding --defang-observables --misp-custom-warning-list-file tests/warning_lists/custom_list.json
 ```
+
+* New indicator SDO
+* New ipv4 SCO
+
 #### 1.2
 
 Change confidence
@@ -746,6 +750,9 @@ Change confidence
 ```shell
 file2stix --input-file tests/extraction_tests/test_a.txt --confidence 90 --user-identity-file tests/stix_templates/custom_identity_good.yml --tlp-level GREEN --no-branding --defang-observables --misp-custom-warning-list-file tests/warning_lists/custom_list.json
 ```
+
+* New indicator SDO
+* Same ipv4 SCO as 1.1
 
 #### 1.3
 
@@ -755,6 +762,9 @@ Change user identity
 file2stix --input-file tests/extraction_tests/test_a.txt --confidence 100 --user-identity-file tests/stix_templates/custom_identity_good2.yml --tlp-level GREEN --no-branding --defang-observables --misp-custom-warning-list-file tests/warning_lists/custom_list.json
 ```
 
+* New indicator SDO
+* Same ipv4 SCO as 1.1
+
 #### 1.4
 
 Change TLP
@@ -762,6 +772,9 @@ Change TLP
 ```shell
 file2stix --input-file tests/extraction_tests/test_a.txt --confidence 100 --user-identity-file tests/stix_templates/custom_identity_good.yml --tlp-level AMBER --no-branding --defang-observables --misp-custom-warning-list-file tests/warning_lists/custom_list.json
 ```
+
+* New indicator SDO
+* New ipv4 SCO
 
 #### 1.5
 
@@ -771,6 +784,9 @@ Change branding
 file2stix --input-file tests/extraction_tests/test_a.txt --confidence 90 --user-identity-file tests/stix_templates/custom_identity_good.yml --tlp-level GREEN --defang-observables --misp-custom-warning-list-file tests/warning_lists/custom_list.json
 ```
 
+* New indicator SDO
+* Same ipv4 SCO as 1.1
+
 #### 1.6
 
 Change defang
@@ -779,6 +795,9 @@ Change defang
 file2stix --input-file tests/extraction_tests/test_a.txt --confidence 100 --user-identity-file tests/stix_templates/custom_identity_good.yml --tlp-level GREEN --no-branding --misp-custom-warning-list-file tests/warning_lists/custom_list.json
 ```
 
+* New indicator SDO
+* New ipv4 SCO
+
 #### 1.7
 
 Change MISP Warning List
@@ -786,6 +805,9 @@ Change MISP Warning List
 ```shell
 file2stix --input-file tests/extraction_tests/test_a.txt --confidence 100 --user-identity-file tests/stix_templates/custom_identity_good.yml --tlp-level GREEN --no-branding
 ```
+
+* New indicator SDO
+* Same ipv4 SCO as 1.1
 
 ## Testing custom defintions for SCOs
 
