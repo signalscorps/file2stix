@@ -728,6 +728,12 @@ The following test use the same single observble in `test_a.txt` (`198.51.100.3`
 
 The following commands should all create a different `id` property for the Indicator Observable `198.51.100.3`
 
+#### 1.0
+
+```shell
+file2stix --input-file tests/extraction_tests/test_a.txt --tlp-level GREEN
+````
+
 #### 1.1
 
 ```shell
