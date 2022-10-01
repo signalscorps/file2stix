@@ -477,13 +477,17 @@ file2stix --input-file tests/warning_lists/custom_list_matches.txt --misp-custom
 
 
 
-### Ignore warning list match extractions
+### Ignore default warning list match extractions
 
 ```shell
-file2stix --input-file tests/warning_lists/known_matches.txt --ignore-warninglist-observables
+file2stix --input-file tests/warning_lists/default_list_matches-substring.txt --ignore-warninglist-observables
 ```
 
+### Ignore custom warning list match extractions
 
+```shell
+file2stix --input-file tests/warning_lists/custom_list_matches.txt --misp-custom-warning-list-file tests/warning_lists/custom_list.json --tlp-level GREEN --ignore-warninglist-observables
+```
 
 ---
 
@@ -720,17 +724,62 @@ _Should process the file, but throw a warning that it won't include confidence s
 
 ## Testing reuse of STIX Object
 
-The following test use the sam
+The following test use the same single observble in `test_a.txt` (`198.51.100.3`)
 
-#### Test 1
+The following commands should all create a different `id` property for the Indicator Observable `198.51.100.3`
 
-Note, the following commands should all create a different `id` property for the Indicator Observable 
+#### 1.1
 
 ```shell
 file2stix --input-file tests/extraction_tests/test_a.txt --confidence 100 --user-identity-file tests/stix_templates/custom_identity_good.yml --tlp-level GREEN --no-branding --defang-observables --misp-custom-warning-list-file tests/warning_lists/custom_list.json
 ```
+#### 1.2
 
+Change confidence
 
+```shell
+file2stix --input-file tests/extraction_tests/test_a.txt --confidence 90 --user-identity-file tests/stix_templates/custom_identity_good.yml --tlp-level GREEN --no-branding --defang-observables --misp-custom-warning-list-file tests/warning_lists/custom_list.json
+```
+
+#### 1.3
+
+Change user identity
+
+```shell
+file2stix --input-file tests/extraction_tests/test_a.txt --confidence 100 --user-identity-file tests/stix_templates/custom_identity_good2.yml --tlp-level GREEN --no-branding --defang-observables --misp-custom-warning-list-file tests/warning_lists/custom_list.json
+```
+
+#### 1.4
+
+Change TLP
+
+```shell
+file2stix --input-file tests/extraction_tests/test_a.txt --confidence 100 --user-identity-file tests/stix_templates/custom_identity_good.yml --tlp-level AMBER --no-branding --defang-observables --misp-custom-warning-list-file tests/warning_lists/custom_list.json
+```
+
+#### 1.5
+
+Change branding
+
+```shell
+file2stix --input-file tests/extraction_tests/test_a.txt --confidence 90 --user-identity-file tests/stix_templates/custom_identity_good.yml --tlp-level GREEN --defang-observables --misp-custom-warning-list-file tests/warning_lists/custom_list.json
+```
+
+#### 1.6
+
+Change defang
+
+```shell
+file2stix --input-file tests/extraction_tests/test_a.txt --confidence 100 --user-identity-file tests/stix_templates/custom_identity_good.yml --tlp-level GREEN --no-branding --misp-custom-warning-list-file tests/warning_lists/custom_list.json
+```
+
+#### 1.7
+
+Change MISP Warning List
+
+```shell
+file2stix --input-file tests/extraction_tests/test_a.txt --confidence 100 --user-identity-file tests/stix_templates/custom_identity_good.yml --tlp-level GREEN --no-branding
+```
 
 ## Testing custom defintions for SCOs
 

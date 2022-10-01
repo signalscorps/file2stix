@@ -46,6 +46,21 @@ file2stix can be used to defang the following observable types
 * url
 * email-address
 
+If an extraction has been defanged the SCO Object will contain the property `"defanged": true`, for example;
+
+```json
+{
+    "type": "ipv4-addr",
+    "spec_version": "2.1",
+    "id": "ipv4-addr--8e594bf5-81f2-5460-9e43-62e6a06794e0",
+    "value": "1.1.1.1/24",
+    "object_marking_refs": [
+        "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
+    ],
+    "defanged": true
+}
+```
+
 ## STIX Support
 
 file2stix only supports STIX version 2.1 [as defined by this specification](https://docs.oasis-open.org/cti/stix/v2.1/os/stix-v2.1-os.html).
