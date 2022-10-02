@@ -123,7 +123,7 @@ class Observable:
                                 extracted_observables.append(
                                     cls(match.group(0), config, defanged=True)
                                 )
-                        continue
+                            continue
 
                     match = re.match(cls.extraction_regex, word)
                     if match:
@@ -161,7 +161,7 @@ class Observable:
                                 )
                         except Exception as error:
                             pass
-                    continue
+                        continue
 
                 added_observable = False
                 try:
