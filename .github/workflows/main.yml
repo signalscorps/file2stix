@@ -7,7 +7,7 @@ on:
     - beta-1
 
 jobs:
-  build:
+  test:
 
     runs-on: ubuntu-latest
     strategy:
@@ -22,8 +22,8 @@ jobs:
           python-version: ${{ matrix.python-version }}
       - name: Install dependencies
         run: |
-          ls -la
-          ls -la file2stix
+          git submodule init
+          git submodule update
           ls -la file2stix/stix2-objects
           python -m pip install --upgrade pip
           pip install pytest
