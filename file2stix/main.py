@@ -397,38 +397,39 @@ def main(config: Config):
             )
             relationship_sros.append(relationship_sro)
 
-            # Check if observed_data is already present
-            observed_data = stix_store.get_object_custom_query(
-                [
-                    Filter("type", "=", "observed-data"),
-                    Filter("object_refs", "contains", sco_object.id),
-                    Filter("object_marking_refs", "=", config.tlp_level.id),
-                ]
-            )
+            if config.extraction_mode == "observed":
+                # Check if observed_data is already present
+                observed_data = stix_store.get_object_custom_query(
+                    [
+                        Filter("type", "=", "observed-data"),
+                        Filter("object_refs", "contains", sco_object.id),
+                        Filter("object_marking_refs", "=", config.tlp_level.id),
+                    ]
+                )
 
-            if observed_data != None:
-                observed_data = observed_data.new_version(
-                    modified=report.modified,
-                    last_observed=report.modified,
-                    number_observed=observed_data.number_observed + 1,
-                )
-            else:
-                observed_data = ObservedData(
-                    created=report.created,
-                    modified=report.modified,
-                    created_by_ref=config.identity,
-                    first_observed=report.created,
-                    last_observed=report.created,
-                    number_observed=1,
-                    object_refs=[sco_object],
-                    object_marking_refs=config.tlp_level,
-                    external_references=config.branding_external_ref,
-                )
-            temp_observed_datas.append(observed_data)
+                if observed_data != None:
+                    observed_data = observed_data.new_version(
+                        modified=report.modified,
+                        last_observed=report.modified,
+                        number_observed=observed_data.number_observed + 1,
+                    )
+                else:
+                    observed_data = ObservedData(
+                        created=report.created,
+                        modified=report.modified,
+                        created_by_ref=config.identity,
+                        first_observed=report.created,
+                        last_observed=report.created,
+                        number_observed=1,
+                        object_refs=[sco_object],
+                        object_marking_refs=config.tlp_level,
+                        external_references=config.branding_external_ref,
+                    )
+                temp_observed_datas.append(observed_data)
 
         observed_datas += temp_observed_datas
 
-        if config.extraction_mode == "sighting" and len(temp_observed_datas) > 0:
+        if config.extraction_mode == "sighting":
             sighting_sro = Sighting(
                 created=report.created,
                 modified=report.modified,

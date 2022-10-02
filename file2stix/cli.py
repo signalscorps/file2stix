@@ -113,7 +113,7 @@ def cli():
     arg_parser.add_argument(
         "--extraction-mode",
         action="store",
-        choices=["analysis", "sighting"],
+        choices=["analysis", "sighting", "observed"],
         default=Config.extraction_mode,
         help="Choose extraction mode of report (default: %(default)s)",
     )
