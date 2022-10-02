@@ -17,6 +17,17 @@ import pattern2sco
 
 logger = logging.getLogger(__name__)
 
+# Error logger
+# TODO: Move this somewhere else, probably in __init__.py
+error_logger = logging.getLogger("ERROR_LOGGER")
+error_logger.setLevel(logging.INFO)
+
+fh = logging.FileHandler("errors.txt")
+fh.setLevel(logging.INFO)
+formatter = logging.Formatter("[%(asctime)s] %(levelname)s: %(message)s")
+fh.setFormatter(formatter)
+
+error_logger.addHandler(fh)
 
 class ExtractStixObservables:
     """
@@ -67,10 +78,17 @@ class ExtractStixObservables:
         if self.index < len(self.extracted_observables):
             extracted_observable = self.extracted_observables[self.index]
             self.index += 1
-            sdo_object = extracted_observable.get_sdo_object()
-            sco_objects = pattern2sco.get_sco_objects(sdo_object, extracted_observable.defanged)
-            return {
-                "stix_observable": sdo_object,
-                "sco_objects": sco_objects
-            }
+
+            try:
+                sdo_object = extracted_observable.get_sdo_object()
+            except Exception as error:
+                error_logger.error("Failed for observable %s", extracted_observable.__class__.__name__)
+                error_logger.error("Extracted observable text: %s", extracted_observable.extracted_observable_text)
+                error_logger.exception(error)
+            else:    
+                sco_objects = pattern2sco.get_sco_objects(sdo_object, extracted_observable.defanged)
+                return {
+                    "stix_observable": sdo_object,
+                    "sco_objects": sco_objects
+                }
         raise StopIteration
