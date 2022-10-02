@@ -22,9 +22,7 @@ from file2stix.observables import (
     MITREMobileAttackObservable
 )
 
-slow_tests = [
-    "country_adjective.txt", "country_code.txt", "domain.txt"
-]
+slow_tests = []
 
 # It's a tuple containing test program path and the corresponding expected reports
 testdata = []
@@ -91,7 +89,8 @@ def test_file2stix_cli(test_file_path, update_expected_reports):
         for sdo_object, expected_sdo_object in zip(
             report["objects"], expected_report["objects"]
         ):
-            assert sdo_object["type"] == expected_sdo_object["type"]
+            if "type" in expected_sdo_object:
+                assert sdo_object["type"] == expected_sdo_object["type"]
 
             if "spec_version" in expected_sdo_object:
                 assert sdo_object["spec_version"] == expected_sdo_object["spec_version"]

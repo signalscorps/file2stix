@@ -24,7 +24,7 @@ class Config:
     update_mitre_cti_database: bool = False
 
     # STIX2 Report related options
-    identity: Identity = None
+    identity: Identity = STIX2_OBJECTS_STORE.get_object("file2stix")
     tlp_level: MarkingDefinition = TLP_WHITE
     extraction_mode: str = "analysis"
     confidence: int = None

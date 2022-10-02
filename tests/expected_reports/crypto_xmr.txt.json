@@ -1,0 +1,167 @@
+{
+    "type": "bundle",
+    "id": "bundle--6499d62d-817b-450d-ab73-029dc8f9d7da",
+    "objects": [
+        {
+            "type": "identity",
+            "spec_version": "2.1",
+            "id": "identity--acf55024-6bbe-486f-a27a-7967559324f4",
+            "created_by_ref": "identity--a99a2297-3044-4011-9a7e-2ff15e056b65",
+            "created": "2022-01-01T00:00:00.000Z",
+            "modified": "2022-01-01T00:00:00.000Z",
+            "name": "file2stix",
+            "description": "https://github.com/signalscorps/file2stix/",
+            "identity_class": "organization",
+            "sectors": [
+                "technology"
+            ],
+            "contact_information": "https://www.signalscorps.com/contact/",
+            "object_marking_refs": [
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
+            ]
+        },
+        {
+            "type": "marking-definition",
+            "spec_version": "2.1",
+            "id": "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9",
+            "created": "2017-01-20T00:00:00.000Z",
+            "definition_type": "tlp",
+            "name": "TLP:WHITE",
+            "definition": {
+                "tlp": "white"
+            }
+        },
+        {
+            "type": "indicator",
+            "spec_version": "2.1",
+            "id": "indicator--5d3e94e8-19d9-4c36-8beb-9ee162b0cce6",
+            "created": "2022-10-02T14:17:17.317626Z",
+            "modified": "2022-10-02T14:17:35.320852Z",
+            "name": "XMR: 48Fki6gnEN1QaiWNcsm8dVfX2JMg8xmjiQvuKpcdUD9rQH8WU4AXj9HKAF5AdnhKPSPLzTV7CX1Ks25BWrDeLnHuEFmhRxV",
+            "indicator_types": [
+                "unknown"
+            ],
+            "pattern": "[ cryptocurrency:symbol = 'XMR' AND cryptocurrency:address = '48Fki6gnEN1QaiWNcsm8dVfX2JMg8xmjiQvuKpcdUD9rQH8WU4AXj9HKAF5AdnhKPSPLzTV7CX1Ks25BWrDeLnHuEFmhRxV' ]",
+            "pattern_type": "stix",
+            "pattern_version": "2.1",
+            "valid_from": "2022-10-02T14:17:17.92126Z",
+            "external_references": [
+                {
+                    "source_name": "file2stix",
+                    "description": "This object was created using file2stix from the Signals Corps.",
+                    "url": "https://github.com/signalscorps/file2stix"
+                }
+            ],
+            "object_marking_refs": [
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
+            ]
+        },
+        {
+            "type": "cryptocurrency",
+            "spec_version": "2.1",
+            "id": "cryptocurrency--5555f020-0e29-59df-bdbc-7eafafef290a",
+            "symbol": "XMR",
+            "address": "48Fki6gnEN1QaiWNcsm8dVfX2JMg8xmjiQvuKpcdUD9rQH8WU4AXj9HKAF5AdnhKPSPLzTV7CX1Ks25BWrDeLnHuEFmhRxV",
+            "object_marking_refs": [
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
+            ],
+            "extensions": {
+                "extension-definition--532ae28d-137b-4b89-afb7-9cf9b504191b": {
+                    "extension_type": "new-sco"
+                }
+            }
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--c0296a4b-ec79-441e-b012-c00bd9360c2f",
+            "created_by_ref": "identity--acf55024-6bbe-486f-a27a-7967559324f4",
+            "created": "2022-10-02T14:17:35.320852Z",
+            "modified": "2022-10-02T14:17:35.320852Z",
+            "relationship_type": "default-extract-from",
+            "source_ref": "indicator--5d3e94e8-19d9-4c36-8beb-9ee162b0cce6",
+            "target_ref": "report--814e7066-6fa8-4b92-842e-3a42e1b2b3a0",
+            "external_references": [
+                {
+                    "source_name": "file2stix",
+                    "description": "This object was created using file2stix from the Signals Corps.",
+                    "url": "https://github.com/signalscorps/file2stix"
+                }
+            ],
+            "object_marking_refs": [
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
+            ]
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--804b9718-83ef-43a0-b85e-8168e32ec7a2",
+            "created_by_ref": "identity--acf55024-6bbe-486f-a27a-7967559324f4",
+            "created": "2022-10-02T14:17:35.320852Z",
+            "modified": "2022-10-02T14:17:35.320852Z",
+            "relationship_type": "pattern-contains",
+            "source_ref": "indicator--5d3e94e8-19d9-4c36-8beb-9ee162b0cce6",
+            "target_ref": "cryptocurrency--5555f020-0e29-59df-bdbc-7eafafef290a",
+            "external_references": [
+                {
+                    "source_name": "file2stix",
+                    "description": "This object was created using file2stix from the Signals Corps.",
+                    "url": "https://github.com/signalscorps/file2stix"
+                }
+            ],
+            "object_marking_refs": [
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
+            ]
+        },
+        {
+            "type": "extension-definition",
+            "spec_version": "2.1",
+            "id": "extension-definition--532ae28d-137b-4b89-afb7-9cf9b504191b",
+            "created_by_ref": "identity--a99a2297-3044-4011-9a7e-2ff15e056b65",
+            "created": "2022-01-01T00:00:00.000Z",
+            "modified": "2022-01-01T00:00:00.000Z",
+            "name": "Cryptocurrency SCO",
+            "description": "This schema creates a new SCO type called cryptocurrency",
+            "schema": "https://raw.githubusercontent.com/signalscorps/stix2-objects/main/schemas/scos/cryptocurrency/schema.json",
+            "version": "1.0",
+            "extension_types": [
+                "new-sco"
+            ],
+            "object_marking_refs": [
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
+            ]
+        },
+        {
+            "type": "report",
+            "spec_version": "2.1",
+            "id": "report--814e7066-6fa8-4b92-842e-3a42e1b2b3a0",
+            "created_by_ref": "identity--acf55024-6bbe-486f-a27a-7967559324f4",
+            "created": "2022-10-02T14:17:35.320852Z",
+            "modified": "2022-10-02T14:17:35.320852Z",
+            "name": "File converted: crypto_xmr.txt",
+            "report_types": [
+                "threat_report"
+            ],
+            "published": "2022-10-02T19:47:35.320841Z",
+            "object_refs": [
+                "identity--acf55024-6bbe-486f-a27a-7967559324f4",
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9",
+                "indicator--5d3e94e8-19d9-4c36-8beb-9ee162b0cce6",
+                "cryptocurrency--5555f020-0e29-59df-bdbc-7eafafef290a",
+                "relationship--c0296a4b-ec79-441e-b012-c00bd9360c2f",
+                "relationship--804b9718-83ef-43a0-b85e-8168e32ec7a2",
+                "extension-definition--532ae28d-137b-4b89-afb7-9cf9b504191b"
+            ],
+            "external_references": [
+                {
+                    "source_name": "file2stix",
+                    "description": "This object was created using file2stix from the Signals Corps.",
+                    "url": "https://github.com/signalscorps/file2stix"
+                }
+            ],
+            "object_marking_refs": [
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
+            ]
+        }
+    ]
+}

@@ -1,20 +1,23 @@
 {
     "type": "bundle",
-    "id": "bundle--0cbe8745-c25f-4460-8275-3bf1b19f04af",
+    "id": "bundle--0cc1e29a-0e42-4fd1-8a49-e4602c113b4b",
     "objects": [
         {
-            "type": "extension-definition",
+            "type": "identity",
             "spec_version": "2.1",
-            "id": "extension-definition--c8ea5ecb-f4a3-45e7-94de-9b9ba05161af",
-            "created_by_ref": "identity--acf55024-6bbe-486f-a27a-7967559324f4",
+            "id": "identity--acf55024-6bbe-486f-a27a-7967559324f4",
+            "created_by_ref": "identity--a99a2297-3044-4011-9a7e-2ff15e056b65",
             "created": "2022-01-01T00:00:00.000Z",
             "modified": "2022-01-01T00:00:00.000Z",
-            "name": "MISP Warning Lists",
-            "description": "This schema adds MISP Warning List matches to extracted Objects",
-            "schema": "https://github.com/MISP/misp-warninglists",
-            "version": "1.0",
-            "extension_types": [
-                "property-extension"
+            "name": "file2stix",
+            "description": "https://github.com/signalscorps/file2stix/",
+            "identity_class": "organization",
+            "sectors": [
+                "technology"
+            ],
+            "contact_information": "https://www.signalscorps.com/contact/",
+            "object_marking_refs": [
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
             ]
         },
         {
@@ -31,53 +34,189 @@
         {
             "type": "indicator",
             "spec_version": "2.1",
-            "id": "indicator--0bec7f88-6b83-404d-a953-8e8b052407dd",
-            "created": "2022-09-06T10:09:58.422064Z",
-            "modified": "2022-09-06T10:52:45.362438Z",
-            "name": "Directory: https://",
-            "indicator_types": [
-                "unknown"
-            ],
-            "pattern": "[ directory:path = 'https://' ]",
-            "pattern_type": "stix",
-            "pattern_version": "2.1",
-            "valid_from": "2022-09-06T10:09:58.422064Z",
-            "object_marking_refs": [
-                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
-            ]
-        },
-        {
-            "type": "indicator",
-            "spec_version": "2.1",
-            "id": "indicator--19d45896-ac84-4046-971e-fac565440f29",
-            "created": "2022-09-06T10:10:00.938406Z",
-            "modified": "2022-09-06T10:52:45.76851Z",
+            "id": "indicator--01825ea4-2448-4668-9e16-d86fb6c6b5d6",
+            "created": "2022-10-02T14:39:15.092863Z",
+            "modified": "2022-10-02T14:39:15.092863Z",
             "name": "URL: https://example.com/research/",
             "indicator_types": [
-                "unknown"
+                "unknown",
+                "benign"
             ],
             "pattern": "[ url:value = 'https://example.com/research/' ]",
             "pattern_type": "stix",
             "pattern_version": "2.1",
-            "valid_from": "2022-09-06T10:10:00.938406Z",
+            "valid_from": "2022-10-02T14:39:15.524629Z",
+            "external_references": [
+                {
+                    "source_name": "file2stix",
+                    "description": "This object was created using file2stix from the Signals Corps.",
+                    "url": "https://github.com/signalscorps/file2stix"
+                }
+            ],
+            "object_marking_refs": [
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
+            ],
+            "extensions": {
+                "extension-definition--c8ea5ecb-f4a3-45e7-94de-9b9ba05161af": {
+                    "misp_warning_list_match": [
+                        "Top 1,000,000 most-used sites from Tranco",
+                        "Top 10K most-used sites from Tranco"
+                    ],
+                    "extension_type": "property-extension"
+                }
+            }
+        },
+        {
+            "type": "indicator",
+            "spec_version": "2.1",
+            "id": "indicator--7abbf0fa-27b3-4e06-aa40-3ab83112c42d",
+            "created": "2022-10-02T14:39:15.092863Z",
+            "modified": "2022-10-02T14:39:15.092863Z",
+            "name": "URL: https://example.com/path/index.html",
+            "indicator_types": [
+                "unknown",
+                "benign"
+            ],
+            "pattern": "[ url:value = 'https://example.com/path/index.html' ]",
+            "pattern_type": "stix",
+            "pattern_version": "2.1",
+            "valid_from": "2022-10-02T14:39:19.095241Z",
+            "external_references": [
+                {
+                    "source_name": "file2stix",
+                    "description": "This object was created using file2stix from the Signals Corps.",
+                    "url": "https://github.com/signalscorps/file2stix"
+                }
+            ],
+            "object_marking_refs": [
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
+            ],
+            "extensions": {
+                "extension-definition--c8ea5ecb-f4a3-45e7-94de-9b9ba05161af": {
+                    "misp_warning_list_match": [
+                        "Top 1,000,000 most-used sites from Tranco",
+                        "Top 10K most-used sites from Tranco"
+                    ],
+                    "extension_type": "property-extension"
+                }
+            }
+        },
+        {
+            "type": "url",
+            "spec_version": "2.1",
+            "id": "url--6d8ea408-2168-5a52-bb02-b24a37464ffd",
+            "value": "https://example.com/research/",
             "object_marking_refs": [
                 "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
             ]
         },
         {
-            "type": "indicator",
+            "type": "url",
             "spec_version": "2.1",
-            "id": "indicator--dffb98db-6e3b-4766-8f89-70e77c2535f6",
-            "created": "2022-09-06T10:10:01.146955Z",
-            "modified": "2022-09-06T10:52:46.170247Z",
-            "name": "URL: https://example.com/path/index.html",
-            "indicator_types": [
-                "unknown"
+            "id": "url--8359eef5-8a1c-5340-8612-880e519863c7",
+            "value": "https://example.com/path/index.html",
+            "object_marking_refs": [
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
+            ]
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--b2bc277d-6acc-4cf7-8591-5e609f2ec810",
+            "created_by_ref": "identity--acf55024-6bbe-486f-a27a-7967559324f4",
+            "created": "2022-10-02T14:39:15.092863Z",
+            "modified": "2022-10-02T14:39:15.092863Z",
+            "relationship_type": "default-extract-from",
+            "source_ref": "indicator--01825ea4-2448-4668-9e16-d86fb6c6b5d6",
+            "target_ref": "report--16017995-0ae6-412b-9cf0-ffd5aadc58ad",
+            "external_references": [
+                {
+                    "source_name": "file2stix",
+                    "description": "This object was created using file2stix from the Signals Corps.",
+                    "url": "https://github.com/signalscorps/file2stix"
+                }
             ],
-            "pattern": "[ url:value = 'https://example.com/path/index.html' ]",
-            "pattern_type": "stix",
-            "pattern_version": "2.1",
-            "valid_from": "2022-09-06T10:10:01.146955Z",
+            "object_marking_refs": [
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
+            ]
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--aeaefef8-caf5-4c82-ba5b-c28452b4611a",
+            "created_by_ref": "identity--acf55024-6bbe-486f-a27a-7967559324f4",
+            "created": "2022-10-02T14:39:15.092863Z",
+            "modified": "2022-10-02T14:39:15.092863Z",
+            "relationship_type": "default-extract-from",
+            "source_ref": "indicator--7abbf0fa-27b3-4e06-aa40-3ab83112c42d",
+            "target_ref": "report--16017995-0ae6-412b-9cf0-ffd5aadc58ad",
+            "external_references": [
+                {
+                    "source_name": "file2stix",
+                    "description": "This object was created using file2stix from the Signals Corps.",
+                    "url": "https://github.com/signalscorps/file2stix"
+                }
+            ],
+            "object_marking_refs": [
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
+            ]
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--e9d82595-e4e7-4909-a7e6-2943e6cc9a9a",
+            "created_by_ref": "identity--acf55024-6bbe-486f-a27a-7967559324f4",
+            "created": "2022-10-02T14:39:15.092863Z",
+            "modified": "2022-10-02T14:39:15.092863Z",
+            "relationship_type": "pattern-contains",
+            "source_ref": "indicator--01825ea4-2448-4668-9e16-d86fb6c6b5d6",
+            "target_ref": "url--6d8ea408-2168-5a52-bb02-b24a37464ffd",
+            "external_references": [
+                {
+                    "source_name": "file2stix",
+                    "description": "This object was created using file2stix from the Signals Corps.",
+                    "url": "https://github.com/signalscorps/file2stix"
+                }
+            ],
+            "object_marking_refs": [
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
+            ]
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--fdd08dda-8e6e-460a-8337-fe49f28048c2",
+            "created_by_ref": "identity--acf55024-6bbe-486f-a27a-7967559324f4",
+            "created": "2022-10-02T14:39:15.092863Z",
+            "modified": "2022-10-02T14:39:15.092863Z",
+            "relationship_type": "pattern-contains",
+            "source_ref": "indicator--7abbf0fa-27b3-4e06-aa40-3ab83112c42d",
+            "target_ref": "url--8359eef5-8a1c-5340-8612-880e519863c7",
+            "external_references": [
+                {
+                    "source_name": "file2stix",
+                    "description": "This object was created using file2stix from the Signals Corps.",
+                    "url": "https://github.com/signalscorps/file2stix"
+                }
+            ],
+            "object_marking_refs": [
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
+            ]
+        },
+        {
+            "type": "extension-definition",
+            "spec_version": "2.1",
+            "id": "extension-definition--c8ea5ecb-f4a3-45e7-94de-9b9ba05161af",
+            "created_by_ref": "identity--a99a2297-3044-4011-9a7e-2ff15e056b65",
+            "created": "2022-01-01T00:00:00.000Z",
+            "modified": "2022-01-01T00:00:00.000Z",
+            "name": "MISP Warning Lists",
+            "description": "This schema adds MISP Warning List matches to extracted Objects",
+            "schema": "https://raw.githubusercontent.com/signalscorps/stix2-objects/main/schemas/properties/misp-warning-list-match/schema.json",
+            "version": "1.0",
+            "extension_types": [
+                "property-extension"
+            ],
             "object_marking_refs": [
                 "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
             ]
@@ -85,58 +224,35 @@
         {
             "type": "report",
             "spec_version": "2.1",
-            "id": "report--22eda012-c4f8-43a3-8298-d86dd435da12",
-            "created": "2022-09-06T10:52:46.182577Z",
-            "modified": "2022-09-06T10:52:46.182577Z",
+            "id": "report--16017995-0ae6-412b-9cf0-ffd5aadc58ad",
+            "created_by_ref": "identity--acf55024-6bbe-486f-a27a-7967559324f4",
+            "created": "2022-10-02T14:39:15.092863Z",
+            "modified": "2022-10-02T14:39:15.092863Z",
             "name": "File converted: url.txt",
             "report_types": [
                 "threat_report"
             ],
-            "published": "2022-09-06T16:22:46.182571Z",
+            "published": "2022-10-02T20:09:15.09284Z",
             "object_refs": [
-                "indicator--0bec7f88-6b83-404d-a953-8e8b052407dd",
-                "indicator--19d45896-ac84-4046-971e-fac565440f29",
-                "indicator--dffb98db-6e3b-4766-8f89-70e77c2535f6"
+                "identity--acf55024-6bbe-486f-a27a-7967559324f4",
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9",
+                "indicator--01825ea4-2448-4668-9e16-d86fb6c6b5d6",
+                "indicator--7abbf0fa-27b3-4e06-aa40-3ab83112c42d",
+                "url--6d8ea408-2168-5a52-bb02-b24a37464ffd",
+                "url--8359eef5-8a1c-5340-8612-880e519863c7",
+                "relationship--b2bc277d-6acc-4cf7-8591-5e609f2ec810",
+                "relationship--aeaefef8-caf5-4c82-ba5b-c28452b4611a",
+                "relationship--e9d82595-e4e7-4909-a7e6-2943e6cc9a9a",
+                "relationship--fdd08dda-8e6e-460a-8337-fe49f28048c2",
+                "extension-definition--c8ea5ecb-f4a3-45e7-94de-9b9ba05161af"
             ],
-            "object_marking_refs": [
-                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
-            ]
-        },
-        {
-            "type": "relationship",
-            "spec_version": "2.1",
-            "id": "relationship--3dd50915-ffc2-441d-9f3b-f0b3f621693a",
-            "created": "2022-09-06T10:52:46.182803Z",
-            "modified": "2022-09-06T10:52:46.182803Z",
-            "relationship_type": "default-extract",
-            "source_ref": "report--22eda012-c4f8-43a3-8298-d86dd435da12",
-            "target_ref": "indicator--0bec7f88-6b83-404d-a953-8e8b052407dd",
-            "object_marking_refs": [
-                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
-            ]
-        },
-        {
-            "type": "relationship",
-            "spec_version": "2.1",
-            "id": "relationship--96511577-5b3f-491c-865c-f2b59026c191",
-            "created": "2022-09-06T10:52:46.182976Z",
-            "modified": "2022-09-06T10:52:46.182976Z",
-            "relationship_type": "default-extract",
-            "source_ref": "report--22eda012-c4f8-43a3-8298-d86dd435da12",
-            "target_ref": "indicator--19d45896-ac84-4046-971e-fac565440f29",
-            "object_marking_refs": [
-                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
-            ]
-        },
-        {
-            "type": "relationship",
-            "spec_version": "2.1",
-            "id": "relationship--1fc23d01-d674-4cc0-8308-627011bb847f",
-            "created": "2022-09-06T10:52:46.183134Z",
-            "modified": "2022-09-06T10:52:46.183134Z",
-            "relationship_type": "default-extract",
-            "source_ref": "report--22eda012-c4f8-43a3-8298-d86dd435da12",
-            "target_ref": "indicator--dffb98db-6e3b-4766-8f89-70e77c2535f6",
+            "external_references": [
+                {
+                    "source_name": "file2stix",
+                    "description": "This object was created using file2stix from the Signals Corps.",
+                    "url": "https://github.com/signalscorps/file2stix"
+                }
+            ],
             "object_marking_refs": [
                 "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
             ]

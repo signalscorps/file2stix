@@ -1,0 +1,144 @@
+{
+    "type": "bundle",
+    "id": "bundle--8202842a-9ce9-4efd-8ff1-1e5481cba8ff",
+    "objects": [
+        {
+            "type": "identity",
+            "spec_version": "2.1",
+            "id": "identity--acf55024-6bbe-486f-a27a-7967559324f4",
+            "created_by_ref": "identity--a99a2297-3044-4011-9a7e-2ff15e056b65",
+            "created": "2022-01-01T00:00:00.000Z",
+            "modified": "2022-01-01T00:00:00.000Z",
+            "name": "file2stix",
+            "description": "https://github.com/signalscorps/file2stix/",
+            "identity_class": "organization",
+            "sectors": [
+                "technology"
+            ],
+            "contact_information": "https://www.signalscorps.com/contact/",
+            "object_marking_refs": [
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
+            ]
+        },
+        {
+            "type": "marking-definition",
+            "spec_version": "2.1",
+            "id": "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9",
+            "created": "2017-01-20T00:00:00.000Z",
+            "definition_type": "tlp",
+            "name": "TLP:WHITE",
+            "definition": {
+                "tlp": "white"
+            }
+        },
+        {
+            "type": "indicator",
+            "spec_version": "2.1",
+            "id": "indicator--8686c34e-ed95-4a2a-8b73-a938c162f316",
+            "created": "2022-10-02T14:39:25.228411Z",
+            "modified": "2022-10-02T14:39:25.228411Z",
+            "name": "sha1: 86F7E437FAA5A7FCE15D1DDCB9EAEAEA377667B8",
+            "indicator_types": [
+                "unknown"
+            ],
+            "pattern": "[ file:hash.sha1 = '86F7E437FAA5A7FCE15D1DDCB9EAEAEA377667B8' ]",
+            "pattern_type": "stix",
+            "pattern_version": "2.1",
+            "valid_from": "2022-10-02T14:39:25.768919Z",
+            "external_references": [
+                {
+                    "source_name": "file2stix",
+                    "description": "This object was created using file2stix from the Signals Corps.",
+                    "url": "https://github.com/signalscorps/file2stix"
+                }
+            ],
+            "object_marking_refs": [
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
+            ]
+        },
+        {
+            "type": "file",
+            "spec_version": "2.1",
+            "id": "file--109eb6b5-7257-568b-8a3a-146e343ac867",
+            "hashes": {
+                "SHA-1": "86F7E437FAA5A7FCE15D1DDCB9EAEAEA377667B8"
+            },
+            "object_marking_refs": [
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
+            ]
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--a7702884-6e7c-4563-b0a3-176bc2245817",
+            "created_by_ref": "identity--acf55024-6bbe-486f-a27a-7967559324f4",
+            "created": "2022-10-02T14:39:25.228411Z",
+            "modified": "2022-10-02T14:39:25.228411Z",
+            "relationship_type": "default-extract-from",
+            "source_ref": "indicator--8686c34e-ed95-4a2a-8b73-a938c162f316",
+            "target_ref": "report--2d9955f5-ff78-45b2-870e-81cbc3cd4a3e",
+            "external_references": [
+                {
+                    "source_name": "file2stix",
+                    "description": "This object was created using file2stix from the Signals Corps.",
+                    "url": "https://github.com/signalscorps/file2stix"
+                }
+            ],
+            "object_marking_refs": [
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
+            ]
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--fe9d0e42-1a29-45db-a1aa-4e0641990772",
+            "created_by_ref": "identity--acf55024-6bbe-486f-a27a-7967559324f4",
+            "created": "2022-10-02T14:39:25.228411Z",
+            "modified": "2022-10-02T14:39:25.228411Z",
+            "relationship_type": "pattern-contains",
+            "source_ref": "indicator--8686c34e-ed95-4a2a-8b73-a938c162f316",
+            "target_ref": "file--109eb6b5-7257-568b-8a3a-146e343ac867",
+            "external_references": [
+                {
+                    "source_name": "file2stix",
+                    "description": "This object was created using file2stix from the Signals Corps.",
+                    "url": "https://github.com/signalscorps/file2stix"
+                }
+            ],
+            "object_marking_refs": [
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
+            ]
+        },
+        {
+            "type": "report",
+            "spec_version": "2.1",
+            "id": "report--2d9955f5-ff78-45b2-870e-81cbc3cd4a3e",
+            "created_by_ref": "identity--acf55024-6bbe-486f-a27a-7967559324f4",
+            "created": "2022-10-02T14:39:25.228411Z",
+            "modified": "2022-10-02T14:39:25.228411Z",
+            "name": "File converted: file_hash_sha1.txt",
+            "report_types": [
+                "threat_report"
+            ],
+            "published": "2022-10-02T20:09:25.228381Z",
+            "object_refs": [
+                "identity--acf55024-6bbe-486f-a27a-7967559324f4",
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9",
+                "indicator--8686c34e-ed95-4a2a-8b73-a938c162f316",
+                "file--109eb6b5-7257-568b-8a3a-146e343ac867",
+                "relationship--a7702884-6e7c-4563-b0a3-176bc2245817",
+                "relationship--fe9d0e42-1a29-45db-a1aa-4e0641990772"
+            ],
+            "external_references": [
+                {
+                    "source_name": "file2stix",
+                    "description": "This object was created using file2stix from the Signals Corps.",
+                    "url": "https://github.com/signalscorps/file2stix"
+                }
+            ],
+            "object_marking_refs": [
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
+            ]
+        }
+    ]
+}

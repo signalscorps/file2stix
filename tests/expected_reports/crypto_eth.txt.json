@@ -1,0 +1,167 @@
+{
+    "type": "bundle",
+    "id": "bundle--16f4dce1-b087-4894-ac15-27bad910b153",
+    "objects": [
+        {
+            "type": "identity",
+            "spec_version": "2.1",
+            "id": "identity--acf55024-6bbe-486f-a27a-7967559324f4",
+            "created_by_ref": "identity--a99a2297-3044-4011-9a7e-2ff15e056b65",
+            "created": "2022-01-01T00:00:00.000Z",
+            "modified": "2022-01-01T00:00:00.000Z",
+            "name": "file2stix",
+            "description": "https://github.com/signalscorps/file2stix/",
+            "identity_class": "organization",
+            "sectors": [
+                "technology"
+            ],
+            "contact_information": "https://www.signalscorps.com/contact/",
+            "object_marking_refs": [
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
+            ]
+        },
+        {
+            "type": "marking-definition",
+            "spec_version": "2.1",
+            "id": "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9",
+            "created": "2017-01-20T00:00:00.000Z",
+            "definition_type": "tlp",
+            "name": "TLP:WHITE",
+            "definition": {
+                "tlp": "white"
+            }
+        },
+        {
+            "type": "indicator",
+            "spec_version": "2.1",
+            "id": "indicator--3385246c-4d35-4e17-a3ad-b71582eb5a4a",
+            "created": "2022-10-02T15:10:51.250649Z",
+            "modified": "2022-10-02T15:10:51.250649Z",
+            "name": "ETH: 0xb794f5ea0ba39494ce839613fffba74279579268",
+            "indicator_types": [
+                "unknown"
+            ],
+            "pattern": "[ cryptocurrency:symbol = 'ETH' AND cryptocurrency:address = '0xb794f5ea0ba39494ce839613fffba74279579268' ]",
+            "pattern_type": "stix",
+            "pattern_version": "2.1",
+            "valid_from": "2022-10-02T15:10:51.989633Z",
+            "external_references": [
+                {
+                    "source_name": "file2stix",
+                    "description": "This object was created using file2stix from the Signals Corps.",
+                    "url": "https://github.com/signalscorps/file2stix"
+                }
+            ],
+            "object_marking_refs": [
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
+            ]
+        },
+        {
+            "type": "cryptocurrency",
+            "spec_version": "2.1",
+            "id": "cryptocurrency--0a7e8407-5331-555b-8f5b-1ae7f210ff72",
+            "symbol": "ETH",
+            "address": "0xb794f5ea0ba39494ce839613fffba74279579268",
+            "object_marking_refs": [
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
+            ],
+            "extensions": {
+                "extension-definition--532ae28d-137b-4b89-afb7-9cf9b504191b": {
+                    "extension_type": "new-sco"
+                }
+            }
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--b7278d2d-dd4f-4374-a989-68508e984ca3",
+            "created_by_ref": "identity--acf55024-6bbe-486f-a27a-7967559324f4",
+            "created": "2022-10-02T15:10:51.250649Z",
+            "modified": "2022-10-02T15:10:51.250649Z",
+            "relationship_type": "default-extract-from",
+            "source_ref": "indicator--3385246c-4d35-4e17-a3ad-b71582eb5a4a",
+            "target_ref": "report--7691d1c7-7203-473e-8353-24a4f74bf5c5",
+            "external_references": [
+                {
+                    "source_name": "file2stix",
+                    "description": "This object was created using file2stix from the Signals Corps.",
+                    "url": "https://github.com/signalscorps/file2stix"
+                }
+            ],
+            "object_marking_refs": [
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
+            ]
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--aefbcc25-1574-425c-891a-167b38e4d93b",
+            "created_by_ref": "identity--acf55024-6bbe-486f-a27a-7967559324f4",
+            "created": "2022-10-02T15:10:51.250649Z",
+            "modified": "2022-10-02T15:10:51.250649Z",
+            "relationship_type": "pattern-contains",
+            "source_ref": "indicator--3385246c-4d35-4e17-a3ad-b71582eb5a4a",
+            "target_ref": "cryptocurrency--0a7e8407-5331-555b-8f5b-1ae7f210ff72",
+            "external_references": [
+                {
+                    "source_name": "file2stix",
+                    "description": "This object was created using file2stix from the Signals Corps.",
+                    "url": "https://github.com/signalscorps/file2stix"
+                }
+            ],
+            "object_marking_refs": [
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
+            ]
+        },
+        {
+            "type": "extension-definition",
+            "spec_version": "2.1",
+            "id": "extension-definition--532ae28d-137b-4b89-afb7-9cf9b504191b",
+            "created_by_ref": "identity--a99a2297-3044-4011-9a7e-2ff15e056b65",
+            "created": "2022-01-01T00:00:00.000Z",
+            "modified": "2022-01-01T00:00:00.000Z",
+            "name": "Cryptocurrency SCO",
+            "description": "This schema creates a new SCO type called cryptocurrency",
+            "schema": "https://raw.githubusercontent.com/signalscorps/stix2-objects/main/schemas/scos/cryptocurrency/schema.json",
+            "version": "1.0",
+            "extension_types": [
+                "new-sco"
+            ],
+            "object_marking_refs": [
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
+            ]
+        },
+        {
+            "type": "report",
+            "spec_version": "2.1",
+            "id": "report--7691d1c7-7203-473e-8353-24a4f74bf5c5",
+            "created_by_ref": "identity--acf55024-6bbe-486f-a27a-7967559324f4",
+            "created": "2022-10-02T15:10:51.250649Z",
+            "modified": "2022-10-02T15:10:51.250649Z",
+            "name": "File converted: crypto_eth.txt",
+            "report_types": [
+                "threat_report"
+            ],
+            "published": "2022-10-02T20:40:51.25063Z",
+            "object_refs": [
+                "identity--acf55024-6bbe-486f-a27a-7967559324f4",
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9",
+                "indicator--3385246c-4d35-4e17-a3ad-b71582eb5a4a",
+                "cryptocurrency--0a7e8407-5331-555b-8f5b-1ae7f210ff72",
+                "relationship--b7278d2d-dd4f-4374-a989-68508e984ca3",
+                "relationship--aefbcc25-1574-425c-891a-167b38e4d93b",
+                "extension-definition--532ae28d-137b-4b89-afb7-9cf9b504191b"
+            ],
+            "external_references": [
+                {
+                    "source_name": "file2stix",
+                    "description": "This object was created using file2stix from the Signals Corps.",
+                    "url": "https://github.com/signalscorps/file2stix"
+                }
+            ],
+            "object_marking_refs": [
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
+            ]
+        }
+    ]
+}

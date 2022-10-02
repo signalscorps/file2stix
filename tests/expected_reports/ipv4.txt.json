@@ -1,20 +1,23 @@
 {
     "type": "bundle",
-    "id": "bundle--39c03dd7-906e-4191-aeef-62bf42240d20",
+    "id": "bundle--c8a49f39-d541-4e75-a5a8-a92df0a6d784",
     "objects": [
         {
-            "type": "extension-definition",
+            "type": "identity",
             "spec_version": "2.1",
-            "id": "extension-definition--c8ea5ecb-f4a3-45e7-94de-9b9ba05161af",
-            "created_by_ref": "identity--acf55024-6bbe-486f-a27a-7967559324f4",
+            "id": "identity--acf55024-6bbe-486f-a27a-7967559324f4",
+            "created_by_ref": "identity--a99a2297-3044-4011-9a7e-2ff15e056b65",
             "created": "2022-01-01T00:00:00.000Z",
             "modified": "2022-01-01T00:00:00.000Z",
-            "name": "MISP Warning Lists",
-            "description": "This schema adds MISP Warning List matches to extracted Objects",
-            "schema": "https://github.com/MISP/misp-warninglists",
-            "version": "1.0",
-            "extension_types": [
-                "property-extension"
+            "name": "file2stix",
+            "description": "https://github.com/signalscorps/file2stix/",
+            "identity_class": "organization",
+            "sectors": [
+                "technology"
+            ],
+            "contact_information": "https://www.signalscorps.com/contact/",
+            "object_marking_refs": [
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
             ]
         },
         {
@@ -31,143 +34,102 @@
         {
             "type": "indicator",
             "spec_version": "2.1",
-            "id": "indicator--97d1cc23-cef7-4c06-8617-b66dac90e649",
-            "created": "2022-09-06T09:33:51.947118Z",
-            "modified": "2022-09-06T10:52:49.158713Z",
+            "id": "indicator--918bd8e8-4415-4695-96ab-46366162ce5e",
+            "created": "2022-10-02T14:39:28.675712Z",
+            "modified": "2022-10-02T14:39:28.675712Z",
             "name": "ipv4: 198.51.100.5",
             "indicator_types": [
-                "unknown"
+                "unknown",
+                "benign"
             ],
             "pattern": "[ ipv4-addr:value = '198.51.100.5' ]",
             "pattern_type": "stix",
             "pattern_version": "2.1",
-            "valid_from": "2022-09-06T09:33:51.947118Z",
+            "valid_from": "2022-10-02T14:39:29.539643Z",
+            "external_references": [
+                {
+                    "source_name": "file2stix",
+                    "description": "This object was created using file2stix from the Signals Corps.",
+                    "url": "https://github.com/signalscorps/file2stix"
+                }
+            ],
+            "object_marking_refs": [
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
+            ],
+            "extensions": {
+                "extension-definition--c8ea5ecb-f4a3-45e7-94de-9b9ba05161af": {
+                    "misp_warning_list_match": [
+                        "List of RFC 5735 CIDR blocks"
+                    ],
+                    "extension_type": "property-extension"
+                }
+            }
+        },
+        {
+            "type": "ipv4-addr",
+            "spec_version": "2.1",
+            "id": "ipv4-addr--f85034be-e4ad-5153-aa6b-79c450eb25b3",
+            "value": "198.51.100.5",
             "object_marking_refs": [
                 "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
             ]
         },
         {
-            "type": "indicator",
+            "type": "relationship",
             "spec_version": "2.1",
-            "id": "indicator--31fa29c0-c5e4-42ac-bc56-c1dd8bb855c4",
-            "created": "2022-09-06T09:33:52.159351Z",
-            "modified": "2022-09-06T10:52:49.565981Z",
-            "name": "ipv4: 198.0.103.12",
-            "indicator_types": [
-                "unknown"
+            "id": "relationship--75db116d-9f0a-4e06-a2d2-09405e6dcbae",
+            "created_by_ref": "identity--acf55024-6bbe-486f-a27a-7967559324f4",
+            "created": "2022-10-02T14:39:28.675712Z",
+            "modified": "2022-10-02T14:39:28.675712Z",
+            "relationship_type": "default-extract-from",
+            "source_ref": "indicator--918bd8e8-4415-4695-96ab-46366162ce5e",
+            "target_ref": "report--f595e241-ead8-4669-bab8-1d542e1c23db",
+            "external_references": [
+                {
+                    "source_name": "file2stix",
+                    "description": "This object was created using file2stix from the Signals Corps.",
+                    "url": "https://github.com/signalscorps/file2stix"
+                }
             ],
-            "pattern": "[ ipv4-addr:value = '198.0.103.12' ]",
-            "pattern_type": "stix",
-            "pattern_version": "2.1",
-            "valid_from": "2022-09-06T09:33:52.159351Z",
             "object_marking_refs": [
                 "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
             ]
         },
         {
-            "type": "indicator",
+            "type": "relationship",
             "spec_version": "2.1",
-            "id": "indicator--37fe7ffb-7d6a-45b0-8416-04bcf5000759",
-            "created": "2022-09-06T09:33:52.352127Z",
-            "modified": "2022-09-06T10:52:49.987287Z",
-            "name": "ipv4: 198.0.103.12/24",
-            "indicator_types": [
-                "unknown"
+            "id": "relationship--e769d05e-6c29-48c9-bf13-7b7a6fc529f9",
+            "created_by_ref": "identity--acf55024-6bbe-486f-a27a-7967559324f4",
+            "created": "2022-10-02T14:39:28.675712Z",
+            "modified": "2022-10-02T14:39:28.675712Z",
+            "relationship_type": "pattern-contains",
+            "source_ref": "indicator--918bd8e8-4415-4695-96ab-46366162ce5e",
+            "target_ref": "ipv4-addr--f85034be-e4ad-5153-aa6b-79c450eb25b3",
+            "external_references": [
+                {
+                    "source_name": "file2stix",
+                    "description": "This object was created using file2stix from the Signals Corps.",
+                    "url": "https://github.com/signalscorps/file2stix"
+                }
             ],
-            "pattern": "[ ipv4-addr:value = '198.0.103.12/24' ]",
-            "pattern_type": "stix",
-            "pattern_version": "2.1",
-            "valid_from": "2022-09-06T09:33:52.352127Z",
             "object_marking_refs": [
                 "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
             ]
         },
         {
-            "type": "indicator",
+            "type": "extension-definition",
             "spec_version": "2.1",
-            "id": "indicator--f077c130-3fce-45b4-9d0c-7bd699f895e5",
-            "created": "2022-09-06T09:33:52.394241Z",
-            "modified": "2022-09-06T10:52:51.253388Z",
-            "name": "ipv4: 198.0.103.12:8000",
-            "indicator_types": [
-                "unknown"
+            "id": "extension-definition--c8ea5ecb-f4a3-45e7-94de-9b9ba05161af",
+            "created_by_ref": "identity--a99a2297-3044-4011-9a7e-2ff15e056b65",
+            "created": "2022-01-01T00:00:00.000Z",
+            "modified": "2022-01-01T00:00:00.000Z",
+            "name": "MISP Warning Lists",
+            "description": "This schema adds MISP Warning List matches to extracted Objects",
+            "schema": "https://raw.githubusercontent.com/signalscorps/stix2-objects/main/schemas/properties/misp-warning-list-match/schema.json",
+            "version": "1.0",
+            "extension_types": [
+                "property-extension"
             ],
-            "pattern": "[ ipv4-addr:value = '198.0.103.12' AND network-traffic:dst_port = '8000' ]",
-            "pattern_type": "stix",
-            "pattern_version": "2.1",
-            "valid_from": "2022-09-06T09:33:52.394241Z",
-            "object_marking_refs": [
-                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
-            ]
-        },
-        {
-            "type": "indicator",
-            "spec_version": "2.1",
-            "id": "indicator--6b74d840-81f2-4c82-a6f8-4bb26677415a",
-            "created": "2022-09-06T09:33:52.388574Z",
-            "modified": "2022-09-06T10:52:50.490605Z",
-            "name": "ipv4: 198.0.103.12:8",
-            "indicator_types": [
-                "unknown"
-            ],
-            "pattern": "[ ipv4-addr:value = '198.0.103.12' AND network-traffic:dst_port = '8' ]",
-            "pattern_type": "stix",
-            "pattern_version": "2.1",
-            "valid_from": "2022-09-06T09:33:52.388574Z",
-            "object_marking_refs": [
-                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
-            ]
-        },
-        {
-            "type": "indicator",
-            "spec_version": "2.1",
-            "id": "indicator--caf2e44b-de71-468c-ace0-2620860ad595",
-            "created": "2022-09-06T09:33:52.390395Z",
-            "modified": "2022-09-06T10:52:50.744991Z",
-            "name": "ipv4: 198.0.103.12:80",
-            "indicator_types": [
-                "unknown"
-            ],
-            "pattern": "[ ipv4-addr:value = '198.0.103.12' AND network-traffic:dst_port = '80' ]",
-            "pattern_type": "stix",
-            "pattern_version": "2.1",
-            "valid_from": "2022-09-06T09:33:52.390395Z",
-            "object_marking_refs": [
-                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
-            ]
-        },
-        {
-            "type": "indicator",
-            "spec_version": "2.1",
-            "id": "indicator--273bcd53-e105-4c14-9931-56e4c00cb32f",
-            "created": "2022-09-06T09:33:52.392406Z",
-            "modified": "2022-09-06T10:52:50.997082Z",
-            "name": "ipv4: 198.0.103.12:800",
-            "indicator_types": [
-                "unknown"
-            ],
-            "pattern": "[ ipv4-addr:value = '198.0.103.12' AND network-traffic:dst_port = '800' ]",
-            "pattern_type": "stix",
-            "pattern_version": "2.1",
-            "valid_from": "2022-09-06T09:33:52.392406Z",
-            "object_marking_refs": [
-                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
-            ]
-        },
-        {
-            "type": "indicator",
-            "spec_version": "2.1",
-            "id": "indicator--a63614ec-b2e6-4b7d-b0f0-b311f18724f3",
-            "created": "2022-09-06T09:33:52.395881Z",
-            "modified": "2022-09-06T10:52:51.505398Z",
-            "name": "ipv4: 198.0.103.12:65535",
-            "indicator_types": [
-                "unknown"
-            ],
-            "pattern": "[ ipv4-addr:value = '198.0.103.12' AND network-traffic:dst_port = '65535' ]",
-            "pattern_type": "stix",
-            "pattern_version": "2.1",
-            "valid_from": "2022-09-06T09:33:52.395881Z",
             "object_marking_refs": [
                 "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
             ]
@@ -175,128 +137,31 @@
         {
             "type": "report",
             "spec_version": "2.1",
-            "id": "report--91e36c23-f1c1-41c5-94f6-033d93e8b2f8",
-            "created": "2022-09-06T10:52:51.557101Z",
-            "modified": "2022-09-06T10:52:51.557101Z",
+            "id": "report--f595e241-ead8-4669-bab8-1d542e1c23db",
+            "created_by_ref": "identity--acf55024-6bbe-486f-a27a-7967559324f4",
+            "created": "2022-10-02T14:39:28.675712Z",
+            "modified": "2022-10-02T14:39:28.675712Z",
             "name": "File converted: ipv4.txt",
             "report_types": [
                 "threat_report"
             ],
-            "published": "2022-09-06T16:22:51.557091Z",
+            "published": "2022-10-02T20:09:28.675692Z",
             "object_refs": [
-                "indicator--97d1cc23-cef7-4c06-8617-b66dac90e649",
-                "indicator--31fa29c0-c5e4-42ac-bc56-c1dd8bb855c4",
-                "indicator--37fe7ffb-7d6a-45b0-8416-04bcf5000759",
-                "indicator--f077c130-3fce-45b4-9d0c-7bd699f895e5",
-                "indicator--6b74d840-81f2-4c82-a6f8-4bb26677415a",
-                "indicator--caf2e44b-de71-468c-ace0-2620860ad595",
-                "indicator--273bcd53-e105-4c14-9931-56e4c00cb32f",
-                "indicator--a63614ec-b2e6-4b7d-b0f0-b311f18724f3"
+                "identity--acf55024-6bbe-486f-a27a-7967559324f4",
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9",
+                "indicator--918bd8e8-4415-4695-96ab-46366162ce5e",
+                "ipv4-addr--f85034be-e4ad-5153-aa6b-79c450eb25b3",
+                "relationship--75db116d-9f0a-4e06-a2d2-09405e6dcbae",
+                "relationship--e769d05e-6c29-48c9-bf13-7b7a6fc529f9",
+                "extension-definition--c8ea5ecb-f4a3-45e7-94de-9b9ba05161af"
             ],
-            "object_marking_refs": [
-                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
-            ]
-        },
-        {
-            "type": "relationship",
-            "spec_version": "2.1",
-            "id": "relationship--58a9a8d4-0196-4864-9643-13bfdebea947",
-            "created": "2022-09-06T10:52:51.5574Z",
-            "modified": "2022-09-06T10:52:51.5574Z",
-            "relationship_type": "default-extract",
-            "source_ref": "report--91e36c23-f1c1-41c5-94f6-033d93e8b2f8",
-            "target_ref": "indicator--97d1cc23-cef7-4c06-8617-b66dac90e649",
-            "object_marking_refs": [
-                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
-            ]
-        },
-        {
-            "type": "relationship",
-            "spec_version": "2.1",
-            "id": "relationship--8f076d1b-1dea-4b63-a3eb-9d1f9c28ba30",
-            "created": "2022-09-06T10:52:51.557578Z",
-            "modified": "2022-09-06T10:52:51.557578Z",
-            "relationship_type": "default-extract",
-            "source_ref": "report--91e36c23-f1c1-41c5-94f6-033d93e8b2f8",
-            "target_ref": "indicator--31fa29c0-c5e4-42ac-bc56-c1dd8bb855c4",
-            "object_marking_refs": [
-                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
-            ]
-        },
-        {
-            "type": "relationship",
-            "spec_version": "2.1",
-            "id": "relationship--998ad23f-57d4-43db-a38a-31dbccfbb9bd",
-            "created": "2022-09-06T10:52:51.557734Z",
-            "modified": "2022-09-06T10:52:51.557734Z",
-            "relationship_type": "default-extract",
-            "source_ref": "report--91e36c23-f1c1-41c5-94f6-033d93e8b2f8",
-            "target_ref": "indicator--37fe7ffb-7d6a-45b0-8416-04bcf5000759",
-            "object_marking_refs": [
-                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
-            ]
-        },
-        {
-            "type": "relationship",
-            "spec_version": "2.1",
-            "id": "relationship--7e754a49-d509-40ba-bc6d-3e2c1bd575bc",
-            "created": "2022-09-06T10:52:51.557885Z",
-            "modified": "2022-09-06T10:52:51.557885Z",
-            "relationship_type": "default-extract",
-            "source_ref": "report--91e36c23-f1c1-41c5-94f6-033d93e8b2f8",
-            "target_ref": "indicator--f077c130-3fce-45b4-9d0c-7bd699f895e5",
-            "object_marking_refs": [
-                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
-            ]
-        },
-        {
-            "type": "relationship",
-            "spec_version": "2.1",
-            "id": "relationship--02c3a2eb-e39c-40ac-b154-0a04ba3fd9c3",
-            "created": "2022-09-06T10:52:51.558034Z",
-            "modified": "2022-09-06T10:52:51.558034Z",
-            "relationship_type": "default-extract",
-            "source_ref": "report--91e36c23-f1c1-41c5-94f6-033d93e8b2f8",
-            "target_ref": "indicator--6b74d840-81f2-4c82-a6f8-4bb26677415a",
-            "object_marking_refs": [
-                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
-            ]
-        },
-        {
-            "type": "relationship",
-            "spec_version": "2.1",
-            "id": "relationship--cf245645-652c-49a3-b344-9492843c327f",
-            "created": "2022-09-06T10:52:51.558182Z",
-            "modified": "2022-09-06T10:52:51.558182Z",
-            "relationship_type": "default-extract",
-            "source_ref": "report--91e36c23-f1c1-41c5-94f6-033d93e8b2f8",
-            "target_ref": "indicator--caf2e44b-de71-468c-ace0-2620860ad595",
-            "object_marking_refs": [
-                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
-            ]
-        },
-        {
-            "type": "relationship",
-            "spec_version": "2.1",
-            "id": "relationship--fd1c5fdd-962b-475a-82f9-59c151aa6528",
-            "created": "2022-09-06T10:52:51.558326Z",
-            "modified": "2022-09-06T10:52:51.558326Z",
-            "relationship_type": "default-extract",
-            "source_ref": "report--91e36c23-f1c1-41c5-94f6-033d93e8b2f8",
-            "target_ref": "indicator--273bcd53-e105-4c14-9931-56e4c00cb32f",
-            "object_marking_refs": [
-                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
-            ]
-        },
-        {
-            "type": "relationship",
-            "spec_version": "2.1",
-            "id": "relationship--d45278c1-6eb3-4f28-b901-ffd6f8567316",
-            "created": "2022-09-06T10:52:51.558469Z",
-            "modified": "2022-09-06T10:52:51.558469Z",
-            "relationship_type": "default-extract",
-            "source_ref": "report--91e36c23-f1c1-41c5-94f6-033d93e8b2f8",
-            "target_ref": "indicator--a63614ec-b2e6-4b7d-b0f0-b311f18724f3",
+            "external_references": [
+                {
+                    "source_name": "file2stix",
+                    "description": "This object was created using file2stix from the Signals Corps.",
+                    "url": "https://github.com/signalscorps/file2stix"
+                }
+            ],
             "object_marking_refs": [
                 "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
             ]

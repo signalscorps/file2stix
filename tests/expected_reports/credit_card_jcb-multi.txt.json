@@ -1,0 +1,425 @@
+{
+    "type": "bundle",
+    "id": "bundle--366d2ead-742c-47dd-bdb3-dc5f5fd45c56",
+    "objects": [
+        {
+            "type": "identity",
+            "spec_version": "2.1",
+            "id": "identity--acf55024-6bbe-486f-a27a-7967559324f4",
+            "created_by_ref": "identity--a99a2297-3044-4011-9a7e-2ff15e056b65",
+            "created": "2022-01-01T00:00:00.000Z",
+            "modified": "2022-01-01T00:00:00.000Z",
+            "name": "file2stix",
+            "description": "https://github.com/signalscorps/file2stix/",
+            "identity_class": "organization",
+            "sectors": [
+                "technology"
+            ],
+            "contact_information": "https://www.signalscorps.com/contact/",
+            "object_marking_refs": [
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
+            ]
+        },
+        {
+            "type": "marking-definition",
+            "spec_version": "2.1",
+            "id": "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9",
+            "created": "2017-01-20T00:00:00.000Z",
+            "definition_type": "tlp",
+            "name": "TLP:WHITE",
+            "definition": {
+                "tlp": "white"
+            }
+        },
+        {
+            "type": "indicator",
+            "spec_version": "2.1",
+            "id": "indicator--5ecc82de-e28f-4d6a-86e8-b24a20f08126",
+            "created": "2022-10-02T14:17:58.665818Z",
+            "modified": "2022-10-02T14:17:58.665818Z",
+            "name": "JCB Credit Card: 3566002020360505",
+            "indicator_types": [
+                "unknown"
+            ],
+            "pattern": "[ credit-card:provider = 'JCB' AND credit-card:number = '3566002020360505' ]",
+            "pattern_type": "stix",
+            "pattern_version": "2.1",
+            "valid_from": "2022-10-02T14:17:59.513966Z",
+            "external_references": [
+                {
+                    "source_name": "file2stix",
+                    "description": "This object was created using file2stix from the Signals Corps.",
+                    "url": "https://github.com/signalscorps/file2stix"
+                }
+            ],
+            "object_marking_refs": [
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
+            ]
+        },
+        {
+            "type": "indicator",
+            "spec_version": "2.1",
+            "id": "indicator--c309e1ac-562c-455a-87f3-c6e9a7c357ac",
+            "created": "2022-10-02T14:17:58.665818Z",
+            "modified": "2022-10-02T14:17:58.665818Z",
+            "name": "JCB Credit Card: 3565704166459022",
+            "indicator_types": [
+                "unknown"
+            ],
+            "pattern": "[ credit-card:provider = 'JCB' AND credit-card:number = '3565704166459022' ]",
+            "pattern_type": "stix",
+            "pattern_version": "2.1",
+            "valid_from": "2022-10-02T14:18:00.391777Z",
+            "external_references": [
+                {
+                    "source_name": "file2stix",
+                    "description": "This object was created using file2stix from the Signals Corps.",
+                    "url": "https://github.com/signalscorps/file2stix"
+                }
+            ],
+            "object_marking_refs": [
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
+            ]
+        },
+        {
+            "type": "indicator",
+            "spec_version": "2.1",
+            "id": "indicator--3398317a-d1bc-43e7-b43a-b18af2cb0e30",
+            "created": "2022-10-02T14:17:58.665818Z",
+            "modified": "2022-10-02T14:17:58.665818Z",
+            "name": "JCB Credit Card: 3565556269572394",
+            "indicator_types": [
+                "unknown"
+            ],
+            "pattern": "[ credit-card:provider = 'JCB' AND credit-card:number = '3565556269572394' ]",
+            "pattern_type": "stix",
+            "pattern_version": "2.1",
+            "valid_from": "2022-10-02T14:18:01.350095Z",
+            "external_references": [
+                {
+                    "source_name": "file2stix",
+                    "description": "This object was created using file2stix from the Signals Corps.",
+                    "url": "https://github.com/signalscorps/file2stix"
+                }
+            ],
+            "object_marking_refs": [
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
+            ]
+        },
+        {
+            "type": "indicator",
+            "spec_version": "2.1",
+            "id": "indicator--4c764fdc-dcf3-4667-9d23-590e20829093",
+            "created": "2022-10-02T14:17:58.665818Z",
+            "modified": "2022-10-02T14:17:58.665818Z",
+            "name": "JCB Credit Card: 3563253400776843",
+            "indicator_types": [
+                "unknown"
+            ],
+            "pattern": "[ credit-card:provider = 'JCB' AND credit-card:number = '3563253400776843' ]",
+            "pattern_type": "stix",
+            "pattern_version": "2.1",
+            "valid_from": "2022-10-02T14:18:02.221292Z",
+            "external_references": [
+                {
+                    "source_name": "file2stix",
+                    "description": "This object was created using file2stix from the Signals Corps.",
+                    "url": "https://github.com/signalscorps/file2stix"
+                }
+            ],
+            "object_marking_refs": [
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
+            ]
+        },
+        {
+            "type": "credit-card",
+            "spec_version": "2.1",
+            "id": "credit-card--c38267db-f9ff-5c68-b128-8f85409e7f47",
+            "provider": "JCB",
+            "number": "3566002020360505",
+            "object_marking_refs": [
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
+            ],
+            "extensions": {
+                "extension-definition--abd6fc0e-749e-4e6c-a20c-1faa419f5ee4": {
+                    "extension_type": "new-sco"
+                }
+            }
+        },
+        {
+            "type": "credit-card",
+            "spec_version": "2.1",
+            "id": "credit-card--195b6a15-9351-5d27-b9b6-0aca1acd7220",
+            "provider": "JCB",
+            "number": "3565704166459022",
+            "object_marking_refs": [
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
+            ],
+            "extensions": {
+                "extension-definition--abd6fc0e-749e-4e6c-a20c-1faa419f5ee4": {
+                    "extension_type": "new-sco"
+                }
+            }
+        },
+        {
+            "type": "credit-card",
+            "spec_version": "2.1",
+            "id": "credit-card--29239fb0-c0e0-50dc-9df7-f639ada21713",
+            "provider": "JCB",
+            "number": "3565556269572394",
+            "object_marking_refs": [
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
+            ],
+            "extensions": {
+                "extension-definition--abd6fc0e-749e-4e6c-a20c-1faa419f5ee4": {
+                    "extension_type": "new-sco"
+                }
+            }
+        },
+        {
+            "type": "credit-card",
+            "spec_version": "2.1",
+            "id": "credit-card--2f241f67-aa9a-5f40-baf9-309abdf91a9f",
+            "provider": "JCB",
+            "number": "3563253400776843",
+            "object_marking_refs": [
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
+            ],
+            "extensions": {
+                "extension-definition--abd6fc0e-749e-4e6c-a20c-1faa419f5ee4": {
+                    "extension_type": "new-sco"
+                }
+            }
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--e0cd5563-c5ab-45ca-963d-4a1ba23b6299",
+            "created_by_ref": "identity--acf55024-6bbe-486f-a27a-7967559324f4",
+            "created": "2022-10-02T14:17:58.665818Z",
+            "modified": "2022-10-02T14:17:58.665818Z",
+            "relationship_type": "default-extract-from",
+            "source_ref": "indicator--5ecc82de-e28f-4d6a-86e8-b24a20f08126",
+            "target_ref": "report--823cd734-ffd3-464c-8c5d-6f0014f938d0",
+            "external_references": [
+                {
+                    "source_name": "file2stix",
+                    "description": "This object was created using file2stix from the Signals Corps.",
+                    "url": "https://github.com/signalscorps/file2stix"
+                }
+            ],
+            "object_marking_refs": [
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
+            ]
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--f26f9dad-debe-4ddf-9bee-977d2c5e9ef4",
+            "created_by_ref": "identity--acf55024-6bbe-486f-a27a-7967559324f4",
+            "created": "2022-10-02T14:17:58.665818Z",
+            "modified": "2022-10-02T14:17:58.665818Z",
+            "relationship_type": "default-extract-from",
+            "source_ref": "indicator--c309e1ac-562c-455a-87f3-c6e9a7c357ac",
+            "target_ref": "report--823cd734-ffd3-464c-8c5d-6f0014f938d0",
+            "external_references": [
+                {
+                    "source_name": "file2stix",
+                    "description": "This object was created using file2stix from the Signals Corps.",
+                    "url": "https://github.com/signalscorps/file2stix"
+                }
+            ],
+            "object_marking_refs": [
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
+            ]
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--24cb3295-2339-4967-baf6-1aba72ee8157",
+            "created_by_ref": "identity--acf55024-6bbe-486f-a27a-7967559324f4",
+            "created": "2022-10-02T14:17:58.665818Z",
+            "modified": "2022-10-02T14:17:58.665818Z",
+            "relationship_type": "default-extract-from",
+            "source_ref": "indicator--3398317a-d1bc-43e7-b43a-b18af2cb0e30",
+            "target_ref": "report--823cd734-ffd3-464c-8c5d-6f0014f938d0",
+            "external_references": [
+                {
+                    "source_name": "file2stix",
+                    "description": "This object was created using file2stix from the Signals Corps.",
+                    "url": "https://github.com/signalscorps/file2stix"
+                }
+            ],
+            "object_marking_refs": [
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
+            ]
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--f863371a-7be0-4035-8b0a-63dab5b7fb65",
+            "created_by_ref": "identity--acf55024-6bbe-486f-a27a-7967559324f4",
+            "created": "2022-10-02T14:17:58.665818Z",
+            "modified": "2022-10-02T14:17:58.665818Z",
+            "relationship_type": "default-extract-from",
+            "source_ref": "indicator--4c764fdc-dcf3-4667-9d23-590e20829093",
+            "target_ref": "report--823cd734-ffd3-464c-8c5d-6f0014f938d0",
+            "external_references": [
+                {
+                    "source_name": "file2stix",
+                    "description": "This object was created using file2stix from the Signals Corps.",
+                    "url": "https://github.com/signalscorps/file2stix"
+                }
+            ],
+            "object_marking_refs": [
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
+            ]
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--65df4d9e-37b9-47a7-9a96-c63385d44413",
+            "created_by_ref": "identity--acf55024-6bbe-486f-a27a-7967559324f4",
+            "created": "2022-10-02T14:17:58.665818Z",
+            "modified": "2022-10-02T14:17:58.665818Z",
+            "relationship_type": "pattern-contains",
+            "source_ref": "indicator--5ecc82de-e28f-4d6a-86e8-b24a20f08126",
+            "target_ref": "credit-card--c38267db-f9ff-5c68-b128-8f85409e7f47",
+            "external_references": [
+                {
+                    "source_name": "file2stix",
+                    "description": "This object was created using file2stix from the Signals Corps.",
+                    "url": "https://github.com/signalscorps/file2stix"
+                }
+            ],
+            "object_marking_refs": [
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
+            ]
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--b1afebf9-e72e-4e35-8e86-531ab70e17be",
+            "created_by_ref": "identity--acf55024-6bbe-486f-a27a-7967559324f4",
+            "created": "2022-10-02T14:17:58.665818Z",
+            "modified": "2022-10-02T14:17:58.665818Z",
+            "relationship_type": "pattern-contains",
+            "source_ref": "indicator--c309e1ac-562c-455a-87f3-c6e9a7c357ac",
+            "target_ref": "credit-card--195b6a15-9351-5d27-b9b6-0aca1acd7220",
+            "external_references": [
+                {
+                    "source_name": "file2stix",
+                    "description": "This object was created using file2stix from the Signals Corps.",
+                    "url": "https://github.com/signalscorps/file2stix"
+                }
+            ],
+            "object_marking_refs": [
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
+            ]
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--10816863-f0b8-47fc-a377-a9d2cf43a903",
+            "created_by_ref": "identity--acf55024-6bbe-486f-a27a-7967559324f4",
+            "created": "2022-10-02T14:17:58.665818Z",
+            "modified": "2022-10-02T14:17:58.665818Z",
+            "relationship_type": "pattern-contains",
+            "source_ref": "indicator--3398317a-d1bc-43e7-b43a-b18af2cb0e30",
+            "target_ref": "credit-card--29239fb0-c0e0-50dc-9df7-f639ada21713",
+            "external_references": [
+                {
+                    "source_name": "file2stix",
+                    "description": "This object was created using file2stix from the Signals Corps.",
+                    "url": "https://github.com/signalscorps/file2stix"
+                }
+            ],
+            "object_marking_refs": [
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
+            ]
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--1db53deb-d69d-4648-879a-d42b367aeb73",
+            "created_by_ref": "identity--acf55024-6bbe-486f-a27a-7967559324f4",
+            "created": "2022-10-02T14:17:58.665818Z",
+            "modified": "2022-10-02T14:17:58.665818Z",
+            "relationship_type": "pattern-contains",
+            "source_ref": "indicator--4c764fdc-dcf3-4667-9d23-590e20829093",
+            "target_ref": "credit-card--2f241f67-aa9a-5f40-baf9-309abdf91a9f",
+            "external_references": [
+                {
+                    "source_name": "file2stix",
+                    "description": "This object was created using file2stix from the Signals Corps.",
+                    "url": "https://github.com/signalscorps/file2stix"
+                }
+            ],
+            "object_marking_refs": [
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
+            ]
+        },
+        {
+            "type": "extension-definition",
+            "spec_version": "2.1",
+            "id": "extension-definition--abd6fc0e-749e-4e6c-a20c-1faa419f5ee4",
+            "created_by_ref": "identity--a99a2297-3044-4011-9a7e-2ff15e056b65",
+            "created": "2022-01-01T00:00:00.000Z",
+            "modified": "2022-01-01T00:00:00.000Z",
+            "name": "Credit Card SCO",
+            "description": "This schema creates a new SCO type called credit-card",
+            "schema": "https://raw.githubusercontent.com/signalscorps/stix2-objects/main/schemas/scos/credit-card/schema.json",
+            "version": "1.0",
+            "extension_types": [
+                "new-sco"
+            ],
+            "object_marking_refs": [
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
+            ]
+        },
+        {
+            "type": "report",
+            "spec_version": "2.1",
+            "id": "report--823cd734-ffd3-464c-8c5d-6f0014f938d0",
+            "created_by_ref": "identity--acf55024-6bbe-486f-a27a-7967559324f4",
+            "created": "2022-10-02T14:17:58.665818Z",
+            "modified": "2022-10-02T14:17:58.665818Z",
+            "name": "File converted: credit_card_jcb-multi.txt",
+            "report_types": [
+                "threat_report"
+            ],
+            "published": "2022-10-02T19:47:58.665809Z",
+            "object_refs": [
+                "identity--acf55024-6bbe-486f-a27a-7967559324f4",
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9",
+                "indicator--5ecc82de-e28f-4d6a-86e8-b24a20f08126",
+                "indicator--c309e1ac-562c-455a-87f3-c6e9a7c357ac",
+                "indicator--3398317a-d1bc-43e7-b43a-b18af2cb0e30",
+                "indicator--4c764fdc-dcf3-4667-9d23-590e20829093",
+                "credit-card--c38267db-f9ff-5c68-b128-8f85409e7f47",
+                "credit-card--195b6a15-9351-5d27-b9b6-0aca1acd7220",
+                "credit-card--29239fb0-c0e0-50dc-9df7-f639ada21713",
+                "credit-card--2f241f67-aa9a-5f40-baf9-309abdf91a9f",
+                "relationship--e0cd5563-c5ab-45ca-963d-4a1ba23b6299",
+                "relationship--f26f9dad-debe-4ddf-9bee-977d2c5e9ef4",
+                "relationship--24cb3295-2339-4967-baf6-1aba72ee8157",
+                "relationship--f863371a-7be0-4035-8b0a-63dab5b7fb65",
+                "relationship--65df4d9e-37b9-47a7-9a96-c63385d44413",
+                "relationship--b1afebf9-e72e-4e35-8e86-531ab70e17be",
+                "relationship--10816863-f0b8-47fc-a377-a9d2cf43a903",
+                "relationship--1db53deb-d69d-4648-879a-d42b367aeb73",
+                "extension-definition--abd6fc0e-749e-4e6c-a20c-1faa419f5ee4"
+            ],
+            "external_references": [
+                {
+                    "source_name": "file2stix",
+                    "description": "This object was created using file2stix from the Signals Corps.",
+                    "url": "https://github.com/signalscorps/file2stix"
+                }
+            ],
+            "object_marking_refs": [
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
+            ]
+        }
+    ]
+}

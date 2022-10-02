@@ -1,20 +1,23 @@
 {
     "type": "bundle",
-    "id": "bundle--f52f080e-bb04-40cf-a2b2-c015df7ea0f8",
+    "id": "bundle--0ad90e84-a6d0-47c9-bf2d-e991c11dc344",
     "objects": [
         {
-            "type": "extension-definition",
+            "type": "identity",
             "spec_version": "2.1",
-            "id": "extension-definition--c8ea5ecb-f4a3-45e7-94de-9b9ba05161af",
-            "created_by_ref": "identity--acf55024-6bbe-486f-a27a-7967559324f4",
+            "id": "identity--acf55024-6bbe-486f-a27a-7967559324f4",
+            "created_by_ref": "identity--a99a2297-3044-4011-9a7e-2ff15e056b65",
             "created": "2022-01-01T00:00:00.000Z",
             "modified": "2022-01-01T00:00:00.000Z",
-            "name": "MISP Warning Lists",
-            "description": "This schema adds MISP Warning List matches to extracted Objects",
-            "schema": "https://github.com/MISP/misp-warninglists",
-            "version": "1.0",
-            "extension_types": [
-                "property-extension"
+            "name": "file2stix",
+            "description": "https://github.com/signalscorps/file2stix/",
+            "identity_class": "organization",
+            "sectors": [
+                "technology"
+            ],
+            "contact_information": "https://www.signalscorps.com/contact/",
+            "object_marking_refs": [
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
             ]
         },
         {
@@ -38,28 +41,60 @@
             "version": "2.0",
             "object_marking_refs": [
                 "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
-            ]
+            ],
+            "extensions": {
+                "extension-definition--6c453e0f-9895-498f-a273-2e2dda473377": {
+                    "extension_type": "property-extension",
+                    "cpe23Uri": "cpe:2.3:a:apache:log4j:2.0:rc2:*:*:*:*:*:*",
+                    "part": "a",
+                    "vendor": "apache",
+                    "product": "log4j",
+                    "version": "2.0",
+                    "update": "rc2",
+                    "edition": "*",
+                    "language": "*",
+                    "sw_edition": "*",
+                    "target_sw": "*",
+                    "target_hw": "*",
+                    "other": "*"
+                }
+            }
         },
         {
-            "type": "software",
+            "type": "relationship",
             "spec_version": "2.1",
-            "id": "software--c2e95080-c4cb-5a48-96ee-8a91afb3b223",
-            "name": "CPE: cisco firepower_2130 -",
-            "cpe": "cpe:2.3:h:cisco:firepower_2130:-:*:*:*:*:*:*:*",
-            "vendor": "cisco",
-            "version": "-",
+            "id": "relationship--90037a00-85a4-4301-b81e-5bb1f6295083",
+            "created_by_ref": "identity--acf55024-6bbe-486f-a27a-7967559324f4",
+            "created": "2022-10-02T14:17:58.499176Z",
+            "modified": "2022-10-02T14:17:58.499176Z",
+            "relationship_type": "default-extract-from",
+            "source_ref": "software--e78aa2a6-74b2-54ff-9457-2b01f13d4274",
+            "target_ref": "report--cb3f58ad-ef7c-4bec-b2c1-6622277197fa",
+            "external_references": [
+                {
+                    "source_name": "file2stix",
+                    "description": "This object was created using file2stix from the Signals Corps.",
+                    "url": "https://github.com/signalscorps/file2stix"
+                }
+            ],
             "object_marking_refs": [
                 "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
             ]
         },
         {
-            "type": "software",
+            "type": "extension-definition",
             "spec_version": "2.1",
-            "id": "software--b50ac926-2979-58fe-be92-86f5bab0fac9",
-            "name": "CPE: cisco finesse 12.5\\(1\\)",
-            "cpe": "cpe:2.3:a:cisco:finesse:12.5\\(1\\):su2:*:*:*:*:*:*",
-            "vendor": "cisco",
-            "version": "12.5\\(1\\)",
+            "id": "extension-definition--6c453e0f-9895-498f-a273-2e2dda473377",
+            "created_by_ref": "identity--a99a2297-3044-4011-9a7e-2ff15e056b65",
+            "created": "2022-01-01T00:00:00.000Z",
+            "modified": "2022-01-01T00:00:00.000Z",
+            "name": "NVD CPEs",
+            "description": "This schema adds CPEs to Software SCOs",
+            "schema": "https://raw.githubusercontent.com/signalscorps/stix2-objects/main/schemas/properties/cpe/schema.json",
+            "version": "1.0",
+            "extension_types": [
+                "property-extension"
+            ],
             "object_marking_refs": [
                 "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
             ]
@@ -67,58 +102,29 @@
         {
             "type": "report",
             "spec_version": "2.1",
-            "id": "report--65a2c693-1afd-45d6-a3bb-48668ed71483",
-            "created": "2022-09-06T10:52:14.489351Z",
-            "modified": "2022-09-06T10:52:14.489351Z",
+            "id": "report--cb3f58ad-ef7c-4bec-b2c1-6622277197fa",
+            "created_by_ref": "identity--acf55024-6bbe-486f-a27a-7967559324f4",
+            "created": "2022-10-02T14:17:58.499176Z",
+            "modified": "2022-10-02T14:17:58.499176Z",
             "name": "File converted: cpe.txt",
             "report_types": [
                 "threat_report"
             ],
-            "published": "2022-09-06T16:22:14.489344Z",
+            "published": "2022-10-02T19:47:58.499165Z",
             "object_refs": [
+                "identity--acf55024-6bbe-486f-a27a-7967559324f4",
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9",
                 "software--e78aa2a6-74b2-54ff-9457-2b01f13d4274",
-                "software--c2e95080-c4cb-5a48-96ee-8a91afb3b223",
-                "software--b50ac926-2979-58fe-be92-86f5bab0fac9"
+                "relationship--90037a00-85a4-4301-b81e-5bb1f6295083",
+                "extension-definition--6c453e0f-9895-498f-a273-2e2dda473377"
             ],
-            "object_marking_refs": [
-                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
-            ]
-        },
-        {
-            "type": "relationship",
-            "spec_version": "2.1",
-            "id": "relationship--fe2bac6c-6d2b-4e33-8f24-2a2dbeb7558a",
-            "created": "2022-09-06T10:52:14.489565Z",
-            "modified": "2022-09-06T10:52:14.489565Z",
-            "relationship_type": "default-extract",
-            "source_ref": "report--65a2c693-1afd-45d6-a3bb-48668ed71483",
-            "target_ref": "software--e78aa2a6-74b2-54ff-9457-2b01f13d4274",
-            "object_marking_refs": [
-                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
-            ]
-        },
-        {
-            "type": "relationship",
-            "spec_version": "2.1",
-            "id": "relationship--86b04931-a7fd-40e8-8dc4-5ac2b0678b6a",
-            "created": "2022-09-06T10:52:14.489733Z",
-            "modified": "2022-09-06T10:52:14.489733Z",
-            "relationship_type": "default-extract",
-            "source_ref": "report--65a2c693-1afd-45d6-a3bb-48668ed71483",
-            "target_ref": "software--c2e95080-c4cb-5a48-96ee-8a91afb3b223",
-            "object_marking_refs": [
-                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
-            ]
-        },
-        {
-            "type": "relationship",
-            "spec_version": "2.1",
-            "id": "relationship--8fda8c37-fadd-48d6-9851-b7d5495b7c27",
-            "created": "2022-09-06T10:52:14.489887Z",
-            "modified": "2022-09-06T10:52:14.489887Z",
-            "relationship_type": "default-extract",
-            "source_ref": "report--65a2c693-1afd-45d6-a3bb-48668ed71483",
-            "target_ref": "software--b50ac926-2979-58fe-be92-86f5bab0fac9",
+            "external_references": [
+                {
+                    "source_name": "file2stix",
+                    "description": "This object was created using file2stix from the Signals Corps.",
+                    "url": "https://github.com/signalscorps/file2stix"
+                }
+            ],
             "object_marking_refs": [
                 "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
             ]

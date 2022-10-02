@@ -1,20 +1,23 @@
 {
     "type": "bundle",
-    "id": "bundle--8fb946f0-d720-4537-917b-3f6d57639443",
+    "id": "bundle--7b96a97d-c55b-44f4-9f7f-d274f35b4967",
     "objects": [
         {
-            "type": "extension-definition",
+            "type": "identity",
             "spec_version": "2.1",
-            "id": "extension-definition--c8ea5ecb-f4a3-45e7-94de-9b9ba05161af",
-            "created_by_ref": "identity--acf55024-6bbe-486f-a27a-7967559324f4",
+            "id": "identity--acf55024-6bbe-486f-a27a-7967559324f4",
+            "created_by_ref": "identity--a99a2297-3044-4011-9a7e-2ff15e056b65",
             "created": "2022-01-01T00:00:00.000Z",
             "modified": "2022-01-01T00:00:00.000Z",
-            "name": "MISP Warning Lists",
-            "description": "This schema adds MISP Warning List matches to extracted Objects",
-            "schema": "https://github.com/MISP/misp-warninglists",
-            "version": "1.0",
-            "extension_types": [
-                "property-extension"
+            "name": "file2stix",
+            "description": "https://github.com/signalscorps/file2stix/",
+            "identity_class": "organization",
+            "sectors": [
+                "technology"
+            ],
+            "contact_information": "https://www.signalscorps.com/contact/",
+            "object_marking_refs": [
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
             ]
         },
         {
@@ -31,33 +34,22 @@
         {
             "type": "indicator",
             "spec_version": "2.1",
-            "id": "indicator--98bf2050-3c32-437f-99b4-e31b67712493",
-            "created": "2022-09-06T10:48:56.280176Z",
-            "modified": "2022-09-06T10:53:06.765005Z",
+            "id": "indicator--fdb67265-b493-4a8a-8201-ee2bfc1f5bd5",
+            "created": "2022-10-02T14:40:26.746594Z",
+            "modified": "2022-10-02T14:40:26.746594Z",
             "name": "YARA Rule: dummy",
             "indicator_types": [
                 "unknown"
             ],
-            "pattern": "rule dummy\r\n{\r\n    condition:\r\n        false\r\n}",
+            "pattern": "rule dummy\r\n{\r\n    condition:\r\n        false\r\n}\r\n\r\n\r\nrule another\r\n{\r\n    test:\r\n        false\r\n    test2:\r\n        true\r\n}",
             "pattern_type": "yara",
-            "valid_from": "2022-09-06T10:48:56.280176Z",
-            "object_marking_refs": [
-                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
-            ]
-        },
-        {
-            "type": "report",
-            "spec_version": "2.1",
-            "id": "report--7b142ef3-80a9-449d-8bcf-c520d3d7fb3e",
-            "created": "2022-09-06T10:53:06.765752Z",
-            "modified": "2022-09-06T10:53:06.765752Z",
-            "name": "File converted: yara_rule.txt",
-            "report_types": [
-                "threat_report"
-            ],
-            "published": "2022-09-06T16:23:06.765745Z",
-            "object_refs": [
-                "indicator--98bf2050-3c32-437f-99b4-e31b67712493"
+            "valid_from": "2022-10-02T14:40:26.789149Z",
+            "external_references": [
+                {
+                    "source_name": "file2stix",
+                    "description": "This object was created using file2stix from the Signals Corps.",
+                    "url": "https://github.com/signalscorps/file2stix"
+                }
             ],
             "object_marking_refs": [
                 "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
@@ -66,12 +58,49 @@
         {
             "type": "relationship",
             "spec_version": "2.1",
-            "id": "relationship--b92792f0-676f-4b9c-85fd-e201a0f8d6bc",
-            "created": "2022-09-06T10:53:06.765954Z",
-            "modified": "2022-09-06T10:53:06.765954Z",
-            "relationship_type": "default-extract",
-            "source_ref": "report--7b142ef3-80a9-449d-8bcf-c520d3d7fb3e",
-            "target_ref": "indicator--98bf2050-3c32-437f-99b4-e31b67712493",
+            "id": "relationship--9b1d0455-ca19-4873-a46c-12016dbc1909",
+            "created_by_ref": "identity--acf55024-6bbe-486f-a27a-7967559324f4",
+            "created": "2022-10-02T14:40:26.746594Z",
+            "modified": "2022-10-02T14:40:26.746594Z",
+            "relationship_type": "default-extract-from",
+            "source_ref": "indicator--fdb67265-b493-4a8a-8201-ee2bfc1f5bd5",
+            "target_ref": "report--ac89dbec-85af-4c23-b893-9bdf5e159505",
+            "external_references": [
+                {
+                    "source_name": "file2stix",
+                    "description": "This object was created using file2stix from the Signals Corps.",
+                    "url": "https://github.com/signalscorps/file2stix"
+                }
+            ],
+            "object_marking_refs": [
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
+            ]
+        },
+        {
+            "type": "report",
+            "spec_version": "2.1",
+            "id": "report--ac89dbec-85af-4c23-b893-9bdf5e159505",
+            "created_by_ref": "identity--acf55024-6bbe-486f-a27a-7967559324f4",
+            "created": "2022-10-02T14:40:26.746594Z",
+            "modified": "2022-10-02T14:40:26.746594Z",
+            "name": "File converted: yara_rule.txt",
+            "report_types": [
+                "threat_report"
+            ],
+            "published": "2022-10-02T20:10:26.746584Z",
+            "object_refs": [
+                "identity--acf55024-6bbe-486f-a27a-7967559324f4",
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9",
+                "indicator--fdb67265-b493-4a8a-8201-ee2bfc1f5bd5",
+                "relationship--9b1d0455-ca19-4873-a46c-12016dbc1909"
+            ],
+            "external_references": [
+                {
+                    "source_name": "file2stix",
+                    "description": "This object was created using file2stix from the Signals Corps.",
+                    "url": "https://github.com/signalscorps/file2stix"
+                }
+            ],
             "object_marking_refs": [
                 "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
             ]

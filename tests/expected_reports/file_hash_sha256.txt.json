@@ -1,0 +1,144 @@
+{
+    "type": "bundle",
+    "id": "bundle--a7dab92a-c1d0-49be-9335-778c909388b4",
+    "objects": [
+        {
+            "type": "identity",
+            "spec_version": "2.1",
+            "id": "identity--acf55024-6bbe-486f-a27a-7967559324f4",
+            "created_by_ref": "identity--a99a2297-3044-4011-9a7e-2ff15e056b65",
+            "created": "2022-01-01T00:00:00.000Z",
+            "modified": "2022-01-01T00:00:00.000Z",
+            "name": "file2stix",
+            "description": "https://github.com/signalscorps/file2stix/",
+            "identity_class": "organization",
+            "sectors": [
+                "technology"
+            ],
+            "contact_information": "https://www.signalscorps.com/contact/",
+            "object_marking_refs": [
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
+            ]
+        },
+        {
+            "type": "marking-definition",
+            "spec_version": "2.1",
+            "id": "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9",
+            "created": "2017-01-20T00:00:00.000Z",
+            "definition_type": "tlp",
+            "name": "TLP:WHITE",
+            "definition": {
+                "tlp": "white"
+            }
+        },
+        {
+            "type": "indicator",
+            "spec_version": "2.1",
+            "id": "indicator--44f8a270-5ee9-466f-bea6-0a661da340bc",
+            "created": "2022-10-02T15:11:03.052288Z",
+            "modified": "2022-10-02T15:11:03.052288Z",
+            "name": "sha256: ba7816bf8f01cfea414140de5dae2223b00361a396177a9cb410ff61f20015ad",
+            "indicator_types": [
+                "unknown"
+            ],
+            "pattern": "[ file:hash.sha256 = 'ba7816bf8f01cfea414140de5dae2223b00361a396177a9cb410ff61f20015ad' ]",
+            "pattern_type": "stix",
+            "pattern_version": "2.1",
+            "valid_from": "2022-10-02T15:11:03.797923Z",
+            "external_references": [
+                {
+                    "source_name": "file2stix",
+                    "description": "This object was created using file2stix from the Signals Corps.",
+                    "url": "https://github.com/signalscorps/file2stix"
+                }
+            ],
+            "object_marking_refs": [
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
+            ]
+        },
+        {
+            "type": "file",
+            "spec_version": "2.1",
+            "id": "file--095d55f5-5a46-5771-a0e1-7794ca4fd7a6",
+            "hashes": {
+                "SHA-256": "ba7816bf8f01cfea414140de5dae2223b00361a396177a9cb410ff61f20015ad"
+            },
+            "object_marking_refs": [
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
+            ]
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--7fcd2294-5943-4483-a8bb-977104518d04",
+            "created_by_ref": "identity--acf55024-6bbe-486f-a27a-7967559324f4",
+            "created": "2022-10-02T15:11:03.052288Z",
+            "modified": "2022-10-02T15:11:03.052288Z",
+            "relationship_type": "default-extract-from",
+            "source_ref": "indicator--44f8a270-5ee9-466f-bea6-0a661da340bc",
+            "target_ref": "report--7a302852-9571-4304-a547-cfbcd2461c9b",
+            "external_references": [
+                {
+                    "source_name": "file2stix",
+                    "description": "This object was created using file2stix from the Signals Corps.",
+                    "url": "https://github.com/signalscorps/file2stix"
+                }
+            ],
+            "object_marking_refs": [
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
+            ]
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--714c33fd-e0ed-4bb5-95cf-b39092127623",
+            "created_by_ref": "identity--acf55024-6bbe-486f-a27a-7967559324f4",
+            "created": "2022-10-02T15:11:03.052288Z",
+            "modified": "2022-10-02T15:11:03.052288Z",
+            "relationship_type": "pattern-contains",
+            "source_ref": "indicator--44f8a270-5ee9-466f-bea6-0a661da340bc",
+            "target_ref": "file--095d55f5-5a46-5771-a0e1-7794ca4fd7a6",
+            "external_references": [
+                {
+                    "source_name": "file2stix",
+                    "description": "This object was created using file2stix from the Signals Corps.",
+                    "url": "https://github.com/signalscorps/file2stix"
+                }
+            ],
+            "object_marking_refs": [
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
+            ]
+        },
+        {
+            "type": "report",
+            "spec_version": "2.1",
+            "id": "report--7a302852-9571-4304-a547-cfbcd2461c9b",
+            "created_by_ref": "identity--acf55024-6bbe-486f-a27a-7967559324f4",
+            "created": "2022-10-02T15:11:03.052288Z",
+            "modified": "2022-10-02T15:11:03.052288Z",
+            "name": "File converted: file_hash_sha256.txt",
+            "report_types": [
+                "threat_report"
+            ],
+            "published": "2022-10-02T20:41:03.05228Z",
+            "object_refs": [
+                "identity--acf55024-6bbe-486f-a27a-7967559324f4",
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9",
+                "indicator--44f8a270-5ee9-466f-bea6-0a661da340bc",
+                "file--095d55f5-5a46-5771-a0e1-7794ca4fd7a6",
+                "relationship--7fcd2294-5943-4483-a8bb-977104518d04",
+                "relationship--714c33fd-e0ed-4bb5-95cf-b39092127623"
+            ],
+            "external_references": [
+                {
+                    "source_name": "file2stix",
+                    "description": "This object was created using file2stix from the Signals Corps.",
+                    "url": "https://github.com/signalscorps/file2stix"
+                }
+            ],
+            "object_marking_refs": [
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
+            ]
+        }
+    ]
+}

@@ -1,0 +1,142 @@
+{
+    "type": "bundle",
+    "id": "bundle--2f61d5aa-5ebe-4b40-ae37-832134468cdf",
+    "objects": [
+        {
+            "type": "identity",
+            "spec_version": "2.1",
+            "id": "identity--acf55024-6bbe-486f-a27a-7967559324f4",
+            "created_by_ref": "identity--a99a2297-3044-4011-9a7e-2ff15e056b65",
+            "created": "2022-01-01T00:00:00.000Z",
+            "modified": "2022-01-01T00:00:00.000Z",
+            "name": "file2stix",
+            "description": "https://github.com/signalscorps/file2stix/",
+            "identity_class": "organization",
+            "sectors": [
+                "technology"
+            ],
+            "contact_information": "https://www.signalscorps.com/contact/",
+            "object_marking_refs": [
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
+            ]
+        },
+        {
+            "type": "marking-definition",
+            "spec_version": "2.1",
+            "id": "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9",
+            "created": "2017-01-20T00:00:00.000Z",
+            "definition_type": "tlp",
+            "name": "TLP:WHITE",
+            "definition": {
+                "tlp": "white"
+            }
+        },
+        {
+            "type": "indicator",
+            "spec_version": "2.1",
+            "id": "indicator--8c82bf0e-d827-44f9-856d-c7ead0407ea1",
+            "created": "2022-10-02T15:10:46.998918Z",
+            "modified": "2022-10-02T15:10:46.998918Z",
+            "name": "MAC Address: d2:fb:49:24:37:18",
+            "indicator_types": [
+                "unknown"
+            ],
+            "pattern": "[ mac-addr:value = 'd2:fb:49:24:37:18' ]",
+            "pattern_type": "stix",
+            "pattern_version": "2.1",
+            "valid_from": "2022-10-02T15:10:47.707802Z",
+            "external_references": [
+                {
+                    "source_name": "file2stix",
+                    "description": "This object was created using file2stix from the Signals Corps.",
+                    "url": "https://github.com/signalscorps/file2stix"
+                }
+            ],
+            "object_marking_refs": [
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
+            ]
+        },
+        {
+            "type": "mac-addr",
+            "spec_version": "2.1",
+            "id": "mac-addr--757b1725-9903-54f5-a855-1240691d7659",
+            "value": "d2:fb:49:24:37:18",
+            "object_marking_refs": [
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
+            ]
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--fe194db0-cacd-4724-aafb-b0c563944906",
+            "created_by_ref": "identity--acf55024-6bbe-486f-a27a-7967559324f4",
+            "created": "2022-10-02T15:10:46.998918Z",
+            "modified": "2022-10-02T15:10:46.998918Z",
+            "relationship_type": "default-extract-from",
+            "source_ref": "indicator--8c82bf0e-d827-44f9-856d-c7ead0407ea1",
+            "target_ref": "report--98c1e528-eae0-4cdd-b52f-938cf6c57c63",
+            "external_references": [
+                {
+                    "source_name": "file2stix",
+                    "description": "This object was created using file2stix from the Signals Corps.",
+                    "url": "https://github.com/signalscorps/file2stix"
+                }
+            ],
+            "object_marking_refs": [
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
+            ]
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--82722dd1-b913-48d2-9d2a-3508b570b578",
+            "created_by_ref": "identity--acf55024-6bbe-486f-a27a-7967559324f4",
+            "created": "2022-10-02T15:10:46.998918Z",
+            "modified": "2022-10-02T15:10:46.998918Z",
+            "relationship_type": "pattern-contains",
+            "source_ref": "indicator--8c82bf0e-d827-44f9-856d-c7ead0407ea1",
+            "target_ref": "mac-addr--757b1725-9903-54f5-a855-1240691d7659",
+            "external_references": [
+                {
+                    "source_name": "file2stix",
+                    "description": "This object was created using file2stix from the Signals Corps.",
+                    "url": "https://github.com/signalscorps/file2stix"
+                }
+            ],
+            "object_marking_refs": [
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
+            ]
+        },
+        {
+            "type": "report",
+            "spec_version": "2.1",
+            "id": "report--98c1e528-eae0-4cdd-b52f-938cf6c57c63",
+            "created_by_ref": "identity--acf55024-6bbe-486f-a27a-7967559324f4",
+            "created": "2022-10-02T15:10:46.998918Z",
+            "modified": "2022-10-02T15:10:46.998918Z",
+            "name": "File converted: mac_address.txt",
+            "report_types": [
+                "threat_report"
+            ],
+            "published": "2022-10-02T20:40:46.998905Z",
+            "object_refs": [
+                "identity--acf55024-6bbe-486f-a27a-7967559324f4",
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9",
+                "indicator--8c82bf0e-d827-44f9-856d-c7ead0407ea1",
+                "mac-addr--757b1725-9903-54f5-a855-1240691d7659",
+                "relationship--fe194db0-cacd-4724-aafb-b0c563944906",
+                "relationship--82722dd1-b913-48d2-9d2a-3508b570b578"
+            ],
+            "external_references": [
+                {
+                    "source_name": "file2stix",
+                    "description": "This object was created using file2stix from the Signals Corps.",
+                    "url": "https://github.com/signalscorps/file2stix"
+                }
+            ],
+            "object_marking_refs": [
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
+            ]
+        }
+    ]
+}
