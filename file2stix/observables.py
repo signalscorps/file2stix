@@ -536,7 +536,7 @@ class WindowsRegistryKeyObservable(Observable):
 class UserAgentObservable(Observable):
     name = "User Agent"
     type = "indicator"
-    pattern = "[ network-traffic:extensions.'http-requestext'.request_header.'User-Agent' = '{extracted_observable_text}' ]"
+    pattern = "[ user-agent:string = '{extracted_observable_text}' ]"
 
     # User agent
     platforms = r"([a-zA-Z]+)"

@@ -239,7 +239,7 @@ def get_sco_objects(sdo_object, defanged=False):
             ]
 
         if sdo_object.name.startswith("User Agent"):
-            regex = r"network-traffic:extensions.'http-requestext'.request_header.'User-Agent' = '(.*)'"
+            regex = r"user-agent:string = '(.*)'"
             name = extract_name_from_regex(regex, sdo_object.pattern)
 
             # extract each component of user_agent
