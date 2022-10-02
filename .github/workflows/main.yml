@@ -22,6 +22,9 @@ jobs:
           python-version: ${{ matrix.python-version }}
       - name: Install dependencies
         run: |
+          ls -la
+          ls -la file2stix
+          ls -la file2stix/stix2-objects
           python -m pip install --upgrade pip
           pip install pytest
           pip install .
