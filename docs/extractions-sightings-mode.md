@@ -2,7 +2,7 @@
 
 Sightings mode assumes the reports being ingested contain observables seen in your organisation. Generally speaking, this mode should only be used if uploading a log line or similar that you want to convert to a STIX 2.1 Sighting Object.
 
-This mode will extract the same things as when Analysis mode is used ([see Analysis Mode](/extractions-analysis-mode.md)), however, will include the addition of STIX 2.1 Sighting SRO.
+This mode will extract the same things as when Sightings mode is used ([see Sightings Mode](/extractions-analysis-mode.md)), however, will include the addition of STIX 2.1 Sighting SRO.
 
 #### STIX 2.1 Sighting SRO
 
