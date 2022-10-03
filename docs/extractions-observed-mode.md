@@ -17,8 +17,8 @@ For every extraction type where an SCO is created (ipv4, ipv6, File name, File h
     "created": "<REPORT CREATED PROPERTY VALUE>",
     "modified": "<REPORT MODIFIED PROPERTY VALUE>",
     "first_observed": "<FIRST REPORT CREATED PROPERTY VALUE>",
-    "last_observed": "<LAST REPORT CREATED PROPERTY VALUE>",
-    "number_observed": "<COUNT OF TIMES SCO WITH SAME TLPHAS BEEN SEEN PREVIOUSLY BY FILE2STIX>",
+    "last_observed": "<FIRST REPORT CREATED PROPERTY VALUE>",
+    "number_observed": "<COUNT OF TIMES SCO APPEARS IN CURRENT REPORT>",
     "object_refs": [
       "<ID OF SCO SEEN>"
     ],
@@ -35,12 +35,5 @@ For every extraction type where an SCO is created (ipv4, ipv6, File name, File h
 }
 ```
 
-The `number_observed` property is set to 1 on creation.
-
-Everytime file2stix reuses an SCO in a bundle, the related Observed data objects `number_observed` property is increased by one.
-
-For example, if the same SCO is seen in 5 reports all marked TLP White (and all all properties are identical), then this will represent 1 SCO, thus one Observed Data SCO, and therefore `number_observed` will be 5 for the 5 reports. If it is seen again in a report marked TLP white, then the count will increase to 6.
-
-Using another example to illustrate the influence of TLP level; If 1 of these 5 reports in TLP Green and the rest are TLP White (with all other properties at upload the same), 2 SCOs and 2 Observed Data Objects will exist. The `number_observed` in the TLP White Observed data Object will be 4, and in the TLP Green Object the `number_observed` will be one (assuming these are the only 5 reports with this observable detected).
-
+The `number_observed` property counts the time an SCO is contained in a current report.
 One final example; If 2 reports are uploaded as TLP Red and attributed to two different identities both containing the same Observable (with all other properties at upload the same) then 2 SCOs will be created, 2 Observed Data Objects will be created. Assuming these are the only 2 reports that contain this observable, then the `number_observed` will be 1 in each Observed Data Object.
