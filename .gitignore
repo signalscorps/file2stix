@@ -135,9 +135,10 @@ venv
 # Ignore .vscode settings
 .vscode/
 
-# Ignore stix filestore and bundle
+# Ignore stix filestore, bundle and error logs
 stix2_objects/
 stix2_bundles/
+logs/
 
 # Ignore TODO file
 TODO.txt

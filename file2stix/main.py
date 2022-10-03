@@ -40,6 +40,7 @@ from file2stix.observables import (
     CVEObservable,
     SIGMARuleObservable,
 )
+from file2stix.error_handling import store_error_logs_in_file
 
 logger = logging.getLogger(__name__)
 
@@ -397,7 +398,10 @@ def main(config: Config):
             )
             relationship_sros.append(relationship_sro)
 
-            if config.extraction_mode == "observed" or config.extraction_mode == "sighting":
+            if (
+                config.extraction_mode == "observed"
+                or config.extraction_mode == "sighting"
+            ):
                 # Check if observed_data is already present
                 observed_data = stix_store.get_object_custom_query(
                     [
@@ -473,10 +477,12 @@ def main(config: Config):
 
     stix_store.store_objects_in_filestore(stix_observable_objects)
 
-    stix_bundle_file_path = stix_store.store_objects_in_bundle(
+    bundle_id, stix_bundle_file_path = stix_store.store_objects_in_bundle(
         stix_observable_objects, config.output_json_file_path
     )
     logger.info("Stored STIX report bundle at %s", stix_bundle_file_path)
+
+    store_error_logs_in_file(bundle_id)
 
     if config.backend:
         backends_func = {

@@ -6,6 +6,7 @@ import logging
 
 from file2stix.cache import Cache
 from file2stix.config import Config
+from file2stix.error_handling import error_logger
 from file2stix.observables import (
     CustomObservable,
     MITREEnterpriseAttackObservable,
@@ -16,18 +17,8 @@ from file2stix.observables import (
 import pattern2sco
 
 logger = logging.getLogger(__name__)
+# error_logger = logging.getLogger("ERROR_LOGGER")
 
-# Error logger
-# TODO: Move this somewhere else, probably in __init__.py
-error_logger = logging.getLogger("ERROR_LOGGER")
-error_logger.setLevel(logging.INFO)
-
-fh = logging.FileHandler("errors.txt")
-fh.setLevel(logging.INFO)
-formatter = logging.Formatter("[%(asctime)s] %(levelname)s: %(message)s")
-fh.setFormatter(formatter)
-
-error_logger.addHandler(fh)
 
 class ExtractStixObservables:
     """
@@ -38,6 +29,7 @@ class ExtractStixObservables:
     def __init__(self, observable_cls, text, cache: Cache, config: Config):
         self.index = 0
         self.extracted_observables = []
+        self.config = config
 
         # Handling special observables like MITRE ATT&CK and CAPEC
         if (
@@ -82,13 +74,29 @@ class ExtractStixObservables:
             try:
                 sdo_object = extracted_observable.get_sdo_object()
             except Exception as error:
-                error_logger.error("Failed for observable %s", extracted_observable.__class__.__name__)
-                error_logger.error("Extracted observable text: %s", extracted_observable.extracted_observable_text)
-                error_logger.exception(error)
-            else:    
-                sco_objects = pattern2sco.get_sco_objects(sdo_object, extracted_observable.defanged)
-                return {
-                    "stix_observable": sdo_object,
-                    "sco_objects": sco_objects
-                }
+                if self.config.fail_on_errors == False:
+                    error_logger.error(
+                        "Creation of stix2 observable object failed for %s",
+                        extracted_observable.__class__.__name__,
+                    )
+                    error_logger.error(
+                        "Extracted observable text: %s",
+                        extracted_observable.extracted_observable_text,
+                    )
+                    error_logger.exception(error)
+                else:
+                    logger.error(
+                        "Creation of stix2 observable object failed for %s",
+                        extracted_observable.__class__.__name__,
+                    )
+                    logger.error(
+                        "Extracted observable text: %s",
+                        extracted_observable.extracted_observable_text,
+                    )
+                    raise error
+            else:
+                sco_objects = pattern2sco.get_sco_objects(
+                    sdo_object, extracted_observable.defanged
+                )
+                return {"stix_observable": sdo_object, "sco_objects": sco_objects}
         raise StopIteration

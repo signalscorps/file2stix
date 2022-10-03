@@ -139,6 +139,13 @@ def cli():
         help="Do not extract observables in a report the match to a warning list",
     )
 
+    arg_parser.add_argument(
+        "--fail-on-errors",
+        action="store_true",
+        default=Config.fail_on_errors,
+        help="Forcefully fail on errors encoutered during extracting observables",
+    )
+
     args = arg_parser.parse_args()
 
     input_file_path = (
@@ -222,6 +229,7 @@ def cli():
         backend=args.backend,
         confidence=confidence,
         ignore_warninglist_observables=args.ignore_warninglist_observables,
+        fail_on_errors=args.fail_on_errors
         # branding_external_ref=branding_external_ref,
     )
 

@@ -124,4 +124,4 @@ class ObservablesStixStore:
         with open(stix_bundle_file, "w") as f:
             f.write(json.dumps(bundle_of_all_objects, cls=STIXJSONEncoder, indent=4))
 
-        return stix_bundle_file
+        return bundle_of_all_objects.id, stix_bundle_file

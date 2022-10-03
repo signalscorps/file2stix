@@ -43,6 +43,7 @@ class Config:
     cve_extension_definition = STIX2_OBJECTS_STORE.get_object("NVD CVEs")
 
     # Miscellaneous options
+    fail_on_errors: bool = False
     branding_external_ref = ExternalReference(
         source_name="file2stix",
         description="This object was created using file2stix from the Signals Corps.",
