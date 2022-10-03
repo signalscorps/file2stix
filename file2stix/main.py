@@ -397,7 +397,7 @@ def main(config: Config):
             )
             relationship_sros.append(relationship_sro)
 
-            if config.extraction_mode == "observed":
+            if config.extraction_mode == "observed" or config.extraction_mode == "sighting":
                 # Check if observed_data is already present
                 observed_data = stix_store.get_object_custom_query(
                     [
