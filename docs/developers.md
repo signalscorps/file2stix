@@ -493,6 +493,22 @@ file2stix --input-file tests/warning_lists/custom_list_matches.txt --misp-custom
 
 ## Testing script modes
 
+### Analysis Mode
+
+```shell
+file2stix --input-file tests/observable_tests/ipv4.txt --extraction-mode analysis
+```
+
+_Should be the same output as `file2stix --input-file tests/observable_tests/ipv4.txt`_
+
+### Observed Mode
+
+### Analysis Mode
+
+```shell
+file2stix --input-file tests/observable_tests/ipv4.txt --extraction-mode observed
+```
+
 ### Sighting Mode
 
 Single extraction (sighting)
@@ -507,13 +523,9 @@ Multiple extractions (sightings)
 file2stix --input-file tests/observable_tests/ipv4.txt --extraction-mode sighting
 ```
 
-### Analysis Mode
 
-```shell
-file2stix --input-file tests/observable_tests/ipv4.txt --extraction-mode analysis
-```
 
-_Should be the same output as `file2stix --input-file tests/observable_tests/ipv4.txt`_
+
 
 
 ---
@@ -797,6 +809,13 @@ file2stix --input-file tests/extraction_tests/test_a.txt --confidence 100 --user
 
 * New indicator SDO
 * New ipv4 SCO
+
+```shell
+file2stix --input-file tests/extraction_tests/test_b.txt --confidence 100 --user-identity-file tests/stix_templates/custom_identity_good.yml --tlp-level GREEN --no-branding --defang-observables --misp-custom-warning-list-file tests/warning_lists/custom_list.json
+```
+
+* Same indicator SDO (1.6)
+* Same ipv4 SCO (1.6)
 
 #### 1.7
 

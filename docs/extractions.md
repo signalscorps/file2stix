@@ -46,20 +46,7 @@ file2stix can be used to defang the following observable types
 * url
 * email-address
 
-If an extraction has been defanged the SCO Object will contain the property `"defanged": true`, for example;
-
-```json
-{
-    "type": "ipv4-addr",
-    "spec_version": "2.1",
-    "id": "ipv4-addr--8e594bf5-81f2-5460-9e43-62e6a06794e0",
-    "value": "1.1.1.1/24",
-    "object_marking_refs": [
-        "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
-    ],
-    "defanged": true
-}
-```
+All SCO Objects extracted will contain the property `"defanged": true`, regardless as weterh defanged is set (as they would not extract if still fanged).
 
 ## STIX Support
 
