@@ -6,6 +6,7 @@ import io
 import os
 import logging
 import shutil
+import time
 
 logger = logging.getLogger(__name__)
 
@@ -27,14 +28,16 @@ sh.setFormatter(formatter)
 error_logger.addHandler(sh)
 
 
-def store_error_logs_in_file(bundle_id):
+def store_error_logs_in_file(log_file_name=time.strftime("%d-%m-%Y-%H:%M:%S")):
     # Store error logs, if any
     if ERROR_STREAM.getvalue():
-        log_file_path = os.path.join(STIX2_LOGS_FOLDER, f"{bundle_id}.txt")
+        log_file_path = os.path.join(STIX2_LOGS_FOLDER, f"{log_file_name}.txt")
+
+        with open(log_file_path, "w") as fd:
+            ERROR_STREAM.seek(0)
+            shutil.copyfileobj(ERROR_STREAM, fd)
+
         logger.warning(
             "The script ran into some errors during this run, please check the log file at %s",
             log_file_path,
         )
-        with open(log_file_path, "w") as fd:
-            ERROR_STREAM.seek(0)
-            shutil.copyfileobj(ERROR_STREAM, fd)

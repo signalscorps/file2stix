@@ -326,6 +326,7 @@ def main(config: Config):
         and not observables_list.custom_stix_observables
     ):
         logger.warning("No Observables extracted. Hence, not creating STIX report")
+        store_error_logs_in_file(report.created.strftime("%d-%m-%Y-%H:%M:%S"))
         return
 
     # Create Relationship SROs
@@ -482,7 +483,7 @@ def main(config: Config):
     )
     logger.info("Stored STIX report bundle at %s", stix_bundle_file_path)
 
-    store_error_logs_in_file(bundle_id)
+    store_error_logs_in_file(report.created.strftime("%d-%m-%Y-%H:%M:%S"))
 
     if config.backend:
         backends_func = {
