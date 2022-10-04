@@ -42,8 +42,7 @@ for test in testdata[:]:
 @pytest.mark.parametrize("test_file_path", testdata, ids=testdata)
 def test_file2stix_cli(test_file_path, update_expected_reports):
     """
-    Run file2stix-cli tool for example program and compare the
-    generated report with the expected report.
+    Run file2stix-cli tool for observable unit tests.
     """
 
     test_file_name = os.path.basename(test_file_path)
