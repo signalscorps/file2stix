@@ -49,6 +49,12 @@ class Backends(Enum):
     ARANGO = "arangodb"
 
 
+class ScoObjectContainer:
+    def __init__(self, sco_objects):
+        self.sco_objects = sco_objects
+        self.observed_count = 1
+
+
 class ObservableList:
     def __init__(self):
         # General set of stix observables
@@ -242,7 +248,12 @@ def main(config: Config):
             # Add respective SCO objects if present
             if observable != CPEObservable:
                 sco_objects = stix_observable_objects["sco_objects"]
-                observables_list.sco_observables[observable_id] = sco_objects
+                if observable_id in observables_list.sco_observables:
+                    observables_list.sco_observables[observable_id].observed_count += 1
+                else:
+                    observables_list.sco_observables[
+                        observable_id
+                    ] = ScoObjectContainer(sco_objects)
 
             # Add respective extension definitions if present
             for sco_object in stix_observable_objects["sco_objects"]:
@@ -377,7 +388,12 @@ def main(config: Config):
     sco_object_ids_seen_so_far = set()
     sco_objects_seen_so_far = []
 
-    for stix_observable_id, sco_objects in observables_list.sco_observables.items():
+    for (
+        stix_observable_id,
+        sco_object_container,
+    ) in observables_list.sco_observables.items():
+
+        sco_objects = sco_object_container.sco_objects
         temp_observed_datas = []
         for sco_object in sco_objects:
 
@@ -402,33 +418,17 @@ def main(config: Config):
                 config.extraction_mode == "observed"
                 or config.extraction_mode == "sighting"
             ):
-                # Check if observed_data is already present
-                observed_data = stix_store.get_object_custom_query(
-                    [
-                        Filter("type", "=", "observed-data"),
-                        Filter("object_refs", "contains", sco_object.id),
-                        Filter("object_marking_refs", "=", config.tlp_level.id),
-                    ]
+                observed_data = ObservedData(
+                    created=report.created,
+                    modified=report.modified,
+                    created_by_ref=config.identity,
+                    first_observed=report.created,
+                    last_observed=report.created,
+                    number_observed=sco_object_container.observed_count,
+                    object_refs=[sco_object],
+                    object_marking_refs=config.tlp_level,
+                    external_references=config.branding_external_ref,
                 )
-
-                if observed_data != None:
-                    observed_data = observed_data.new_version(
-                        modified=report.modified,
-                        last_observed=report.modified,
-                        number_observed=observed_data.number_observed + 1,
-                    )
-                else:
-                    observed_data = ObservedData(
-                        created=report.created,
-                        modified=report.modified,
-                        created_by_ref=config.identity,
-                        first_observed=report.created,
-                        last_observed=report.created,
-                        number_observed=1,
-                        object_refs=[sco_object],
-                        object_marking_refs=config.tlp_level,
-                        external_references=config.branding_external_ref,
-                    )
                 temp_observed_datas.append(observed_data)
 
         observed_datas += temp_observed_datas

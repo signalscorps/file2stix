@@ -161,8 +161,11 @@ def get_text_from_html(input_file_path):
     with open(input_file_path, "r") as f:
         soup = BeautifulSoup(f, "html.parser")
 
-    text_list = soup.find_all(text=True)
-    return "".join(text_list)
+    for data in soup(["style", "script"]):
+        # Remove style and script tags
+        data.decompose()
+
+    return " ".join(soup.stripped_strings)
 
 
 def get_text_from_json(input_file_path):
@@ -184,7 +187,7 @@ def get_text_from_markdown(input_file_path):
 def get_text_from_yaml(input_file_path):
     with open(input_file_path) as f:
         data = yaml.safe_load(f)
-    
+
     keys = []
     for key, value in recursive_items(data):
         keys.append(key)
@@ -207,6 +210,7 @@ def update_stix_object(stix_object, **kwargs):
     stix_definition = type(stix_object)
     updated_stix_object = stix_definition(**stix_object_properties)
     return updated_stix_object
+
 
 def combine_list(lists):
     result = []
