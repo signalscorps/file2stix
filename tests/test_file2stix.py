@@ -16,13 +16,13 @@ import os
 import file2stix.main
 from file2stix.config import Config
 from file2stix.observables import (
-    MITREEnterpriseAttackObservable, 
-    MITRECapecObservable, 
-    MITREICSAttackObservable, 
-    MITREMobileAttackObservable
+    MITREEnterpriseAttackObservable,
+    MITRECapecObservable,
+    MITREICSAttackObservable,
+    MITREMobileAttackObservable,
 )
 
-slow_tests = []
+exclude_tests = ["credit_card_discover.txt"]
 
 # It's a tuple containing test program path and the corresponding expected reports
 testdata = []
@@ -34,9 +34,10 @@ for (_, _, filenames) in os.walk(OBSERVABLE_TEST_FOLDER):
 
 
 for test in testdata[:]:
-    for slow_test in slow_tests:
+    for slow_test in exclude_tests:
         if slow_test in test:
             testdata.remove(test)
+
 
 @pytest.mark.parametrize("test_file_path", testdata, ids=testdata)
 def test_file2stix_cli(test_file_path, update_expected_reports):
@@ -44,7 +45,6 @@ def test_file2stix_cli(test_file_path, update_expected_reports):
     Run file2stix-cli tool for example program and compare the
     generated report with the expected report.
     """
-    print(update_expected_reports)
 
     test_file_name = os.path.basename(test_file_path)
     expected_report_path = "tests/expected_reports/" + test_file_name + ".json"
@@ -52,9 +52,9 @@ def test_file2stix_cli(test_file_path, update_expected_reports):
     update_mitre_cti_database = False
     defang_observables = False
     ignore_observables_list = [
-        MITREEnterpriseAttackObservable, 
-        MITRECapecObservable, 
-        MITREICSAttackObservable, 
+        MITREEnterpriseAttackObservable,
+        MITRECapecObservable,
+        MITREICSAttackObservable,
         MITREMobileAttackObservable,
     ]
 
@@ -89,34 +89,18 @@ def test_file2stix_cli(test_file_path, update_expected_reports):
         for sdo_object, expected_sdo_object in zip(
             report["objects"], expected_report["objects"]
         ):
-            if "type" in expected_sdo_object:
-                assert sdo_object["type"] == expected_sdo_object["type"]
+            ignore_fields_list = [
+                "id",
+                "created",
+                "modified",
+                "object_refs",
+                "source_ref",
+                "target_ref",
+                "published",
+            ]
 
-            if "spec_version" in expected_sdo_object:
-                assert sdo_object["spec_version"] == expected_sdo_object["spec_version"]
-
-            if "name" in expected_sdo_object:
-                assert sdo_object["name"] == expected_sdo_object["name"]
-
-            if "indicator_types" in expected_sdo_object:
-                assert (
-                    len(sdo_object["indicator_types"])
-                    == len(expected_sdo_object["indicator_types"])
-                    == 1
-                )
-                assert (
-                    sdo_object["indicator_types"][0]
-                    == expected_sdo_object["indicator_types"][0]
-                )
-
-            if "pattern" in expected_sdo_object:
-                assert sdo_object["pattern"] == expected_sdo_object["pattern"]
-
-            if "pattern_type" in expected_sdo_object:
-                assert sdo_object["pattern_type"] == expected_sdo_object["pattern_type"]
-
-            if "pattern_version" in expected_sdo_object:
-                assert (
-                    sdo_object["pattern_version"]
-                    == expected_sdo_object["pattern_version"]
-                )
+            for field in expected_sdo_object:
+                if field not in ignore_fields_list:
+                    assert (
+                        sdo_object[field] == expected_sdo_object[field]
+                    ), f"Field {field} is differening"
