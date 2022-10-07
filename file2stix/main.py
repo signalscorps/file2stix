@@ -246,14 +246,13 @@ def main(config: Config):
                 logger.debug("Extracted observable: %s", stix_observable_object.name)
 
             # Add respective SCO objects if present
-            if observable != CPEObservable:
-                sco_objects = stix_observable_objects["sco_objects"]
-                if observable_id in observables_list.sco_observables:
-                    observables_list.sco_observables[observable_id].observed_count += 1
-                else:
-                    observables_list.sco_observables[
-                        observable_id
-                    ] = ScoObjectContainer(sco_objects)
+            sco_objects = stix_observable_objects["sco_objects"]
+            if observable_id in observables_list.sco_observables:
+                observables_list.sco_observables[observable_id].observed_count += 1
+            else:
+                observables_list.sco_observables[
+                    observable_id
+                ] = ScoObjectContainer(sco_objects)
 
             # Add respective extension definitions if present
             for sco_object in stix_observable_objects["sco_objects"]:

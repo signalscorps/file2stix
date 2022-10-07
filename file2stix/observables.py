@@ -826,53 +826,9 @@ class YaraRuleObservable(Observable):
 
 class CPEObservable(Observable):
     name = "CPE"
-    type = "software"
+    type = "indicator"
+    pattern = "[ software:cpe = '{extracted_observable_text}' ]"
     extraction_regex = r"^(cpe:2\.3:[aho\*\-](:(((\?*|\*?)([a-zA-Z0-9\-\._]|(\\[\\\*\?!\"#$$%&'\(\)\+,/:;<=>@\[\]\^`\{\|}~]))+(\?*|\*?))|[\*\-])){5}(:(([a-zA-Z]{2,3}(-([a-zA-Z]{2}|[0-9]{3}))?)|[\*\-]))(:(((\?*|\*?)([a-zA-Z0-9\-\._]|(\\[\\\*\?!\"#$$%&'\(\)\+,/:;<=>@\[\]\^`\{\|}~]))+(\?*|\*?))|[\*\-])){4})$"
-
-    def get_sdo_object(self):
-        cpe_list = self.extracted_observable_text.split(":")
-        cpe_part = cpe_list[2]
-        cpe_vendor = cpe_list[3]
-        cpe_product = cpe_list[4]
-        cpe_version = cpe_list[5]
-        cpe_update = cpe_list[6]
-        cpe_edition = cpe_list[7]
-        cpe_language = cpe_list[8]
-        cpe_sw_edition = cpe_list[9]
-        cpe_target_sw = cpe_list[10]
-        cpe_target_hw = cpe_list[11]
-        cpe_other = cpe_list[12]
-
-        # Software object don't contain created_by_ref field
-        software = Software(
-            name=f"CPE: {cpe_vendor} {cpe_product} {cpe_version}",
-            cpe=self.extracted_observable_text,
-            version=cpe_version,
-            vendor=cpe_vendor,
-            object_marking_refs=self.tlp_level,
-            # created_by_ref=self.identity,
-            # confidence=self.confidence,
-            # external_references=self.branding_external_ref,
-            extensions={
-                "extension-definition--6c453e0f-9895-498f-a273-2e2dda473377": {
-                    "extension_type": "property-extension",
-                    "cpe23Uri": self.extracted_observable_text,
-                    "part": cpe_part,
-                    "vendor": cpe_vendor,
-                    "product": cpe_product,
-                    "version": cpe_version,
-                    "update": cpe_update,
-                    "edition": cpe_edition,
-                    "language": cpe_language,
-                    "sw_edition": cpe_sw_edition,
-                    "target_sw": cpe_target_sw,
-                    "target_hw": cpe_target_hw,
-                    "other": cpe_other,
-                }
-            },
-        )
-
-        return software
 
 
 class SIGMARuleObservable(Observable):
