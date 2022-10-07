@@ -167,7 +167,7 @@ For example;
 ```
 Note, the `deprecated` property in file2stix will always equal `false` because no embedded relationship properties are ever removed in an UPDATE.
 
-### Dealing with updates to extracted Objects
+### Dealing with updates to extracted Objects (SDOs)
 
 In the case of Reports marked TLP WHITE, updates can happen to extracted objects when they are seen for a second time. The only update that will happen to these Objects will be that their `modified` time property will increase. This makes dealing with updates fairly trivial.
 
@@ -214,3 +214,13 @@ UPDATE {
 ```
 
 As no other updates happen in file2stix (e.g. changes to old relationships) no other action is needed when such an update happens.
+
+### Dealing with updates to extracted Objects (SCOs)
+
+Due to the way SCOs are handled (optional properties are not considered) then SCOs always retain the same `id` assuming the `value` field is the same.
+
+https://docs.oasis-open.org/cti/stix/v2.1/os/stix-v2.1-os.html#_q6l05xzpcdf
+
+This means SCOs are overwritten, and not versioned in arangodb the same way.
+
+There will be multiple revisions of the object (with different values for `_rev` for each overwrite). The revision (`_rev`) attribute is just there as a marker so you can know when a field was updated. You can't change it directly, but every time you UPDATE a document in a collection, the `_rev` value is updated. You will need to use this to see version history of SCOs.
