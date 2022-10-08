@@ -440,6 +440,10 @@ file2stix --input-file setup.py
 file2stix --input-file tests/file_inputs/fanged_data/fanged_data.txt --defang-observables
 ```
 
+```shell
+file2stix --input-file tests/file_inputs/fanged_data/fanged_data.txt
+```
+
 ---
 
 ## Testing Warning Lists
@@ -502,8 +506,6 @@ file2stix --input-file tests/observable_tests/ipv4.txt --extraction-mode analysi
 _Should be the same output as `file2stix --input-file tests/observable_tests/ipv4.txt`_
 
 ### Observed Mode
-
-### Analysis Mode
 
 ```shell
 file2stix --input-file tests/observable_tests/ipv4.txt --extraction-mode observed

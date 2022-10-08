@@ -102,6 +102,14 @@ git submodule init
 git submodule update
 ```
 
+Mac users;
+
+On Mac you will need to install `antiword` to use `.doc` files. Install using
+
+```shell
+brew install antiword
+```
+
 ## Run
 
 To run file2stix;
@@ -115,10 +123,10 @@ file2stix --input-file PATH/TO/FILE --custom-extraction-file PATH/TO/FILE --upda
 * `--update-mitre-cti-database` (optional, no default): updates the local cache with latest MITRE CTI dataset. To make use of MITRE ATT&CK and MITRE CAPEC extractions you should run this on the first install, and run it again when any updates when ATT&CK or CAPEC versions are updated.
 * `--cache-folder` (optional, default `file2stix-cache`): cache folder path where MITRE ATT&K, CAPEC and MISP warning list will be stored. By default MITRE dataset is stored in "file2stix-cache" folder. You can specify a different folder for this using the `--cache-folder` option
 * `--tlp-level` (optional, default `WHITE`): the TLP level of report and extracted object. Either `WHITE` or `AMBER`. IMPORTANT, the TLP level defined has an impact on how the objects are stored. Read `docs/conversions.md` for more info.
-* `--user-identity-file` (optional, default `stix_templates/identity.yml`): path to user identity config file (in yml format) to assign to objects extracted. Note, the TLP level also has an impact on how identity is assigned.
+* `--user-identity-file` (optional, default Signals Corps): path to user identity config file (in yml format) to assign to objects extracted. Note, the TLP level also has an impact on how identity is assigned.
 * `--ignore-observable-prefix` (optional, default none): you pass a list of obeservable types to ignore (e.g. `ipv4,ipv6`). The field matches on value passed against class names in `file2stix/observables.py`, so you can pass many options to this parameter. e.g. you can pass a  "i", " ip", "ipv", "ipv4", "ipv4o", ..., "ipv4observable" (note that these are case insensitive) as parameter. By passing a very short prefix like "ip", this could ignore several observables (in this case, both ipv4 and ipv6 observables). You should check `file2stix/observables.py` for a full list of class names (e.g `class IPv4Observable`).
 * `--misp-custom-warning-list-file` (optional, default none): a custom Warning List used to whitelist indicators. Must be in the same format as MISP Warning Lists. An example can be seen here `tests/custom_warning_lists/list.json`. Only available for Reports marked `TLP GREEN`, `TLP AMBER`, or `TLP RED`
-* `--defang-observables` (optional, default false): If any 'fanged' Observables are detected, these will be defanged before extraction to ensure they are detected correctly as Observables (e.g. `1[.]1[.]1[.]1` defanged becomes `1.1.1.1`)
+* `--defang-observables` (optional, default not used): If any 'fanged' Observables are detected, these will be defanged before extraction to ensure they are detected correctly as Observables (e.g. `1[.]1[.]1[.]1` defanged becomes `1.1.1.1`) when this flag is used
 * `--backend` (optional, default none): Defines whether output should be stored to a supported backend (in addition to file store). Should be path to backend config file, e.g. `tests/backends/arangodb.yml`
 * `--no-branding` (optional, default true): file2stix prints an `external_references` in each object it creates. By setting this to false, this reference will be removed.
 * `--confidence` (optional, default none): you can assign a static confidence score to all Indicator SDOs extracted from a report. This value must be within the range >= 0 <= 100.

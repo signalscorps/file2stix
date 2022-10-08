@@ -36,4 +36,5 @@ For every extraction type where an SCO is created (ipv4, ipv6, File name, File h
 ```
 
 The `number_observed` property counts the time an SCO is contained in a current report.
+
 One final example; If 2 reports are uploaded as TLP Red and attributed to two different identities both containing the same Observable (with all other properties at upload the same) then 2 SCOs will be created, 2 Observed Data Objects will be created. Assuming these are the only 2 reports that contain this observable, then the `number_observed` will be 1 in each Observed Data Object.

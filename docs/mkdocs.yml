@@ -1,8 +1,0 @@
-site_name: file2stix Docs
-#site_url:
-markdown_extensions:
-  - admonition
-theme:
-  name: 'readthedocs'
-nav:
-- Index: index.md

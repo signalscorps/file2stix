@@ -4,11 +4,13 @@ Analysis mode creates generic STIX 2.1 representing threat intel.
 
 It is recommended this mode is used when inputting generic threat intel into file2stix (rather than organisational specific observed intelligence).
 
-## Domain (SDOs) and Cyber Observable (SCOs) Object Extractions
+## SCO creation logic
 
 Note, SCOs are created from Patterns in SDOs. e.g. `[ipv4-addr:value='1.1.1.1']` become an SCO of `"type": "ipv4-addr` with a `"value": "1.1.1.1"`
 
-### 1.1 IPv4 Address Observables without port (`indicator`)
+This is done by pattern2sco: https://github.com/signalscorps/pattern2sco
+
+## 1.1 IPv4 Address Observables without port (`indicator`)
 
 * e.g. `198.51.100.3`
 * e.g. `198.51.100.0/24` (with CIDR)
@@ -19,7 +21,7 @@ IPv4 Address Observables are represented by [STIX Indicator SDOs (`"type": "indi
 
 Here is how ipv4 observables are represented in STIX 2.1 by file2stix;
 
-#### STIX 2.1 indicator SDO
+### STIX 2.1 indicator SDO
 
 ```json
   {
@@ -59,7 +61,7 @@ Here is how ipv4 observables are represented in STIX 2.1 by file2stix;
   }
 ```
 
-#### STIX 2.1 ipv4-addr SCO
+### STIX 2.1 ipv4-addr SCO
 
 ```json
 {
@@ -78,13 +80,13 @@ Here is how ipv4 observables are represented in STIX 2.1 by file2stix;
 }
 ```
 
-### 1.2 IPv4 Address Observables with port (`indicator`)
+## 1.2 IPv4 Address Observables with port (`indicator`)
 
 * e.g. `198.51.100.0:80` (with port)
 
 Note for ipv4 and port observables, the representation is slightly different. When an IPv4 and port is detected (e.g. `1.1.1.1:80`) and Indicator SDO with the following structure is created:
 
-#### STIX 2.1 indicator SDO
+### STIX 2.1 indicator SDO
 
 ```json
   {
@@ -124,7 +126,7 @@ Note for ipv4 and port observables, the representation is slightly different. Wh
   }
 ```
 
-#### STIX 2.1 ipv4-addr and network-traffic SCO
+### STIX 2.1 ipv4-addr and network-traffic SCO
 
 ```json
 {
@@ -160,7 +162,7 @@ Note for ipv4 and port observables, the representation is slightly different. Wh
 }
 ```
 
-### 2.1 IPv6 Observables without port (`indicator`)
+## 2.1 IPv6 Observables without port (`indicator`)
 
 * e.g. `2001:0db8:85a3:0000:0000:8a2e:0370:7334`
 * e.g. `2002::abcd:ffff:c0a8:101/64`
@@ -171,7 +173,7 @@ IPv6 Observables are represented by [STIX Indicator SDOs (`"type": "indicator"`)
 
 Here is how ipv6 observables are represented in STIX 2.1 by file2stix;
 
-#### STIX 2.1 indicator SDO
+### STIX 2.1 indicator SDO
 
 ```json
   {
@@ -211,7 +213,7 @@ Here is how ipv6 observables are represented in STIX 2.1 by file2stix;
   }
 ```
 
-#### STIX 2.1 ipv6-addr SCO
+### STIX 2.1 ipv6-addr SCO
 
 ```json
 {
@@ -230,13 +232,13 @@ Here is how ipv6 observables are represented in STIX 2.1 by file2stix;
 }
 ```
 
-### 2.2 IPv6 Observables with port (`indicator`)
+## 2.2 IPv6 Observables with port (`indicator`)
 
 * e.g. `[2001:0db8:85a3:0000:0000:8a2e:0370:7334]:80`
 
 Note for ipv6 and port observables, the representation is slightly different. When an IPv6 and port is detected (e.g. `[2001:0db8:85a3:0000:0000:8a2e:0370:7334]:80`) and Indicator SDO with the following structure is created:
 
-#### STIX 2.1 indicator SDO
+### STIX 2.1 indicator SDO
 
 ```json
   {
@@ -276,7 +278,7 @@ Note for ipv6 and port observables, the representation is slightly different. Wh
   }
 ```
 
-#### STIX 2.1 ipv6-addr and network-traffic SCO
+### STIX 2.1 ipv6-addr and network-traffic SCO
 
 ```json
 {
@@ -312,7 +314,7 @@ Note for ipv6 and port observables, the representation is slightly different. Wh
 }
 ```
 
-### 3. Domain Name Observables (`indicator`)
+## 3. Domain Name Observables (`indicator`)
 
 * e.g. domain `example.com`
 * e.g. sub domain `test.example.com`
@@ -323,7 +325,7 @@ Domain Name Observables are represented by [STIX Indicator SDOs (`"type": "indic
 
 Here is how domain name observables are represented in STIX 2.1 by file2stix;
 
-#### STIX 2.1 indicator SDO
+### STIX 2.1 indicator SDO
 
 ```json
   {
@@ -363,7 +365,7 @@ Here is how domain name observables are represented in STIX 2.1 by file2stix;
   }
 ```
 
-#### STIX 2.1 domain-name SCO
+### STIX 2.1 domain-name SCO
 
 ```json
 {
@@ -382,7 +384,7 @@ Here is how domain name observables are represented in STIX 2.1 by file2stix;
 }
 ```
 
-### 4. URL Observables (`indicator`)
+## 4. URL Observables (`indicator`)
 
 * e.g. Full path `https://example.com/research/index.html`
 * e.g. Partial path `https://example.com/research/`
@@ -393,7 +395,7 @@ URL Observables are represented by [STIX Indicator SDOs (`"type": "indicator"`)]
 
 Here is how URL observables are represented in STIX 2.1 by file2stix;
 
-#### STIX 2.1 indicator SDO
+### STIX 2.1 indicator SDO
 
 ```json
   {
@@ -433,7 +435,7 @@ Here is how URL observables are represented in STIX 2.1 by file2stix;
   }
 ```
 
-#### STIX 2.1 url SCO
+### STIX 2.1 url SCO
 
 ```json
 {  
@@ -452,7 +454,7 @@ Here is how URL observables are represented in STIX 2.1 by file2stix;
 }
 ```
 
-### 5. File Name Observables (`indicator`)
+## 5. File Name Observables (`indicator`)
 
 e.g. `badfile.exe`
 
@@ -462,7 +464,7 @@ File Name Observables are represented by [STIX Indicator SDOs (`"type": "indicat
 
 Here is how file names are represented in STIX 2.1 by file2stix;
 
-#### STIX 2.1 indicator SDO
+### STIX 2.1 indicator SDO
 
 ```json
   {
@@ -502,7 +504,7 @@ Here is how file names are represented in STIX 2.1 by file2stix;
   }
 ```
 
-#### STIX 2.1 file SCO
+### STIX 2.1 file SCO
 
 ```json
 {
@@ -521,7 +523,7 @@ Here is how file names are represented in STIX 2.1 by file2stix;
 }
 ```
 
-### 6. Directory Path Observables (`indicator`)
+## 6. Directory Path Observables (`indicator`)
 
 * e.g. Windows Path `C:\Windows\System32`
 * e.g. UNIX Path `/System/Library/LaunchDaemons`
@@ -532,7 +534,7 @@ Directory Path Observables are represented by [STIX Indicator SDOs (`"type": "in
 
 Here is how directory observables are represented in STIX 2.1 by file2stix;
 
-#### STIX 2.1 indicator SDO
+### STIX 2.1 indicator SDO
 
 ```json
   {
@@ -572,7 +574,7 @@ Here is how directory observables are represented in STIX 2.1 by file2stix;
   }
 ```
 
-#### STIX 2.1 directory SCO
+### STIX 2.1 directory SCO
 
 ```json
 {
@@ -590,7 +592,7 @@ Here is how directory observables are represented in STIX 2.1 by file2stix;
 }
 ```
 
-### 7. File Hashes (`indicator`)
+## 7. File Hashes (`indicator`)
 
 * e.g. md5 `79054025255fb1a26e4bc422aef54eb4`
 * e.g. sha1 ``86F7E437FAA5A7FCE15D1DDCB9EAEAEA377667B8`
@@ -604,7 +606,7 @@ These are represented by [STIX Indicator SDOs (`"type": "indicator"`)](https://d
 
 Here is how file hashes are represented in STIX 2.1 by file2stix (note, `<FILE HASH TYPE>` = either `md5`, `sha1`, `sha256`, `ssdeep`);
 
-#### STIX 2.1 indicator SDO
+### STIX 2.1 indicator SDO
 
 ```json
   {
@@ -644,7 +646,7 @@ Here is how file hashes are represented in STIX 2.1 by file2stix (note, `<FILE H
   }
 ```
 
-#### STIX 2.1 file SCO
+### STIX 2.1 file SCO
 
 ```json
 {
@@ -664,7 +666,7 @@ Here is how file hashes are represented in STIX 2.1 by file2stix (note, `<FILE H
 }
 ```
 
-### 8. Email Address Observables (`indicator`)
+## 8. Email Address Observables (`indicator`)
 
 * e.g. Full email address `example@example.com`
 
@@ -674,7 +676,7 @@ Email Address Observables are represented by [STIX Indicator SDOs (`"type": "ind
 
 Here is how email address observables are represented in STIX 2.1 by file2stix;
 
-#### STIX 2.1 indicator SDO
+### STIX 2.1 indicator SDO
 
 ```json
   {
@@ -714,7 +716,7 @@ Here is how email address observables are represented in STIX 2.1 by file2stix;
   }
 ```
 
-#### STIX 2.1 file SCO
+### STIX 2.1 file SCO
 
 ```json
 {
@@ -733,7 +735,7 @@ Here is how email address observables are represented in STIX 2.1 by file2stix;
 }
 ```
 
-### 9. MAC Address Observables (`indicator`)
+## 9. MAC Address Observables (`indicator`)
 
 * e.g. Full MAC address `d2:fb:49:24:37:18`
 
@@ -743,7 +745,7 @@ Full MAC addresses are represented by [STIX Indicator SDOs (`"type": "indicator"
 
 Here is how MAC Address observables are represented in STIX 2.1 by file2stix;
 
-#### STIX 2.1 indicator SDO
+### STIX 2.1 indicator SDO
 
 ```json
   {
@@ -783,7 +785,7 @@ Here is how MAC Address observables are represented in STIX 2.1 by file2stix;
   }
 ```
 
-#### STIX 2.1 mac-addr SCO
+### STIX 2.1 mac-addr SCO
 
 ```json
 {
@@ -801,7 +803,7 @@ Here is how MAC Address observables are represented in STIX 2.1 by file2stix;
 }
 ```
 
-### 10. Windows Registry Key Observables (`indicator`)
+## 10. Windows Registry Key Observables (`indicator`)
 
 * e.g. Full registry key path `HKEY_LOCAL_MACHINE\Software\Classes`
 
@@ -811,7 +813,7 @@ Windows Registry Keys are represented by [STIX Indicator SDOs (`"type": "indicat
 
 Here is how Windows Registry Key observables are represented in STIX 2.1 by file2stix;
 
-#### STIX 2.1 indicator SDO
+### STIX 2.1 indicator SDO
 
 ```json
   {
@@ -851,7 +853,7 @@ Here is how Windows Registry Key observables are represented in STIX 2.1 by file
   }
 ```
 
-#### STIX 2.1 windows-registry-key SCO
+### STIX 2.1 windows-registry-key SCO
 
 ```json
 {
@@ -869,7 +871,7 @@ Here is how Windows Registry Key observables are represented in STIX 2.1 by file
 }
 ```
 
-### 11. User Agent Observables (`indicator`)
+## 11. User Agent Observables (`indicator`)
 
 * e.g Full user agent `Mozilla/5.0 (Windows; U; Windows NT 5.1; en-US; rv:1.6) Gecko/20040113`)
 
@@ -879,13 +881,13 @@ User Agents are represented by [STIX Indicator SDOs (`"type": "indicator"`)](htt
 
 Here is how User Agent observables are represented in STIX 2.1 by file2stix;
 
-#### STIX 2.1 extension-definition
+### STIX 2.1 extension-definition
 
 As STIX 2.1 does not natively have an extension for user agents file2stix uses a custom SCO;
 
 https://raw.githubusercontent.com/signalscorps/stix2-objects/main/extension-definition/extension-definition--6cea4dc9-9517-44b8-b021-ae82e2f1de43/20220101000000000.json
 
-#### STIX 2.1 user-agent SCO
+### STIX 2.1 user-agent SCO
 
 ```json
 {
@@ -906,7 +908,7 @@ https://raw.githubusercontent.com/signalscorps/stix2-objects/main/extension-defi
 }
 ```
 
-#### STIX 2.1 indicator SDO
+### STIX 2.1 indicator SDO
 
 ```json
   {
@@ -946,7 +948,7 @@ https://raw.githubusercontent.com/signalscorps/stix2-objects/main/extension-defi
   }
 ```
 
-### 12. Autonomous System Number Observables (`indicator`)
+## 12. Autonomous System Number Observables (`indicator`)
 
 Including:
 
@@ -959,7 +961,7 @@ ASNs are represented by [STIX Indicator SDOs (`"type": "indicator"`)](https://do
 
 Here is how AS observables are represented in STIX 2.1 by file2stix;
 
-#### STIX 2.1 indicator SDO
+### STIX 2.1 indicator SDO
 
 ```json
   {
@@ -999,7 +1001,7 @@ Here is how AS observables are represented in STIX 2.1 by file2stix;
   }
 ```
 
-#### STIX 2.1 autonomous-system SCO
+### STIX 2.1 autonomous-system SCO
 
 ```json
 {
@@ -1017,7 +1019,7 @@ Here is how AS observables are represented in STIX 2.1 by file2stix;
 }
 ```
 
-### 13. Cryptocurrency Observables (`indicator`)
+## 13. Cryptocurrency Observables (`indicator`)
 
 Including:
 
@@ -1031,13 +1033,13 @@ Cryptocurrency Observables are represented by [STIX Indicator SDOs (`"type": "in
 
 Here is how cryptocurrency observables are represented in STIX 2.1 by file2stix;
 
-#### STIX 2.1 extension-definition
+### STIX 2.1 extension-definition
 
 As STIX 2.1 does not natively have an extension for cryptocurrency, file2stix uses a custom SCO;
 
 https://raw.githubusercontent.com/signalscorps/stix2-objects/main/extension-definition/extension-definition--532ae28d-137b-4b89-afb7-9cf9b504191b/20220101000000000.json
 
-#### STIX 2.1 cryptocurrency SCO
+### STIX 2.1 cryptocurrency SCO
 
 ```json
 {
@@ -1061,7 +1063,7 @@ https://raw.githubusercontent.com/signalscorps/stix2-objects/main/extension-defi
 }
 ```
 
-#### STIX 2.1 indicator SDO
+### STIX 2.1 indicator SDO
 
 ```json
   {
@@ -1101,7 +1103,7 @@ https://raw.githubusercontent.com/signalscorps/stix2-objects/main/extension-defi
   }
 ```
 
-### 14. CVE Observables (`vulnerability`)
+## 14. CVE Observables (`vulnerability`)
 
 * e.g. Full CVE IDs `CVE-2022-00001`
 
@@ -1111,13 +1113,13 @@ CVE Observables are represented by the [STIX Vulnerability SDOs (`"type": "vulne
 
 Here is how CVE observables are represented in STIX 2.1 by file2stix;
 
-#### STIX 2.1 extension-definition
+### STIX 2.1 extension-definition
 
 As STIX 2.1 does not natively have an extension for credit cards, file2stix uses a custom SCO;
 
 https://raw.githubusercontent.com/signalscorps/stix2-objects/main/extension-definition/extension-definition--b2b5f2cd-49e6-4091-a0e0-c0bb71543e23/20220101000000000.json
 
-#### STIX 2.1 vulnerability SDO
+### STIX 2.1 vulnerability SDO
 
 ```json
 {
@@ -1169,7 +1171,7 @@ https://raw.githubusercontent.com/signalscorps/stix2-objects/main/extension-defi
 }
 ```
 
-### 15. Country Observables (`location`)
+## 15. Country Observables (`location`)
 
 Including:
 
@@ -1182,7 +1184,7 @@ Countries are represented by the [STIX Location SDOs (`"type": "location"`)](htt
 
 Here is how Country observables are represented in STIX 2.1 by file2stix;
 
-#### STIX 2.1 location SDO
+### STIX 2.1 location SDO
 
 ```json
 {
@@ -1220,7 +1222,7 @@ Here is how Country observables are represented in STIX 2.1 by file2stix;
 
 Note, in the case of Country Name extractions, the country name needs to be converted to a two character ISO 3166-1 ALPHA-2 Code for the `country` property.
 
-### 16. Credit Card Observables (`indicator`)
+## 16. Credit Card Observables (`indicator`)
 
 * e.g. Mastercard `5555555555554444`
 * e.g. Visa `4242424242424242`
@@ -1236,13 +1238,13 @@ These are represented by [STIX Indicator SDOs (`"type": "indicator"`)](https://d
 
 Here is how credit card observables are represented in STIX 2.1 by file2stix;
 
-#### STIX 2.1 extension-definition
+### STIX 2.1 extension-definition
 
 As STIX 2.1 does not natively have an extension for credit cards, file2stix uses a custom SCO;
 
 https://raw.githubusercontent.com/signalscorps/stix2-objects/main/extension-definition/extension-definition--abd6fc0e-749e-4e6c-a20c-1faa419f5ee4/20220101000000000.json
 
-#### STIX 2.1 credit-card SCO
+### STIX 2.1 credit-card SCO
 
 ```json
 {
@@ -1266,7 +1268,7 @@ https://raw.githubusercontent.com/signalscorps/stix2-objects/main/extension-defi
 }
 ```
 
-#### STIX 2.1 indicator SDO
+### STIX 2.1 indicator SDO
 
 ```json
   {
@@ -1306,7 +1308,7 @@ https://raw.githubusercontent.com/signalscorps/stix2-objects/main/extension-defi
   }
 ```
 
-### 17. IBAN Observables (`indicator`)
+## 17. IBAN Observables (`indicator`)
 
 * e.g. German IBAN `DE29100500001061045672`
 * e.g. Great Britain IBAN `GB94BARC10201530093459`
@@ -1317,13 +1319,13 @@ IBANs are represented by [STIX Indicator SDOs (`"type": "indicator"`)](https://d
 
 Here is how IBAN number observables are represented in STIX 2.1 by file2stix;
 
-#### STIX 2.1 extension-definition
+### STIX 2.1 extension-definition
 
 As STIX 2.1 does not natively have an extension for IBANs, file2stix uses a custom SCO;
 
 https://raw.githubusercontent.com/signalscorps/stix2-objects/main/extension-definition/extension-definition--349c1029-4052-4635-a064-263cb17290ea/20220101000000000.json
 
-#### STIX 2.1 iban SCO
+### STIX 2.1 iban SCO
 
 ```json
 {
@@ -1350,7 +1352,7 @@ https://raw.githubusercontent.com/signalscorps/stix2-objects/main/extension-defi
 }
 ```
 
-#### STIX 2.1 indicator SDO
+### STIX 2.1 indicator SDO
 
 ```json
   {
@@ -1387,7 +1389,7 @@ https://raw.githubusercontent.com/signalscorps/stix2-objects/main/extension-defi
   }
 ```
 
-### 18. YARA Rule Observables (`indicator`)
+## 18. YARA Rule Observables (`indicator`)
 
 e.g. 
 
@@ -1405,7 +1407,7 @@ YARA Rules are represented by [STIX Indicator SDOs (`"type": "indicator"`)](http
 
 Here is how YARA Rule observables are represented in STIX 2.1 by file2stix;
 
-#### STIX 2.1 indicator SDO
+### STIX 2.1 indicator SDO
 
 ```json
   {
@@ -1453,7 +1455,7 @@ rule dummy\r\n{\r\n    condition:\r\n        false\r\n}
 
 The `<RULE NAME>` is defined between the text `rule ` and first `{` (e.g. `dummy` in the last example).
 
-### 19. SIGMA Rule Observables (`indicator`)
+## 19. SIGMA Rule Observables (`indicator`)
 
 e.g. 
 
@@ -1483,11 +1485,11 @@ SIGMA Rules are represented by [STIX Indicator SDOs (`"type": "indicator"`)](htt
 
 Here is how SIGMA Rule observables are represented in STIX 2.1 by file2stix;
 
-#### STIX 2.1 extension-definition
+### STIX 2.1 extension-definition
 
 https://raw.githubusercontent.com/signalscorps/stix2-objects/main/extension-definition/extension-definition--94f4bdb6-7f39-4d0a-b103-f787026963a6/20220101000000000.json
 
-#### STIX 2.1 indicator SDO
+### STIX 2.1 indicator SDO
 
 ```json
   {
@@ -1575,7 +1577,7 @@ title: Linux Reverse Shell Indicator\r\nid: 83dcd9f6-9ca8-4af7-a16e-a1c7a6b51871
 
 The `<RULE NAME>` is defined by the value in the `title: ` field of the YAML rule.
 
-### 20. CPE Observables (`software`)
+## 20. CPE Observables (`software`)
 
 * e.g. Full CPE URI `cpe:2.3:o:apple:mac_os_x:10.1.3:*:*:*:*:*:*:*`
 
@@ -1583,11 +1585,11 @@ CPEs can be identified as they start with `cpe:` and have 12 separators `:` in t
 
 CPEs are represented by [STIX Software SCOs (`"type": "software"`)](https://docs.oasis-open.org/cti/stix/v2.1/csprd01/stix-v2.1-csprd01.html#_Toc16070740)
 
-#### STIX 2.1 extension-definition
+### STIX 2.1 extension-definition
 
 https://raw.githubusercontent.com/signalscorps/stix2-objects/main/extension-definition/extension-definition--6c453e0f-9895-498f-a273-2e2dda473377/20220101000000000.json
 
-#### STIX 2.1 Indicator SDO
+### STIX 2.1 Indicator SDO
 
 ```json
   {
@@ -1627,7 +1629,7 @@ https://raw.githubusercontent.com/signalscorps/stix2-objects/main/extension-defi
   }
 ```
 
-#### STIX 2.1 software SCO
+### STIX 2.1 software SCO
 
 ```json
 {
@@ -1681,7 +1683,7 @@ cpe:2.3:<part>:<vendor>:<product>:
 <version>:<update>:<edition>:<language>:<sw_edition>:<target_sw:>:<target_hw>:<other>
 ```
 
-### 21. MITRE ATT&CK Observables
+## 21. MITRE ATT&CK Observables
 
 [I have created an extensive MITRE ATT&CK tutorial I recommend reading if you are new to the framework](/blog/2022/2022-04-18-mitre-attack-101-data-structure.md).
 
@@ -1722,7 +1724,7 @@ In the case of a dictionary match to a MITRE ATT&CK STIX Object, no new object i
 
 For example, if the uploaded text contained `1053.005` it would match to the ATT&CK Object [1053.005: Scheduled Task](https://github.com/mitre/cti/blob/master/enterprise-attack/attack-pattern/attack-pattern--005a06c6-14bf-4118-afa0-ebcd8aebb0c9.json) and an SRO would be created between the Report SDO and this Attack Pattern SDO.
 
-### 22. MITRE CAPEC Observables
+## 22. MITRE CAPEC Observables
 
 CAPECs are extracted in a very similar way to ATT&CK objects, using a dictionary.
 
@@ -1756,7 +1758,7 @@ In the case of a dictionary match to a MITRE CAPEC STIX Object, no new object is
 
 For example, if the uploaded text contained CAPEC-170 it would match to the CAPEC Object [CAPEC-170 Web Application Fingerprinting](https://github.com/mitre/cti/blob/master/capec/2.1/attack-pattern/attack-pattern--0cf857f6-afa4-4f0c-850f-58a4f11df157.json) and an SRO would be created between the Report SDO and this Attack Pattern SDO.
 
-### 23. Custom Extractions
+## 23. Custom Extractions
 
 You can also write your own custom extractions using either exact text matches or regular expressions.
 
