@@ -22,21 +22,23 @@ from file2stix.observables import (
     MITREMobileAttackObservable,
 )
 
-exclude_tests = ["credit_card_discover.txt"]
+# exclude_tests = ["credit_card_discover.txt"]
 
 # It's a tuple containing test program path and the corresponding expected reports
-testdata = []
+testdata = [
+    "tests/observable_tests/asn.txt"
+]
 
-OBSERVABLE_TEST_FOLDER = "tests/observable_tests/"
-for (_, _, filenames) in os.walk(OBSERVABLE_TEST_FOLDER):
-    for filename in filenames:
-        testdata.append(OBSERVABLE_TEST_FOLDER + filename)
+# OBSERVABLE_TEST_FOLDER = "tests/observable_tests/"
+# for (_, _, filenames) in os.walk(OBSERVABLE_TEST_FOLDER):
+#     for filename in filenames:
+#         testdata.append(OBSERVABLE_TEST_FOLDER + filename)
 
 
-for test in testdata[:]:
-    for slow_test in exclude_tests:
-        if slow_test in test:
-            testdata.remove(test)
+# for test in testdata[:]:
+#     for slow_test in exclude_tests:
+#         if slow_test in test:
+#             testdata.remove(test)
 
 
 @pytest.mark.parametrize("test_file_path", testdata, ids=testdata)
