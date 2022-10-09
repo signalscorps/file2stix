@@ -45,6 +45,8 @@ class Observable:
     common_strippable_elements = "\"'.,:"
     # This field can be set to true for only "word by word" pattern matches
     defangable = False
+    # This field can be set to true for only "full text" pattern matches
+    remove_extracted_string_from_text = False
 
     def __init__(self, extracted_observable_text, config, defanged=False):
         self.extracted_observable_text = extracted_observable_text
@@ -95,7 +97,13 @@ class Observable:
 
     @classmethod
     def extract_observables_from_text(cls, text: str, config: Config):
+        """
+        Extracts the required observables from text and returns the
+        extracted observables and modified text.
+        """
+        
         extracted_observables = []
+        modified_text = text
 
         # Defang the words if the class is not defangable
         if config.defang_observables and cls.defangable == False:
@@ -143,6 +151,10 @@ class Observable:
                 # Find regex in the entire text (including whitespace)
                 for match in re.finditer(cls.extraction_regex, text):
                     extracted_observables.append(cls(match.group(), config))
+                    
+                # Remove extracted observable string from text
+                if cls.remove_extracted_string_from_text:
+                    modified_text = re.sub(cls.extraction_regex, "", text)
 
         # If extraction_function is not None, then find matches that don't throw exception when
         # `pattern` function runs
@@ -184,7 +196,7 @@ class Observable:
                 "Both extraction_regex and extraction_function can't be None."
             )
 
-        return extracted_observables
+        return extracted_observables, modified_text
 
     def get_sdo_object(self):
         """
@@ -399,6 +411,19 @@ class IPv6WithPortObservable(Observable):
             raise ValueError("Observable type is not supported")
 
 
+class UserAgentObservable(Observable):
+    name = "User Agent"
+    type = "indicator"
+    remove_extracted_string_from_text = True
+    pattern = "[ user-agent:string = '{extracted_observable_text}' ]"
+
+    # User agent
+    platforms = r"([a-zA-Z]+)"
+    user_agent_details = r"\([\w;\s\,.:-]+\)"
+    user_agent = rf"((User-Agent: )|(user-agent: ))?Mozilla/5.0([ ](({user_agent_details})|(({platforms}/)[^\s\"\',]+)))+"
+    extraction_regex = rf"({user_agent})"
+
+
 class FileNameObservable(Observable):
     name = "File name"
     type = "indicator"
@@ -531,18 +556,6 @@ class WindowsRegistryKeyObservable(Observable):
     # Registry key
     registry_key = r"(?:CLSID|(?:HK(?:EY\_(?:CURRENT\_(?:CONFIG|USER)|LOCAL\_MACHINE|USERS)|C(?:C|U)|LM|U))|(?:I(?:nterface|ID))|REGISTRY|TypeLib)"
     extraction_regex = rf"^({registry_key}(\\[^<>:\"/\\|\?\*]+)+)$"
-
-
-class UserAgentObservable(Observable):
-    name = "User Agent"
-    type = "indicator"
-    pattern = "[ user-agent:string = '{extracted_observable_text}' ]"
-
-    # User agent
-    platforms = r"([a-zA-Z]+)"
-    user_agent_details = r"\([\w;\s\,.:-]+\)"
-    user_agent = rf"((User-Agent: )|(user-agent: ))?Mozilla/5.0([ ](({user_agent_details})|(({platforms}/)[^\s\"\',]+)))+"
-    extraction_regex = rf"({user_agent})"
 
 
 class AutonomousSystemNumberObservable(Observable):

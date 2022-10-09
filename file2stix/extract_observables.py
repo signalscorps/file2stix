@@ -23,13 +23,21 @@ logger = logging.getLogger(__name__)
 class ExtractStixObservables:
     """
     Iterable that extracts all the observables matching a given format.
-    In each iteration, it returns the next extracted observable as a STIX object..
+    In each iteration, it returns the next extracted observable as a STIX object.
+
+    BEWARE, this class is stateful, and caches the modified input text in every iteration.
+    The use case is to use this iterator once in the entire lifetime of the program.
     """
+
+    # Caches modified text (some observables like User Agent modify the input text)
+    modified_text = None
 
     def __init__(self, observable_cls, text, cache: Cache, config: Config):
         self.index = 0
         self.extracted_observables = []
         self.config = config
+        if ExtractStixObservables.modified_text == None:
+            ExtractStixObservables.modified_text = text
 
         # Handling special observables like MITRE ATT&CK and CAPEC
         if (
@@ -57,8 +65,11 @@ class ExtractStixObservables:
                 )
                 return
 
-        self.extracted_observables = observable_cls.extract_observables_from_text(
-            text, config
+        (
+            self.extracted_observables,
+            ExtractStixObservables.modified_text,
+        ) = observable_cls.extract_observables_from_text(
+            ExtractStixObservables.modified_text, config
         )
 
         logger.debug("Extraction of observable text complete.")
