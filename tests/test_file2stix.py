@@ -104,4 +104,4 @@ def test_file2stix_cli(test_file_path, update_expected_reports):
                 if field not in ignore_fields_list:
                     assert (
                         sdo_object[field] == expected_sdo_object[field]
-                    ), f"Field {field} is differening"
+                    ), f"Field {field} is differening for field type {field.type}"
