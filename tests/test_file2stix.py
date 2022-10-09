@@ -98,6 +98,7 @@ def test_file2stix_cli(test_file_path, update_expected_reports):
                 "source_ref",
                 "target_ref",
                 "published",
+                "valid_from",
             ]
 
             for field in expected_sdo_object:
