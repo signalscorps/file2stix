@@ -481,7 +481,7 @@ class DirectoryPathObservable(Observable):
     name = "Directory"
     type = "indicator"
     pattern = "[ directory:path = '{extracted_observable_text}' ]"
-    ignore_list = ["http://", "https://"]
+    ignore_list = ["http://", "https://", "http[:]//", "http[://"]
     defangable = True
 
     # Windows and Unix path
@@ -490,16 +490,12 @@ class DirectoryPathObservable(Observable):
     extraction_regex = rf"^(({windows_path})|({unix_path}))"
 
     def get_sdo_object(self):
-        for ignore_word in self.ignore_list:
-            if self.extracted_observable_text.startswith(ignore_word):
-                return None
-
         # Hacky way of removing qoutes, need a better solution
         self.extracted_observable_text = self.extracted_observable_text.replace("'", "")
 
         # Remove filename at the end if present
         try:
-            if self.extracted_observable_text.startswith("/"):
+            if "/" in self.extracted_observable_text:
                 split_text = self.extracted_observable_text.rsplit("/", 1)
                 if "." in split_text[1]:
                     self.extracted_observable_text = split_text[0] + "/"
@@ -511,6 +507,10 @@ class DirectoryPathObservable(Observable):
             logger.debug(
                 "Got exception while removing file name from directory, ignoring it."
             )
+        
+        for ignore_word in self.ignore_list:
+            if self.extracted_observable_text.startswith(ignore_word):
+                return None
 
         return super().get_sdo_object()
 
