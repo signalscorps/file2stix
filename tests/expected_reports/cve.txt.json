@@ -1,0 +1,141 @@
+{
+    "type": "bundle",
+    "id": "bundle--bde55040-1129-45b0-a74d-658e3a414120",
+    "objects": [
+        {
+            "type": "identity",
+            "spec_version": "2.1",
+            "id": "identity--acf55024-6bbe-486f-a27a-7967559324f4",
+            "created_by_ref": "identity--a99a2297-3044-4011-9a7e-2ff15e056b65",
+            "created": "2022-01-01T00:00:00.000Z",
+            "modified": "2022-01-01T00:00:00.000Z",
+            "name": "file2stix",
+            "description": "https://github.com/signalscorps/file2stix/",
+            "identity_class": "organization",
+            "sectors": [
+                "technology"
+            ],
+            "contact_information": "https://www.signalscorps.com/contact/",
+            "object_marking_refs": [
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
+            ]
+        },
+        {
+            "type": "marking-definition",
+            "spec_version": "2.1",
+            "id": "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9",
+            "created": "2017-01-20T00:00:00.000Z",
+            "definition_type": "tlp",
+            "name": "TLP:WHITE",
+            "definition": {
+                "tlp": "white"
+            }
+        },
+        {
+            "type": "vulnerability",
+            "spec_version": "2.1",
+            "id": "vulnerability--e872fac6-a885-4c8a-aa57-0129c5655f6f",
+            "created": "2022-10-02T14:19:07.437005Z",
+            "modified": "2022-10-02T14:19:07.437005Z",
+            "name": "CVE-2022-00001",
+            "external_references": [
+                {
+                    "source_name": "cve",
+                    "external_id": "CVE-2022-00001"
+                },
+                {
+                    "source_name": "vulmatch",
+                    "url": "https://app.vulmatch.com/cve/CVE-2022-00001"
+                },
+                {
+                    "source_name": "file2stix",
+                    "description": "This object was created using file2stix from the Signals Corps.",
+                    "url": "https://github.com/signalscorps/file2stix"
+                }
+            ],
+            "object_marking_refs": [
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
+            ],
+            "extensions": {
+                "extension-definition--b2b5f2cd-49e6-4091-a0e0-c0bb71543e23": {
+                    "extension_type": "property-extension",
+                    "cve": {
+                        "data_type": "CVE",
+                        "CVE_data_meta": {
+                            "ID": "CVE-2022-00001"
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--647fe9b1-6df7-4f1c-a13d-9d8d30ee8147",
+            "created_by_ref": "identity--acf55024-6bbe-486f-a27a-7967559324f4",
+            "created": "2022-10-02T14:19:07.437005Z",
+            "modified": "2022-10-02T14:19:07.437005Z",
+            "relationship_type": "default-extract-from",
+            "source_ref": "vulnerability--e872fac6-a885-4c8a-aa57-0129c5655f6f",
+            "target_ref": "report--bd6fcde2-2f18-4079-84aa-2ae7a8fcba29",
+            "external_references": [
+                {
+                    "source_name": "file2stix",
+                    "description": "This object was created using file2stix from the Signals Corps.",
+                    "url": "https://github.com/signalscorps/file2stix"
+                }
+            ],
+            "object_marking_refs": [
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
+            ]
+        },
+        {
+            "type": "extension-definition",
+            "spec_version": "2.1",
+            "id": "extension-definition--b2b5f2cd-49e6-4091-a0e0-c0bb71543e23",
+            "created_by_ref": "identity--a99a2297-3044-4011-9a7e-2ff15e056b65",
+            "created": "2022-01-01T00:00:00.000Z",
+            "modified": "2022-01-01T00:00:00.000Z",
+            "name": "NVD CVEs",
+            "description": "This schema adds CVEs to Indicator SDOs",
+            "schema": "https://raw.githubusercontent.com/signalscorps/stix2-objects/main/schemas/properties/cve/schema.json",
+            "version": "1.0",
+            "extension_types": [
+                "property-extension"
+            ],
+            "object_marking_refs": [
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
+            ]
+        },
+        {
+            "type": "report",
+            "spec_version": "2.1",
+            "id": "report--bd6fcde2-2f18-4079-84aa-2ae7a8fcba29",
+            "created_by_ref": "identity--acf55024-6bbe-486f-a27a-7967559324f4",
+            "created": "2022-10-02T14:19:07.437005Z",
+            "modified": "2022-10-02T14:19:07.437005Z",
+            "name": "File converted: cve.txt",
+            "report_types": [
+                "threat_report"
+            ],
+            "published": "2022-10-02T19:49:07.436995Z",
+            "object_refs": [
+                "identity--acf55024-6bbe-486f-a27a-7967559324f4",
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9",
+                "vulnerability--e872fac6-a885-4c8a-aa57-0129c5655f6f",
+                "relationship--647fe9b1-6df7-4f1c-a13d-9d8d30ee8147",
+                "extension-definition--b2b5f2cd-49e6-4091-a0e0-c0bb71543e23"
+            ],
+            "external_references": [
+                {
+                    "source_name": "file2stix",
+                    "description": "This object was created using file2stix from the Signals Corps.",
+                    "url": "https://github.com/signalscorps/file2stix"
+                }
+            ],
+            "object_marking_refs": [
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
+            ]
+        }
+    ]
+}

@@ -1,0 +1,374 @@
+[
+ {
+   "1.1.1.1": "198.51.100.5",
+   "Extract?": true,
+   "Type expected": "ipv4",
+   "Info": ""
+ },
+ {
+   "1.1.1.1": "198.51.100.5",
+   "Extract?": false,
+   "Type expected": "",
+   "Info": "Is dupe"
+ },
+ {
+   "1.1.1.1": "198.51.100.5",
+   "Extract?": false,
+   "Type expected": "",
+   "Info": ""
+ },
+ {
+   "1.1.1.1": "198.51.100.5",
+   "Extract?": false,
+   "Type expected": "",
+   "Info": ""
+ },
+ {
+   "1.1.1.1": "198.51.100.5",
+   "Extract?": false,
+   "Type expected": "",
+   "Info": ""
+ },
+ {
+   "1.1.1.1": "198.51.100.5",
+   "Extract?": false,
+   "Type expected": "",
+   "Info": ""
+ },
+ {
+   "1.1.1.1": "198.51.100.5",
+   "Extract?": false,
+   "Type expected": "",
+   "Info": ""
+ },
+ {
+   "1.1.1.1": "198.51.100.3-",
+   "Extract?": true,
+   "Type expected": "ipv4",
+   "Info": "the - char ignored"
+ },
+ {
+   "1.1.1.1": "198.51.100.4",
+   "Extract?": true,
+   "Type expected": "ipv4",
+   "Info": ""
+ },
+ {
+   "1.1.1.1": "198.0.103.12",
+   "Extract?": true,
+   "Type expected": "ipv4",
+   "Info": ""
+ },
+ {
+   "1.1.1.1": "198.0.103.12/24",
+   "Extract?": true,
+   "Type expected": "ipv4 CIDR",
+   "Info": ""
+ },
+ {
+   "1.1.1.1": "198.0.103.12:8000",
+   "Extract?": true,
+   "Type expected": "ipv4 with port",
+   "Info": ""
+ },
+ {
+   "1.1.1.1": "2001:0db8:85a3:0000:0000:8a2e:0370:7334",
+   "Extract?": true,
+   "Type expected": "ipv6",
+   "Info": ""
+ },
+ {
+   "1.1.1.1": "2002::abcd:ffff:c0a8:101/64",
+   "Extract?": true,
+   "Type expected": "ipv6 CIDR",
+   "Info": ""
+ },
+ {
+   "1.1.1.1": "[2001:0db8:85a3:0000:0000:8a2e:0370:7334]:80",
+   "Extract?": true,
+   "Type expected": "ipv6 with port",
+   "Info": ""
+ },
+ {
+   "1.1.1.1": "86F7E437FAA5A7FCE15D1DDCB9EAEAEA377667B8",
+   "Extract?": true,
+   "Type expected": "sha1",
+   "Info": ""
+ },
+ {
+   "1.1.1.1": "4ec503be252d765ea37621a629afdaa6 4ec503be252d765ea37621a629afdaa6",
+   "Extract?": true,
+   "Type expected": "md5",
+   "Info": ""
+ },
+ {
+   "1.1.1.1": "ba7816bf8f01cfea414140de5dae2223b00361a396177a9cb410ff61f20015ad",
+   "Extract?": true,
+   "Type expected": "sha256",
+   "Info": ""
+ },
+ {
+   "1.1.1.1": "1f40fc92da241694750979ee6cf582f2d5d7d28e18335de05abc54d0560e0f5302860c652bf08d560252aa5e74210546f369fbbbce8c12cfc7957b2652fe9a75",
+   "Extract?": true,
+   "Type expected": "sha512",
+   "Info": ""
+ },
+ {
+   "1.1.1.1": "96:s4Ud1Lj96tHHlZDrwciQmA+4uy1I0G4HYuL8N3TzS8QsO/wqWXLcMSx:sF1LjEtHHlZDrJzrhuyZvHYm8tKp/RWO",
+   "Extract?": true,
+   "Type expected": "ssdeep",
+   "Info": ""
+ },
+ {
+   "1.1.1.1": "virus.exe",
+   "Extract?": true,
+   "Type expected": "filename",
+   "Info": ""
+ },
+ {
+   "1.1.1.1": "/System/Library/LaunchDaemons",
+   "Extract?": true,
+   "Type expected": "directory path unix",
+   "Info": ""
+ },
+ {
+   "1.1.1.1": "C:\\Windows\\System32",
+   "Extract?": true,
+   "Type expected": "directory path win",
+   "Info": ""
+ },
+ {
+   "1.1.1.1": "example@example.com",
+   "Extract?": true,
+   "Type expected": "email",
+   "Info": ""
+ },
+ {
+   "1.1.1.1": "test+1@google.com",
+   "Extract?": true,
+   "Type expected": "email",
+   "Info": ""
+ },
+ {
+   "1.1.1.1": "https://example.com/research/",
+   "Extract?": true,
+   "Type expected": "url",
+   "Info": ""
+ },
+ {
+   "1.1.1.1": "https://example.com/path/index.html",
+   "Extract?": true,
+   "Type expected": "url",
+   "Info": ""
+ },
+ {
+   "1.1.1.1": "test.mydomain.com",
+   "Extract?": true,
+   "Type expected": "domain",
+   "Info": ""
+ },
+ {
+   "1.1.1.1": "mydomain.com",
+   "Extract?": true,
+   "Type expected": "domain",
+   "Info": ""
+ },
+ {
+   "1.1.1.1": "HKEY_CLASSES_ROOT\\Software\\Classes",
+   "Extract?": true,
+   "Type expected": "win registry key",
+   "Info": ""
+ },
+ {
+   "1.1.1.1": "HKEY_CURRENT_USER\\Software\\Classes",
+   "Extract?": true,
+   "Type expected": "win registry key",
+   "Info": ""
+ },
+ {
+   "1.1.1.1": "HKEY_USERS\\Software\\Classes",
+   "Extract?": true,
+   "Type expected": "win registry key",
+   "Info": ""
+ },
+ {
+   "1.1.1.1": "HKEY_CURRENT_CONFIGE\\Software\\Classes",
+   "Extract?": true,
+   "Type expected": "win registry key",
+   "Info": ""
+ },
+ {
+   "1.1.1.1": "Mozilla/5.0 (Windows; U; Windows NT 5.1; en-US; rv:1.6) Gecko/20040113",
+   "Extract?": true,
+   "Type expected": "user agent",
+   "Info": ""
+ },
+ {
+   "1.1.1.1": "Mozilla/5.0 (Linux; Android 11; Lenovo YT-J706X) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/96.0.4664.45 Safari/537.36",
+   "Extract?": true,
+   "Type expected": "user agent",
+   "Info": ""
+ },
+ {
+   "1.1.1.1": "Mozilla/5.0 (iPhone14,6; U; CPU iPhone OS 15_4 like Mac OS X) AppleWebKit/602.1.50 (KHTML, like Gecko) Version/10.0 Mobile/19E241 Safari/602.1",
+   "Extract?": true,
+   "Type expected": "user agent",
+   "Info": ""
+ },
+ {
+   "1.1.1.1": "3FZbgi29cpjq2GjdwV8eyHuJJnkLtktZc5",
+   "Extract?": true,
+   "Type expected": "btc crypto",
+   "Info": ""
+ },
+ {
+   "1.1.1.1": "0xb794f5ea0ba39494ce839613fffba74279579268",
+   "Extract?": true,
+   "Type expected": "eth crypto",
+   "Info": ""
+ },
+ {
+   "1.1.1.1": "48Fki6gnEN1QaiWNcsm8dVfX2JMg8xmjiQvuKpcdUD9rQH8WU4AXj9HKAF5AdnhKPSPLzTV7CX1Ks25BWrDeLnHuEFmhRxV",
+   "Extract?": true,
+   "Type expected": "xmr crypto",
+   "Info": ""
+ },
+ {
+   "1.1.1.1": "CVE-2022-00001",
+   "Extract?": true,
+   "Type expected": "cve",
+   "Info": ""
+ },
+ {
+   "1.1.1.1": "ASN13335",
+   "Extract?": true,
+   "Type expected": "asn",
+   "Info": ""
+ },
+ {
+   "1.1.1.1": "AS13335",
+   "Extract?": true,
+   "Type expected": "asn",
+   "Info": ""
+ },
+ {
+   "1.1.1.1": "ASN 13335",
+   "Extract?": true,
+   "Type expected": "asn",
+   "Info": ""
+ },
+ {
+   "1.1.1.1": "AS 13335",
+   "Extract?": true,
+   "Type expected": "asn",
+   "Info": ""
+ },
+ {
+   "1.1.1.1": "United Kingdom",
+   "Extract?": true,
+   "Type expected": "country",
+   "Info": ""
+ },
+ {
+   "1.1.1.1": "UK",
+   "Extract?": true,
+   "Type expected": "country",
+   "Info": ""
+ },
+ {
+   "1.1.1.1": "Bangladesh",
+   "Extract?": true,
+   "Type expected": "country",
+   "Info": ""
+ },
+ {
+   "1.1.1.1": "United Arab Emirates",
+   "Extract?": true,
+   "Type expected": "country",
+   "Info": ""
+ },
+ {
+   "1.1.1.1": "Central African Republic",
+   "Extract?": true,
+   "Type expected": "country",
+   "Info": ""
+ },
+ {
+   "1.1.1.1": "AL",
+   "Extract?": true,
+   "Type expected": "country",
+   "Info": ""
+ },
+ {
+   "1.1.1.1": "DZ",
+   "Extract?": true,
+   "Type expected": "country",
+   "Info": ""
+ },
+ {
+   "1.1.1.1": "AS",
+   "Extract?": true,
+   "Type expected": "country",
+   "Info": ""
+ },
+ {
+   "1.1.1.1": "5555555555554444",
+   "Extract?": true,
+   "Type expected": "credit card (MC)",
+   "Info": ""
+ },
+ {
+   "1.1.1.1": "4242424242424242",
+   "Extract?": true,
+   "Type expected": "credit card (visa)",
+   "Info": ""
+ },
+ {
+   "1.1.1.1": "378282246310005",
+   "Extract?": true,
+   "Type expected": "credit card (amex)",
+   "Info": ""
+ },
+ {
+   "1.1.1.1": "6200000000000005",
+   "Extract?": true,
+   "Type expected": "credit card (union pay)",
+   "Info": ""
+ },
+ {
+   "1.1.1.1": "3056930009020004",
+   "Extract?": true,
+   "Type expected": "credit card (diners)",
+   "Info": ""
+ },
+ {
+   "1.1.1.1": "3566002020360505",
+   "Extract?": true,
+   "Type expected": "credit card (jcb)",
+   "Info": ""
+ },
+ {
+   "1.1.1.1": "6011111111111117",
+   "Extract?": true,
+   "Type expected": "credit card (discover)",
+   "Info": ""
+ },
+ {
+   "1.1.1.1": "GB94BARC10201530093459",
+   "Extract?": true,
+   "Type expected": "iban (GB)",
+   "Info": ""
+ },
+ {
+   "1.1.1.1": "DE29100500001061045672",
+   "Extract?": true,
+   "Type expected": "iban (DE)",
+   "Info": ""
+ },
+ {
+   "1.1.1.1": "mycustomvalue",
+   "Extract?": null,
+   "Type expected": "",
+   "Info": ""
+ }
+]

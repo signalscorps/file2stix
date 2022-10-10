@@ -1,0 +1,542 @@
+{
+    "type": "bundle",
+    "id": "bundle--b6e7dced-2d9d-4cb2-b505-572bc1024933",
+    "objects": [
+        {
+            "type": "identity",
+            "spec_version": "2.1",
+            "id": "identity--acf55024-6bbe-486f-a27a-7967559324f4",
+            "created_by_ref": "identity--a99a2297-3044-4011-9a7e-2ff15e056b65",
+            "created": "2022-01-01T00:00:00.000Z",
+            "modified": "2022-01-01T00:00:00.000Z",
+            "name": "file2stix",
+            "description": "https://github.com/signalscorps/file2stix/",
+            "identity_class": "organization",
+            "sectors": [
+                "technology"
+            ],
+            "contact_information": "https://www.signalscorps.com/contact/",
+            "object_marking_refs": [
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
+            ]
+        },
+        {
+            "type": "marking-definition",
+            "spec_version": "2.1",
+            "id": "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9",
+            "created": "2017-01-20T00:00:00.000Z",
+            "definition_type": "tlp",
+            "name": "TLP:WHITE",
+            "definition": {
+                "tlp": "white"
+            }
+        },
+        {
+            "type": "indicator",
+            "spec_version": "2.1",
+            "id": "indicator--363eb3e1-582c-47fb-841f-69d174becb50",
+            "created": "2022-10-02T14:40:04.134821Z",
+            "modified": "2022-10-02T14:40:04.134821Z",
+            "name": "Windows Registry Key: HKEY_LOCAL_MACHINE\\System\\Foo\\Bar",
+            "indicator_types": [
+                "unknown"
+            ],
+            "pattern": "[ windows-registry-key:key = 'HKEY_LOCAL_MACHINE\\\\System\\\\Foo\\\\Bar' ]",
+            "pattern_type": "stix",
+            "pattern_version": "2.1",
+            "valid_from": "2022-10-02T14:40:04.721725Z",
+            "external_references": [
+                {
+                    "source_name": "file2stix",
+                    "description": "This object was created using file2stix from the Signals Corps.",
+                    "url": "https://github.com/signalscorps/file2stix"
+                }
+            ],
+            "object_marking_refs": [
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
+            ]
+        },
+        {
+            "type": "indicator",
+            "spec_version": "2.1",
+            "id": "indicator--d57037b0-b647-4597-8539-efc76231fc29",
+            "created": "2022-10-02T14:40:04.134821Z",
+            "modified": "2022-10-02T14:40:04.134821Z",
+            "name": "Windows Registry Key: HKEY_LOCAL_MACHINE\\SOFTWARE\\Wow6432Node",
+            "indicator_types": [
+                "unknown"
+            ],
+            "pattern": "[ windows-registry-key:key = 'HKEY_LOCAL_MACHINE\\\\SOFTWARE\\\\Wow6432Node' ]",
+            "pattern_type": "stix",
+            "pattern_version": "2.1",
+            "valid_from": "2022-10-02T14:40:08.460413Z",
+            "external_references": [
+                {
+                    "source_name": "file2stix",
+                    "description": "This object was created using file2stix from the Signals Corps.",
+                    "url": "https://github.com/signalscorps/file2stix"
+                }
+            ],
+            "object_marking_refs": [
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
+            ]
+        },
+        {
+            "type": "indicator",
+            "spec_version": "2.1",
+            "id": "indicator--895f7673-e8c8-4667-98c7-c21855810675",
+            "created": "2022-10-02T14:40:04.134821Z",
+            "modified": "2022-10-02T14:40:04.134821Z",
+            "name": "Windows Registry Key: HKEY_LOCAL_MACHINE\\SYSTEM\\system32\\config\\system",
+            "indicator_types": [
+                "unknown"
+            ],
+            "pattern": "[ windows-registry-key:key = 'HKEY_LOCAL_MACHINE\\\\SYSTEM\\\\system32\\\\config\\\\system' ]",
+            "pattern_type": "stix",
+            "pattern_version": "2.1",
+            "valid_from": "2022-10-02T14:40:17.92166Z",
+            "external_references": [
+                {
+                    "source_name": "file2stix",
+                    "description": "This object was created using file2stix from the Signals Corps.",
+                    "url": "https://github.com/signalscorps/file2stix"
+                }
+            ],
+            "object_marking_refs": [
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
+            ]
+        },
+        {
+            "type": "indicator",
+            "spec_version": "2.1",
+            "id": "indicator--c05e8a7c-3fd6-4576-88de-9eac40467364",
+            "created": "2022-10-02T14:40:04.134821Z",
+            "modified": "2022-10-02T14:40:04.134821Z",
+            "name": "Windows Registry Key: HKEY_CURRENT_USER\\SYSTEM\\system32\\config\\system",
+            "indicator_types": [
+                "unknown"
+            ],
+            "pattern": "[ windows-registry-key:key = 'HKEY_CURRENT_USER\\\\SYSTEM\\\\system32\\\\config\\\\system' ]",
+            "pattern_type": "stix",
+            "pattern_version": "2.1",
+            "valid_from": "2022-10-02T14:40:14.716695Z",
+            "external_references": [
+                {
+                    "source_name": "file2stix",
+                    "description": "This object was created using file2stix from the Signals Corps.",
+                    "url": "https://github.com/signalscorps/file2stix"
+                }
+            ],
+            "object_marking_refs": [
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
+            ]
+        },
+        {
+            "type": "indicator",
+            "spec_version": "2.1",
+            "id": "indicator--fe7fe676-0370-44a6-b192-50c875e80909",
+            "created": "2022-10-02T14:40:04.134821Z",
+            "modified": "2022-10-02T14:40:04.134821Z",
+            "name": "Windows Registry Key: HKEY_USERS\\SYSTEM\\system32\\config\\system",
+            "indicator_types": [
+                "unknown"
+            ],
+            "pattern": "[ windows-registry-key:key = 'HKEY_USERS\\\\SYSTEM\\\\system32\\\\config\\\\system' ]",
+            "pattern_type": "stix",
+            "pattern_version": "2.1",
+            "valid_from": "2022-10-02T14:40:21.120319Z",
+            "external_references": [
+                {
+                    "source_name": "file2stix",
+                    "description": "This object was created using file2stix from the Signals Corps.",
+                    "url": "https://github.com/signalscorps/file2stix"
+                }
+            ],
+            "object_marking_refs": [
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
+            ]
+        },
+        {
+            "type": "indicator",
+            "spec_version": "2.1",
+            "id": "indicator--5348484b-4ce8-4c8e-86f3-430954df919f",
+            "created": "2022-10-02T14:40:04.134821Z",
+            "modified": "2022-10-02T14:40:04.134821Z",
+            "name": "Windows Registry Key: HKEY_CURRENT_CONFIG\\SYSTEM\\system32\\config\\system",
+            "indicator_types": [
+                "unknown"
+            ],
+            "pattern": "[ windows-registry-key:key = 'HKEY_CURRENT_CONFIG\\\\SYSTEM\\\\system32\\\\config\\\\system' ]",
+            "pattern_type": "stix",
+            "pattern_version": "2.1",
+            "valid_from": "2022-10-02T14:40:24.163623Z",
+            "external_references": [
+                {
+                    "source_name": "file2stix",
+                    "description": "This object was created using file2stix from the Signals Corps.",
+                    "url": "https://github.com/signalscorps/file2stix"
+                }
+            ],
+            "object_marking_refs": [
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
+            ]
+        },
+        {
+            "type": "windows-registry-key",
+            "spec_version": "2.1",
+            "id": "windows-registry-key--06e40255-063a-58d1-95e4-42547a68ce1b",
+            "key": "HKEY_LOCAL_MACHINE\\\\System\\\\Foo\\\\Bar",
+            "object_marking_refs": [
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
+            ]
+        },
+        {
+            "type": "windows-registry-key",
+            "spec_version": "2.1",
+            "id": "windows-registry-key--5447d2ee-ac05-5ac4-9e05-3f4ed4696aeb",
+            "key": "HKEY_LOCAL_MACHINE\\\\SOFTWARE\\\\Wow6432Node",
+            "object_marking_refs": [
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
+            ]
+        },
+        {
+            "type": "windows-registry-key",
+            "spec_version": "2.1",
+            "id": "windows-registry-key--e9de19fa-1be4-520b-a2a8-327f06fc648d",
+            "key": "HKEY_LOCAL_MACHINE\\\\SYSTEM\\\\system32\\\\config\\\\system",
+            "object_marking_refs": [
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
+            ]
+        },
+        {
+            "type": "windows-registry-key",
+            "spec_version": "2.1",
+            "id": "windows-registry-key--2ed5e2f7-4480-5e07-ab82-affb9311ec28",
+            "key": "HKEY_CURRENT_USER\\\\SYSTEM\\\\system32\\\\config\\\\system",
+            "object_marking_refs": [
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
+            ]
+        },
+        {
+            "type": "windows-registry-key",
+            "spec_version": "2.1",
+            "id": "windows-registry-key--ad964918-fd59-56d1-a59c-5c1635945367",
+            "key": "HKEY_USERS\\\\SYSTEM\\\\system32\\\\config\\\\system",
+            "object_marking_refs": [
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
+            ]
+        },
+        {
+            "type": "windows-registry-key",
+            "spec_version": "2.1",
+            "id": "windows-registry-key--ce31bff0-4965-544d-9981-0b952cecdbdb",
+            "key": "HKEY_CURRENT_CONFIG\\\\SYSTEM\\\\system32\\\\config\\\\system",
+            "object_marking_refs": [
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
+            ]
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--5c2003a4-15df-411e-aa22-95197d0629f9",
+            "created_by_ref": "identity--acf55024-6bbe-486f-a27a-7967559324f4",
+            "created": "2022-10-02T14:40:04.134821Z",
+            "modified": "2022-10-02T14:40:04.134821Z",
+            "relationship_type": "default-extract-from",
+            "source_ref": "indicator--363eb3e1-582c-47fb-841f-69d174becb50",
+            "target_ref": "report--a5038894-1705-4efd-9316-f5134a2ba01f",
+            "external_references": [
+                {
+                    "source_name": "file2stix",
+                    "description": "This object was created using file2stix from the Signals Corps.",
+                    "url": "https://github.com/signalscorps/file2stix"
+                }
+            ],
+            "object_marking_refs": [
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
+            ]
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--37cf22dd-2dfa-48af-961c-4e5a4675e90f",
+            "created_by_ref": "identity--acf55024-6bbe-486f-a27a-7967559324f4",
+            "created": "2022-10-02T14:40:04.134821Z",
+            "modified": "2022-10-02T14:40:04.134821Z",
+            "relationship_type": "default-extract-from",
+            "source_ref": "indicator--d57037b0-b647-4597-8539-efc76231fc29",
+            "target_ref": "report--a5038894-1705-4efd-9316-f5134a2ba01f",
+            "external_references": [
+                {
+                    "source_name": "file2stix",
+                    "description": "This object was created using file2stix from the Signals Corps.",
+                    "url": "https://github.com/signalscorps/file2stix"
+                }
+            ],
+            "object_marking_refs": [
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
+            ]
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--99468632-4e8c-499a-a2b3-9e7c2c683b4b",
+            "created_by_ref": "identity--acf55024-6bbe-486f-a27a-7967559324f4",
+            "created": "2022-10-02T14:40:04.134821Z",
+            "modified": "2022-10-02T14:40:04.134821Z",
+            "relationship_type": "default-extract-from",
+            "source_ref": "indicator--895f7673-e8c8-4667-98c7-c21855810675",
+            "target_ref": "report--a5038894-1705-4efd-9316-f5134a2ba01f",
+            "external_references": [
+                {
+                    "source_name": "file2stix",
+                    "description": "This object was created using file2stix from the Signals Corps.",
+                    "url": "https://github.com/signalscorps/file2stix"
+                }
+            ],
+            "object_marking_refs": [
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
+            ]
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--2093d548-f2a5-4c38-aa6b-0a842f39596a",
+            "created_by_ref": "identity--acf55024-6bbe-486f-a27a-7967559324f4",
+            "created": "2022-10-02T14:40:04.134821Z",
+            "modified": "2022-10-02T14:40:04.134821Z",
+            "relationship_type": "default-extract-from",
+            "source_ref": "indicator--c05e8a7c-3fd6-4576-88de-9eac40467364",
+            "target_ref": "report--a5038894-1705-4efd-9316-f5134a2ba01f",
+            "external_references": [
+                {
+                    "source_name": "file2stix",
+                    "description": "This object was created using file2stix from the Signals Corps.",
+                    "url": "https://github.com/signalscorps/file2stix"
+                }
+            ],
+            "object_marking_refs": [
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
+            ]
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--f1c70e98-e8de-4687-927f-df5c3297323d",
+            "created_by_ref": "identity--acf55024-6bbe-486f-a27a-7967559324f4",
+            "created": "2022-10-02T14:40:04.134821Z",
+            "modified": "2022-10-02T14:40:04.134821Z",
+            "relationship_type": "default-extract-from",
+            "source_ref": "indicator--fe7fe676-0370-44a6-b192-50c875e80909",
+            "target_ref": "report--a5038894-1705-4efd-9316-f5134a2ba01f",
+            "external_references": [
+                {
+                    "source_name": "file2stix",
+                    "description": "This object was created using file2stix from the Signals Corps.",
+                    "url": "https://github.com/signalscorps/file2stix"
+                }
+            ],
+            "object_marking_refs": [
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
+            ]
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--f63da78d-a79b-453e-962d-fbf63e5f482c",
+            "created_by_ref": "identity--acf55024-6bbe-486f-a27a-7967559324f4",
+            "created": "2022-10-02T14:40:04.134821Z",
+            "modified": "2022-10-02T14:40:04.134821Z",
+            "relationship_type": "default-extract-from",
+            "source_ref": "indicator--5348484b-4ce8-4c8e-86f3-430954df919f",
+            "target_ref": "report--a5038894-1705-4efd-9316-f5134a2ba01f",
+            "external_references": [
+                {
+                    "source_name": "file2stix",
+                    "description": "This object was created using file2stix from the Signals Corps.",
+                    "url": "https://github.com/signalscorps/file2stix"
+                }
+            ],
+            "object_marking_refs": [
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
+            ]
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--ea1f95fc-00e4-4106-af7d-40e576b6d1af",
+            "created_by_ref": "identity--acf55024-6bbe-486f-a27a-7967559324f4",
+            "created": "2022-10-02T14:40:04.134821Z",
+            "modified": "2022-10-02T14:40:04.134821Z",
+            "relationship_type": "pattern-contains",
+            "source_ref": "indicator--363eb3e1-582c-47fb-841f-69d174becb50",
+            "target_ref": "windows-registry-key--06e40255-063a-58d1-95e4-42547a68ce1b",
+            "external_references": [
+                {
+                    "source_name": "file2stix",
+                    "description": "This object was created using file2stix from the Signals Corps.",
+                    "url": "https://github.com/signalscorps/file2stix"
+                }
+            ],
+            "object_marking_refs": [
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
+            ]
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--01b02052-e35e-4f10-8c24-d2f10e8cd15f",
+            "created_by_ref": "identity--acf55024-6bbe-486f-a27a-7967559324f4",
+            "created": "2022-10-02T14:40:04.134821Z",
+            "modified": "2022-10-02T14:40:04.134821Z",
+            "relationship_type": "pattern-contains",
+            "source_ref": "indicator--d57037b0-b647-4597-8539-efc76231fc29",
+            "target_ref": "windows-registry-key--5447d2ee-ac05-5ac4-9e05-3f4ed4696aeb",
+            "external_references": [
+                {
+                    "source_name": "file2stix",
+                    "description": "This object was created using file2stix from the Signals Corps.",
+                    "url": "https://github.com/signalscorps/file2stix"
+                }
+            ],
+            "object_marking_refs": [
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
+            ]
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--253b7192-af89-4b04-80e4-e6c1b43533d7",
+            "created_by_ref": "identity--acf55024-6bbe-486f-a27a-7967559324f4",
+            "created": "2022-10-02T14:40:04.134821Z",
+            "modified": "2022-10-02T14:40:04.134821Z",
+            "relationship_type": "pattern-contains",
+            "source_ref": "indicator--29b02610-8bf2-487c-b18f-9b84d29fe6ff",
+            "target_ref": "windows-registry-key--e9de19fa-1be4-520b-a2a8-327f06fc648d",
+            "external_references": [
+                {
+                    "source_name": "file2stix",
+                    "description": "This object was created using file2stix from the Signals Corps.",
+                    "url": "https://github.com/signalscorps/file2stix"
+                }
+            ],
+            "object_marking_refs": [
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
+            ]
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--6fa02c5f-2778-4732-ae01-06ecce5b7f67",
+            "created_by_ref": "identity--acf55024-6bbe-486f-a27a-7967559324f4",
+            "created": "2022-10-02T14:40:04.134821Z",
+            "modified": "2022-10-02T14:40:04.134821Z",
+            "relationship_type": "pattern-contains",
+            "source_ref": "indicator--c05e8a7c-3fd6-4576-88de-9eac40467364",
+            "target_ref": "windows-registry-key--2ed5e2f7-4480-5e07-ab82-affb9311ec28",
+            "external_references": [
+                {
+                    "source_name": "file2stix",
+                    "description": "This object was created using file2stix from the Signals Corps.",
+                    "url": "https://github.com/signalscorps/file2stix"
+                }
+            ],
+            "object_marking_refs": [
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
+            ]
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--84763b60-2293-4faf-b37b-4415dcf61cb5",
+            "created_by_ref": "identity--acf55024-6bbe-486f-a27a-7967559324f4",
+            "created": "2022-10-02T14:40:04.134821Z",
+            "modified": "2022-10-02T14:40:04.134821Z",
+            "relationship_type": "pattern-contains",
+            "source_ref": "indicator--fe7fe676-0370-44a6-b192-50c875e80909",
+            "target_ref": "windows-registry-key--ad964918-fd59-56d1-a59c-5c1635945367",
+            "external_references": [
+                {
+                    "source_name": "file2stix",
+                    "description": "This object was created using file2stix from the Signals Corps.",
+                    "url": "https://github.com/signalscorps/file2stix"
+                }
+            ],
+            "object_marking_refs": [
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
+            ]
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--0b4b87aa-f19a-40f6-a47f-81ac3c21b2ff",
+            "created_by_ref": "identity--acf55024-6bbe-486f-a27a-7967559324f4",
+            "created": "2022-10-02T14:40:04.134821Z",
+            "modified": "2022-10-02T14:40:04.134821Z",
+            "relationship_type": "pattern-contains",
+            "source_ref": "indicator--5348484b-4ce8-4c8e-86f3-430954df919f",
+            "target_ref": "windows-registry-key--ce31bff0-4965-544d-9981-0b952cecdbdb",
+            "external_references": [
+                {
+                    "source_name": "file2stix",
+                    "description": "This object was created using file2stix from the Signals Corps.",
+                    "url": "https://github.com/signalscorps/file2stix"
+                }
+            ],
+            "object_marking_refs": [
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
+            ]
+        },
+        {
+            "type": "report",
+            "spec_version": "2.1",
+            "id": "report--a5038894-1705-4efd-9316-f5134a2ba01f",
+            "created_by_ref": "identity--acf55024-6bbe-486f-a27a-7967559324f4",
+            "created": "2022-10-02T14:40:04.134821Z",
+            "modified": "2022-10-02T14:40:04.134821Z",
+            "name": "File converted: registry_key.txt",
+            "report_types": [
+                "threat_report"
+            ],
+            "published": "2022-10-02T20:10:04.134812Z",
+            "object_refs": [
+                "identity--acf55024-6bbe-486f-a27a-7967559324f4",
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9",
+                "indicator--363eb3e1-582c-47fb-841f-69d174becb50",
+                "indicator--d57037b0-b647-4597-8539-efc76231fc29",
+                "indicator--895f7673-e8c8-4667-98c7-c21855810675",
+                "indicator--c05e8a7c-3fd6-4576-88de-9eac40467364",
+                "indicator--fe7fe676-0370-44a6-b192-50c875e80909",
+                "indicator--5348484b-4ce8-4c8e-86f3-430954df919f",
+                "windows-registry-key--06e40255-063a-58d1-95e4-42547a68ce1b",
+                "windows-registry-key--5447d2ee-ac05-5ac4-9e05-3f4ed4696aeb",
+                "windows-registry-key--e9de19fa-1be4-520b-a2a8-327f06fc648d",
+                "windows-registry-key--2ed5e2f7-4480-5e07-ab82-affb9311ec28",
+                "windows-registry-key--ad964918-fd59-56d1-a59c-5c1635945367",
+                "windows-registry-key--ce31bff0-4965-544d-9981-0b952cecdbdb",
+                "relationship--5c2003a4-15df-411e-aa22-95197d0629f9",
+                "relationship--37cf22dd-2dfa-48af-961c-4e5a4675e90f",
+                "relationship--99468632-4e8c-499a-a2b3-9e7c2c683b4b",
+                "relationship--2093d548-f2a5-4c38-aa6b-0a842f39596a",
+                "relationship--f1c70e98-e8de-4687-927f-df5c3297323d",
+                "relationship--f63da78d-a79b-453e-962d-fbf63e5f482c",
+                "relationship--ea1f95fc-00e4-4106-af7d-40e576b6d1af",
+                "relationship--01b02052-e35e-4f10-8c24-d2f10e8cd15f",
+                "relationship--253b7192-af89-4b04-80e4-e6c1b43533d7",
+                "relationship--6fa02c5f-2778-4732-ae01-06ecce5b7f67",
+                "relationship--84763b60-2293-4faf-b37b-4415dcf61cb5",
+                "relationship--0b4b87aa-f19a-40f6-a47f-81ac3c21b2ff"
+            ],
+            "external_references": [
+                {
+                    "source_name": "file2stix",
+                    "description": "This object was created using file2stix from the Signals Corps.",
+                    "url": "https://github.com/signalscorps/file2stix"
+                }
+            ],
+            "object_marking_refs": [
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
+            ]
+        }
+    ]
+}

@@ -1,0 +1,11 @@
+registry path: HKEY_LOCAL_MACHINE\System\Foo\Bar
+
+
+
+HKEY_LOCAL_MACHINE\SOFTWARE\Wow6432Node HKEY_LOCAL_MACHINE\SYSTEM\system32\config\system
+HKEY_CLASSES_ROOT\SYSTEM\system32\config\system
+HKEY_CURRENT_USER\SYSTEM\system32\config\system
+HKEY_LOCAL_MACHINE\SYSTEM\system32\config\system
+HKEY_USERS\SYSTEM\system32\config\system
+HKEY_CURRENT_CONFIG\SYSTEM\system32\config\system
+

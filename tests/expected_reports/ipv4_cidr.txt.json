@@ -1,0 +1,250 @@
+{
+    "type": "bundle",
+    "id": "bundle--99a89d45-689e-4a7a-81a4-d1db4ce7c079",
+    "objects": [
+        {
+            "type": "identity",
+            "spec_version": "2.1",
+            "id": "identity--acf55024-6bbe-486f-a27a-7967559324f4",
+            "created_by_ref": "identity--a99a2297-3044-4011-9a7e-2ff15e056b65",
+            "created": "2022-01-01T00:00:00.000Z",
+            "modified": "2022-01-01T00:00:00.000Z",
+            "name": "file2stix",
+            "description": "https://github.com/signalscorps/file2stix/",
+            "identity_class": "organization",
+            "sectors": [
+                "technology"
+            ],
+            "contact_information": "https://www.signalscorps.com/contact/",
+            "object_marking_refs": [
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
+            ]
+        },
+        {
+            "type": "marking-definition",
+            "spec_version": "2.1",
+            "id": "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9",
+            "created": "2017-01-20T00:00:00.000Z",
+            "definition_type": "tlp",
+            "name": "TLP:WHITE",
+            "definition": {
+                "tlp": "white"
+            }
+        },
+        {
+            "type": "indicator",
+            "spec_version": "2.1",
+            "id": "indicator--4ac6bbc9-de53-4c13-a7a0-a6f6021bbed5",
+            "created": "2022-10-02T15:11:06.857612Z",
+            "modified": "2022-10-02T15:11:06.857612Z",
+            "name": "ipv4: 198.0.103.12/24",
+            "indicator_types": [
+                "unknown"
+            ],
+            "pattern": "[ ipv4-addr:value = '198.0.103.12/24' ]",
+            "pattern_type": "stix",
+            "pattern_version": "2.1",
+            "valid_from": "2022-10-02T15:11:07.475124Z",
+            "external_references": [
+                {
+                    "source_name": "file2stix",
+                    "description": "This object was created using file2stix from the Signals Corps.",
+                    "url": "https://github.com/signalscorps/file2stix"
+                }
+            ],
+            "object_marking_refs": [
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
+            ]
+        },
+        {
+            "type": "indicator",
+            "spec_version": "2.1",
+            "id": "indicator--0b1fb949-8052-433c-81e4-0ea5120b88ee",
+            "created": "2022-10-02T15:11:06.857612Z",
+            "modified": "2022-10-02T15:11:06.857612Z",
+            "name": "ipv4: 1.0.69.27/32",
+            "indicator_types": [
+                "unknown",
+                "benign"
+            ],
+            "pattern": "[ ipv4-addr:value = '1.0.69.27/32' ]",
+            "pattern_type": "stix",
+            "pattern_version": "2.1",
+            "valid_from": "2022-10-02T15:11:11.546931Z",
+            "external_references": [
+                {
+                    "source_name": "file2stix",
+                    "description": "This object was created using file2stix from the Signals Corps.",
+                    "url": "https://github.com/signalscorps/file2stix"
+                }
+            ],
+            "object_marking_refs": [
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
+            ],
+            "extensions": {
+                "extension-definition--c8ea5ecb-f4a3-45e7-94de-9b9ba05161af": {
+                    "misp_warning_list_match": [
+                        "Specialized list of IPv4 addresses belonging to common VPN providers and datacenters"
+                    ],
+                    "extension_type": "property-extension"
+                }
+            }
+        },
+        {
+            "type": "ipv4-addr",
+            "spec_version": "2.1",
+            "id": "ipv4-addr--9b17f6c3-258d-542f-8ec0-9b9b001b7a11",
+            "value": "198.0.103.12/24",
+            "object_marking_refs": [
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
+            ]
+        },
+        {
+            "type": "ipv4-addr",
+            "spec_version": "2.1",
+            "id": "ipv4-addr--91ca1b7e-b13f-51c0-a0be-d4ca3cdd394f",
+            "value": "1.0.69.27/32",
+            "object_marking_refs": [
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
+            ]
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--298e2685-27f1-4093-b787-691fe6a2af1a",
+            "created_by_ref": "identity--acf55024-6bbe-486f-a27a-7967559324f4",
+            "created": "2022-10-02T15:11:06.857612Z",
+            "modified": "2022-10-02T15:11:06.857612Z",
+            "relationship_type": "default-extract-from",
+            "source_ref": "indicator--4ac6bbc9-de53-4c13-a7a0-a6f6021bbed5",
+            "target_ref": "report--d741195b-c2da-419d-b3bb-a3b4c24e95b7",
+            "external_references": [
+                {
+                    "source_name": "file2stix",
+                    "description": "This object was created using file2stix from the Signals Corps.",
+                    "url": "https://github.com/signalscorps/file2stix"
+                }
+            ],
+            "object_marking_refs": [
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
+            ]
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--df659a9a-6582-415c-aa8c-c0ab370c7074",
+            "created_by_ref": "identity--acf55024-6bbe-486f-a27a-7967559324f4",
+            "created": "2022-10-02T15:11:06.857612Z",
+            "modified": "2022-10-02T15:11:06.857612Z",
+            "relationship_type": "default-extract-from",
+            "source_ref": "indicator--0b1fb949-8052-433c-81e4-0ea5120b88ee",
+            "target_ref": "report--d741195b-c2da-419d-b3bb-a3b4c24e95b7",
+            "external_references": [
+                {
+                    "source_name": "file2stix",
+                    "description": "This object was created using file2stix from the Signals Corps.",
+                    "url": "https://github.com/signalscorps/file2stix"
+                }
+            ],
+            "object_marking_refs": [
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
+            ]
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--423fdf1a-37d3-4458-ab3d-4057b0722be9",
+            "created_by_ref": "identity--acf55024-6bbe-486f-a27a-7967559324f4",
+            "created": "2022-10-02T15:11:06.857612Z",
+            "modified": "2022-10-02T15:11:06.857612Z",
+            "relationship_type": "pattern-contains",
+            "source_ref": "indicator--4ac6bbc9-de53-4c13-a7a0-a6f6021bbed5",
+            "target_ref": "ipv4-addr--9b17f6c3-258d-542f-8ec0-9b9b001b7a11",
+            "external_references": [
+                {
+                    "source_name": "file2stix",
+                    "description": "This object was created using file2stix from the Signals Corps.",
+                    "url": "https://github.com/signalscorps/file2stix"
+                }
+            ],
+            "object_marking_refs": [
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
+            ]
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--c533c159-8dc0-414b-a6c5-ceeb53447d2e",
+            "created_by_ref": "identity--acf55024-6bbe-486f-a27a-7967559324f4",
+            "created": "2022-10-02T15:11:06.857612Z",
+            "modified": "2022-10-02T15:11:06.857612Z",
+            "relationship_type": "pattern-contains",
+            "source_ref": "indicator--0b1fb949-8052-433c-81e4-0ea5120b88ee",
+            "target_ref": "ipv4-addr--91ca1b7e-b13f-51c0-a0be-d4ca3cdd394f",
+            "external_references": [
+                {
+                    "source_name": "file2stix",
+                    "description": "This object was created using file2stix from the Signals Corps.",
+                    "url": "https://github.com/signalscorps/file2stix"
+                }
+            ],
+            "object_marking_refs": [
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
+            ]
+        },
+        {
+            "type": "extension-definition",
+            "spec_version": "2.1",
+            "id": "extension-definition--c8ea5ecb-f4a3-45e7-94de-9b9ba05161af",
+            "created_by_ref": "identity--a99a2297-3044-4011-9a7e-2ff15e056b65",
+            "created": "2022-01-01T00:00:00.000Z",
+            "modified": "2022-01-01T00:00:00.000Z",
+            "name": "MISP Warning Lists",
+            "description": "This schema adds MISP Warning List matches to extracted Objects",
+            "schema": "https://raw.githubusercontent.com/signalscorps/stix2-objects/main/schemas/properties/misp-warning-list-match/schema.json",
+            "version": "1.0",
+            "extension_types": [
+                "property-extension"
+            ],
+            "object_marking_refs": [
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
+            ]
+        },
+        {
+            "type": "report",
+            "spec_version": "2.1",
+            "id": "report--d741195b-c2da-419d-b3bb-a3b4c24e95b7",
+            "created_by_ref": "identity--acf55024-6bbe-486f-a27a-7967559324f4",
+            "created": "2022-10-02T15:11:06.857612Z",
+            "modified": "2022-10-02T15:11:06.857612Z",
+            "name": "File converted: ipv4_cidr.txt",
+            "report_types": [
+                "threat_report"
+            ],
+            "published": "2022-10-02T20:41:06.857604Z",
+            "object_refs": [
+                "identity--acf55024-6bbe-486f-a27a-7967559324f4",
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9",
+                "indicator--4ac6bbc9-de53-4c13-a7a0-a6f6021bbed5",
+                "indicator--0b1fb949-8052-433c-81e4-0ea5120b88ee",
+                "ipv4-addr--9b17f6c3-258d-542f-8ec0-9b9b001b7a11",
+                "ipv4-addr--91ca1b7e-b13f-51c0-a0be-d4ca3cdd394f",
+                "relationship--298e2685-27f1-4093-b787-691fe6a2af1a",
+                "relationship--df659a9a-6582-415c-aa8c-c0ab370c7074",
+                "relationship--423fdf1a-37d3-4458-ab3d-4057b0722be9",
+                "relationship--c533c159-8dc0-414b-a6c5-ceeb53447d2e",
+                "extension-definition--c8ea5ecb-f4a3-45e7-94de-9b9ba05161af"
+            ],
+            "external_references": [
+                {
+                    "source_name": "file2stix",
+                    "description": "This object was created using file2stix from the Signals Corps.",
+                    "url": "https://github.com/signalscorps/file2stix"
+                }
+            ],
+            "object_marking_refs": [
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
+            ]
+        }
+    ]
+}

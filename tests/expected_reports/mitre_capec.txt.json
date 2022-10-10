@@ -1,0 +1,216 @@
+{
+    "type": "bundle",
+    "id": "bundle--e8e266f0-82b8-4552-821d-722489c42e70",
+    "objects": [
+        {
+            "type": "extension-definition",
+            "spec_version": "2.1",
+            "id": "extension-definition--c8ea5ecb-f4a3-45e7-94de-9b9ba05161af",
+            "created_by_ref": "identity--acf55024-6bbe-486f-a27a-7967559324f4",
+            "created": "2022-01-01T00:00:00.000Z",
+            "modified": "2022-01-01T00:00:00.000Z",
+            "name": "MISP Warning Lists",
+            "description": "This schema adds MISP Warning List matches to extracted Objects",
+            "schema": "https://github.com/MISP/misp-warninglists",
+            "version": "1.0",
+            "extension_types": [
+                "property-extension"
+            ]
+        },
+        {
+            "type": "marking-definition",
+            "spec_version": "2.1",
+            "id": "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9",
+            "created": "2017-01-20T00:00:00.000Z",
+            "definition_type": "tlp",
+            "name": "TLP:WHITE",
+            "definition": {
+                "tlp": "white"
+            }
+        },
+        {
+            "type": "attack-pattern",
+            "spec_version": "2.1",
+            "id": "attack-pattern--00d91a4c-2645-4bf1-8db7-e7448ef25f17",
+            "created_by_ref": "identity--e50ab59c-5c4f-4d40-bf6a-d58418d89bcd",
+            "created": "2014-06-23T00:00:00.000Z",
+            "modified": "2022-02-22T00:00:00.000Z",
+            "name": "Using Alternative IP Address Encodings",
+            "description": "This attack relies on the adversary using unexpected formats for representing IP addresses. Networked applications may expect network location information in a specific format, such as fully qualified domains names (FQDNs), URL, IP address, or IP Address ranges. If the location information is not validated against a variety of different possible encodings and formats, the adversary can use an alternate format to bypass application access control.",
+            "external_references": [
+                {
+                    "source_name": "capec",
+                    "url": "https://capec.mitre.org/data/definitions/4.html",
+                    "external_id": "CAPEC-4"
+                },
+                {
+                    "source_name": "cwe",
+                    "url": "http://cwe.mitre.org/data/definitions/291.html",
+                    "external_id": "CWE-291"
+                },
+                {
+                    "source_name": "cwe",
+                    "url": "http://cwe.mitre.org/data/definitions/173.html",
+                    "external_id": "CWE-173"
+                },
+                {
+                    "source_name": "reference_from_CAPEC",
+                    "description": "G. Hoglund, G. McGraw, Exploiting Software: How to Break Code, 2004--02, Addison-Wesley",
+                    "external_id": "REF-1"
+                }
+            ],
+            "object_marking_refs": [
+                "marking-definition--17d82bb2-eeeb-4898-bda5-3ddbcd2b799d"
+            ],
+            "x_capec_abstraction": "Detailed",
+            "x_capec_child_of_refs": [
+                "attack-pattern--a1af7c24-25cb-46e5-a27b-ed316e1f91ce"
+            ],
+            "x_capec_consequences": {
+                "Access_Control": [
+                    "Gain Privileges"
+                ],
+                "Authorization": [
+                    "Gain Privileges"
+                ],
+                "Confidentiality": [
+                    "Gain Privileges"
+                ]
+            },
+            "x_capec_domains": [
+                "Software"
+            ],
+            "x_capec_example_instances": [
+                "An adversary identifies an application server that applies a security policy based on the domain and application name. For example, the access control policy covers authentication and authorization for anyone accessing http://example.domain:8080/application. However, by using the IP address of the host instead (http://192.168.0.1:8080/application), the application authentication and authorization controls may be bypassed. The adversary relies on the victim applying policy to the namespace abstraction and not having a default deny policy in place to manage exceptions."
+            ],
+            "x_capec_execution_flow": "<h2> Execution Flow </h2><div><h3>Explore</h3><ol><li> <p> <b>Survey the application for IP addresses as user input: </b>Using a browser, an automated tool or by inspecting the application, an adversary records all entry points to the application where IP addresses are used.</p></li><table><tbody><tr><th>Techniques</th></tr><tr><td>Use a spidering tool to follow and record all links and analyze the web pages to find entry points. Make special note of any links that include parameters in the URL.</td></tr><tr><td>Use a proxy tool to record all user input entry points visited during a manual traversal of the web application.</td></tr><tr><td>Use a browser to manually explore the website and analyze how it is constructed. Many browsers' plugins are available to facilitate the analysis or automate the discovery.</td></tr><tr><td>Manually inspect the application to find entry points.</td></tr></tbody></table></ol></div><div><h3>Experiment</h3><ol><li> <p> <b>Probe entry points to locate vulnerabilities: </b>The adversary uses the entry points gathered in the \"Explore\" phase as a target list and attempts alternate IP address encodings, observing application behavior. The adversary will also attempt to access the application through an alternate IP address encoding to see if access control changes</p></li><table><tbody><tr><th>Techniques</th></tr><tr><td>Instead of using a URL, use the IP address that the URL resolves to</td></tr><tr><td>Specify a port directly to a URL input</td></tr><tr><td>Omit or add \"http://\" or \"https://\" to a URL to see if the application behaves differently</td></tr></tbody></table></ol></div><div><h3>Exploit</h3><ol><li> <p> <b>Bypass access control: </b>Using an alternate IP address encoding, the adversary will either access the application or give the alternate encoding as input, bypassing access control restrictions.</p></li></ol></div>",
+            "x_capec_likelihood_of_attack": "Medium",
+            "x_capec_prerequisites": [
+                "The target software must fail to anticipate all of the possible valid encodings of an IP/web address.",
+                "The adversary must have the ability to communicate with the server."
+            ],
+            "x_capec_resources_required": [
+                "The adversary needs to have knowledge of an alternative IP address encoding that bypasses the access control policy of an application. Alternatively, the adversary can simply try to brute-force various encoding possibilities."
+            ],
+            "x_capec_skills_required": {
+                "Low": "The adversary has only to try IP address format combinations."
+            },
+            "x_capec_status": "Draft",
+            "x_capec_typical_severity": "High",
+            "x_capec_version": "3.7"
+        },
+        {
+            "type": "attack-pattern",
+            "spec_version": "2.1",
+            "id": "attack-pattern--7b462c1f-e0bf-41a7-b811-2b676c103bda",
+            "created_by_ref": "identity--e50ab59c-5c4f-4d40-bf6a-d58418d89bcd",
+            "created": "2014-06-23T00:00:00.000Z",
+            "modified": "2019-04-04T00:00:00.000Z",
+            "name": "Blue Boxing",
+            "description": "This type of attack against older telephone switches and trunks has been around for decades. A tone is sent by an adversary to impersonate a supervisor signal which has the effect of rerouting or usurping command of the line. While the US infrastructure proper may not contain widespread vulnerabilities to this type of attack, many companies are connected globally through call centers and business process outsourcing. These international systems may be operated in countries which have not upgraded Telco infrastructure and so are vulnerable to Blue boxing. Blue boxing is a result of failure on the part of the system to enforce strong authorization for administrative functions. While the infrastructure is different than standard current applications like web applications, there are historical lessons to be learned to upgrade the access control for administrative functions.",
+            "external_references": [
+                {
+                    "source_name": "capec",
+                    "url": "https://capec.mitre.org/data/definitions/5.html",
+                    "external_id": "CAPEC-5"
+                },
+                {
+                    "source_name": "cwe",
+                    "url": "http://cwe.mitre.org/data/definitions/285.html",
+                    "external_id": "CWE-285"
+                },
+                {
+                    "source_name": "reference_from_CAPEC",
+                    "description": "G. Hoglund, G. McGraw, Exploiting Software: How to Break Code, 2004--02, Addison-Wesley",
+                    "external_id": "REF-1"
+                }
+            ],
+            "object_marking_refs": [
+                "marking-definition--17d82bb2-eeeb-4898-bda5-3ddbcd2b799d"
+            ],
+            "x_capec_abstraction": "Detailed",
+            "x_capec_child_of_refs": [
+                "attack-pattern--9c983530-1927-43ca-addd-63d149cda4a7"
+            ],
+            "x_capec_consequences": {
+                "Access_Control": [
+                    "Gain Privileges"
+                ],
+                "Authorization": [
+                    "Gain Privileges"
+                ],
+                "Availability": [
+                    "Resource Consumption (Denial of Service)"
+                ],
+                "Confidentiality": [
+                    "Gain Privileges"
+                ]
+            },
+            "x_capec_domains": [
+                "Communications",
+                "Software"
+            ],
+            "x_capec_example_instances": [
+                "An adversary identifies a vulnerable CCITT-5 phone line, and sends a combination tone to the switch in order to request administrative access. Based on tone and timing parameters the request is verified for access to the switch. Once the adversary has gained control of the switch launching calls, routing calls, and a whole host of opportunities are available."
+            ],
+            "x_capec_likelihood_of_attack": "Medium",
+            "x_capec_prerequisites": [
+                "System must use weak authentication mechanisms for administrative functions."
+            ],
+            "x_capec_resources_required": [
+                "CCITT-5 or other vulnerable lines, with the ability to send tones such as combined 2,400 Hz and 2,600 Hz tones to the switch"
+            ],
+            "x_capec_skills_required": {
+                "Low": "Given a vulnerable phone system, the attackers' technical vector relies on attacks that are well documented in cracker 'zines and have been around for decades."
+            },
+            "x_capec_status": "Draft",
+            "x_capec_typical_severity": "Very High",
+            "x_capec_version": "3.7"
+        },
+        {
+            "type": "report",
+            "spec_version": "2.1",
+            "id": "report--66d34472-af2f-4cad-8480-a99dcfb3b2d5",
+            "created": "2022-09-06T10:54:20.628758Z",
+            "modified": "2022-09-06T10:54:20.628758Z",
+            "name": "File converted: mitre_capec.txt",
+            "report_types": [
+                "threat_report"
+            ],
+            "published": "2022-09-06T16:24:20.628739Z",
+            "object_refs": [
+                "attack-pattern--00d91a4c-2645-4bf1-8db7-e7448ef25f17",
+                "attack-pattern--7b462c1f-e0bf-41a7-b811-2b676c103bda"
+            ],
+            "object_marking_refs": [
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
+            ]
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--f066697c-6c30-491b-bfd2-2f4e0880a6d7",
+            "created": "2022-09-06T10:54:20.62934Z",
+            "modified": "2022-09-06T10:54:20.62934Z",
+            "relationship_type": "default-extract",
+            "source_ref": "report--66d34472-af2f-4cad-8480-a99dcfb3b2d5",
+            "target_ref": "attack-pattern--00d91a4c-2645-4bf1-8db7-e7448ef25f17",
+            "object_marking_refs": [
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
+            ]
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--e1af05a9-5ddf-4b44-8ed1-b24ad1ad6193",
+            "created": "2022-09-06T10:54:20.629629Z",
+            "modified": "2022-09-06T10:54:20.629629Z",
+            "relationship_type": "default-extract",
+            "source_ref": "report--66d34472-af2f-4cad-8480-a99dcfb3b2d5",
+            "target_ref": "attack-pattern--7b462c1f-e0bf-41a7-b811-2b676c103bda",
+            "object_marking_refs": [
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
+            ]
+        }
+    ]
+}

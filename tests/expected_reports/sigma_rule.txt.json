@@ -1,0 +1,939 @@
+{
+    "type": "bundle",
+    "id": "bundle--1c6b2267-26e8-41a5-9179-662174c8993c",
+    "objects": [
+        {
+            "type": "identity",
+            "spec_version": "2.1",
+            "id": "identity--acf55024-6bbe-486f-a27a-7967559324f4",
+            "created_by_ref": "identity--a99a2297-3044-4011-9a7e-2ff15e056b65",
+            "created": "2022-01-01T00:00:00.000Z",
+            "modified": "2022-01-01T00:00:00.000Z",
+            "name": "file2stix",
+            "description": "https://github.com/signalscorps/file2stix/",
+            "identity_class": "organization",
+            "sectors": [
+                "technology"
+            ],
+            "contact_information": "https://www.signalscorps.com/contact/",
+            "object_marking_refs": [
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
+            ]
+        },
+        {
+            "type": "marking-definition",
+            "spec_version": "2.1",
+            "id": "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9",
+            "created": "2017-01-20T00:00:00.000Z",
+            "definition_type": "tlp",
+            "name": "TLP:WHITE",
+            "definition": {
+                "tlp": "white"
+            }
+        },
+        {
+            "type": "indicator",
+            "spec_version": "2.1",
+            "id": "indicator--d4904ea8-9347-41a4-a7f9-6549e31b40c5",
+            "created": "2022-10-02T15:42:29.396013Z",
+            "modified": "2022-10-02T15:42:29.396013Z",
+            "name": "Directory: 2018/09/09",
+            "indicator_types": [
+                "unknown"
+            ],
+            "pattern": "[ directory:path = '2018/09/09' ]",
+            "pattern_type": "stix",
+            "pattern_version": "2.1",
+            "valid_from": "2022-10-02T15:42:30.170096Z",
+            "external_references": [
+                {
+                    "source_name": "file2stix",
+                    "description": "This object was created using file2stix from the Signals Corps.",
+                    "url": "https://github.com/signalscorps/file2stix"
+                }
+            ],
+            "object_marking_refs": [
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
+            ]
+        },
+        {
+            "type": "indicator",
+            "spec_version": "2.1",
+            "id": "indicator--43ea3a71-43be-458b-9146-37b752143934",
+            "created": "2022-10-02T15:42:29.396013Z",
+            "modified": "2022-10-02T15:42:29.396013Z",
+            "name": "Directory: 2022/05/12",
+            "indicator_types": [
+                "unknown"
+            ],
+            "pattern": "[ directory:path = '2022/05/12' ]",
+            "pattern_type": "stix",
+            "pattern_version": "2.1",
+            "valid_from": "2022-10-02T15:42:37.964653Z",
+            "external_references": [
+                {
+                    "source_name": "file2stix",
+                    "description": "This object was created using file2stix from the Signals Corps.",
+                    "url": "https://github.com/signalscorps/file2stix"
+                }
+            ],
+            "object_marking_refs": [
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
+            ]
+        },
+        {
+            "type": "indicator",
+            "spec_version": "2.1",
+            "id": "indicator--9401af13-fc7d-430c-a729-bbb1ee98f392",
+            "created": "2022-10-02T15:42:29.396013Z",
+            "modified": "2022-10-02T15:42:29.396013Z",
+            "name": "Domain: Backdoor.Cobalt",
+            "indicator_types": [
+                "unknown"
+            ],
+            "pattern": "[ domain-name:value = 'Backdoor.Cobalt' ]",
+            "pattern_type": "stix",
+            "pattern_version": "2.1",
+            "valid_from": "2022-10-02T15:42:41.719183Z",
+            "external_references": [
+                {
+                    "source_name": "file2stix",
+                    "description": "This object was created using file2stix from the Signals Corps.",
+                    "url": "https://github.com/signalscorps/file2stix"
+                }
+            ],
+            "object_marking_refs": [
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
+            ]
+        },
+        {
+            "type": "indicator",
+            "spec_version": "2.1",
+            "id": "indicator--f7c3832b-cfa8-4fd4-97ff-563ce05f8771",
+            "created": "2022-10-02T15:42:29.396013Z",
+            "modified": "2022-10-02T15:42:29.396013Z",
+            "name": "Domain: Exploit.Script.CVE",
+            "indicator_types": [
+                "unknown"
+            ],
+            "pattern": "[ domain-name:value = 'Exploit.Script.CVE' ]",
+            "pattern_type": "stix",
+            "pattern_version": "2.1",
+            "valid_from": "2022-10-02T15:42:45.470662Z",
+            "external_references": [
+                {
+                    "source_name": "file2stix",
+                    "description": "This object was created using file2stix from the Signals Corps.",
+                    "url": "https://github.com/signalscorps/file2stix"
+                }
+            ],
+            "object_marking_refs": [
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
+            ]
+        },
+        {
+            "type": "indicator",
+            "spec_version": "2.1",
+            "id": "indicator--8ff55e5d-07eb-419d-af5c-97c61aa9d828",
+            "created": "2022-10-02T15:42:29.396013Z",
+            "modified": "2022-10-02T15:42:29.396013Z",
+            "name": "Domain: attack.execution",
+            "indicator_types": [
+                "unknown"
+            ],
+            "pattern": "[ domain-name:value = 'attack.execution' ]",
+            "pattern_type": "stix",
+            "pattern_version": "2.1",
+            "valid_from": "2022-10-02T15:42:49.017915Z",
+            "external_references": [
+                {
+                    "source_name": "file2stix",
+                    "description": "This object was created using file2stix from the Signals Corps.",
+                    "url": "https://github.com/signalscorps/file2stix"
+                }
+            ],
+            "object_marking_refs": [
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
+            ]
+        },
+        {
+            "type": "indicator",
+            "spec_version": "2.1",
+            "id": "indicator--b61e3b53-f7cb-4273-8f6e-8be787d57986",
+            "created": "2022-10-02T15:42:29.396013Z",
+            "modified": "2022-10-02T15:42:29.396013Z",
+            "name": "Domain: attack.command_and_control",
+            "indicator_types": [
+                "unknown"
+            ],
+            "pattern": "[ domain-name:value = 'attack.command_and_control' ]",
+            "pattern_type": "stix",
+            "pattern_version": "2.1",
+            "valid_from": "2022-10-02T15:42:52.743855Z",
+            "external_references": [
+                {
+                    "source_name": "file2stix",
+                    "description": "This object was created using file2stix from the Signals Corps.",
+                    "url": "https://github.com/signalscorps/file2stix"
+                }
+            ],
+            "object_marking_refs": [
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
+            ]
+        },
+        {
+            "type": "indicator",
+            "spec_version": "2.1",
+            "id": "indicator--7a49f642-8d97-4fee-9db8-dff44c7df6b9",
+            "created": "2022-10-02T15:42:29.396013Z",
+            "modified": "2022-10-02T15:42:29.396013Z",
+            "name": "URL: https://www.nextron-systems.com/2018/09/08/antivirus-event-analysis-cheat-sheet-v1-4/",
+            "indicator_types": [
+                "unknown",
+                "benign"
+            ],
+            "pattern": "[ url:value = 'https://www.nextron-systems.com/2018/09/08/antivirus-event-analysis-cheat-sheet-v1-4/' ]",
+            "pattern_type": "stix",
+            "pattern_version": "2.1",
+            "valid_from": "2022-10-02T15:42:56.382677Z",
+            "external_references": [
+                {
+                    "source_name": "file2stix",
+                    "description": "This object was created using file2stix from the Signals Corps.",
+                    "url": "https://github.com/signalscorps/file2stix"
+                }
+            ],
+            "object_marking_refs": [
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
+            ],
+            "extensions": {
+                "extension-definition--c8ea5ecb-f4a3-45e7-94de-9b9ba05161af": {
+                    "misp_warning_list_match": [
+                        "Top 1,000,000 most-used sites from Tranco"
+                    ],
+                    "extension_type": "property-extension"
+                }
+            }
+        },
+        {
+            "type": "indicator",
+            "spec_version": "2.1",
+            "id": "indicator--ab416e1f-2490-4ae3-98d2-0d13006710e0",
+            "created": "2022-10-02T15:42:29.396013Z",
+            "modified": "2022-10-02T15:42:29.396013Z",
+            "name": "URL: https://www.nextron-systems.com/?s=antivirus",
+            "indicator_types": [
+                "unknown",
+                "benign"
+            ],
+            "pattern": "[ url:value = 'https://www.nextron-systems.com/?s=antivirus' ]",
+            "pattern_type": "stix",
+            "pattern_version": "2.1",
+            "valid_from": "2022-10-02T15:42:59.835048Z",
+            "external_references": [
+                {
+                    "source_name": "file2stix",
+                    "description": "This object was created using file2stix from the Signals Corps.",
+                    "url": "https://github.com/signalscorps/file2stix"
+                }
+            ],
+            "object_marking_refs": [
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
+            ],
+            "extensions": {
+                "extension-definition--c8ea5ecb-f4a3-45e7-94de-9b9ba05161af": {
+                    "misp_warning_list_match": [
+                        "Top 1,000,000 most-used sites from Tranco"
+                    ],
+                    "extension_type": "property-extension"
+                }
+            }
+        },
+        {
+            "type": "indicator",
+            "spec_version": "2.1",
+            "id": "indicator--0a9cc2bd-6ff3-4645-9b49-202de65ea6e1",
+            "created": "2022-10-02T15:42:29.396013Z",
+            "modified": "2022-10-02T15:42:29.396013Z",
+            "name": "SIGMA Rule: Antivirus Exploitation Framework Detection",
+            "indicator_types": [
+                "unknown"
+            ],
+            "pattern": "title: Antivirus Exploitation Framework Detection\nid: 238527ad-3c2c-4e4f-a1f6-92fd63adb864\nstatus: test\ndescription: Detects a highly relevant Antivirus alert that reports an exploitation framework\nauthor: Florian Roth\nreferences:\n  - https://www.nextron-systems.com/2018/09/08/antivirus-event-analysis-cheat-sheet-v1-4/\ndate: 2018/09/09\nmodified: 2022/05/12\nlogsource:\n  category: antivirus\ndetection:\n  selection:\n    Signature|contains:\n      - 'MeteTool'\n      - 'MPreter'\n      - 'Meterpreter'\n      - 'Metasploit'\n      - 'PowerSploit'\n      - 'CobaltStrike'\n      - 'Swrort'\n      - 'Rozena'\n      - 'Backdoor.Cobalt'\n      - 'CobaltStr'\n      - 'COBEACON'\n      - 'Cometer'\n      - 'Razy'\n      - 'IISExchgSpawnCMD'\n      - 'Exploit.Script.CVE'\n  condition: selection\nfields:\n  - FileName\n  - User\nfalsepositives:\n  - Unlikely\nlevel: critical\ntags:\n  - attack.execution\n  - attack.t1203\n  - attack.command_and_control\n  - attack.t1219\n",
+            "pattern_type": "sigma",
+            "valid_from": "2022-10-02T15:43:03.079644Z",
+            "external_references": [
+                {
+                    "source_name": "file2stix",
+                    "description": "This object was created using file2stix from the Signals Corps.",
+                    "url": "https://github.com/signalscorps/file2stix"
+                }
+            ],
+            "object_marking_refs": [
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
+            ],
+            "extensions": {
+                "extension-definition--94f4bdb6-7f39-4d0a-b103-f787026963a6": {
+                    "title": "Antivirus Exploitation Framework Detection",
+                    "id": "238527ad-3c2c-4e4f-a1f6-92fd63adb864",
+                    "status": "test",
+                    "description": "Detects a highly relevant Antivirus alert that reports an exploitation framework",
+                    "author": "Florian Roth",
+                    "references": [
+                        "https://www.nextron-systems.com/2018/09/08/antivirus-event-analysis-cheat-sheet-v1-4/"
+                    ],
+                    "date": "2018/09/09",
+                    "modified": "2022/05/12",
+                    "logsource": {
+                        "category": "antivirus"
+                    },
+                    "detection": {
+                        "selection": {
+                            "Signature|contains": [
+                                "MeteTool",
+                                "MPreter",
+                                "Meterpreter",
+                                "Metasploit",
+                                "PowerSploit",
+                                "CobaltStrike",
+                                "Swrort",
+                                "Rozena",
+                                "Backdoor.Cobalt",
+                                "CobaltStr",
+                                "COBEACON",
+                                "Cometer",
+                                "Razy",
+                                "IISExchgSpawnCMD",
+                                "Exploit.Script.CVE"
+                            ]
+                        },
+                        "condition": "selection"
+                    },
+                    "fields": [
+                        "FileName",
+                        "User"
+                    ],
+                    "falsepositives": [
+                        "Unlikely"
+                    ],
+                    "level": "critical",
+                    "tags": [
+                        "attack.execution",
+                        "attack.t1203",
+                        "attack.command_and_control",
+                        "attack.t1219"
+                    ],
+                    "extension_type": "property-extension"
+                }
+            }
+        },
+        {
+            "type": "indicator",
+            "spec_version": "2.1",
+            "id": "indicator--e7288b62-fb68-46b9-9eb1-351adae7bde7",
+            "created": "2022-10-02T15:42:29.396013Z",
+            "modified": "2022-10-02T15:42:29.396013Z",
+            "name": "SIGMA Rule: Antivirus Ransomware Detection",
+            "indicator_types": [
+                "unknown"
+            ],
+            "pattern": "title: Antivirus Ransomware Detection\nid: 4c6ca276-d4d0-4a8c-9e4c-d69832f8671f\nstatus: experimental\ndescription: Detects a highly relevant Antivirus alert that reports ransomware\nauthor: Florian Roth\nreferences:\n  - https://www.nextron-systems.com/?s=antivirus\ndate: 2022/05/12\nlogsource:\n  category: antivirus\ndetection:\n  selection:\n    Signature|contains:\n      - 'Ransom'\n      - 'Filecoder'\n  condition: selection\nfalsepositives:\n  - Unlikely\nlevel: critical\ntags:\n  - attack.t1486\n",
+            "pattern_type": "sigma",
+            "valid_from": "2022-10-02T15:43:06.115937Z",
+            "external_references": [
+                {
+                    "source_name": "file2stix",
+                    "description": "This object was created using file2stix from the Signals Corps.",
+                    "url": "https://github.com/signalscorps/file2stix"
+                }
+            ],
+            "object_marking_refs": [
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
+            ],
+            "extensions": {
+                "extension-definition--94f4bdb6-7f39-4d0a-b103-f787026963a6": {
+                    "title": "Antivirus Ransomware Detection",
+                    "id": "4c6ca276-d4d0-4a8c-9e4c-d69832f8671f",
+                    "status": "experimental",
+                    "description": "Detects a highly relevant Antivirus alert that reports ransomware",
+                    "author": "Florian Roth",
+                    "references": [
+                        "https://www.nextron-systems.com/?s=antivirus"
+                    ],
+                    "date": "2022/05/12",
+                    "logsource": {
+                        "category": "antivirus"
+                    },
+                    "detection": {
+                        "selection": {
+                            "Signature|contains": [
+                                "Ransom",
+                                "Filecoder"
+                            ]
+                        },
+                        "condition": "selection"
+                    },
+                    "falsepositives": [
+                        "Unlikely"
+                    ],
+                    "level": "critical",
+                    "tags": [
+                        "attack.t1486"
+                    ],
+                    "extension_type": "property-extension"
+                }
+            }
+        },
+        {
+            "type": "directory",
+            "spec_version": "2.1",
+            "id": "directory--1bda7769-c38e-579b-9d1f-e5da59fe63a5",
+            "path": "2018/09/09",
+            "object_marking_refs": [
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
+            ]
+        },
+        {
+            "type": "directory",
+            "spec_version": "2.1",
+            "id": "directory--ec5c7948-60fa-5a54-b077-c3697ef25823",
+            "path": "2022/05/12",
+            "object_marking_refs": [
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
+            ]
+        },
+        {
+            "type": "domain-name",
+            "spec_version": "2.1",
+            "id": "domain-name--2f40cc6f-cf4f-5562-9d8c-2142d5464145",
+            "value": "Backdoor.Cobalt",
+            "object_marking_refs": [
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
+            ]
+        },
+        {
+            "type": "domain-name",
+            "spec_version": "2.1",
+            "id": "domain-name--a26934b8-56da-59b7-b4ce-f14fa1443ff1",
+            "value": "Exploit.Script.CVE",
+            "object_marking_refs": [
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
+            ]
+        },
+        {
+            "type": "domain-name",
+            "spec_version": "2.1",
+            "id": "domain-name--ee283a36-75bb-5baf-862c-ea52013d77a2",
+            "value": "attack.execution",
+            "object_marking_refs": [
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
+            ]
+        },
+        {
+            "type": "domain-name",
+            "spec_version": "2.1",
+            "id": "domain-name--f2d7f765-c160-5dc9-9d6e-ef95fc0cd7b6",
+            "value": "attack.command_and_control",
+            "object_marking_refs": [
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
+            ]
+        },
+        {
+            "type": "url",
+            "spec_version": "2.1",
+            "id": "url--664ba204-79fa-59a5-8726-57056c5c8f2e",
+            "value": "https://www.nextron-systems.com/2018/09/08/antivirus-event-analysis-cheat-sheet-v1-4/",
+            "object_marking_refs": [
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
+            ]
+        },
+        {
+            "type": "url",
+            "spec_version": "2.1",
+            "id": "url--4e6db5b7-d7bc-5b7c-ae46-b196624fc384",
+            "value": "https://www.nextron-systems.com/?s=antivirus",
+            "object_marking_refs": [
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
+            ]
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--2f7bdb5a-a15a-47f4-aa92-41fd5667e861",
+            "created_by_ref": "identity--acf55024-6bbe-486f-a27a-7967559324f4",
+            "created": "2022-10-02T15:42:29.396013Z",
+            "modified": "2022-10-02T15:42:29.396013Z",
+            "relationship_type": "default-extract-from",
+            "source_ref": "indicator--d4904ea8-9347-41a4-a7f9-6549e31b40c5",
+            "target_ref": "report--7d4ffa90-6206-4750-b407-26016c862ebf",
+            "external_references": [
+                {
+                    "source_name": "file2stix",
+                    "description": "This object was created using file2stix from the Signals Corps.",
+                    "url": "https://github.com/signalscorps/file2stix"
+                }
+            ],
+            "object_marking_refs": [
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
+            ]
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--09b3c2c3-b4e8-4ce0-a424-093162aa2cee",
+            "created_by_ref": "identity--acf55024-6bbe-486f-a27a-7967559324f4",
+            "created": "2022-10-02T15:42:29.396013Z",
+            "modified": "2022-10-02T15:42:29.396013Z",
+            "relationship_type": "default-extract-from",
+            "source_ref": "indicator--43ea3a71-43be-458b-9146-37b752143934",
+            "target_ref": "report--7d4ffa90-6206-4750-b407-26016c862ebf",
+            "external_references": [
+                {
+                    "source_name": "file2stix",
+                    "description": "This object was created using file2stix from the Signals Corps.",
+                    "url": "https://github.com/signalscorps/file2stix"
+                }
+            ],
+            "object_marking_refs": [
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
+            ]
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--97d149ef-2ae6-4da4-888a-0a2f206d6378",
+            "created_by_ref": "identity--acf55024-6bbe-486f-a27a-7967559324f4",
+            "created": "2022-10-02T15:42:29.396013Z",
+            "modified": "2022-10-02T15:42:29.396013Z",
+            "relationship_type": "default-extract-from",
+            "source_ref": "indicator--9401af13-fc7d-430c-a729-bbb1ee98f392",
+            "target_ref": "report--7d4ffa90-6206-4750-b407-26016c862ebf",
+            "external_references": [
+                {
+                    "source_name": "file2stix",
+                    "description": "This object was created using file2stix from the Signals Corps.",
+                    "url": "https://github.com/signalscorps/file2stix"
+                }
+            ],
+            "object_marking_refs": [
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
+            ]
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--0a1de55b-e8f6-421e-bd90-b9a9c2e38d23",
+            "created_by_ref": "identity--acf55024-6bbe-486f-a27a-7967559324f4",
+            "created": "2022-10-02T15:42:29.396013Z",
+            "modified": "2022-10-02T15:42:29.396013Z",
+            "relationship_type": "default-extract-from",
+            "source_ref": "indicator--f7c3832b-cfa8-4fd4-97ff-563ce05f8771",
+            "target_ref": "report--7d4ffa90-6206-4750-b407-26016c862ebf",
+            "external_references": [
+                {
+                    "source_name": "file2stix",
+                    "description": "This object was created using file2stix from the Signals Corps.",
+                    "url": "https://github.com/signalscorps/file2stix"
+                }
+            ],
+            "object_marking_refs": [
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
+            ]
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--3b56afa8-e3e6-4da7-abc9-af252c437b10",
+            "created_by_ref": "identity--acf55024-6bbe-486f-a27a-7967559324f4",
+            "created": "2022-10-02T15:42:29.396013Z",
+            "modified": "2022-10-02T15:42:29.396013Z",
+            "relationship_type": "default-extract-from",
+            "source_ref": "indicator--8ff55e5d-07eb-419d-af5c-97c61aa9d828",
+            "target_ref": "report--7d4ffa90-6206-4750-b407-26016c862ebf",
+            "external_references": [
+                {
+                    "source_name": "file2stix",
+                    "description": "This object was created using file2stix from the Signals Corps.",
+                    "url": "https://github.com/signalscorps/file2stix"
+                }
+            ],
+            "object_marking_refs": [
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
+            ]
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--ff941258-2bf0-41f2-82b7-95c3398b707e",
+            "created_by_ref": "identity--acf55024-6bbe-486f-a27a-7967559324f4",
+            "created": "2022-10-02T15:42:29.396013Z",
+            "modified": "2022-10-02T15:42:29.396013Z",
+            "relationship_type": "default-extract-from",
+            "source_ref": "indicator--b61e3b53-f7cb-4273-8f6e-8be787d57986",
+            "target_ref": "report--7d4ffa90-6206-4750-b407-26016c862ebf",
+            "external_references": [
+                {
+                    "source_name": "file2stix",
+                    "description": "This object was created using file2stix from the Signals Corps.",
+                    "url": "https://github.com/signalscorps/file2stix"
+                }
+            ],
+            "object_marking_refs": [
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
+            ]
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--f00f12f0-acf0-4258-bbe9-79dd7ce4680b",
+            "created_by_ref": "identity--acf55024-6bbe-486f-a27a-7967559324f4",
+            "created": "2022-10-02T15:42:29.396013Z",
+            "modified": "2022-10-02T15:42:29.396013Z",
+            "relationship_type": "default-extract-from",
+            "source_ref": "indicator--7a49f642-8d97-4fee-9db8-dff44c7df6b9",
+            "target_ref": "report--7d4ffa90-6206-4750-b407-26016c862ebf",
+            "external_references": [
+                {
+                    "source_name": "file2stix",
+                    "description": "This object was created using file2stix from the Signals Corps.",
+                    "url": "https://github.com/signalscorps/file2stix"
+                }
+            ],
+            "object_marking_refs": [
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
+            ]
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--cdc2f81c-4683-43ca-8fdc-058ccc93f449",
+            "created_by_ref": "identity--acf55024-6bbe-486f-a27a-7967559324f4",
+            "created": "2022-10-02T15:42:29.396013Z",
+            "modified": "2022-10-02T15:42:29.396013Z",
+            "relationship_type": "default-extract-from",
+            "source_ref": "indicator--ab416e1f-2490-4ae3-98d2-0d13006710e0",
+            "target_ref": "report--7d4ffa90-6206-4750-b407-26016c862ebf",
+            "external_references": [
+                {
+                    "source_name": "file2stix",
+                    "description": "This object was created using file2stix from the Signals Corps.",
+                    "url": "https://github.com/signalscorps/file2stix"
+                }
+            ],
+            "object_marking_refs": [
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
+            ]
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--847799e5-73f9-47dd-b1c9-5e73414e91c2",
+            "created_by_ref": "identity--acf55024-6bbe-486f-a27a-7967559324f4",
+            "created": "2022-10-02T15:42:29.396013Z",
+            "modified": "2022-10-02T15:42:29.396013Z",
+            "relationship_type": "default-extract-from",
+            "source_ref": "indicator--0a9cc2bd-6ff3-4645-9b49-202de65ea6e1",
+            "target_ref": "report--7d4ffa90-6206-4750-b407-26016c862ebf",
+            "external_references": [
+                {
+                    "source_name": "file2stix",
+                    "description": "This object was created using file2stix from the Signals Corps.",
+                    "url": "https://github.com/signalscorps/file2stix"
+                }
+            ],
+            "object_marking_refs": [
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
+            ]
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--ef866d59-166c-44a1-92d7-da10e01474c3",
+            "created_by_ref": "identity--acf55024-6bbe-486f-a27a-7967559324f4",
+            "created": "2022-10-02T15:42:29.396013Z",
+            "modified": "2022-10-02T15:42:29.396013Z",
+            "relationship_type": "default-extract-from",
+            "source_ref": "indicator--e7288b62-fb68-46b9-9eb1-351adae7bde7",
+            "target_ref": "report--7d4ffa90-6206-4750-b407-26016c862ebf",
+            "external_references": [
+                {
+                    "source_name": "file2stix",
+                    "description": "This object was created using file2stix from the Signals Corps.",
+                    "url": "https://github.com/signalscorps/file2stix"
+                }
+            ],
+            "object_marking_refs": [
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
+            ]
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--0b0e168a-d85b-4edc-8dd3-4f3ae4463559",
+            "created_by_ref": "identity--acf55024-6bbe-486f-a27a-7967559324f4",
+            "created": "2022-10-02T15:42:29.396013Z",
+            "modified": "2022-10-02T15:42:29.396013Z",
+            "relationship_type": "pattern-contains",
+            "source_ref": "indicator--d4904ea8-9347-41a4-a7f9-6549e31b40c5",
+            "target_ref": "directory--1bda7769-c38e-579b-9d1f-e5da59fe63a5",
+            "external_references": [
+                {
+                    "source_name": "file2stix",
+                    "description": "This object was created using file2stix from the Signals Corps.",
+                    "url": "https://github.com/signalscorps/file2stix"
+                }
+            ],
+            "object_marking_refs": [
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
+            ]
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--f692863a-a15d-4a24-8889-ac2980faf023",
+            "created_by_ref": "identity--acf55024-6bbe-486f-a27a-7967559324f4",
+            "created": "2022-10-02T15:42:29.396013Z",
+            "modified": "2022-10-02T15:42:29.396013Z",
+            "relationship_type": "pattern-contains",
+            "source_ref": "indicator--12df8a45-a17e-4130-91c6-280166fd0c54",
+            "target_ref": "directory--ec5c7948-60fa-5a54-b077-c3697ef25823",
+            "external_references": [
+                {
+                    "source_name": "file2stix",
+                    "description": "This object was created using file2stix from the Signals Corps.",
+                    "url": "https://github.com/signalscorps/file2stix"
+                }
+            ],
+            "object_marking_refs": [
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
+            ]
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--12925eb9-9469-42aa-b4a0-1b8dcd2d913c",
+            "created_by_ref": "identity--acf55024-6bbe-486f-a27a-7967559324f4",
+            "created": "2022-10-02T15:42:29.396013Z",
+            "modified": "2022-10-02T15:42:29.396013Z",
+            "relationship_type": "pattern-contains",
+            "source_ref": "indicator--9401af13-fc7d-430c-a729-bbb1ee98f392",
+            "target_ref": "domain-name--2f40cc6f-cf4f-5562-9d8c-2142d5464145",
+            "external_references": [
+                {
+                    "source_name": "file2stix",
+                    "description": "This object was created using file2stix from the Signals Corps.",
+                    "url": "https://github.com/signalscorps/file2stix"
+                }
+            ],
+            "object_marking_refs": [
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
+            ]
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--79f22fa5-3617-4900-8b2c-78e8697d0358",
+            "created_by_ref": "identity--acf55024-6bbe-486f-a27a-7967559324f4",
+            "created": "2022-10-02T15:42:29.396013Z",
+            "modified": "2022-10-02T15:42:29.396013Z",
+            "relationship_type": "pattern-contains",
+            "source_ref": "indicator--f7c3832b-cfa8-4fd4-97ff-563ce05f8771",
+            "target_ref": "domain-name--a26934b8-56da-59b7-b4ce-f14fa1443ff1",
+            "external_references": [
+                {
+                    "source_name": "file2stix",
+                    "description": "This object was created using file2stix from the Signals Corps.",
+                    "url": "https://github.com/signalscorps/file2stix"
+                }
+            ],
+            "object_marking_refs": [
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
+            ]
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--4934a8fb-9e48-484e-99da-e1e190d71581",
+            "created_by_ref": "identity--acf55024-6bbe-486f-a27a-7967559324f4",
+            "created": "2022-10-02T15:42:29.396013Z",
+            "modified": "2022-10-02T15:42:29.396013Z",
+            "relationship_type": "pattern-contains",
+            "source_ref": "indicator--8ff55e5d-07eb-419d-af5c-97c61aa9d828",
+            "target_ref": "domain-name--ee283a36-75bb-5baf-862c-ea52013d77a2",
+            "external_references": [
+                {
+                    "source_name": "file2stix",
+                    "description": "This object was created using file2stix from the Signals Corps.",
+                    "url": "https://github.com/signalscorps/file2stix"
+                }
+            ],
+            "object_marking_refs": [
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
+            ]
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--2eaee4c4-499d-4621-9504-6d081c3ea073",
+            "created_by_ref": "identity--acf55024-6bbe-486f-a27a-7967559324f4",
+            "created": "2022-10-02T15:42:29.396013Z",
+            "modified": "2022-10-02T15:42:29.396013Z",
+            "relationship_type": "pattern-contains",
+            "source_ref": "indicator--b61e3b53-f7cb-4273-8f6e-8be787d57986",
+            "target_ref": "domain-name--f2d7f765-c160-5dc9-9d6e-ef95fc0cd7b6",
+            "external_references": [
+                {
+                    "source_name": "file2stix",
+                    "description": "This object was created using file2stix from the Signals Corps.",
+                    "url": "https://github.com/signalscorps/file2stix"
+                }
+            ],
+            "object_marking_refs": [
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
+            ]
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--67bdf41a-b875-4432-9b54-ef1288edd544",
+            "created_by_ref": "identity--acf55024-6bbe-486f-a27a-7967559324f4",
+            "created": "2022-10-02T15:42:29.396013Z",
+            "modified": "2022-10-02T15:42:29.396013Z",
+            "relationship_type": "pattern-contains",
+            "source_ref": "indicator--7a49f642-8d97-4fee-9db8-dff44c7df6b9",
+            "target_ref": "url--664ba204-79fa-59a5-8726-57056c5c8f2e",
+            "external_references": [
+                {
+                    "source_name": "file2stix",
+                    "description": "This object was created using file2stix from the Signals Corps.",
+                    "url": "https://github.com/signalscorps/file2stix"
+                }
+            ],
+            "object_marking_refs": [
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
+            ]
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--23b93c13-0796-4a4c-9662-6fb2eb4aa1d5",
+            "created_by_ref": "identity--acf55024-6bbe-486f-a27a-7967559324f4",
+            "created": "2022-10-02T15:42:29.396013Z",
+            "modified": "2022-10-02T15:42:29.396013Z",
+            "relationship_type": "pattern-contains",
+            "source_ref": "indicator--ab416e1f-2490-4ae3-98d2-0d13006710e0",
+            "target_ref": "url--4e6db5b7-d7bc-5b7c-ae46-b196624fc384",
+            "external_references": [
+                {
+                    "source_name": "file2stix",
+                    "description": "This object was created using file2stix from the Signals Corps.",
+                    "url": "https://github.com/signalscorps/file2stix"
+                }
+            ],
+            "object_marking_refs": [
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
+            ]
+        },
+        {
+            "type": "extension-definition",
+            "spec_version": "2.1",
+            "id": "extension-definition--c8ea5ecb-f4a3-45e7-94de-9b9ba05161af",
+            "created_by_ref": "identity--a99a2297-3044-4011-9a7e-2ff15e056b65",
+            "created": "2022-01-01T00:00:00.000Z",
+            "modified": "2022-01-01T00:00:00.000Z",
+            "name": "MISP Warning Lists",
+            "description": "This schema adds MISP Warning List matches to extracted Objects",
+            "schema": "https://raw.githubusercontent.com/signalscorps/stix2-objects/main/schemas/properties/misp-warning-list-match/schema.json",
+            "version": "1.0",
+            "extension_types": [
+                "property-extension"
+            ],
+            "object_marking_refs": [
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
+            ]
+        },
+        {
+            "type": "extension-definition",
+            "spec_version": "2.1",
+            "id": "extension-definition--94f4bdb6-7f39-4d0a-b103-f787026963a6",
+            "created_by_ref": "identity--a99a2297-3044-4011-9a7e-2ff15e056b65",
+            "created": "2022-01-01T00:00:00.000Z",
+            "modified": "2022-01-01T00:00:00.000Z",
+            "name": "Sigma Rules",
+            "description": "This schema adds Sigma Rules to Indicator SDOs",
+            "schema": "https://raw.githubusercontent.com/signalscorps/stix2-objects/main/schemas/properties/sigma-rule/schema.json",
+            "version": "1.0",
+            "extension_types": [
+                "property-extension"
+            ],
+            "object_marking_refs": [
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
+            ]
+        },
+        {
+            "type": "report",
+            "spec_version": "2.1",
+            "id": "report--7d4ffa90-6206-4750-b407-26016c862ebf",
+            "created_by_ref": "identity--acf55024-6bbe-486f-a27a-7967559324f4",
+            "created": "2022-10-02T15:42:29.396013Z",
+            "modified": "2022-10-02T15:42:29.396013Z",
+            "name": "File converted: sigma_rule.txt",
+            "report_types": [
+                "threat_report"
+            ],
+            "published": "2022-10-02T21:12:29.396003Z",
+            "object_refs": [
+                "identity--acf55024-6bbe-486f-a27a-7967559324f4",
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9",
+                "indicator--d4904ea8-9347-41a4-a7f9-6549e31b40c5",
+                "indicator--43ea3a71-43be-458b-9146-37b752143934",
+                "indicator--9401af13-fc7d-430c-a729-bbb1ee98f392",
+                "indicator--f7c3832b-cfa8-4fd4-97ff-563ce05f8771",
+                "indicator--8ff55e5d-07eb-419d-af5c-97c61aa9d828",
+                "indicator--b61e3b53-f7cb-4273-8f6e-8be787d57986",
+                "indicator--7a49f642-8d97-4fee-9db8-dff44c7df6b9",
+                "indicator--ab416e1f-2490-4ae3-98d2-0d13006710e0",
+                "indicator--0a9cc2bd-6ff3-4645-9b49-202de65ea6e1",
+                "indicator--e7288b62-fb68-46b9-9eb1-351adae7bde7",
+                "directory--1bda7769-c38e-579b-9d1f-e5da59fe63a5",
+                "directory--ec5c7948-60fa-5a54-b077-c3697ef25823",
+                "domain-name--2f40cc6f-cf4f-5562-9d8c-2142d5464145",
+                "domain-name--a26934b8-56da-59b7-b4ce-f14fa1443ff1",
+                "domain-name--ee283a36-75bb-5baf-862c-ea52013d77a2",
+                "domain-name--f2d7f765-c160-5dc9-9d6e-ef95fc0cd7b6",
+                "url--664ba204-79fa-59a5-8726-57056c5c8f2e",
+                "url--4e6db5b7-d7bc-5b7c-ae46-b196624fc384",
+                "relationship--2f7bdb5a-a15a-47f4-aa92-41fd5667e861",
+                "relationship--09b3c2c3-b4e8-4ce0-a424-093162aa2cee",
+                "relationship--97d149ef-2ae6-4da4-888a-0a2f206d6378",
+                "relationship--0a1de55b-e8f6-421e-bd90-b9a9c2e38d23",
+                "relationship--3b56afa8-e3e6-4da7-abc9-af252c437b10",
+                "relationship--ff941258-2bf0-41f2-82b7-95c3398b707e",
+                "relationship--f00f12f0-acf0-4258-bbe9-79dd7ce4680b",
+                "relationship--cdc2f81c-4683-43ca-8fdc-058ccc93f449",
+                "relationship--847799e5-73f9-47dd-b1c9-5e73414e91c2",
+                "relationship--ef866d59-166c-44a1-92d7-da10e01474c3",
+                "relationship--0b0e168a-d85b-4edc-8dd3-4f3ae4463559",
+                "relationship--f692863a-a15d-4a24-8889-ac2980faf023",
+                "relationship--12925eb9-9469-42aa-b4a0-1b8dcd2d913c",
+                "relationship--79f22fa5-3617-4900-8b2c-78e8697d0358",
+                "relationship--4934a8fb-9e48-484e-99da-e1e190d71581",
+                "relationship--2eaee4c4-499d-4621-9504-6d081c3ea073",
+                "relationship--67bdf41a-b875-4432-9b54-ef1288edd544",
+                "relationship--23b93c13-0796-4a4c-9662-6fb2eb4aa1d5",
+                "extension-definition--c8ea5ecb-f4a3-45e7-94de-9b9ba05161af",
+                "extension-definition--94f4bdb6-7f39-4d0a-b103-f787026963a6"
+            ],
+            "external_references": [
+                {
+                    "source_name": "file2stix",
+                    "description": "This object was created using file2stix from the Signals Corps.",
+                    "url": "https://github.com/signalscorps/file2stix"
+                }
+            ],
+            "object_marking_refs": [
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
+            ]
+        }
+    ]
+}

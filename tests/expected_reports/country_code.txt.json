@@ -1,0 +1,104 @@
+{
+    "type": "bundle",
+    "id": "bundle--977fe40c-6343-4d9a-8eb6-deaa2134894b",
+    "objects": [
+        {
+            "type": "identity",
+            "spec_version": "2.1",
+            "id": "identity--acf55024-6bbe-486f-a27a-7967559324f4",
+            "created_by_ref": "identity--a99a2297-3044-4011-9a7e-2ff15e056b65",
+            "created": "2022-01-01T00:00:00.000Z",
+            "modified": "2022-01-01T00:00:00.000Z",
+            "name": "file2stix",
+            "description": "https://github.com/signalscorps/file2stix/",
+            "identity_class": "organization",
+            "sectors": [
+                "technology"
+            ],
+            "contact_information": "https://www.signalscorps.com/contact/",
+            "object_marking_refs": [
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
+            ]
+        },
+        {
+            "type": "marking-definition",
+            "spec_version": "2.1",
+            "id": "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9",
+            "created": "2017-01-20T00:00:00.000Z",
+            "definition_type": "tlp",
+            "name": "TLP:WHITE",
+            "definition": {
+                "tlp": "white"
+            }
+        },
+        {
+            "type": "location",
+            "spec_version": "2.1",
+            "id": "location--c29aac42-b8cc-4d31-9507-cab4562fc7c8",
+            "created": "2022-10-02T14:19:07.720365Z",
+            "modified": "2022-10-02T14:19:07.720365Z",
+            "name": "Country: United Kingdom",
+            "country": "GB",
+            "external_references": [
+                {
+                    "source_name": "file2stix",
+                    "description": "This object was created using file2stix from the Signals Corps.",
+                    "url": "https://github.com/signalscorps/file2stix"
+                }
+            ],
+            "object_marking_refs": [
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
+            ]
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--6d64253a-72f4-4d0b-a923-57dc65d5e3c9",
+            "created_by_ref": "identity--acf55024-6bbe-486f-a27a-7967559324f4",
+            "created": "2022-10-02T14:19:07.720365Z",
+            "modified": "2022-10-02T14:19:07.720365Z",
+            "relationship_type": "default-extract-from",
+            "source_ref": "location--c29aac42-b8cc-4d31-9507-cab4562fc7c8",
+            "target_ref": "report--5b28d1fa-523a-4f3f-b4e6-047d1d841b0b",
+            "external_references": [
+                {
+                    "source_name": "file2stix",
+                    "description": "This object was created using file2stix from the Signals Corps.",
+                    "url": "https://github.com/signalscorps/file2stix"
+                }
+            ],
+            "object_marking_refs": [
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
+            ]
+        },
+        {
+            "type": "report",
+            "spec_version": "2.1",
+            "id": "report--5b28d1fa-523a-4f3f-b4e6-047d1d841b0b",
+            "created_by_ref": "identity--acf55024-6bbe-486f-a27a-7967559324f4",
+            "created": "2022-10-02T14:19:07.720365Z",
+            "modified": "2022-10-02T14:19:07.720365Z",
+            "name": "File converted: country_code.txt",
+            "report_types": [
+                "threat_report"
+            ],
+            "published": "2022-10-02T19:49:07.720357Z",
+            "object_refs": [
+                "identity--acf55024-6bbe-486f-a27a-7967559324f4",
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9",
+                "location--c29aac42-b8cc-4d31-9507-cab4562fc7c8",
+                "relationship--6d64253a-72f4-4d0b-a923-57dc65d5e3c9"
+            ],
+            "external_references": [
+                {
+                    "source_name": "file2stix",
+                    "description": "This object was created using file2stix from the Signals Corps.",
+                    "url": "https://github.com/signalscorps/file2stix"
+                }
+            ],
+            "object_marking_refs": [
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
+            ]
+        }
+    ]
+}

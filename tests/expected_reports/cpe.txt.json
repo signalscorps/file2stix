@@ -1,0 +1,133 @@
+{
+    "type": "bundle",
+    "id": "bundle--0ad90e84-a6d0-47c9-bf2d-e991c11dc344",
+    "objects": [
+        {
+            "type": "identity",
+            "spec_version": "2.1",
+            "id": "identity--acf55024-6bbe-486f-a27a-7967559324f4",
+            "created_by_ref": "identity--a99a2297-3044-4011-9a7e-2ff15e056b65",
+            "created": "2022-01-01T00:00:00.000Z",
+            "modified": "2022-01-01T00:00:00.000Z",
+            "name": "file2stix",
+            "description": "https://github.com/signalscorps/file2stix/",
+            "identity_class": "organization",
+            "sectors": [
+                "technology"
+            ],
+            "contact_information": "https://www.signalscorps.com/contact/",
+            "object_marking_refs": [
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
+            ]
+        },
+        {
+            "type": "marking-definition",
+            "spec_version": "2.1",
+            "id": "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9",
+            "created": "2017-01-20T00:00:00.000Z",
+            "definition_type": "tlp",
+            "name": "TLP:WHITE",
+            "definition": {
+                "tlp": "white"
+            }
+        },
+        {
+            "type": "software",
+            "spec_version": "2.1",
+            "id": "software--e78aa2a6-74b2-54ff-9457-2b01f13d4274",
+            "name": "CPE: apache log4j 2.0",
+            "cpe": "cpe:2.3:a:apache:log4j:2.0:rc2:*:*:*:*:*:*",
+            "vendor": "apache",
+            "version": "2.0",
+            "object_marking_refs": [
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
+            ],
+            "extensions": {
+                "extension-definition--6c453e0f-9895-498f-a273-2e2dda473377": {
+                    "extension_type": "property-extension",
+                    "cpe23Uri": "cpe:2.3:a:apache:log4j:2.0:rc2:*:*:*:*:*:*",
+                    "part": "a",
+                    "vendor": "apache",
+                    "product": "log4j",
+                    "version": "2.0",
+                    "update": "rc2",
+                    "edition": "*",
+                    "language": "*",
+                    "sw_edition": "*",
+                    "target_sw": "*",
+                    "target_hw": "*",
+                    "other": "*"
+                }
+            }
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--90037a00-85a4-4301-b81e-5bb1f6295083",
+            "created_by_ref": "identity--acf55024-6bbe-486f-a27a-7967559324f4",
+            "created": "2022-10-02T14:17:58.499176Z",
+            "modified": "2022-10-02T14:17:58.499176Z",
+            "relationship_type": "default-extract-from",
+            "source_ref": "software--e78aa2a6-74b2-54ff-9457-2b01f13d4274",
+            "target_ref": "report--cb3f58ad-ef7c-4bec-b2c1-6622277197fa",
+            "external_references": [
+                {
+                    "source_name": "file2stix",
+                    "description": "This object was created using file2stix from the Signals Corps.",
+                    "url": "https://github.com/signalscorps/file2stix"
+                }
+            ],
+            "object_marking_refs": [
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
+            ]
+        },
+        {
+            "type": "extension-definition",
+            "spec_version": "2.1",
+            "id": "extension-definition--6c453e0f-9895-498f-a273-2e2dda473377",
+            "created_by_ref": "identity--a99a2297-3044-4011-9a7e-2ff15e056b65",
+            "created": "2022-01-01T00:00:00.000Z",
+            "modified": "2022-01-01T00:00:00.000Z",
+            "name": "NVD CPEs",
+            "description": "This schema adds CPEs to Software SCOs",
+            "schema": "https://raw.githubusercontent.com/signalscorps/stix2-objects/main/schemas/properties/cpe/schema.json",
+            "version": "1.0",
+            "extension_types": [
+                "property-extension"
+            ],
+            "object_marking_refs": [
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
+            ]
+        },
+        {
+            "type": "report",
+            "spec_version": "2.1",
+            "id": "report--cb3f58ad-ef7c-4bec-b2c1-6622277197fa",
+            "created_by_ref": "identity--acf55024-6bbe-486f-a27a-7967559324f4",
+            "created": "2022-10-02T14:17:58.499176Z",
+            "modified": "2022-10-02T14:17:58.499176Z",
+            "name": "File converted: cpe.txt",
+            "report_types": [
+                "threat_report"
+            ],
+            "published": "2022-10-02T19:47:58.499165Z",
+            "object_refs": [
+                "identity--acf55024-6bbe-486f-a27a-7967559324f4",
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9",
+                "software--e78aa2a6-74b2-54ff-9457-2b01f13d4274",
+                "relationship--90037a00-85a4-4301-b81e-5bb1f6295083",
+                "extension-definition--6c453e0f-9895-498f-a273-2e2dda473377"
+            ],
+            "external_references": [
+                {
+                    "source_name": "file2stix",
+                    "description": "This object was created using file2stix from the Signals Corps.",
+                    "url": "https://github.com/signalscorps/file2stix"
+                }
+            ],
+            "object_marking_refs": [
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
+            ]
+        }
+    ]
+}

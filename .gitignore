@@ -127,3 +127,29 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+.DS_Store
+
+# Example venv in docs
+venv
+
+# Ignore .vscode settings
+.vscode/
+
+# Ignore stix filestore, bundle and error logs
+stix2_objects/
+stix2_bundles/
+logs/
+
+# Ignore TODO file
+TODO.txt
+
+# Ignore cache
+file2stix-cache
+
+# Ignore venv as stated in docs
+
+file2stix_venv
+
+# Ignore tests
+
+stix2_bundles_alt

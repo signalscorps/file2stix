@@ -1,0 +1,109 @@
+{
+    "type": "bundle",
+    "id": "bundle--7b96a97d-c55b-44f4-9f7f-d274f35b4967",
+    "objects": [
+        {
+            "type": "identity",
+            "spec_version": "2.1",
+            "id": "identity--acf55024-6bbe-486f-a27a-7967559324f4",
+            "created_by_ref": "identity--a99a2297-3044-4011-9a7e-2ff15e056b65",
+            "created": "2022-01-01T00:00:00.000Z",
+            "modified": "2022-01-01T00:00:00.000Z",
+            "name": "file2stix",
+            "description": "https://github.com/signalscorps/file2stix/",
+            "identity_class": "organization",
+            "sectors": [
+                "technology"
+            ],
+            "contact_information": "https://www.signalscorps.com/contact/",
+            "object_marking_refs": [
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
+            ]
+        },
+        {
+            "type": "marking-definition",
+            "spec_version": "2.1",
+            "id": "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9",
+            "created": "2017-01-20T00:00:00.000Z",
+            "definition_type": "tlp",
+            "name": "TLP:WHITE",
+            "definition": {
+                "tlp": "white"
+            }
+        },
+        {
+            "type": "indicator",
+            "spec_version": "2.1",
+            "id": "indicator--fdb67265-b493-4a8a-8201-ee2bfc1f5bd5",
+            "created": "2022-10-02T14:40:26.746594Z",
+            "modified": "2022-10-02T14:40:26.746594Z",
+            "name": "YARA Rule: dummy",
+            "indicator_types": [
+                "unknown"
+            ],
+            "pattern": "rule dummy\r\n{\r\n    condition:\r\n        false\r\n}\r\n\r\n\r\nrule another\r\n{\r\n    test:\r\n        false\r\n    test2:\r\n        true\r\n}",
+            "pattern_type": "yara",
+            "valid_from": "2022-10-02T14:40:26.789149Z",
+            "external_references": [
+                {
+                    "source_name": "file2stix",
+                    "description": "This object was created using file2stix from the Signals Corps.",
+                    "url": "https://github.com/signalscorps/file2stix"
+                }
+            ],
+            "object_marking_refs": [
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
+            ]
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--9b1d0455-ca19-4873-a46c-12016dbc1909",
+            "created_by_ref": "identity--acf55024-6bbe-486f-a27a-7967559324f4",
+            "created": "2022-10-02T14:40:26.746594Z",
+            "modified": "2022-10-02T14:40:26.746594Z",
+            "relationship_type": "default-extract-from",
+            "source_ref": "indicator--fdb67265-b493-4a8a-8201-ee2bfc1f5bd5",
+            "target_ref": "report--ac89dbec-85af-4c23-b893-9bdf5e159505",
+            "external_references": [
+                {
+                    "source_name": "file2stix",
+                    "description": "This object was created using file2stix from the Signals Corps.",
+                    "url": "https://github.com/signalscorps/file2stix"
+                }
+            ],
+            "object_marking_refs": [
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
+            ]
+        },
+        {
+            "type": "report",
+            "spec_version": "2.1",
+            "id": "report--ac89dbec-85af-4c23-b893-9bdf5e159505",
+            "created_by_ref": "identity--acf55024-6bbe-486f-a27a-7967559324f4",
+            "created": "2022-10-02T14:40:26.746594Z",
+            "modified": "2022-10-02T14:40:26.746594Z",
+            "name": "File converted: yara_rule.txt",
+            "report_types": [
+                "threat_report"
+            ],
+            "published": "2022-10-02T20:10:26.746584Z",
+            "object_refs": [
+                "identity--acf55024-6bbe-486f-a27a-7967559324f4",
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9",
+                "indicator--fdb67265-b493-4a8a-8201-ee2bfc1f5bd5",
+                "relationship--9b1d0455-ca19-4873-a46c-12016dbc1909"
+            ],
+            "external_references": [
+                {
+                    "source_name": "file2stix",
+                    "description": "This object was created using file2stix from the Signals Corps.",
+                    "url": "https://github.com/signalscorps/file2stix"
+                }
+            ],
+            "object_marking_refs": [
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
+            ]
+        }
+    ]
+}

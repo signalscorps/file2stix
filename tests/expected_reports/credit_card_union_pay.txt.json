@@ -1,0 +1,167 @@
+{
+    "type": "bundle",
+    "id": "bundle--69ed7328-61f9-43bb-a2e6-b06d1a5bca17",
+    "objects": [
+        {
+            "type": "identity",
+            "spec_version": "2.1",
+            "id": "identity--acf55024-6bbe-486f-a27a-7967559324f4",
+            "created_by_ref": "identity--a99a2297-3044-4011-9a7e-2ff15e056b65",
+            "created": "2022-01-01T00:00:00.000Z",
+            "modified": "2022-01-01T00:00:00.000Z",
+            "name": "file2stix",
+            "description": "https://github.com/signalscorps/file2stix/",
+            "identity_class": "organization",
+            "sectors": [
+                "technology"
+            ],
+            "contact_information": "https://www.signalscorps.com/contact/",
+            "object_marking_refs": [
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
+            ]
+        },
+        {
+            "type": "marking-definition",
+            "spec_version": "2.1",
+            "id": "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9",
+            "created": "2017-01-20T00:00:00.000Z",
+            "definition_type": "tlp",
+            "name": "TLP:WHITE",
+            "definition": {
+                "tlp": "white"
+            }
+        },
+        {
+            "type": "indicator",
+            "spec_version": "2.1",
+            "id": "indicator--fbddeaee-5628-40dc-8835-512fb2020d13",
+            "created": "2022-10-02T14:39:21.632026Z",
+            "modified": "2022-10-02T14:39:21.632026Z",
+            "name": "Union Pay Credit Card: 6200000000000005",
+            "indicator_types": [
+                "unknown"
+            ],
+            "pattern": "[ credit-card:provider = 'Union' AND credit-card:number = '6200000000000005' ]",
+            "pattern_type": "stix",
+            "pattern_version": "2.1",
+            "valid_from": "2022-10-02T14:39:22.336746Z",
+            "external_references": [
+                {
+                    "source_name": "file2stix",
+                    "description": "This object was created using file2stix from the Signals Corps.",
+                    "url": "https://github.com/signalscorps/file2stix"
+                }
+            ],
+            "object_marking_refs": [
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
+            ]
+        },
+        {
+            "type": "credit-card",
+            "spec_version": "2.1",
+            "id": "credit-card--083afbd2-039a-591c-9691-d2b3e57e05f2",
+            "provider": "Union Pay",
+            "number": "6200000000000005",
+            "object_marking_refs": [
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
+            ],
+            "extensions": {
+                "extension-definition--abd6fc0e-749e-4e6c-a20c-1faa419f5ee4": {
+                    "extension_type": "new-sco"
+                }
+            }
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--fdeebc46-ce9f-45eb-a275-54692f6ad3fe",
+            "created_by_ref": "identity--acf55024-6bbe-486f-a27a-7967559324f4",
+            "created": "2022-10-02T14:39:21.632026Z",
+            "modified": "2022-10-02T14:39:21.632026Z",
+            "relationship_type": "default-extract-from",
+            "source_ref": "indicator--fbddeaee-5628-40dc-8835-512fb2020d13",
+            "target_ref": "report--a95c6e46-b822-4858-83a1-ce826f12e733",
+            "external_references": [
+                {
+                    "source_name": "file2stix",
+                    "description": "This object was created using file2stix from the Signals Corps.",
+                    "url": "https://github.com/signalscorps/file2stix"
+                }
+            ],
+            "object_marking_refs": [
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
+            ]
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--8d6fc5fb-2528-439a-acb2-6f958b16ea87",
+            "created_by_ref": "identity--acf55024-6bbe-486f-a27a-7967559324f4",
+            "created": "2022-10-02T14:39:21.632026Z",
+            "modified": "2022-10-02T14:39:21.632026Z",
+            "relationship_type": "pattern-contains",
+            "source_ref": "indicator--fbddeaee-5628-40dc-8835-512fb2020d13",
+            "target_ref": "credit-card--083afbd2-039a-591c-9691-d2b3e57e05f2",
+            "external_references": [
+                {
+                    "source_name": "file2stix",
+                    "description": "This object was created using file2stix from the Signals Corps.",
+                    "url": "https://github.com/signalscorps/file2stix"
+                }
+            ],
+            "object_marking_refs": [
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
+            ]
+        },
+        {
+            "type": "extension-definition",
+            "spec_version": "2.1",
+            "id": "extension-definition--abd6fc0e-749e-4e6c-a20c-1faa419f5ee4",
+            "created_by_ref": "identity--a99a2297-3044-4011-9a7e-2ff15e056b65",
+            "created": "2022-01-01T00:00:00.000Z",
+            "modified": "2022-01-01T00:00:00.000Z",
+            "name": "Credit Card SCO",
+            "description": "This schema creates a new SCO type called credit-card",
+            "schema": "https://raw.githubusercontent.com/signalscorps/stix2-objects/main/schemas/scos/credit-card/schema.json",
+            "version": "1.0",
+            "extension_types": [
+                "new-sco"
+            ],
+            "object_marking_refs": [
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
+            ]
+        },
+        {
+            "type": "report",
+            "spec_version": "2.1",
+            "id": "report--a95c6e46-b822-4858-83a1-ce826f12e733",
+            "created_by_ref": "identity--acf55024-6bbe-486f-a27a-7967559324f4",
+            "created": "2022-10-02T14:39:21.632026Z",
+            "modified": "2022-10-02T14:39:21.632026Z",
+            "name": "File converted: credit_card_union_pay.txt",
+            "report_types": [
+                "threat_report"
+            ],
+            "published": "2022-10-02T20:09:21.631994Z",
+            "object_refs": [
+                "identity--acf55024-6bbe-486f-a27a-7967559324f4",
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9",
+                "indicator--fbddeaee-5628-40dc-8835-512fb2020d13",
+                "credit-card--083afbd2-039a-591c-9691-d2b3e57e05f2",
+                "relationship--fdeebc46-ce9f-45eb-a275-54692f6ad3fe",
+                "relationship--8d6fc5fb-2528-439a-acb2-6f958b16ea87",
+                "extension-definition--abd6fc0e-749e-4e6c-a20c-1faa419f5ee4"
+            ],
+            "external_references": [
+                {
+                    "source_name": "file2stix",
+                    "description": "This object was created using file2stix from the Signals Corps.",
+                    "url": "https://github.com/signalscorps/file2stix"
+                }
+            ],
+            "object_marking_refs": [
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
+            ]
+        }
+    ]
+}

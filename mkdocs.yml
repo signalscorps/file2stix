@@ -1,0 +1,21 @@
+site_name: file2stix Docs
+markdown_extensions:
+  - admonition
+theme:
+  name: material
+  features:
+    - navigation.instant
+nav:
+  - 1. Index: index.md
+  - 2. Inputs: inputs.md
+  - 3. Extraction Modes:
+      - 3.1. Overview: extractions.md
+      - 3.2. Analysis Mode (default): extractions-analysis-mode.md
+      - 3.3. Observed Mode: extractions-observed-mode.md
+      - 3.4. Sightings Mode: extractions-sightings-mode.md
+  - 4. Backends: backends.md
+  - 5. Developers / Testing: developers.md
+docs_dir: docs/
+extra:
+  version:
+    provider: mike

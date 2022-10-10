@@ -1,0 +1,10 @@
+dangerous-attack-pattern , attack-pattern
+dangerous-campaign , campaign
+dangerous-course-of-action , course-of-action
+dangerous-infrastructure , infrastructure
+dangerous-intrustion-set , intrustion-set
+dangerous-malware , malware
+dangerous-threat-actor , threat-actor
+dangerous-tool , tool
+"Type expected",infrastructure
+"This is some random text",intrustion-set

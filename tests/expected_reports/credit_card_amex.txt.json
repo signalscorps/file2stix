@@ -1,0 +1,167 @@
+{
+    "type": "bundle",
+    "id": "bundle--f30d26eb-bd68-4980-9cc1-2298d08417e5",
+    "objects": [
+        {
+            "type": "identity",
+            "spec_version": "2.1",
+            "id": "identity--acf55024-6bbe-486f-a27a-7967559324f4",
+            "created_by_ref": "identity--a99a2297-3044-4011-9a7e-2ff15e056b65",
+            "created": "2022-01-01T00:00:00.000Z",
+            "modified": "2022-01-01T00:00:00.000Z",
+            "name": "file2stix",
+            "description": "https://github.com/signalscorps/file2stix/",
+            "identity_class": "organization",
+            "sectors": [
+                "technology"
+            ],
+            "contact_information": "https://www.signalscorps.com/contact/",
+            "object_marking_refs": [
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
+            ]
+        },
+        {
+            "type": "marking-definition",
+            "spec_version": "2.1",
+            "id": "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9",
+            "created": "2017-01-20T00:00:00.000Z",
+            "definition_type": "tlp",
+            "name": "TLP:WHITE",
+            "definition": {
+                "tlp": "white"
+            }
+        },
+        {
+            "type": "indicator",
+            "spec_version": "2.1",
+            "id": "indicator--7dbd456a-3716-4771-8a16-4086d1f841bc",
+            "created": "2022-10-02T15:11:18.253455Z",
+            "modified": "2022-10-02T15:11:18.253455Z",
+            "name": "Amex Credit Card: 378282246310005",
+            "indicator_types": [
+                "unknown"
+            ],
+            "pattern": "[ credit-card:provider = 'Amex' AND credit-card:number = '378282246310005' ]",
+            "pattern_type": "stix",
+            "pattern_version": "2.1",
+            "valid_from": "2022-10-02T15:11:18.859252Z",
+            "external_references": [
+                {
+                    "source_name": "file2stix",
+                    "description": "This object was created using file2stix from the Signals Corps.",
+                    "url": "https://github.com/signalscorps/file2stix"
+                }
+            ],
+            "object_marking_refs": [
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
+            ]
+        },
+        {
+            "type": "credit-card",
+            "spec_version": "2.1",
+            "id": "credit-card--7e0d1577-6c91-5c74-9097-73777a73dc31",
+            "provider": "Amex",
+            "number": "378282246310005",
+            "object_marking_refs": [
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
+            ],
+            "extensions": {
+                "extension-definition--abd6fc0e-749e-4e6c-a20c-1faa419f5ee4": {
+                    "extension_type": "new-sco"
+                }
+            }
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--15833d50-a228-4f69-8c94-3da33d1f5724",
+            "created_by_ref": "identity--acf55024-6bbe-486f-a27a-7967559324f4",
+            "created": "2022-10-02T15:11:18.253455Z",
+            "modified": "2022-10-02T15:11:18.253455Z",
+            "relationship_type": "default-extract-from",
+            "source_ref": "indicator--7dbd456a-3716-4771-8a16-4086d1f841bc",
+            "target_ref": "report--9b73954e-bf1e-4db4-a9ff-152748c76879",
+            "external_references": [
+                {
+                    "source_name": "file2stix",
+                    "description": "This object was created using file2stix from the Signals Corps.",
+                    "url": "https://github.com/signalscorps/file2stix"
+                }
+            ],
+            "object_marking_refs": [
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
+            ]
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--ba153479-5f12-41a9-ad55-6f2e8ea8ffd4",
+            "created_by_ref": "identity--acf55024-6bbe-486f-a27a-7967559324f4",
+            "created": "2022-10-02T15:11:18.253455Z",
+            "modified": "2022-10-02T15:11:18.253455Z",
+            "relationship_type": "pattern-contains",
+            "source_ref": "indicator--7dbd456a-3716-4771-8a16-4086d1f841bc",
+            "target_ref": "credit-card--7e0d1577-6c91-5c74-9097-73777a73dc31",
+            "external_references": [
+                {
+                    "source_name": "file2stix",
+                    "description": "This object was created using file2stix from the Signals Corps.",
+                    "url": "https://github.com/signalscorps/file2stix"
+                }
+            ],
+            "object_marking_refs": [
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
+            ]
+        },
+        {
+            "type": "extension-definition",
+            "spec_version": "2.1",
+            "id": "extension-definition--abd6fc0e-749e-4e6c-a20c-1faa419f5ee4",
+            "created_by_ref": "identity--a99a2297-3044-4011-9a7e-2ff15e056b65",
+            "created": "2022-01-01T00:00:00.000Z",
+            "modified": "2022-01-01T00:00:00.000Z",
+            "name": "Credit Card SCO",
+            "description": "This schema creates a new SCO type called credit-card",
+            "schema": "https://raw.githubusercontent.com/signalscorps/stix2-objects/main/schemas/scos/credit-card/schema.json",
+            "version": "1.0",
+            "extension_types": [
+                "new-sco"
+            ],
+            "object_marking_refs": [
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
+            ]
+        },
+        {
+            "type": "report",
+            "spec_version": "2.1",
+            "id": "report--9b73954e-bf1e-4db4-a9ff-152748c76879",
+            "created_by_ref": "identity--acf55024-6bbe-486f-a27a-7967559324f4",
+            "created": "2022-10-02T15:11:18.253455Z",
+            "modified": "2022-10-02T15:11:18.253455Z",
+            "name": "File converted: credit_card_amex.txt",
+            "report_types": [
+                "threat_report"
+            ],
+            "published": "2022-10-02T20:41:18.253447Z",
+            "object_refs": [
+                "identity--acf55024-6bbe-486f-a27a-7967559324f4",
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9",
+                "indicator--7dbd456a-3716-4771-8a16-4086d1f841bc",
+                "credit-card--7e0d1577-6c91-5c74-9097-73777a73dc31",
+                "relationship--15833d50-a228-4f69-8c94-3da33d1f5724",
+                "relationship--ba153479-5f12-41a9-ad55-6f2e8ea8ffd4",
+                "extension-definition--abd6fc0e-749e-4e6c-a20c-1faa419f5ee4"
+            ],
+            "external_references": [
+                {
+                    "source_name": "file2stix",
+                    "description": "This object was created using file2stix from the Signals Corps.",
+                    "url": "https://github.com/signalscorps/file2stix"
+                }
+            ],
+            "object_marking_refs": [
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
+            ]
+        }
+    ]
+}

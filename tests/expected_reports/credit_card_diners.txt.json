@@ -1,0 +1,167 @@
+{
+    "type": "bundle",
+    "id": "bundle--5ef6d20e-d5e6-44a7-95a5-6f6600707a01",
+    "objects": [
+        {
+            "type": "identity",
+            "spec_version": "2.1",
+            "id": "identity--acf55024-6bbe-486f-a27a-7967559324f4",
+            "created_by_ref": "identity--a99a2297-3044-4011-9a7e-2ff15e056b65",
+            "created": "2022-01-01T00:00:00.000Z",
+            "modified": "2022-01-01T00:00:00.000Z",
+            "name": "file2stix",
+            "description": "https://github.com/signalscorps/file2stix/",
+            "identity_class": "organization",
+            "sectors": [
+                "technology"
+            ],
+            "contact_information": "https://www.signalscorps.com/contact/",
+            "object_marking_refs": [
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
+            ]
+        },
+        {
+            "type": "marking-definition",
+            "spec_version": "2.1",
+            "id": "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9",
+            "created": "2017-01-20T00:00:00.000Z",
+            "definition_type": "tlp",
+            "name": "TLP:WHITE",
+            "definition": {
+                "tlp": "white"
+            }
+        },
+        {
+            "type": "indicator",
+            "spec_version": "2.1",
+            "id": "indicator--5e44e2e3-5487-420a-9082-90d3cbd8dc21",
+            "created": "2022-10-02T14:39:32.281064Z",
+            "modified": "2022-10-02T14:39:32.281064Z",
+            "name": "Diners Credit Card: 3056930009020004",
+            "indicator_types": [
+                "unknown"
+            ],
+            "pattern": "[ credit-card:provider = 'Diners' AND credit-card:number = '3056930009020004' ]",
+            "pattern_type": "stix",
+            "pattern_version": "2.1",
+            "valid_from": "2022-10-02T14:39:33.02791Z",
+            "external_references": [
+                {
+                    "source_name": "file2stix",
+                    "description": "This object was created using file2stix from the Signals Corps.",
+                    "url": "https://github.com/signalscorps/file2stix"
+                }
+            ],
+            "object_marking_refs": [
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
+            ]
+        },
+        {
+            "type": "credit-card",
+            "spec_version": "2.1",
+            "id": "credit-card--1281584c-b405-5f95-bce7-c47ee768c83d",
+            "provider": "Diners",
+            "number": "3056930009020004",
+            "object_marking_refs": [
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
+            ],
+            "extensions": {
+                "extension-definition--abd6fc0e-749e-4e6c-a20c-1faa419f5ee4": {
+                    "extension_type": "new-sco"
+                }
+            }
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--a9dd88d7-45ac-4e77-bb60-eee903f8047a",
+            "created_by_ref": "identity--acf55024-6bbe-486f-a27a-7967559324f4",
+            "created": "2022-10-02T14:39:32.281064Z",
+            "modified": "2022-10-02T14:39:32.281064Z",
+            "relationship_type": "default-extract-from",
+            "source_ref": "indicator--5e44e2e3-5487-420a-9082-90d3cbd8dc21",
+            "target_ref": "report--af056408-cc77-4cb5-bfc5-aaef6e8e3977",
+            "external_references": [
+                {
+                    "source_name": "file2stix",
+                    "description": "This object was created using file2stix from the Signals Corps.",
+                    "url": "https://github.com/signalscorps/file2stix"
+                }
+            ],
+            "object_marking_refs": [
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
+            ]
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--c881691b-96b0-49e4-b23a-b913b73bb9c6",
+            "created_by_ref": "identity--acf55024-6bbe-486f-a27a-7967559324f4",
+            "created": "2022-10-02T14:39:32.281064Z",
+            "modified": "2022-10-02T14:39:32.281064Z",
+            "relationship_type": "pattern-contains",
+            "source_ref": "indicator--5e44e2e3-5487-420a-9082-90d3cbd8dc21",
+            "target_ref": "credit-card--1281584c-b405-5f95-bce7-c47ee768c83d",
+            "external_references": [
+                {
+                    "source_name": "file2stix",
+                    "description": "This object was created using file2stix from the Signals Corps.",
+                    "url": "https://github.com/signalscorps/file2stix"
+                }
+            ],
+            "object_marking_refs": [
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
+            ]
+        },
+        {
+            "type": "extension-definition",
+            "spec_version": "2.1",
+            "id": "extension-definition--abd6fc0e-749e-4e6c-a20c-1faa419f5ee4",
+            "created_by_ref": "identity--a99a2297-3044-4011-9a7e-2ff15e056b65",
+            "created": "2022-01-01T00:00:00.000Z",
+            "modified": "2022-01-01T00:00:00.000Z",
+            "name": "Credit Card SCO",
+            "description": "This schema creates a new SCO type called credit-card",
+            "schema": "https://raw.githubusercontent.com/signalscorps/stix2-objects/main/schemas/scos/credit-card/schema.json",
+            "version": "1.0",
+            "extension_types": [
+                "new-sco"
+            ],
+            "object_marking_refs": [
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
+            ]
+        },
+        {
+            "type": "report",
+            "spec_version": "2.1",
+            "id": "report--af056408-cc77-4cb5-bfc5-aaef6e8e3977",
+            "created_by_ref": "identity--acf55024-6bbe-486f-a27a-7967559324f4",
+            "created": "2022-10-02T14:39:32.281064Z",
+            "modified": "2022-10-02T14:39:32.281064Z",
+            "name": "File converted: credit_card_diners.txt",
+            "report_types": [
+                "threat_report"
+            ],
+            "published": "2022-10-02T20:09:32.281055Z",
+            "object_refs": [
+                "identity--acf55024-6bbe-486f-a27a-7967559324f4",
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9",
+                "indicator--5e44e2e3-5487-420a-9082-90d3cbd8dc21",
+                "credit-card--1281584c-b405-5f95-bce7-c47ee768c83d",
+                "relationship--a9dd88d7-45ac-4e77-bb60-eee903f8047a",
+                "relationship--c881691b-96b0-49e4-b23a-b913b73bb9c6",
+                "extension-definition--abd6fc0e-749e-4e6c-a20c-1faa419f5ee4"
+            ],
+            "external_references": [
+                {
+                    "source_name": "file2stix",
+                    "description": "This object was created using file2stix from the Signals Corps.",
+                    "url": "https://github.com/signalscorps/file2stix"
+                }
+            ],
+            "object_marking_refs": [
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
+            ]
+        }
+    ]
+}

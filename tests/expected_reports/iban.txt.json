@@ -1,0 +1,253 @@
+{
+    "type": "bundle",
+    "id": "bundle--311a431d-416f-44d1-a145-e7ccb26fb3a9",
+    "objects": [
+        {
+            "type": "identity",
+            "spec_version": "2.1",
+            "id": "identity--acf55024-6bbe-486f-a27a-7967559324f4",
+            "created_by_ref": "identity--a99a2297-3044-4011-9a7e-2ff15e056b65",
+            "created": "2022-01-01T00:00:00.000Z",
+            "modified": "2022-01-01T00:00:00.000Z",
+            "name": "file2stix",
+            "description": "https://github.com/signalscorps/file2stix/",
+            "identity_class": "organization",
+            "sectors": [
+                "technology"
+            ],
+            "contact_information": "https://www.signalscorps.com/contact/",
+            "object_marking_refs": [
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
+            ]
+        },
+        {
+            "type": "marking-definition",
+            "spec_version": "2.1",
+            "id": "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9",
+            "created": "2017-01-20T00:00:00.000Z",
+            "definition_type": "tlp",
+            "name": "TLP:WHITE",
+            "definition": {
+                "tlp": "white"
+            }
+        },
+        {
+            "type": "indicator",
+            "spec_version": "2.1",
+            "id": "indicator--5b123a74-1e7f-487e-b8f3-ea8c4fc65e57",
+            "created": "2022-10-02T14:17:44.600926Z",
+            "modified": "2022-10-02T14:17:44.600926Z",
+            "name": "IBAN: DE29100500001061045672",
+            "indicator_types": [
+                "unknown"
+            ],
+            "pattern": "[ iban:number = 'DE29100500001061045672' ]",
+            "pattern_type": "stix",
+            "pattern_version": "2.1",
+            "valid_from": "2022-10-02T14:17:45.37621Z",
+            "external_references": [
+                {
+                    "source_name": "file2stix",
+                    "description": "This object was created using file2stix from the Signals Corps.",
+                    "url": "https://github.com/signalscorps/file2stix"
+                }
+            ],
+            "object_marking_refs": [
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
+            ]
+        },
+        {
+            "type": "indicator",
+            "spec_version": "2.1",
+            "id": "indicator--91ffe279-268e-44d1-8e35-ef2a65cb7cee",
+            "created": "2022-10-02T14:17:44.600926Z",
+            "modified": "2022-10-02T14:17:44.600926Z",
+            "name": "IBAN: GB94BARC10201530093459",
+            "indicator_types": [
+                "unknown"
+            ],
+            "pattern": "[ iban:number = 'GB94BARC10201530093459' ]",
+            "pattern_type": "stix",
+            "pattern_version": "2.1",
+            "valid_from": "2022-10-02T14:17:46.349267Z",
+            "external_references": [
+                {
+                    "source_name": "file2stix",
+                    "description": "This object was created using file2stix from the Signals Corps.",
+                    "url": "https://github.com/signalscorps/file2stix"
+                }
+            ],
+            "object_marking_refs": [
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
+            ]
+        },
+        {
+            "type": "iban",
+            "spec_version": "2.1",
+            "id": "iban--0c73723f-44a9-52cc-ba8f-d7a77c408cbb",
+            "country_code": "DE",
+            "number": "DE29100500001061045672",
+            "object_marking_refs": [
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
+            ],
+            "extensions": {
+                "extension-definition--349c1029-4052-4635-a064-263cb17290ea": {
+                    "extension_type": "new-sco"
+                }
+            }
+        },
+        {
+            "type": "iban",
+            "spec_version": "2.1",
+            "id": "iban--0858bd3e-d53c-58e2-b334-a2bd70a6ce5e",
+            "country_code": "GB",
+            "number": "GB94BARC10201530093459",
+            "object_marking_refs": [
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
+            ],
+            "extensions": {
+                "extension-definition--349c1029-4052-4635-a064-263cb17290ea": {
+                    "extension_type": "new-sco"
+                }
+            }
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--14451a83-37e4-49d3-915f-1c500c6b8c90",
+            "created_by_ref": "identity--acf55024-6bbe-486f-a27a-7967559324f4",
+            "created": "2022-10-02T14:17:44.600926Z",
+            "modified": "2022-10-02T14:17:44.600926Z",
+            "relationship_type": "default-extract-from",
+            "source_ref": "indicator--5b123a74-1e7f-487e-b8f3-ea8c4fc65e57",
+            "target_ref": "report--6e17c9e2-f703-44d1-b34b-db58e83929f8",
+            "external_references": [
+                {
+                    "source_name": "file2stix",
+                    "description": "This object was created using file2stix from the Signals Corps.",
+                    "url": "https://github.com/signalscorps/file2stix"
+                }
+            ],
+            "object_marking_refs": [
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
+            ]
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--2d6a9afb-f003-4100-b354-e2cd56f2f5f8",
+            "created_by_ref": "identity--acf55024-6bbe-486f-a27a-7967559324f4",
+            "created": "2022-10-02T14:17:44.600926Z",
+            "modified": "2022-10-02T14:17:44.600926Z",
+            "relationship_type": "default-extract-from",
+            "source_ref": "indicator--91ffe279-268e-44d1-8e35-ef2a65cb7cee",
+            "target_ref": "report--6e17c9e2-f703-44d1-b34b-db58e83929f8",
+            "external_references": [
+                {
+                    "source_name": "file2stix",
+                    "description": "This object was created using file2stix from the Signals Corps.",
+                    "url": "https://github.com/signalscorps/file2stix"
+                }
+            ],
+            "object_marking_refs": [
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
+            ]
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--e0379d50-4789-4c2a-afea-433f69598cff",
+            "created_by_ref": "identity--acf55024-6bbe-486f-a27a-7967559324f4",
+            "created": "2022-10-02T14:17:44.600926Z",
+            "modified": "2022-10-02T14:17:44.600926Z",
+            "relationship_type": "pattern-contains",
+            "source_ref": "indicator--5b123a74-1e7f-487e-b8f3-ea8c4fc65e57",
+            "target_ref": "iban--0c73723f-44a9-52cc-ba8f-d7a77c408cbb",
+            "external_references": [
+                {
+                    "source_name": "file2stix",
+                    "description": "This object was created using file2stix from the Signals Corps.",
+                    "url": "https://github.com/signalscorps/file2stix"
+                }
+            ],
+            "object_marking_refs": [
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
+            ]
+        },
+        {
+            "type": "relationship",
+            "spec_version": "2.1",
+            "id": "relationship--d0fe009a-0496-4dad-86c5-32e4662ebe04",
+            "created_by_ref": "identity--acf55024-6bbe-486f-a27a-7967559324f4",
+            "created": "2022-10-02T14:17:44.600926Z",
+            "modified": "2022-10-02T14:17:44.600926Z",
+            "relationship_type": "pattern-contains",
+            "source_ref": "indicator--91ffe279-268e-44d1-8e35-ef2a65cb7cee",
+            "target_ref": "iban--0858bd3e-d53c-58e2-b334-a2bd70a6ce5e",
+            "external_references": [
+                {
+                    "source_name": "file2stix",
+                    "description": "This object was created using file2stix from the Signals Corps.",
+                    "url": "https://github.com/signalscorps/file2stix"
+                }
+            ],
+            "object_marking_refs": [
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
+            ]
+        },
+        {
+            "type": "extension-definition",
+            "spec_version": "2.1",
+            "id": "extension-definition--349c1029-4052-4635-a064-263cb17290ea",
+            "created_by_ref": "identity--a99a2297-3044-4011-9a7e-2ff15e056b65",
+            "created": "2022-01-01T00:00:00.000Z",
+            "modified": "2022-01-01T00:00:00.000Z",
+            "name": "IBAN SCO",
+            "description": "This schema creates a new SCO type called iban",
+            "schema": "https://raw.githubusercontent.com/signalscorps/stix2-objects/main/schemas/scos/iban/schema.json",
+            "version": "1.0",
+            "extension_types": [
+                "new-sco"
+            ],
+            "object_marking_refs": [
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
+            ]
+        },
+        {
+            "type": "report",
+            "spec_version": "2.1",
+            "id": "report--6e17c9e2-f703-44d1-b34b-db58e83929f8",
+            "created_by_ref": "identity--acf55024-6bbe-486f-a27a-7967559324f4",
+            "created": "2022-10-02T14:17:44.600926Z",
+            "modified": "2022-10-02T14:17:44.600926Z",
+            "name": "File converted: iban.txt",
+            "report_types": [
+                "threat_report"
+            ],
+            "published": "2022-10-02T19:47:44.600914Z",
+            "object_refs": [
+                "identity--acf55024-6bbe-486f-a27a-7967559324f4",
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9",
+                "indicator--5b123a74-1e7f-487e-b8f3-ea8c4fc65e57",
+                "indicator--91ffe279-268e-44d1-8e35-ef2a65cb7cee",
+                "iban--0c73723f-44a9-52cc-ba8f-d7a77c408cbb",
+                "iban--0858bd3e-d53c-58e2-b334-a2bd70a6ce5e",
+                "relationship--14451a83-37e4-49d3-915f-1c500c6b8c90",
+                "relationship--2d6a9afb-f003-4100-b354-e2cd56f2f5f8",
+                "relationship--e0379d50-4789-4c2a-afea-433f69598cff",
+                "relationship--d0fe009a-0496-4dad-86c5-32e4662ebe04",
+                "extension-definition--349c1029-4052-4635-a064-263cb17290ea"
+            ],
+            "external_references": [
+                {
+                    "source_name": "file2stix",
+                    "description": "This object was created using file2stix from the Signals Corps.",
+                    "url": "https://github.com/signalscorps/file2stix"
+                }
+            ],
+            "object_marking_refs": [
+                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
+            ]
+        }
+    ]
+}

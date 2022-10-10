@@ -1,0 +1,4 @@
+google.com
+abbybank.com
+198.51.100.3
+198.51.100.4

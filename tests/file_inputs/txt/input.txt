@@ -1,0 +1,260 @@
+This is some random text.
+It contains... 
+ip addresseses
+
+198.51.100.3-
+198.51.100.4
+
+Repeatitions (only one SDO object should be created)
+198.51.100.5
+198.51.100.5
+198.51.100.5
+198.51.100.5
+198.51.100.5
+198.51.100.5
+198.51.100.5
+
+17.0.0.0/8
+1.1.1.1
+
+Another ip address 198.0.103.12
+Another ip address CIDR 198.0.103.12/24
+An IP with a port 198.0.103.12:8000
+IPv6 address: 2001:0db8:85a3:0000:0000:8a2e:0370:7334
+2002::abcd:ffff:c0a8:101/64
+[2001:0db8:85a3:0000:0000:8a2e:0370:7334]:80
+It contains a sha1 address 86F7E437FAA5A7FCE15D1DDCB9EAEAEA377667B8
+Md5 hash: 4ec503be252d765ea37621a629afdaa6 4ec503be252d765ea37621a629afdaa6
+sha256 hash: ba7816bf8f01cfea414140de5dae2223b00361a396177a9cb410ff61f20015ad
+sha512: 1f40fc92da241694750979ee6cf582f2d5d7d28e18335de05abc54d0560e0f5302860c652bf08d560252aa5e74210546f369fbbbce8c12cfc7957b2652fe9a75
+ssdeep hash: 96:s4Ud1Lj96tHHlZDrwciQmA+4uy1I0G4HYuL8N3TzS8QsO/wqWXLcMSx:sF1LjEtHHlZDrJzrhuyZvHYm8tKp/RWO
+virus.exe jfdjjs
+Unix path: /System/Library/LaunchDaemons
+windows path: C:\Windows\System32
+mac address: d2:fb:49:24:37:18
+email: example@example.com
+test+1@google.com
+url: https://example.com/research/
+url: https://example.com/path/index.html
+domain: test.example.com
+sub-domain: example.com
+
+registry path: HKEY_LOCAL_MACHINE\System\Foo\Bar
+
+
+HKEY_LOCAL_MACHINE\SOFTWARE\Wow6432Node HKEY_LOCAL_MACHINE\SYSTEM\system32\config\system
+HKEY_CLASSES_ROOT\SYSTEM\system32\config\system
+HKEY_CURRENT_USER\SYSTEM\system32\config\system
+HKEY_LOCAL_MACHINE\SYSTEM\system32\config\system
+HKEY_USERS\SYSTEM\system32\config\system
+HKEY_CURRENT_CONFIG\SYSTEM\system32\config\system
+
+Mozilla/5.0 (Windows; U; Windows NT 5.1; en-US; rv:1.6) Gecko/20040113
+
+Mozilla/5.0 (Linux; Android 11; Lenovo YT-J706X) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/96.0.4664.45 Safari/537.36
+
+Mozilla/5.0 (iPhone14,6; U; CPU iPhone OS 15_4 like Mac OS X) AppleWebKit/602.1.50 (KHTML, like Gecko) Version/10.0 Mobile/19E241 Safari/602.1
+
+btc address: 3FZbgi29cpjq2GjdwV8eyHuJJnkLtktZc5
+eth address: 0xb794f5ea0ba39494ce839613fffba74279579268
+xmr address: 48Fki6gnEN1QaiWNcsm8dVfX2JMg8xmjiQvuKpcdUD9rQH8WU4AXj9HKAF5AdnhKPSPLzTV7CX1Ks25BWrDeLnHuEFmhRxV
+cve id: CVE-2022-00001
+ASN number: ASN13335
+e.g. ASN15139
+e.g. AS 23434
+e.g. ASN 53453
+
+
+
+country: AF 
+full_country_name: Bangladesh , United Arab Emirates , Central African Republic , 
+AL , DZ , AS , IND
+
+
+this should not extract
+
+UKa
+https:// 
+
+/domain>>”C:\WINNT\Debug\1.txt”
+
+Credit cards
+5555555555554444
+4242424242424242
+378282246310005
+6200000000000005
+3056930009020004
+3566002020360505
+6011111111111117
+
+IBAN - DE29100500001061045672
+GB94BARC10201530093459
+
+Yara rules
+rule dummy
+{
+    condition:
+        false
+}
+
+attack_pattern - Scheduled Task
+
+"Steal Application Access Token"
+
+CAPEC-170 - "Web Application Fingerprinting"
+
+Custom extractions:
+dangerous-attack-pattern
+dangerous-campaign
+dangerous-course-of-action
+dangerous-infrastructure
+dangerous-intrustion-set
+dangerous-malware
+dangerous-threat-actor
+dangerous-tool
+phish
+scan
+beacon
+cnc
+
+whitelist: google.com
+
+ics attack: M0944
+
+cpe:2.3:a:apache:log4j:2.0:rc2:*:*:*:*:*:*
+cpe:2.3:h:cisco:firepower_2130:-:*:*:*:*:*:*:*
+cpe:2.3:a:cisco:finesse:12.5\(1\):su2:*:*:*:*:*:*
+
+"1-courier.push.apple.com",
+"1-courier.sandbox.push.apple.com",
+"1.nflxso.net",
+"1rx.io",
+"2mdn.net",
+"33across.com",
+"360yield.com",
+"3gppnetwork.org",
+
+
+
+
+
+title: Antivirus Exploitation Framework Detection
+id: 238527ad-3c2c-4e4f-a1f6-92fd63adb864
+status: test
+description: Detects a highly relevant Antivirus alert that reports an exploitation framework
+author: Florian Roth
+references:
+  - https://www.nextron-systems.com/2018/09/08/antivirus-event-analysis-cheat-sheet-v1-4/
+date: 2018/09/09
+modified: 2022/05/12
+logsource:
+  category: antivirus
+detection:
+  selection:
+    Signature|contains:
+      - 'MeteTool'
+      - 'MPreter'
+      - 'Meterpreter'
+      - 'Metasploit'
+      - 'PowerSploit'
+      - 'CobaltStrike'
+      - 'Swrort'
+      - 'Rozena'
+      - 'Backdoor.Cobalt'
+      - 'CobaltStr'
+      - 'COBEACON'
+      - 'Cometer'
+      - 'Razy'
+      - 'IISExchgSpawnCMD'
+      - 'Exploit.Script.CVE'
+  condition: selection
+fields:
+  - FileName
+  - User
+falsepositives:
+  - Unlikely
+level: critical
+tags:
+  - attack.execution
+  - attack.t1203
+  - attack.command_and_control
+  - attack.t1219
+
+
+gap
+
+title: Antivirus Web Shell Detection
+id: fdf135a2-9241-4f96-a114-bb404948f736
+description: Detects a highly relevant Antivirus alert that reports a web shell. It's highly recommended to tune this rule to the specific strings used by your anti virus solution by downloading a big webshell repo from e.g. github and checking the matches.
+status: experimental
+date: 2018/09/09
+modified: 2022/05/12
+author: Florian Roth, Arnim Rupp
+references:
+    - https://www.nextron-systems.com/2021/03/25/antivirus-event-analysis-cheat-sheet-v1-8/
+    - https://github.com/tennc/webshell
+    - https://www.virustotal.com/gui/file/bd1d52289203866645e556e2766a21d2275877fbafa056a76fe0cf884b7f8819/detection
+    - https://www.virustotal.com/gui/file/308487ed28a3d9abc1fec7ebc812d4b5c07ab025037535421f64c60d3887a3e8/detection
+    - https://www.virustotal.com/gui/file/7d3cb8a8ff28f82b07f382789247329ad2d7782a72dde9867941f13266310c80/detection
+    - https://www.virustotal.com/gui/file/e841675a4b82250c75273ebf0861245f80c6a1c3d5803c2d995d9d3b18d5c4b5/detection
+    - https://www.virustotal.com/gui/file/a80042c61a0372eaa0c2c1e831adf0d13ef09feaf71d1d20b216156269045801/detection
+    - https://www.virustotal.com/gui/file/b219f7d3c26f8bad7e175934cd5eda4ddb5e3983503e94ff07d39c0666821b7e/detection
+    - https://www.virustotal.com/gui/file/b8702acf32fd651af9f809ed42d15135f842788cd98d81a8e1b154ee2a2b76a2/detection
+tags:
+    - attack.persistence
+    - attack.t1505.003
+logsource:
+    category: antivirus
+detection:
+    selection:
+        - Signature|startswith:
+            - 'PHP/'
+            - 'JSP/'
+            - 'ASP/'
+            - 'Perl/'
+            - 'PHP.'
+            - 'JSP.'
+            - 'ASP.'
+            - 'Perl.'
+            - 'VBS/Uxor' # looking for 'VBS/' would also find downloaders and droppers meant for desktops
+            - 'IIS/BackDoor'
+            - 'JAVA/Backdoor'
+            - 'Troj/ASP'
+            - 'Troj/PHP'
+            - 'Troj/JSP'
+        - Signature|contains:
+            - 'Webshell'
+            - 'Chopper'
+            - 'SinoChoper'
+            - 'ASPXSpy'
+            - 'Aspdoor'
+            - 'filebrowser'
+            - 'PHP_'
+            - 'JSP_'
+            - 'ASP_' # looking for 'VBS_' would also find downloaders and droppers meant for desktops
+            - 'PHP:'
+            - 'JSP:'
+            - 'ASP:'
+            - 'Perl:'
+            - 'PHPShell'
+            - 'Trojan.PHP'
+            - 'Trojan.ASP'
+            - 'Trojan.JSP'
+            - 'Trojan.VBS'
+            - 'PHP?Agent'
+            - 'ASP?Agent'
+            - 'JSP?Agent'
+            - 'VBS?Agent'
+            - 'Backdoor?PHP'
+            - 'Backdoor?JSP'
+            - 'Backdoor?ASP'
+            - 'Backdoor?VBS'
+            - 'Backdoor?Java'
+            - 'PShlSpy'
+    condition: selection
+fields:
+    - FileName
+    - User
+falsepositives:
+    - Unlikely
+level: high

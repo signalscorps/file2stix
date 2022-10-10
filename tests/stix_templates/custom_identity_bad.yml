@@ -1,0 +1,10 @@
+# in this test the type, id and identity_class are bad
+
+type: "identity-bad" # required must be identity
+spec_version: "2.1"
+id: "identity--"
+created: "2022-01-01T00:00:00.000Z"
+modified: "2022-01-01T00:00:00.000Z"
+name: "A custom identity"
+description: "A description of my custom identity"
+identity_class: "this-is-not-a-valid-class"

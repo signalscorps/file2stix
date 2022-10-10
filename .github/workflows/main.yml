@@ -1,0 +1,36 @@
+name: file2stix
+
+on:
+  push:
+    branches:
+    - main
+    - beta-1
+    paths:
+    - 'file2stix/**'
+    - 'tests/**'
+
+jobs:
+  test:
+
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: ["3.7"]
+
+    steps:
+      - uses: actions/checkout@v3
+      - name: Set up Python ${{ matrix.python-version }}
+        uses: actions/setup-python@v4
+        with:
+          python-version: ${{ matrix.python-version }}
+      - name: Install dependencies
+        run: |
+          git submodule init
+          git submodule update
+          ls -la file2stix/stix2-objects
+          python -m pip install --upgrade pip
+          pip install pytest
+          pip install .
+      - name: Test with pytest
+        run: |
+          pytest -vv -rP
