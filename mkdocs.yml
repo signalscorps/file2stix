@@ -1,6 +1,7 @@
 site_name: file2stix Docs
 markdown_extensions:
-  - admonition
+  - toc:
+      permalink: true
 theme:
   name: material
   features:
