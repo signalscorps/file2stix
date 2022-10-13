@@ -17,5 +17,19 @@ nav:
   - 5. Developers / Testing: developers.md
 docs_dir: docs/
 extra:
+  generator: false
   version:
     provider: mike
+repo_url: https://github.com/signalscorps/file2stix
+repo_name: signalscorps/file2stix
+edit_uri: edit/main/docs/
+copyright: Copyright &copy; Signals Corps
+
+extra:
+  social:
+    - icon: fontawesome/solid/globe
+      link: https://www.signalscorps.com/
+    - icon: fontawesome/brands/slack
+      link: https://join.slack.com/t/signalscorps-public/shared_invite/zt-1exnc12ww-9RKR6aMgO57GmHcl156DAA
+    - icon: fontawesome/brands/github
+      link: https://github.com/signalscorps

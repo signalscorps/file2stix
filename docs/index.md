@@ -17,8 +17,11 @@ For installation, [please see the README.md file at the root of file2stix](https
 
 ## Building these docs
 
-You are probably reading this on readthedocs.org. If you want to build the docs locally, from the root directory run;
+You are probably reading this online (deployed via Github pages `.github/workflows/docs.yml`.
+
+If you want to build the docs locally, from the root directory run;
 
 ```shell
+pip3 install -r docs/requirements.txt
 mkdocs serve --config-file mkdocs.yml
 ```
