@@ -19,6 +19,8 @@ For installation, [please see the README.md file at the root of file2stix](https
 
 You are probably reading this online (deployed via Github pages `.github/workflows/docs.yml`.
 
+https://signalscorps.github.io/file2stix/
+
 If you want to build the docs locally, from the root directory run;
 
 ```shell

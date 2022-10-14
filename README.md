@@ -159,7 +159,7 @@ file2stix --input-file tests/observable_tests/asn.txt --update-mitre-cti-databas
 
 Please take a moment to review the comprehensive documentation included in this repository -- it covers almost all common questions people have about file2stix.
 
-[Read the documentation here](/docs/index.md).
+[Read the documentation here](https://signalscorps.github.io/file2stix/).
 
 ## Support
 
