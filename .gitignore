@@ -140,7 +140,12 @@ stix2_objects/
 stix2_bundles/
 logs/
 
+# Ignore submodule objects
+
+file2stix/stix2-objects/
+
 # Ignore TODO file
+
 TODO.txt
 
 # Ignore cache
