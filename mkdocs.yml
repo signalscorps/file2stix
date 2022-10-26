@@ -16,6 +16,7 @@ nav:
       - 3.4. Sightings Mode: extractions-sightings-mode.md
   - 4. Backends: backends.md
   - 5. Developers / Testing: developers.md
+  - 6. Demo Walkthrough: demo.md
 docs_dir: docs/
 extra:
   generator: false

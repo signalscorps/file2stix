@@ -345,7 +345,11 @@ file2stix --input-file tests/file_inputs/doc/input.doc
 ```
 
 ```shell
-file2stix --input-file tests/file_inputs/doc/input.docxs
+file2stix --input-file tests/file_inputs/doc/input.docx
+```
+
+```shell
+file2stix --input-file tests/file_inputs/doc/ipv4.docx
 ```
 
 #### .html
@@ -673,8 +677,6 @@ MITREICSAttackObservable,\
 MITRECapecObservable,\
 CustomObservable
 ```
-
-
 
 ## Testing adding custom identity
 
