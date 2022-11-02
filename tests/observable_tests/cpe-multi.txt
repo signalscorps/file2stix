@@ -1,3 +1,2 @@
 cpe:2.3:a:apache:log4j:2.0:rc2:*:*:*:*:*:*
 cpe:2.3:h:cisco:firepower_2130:-:*:*:*:*:*:*:*
-cpe:2.3:a:cisco:finesse:12.5\(1\):su2:*:*:*:*:*:*

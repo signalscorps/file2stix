@@ -386,6 +386,17 @@ file2stix --input-file tests/file_inputs/md/input.md
 file2stix --input-file tests/file_inputs/pdf/input.pdf
 ```
 
+Large complex PDFs
+
+```shell
+file2stix --input-file tests/file_inputs/pdf/rpt_APT37.pdf
+```
+
+```shell
+file2stix --input-file tests/file_inputs/pdf/FireEye-APT39.pdf
+```
+
+
 #### .txt
 
 ```shell
