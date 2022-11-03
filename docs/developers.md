@@ -2,6 +2,11 @@
 
 file2stix was built to be extended. This section of the documentation covers information that will be useful to developers.
 
+## Useful public intel sources for testing
+
+* [ORKL Threat Intelligence Library](https://orkl.eu/)
+* [APT & CyberCriminal Campaign Collection](https://github.com/CyberMonitor/APT_CyberCriminal_Campagin_Collections)
+
 ## Running tests
 
 Ensure that `pytest` is installed:
