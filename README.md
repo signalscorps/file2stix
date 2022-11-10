@@ -171,7 +171,9 @@ If you notice a bug or have a feature request, [please submit them as issues on 
 
 [MIT LICENSE](/LICENSE).
 
-## Useful supporting tools
+## A special thanks to...
+
+I would like to thank the authors of the following tools used to build file2stix (making it a hundred times easier);
 
 * [STIX 2](https://pypi.org/project/stix2/): APIs for serializing and de-serializing STIX2 JSON content
 * [STIX 2 Pattern Validator](https://pypi.org/project/stix2-patterns/): a tool for checking the syntax of the Cyber Threat Intelligence (CTI) STIX Pattern expressions
