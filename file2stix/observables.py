@@ -1199,7 +1199,7 @@ class CustomObservable(Observable):
         for pattern in cls.extraction_pattern_list:
             if pattern in text:
                 extracted_observables.append(cls(pattern, config))
-        return extracted_observables
+        return extracted_observables, text
 
     def get_sdo_object(self):
         pattern = self.extracted_observable_text
