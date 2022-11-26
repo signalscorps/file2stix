@@ -16,6 +16,8 @@ from pathlib import Path
 from stix2 import Report, Relationship, TLP_WHITE, Sighting, ObservedData, Filter
 from stix2.exceptions import ExtraPropertiesError
 from pymispwarninglists.api import WarningList
+import requests
+import validators
 
 from pattern2sco.custom_objects import Cryptocurrency, CreditCard, IBAN, UserAgent
 
@@ -84,8 +86,13 @@ def main(config: Config):
 
     if config.misp_custom_warning_list_file:
         try:
-            with open(config.misp_custom_warning_list_file) as f:
-                misp_custom_warning_list = json.load(f)
+            if validators.url(config.misp_custom_warning_list_file):
+                response = requests.get(config.misp_custom_warning_list_file)
+                data = response.text
+                misp_custom_warning_list = json.loads(data)
+            else:
+                with open(config.misp_custom_warning_list_file) as f:
+                    misp_custom_warning_list = json.load(f)
             WarningList(
                 misp_custom_warning_list
             )  # Just to validate if the format is correct
