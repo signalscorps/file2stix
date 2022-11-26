@@ -226,48 +226,43 @@ def get_sco_objects(sdo_object, defanged=False):
             name = extract_name_from_regex(regex, sdo_object.pattern)
 
             # extract each component of user_agent
-            software = None
-            system = None
-            platform = None
-            browser = None
-            browser_enhancements = None
+            # software = None
+            # system = None
+            # platform = None
+            # browser = None
+            # browser_enhancements = None
 
-            user_agent_search = re.search("(Mozilla/5\.0) \((.*)\)", name)
-            if user_agent_search != None:
-                software = user_agent_search.groups()[0]
-                system = user_agent_search.groups()[1]
+            # user_agent_search = re.search("(Mozilla/5\.0) \((.*)\)", name)
+            # if user_agent_search != None:
+            #     software = user_agent_search.groups()[0]
+            #     system = user_agent_search.groups()[1]
 
-            user_agent_search = re.search("(Mozilla/5\.0) \((.*)\) (.*)", name)
-            if user_agent_search != None:
-                software = user_agent_search.groups()[0]
-                system = user_agent_search.groups()[1]
-                platform = user_agent_search.groups()[2]
+            # user_agent_search = re.search("(Mozilla/5\.0) \((.*)\) (.*)", name)
+            # if user_agent_search != None:
+            #     software = user_agent_search.groups()[0]
+            #     system = user_agent_search.groups()[1]
+            #     platform = user_agent_search.groups()[2]
 
-            user_agent_search = re.search("(Mozilla/5\.0) \((.*)\) (.*) \((.*)\)", name)
-            if user_agent_search != None:
-                software = user_agent_search.groups()[0]
-                system = user_agent_search.groups()[1]
-                platform = user_agent_search.groups()[2]
-                browser = user_agent_search.groups()[3]
+            # user_agent_search = re.search("(Mozilla/5\.0) \((.*)\) (.*) \((.*)\)", name)
+            # if user_agent_search != None:
+            #     software = user_agent_search.groups()[0]
+            #     system = user_agent_search.groups()[1]
+            #     platform = user_agent_search.groups()[2]
+            #     browser = user_agent_search.groups()[3]
 
-            user_agent_search = re.search(
-                "(Mozilla/5\.0) \((.*)\) (.*) \((.*)\) (.*)", name
-            )
-            if user_agent_search != None:
-                software = user_agent_search.groups()[0]
-                system = user_agent_search.groups()[1]
-                platform = user_agent_search.groups()[2]
-                browser = user_agent_search.groups()[3]
-                browser_enhancements = user_agent_search.groups()[4]
+            # user_agent_search = re.search(
+            #     "(Mozilla/5\.0) \((.*)\) (.*) \((.*)\) (.*)", name
+            # )
+            # if user_agent_search != None:
+            #     software = user_agent_search.groups()[0]
+            #     system = user_agent_search.groups()[1]
+            #     platform = user_agent_search.groups()[2]
+            #     browser = user_agent_search.groups()[3]
+            #     browser_enhancements = user_agent_search.groups()[4]
 
             sco_objects += [
                 UserAgent(
                     string=name,
-                    software=software,
-                    system=system,
-                    platform=platform,
-                    browser=browser,
-                    browser_enhancements=browser_enhancements,
                     defanged=defanged,
                 )
             ]
@@ -287,7 +282,7 @@ def get_sco_objects(sdo_object, defanged=False):
             name = extract_name_from_regex(regex, sdo_object.pattern)
             sco_objects += [
                 Cryptocurrency(
-                    symbol="BTC",
+                    # symbol="BTC",
                     address=name,
                     defanged=defanged,
                 )
@@ -298,7 +293,7 @@ def get_sco_objects(sdo_object, defanged=False):
             name = extract_name_from_regex(regex, sdo_object.pattern)
             sco_objects += [
                 Cryptocurrency(
-                    symbol="ETH",
+                    # symbol="ETH",
                     address=name,
                     defanged=defanged,
                 )
@@ -309,7 +304,7 @@ def get_sco_objects(sdo_object, defanged=False):
             name = extract_name_from_regex(regex, sdo_object.pattern)
             sco_objects += [
                 Cryptocurrency(
-                    symbol="XMR",
+                    # symbol="XMR",
                     address=name,
                     defanged=defanged,
                 )
@@ -320,7 +315,7 @@ def get_sco_objects(sdo_object, defanged=False):
             name = extract_name_from_regex(regex, sdo_object.pattern)
             sco_objects += [
                 CreditCard(
-                    provider="Mastercard",
+                    issuer="Mastercard",
                     number=name,
                     defanged=defanged,
                 )
@@ -331,7 +326,7 @@ def get_sco_objects(sdo_object, defanged=False):
             name = extract_name_from_regex(regex, sdo_object.pattern)
             sco_objects += [
                 CreditCard(
-                    provider="VISA",
+                    issuer="VISA",
                     number=name,
                     defanged=defanged,
                 )
@@ -342,7 +337,7 @@ def get_sco_objects(sdo_object, defanged=False):
             name = extract_name_from_regex(regex, sdo_object.pattern)
             sco_objects += [
                 CreditCard(
-                    provider="Amex",
+                    issuer="Amex",
                     number=name,
                     defanged=defanged,
                 )
@@ -353,7 +348,7 @@ def get_sco_objects(sdo_object, defanged=False):
             name = extract_name_from_regex(regex, sdo_object.pattern)
             sco_objects += [
                 CreditCard(
-                    provider="Union Pay",
+                    issuer="Union Pay",
                     number=name,
                     defanged=defanged,
                 )
@@ -364,7 +359,7 @@ def get_sco_objects(sdo_object, defanged=False):
             name = extract_name_from_regex(regex, sdo_object.pattern)
             sco_objects += [
                 CreditCard(
-                    provider="Diners",
+                    issuer="Diners",
                     number=name,
                     defanged=defanged,
                 )
@@ -375,7 +370,7 @@ def get_sco_objects(sdo_object, defanged=False):
             name = extract_name_from_regex(regex, sdo_object.pattern)
             sco_objects += [
                 CreditCard(
-                    provider="JCB",
+                    issuer="JCB",
                     number=name,
                     defanged=defanged,
                 )
@@ -386,8 +381,8 @@ def get_sco_objects(sdo_object, defanged=False):
             name = extract_name_from_regex(regex, sdo_object.pattern)
             sco_objects += [
                 IBAN(
-                    country_code=name[:2],
-                    number=name,
+                    bank_country=name[:2],
+                    iban_number=name,
                     defanged=defanged,
                 )
             ]
