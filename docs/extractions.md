@@ -227,63 +227,81 @@ For example;
 }
 ```
 
+## Branding
+
+By default file2stix will populate the `external_references` section of all SDOs and SROs with a reference to file2stix.
+
+```json
+"external_references": [
+    {
+        "source_name": "file2stix",
+        "description": "This object was created using file2stix from the Signals Corps.",
+        "url": "https://github.com/signalscorps/file2stix"
+      }
+```
+
+It is possible to remove this by using the `--no-branding` flag.
+
 ## Warning Lists
 
-Warning Lists identify potentially benign file2stix extractions.
+Warning Lists identify potentially benign file2stix extractions. DO NOT BE CONFUSED by the name; Warning Lists in file2stix are the equivilant of whitelists in other products.
 
-file2stix used MISP Warning Lists (using [PyMISPWarningLists](https://github.com/MISP/PyMISPWarningLists)) to identify potential extractions that should be whitelisted using a custom Extension definition.
+file2stix uses MISP Warning Lists (using [PyMISPWarningLists](https://github.com/MISP/PyMISPWarningLists)) to identify potential extractions that should be whitelisted using a custom Extension definition.
 
-https://raw.githubusercontent.com/signalscorps/stix2-objects/main/extension-definition/extension-definition--c8ea5ecb-f4a3-45e7-94de-9b9ba05161af/20220101000000000.json
+https://github.com/signalscorps/stix2-objects/blob/main/extension-definition/property-extension/warning-list-extension/extension-definition--c8ea5ecb-f4a3-45e7-94de-9b9ba05161af/20220101000000000.json
 
 Extracted values that match a Warning List are still converted to STIX 2.1 Objects, however, will contain the custom property listing the Warning Lists the extracted value matches with and will also contain `indicator_types` = `benign`.
 
 For example;
 
 ```json
-        {
-            "type": "indicator",
-            "spec_version": "2.1",
-            "id": "indicator--fb715301-acf3-4add-a70a-2b96f5ac15f5",
-            "created": "2022-09-07T06:18:21.997149Z",
-            "modified": "2022-09-08T06:13:24.191194Z",
-            "name": "Domain: google.com",
-            "indicator_types": [
-                "unknown", "benign"
-            ],
-            "pattern": "[ domain-name:value = 'google.com' ]",
-            "pattern_type": "stix",
-            "pattern_version": "2.1",
-            "valid_from": "2022-09-07T06:18:21.997149Z",
-            "object_marking_refs": [
-                "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
-            ],
-            "extensions": {
-                "extension-definition--c8ea5ecb-f4a3-45e7-94de-9b9ba05161af": {
-                    "extension_type": "property-extension",
-                    "warning_list_match": [
-                        "Top 20 000 websites from Cisco Umbrella",
-                        "Top 1000 website from Alexa",
-                        "List of known google domains",
-                        "Top 10 000 websites from Cisco Umbrella",
-                        "Top 1000 websites from Cisco Umbrella",
-                        "Top 10K most-used sites from Tranco",
-                        "Top 5000 websites from Cisco Umbrella",
-                        "Top 1,000,000 most-used sites from Tranco",
-                        "Top 10K websites from Majestic Million"
-                    ],
-                    "custom_warning_list_match": [
-                        "My custom list"
-                    ]
+{
+    "type": "indicator",
+    "spec_version": "2.1",
+    "id": "indicator--fb715301-acf3-4add-a70a-2b96f5ac15f5",
+    "created": "2022-09-07T06:18:21.997149Z",
+    "modified": "2022-09-08T06:13:24.191194Z",
+    "name": "Domain: google.com",
+    "indicator_types": [
+        "unknown",
+        "benign"
+    ],
+    "pattern": "[ domain-name:value = 'google.com' ]",
+    "pattern_type": "stix",
+    "pattern_version": "2.1",
+    "valid_from": "2022-09-07T06:18:21.997149Z",
+    "object_marking_refs": [
+        "marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9"
+    ],
+    "extensions": {
+        "extension-definition--c8ea5ecb-f4a3-45e7-94de-9b9ba05161af": {
+            "extension_type": "property-extension",
+            "warning_list_match": [
+                {
+                    "list_name": "Top 20 000 websites from Cisco Umbrella",
+                    "list_url": "https://misp.github.io/misp-warninglists/lists/cisco_top20k/list.json",
+                    "list_type": "misp"
+                },
+                {
+                    "list_name": "Custom list with url",
+                    "list_url": "https://example.com/list.json",
+                    "list_type": "custom"
+                },
+                {
+                    "list_name": "Custom list with local path",
+                    "list_type": "custom"
                 }
-            },
-            "external_references": [
-              {
-                "source_name": "file2stix",
-                "description": "This object was created using file2stix from the Signals Corps.",
-                "url": "https://github.com/signalscorps/file2stix"
-              }
             ]
-        },
+        }
+    },
+    "external_references": [
+        {
+            "source_name": "file2stix",
+            "description": "This object was created using file2stix from the Signals Corps.",
+            "url": "https://github.com/signalscorps/file2stix"
+        }
+    ]
+}
 ```
 
 Note, MISP Warning Lists contain a `type` value (defined in the Warning List JSON). file2stix treats each Warning List differently, depending on its type as follows;
@@ -303,6 +321,10 @@ You can also create your own Warning Lists. Custom Warning Lists must follow the
 An example of a custom warning list can be seen in `tests/file_inputs/custom_warning_lists/list.json`
 
 Due to the way data is shared, only Reports marked TLP GREEN, TLP AMBER, or TLP RED can be used with custom warning lists. As TLP WHITE reports are shared without attribution, printing a Warning List name will not be enough for a downstream user to determine what/who/and where the Warning List came from.
+
+You can either pass a custom warning list as a local file path to the warning list json, e.g. `tests/file_inputs/custom_warning_lists/list.json` or using a url, e.g. `http://www.example.com/custom_warning_lists/list.json`.
+
+file2stix will first check the Warning List is in the expected MISP Warning List format. If not, it will return an error and will not process the file.
 
 ## Extracted Object logic
 

@@ -28,6 +28,8 @@ For example, `<a href="URL_INSIDE_HTML_TAG">PRINTED_URL</a>`, only `PRINTED_URL`
 
 e.g. `file2stix --input-file tests/file_inputs/html/input.html`
 
+Note, html can get very messy. We generally recommend using a html to pdf tool (e.g. [printfriendly](https://www.printfriendly.com/) or similar) and uploading the page as a pdf (or whatever less messy file structure you covert to) for best results.
+
 ### Markdown (`.md`, `.markdown`)
 
 Markdown can contain HTML. If HTML elements are detected, these are stripped (in the same way as done for HTML inputs). Only content between HTML tags is considered.

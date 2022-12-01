@@ -1,0 +1,13 @@
+{
+  "name": "My Custom Warning List",
+  "version": 1,
+  "description": "Demo for file2stix",
+  "type": "string",
+  "matching_attributes": [
+    "ip-src",
+    "ip-dst"
+  ],
+  "list": [
+    "198.51.100.5"
+  ]
+}

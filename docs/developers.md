@@ -2,6 +2,11 @@
 
 file2stix was built to be extended. This section of the documentation covers information that will be useful to developers.
 
+## Useful public intel sources for testing
+
+* [ORKL Threat Intelligence Library](https://orkl.eu/)
+* [APT & CyberCriminal Campaign Collection](https://github.com/CyberMonitor/APT_CyberCriminal_Campagin_Collections)
+
 ## Running tests
 
 Ensure that `pytest` is installed:
@@ -345,7 +350,11 @@ file2stix --input-file tests/file_inputs/doc/input.doc
 ```
 
 ```shell
-file2stix --input-file tests/file_inputs/doc/input.docxs
+file2stix --input-file tests/file_inputs/doc/input.docx
+```
+
+```shell
+file2stix --input-file tests/file_inputs/doc/ipv4.docx
 ```
 
 #### .html
@@ -381,6 +390,17 @@ file2stix --input-file tests/file_inputs/md/input.md
 ```shell
 file2stix --input-file tests/file_inputs/pdf/input.pdf
 ```
+
+Large complex PDFs
+
+```shell
+file2stix --input-file tests/file_inputs/pdf/rpt_APT37.pdf
+```
+
+```shell
+file2stix --input-file tests/file_inputs/pdf/FireEye-APT39.pdf
+```
+
 
 #### .txt
 
@@ -673,8 +693,6 @@ MITREICSAttackObservable,\
 MITRECapecObservable,\
 CustomObservable
 ```
-
-
 
 ## Testing adding custom identity
 
