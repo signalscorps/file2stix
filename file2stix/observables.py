@@ -101,7 +101,7 @@ class Observable:
         Extracts the required observables from text and returns the
         extracted observables and modified text.
         """
-        
+
         extracted_observables = []
         modified_text = text
 
@@ -151,7 +151,7 @@ class Observable:
                 # Find regex in the entire text (including whitespace)
                 for match in re.finditer(cls.extraction_regex, text):
                     extracted_observables.append(cls(match.group(), config))
-                    
+
                 # Remove extracted observable string from text
                 if cls.remove_extracted_string_from_text:
                     modified_text = re.sub(cls.extraction_regex, "", text)
@@ -507,7 +507,7 @@ class DirectoryPathObservable(Observable):
             logger.debug(
                 "Got exception while removing file name from directory, ignoring it."
             )
-        
+
         for ignore_word in self.ignore_list:
             if self.extracted_observable_text.startswith(ignore_word):
                 return None
@@ -884,21 +884,30 @@ class SIGMARuleObservable(Observable):
         # https://github.com/oasis-open/cti-python-stix2/issues/260
         pattern = pattern.replace("\\", "\\\\")
 
-        # Add "property-extension extension_type"
-        yaml_dict["extension_type"] = "property-extension"
+        external_references = []
+        if "references" in yaml_dict:
+            for reference in yaml_dict["references"]:
+                external_references += [
+                    ExternalReference(url=reference, source_name="Sigma Rule")
+                ]
+
+        external_references += [self.branding_external_ref]
 
         indicator_dict = {
             "type": "indicator",
             "name": f"{self.name}{self.name_delimeter}{yaml_dict['title']}",
             "pattern_type": "sigma",
             "pattern": pattern,
-            "indicator_types": ["unknown"],
+            "indicator_types": ["malicious-activity"],
             "object_marking_refs": self.tlp_level,
             "created_by_ref": self.identity,
             "confidence": self.confidence,
-            "external_references": self.branding_external_ref,
+            "external_references": external_references,
             "extensions": {
-                "extension-definition--94f4bdb6-7f39-4d0a-b103-f787026963a6": yaml_dict
+                "extension-definition--94f4bdb6-7f39-4d0a-b103-f787026963a6": {
+                    "extension_type": "property-extension",
+                    "sigma_rule": yaml_dict,
+                }
             },
         }
 
