@@ -133,7 +133,10 @@ def main(config: Config):
     elif file_extension in (".yara", ".yar", ".yml", ".yaml"):
         input = Path(input_file_path).read_text()
     else:
-        input = textract.process(input_file_path).decode("UTF-8")
+        # Use ASCII encoding
+        # input = textract.process(input_file_path).decode("UTF-8")
+        input = textract.process(input_file_path, output_encoding="ascii").decode("ascii")
+
 
     if config.output_preprocessed_file:
         with open(config.output_preprocessed_file, "w") as f:
