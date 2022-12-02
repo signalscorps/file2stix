@@ -314,6 +314,8 @@ Note, MISP Warning Lists contain a `type` value (defined in the Warning List JSO
 
 It is possible to completely ignore extractions that match to warning lists (and not create a STIX Object from them) using the flag `--ignore-warninglist-observables`.
 
+By default file2stix will compare all [MISP Warning lists](https://github.com/MISP/misp-warninglists) (about 50 in total) to the input.
+
 ### Custom Warning Lists
 
 You can also create your own Warning Lists. Custom Warning Lists must follow the [MISP Warning List schema](https://github.com/MISP/misp-warninglists/blob/main/schema.json).
@@ -323,6 +325,18 @@ An example of a custom warning list can be seen in `tests/file_inputs/custom_war
 Due to the way data is shared, only Reports marked TLP GREEN, TLP AMBER, or TLP RED can be used with custom warning lists. As TLP WHITE reports are shared without attribution, printing a Warning List name will not be enough for a downstream user to determine what/who/and where the Warning List came from.
 
 You can either pass a custom warning list as a local file path to the warning list json, e.g. `tests/file_inputs/custom_warning_lists/list.json` or using a url, e.g. `http://www.example.com/custom_warning_lists/list.json`.
+
+e.g.
+
+```shell
+file2stix --input-file tests/warning_lists/custom_list_matches.txt --misp-custom-warning-list-file tests/warning_lists/custom_list.json --tlp-level GREEN
+```
+
+Or
+
+```shell
+file2stix --input-file tests/warning_lists/custom_list_matches.txt --misp-custom-warning-list-file "https://raw.githubusercontent.com/signalscorps/file2stix/main/tests/warning_lists/custom_list.json" --tlp-level GREEN
+```
 
 file2stix will first check the Warning List is in the expected MISP Warning List format. If not, it will return an error and will not process the file.
 

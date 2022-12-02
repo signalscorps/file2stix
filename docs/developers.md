@@ -498,8 +498,17 @@ file2stix --input-file tests/warning_lists/default_list_matches-cidr.txt
 file2stix --input-file tests/warning_lists/custom_list_matches.txt --misp-custom-warning-list-file tests/warning_lists/custom_list.json --tlp-level GREEN
 ```
 
+### Remote Warning List
 
+```shell
+file2stix --input-file tests/warning_lists/custom_list_matches.txt --misp-custom-warning-list-file "https://raw.githubusercontent.com/signalscorps/file2stix/main/tests/warning_lists/custom_list_2.json" --tlp-level GREEN
+```
 
+### Bad Warning List
+
+```shell
+file2stix --input-file tests/warning_lists/custom_list_matches.txt --misp-custom-warning-list-file "https://raw.githubusercontent.com/signalscorps/file2stix/main/tests/warning_lists/bad_warning_list.json" --tlp-level GREEN
+```
 
 ### Ignore default warning list match extractions
 
