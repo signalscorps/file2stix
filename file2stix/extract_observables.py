@@ -5,7 +5,7 @@ Contains logic for extracting observables.
 import logging
 
 from file2stix.cache import Cache
-from file2stix.config import Config
+from file2stix.config import Config, FILE2STIX_FOLDER
 from file2stix.error_handling import error_logger
 from file2stix.observables import (
     CustomObservable,
@@ -13,6 +13,7 @@ from file2stix.observables import (
     MITREMobileAttackObservable,
     MITREICSAttackObservable,
     MITRECapecObservable,
+    LookupObservable,
 )
 import pattern2sco
 
@@ -55,10 +56,16 @@ class ExtractStixObservables:
                     "Use --update-mitre-cti-database option to update MITRE CTI database."
                 )
                 return
-        if observable_cls == CustomObservable:
-            if config.custom_extraction_file != None:
+        if observable_cls == CustomObservable or observable_cls == LookupObservable:
+            
+            if observable_cls == CustomObservable:
+                custom_extraction_file = config.custom_extraction_file
+            else:
+                custom_extraction_file = FILE2STIX_FOLDER / "lookups" / "malware-names.txt"
+
+            if custom_extraction_file != None:
                 observable_cls.build_extraction_pattern_list(
-                    config.custom_extraction_file, cache.cti_folder_path
+                    custom_extraction_file, cache.cti_folder_path
                 )
             else:
                 logger.info(

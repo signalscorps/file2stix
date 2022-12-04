@@ -651,7 +651,7 @@ class CVEObservable(Observable):
         if list != None and len(list) > 0:
             return list[0]
         return None
-    
+
     def get_sdo_object(self):
         # Check if CVE is present in https://github.com/signalscorps/cve2stix-output
         cve_id = self.extracted_observable_text
@@ -671,7 +671,7 @@ class CVEObservable(Observable):
 
         if all_cve_objects != []:
             return all_cve_objects
- 
+
         external_references = [
             ExternalReference(
                 source_name="cve",
@@ -1120,10 +1120,11 @@ class CustomObservable(Observable):
     custom_observables_map = {}
     cti_folder_path = None
 
-    def __init__(self, extracted_observable_text, config, defanged=False, regex_pattern=None):
+    def __init__(
+        self, extracted_observable_text, config, defanged=False, regex_pattern=None
+    ):
         super().__init__(extracted_observable_text, config, defanged)
         self.regex_pattern = regex_pattern
-
 
     def get_stix2_object_custom(self, pattern, sdo_object_type):
         if sdo_object_type == "attack-pattern":
@@ -1232,9 +1233,15 @@ class CustomObservable(Observable):
         """
         if cls.cti_folder_path == None:
             cls.cti_folder_path = cti_folder_path
+        cls.extraction_pattern_list = []
+        cls.extraction_regex_pattern_list = []
+        cls.custom_observables_map = {}
 
         with open(custom_extraction_file) as file:
             for line in file:
+                if line.startswith("#") or line.isspace():
+                    # Ignore comments in custom_extraction_file
+                    continue
                 try:
                     pattern, type, sdo_object_type = [
                         text.strip() for text in line.split(",")
@@ -1263,14 +1270,16 @@ class CustomObservable(Observable):
             for match in re.findall(pattern, text):
                 if match not in temp_matches:
                     temp_matches.add(match)
-                    extracted_observables.append(cls(match, config, regex_pattern=pattern))
-                
+                    extracted_observables.append(
+                        cls(match, config, regex_pattern=pattern)
+                    )
+
         return extracted_observables, text
 
     def get_sdo_object(self):
         text = self.extracted_observable_text
         regex_pattern = self.regex_pattern
-        
+
         if regex_pattern == None:
             pattern = text
         else:
@@ -1279,6 +1288,10 @@ class CustomObservable(Observable):
         sdo_object_type = self.custom_observables_map[pattern]
         sdo_object = self.get_stix2_object_custom(text, sdo_object_type)
         return sdo_object
+
+
+class LookupObservable(CustomObservable):
+    pass
 
 
 def get_observable_class_from_name(observable_names):
