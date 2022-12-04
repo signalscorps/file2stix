@@ -28,6 +28,8 @@ from stix2 import (
     Software,
     TLP_WHITE,
 )
+import requests
+import tempfile
 
 from file2stix.config import Config
 from file2stix.helper import check_false_positive_domain, inheritors
@@ -230,10 +232,12 @@ class Observable:
 
             if result:
                 for hit in result:
-                    x_warning_list_match.append({
-                        "list_name": hit.name,
-                        "list_type": "misp",
-                    })
+                    x_warning_list_match.append(
+                        {
+                            "list_name": hit.name,
+                            "list_type": "misp",
+                        }
+                    )
 
             # Check if observable is in custom warning list
             if self.misp_custom_warning_list:
@@ -244,10 +248,12 @@ class Observable:
 
                 if result:
                     for hit in result:
-                        x_custom_warning_list_match.append({
-                        "list_name": hit.name,
-                        "list_type": "custom",
-                    })
+                        x_custom_warning_list_match.append(
+                            {
+                                "list_name": hit.name,
+                                "list_type": "custom",
+                            }
+                        )
 
             indicator_dict = {
                 "type": "indicator",
@@ -636,7 +642,37 @@ class CVEObservable(Observable):
         super().__init__(extracted_observable_text, config)
         self.cve_extension_definition = config.cve_extension_definition
 
+    def get_stix_bundle_cve_url(self, cve_id):
+        _, year, id = cve_id.split("-")
+        block = id[:-3] + "XXX"
+        return f"https://raw.githubusercontent.com/signalscorps/cve2stix-output/main/stix2_bundles/{year}/{block}/{cve_id}/stix_bundle.json"
+
+    def get_first_item_safely(list):
+        if list != None and len(list) > 0:
+            return list[0]
+        return None
+    
     def get_sdo_object(self):
+        # Check if CVE is present in https://github.com/signalscorps/cve2stix-output
+        cve_id = self.extracted_observable_text
+        cve_url = self.get_stix_bundle_cve_url(cve_id)
+        response = requests.get(cve_url)
+        vulnerability = None
+
+        if response.status_code == 200:
+            # Store response.text in temporary file
+            temp = tempfile.NamedTemporaryFile("w+t", prefix="file2stix_cve_")
+            temp.write(response.text)
+
+            # Load vulnerability from temporary file
+            memory_store = MemoryStore()
+            memory_store.load_from_file(temp.name)
+            vulnerabilities = memory_store.query([Filter("type", "=", "vulnerability")])
+            vulnerability = self.get_first_item_safely(vulnerabilities)
+
+        if vulnerability != None:
+            return vulnerability
+ 
         external_references = [
             ExternalReference(
                 source_name="cve",
