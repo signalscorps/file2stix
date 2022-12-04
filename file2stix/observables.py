@@ -230,7 +230,10 @@ class Observable:
 
             if result:
                 for hit in result:
-                    x_warning_list_match.append(hit.name)
+                    x_warning_list_match.append({
+                        "list_name": hit.name,
+                        "list_type": "misp",
+                    })
 
             # Check if observable is in custom warning list
             if self.misp_custom_warning_list:
@@ -241,7 +244,10 @@ class Observable:
 
                 if result:
                     for hit in result:
-                        x_custom_warning_list_match.append(hit.name)
+                        x_custom_warning_list_match.append({
+                        "list_name": hit.name,
+                        "list_type": "custom",
+                    })
 
             indicator_dict = {
                 "type": "indicator",
@@ -255,19 +261,19 @@ class Observable:
                 "confidence": self.confidence,
             }
 
-            warning_list_dict = {}
+            warning_list = []
             if x_warning_list_match:
-                warning_list_dict["misp_warning_list_match"] = x_warning_list_match
+                warning_list += x_warning_list_match
 
             if x_custom_warning_list_match:
-                warning_list_dict[
-                    "custom_warning_list_match"
-                ] = x_custom_warning_list_match
+                warning_list += x_custom_warning_list_match
 
-            if warning_list_dict:
-                warning_list_dict["extension_type"] = "property-extension"
+            if warning_list:
                 indicator_dict["extensions"] = {
-                    self.misp_extension_definition.id: warning_list_dict
+                    self.misp_extension_definition.id: {
+                        "extension_type": "property-extension",
+                        "warning_list_matches": warning_list,
+                    }
                 }
 
                 if self.ignore_warninglist_observables == True:
@@ -888,7 +894,7 @@ class SIGMARuleObservable(Observable):
         if "references" in yaml_dict:
             for reference in yaml_dict["references"]:
                 external_references += [
-                    ExternalReference(url=reference, source_name="Sigma Rule")
+                    ExternalReference(url=reference, source_name="Sigma Rule Reference")
                 ]
 
         external_references += [self.branding_external_ref]
