@@ -189,7 +189,7 @@ file2stix --input-file tests/observable_tests/file_hash_ssdeep.txt
 file2stix --input-file tests/observable_tests/file.txt
 ```
 
-#### IBAN
+#### Bank Account
 
 ```shell
 file2stix --input-file tests/observable_tests/iban.txt
@@ -248,11 +248,27 @@ file2stix --input-file tests/observable_tests/ipv6_cidr.txt
 file2stix --input-file tests/observable_tests/mitre_attck_all.txt --update-mitre-cti-database
 ```
 
-##### Enterprise Matrix
+##### Enterprise Matrix (newest)
 
 ```shell
 file2stix --input-file tests/observable_tests/mitre_attck_enterprise.txt --update-mitre-cti-database
 ```
+
+##### Enterprise Matrix (version 7)
+
+No extraction, as subtechnique not present in version:
+
+```shell
+file2stix --input-file tests/observable_tests/mitre_attck_enterprise-v12-technique.txt --update-mitre-cti-database --mitre-attack-version ATT%26CK-v7.0
+```
+
+Extraction, as subtechnique not present in version:
+
+
+```shell
+file2stix --input-file tests/observable_tests/mitre_attck_enterprise-v12-technique.txt --update-mitre-cti-database --mitre-attack-version ATT%26CK-v12.1
+```
+
 
 ##### ICS Matrix
 
@@ -282,6 +298,14 @@ file2stix --input-file tests/observable_tests/registry_key.txt
 
 ```shell
 file2stix --input-file tests/observable_tests/sigma_rule.txt
+```
+
+```shell
+file2stix --input-file tests/observable_tests/sigma_rule_2.txt
+```
+
+```shell
+file2stix --input-file tests/observable_tests/sigma_rule_3.txt
 ```
 
 #### URL
@@ -321,8 +345,6 @@ file2stix --input-file tests/custom_extractions/malware_input_file.txt --custom-
 ```shell
 file2stix --input-file tests/custom_extractions/malware_input_file.txt --custom-extraction-file tests/custom_extractions/test_extraction_exact.txt
 ```
-
-
 
 ### Using regex
 
