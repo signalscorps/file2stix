@@ -657,7 +657,7 @@ class CVEObservable(Observable):
         cve_id = self.extracted_observable_text
         cve_url = self.get_stix_bundle_cve_url(cve_id)
         response = requests.get(cve_url)
-        vulnerability = None
+        all_cve_objects = []
 
         if response.status_code == 200:
             # Store response.text in temporary file
@@ -667,11 +667,10 @@ class CVEObservable(Observable):
             # Load vulnerability from temporary file
             memory_store = MemoryStore()
             memory_store.load_from_file(temp.name)
-            vulnerabilities = memory_store.query([Filter("type", "=", "vulnerability")])
-            vulnerability = self.get_first_item_safely(vulnerabilities)
+            all_cve_objects = memory_store.query()
 
-        if vulnerability != None:
-            return vulnerability
+        if all_cve_objects != []:
+            return all_cve_objects
  
         external_references = [
             ExternalReference(
