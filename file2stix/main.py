@@ -107,8 +107,8 @@ def main(config: Config):
             )
 
     # Update MITRE ATT&CK and CAPEC database
-    if config.update_mitre_cti_database == True:
-        cache.update_mitre_cti_database()
+    if config.update_mitre_cti_database == True or config.mitre_attack_version != None:
+        cache.update_mitre_cti_database(config.mitre_attack_version)
 
     if config.input_file_path == None:
         logger.info("No input file given. Exiting...")

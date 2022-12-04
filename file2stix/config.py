@@ -22,6 +22,7 @@ class Config:
     custom_extraction_file: str = None
     cache_folder: str = "file2stix-cache"
     update_mitre_cti_database: bool = False
+    mitre_attack_version: str = None
 
     # STIX2 Report related options
     identity: Identity = STIX2_OBJECTS_STORE.get_object("file2stix")

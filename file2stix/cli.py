@@ -66,6 +66,12 @@ def cli():
     )
 
     arg_parser.add_argument(
+        "--mitre-attack-version",
+        action="store",
+        help="Specify MITRE ATT&CK version (GitHub tag from https://github.com/mitre/cti/releases)",
+    )
+
+    arg_parser.add_argument(
         "--custom-extraction-file",
         action="store",
         help="Path to file with custom extraction logic",
@@ -219,6 +225,7 @@ def cli():
         output_preprocessed_file=args.output_processed_input_file,
         cache_folder=os.path.abspath(args.cache_folder),
         update_mitre_cti_database=args.update_mitre_cti_database,
+        mitre_attack_version=args.mitre_attack_version,
         custom_extraction_file=args.custom_extraction_file,
         tlp_level=tlp_level,
         identity=identity,
