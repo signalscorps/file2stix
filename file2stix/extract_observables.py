@@ -36,6 +36,7 @@ class ExtractStixObservables:
         self.index = 0
         self.extracted_observables = []
         self.config = config
+        self.final_result_list = []
         if ExtractStixObservables.modified_text == None:
             ExtractStixObservables.modified_text = text
 
@@ -72,16 +73,8 @@ class ExtractStixObservables:
             ExtractStixObservables.modified_text, config
         )
 
-        logger.debug("Extraction of observable text complete.")
-
-    def __iter__(self):
-        return self
-
-    def __next__(self):
-        if self.index < len(self.extracted_observables):
-            extracted_observable = self.extracted_observables[self.index]
-            self.index += 1
-
+        # Store sdo and sco_objects
+        for extracted_observable in self.extracted_observables:
             try:
                 sdo_object = extracted_observable.get_sdo_object()
             except Exception as error:
@@ -105,9 +98,28 @@ class ExtractStixObservables:
                         extracted_observable.extracted_observable_text,
                     )
                     raise error
+            if isinstance(sdo_object, list):
+                for sdo_object_item in sdo_object:
+                    self.final_result_list.append(
+                        self._get_final_result(sdo_object_item, extracted_observable.defanged)
+                    )
             else:
-                sco_objects = pattern2sco.get_sco_objects(
-                    sdo_object, extracted_observable.defanged
+                self.final_result_list.append(
+                    self._get_final_result(sdo_object, extracted_observable.defanged)
                 )
-                return {"stix_observable": sdo_object, "sco_objects": sco_objects}
+
+        logger.debug("Extraction of observable text complete.")
+
+    def _get_final_result(self, sdo_object_item, defanged):
+        sco_objects = pattern2sco.get_sco_objects(sdo_object_item, defanged)
+        return {"stix_observable": sdo_object_item, "sco_objects": sco_objects}
+
+    def __iter__(self):
+        return self
+
+    def __next__(self):
+        if self.index < len(self.final_result_list):
+            result = self.final_result_list[self.index]
+            self.index += 1
+            return result
         raise StopIteration
