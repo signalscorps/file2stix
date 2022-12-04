@@ -1,0 +1,10 @@
+dangerous-attack-pattern,attack-pattern,exact
+dangerous-campaign,campaign,exact
+dangerous-course-of-action,course-of-action,exact
+dangerous-infrastructure,infrastructure,exact
+dangerous-intrustion-set,intrustion-set,exact
+dangerous-malware,malware,exact
+dangerous-threat-actor,threat-actor,exact
+dangerous-tool,tool,exact
+"Type expected",infrastructure,exact
+"This is some random text",intrustion-set,exact

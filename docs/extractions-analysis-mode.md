@@ -1240,7 +1240,7 @@ Inside the custom extraction file you must specify an
 2. extraction type (either `regex` or `exact`)
 3. the STIX 2.1 Object or MITRE / CAPEC Object to use when a match is detected
 
-file2stix used `re` for regex matching.
+file2stix uses `re` for regex matching.
 
 You can pass multiple custom extractions on each line of the file like so;
 
@@ -1248,6 +1248,22 @@ You can pass multiple custom extractions on each line of the file like so;
 "EXTRACTION STRING",STIX-OBJECT-TYPE,exact
 "EXTRACTION REGEX",STIX-OBJECT-TYPE,regex
 ```
+
+For example;
+
+```csv
+"Fancy Bear",attack-pattern,exact
+```
+
+And
+
+```csv
+"Fancy*",attack-pattern,regex
+```
+
+Would both match the text "Fancy Bear" found in an input file.
+
+The secound would also match "FancyBear", "Fancy Cat", "Fancy Dog", ect.
 
 The following STIX 2.1 Objects are supported by custom extractions:
 

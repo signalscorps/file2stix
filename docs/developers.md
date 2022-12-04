@@ -312,16 +312,37 @@ file2stix --input-file tests/observable_tests/mac_address.txt
 
 ## Testing custom extractions
 
+### Using exact match 
+
 ```shell
-file2stix --input-file tests/custom_extractions/test_extractions.txt --custom-extraction-file tests/custom_extractions/test_extractions.txt
+file2stix --input-file tests/custom_extractions/malware_input_file.txt --custom-extraction-file tests/custom_extractions/malware_custom_extraction_exact.txt
 ```
 
+```shell
+file2stix --input-file tests/custom_extractions/malware_input_file.txt --custom-extraction-file tests/custom_extractions/test_extraction_exact.txt
+```
+
+
+
+### Using regex
+
+```shell
+file2stix --input-file tests/custom_extractions/malware_input_file.txt --custom-extraction-file tests/custom_extractions/malware_custom_extraction_regex.txt
+```
 
 ### Extracting explicit ATT&CK Objects
 
 ```shell
 file2stix --input-file tests/custom_extractions/extract_as_attack_capec_objects.txt --custom-extraction-file tests/custom_extractions/extract_as_attack_capec_objects.txt
 ```
+
+
+### Check warnings for bad custom input file
+
+```shell
+file2stix --input-file tests/custom_extractions/malware_input_file.txt --custom-extraction-file tests/custom_extractions/malware_custom_extraction_exact_bad.txt
+```
+
 ---
 
 ## Testing branding
