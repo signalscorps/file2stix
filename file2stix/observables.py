@@ -1116,8 +1116,14 @@ class MITRECapecObservable(MITREEnterpriseAttackObservable):
 class CustomObservable(Observable):
     name = "Custom Observable"
     extraction_pattern_list = []
+    extraction_regex_pattern_list = []
     custom_observables_map = {}
     cti_folder_path = None
+
+    def __init__(self, extracted_observable_text, config, defanged=False, regex_pattern=None):
+        super().__init__(extracted_observable_text, config, defanged)
+        self.regex_pattern = regex_pattern
+
 
     def get_stix2_object_custom(self, pattern, sdo_object_type):
         if sdo_object_type == "attack-pattern":
@@ -1230,11 +1236,14 @@ class CustomObservable(Observable):
         with open(custom_extraction_file) as file:
             for line in file:
                 try:
-                    pattern, sdo_object_type = [
+                    pattern, type, sdo_object_type = [
                         text.strip() for text in line.split(",")
                     ]
                     pattern = pattern.strip('"')
-                    cls.extraction_pattern_list += [pattern]
+                    if type == "string":
+                        cls.extraction_pattern_list += [pattern]
+                    elif type == "regex":
+                        cls.extraction_regex_pattern_list += [pattern]
                     cls.custom_observables_map[pattern] = sdo_object_type
                 except Exception as error:
                     logger.warning(
@@ -1249,12 +1258,26 @@ class CustomObservable(Observable):
         for pattern in cls.extraction_pattern_list:
             if pattern in text:
                 extracted_observables.append(cls(pattern, config))
+        for pattern in cls.extraction_regex_pattern_list:
+            temp_matches = set()
+            for match in re.findall(pattern, text):
+                if match not in temp_matches:
+                    temp_matches.add(match)
+                    extracted_observables.append(cls(match, config, regex_pattern=pattern))
+                
         return extracted_observables, text
 
     def get_sdo_object(self):
-        pattern = self.extracted_observable_text
+        text = self.extracted_observable_text
+        regex_pattern = self.regex_pattern
+        
+        if regex_pattern == None:
+            pattern = text
+        else:
+            pattern = regex_pattern
+
         sdo_object_type = self.custom_observables_map[pattern]
-        sdo_object = self.get_stix2_object_custom(pattern, sdo_object_type)
+        sdo_object = self.get_stix2_object_custom(text, sdo_object_type)
         return sdo_object
 
 

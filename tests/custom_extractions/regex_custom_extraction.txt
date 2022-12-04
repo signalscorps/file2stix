@@ -1,0 +1,3 @@
+"198.*3",regex,malware
+"198.51.100.4",string,attack-pattern
+"198.*6",regex,infrastructure
