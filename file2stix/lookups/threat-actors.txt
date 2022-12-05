@@ -1,0 +1,2 @@
+APT9999,string,threat-actor
+APT99999,string,threat-actor

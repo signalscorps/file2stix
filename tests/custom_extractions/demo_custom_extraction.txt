@@ -1,50 +1,48 @@
-
 # MISC
-c&c,malware
-bot,malware
-botnet,malware
-spear phishing,malware
-"spear-phishing",malware
-hack,malware
-hacking,malware
-xss,malware
-"cross-site scripting",malware
-DoS,malware
-"denial of service",malware
-"exploit kit",malware
-spam,malware
-worm,malware
-sinkhole,malware
-spoof,malware
-spoofing,malware
-downloader,malware
-ransomware,malware
-keylogger,malware
-"social engineering",malware
-adware,malware
-deface,malware
-backdoor,malware
-spyware,malware
-amplification,malware
-probe,malware
-rootkit,malware
-exfiltrate,malware
-exfiltration,malware
-encrypt,malware
-encrypted,malware
-encryption,malware
-dropper,malware
-zero-day,malware
-"zero day",malware
-"password stealer",malware
-clickfraud,malware
-TOR,malware
-crack,malware
-cracking,malware
-erase,malware
-spy,malware
-spying,malware
-infiltrates,malware
-infiltration,malware
-sniff,malware
-sniffing
+c&c,string,malware
+bot,string,malware
+botnet,string,malware
+spear phishing,string,malware
+"spear-phishing",string,malware
+hack,string,malware
+hacking,string,malware
+xss,string,malware
+"cross-site scripting",string,malware
+DoS,string,malware
+"denial of service",string,malware
+"exploit kit",string,malware
+spam,string,malware
+worm,string,malware
+sinkhole,string,malware
+spoof,string,malware
+spoofing,string,malware
+downloader,string,malware
+ransomware,string,malware
+keylogger,string,malware
+"social engineering",string,malware
+adware,string,malware
+deface,string,malware
+backdoor,string,malware
+spyware,string,malware
+amplification,string,malware
+probe,string,malware
+rootkit,string,malware
+exfiltrate,string,malware
+exfiltration,string,malware
+encrypt,string,malware
+encrypted,string,malware
+encryption,string,malware
+dropper,string,malware
+zero-day,string,malware
+"zero day",string,malware
+"password stealer",string,malware
+clickfraud,string,malware
+TOR,string,malware
+crack,string,malware
+cracking,string,malware
+erase,string,malware
+spy,string,malware
+spying,string,malware
+infiltrates,string,malware
+infiltration,string,malware
+sniff,string,malware
