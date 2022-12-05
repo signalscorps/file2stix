@@ -248,19 +248,25 @@ file2stix --input-file tests/observable_tests/mitre_attck_all.txt --update-mitre
 file2stix --input-file tests/observable_tests/mitre_attck_enterprise.txt --update-mitre-cti-database
 ```
 
+##### Enterprise Matrix (test subtechnique)
+
+```shell
+file2stix --input-file tests/observable_tests/mitre_attck_enterprise_subtechnique.txt --update-mitre-cti-database
+```
+
 ##### Enterprise Matrix (version 7)
 
 No extraction, as subtechnique not present in version:
 
 ```shell
-file2stix --input-file tests/observable_tests/mitre_attck_enterprise-v12-technique.txt --update-mitre-cti-database --mitre-attack-version ATT%26CK-v7.0
+file2stix --input-file tests/observable_tests/mitre_attck_enterprise-v12-technique.txt --update-mitre-cti-database --mitre-attack-version "ATT&CK-v7.0"
 ```
 
 Extraction, as subtechnique not present in version:
 
 
 ```shell
-file2stix --input-file tests/observable_tests/mitre_attck_enterprise-v12-technique.txt --update-mitre-cti-database --mitre-attack-version ATT%26CK-v12.1
+file2stix --input-file tests/observable_tests/mitre_attck_enterprise-v12-technique.txt --update-mitre-cti-database --mitre-attack-version "ATT&CK-v12.1"
 ```
 
 
