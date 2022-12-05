@@ -137,6 +137,8 @@ def main(config: Config):
         # input = textract.process(input_file_path).decode("UTF-8")
         input = textract.process(input_file_path, output_encoding="ascii").decode("ascii")
 
+    # Add newline at the end of input
+    input = input + "\n"
 
     if config.output_preprocessed_file:
         with open(config.output_preprocessed_file, "w") as f:

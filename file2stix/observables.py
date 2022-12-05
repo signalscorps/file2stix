@@ -889,7 +889,7 @@ class SIGMARuleObservable(Observable):
     name = "SIGMA Rule"
     type = "indicator"
     pattern = "{extracted_observable_text}"
-    extraction_regex = r"((.*:.*\n)|(\s*- .*\n))+"
+    extraction_regex = r"((.*: \|\n([^:]*\n)+)|((\s*- .*\n))|(.*:.*\n))+"
 
     def get_sdo_object(self):
         # Check if the extracted text is a valid yaml file
