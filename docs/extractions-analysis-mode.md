@@ -1238,7 +1238,7 @@ Custom extractions can be written and stored in a plain text file that can be pa
 Inside the custom extraction file you must specify an
 
 1. extraction string or regex
-2. extraction type (either `regex` or `exact`)
+2. extraction type (either `regex` or `sting`)
 3. the STIX 2.1 Object or MITRE / CAPEC Object to use when a match is detected
 
 file2stix uses `re` for regex matching.
@@ -1246,20 +1246,20 @@ file2stix uses `re` for regex matching.
 You can pass multiple custom extractions on each line of the file like so;
 
 ```csv
-"EXTRACTION STRING",STIX-OBJECT-TYPE,exact
-"EXTRACTION REGEX",STIX-OBJECT-TYPE,regex
+"EXTRACTION STRING",string,STIX-OBJECT-TYPE
+"EXTRACTION REGEX",regex,STIX-OBJECT-TYPE
 ```
 
 For example;
 
 ```csv
-"Fancy Bear",attack-pattern,exact
+"Fancy Bear",string,attack-pattern
 ```
 
 And
 
 ```csv
-"Fancy*",attack-pattern,regex
+"Fancy*",regex,attack-pattern
 ```
 
 Would both match the text "Fancy Bear" found in an input file.
@@ -1280,15 +1280,15 @@ The following STIX 2.1 Objects are supported by custom extractions:
 e.g. to search a document for the string "RYUK" and create a Malware STIX 2.1 SDO if a match is identified;
 
 ```csv
-"ryuk",malware,exact
+"ryuk",string,malware
 ```
 
 You can also create multiple custom extractions in the same file by adding multiple lines, e.g.
 
 ```csv
-"ryuk",malware,exact
-"darkhotel",malware,exact
-"patch",course-of-action,exact
+"ryuk",malware
+"darkhotel",string,malware
+"patch",string,course-of-action
 ```
 
 You can see an example custom extraction file in `tests/file_inputs/custom_extractions/test_extractions.txt`

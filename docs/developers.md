@@ -33,12 +33,6 @@ pytest
 file2stix --input-file tests/observable_tests/asn.txt
 ```
 
-Expected:
-
-* Indicator SDO
-* ASN SCO
-* R
-
 #### Country
 
 ```shell
@@ -254,19 +248,25 @@ file2stix --input-file tests/observable_tests/mitre_attck_all.txt --update-mitre
 file2stix --input-file tests/observable_tests/mitre_attck_enterprise.txt --update-mitre-cti-database
 ```
 
+##### Enterprise Matrix (test subtechnique)
+
+```shell
+file2stix --input-file tests/observable_tests/mitre_attck_enterprise_subtechnique.txt --update-mitre-cti-database
+```
+
 ##### Enterprise Matrix (version 7)
 
 No extraction, as subtechnique not present in version:
 
 ```shell
-file2stix --input-file tests/observable_tests/mitre_attck_enterprise-v12-technique.txt --update-mitre-cti-database --mitre-attack-version ATT%26CK-v7.0
+file2stix --input-file tests/observable_tests/mitre_attck_enterprise-v12-technique.txt --update-mitre-cti-database --mitre-attack-version "ATT&CK-v7.0"
 ```
 
 Extraction, as subtechnique not present in version:
 
 
 ```shell
-file2stix --input-file tests/observable_tests/mitre_attck_enterprise-v12-technique.txt --update-mitre-cti-database --mitre-attack-version ATT%26CK-v12.1
+file2stix --input-file tests/observable_tests/mitre_attck_enterprise-v12-technique.txt --update-mitre-cti-database --mitre-attack-version "ATT&CK-v12.1"
 ```
 
 
@@ -358,12 +358,28 @@ file2stix --input-file tests/custom_extractions/malware_input_file.txt --custom-
 file2stix --input-file tests/custom_extractions/extract_as_attack_capec_objects.txt --custom-extraction-file tests/custom_extractions/extract_as_attack_capec_objects.txt
 ```
 
-
 ### Check warnings for bad custom input file
 
 ```shell
 file2stix --input-file tests/custom_extractions/malware_input_file.txt --custom-extraction-file tests/custom_extractions/malware_custom_extraction_exact_bad.txt
 ```
+---
+
+## Testing lookups
+
+### Matching extractions
+
+```shell
+file2stix --input-file tests/lookups/malware-names.txt
+```
+
+```shell
+file2stix --input-file tests/lookups/threat-actors.txt
+```
+
+### Disabling lookup file
+
+TODO
 
 ---
 
@@ -547,19 +563,19 @@ file2stix --input-file tests/warning_lists/custom_list_matches.txt --misp-custom
 file2stix --input-file tests/warning_lists/custom_list_matches.txt --misp-custom-warning-list-file "https://raw.githubusercontent.com/signalscorps/file2stix/main/tests/warning_lists/custom_list_2.json" --tlp-level GREEN
 ```
 
-### Bad Warning List
+### Bad Warning List (should throw error)
 
 ```shell
 file2stix --input-file tests/warning_lists/custom_list_matches.txt --misp-custom-warning-list-file "https://raw.githubusercontent.com/signalscorps/file2stix/main/tests/warning_lists/bad_warning_list.json" --tlp-level GREEN
 ```
 
-### Ignore default warning list match extractions
+### Ignore (do not extract) default warning list match extractions
 
 ```shell
 file2stix --input-file tests/warning_lists/default_list_matches-substring.txt --ignore-warninglist-observables
 ```
 
-### Ignore custom warning list match extractions
+### Ignore (do not extract) custom warning list match extractions
 
 ```shell
 file2stix --input-file tests/warning_lists/custom_list_matches.txt --misp-custom-warning-list-file tests/warning_lists/custom_list.json --tlp-level GREEN --ignore-warninglist-observables
@@ -596,11 +612,6 @@ Multiple extractions (sightings)
 ```shell
 file2stix --input-file tests/observable_tests/ipv4.txt --extraction-mode sighting
 ```
-
-
-
-
-
 
 ---
 
