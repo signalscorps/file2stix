@@ -617,21 +617,21 @@ class AutonomousSystemNumberObservable(Observable):
 class CryptocurrencyBTCObservable(Observable):
     name = "BTC"
     type = "indicator"
-    pattern = "[ cryptocurrency:symbol = 'BTC' AND cryptocurrency:address = '{extracted_observable_text}' ]"
+    pattern = "[ cryptocurrency-transaction:address = '{extracted_observable_text}' ]"
     extraction_function = lambda x: validators.btc_address(x)
 
 
 class CryptocurrencyETHObservable(Observable):
     name = "ETH"
     type = "indicator"
-    pattern = "[ cryptocurrency:symbol = 'ETH' AND cryptocurrency:address = '{extracted_observable_text}' ]"
+    pattern = "[ cryptocurrency-transaction:address = '{extracted_observable_text}' ]"
     extraction_regex = r"^(0x[a-f0-9]{40})$"
 
 
 class CryptocurrencyXMRObservable(Observable):
     name = "XMR"
     type = "indicator"
-    pattern = "[ cryptocurrency:symbol = 'XMR' AND cryptocurrency:address = '{extracted_observable_text}' ]"
+    pattern = "[ cryptocurrency-transaction:address = '{extracted_observable_text}' ]"
     extraction_regex = r"^(4[0-9AB][1-9A-HJ-NP-Za-km-z]{93})$"
 
 
@@ -797,49 +797,49 @@ class CountryCodeAlpha3Observable(Observable):
 class MastercardCreditCardObservable(Observable):
     name = "Mastercard Credit Card"
     type = "indicator"
-    pattern = "[ credit-card:provider = 'Mastercard' AND credit-card:number = '{extracted_observable_text}' ]"
+    pattern = "[ credit-card:number = '{extracted_observable_text}' ]"
     extraction_function = lambda x: validators.mastercard(x)
 
 
 class VisaCreditCardObservable(Observable):
     name = "VISA Credit Card"
     type = "indicator"
-    pattern = "[ credit-card:provider = 'VISA' AND credit-card:number = '{extracted_observable_text}' ]"
+    pattern = "[ credit-card:number = '{extracted_observable_text}' ]"
     extraction_function = lambda x: validators.visa(x)
 
 
 class AmexCreditCardObservable(Observable):
     name = "Amex Credit Card"
     type = "indicator"
-    pattern = "[ credit-card:provider = 'Amex' AND credit-card:number = '{extracted_observable_text}' ]"
+    pattern = "[ credit-card:number = '{extracted_observable_text}' ]"
     extraction_function = lambda x: validators.amex(x)
 
 
 class UnionPayCreditCardObservable(Observable):
     name = "Union Pay Credit Card"
     type = "indicator"
-    pattern = "[ credit-card:provider = 'Union' AND credit-card:number = '{extracted_observable_text}' ]"
+    pattern = "[ credit-card:number = '{extracted_observable_text}' ]"
     extraction_function = lambda x: validators.unionpay(x)
 
 
 class DinersCreditCardObservable(Observable):
     name = "Diners Credit Card"
     type = "indicator"
-    pattern = "[ credit-card:provider = 'Diners' AND credit-card:number = '{extracted_observable_text}' ]"
+    pattern = "[ credit-card:number = '{extracted_observable_text}' ]"
     extraction_function = lambda x: validators.diners(x)
 
 
 class JCBCreditCardObservable(Observable):
     name = "JCB Credit Card"
     type = "indicator"
-    pattern = "[ credit-card:provider = 'JCB' AND credit-card:number = '{extracted_observable_text}' ]"
+    pattern = "[ credit-card:number = '{extracted_observable_text}' ]"
     extraction_function = lambda x: validators.jcb(x)
 
 
 class IBANCodeObservable(Observable):
     name = "IBAN"
     type = "indicator"
-    pattern = "[ iban:number = '{extracted_observable_text}' ]"
+    pattern = "[ bank-account:iban_number = '{extracted_observable_text}' ]"
     extraction_function = lambda x: validators.iban(x)
 
 

@@ -278,7 +278,7 @@ def get_sco_objects(sdo_object, defanged=False):
             ]
 
         if sdo_object.name.startswith("BTC"):
-            regex = r"cryptocurrency:address = '(.*)'"
+            regex = r"cryptocurrency-transaction:address = '(.*)'"
             name = extract_name_from_regex(regex, sdo_object.pattern)
             sco_objects += [
                 CryptocurrencyTransaction(
@@ -289,7 +289,7 @@ def get_sco_objects(sdo_object, defanged=False):
             ]
 
         if sdo_object.name.startswith("ETH"):
-            regex = r"cryptocurrency:address = '(.*)'"
+            regex = r"cryptocurrency-transaction:address = '(.*)'"
             name = extract_name_from_regex(regex, sdo_object.pattern)
             sco_objects += [
                 CryptocurrencyTransaction(
@@ -300,7 +300,7 @@ def get_sco_objects(sdo_object, defanged=False):
             ]
 
         if sdo_object.name.startswith("XMR"):
-            regex = r"cryptocurrency:address = '(.*)'"
+            regex = r"cryptocurrency-transaction:address = '(.*)'"
             name = extract_name_from_regex(regex, sdo_object.pattern)
             sco_objects += [
                 CryptocurrencyTransaction(
@@ -377,7 +377,7 @@ def get_sco_objects(sdo_object, defanged=False):
             ]
 
         if sdo_object.name.startswith("IBAN"):
-            regex = r"iban:number = '(.*)'"
+            regex = r"bank-account:iban_number = '(.*)'"
             name = extract_name_from_regex(regex, sdo_object.pattern)
             sco_objects += [
                 BankAccount(
