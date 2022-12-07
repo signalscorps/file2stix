@@ -1229,7 +1229,27 @@ In the case of a dictionary match to a MITRE CAPEC STIX Object, no new object is
 
 For example, if the uploaded text contained CAPEC-170 it would match to the CAPEC Object [CAPEC-170 Web Application Fingerprinting](https://github.com/mitre/cti/blob/master/capec/2.1/attack-pattern/attack-pattern--0cf857f6-afa4-4f0c-850f-58a4f11df157.json) and an SRO would be created between the Report SDO and this Attack Pattern SDO.
 
-## 23. Custom Extractions
+## 23. Lookups
+
+For matches that cannot be easily captured by patterns, but are widely known (i.e. not suited to custom extraction for all file2stix users), automatic lookup tables have been added. You can view the lookups in `file2stix/lookups`.
+
+There lookups work by comparing the input text to the text matches in the lookup files.
+
+The lookup file is structured like so;
+
+```csv
+# extraction string / regex, type (either string / regex), stix object used for match
+"EXTRACTION STRING",string,STIX-OBJECT-TYPE
+"EXTRACTION REGEX",regex,STIX-OBJECT-TYPE
+```
+
+When the extraction (either string or regular expression) matches the input text, then it will create a STIX 2.1 object of the type defined.
+
+If you do not want to use a lookup, you can pass the `--ignore-lookup` flag, followed by the file name (excluding file extension), e.g. `--ignore-lookup threat-actors threat-actors`.
+
+You can modify these lookups, or add new ones, however we generally recommend you use custom extractions to do this (which are defined in the same way) because your changes to lookups might be lost with file2stix updates.
+
+## 24. Custom Extractions
 
 You can also write your own custom extractions using either exact text matches or regular expressions.
 
@@ -1243,7 +1263,7 @@ Inside the custom extraction file you must specify an
 
 file2stix uses `re` for regex matching.
 
-You can pass multiple custom extractions on each line of the file like so;
+You can pass multiple custom extractions on each line of the file like so (this is the same format as for lookups too);
 
 ```csv
 "EXTRACTION STRING",string,STIX-OBJECT-TYPE
