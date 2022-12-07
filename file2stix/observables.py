@@ -8,6 +8,7 @@ import validators
 import logging
 import stix2
 import yaml
+import os
 from pymispwarninglists import WarningLists
 from ipaddress import IPv4Address, IPv4Interface, IPv6Address, IPv6Interface
 from stix2 import (
@@ -994,6 +995,13 @@ class MITREEnterpriseAttackObservable(Observable):
             "x-mitre-data-source",
         ],
     ):
+        if os.path.exists(f"{cti_folder}/{bundle_relative_path}") == False:
+            # Since the directory does not exist, we set the below
+            # variable to a regex that matches nothing
+            # https://stackoverflow.com/a/940840
+            cls.extraction_regex = r"a^"
+            return
+
         cls.memory_store = MemoryStore()
         cls.memory_store.load_from_file(f"{cti_folder}/{bundle_relative_path}")
 
