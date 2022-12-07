@@ -15,9 +15,9 @@ from stix2 import (
     Software,
 )
 from pattern2sco.custom_objects import (
-    Cryptocurrency,
+    CryptocurrencyTransaction,
     CreditCard,
-    IBAN,
+    BankAccount,
     UserAgent,
 )
 
@@ -281,9 +281,9 @@ def get_sco_objects(sdo_object, defanged=False):
             regex = r"cryptocurrency:address = '(.*)'"
             name = extract_name_from_regex(regex, sdo_object.pattern)
             sco_objects += [
-                Cryptocurrency(
-                    # symbol="BTC",
-                    address=name,
+                CryptocurrencyTransaction(
+                    currency_symbol="BTC",
+                    hash=name,
                     defanged=defanged,
                 )
             ]
@@ -292,9 +292,9 @@ def get_sco_objects(sdo_object, defanged=False):
             regex = r"cryptocurrency:address = '(.*)'"
             name = extract_name_from_regex(regex, sdo_object.pattern)
             sco_objects += [
-                Cryptocurrency(
-                    # symbol="ETH",
-                    address=name,
+                CryptocurrencyTransaction(
+                    currency_symbol="ETH",
+                    hash=name,
                     defanged=defanged,
                 )
             ]
@@ -303,9 +303,9 @@ def get_sco_objects(sdo_object, defanged=False):
             regex = r"cryptocurrency:address = '(.*)'"
             name = extract_name_from_regex(regex, sdo_object.pattern)
             sco_objects += [
-                Cryptocurrency(
-                    # symbol="XMR",
-                    address=name,
+                CryptocurrencyTransaction(
+                    symbol="XMR",
+                    hash=name,
                     defanged=defanged,
                 )
             ]
@@ -380,7 +380,7 @@ def get_sco_objects(sdo_object, defanged=False):
             regex = r"iban:number = '(.*)'"
             name = extract_name_from_regex(regex, sdo_object.pattern)
             sco_objects += [
-                IBAN(
+                BankAccount(
                     bank_country=name[:2],
                     iban_number=name,
                     defanged=defanged,

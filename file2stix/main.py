@@ -19,7 +19,7 @@ from pymispwarninglists.api import WarningList
 import requests
 import validators
 
-from pattern2sco.custom_objects import Cryptocurrency, CreditCard, IBAN, UserAgent
+from pattern2sco.custom_objects import CryptocurrencyTransaction, CreditCard, BankAccount, UserAgent
 
 from file2stix.backends import arangodb
 from file2stix import __appname__
@@ -268,13 +268,13 @@ def main(config: Config):
 
             # Add respective extension definitions if present
             for sco_object in stix_observable_objects["sco_objects"]:
-                if isinstance(sco_object, Cryptocurrency):
+                if isinstance(sco_object, CryptocurrencyTransaction):
                     observables_list.extension_definition_objects[
                         "extension-definition--532ae28d-137b-4b89-afb7-9cf9b504191b"
                     ] = STIX2_OBJECTS_STORE.get_object_by_id(
                         "extension-definition--532ae28d-137b-4b89-afb7-9cf9b504191b"
                     )
-                if isinstance(sco_object, Cryptocurrency):
+                if isinstance(sco_object, CryptocurrencyTransaction):
                     observables_list.extension_definition_objects[
                         "extension-definition--532ae28d-137b-4b89-afb7-9cf9b504191b"
                     ] = STIX2_OBJECTS_STORE.get_object_by_id(
@@ -286,7 +286,7 @@ def main(config: Config):
                     ] = STIX2_OBJECTS_STORE.get_object_by_id(
                         "extension-definition--abd6fc0e-749e-4e6c-a20c-1faa419f5ee4"
                     )
-                if isinstance(sco_object, IBAN):
+                if isinstance(sco_object, BankAccount):
                     observables_list.extension_definition_objects[
                         "extension-definition--349c1029-4052-4635-a064-263cb17290ea"
                     ] = STIX2_OBJECTS_STORE.get_object_by_id(
