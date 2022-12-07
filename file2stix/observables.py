@@ -1036,15 +1036,15 @@ class MITREEnterpriseAttackObservable(Observable):
 
     def get_sdo_object(self):
         sdo_objects = self.memory_store.query(
-            Filter("name", "=", self.extracted_observable_text)
+            Filter("name", "contains", self.extracted_observable_text)
         ) or self.memory_store.query(
             Filter(
                 "external_references.external_id",
-                "=",
+                "contains",
                 self.extracted_observable_text,
             )
         )
-        return sdo_objects[0]
+        return sdo_objects
 
 
 class MITREMobileAttackObservable(MITREEnterpriseAttackObservable):
@@ -1241,9 +1241,6 @@ class CustomObservable(Observable):
         """
         if cls.cti_folder_path == None:
             cls.cti_folder_path = cti_folder_path
-        cls.extraction_pattern_list = []
-        cls.extraction_regex_pattern_list = []
-        cls.custom_observables_map = {}
 
         with open(custom_extraction_file) as file:
             for line in file:
