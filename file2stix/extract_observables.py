@@ -46,7 +46,6 @@ class ExtractStixObservables:
             observable_cls == MITREEnterpriseAttackObservable
             or observable_cls == MITREMobileAttackObservable
             or observable_cls == MITREICSAttackObservable
-            or observable_cls == MITRECapecObservable
         ):
             if cache.is_mitre_cti_database_in_cache():
                 observable_cls.build_extraction_regex(cache.cti_folder_path)
@@ -56,12 +55,23 @@ class ExtractStixObservables:
                     "Use --update-mitre-cti-database option to update MITRE CTI database."
                 )
                 return
+        elif observable_cls == MITRECapecObservable:
+            if cache.is_mitre_capec_cti_database_in_cache():
+                observable_cls.build_extraction_regex(cache.capec_cti_folder_path)
+            else:
+                logger.warning(
+                    "Not extracting MITRE Observable since MITRE CTI database is not present in cache. "
+                    "Use --update-mitre-cti-database option to update MITRE CTI database."
+                )
+                return
         if observable_cls == CustomObservable or observable_cls == LookupObservable:
-            
+
             if observable_cls == CustomObservable:
                 custom_extraction_file = config.custom_extraction_file
             else:
-                custom_extraction_file = FILE2STIX_FOLDER / "lookups" / "malware-names.txt"
+                custom_extraction_file = (
+                    FILE2STIX_FOLDER / "lookups" / "malware-names.txt"
+                )
 
             if custom_extraction_file != None:
                 observable_cls.build_extraction_pattern_list(
@@ -108,7 +118,9 @@ class ExtractStixObservables:
             if isinstance(sdo_object, list):
                 for sdo_object_item in sdo_object:
                     self.final_result_list.append(
-                        self._get_final_result(sdo_object_item, extracted_observable.defanged)
+                        self._get_final_result(
+                            sdo_object_item, extracted_observable.defanged
+                        )
                     )
             else:
                 self.final_result_list.append(
