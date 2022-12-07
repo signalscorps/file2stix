@@ -1251,6 +1251,8 @@ class CustomObservable(Observable):
                         cls.extraction_pattern_list += [pattern]
                     elif type == "regex":
                         cls.extraction_regex_pattern_list += [pattern]
+                    else:
+                        raise ValueError("The 2nd column should be 'string' or 'regex'")
                     cls.custom_observables_map[pattern] = sdo_object_type
                 except Exception as error:
                     logger.warning(
