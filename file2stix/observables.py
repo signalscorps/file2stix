@@ -9,6 +9,7 @@ import logging
 import stix2
 import yaml
 import os
+from pathlib import Path
 from pymispwarninglists import WarningLists
 from ipaddress import IPv4Address, IPv4Interface, IPv6Address, IPv6Interface
 from stix2 import (
@@ -1298,7 +1299,15 @@ class CustomObservable(Observable):
 
 
 class LookupObservable(CustomObservable):
-    pass
+    
+    @classmethod
+    def build_extraction_pattern_list(cls, lookup_folder, cti_folder_path):
+        """
+        Build a regex with all the lookup match strings
+        """
+        pathlist = Path(lookup_folder).glob('**/*.txt')
+        for path in pathlist:
+            super().build_extraction_pattern_list(path, cti_folder_path)
 
 
 def get_observable_class_from_name(observable_names):

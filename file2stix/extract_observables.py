@@ -64,24 +64,21 @@ class ExtractStixObservables:
                     "Use --update-mitre-cti-database option to update MITRE CTI database."
                 )
                 return
-        if observable_cls == CustomObservable or observable_cls == LookupObservable:
-
-            if observable_cls == CustomObservable:
-                custom_extraction_file = config.custom_extraction_file
-            else:
-                custom_extraction_file = (
-                    FILE2STIX_FOLDER / "lookups" / "malware-names.txt"
-                )
-
-            if custom_extraction_file != None:
+        if observable_cls == CustomObservable:
+            if config.custom_extraction_file != None:
                 observable_cls.build_extraction_pattern_list(
-                    custom_extraction_file, cache.cti_folder_path
+                    config.custom_extraction_file, cache.cti_folder_path
                 )
             else:
                 logger.info(
                     "Custom extraction file not given, hence not extracting any custom observables."
                 )
                 return
+        if observable_cls == LookupObservable:
+            lookup_folder = FILE2STIX_FOLDER / "lookups"
+            observable_cls.build_extraction_pattern_list(
+                lookup_folder, cache.cti_folder_path
+            )
 
         (
             self.extracted_observables,
