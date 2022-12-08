@@ -90,7 +90,15 @@ class ExtractStixObservables:
         # Store sdo and sco_objects
         for extracted_observable in self.extracted_observables:
             try:
-                sdo_object = extracted_observable.get_sdo_object()
+                sdo_objects = extracted_observable.get_sdo_object()
+                if isinstance(sdo_objects, list) == False:
+                    sdo_objects = [sdo_objects]
+                for sdo_object in sdo_objects:
+                    self.final_result_list.append(
+                        self._get_final_result(
+                            sdo_object, extracted_observable.defanged
+                        )
+                    )
             except Exception as error:
                 if self.config.fail_on_errors == False:
                     error_logger.error(
@@ -112,17 +120,6 @@ class ExtractStixObservables:
                         extracted_observable.extracted_observable_text,
                     )
                     raise error
-            if isinstance(sdo_object, list):
-                for sdo_object_item in sdo_object:
-                    self.final_result_list.append(
-                        self._get_final_result(
-                            sdo_object_item, extracted_observable.defanged
-                        )
-                    )
-            else:
-                self.final_result_list.append(
-                    self._get_final_result(sdo_object, extracted_observable.defanged)
-                )
 
         logger.debug("Extraction of observable text complete.")
 

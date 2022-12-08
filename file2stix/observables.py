@@ -1035,16 +1035,24 @@ class MITREEnterpriseAttackObservable(Observable):
             "Length of regex string of %s: %d", cls.name, len(cls.extraction_regex)
         )
 
-    def get_sdo_object(self):
-        sdo_objects = self.memory_store.query(
-            Filter("name", "contains", self.extracted_observable_text)
+    def filter_mitre_object(self, filter_text):
+        return self.memory_store.query(
+            Filter("name", "=", filter_text)
         ) or self.memory_store.query(
             Filter(
                 "external_references.external_id",
-                "contains",
-                self.extracted_observable_text,
+                "=",
+                filter_text,
             )
         )
+
+    def get_sdo_object(self):
+        sdo_objects = self.filter_mitre_object(self.extracted_observable_text)
+
+        if "." in self.extracted_observable_text:
+            attack_technique = self.extracted_observable_text.split(".")[0]
+            sdo_objects += self.filter_mitre_object(attack_technique)
+
         return sdo_objects
 
 
@@ -1299,13 +1307,12 @@ class CustomObservable(Observable):
 
 
 class LookupObservable(CustomObservable):
-    
     @classmethod
     def build_extraction_pattern_list(cls, lookup_folder, cti_folder_path):
         """
         Build a regex with all the lookup match strings
         """
-        pathlist = Path(lookup_folder).glob('**/*.txt')
+        pathlist = Path(lookup_folder).glob("**/*.txt")
         for path in pathlist:
             super().build_extraction_pattern_list(path, cti_folder_path)
 
