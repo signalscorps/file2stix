@@ -256,17 +256,17 @@ file2stix --input-file tests/observable_tests/mitre_attck_enterprise_subtechniqu
 
 ##### Enterprise Matrix (version 7)
 
-No extraction, as subtechnique not present in version:
+No extraction, as subtechnique (in ICS matrix) not present in version:
 
 ```shell
-file2stix --input-file tests/observable_tests/mitre_attck_enterprise-v12-technique.txt --update-mitre-cti-database --mitre-attack-version "ATT&CK-v7.0"
+file2stix --input-file tests/observable_tests/mitre_attck_enterprise-v12-not-v7-technique.txt --update-mitre-cti-database --mitre-attack-version "ATT&CK-v7.0"
 ```
 
 Extraction, as subtechnique not present in version:
 
 
 ```shell
-file2stix --input-file tests/observable_tests/mitre_attck_enterprise-v12-technique.txt --update-mitre-cti-database --mitre-attack-version "ATT&CK-v12.1"
+file2stix --input-file tests/observable_tests/mitre_attck_enterprise-v12-not-v7-technique.txt --update-mitre-cti-database --mitre-attack-version "ATT&CK-v12.1"
 ```
 
 
@@ -931,7 +931,7 @@ file2stix --input-file tests/observable_tests/credit_card_mastercard.txt
 file2stix --input-file tests/observable_tests/asn.txt
 ```
 
-### IBAN SCO
+### Bank account SCO
 
 ```shell
 file2stix --input-file tests/observable_tests/iban.txt
@@ -974,9 +974,3 @@ file2stix --input-file tests/observable_tests/sigma_rule.txt
 ```shell
 file2stix --input-file tests/observable_tests/cve.txt
 ```
-
-
-
-
-
-
