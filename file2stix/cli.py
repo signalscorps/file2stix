@@ -14,6 +14,7 @@ from file2stix.backends import arangodb
 from file2stix.config import Config, STIX2_OBJECTS_STORE
 from file2stix.main import main, Backends
 from file2stix.observables import get_observable_class_from_name
+from file2stix.helper import get_lookup_file_from_name
 
 logger = logging.getLogger(__name__)
 
@@ -98,6 +99,12 @@ def cli():
     )
 
     arg_parser.add_argument(
+        "--ignore-lookup-prefix",
+        action="store",
+        help="Comma-separated prefixes of lookups to be ignored from extraction",
+    )
+
+    arg_parser.add_argument(
         "--misp-custom-warning-list-file",
         action="store",
         help="Path to custom warning list file in MISP Warning List format",
@@ -169,6 +176,12 @@ def cli():
         ignore_observables_list = get_observable_class_from_name(
             args.ignore_observable_prefix.split(",")
         )
+    
+    ignore_lookup_list = None
+    if args.ignore_lookup_prefix != None:
+        ignore_lookup_list = get_lookup_file_from_name(
+            args.ignore_lookup_prefix.split(",")
+        )
 
     tlp_level_map = {
         "WHITE": TLP_WHITE,
@@ -230,6 +243,7 @@ def cli():
         tlp_level=tlp_level,
         identity=identity,
         ignore_observables_list=ignore_observables_list,
+        ignore_lookup_list=ignore_lookup_list,
         misp_custom_warning_list_file=args.misp_custom_warning_list_file,
         defang_observables=args.defang_observables,
         extraction_mode=args.extraction_mode,

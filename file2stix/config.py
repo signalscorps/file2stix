@@ -9,6 +9,7 @@ import os
 from file2stix.observables_stix_store import ObservablesStixStore
 
 FILE2STIX_FOLDER = Path(os.path.abspath(__file__)).parent
+LOOKUP_FOLDER = FILE2STIX_FOLDER / "lookups"
 STIX2_OBJECTS_FOLDER = FILE2STIX_FOLDER / "stix2-objects"
 STIX2_OBJECTS_STORE = ObservablesStixStore(STIX2_OBJECTS_FOLDER)
 
@@ -32,6 +33,7 @@ class Config:
 
     # Observable related options
     ignore_observables_list: List = None
+    ignore_lookup_list: List = None
     defang_observables: bool = False
     ignore_warninglist_observables: bool = False
 

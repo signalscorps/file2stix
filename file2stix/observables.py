@@ -1308,12 +1308,17 @@ class CustomObservable(Observable):
 
 class LookupObservable(CustomObservable):
     @classmethod
-    def build_extraction_pattern_list(cls, lookup_folder, cti_folder_path):
+    def build_extraction_pattern_list(
+        cls, lookup_folder, cti_folder_path, ignore_lookup_list
+    ):
         """
         Build a regex with all the lookup match strings
         """
         pathlist = Path(lookup_folder).glob("**/*.txt")
         for path in pathlist:
+            lookup_file_name = os.path.basename(path)
+            if ignore_lookup_list != None and lookup_file_name in ignore_lookup_list:
+                continue
             super().build_extraction_pattern_list(path, cti_folder_path)
 
 

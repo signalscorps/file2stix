@@ -5,7 +5,7 @@ Contains logic for extracting observables.
 import logging
 
 from file2stix.cache import Cache
-from file2stix.config import Config, FILE2STIX_FOLDER
+from file2stix.config import Config, LOOKUP_FOLDER
 from file2stix.error_handling import error_logger
 from file2stix.observables import (
     CustomObservable,
@@ -75,9 +75,9 @@ class ExtractStixObservables:
                 )
                 return
         if observable_cls == LookupObservable:
-            lookup_folder = FILE2STIX_FOLDER / "lookups"
+            lookup_folder = LOOKUP_FOLDER
             observable_cls.build_extraction_pattern_list(
-                lookup_folder, cache.cti_folder_path
+                lookup_folder, cache.cti_folder_path, config.ignore_lookup_list
             )
 
         (
