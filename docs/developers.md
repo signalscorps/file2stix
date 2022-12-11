@@ -254,21 +254,19 @@ file2stix --input-file tests/observable_tests/mitre_attck_enterprise.txt --updat
 file2stix --input-file tests/observable_tests/mitre_attck_enterprise_subtechnique.txt --update-mitre-cti-database
 ```
 
-##### Enterprise Matrix (version 7)
+##### Enterprise Matrix (version 8 / 10)
 
-No extraction, as subtechnique (in ICS matrix) not present in version:
+No extraction, as subtechnique (in enterprise matrix) not present in version:
 
 ```shell
-file2stix --input-file tests/observable_tests/mitre_attck_enterprise-v12-not-v7-technique.txt --update-mitre-cti-database --mitre-attack-version "ATT&CK-v7.0"
+file2stix --input-file tests/observable_tests/mitre_attck_enterprise-v12-not-v8-enterprise-technique.txt --update-mitre-cti-database --mitre-attack-version "ATT&CK-v8.0"
 ```
 
 Extraction, as subtechnique not present in version:
 
-
 ```shell
-file2stix --input-file tests/observable_tests/mitre_attck_enterprise-v12-not-v7-technique.txt --update-mitre-cti-database --mitre-attack-version "ATT&CK-v12.1"
+file2stix --input-file tests/observable_tests/mitre_attck_enterprise-v12-not-v8-enterprise-technique.txt --update-mitre-cti-database --mitre-attack-version "ATT&CK-v12.1"
 ```
-
 
 ##### ICS Matrix
 
@@ -352,6 +350,10 @@ file2stix --input-file tests/custom_extractions/malware_input_file.txt --custom-
 file2stix --input-file tests/custom_extractions/malware_input_file.txt --custom-extraction-file tests/custom_extractions/malware_custom_extraction_regex.txt
 ```
 
+```shell
+file2stix --input-file tests/observable_tests/ipv4.txt --custom-extraction-file tests/custom_extractions/regex_custom_extraction.txt
+```
+
 ### Extracting explicit ATT&CK Objects
 
 ```shell
@@ -375,6 +377,24 @@ file2stix --input-file tests/lookups/malware-names.txt
 
 ```shell
 file2stix --input-file tests/lookups/threat-actors.txt
+```
+
+```shell
+file2stix --input-file tests/lookups/tools.txt
+```
+
+### Ignore lookups
+
+Single lookup:
+
+```shell
+file2stix --input-file tests/lookups/tools.txt --ignore-lookup-prefix tools
+```
+
+Multi-lookup
+
+```shell
+file2stix --input-file tests/lookups/multi-lookup-match.txt --ignore-lookup-prefix tools,malware
 ```
 
 ### Disabling lookup file

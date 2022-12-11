@@ -1,0 +1,5 @@
+This was introduced in version 12 https://attack.mitre.org/resources/updates/updates-october-2022/
+
+T1583.007
+
+Note, T1583 was already in previous ATT&CK versions, so should be extracted.
