@@ -155,6 +155,12 @@ class Observable:
                 # Find regex in the entire text (including whitespace)
                 for match in re.finditer(cls.extraction_regex, text):
                     extracted_observables.append(cls(match.group(), config))
+                
+                # Special check for MITRE observables for finding sub-techniques
+                if issubclass(cls, MITREEnterpriseAttackObservable):
+                    for word in text.split():
+                        if re.fullmatch(cls.extraction_regex, word):
+                            extracted_observables.append(cls(word, config))
 
                 # Remove extracted observable string from text
                 if cls.remove_extracted_string_from_text:
@@ -1307,6 +1313,8 @@ class CustomObservable(Observable):
 
 
 class LookupObservable(CustomObservable):
+    name = "Lookup Observable"
+
     @classmethod
     def build_extraction_pattern_list(
         cls, lookup_folder, cti_folder_path, ignore_lookup_list
