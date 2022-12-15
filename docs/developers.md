@@ -262,11 +262,27 @@ No extraction, as subtechnique (in enterprise matrix) not present in version:
 file2stix --input-file tests/observable_tests/mitre_attck_enterprise-v12-not-v8-enterprise-technique.txt --update-mitre-cti-database --mitre-attack-version "ATT&CK-v8.0"
 ```
 
-Extraction, as subtechnique not present in version:
+Extraction, as subtechnique present in version:
 
 ```shell
 file2stix --input-file tests/observable_tests/mitre_attck_enterprise-v12-not-v8-enterprise-technique.txt --update-mitre-cti-database --mitre-attack-version "ATT&CK-v12.1"
 ```
+
+##### Enterprise Matrix (version 8 / 9)
+
+No extraction, as technique (in enterprise matrix) not present in version:
+
+```shell
+file2stix --input-file tests/observable_tests/mitre_attck_enterprise-v9-not-v8-enterprise-technique.txt --update-mitre-cti-database --mitre-attack-version "ATT&CK-v8.0"
+```
+
+Extraction, as technique not present in version:
+
+```shell
+file2stix --input-file tests/observable_tests/mitre_attck_enterprise-v9-not-v8-enterprise-technique.txt --update-mitre-cti-database --mitre-attack-version "ATT&CK-v9.0"
+```
+
+
 
 ##### ICS Matrix
 
