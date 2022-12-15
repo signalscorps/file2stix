@@ -282,8 +282,6 @@ Extraction, as technique not present in version:
 file2stix --input-file tests/observable_tests/mitre_attck_enterprise-v9-not-v8-enterprise-technique.txt --update-mitre-cti-database --mitre-attack-version "ATT&CK-v9.0"
 ```
 
-
-
 ##### ICS Matrix
 
 ```shell
