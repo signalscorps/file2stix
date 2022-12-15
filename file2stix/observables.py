@@ -8,6 +8,8 @@ import validators
 import logging
 import stix2
 import yaml
+import os
+from pathlib import Path
 from pymispwarninglists import WarningLists
 from ipaddress import IPv4Address, IPv4Interface, IPv6Address, IPv6Interface
 from stix2 import (
@@ -28,6 +30,8 @@ from stix2 import (
     Software,
     TLP_WHITE,
 )
+import requests
+import tempfile
 
 from file2stix.config import Config
 from file2stix.helper import check_false_positive_domain, inheritors
@@ -101,7 +105,7 @@ class Observable:
         Extracts the required observables from text and returns the
         extracted observables and modified text.
         """
-        
+
         extracted_observables = []
         modified_text = text
 
@@ -151,7 +155,13 @@ class Observable:
                 # Find regex in the entire text (including whitespace)
                 for match in re.finditer(cls.extraction_regex, text):
                     extracted_observables.append(cls(match.group(), config))
-                    
+                
+                # Special check for MITRE observables for finding sub-techniques
+                if issubclass(cls, MITREEnterpriseAttackObservable):
+                    for word in text.split():
+                        if re.fullmatch(cls.extraction_regex, word):
+                            extracted_observables.append(cls(word, config))
+
                 # Remove extracted observable string from text
                 if cls.remove_extracted_string_from_text:
                     modified_text = re.sub(cls.extraction_regex, "", text)
@@ -230,7 +240,12 @@ class Observable:
 
             if result:
                 for hit in result:
-                    x_warning_list_match.append(hit.name)
+                    x_warning_list_match.append(
+                        {
+                            "list_name": hit.name,
+                            "list_type": "misp",
+                        }
+                    )
 
             # Check if observable is in custom warning list
             if self.misp_custom_warning_list:
@@ -241,7 +256,12 @@ class Observable:
 
                 if result:
                     for hit in result:
-                        x_custom_warning_list_match.append(hit.name)
+                        x_custom_warning_list_match.append(
+                            {
+                                "list_name": hit.name,
+                                "list_type": "custom",
+                            }
+                        )
 
             indicator_dict = {
                 "type": "indicator",
@@ -255,19 +275,19 @@ class Observable:
                 "confidence": self.confidence,
             }
 
-            warning_list_dict = {}
+            warning_list = []
             if x_warning_list_match:
-                warning_list_dict["misp_warning_list_match"] = x_warning_list_match
+                warning_list += x_warning_list_match
 
             if x_custom_warning_list_match:
-                warning_list_dict[
-                    "custom_warning_list_match"
-                ] = x_custom_warning_list_match
+                warning_list += x_custom_warning_list_match
 
-            if warning_list_dict:
-                warning_list_dict["extension_type"] = "property-extension"
+            if warning_list:
                 indicator_dict["extensions"] = {
-                    self.misp_extension_definition.id: warning_list_dict
+                    self.misp_extension_definition.id: {
+                        "extension_type": "property-extension",
+                        "warning_list_matches": warning_list,
+                    }
                 }
 
                 if self.ignore_warninglist_observables == True:
@@ -507,7 +527,7 @@ class DirectoryPathObservable(Observable):
             logger.debug(
                 "Got exception while removing file name from directory, ignoring it."
             )
-        
+
         for ignore_word in self.ignore_list:
             if self.extracted_observable_text.startswith(ignore_word):
                 return None
@@ -603,21 +623,21 @@ class AutonomousSystemNumberObservable(Observable):
 class CryptocurrencyBTCObservable(Observable):
     name = "BTC"
     type = "indicator"
-    pattern = "[ cryptocurrency:symbol = 'BTC' AND cryptocurrency:address = '{extracted_observable_text}' ]"
+    pattern = "[ cryptocurrency-transaction:address = '{extracted_observable_text}' ]"
     extraction_function = lambda x: validators.btc_address(x)
 
 
 class CryptocurrencyETHObservable(Observable):
     name = "ETH"
     type = "indicator"
-    pattern = "[ cryptocurrency:symbol = 'ETH' AND cryptocurrency:address = '{extracted_observable_text}' ]"
+    pattern = "[ cryptocurrency-transaction:address = '{extracted_observable_text}' ]"
     extraction_regex = r"^(0x[a-f0-9]{40})$"
 
 
 class CryptocurrencyXMRObservable(Observable):
     name = "XMR"
     type = "indicator"
-    pattern = "[ cryptocurrency:symbol = 'XMR' AND cryptocurrency:address = '{extracted_observable_text}' ]"
+    pattern = "[ cryptocurrency-transaction:address = '{extracted_observable_text}' ]"
     extraction_regex = r"^(4[0-9AB][1-9A-HJ-NP-Za-km-z]{93})$"
 
 
@@ -630,7 +650,36 @@ class CVEObservable(Observable):
         super().__init__(extracted_observable_text, config)
         self.cve_extension_definition = config.cve_extension_definition
 
+    def get_stix_bundle_cve_url(self, cve_id):
+        _, year, id = cve_id.split("-")
+        block = id[:-3] + "XXX"
+        return f"https://raw.githubusercontent.com/signalscorps/cve2stix-output/main/stix2_bundles/{year}/{block}/{cve_id}/stix_bundle.json"
+
+    def get_first_item_safely(list):
+        if list != None and len(list) > 0:
+            return list[0]
+        return None
+
     def get_sdo_object(self):
+        # Check if CVE is present in https://github.com/signalscorps/cve2stix-output
+        cve_id = self.extracted_observable_text
+        cve_url = self.get_stix_bundle_cve_url(cve_id)
+        response = requests.get(cve_url)
+        all_cve_objects = []
+
+        if response.status_code == 200:
+            # Store response.text in temporary file
+            temp = tempfile.NamedTemporaryFile("w+t", prefix="file2stix_cve_")
+            temp.write(response.text)
+
+            # Load vulnerability from temporary file
+            memory_store = MemoryStore()
+            memory_store.load_from_file(temp.name)
+            all_cve_objects = memory_store.query()
+
+        if all_cve_objects != []:
+            return all_cve_objects
+
         external_references = [
             ExternalReference(
                 source_name="cve",
@@ -754,49 +803,49 @@ class CountryCodeAlpha3Observable(Observable):
 class MastercardCreditCardObservable(Observable):
     name = "Mastercard Credit Card"
     type = "indicator"
-    pattern = "[ credit-card:provider = 'Mastercard' AND credit-card:number = '{extracted_observable_text}' ]"
+    pattern = "[ credit-card:number = '{extracted_observable_text}' ]"
     extraction_function = lambda x: validators.mastercard(x)
 
 
 class VisaCreditCardObservable(Observable):
     name = "VISA Credit Card"
     type = "indicator"
-    pattern = "[ credit-card:provider = 'VISA' AND credit-card:number = '{extracted_observable_text}' ]"
+    pattern = "[ credit-card:number = '{extracted_observable_text}' ]"
     extraction_function = lambda x: validators.visa(x)
 
 
 class AmexCreditCardObservable(Observable):
     name = "Amex Credit Card"
     type = "indicator"
-    pattern = "[ credit-card:provider = 'Amex' AND credit-card:number = '{extracted_observable_text}' ]"
+    pattern = "[ credit-card:number = '{extracted_observable_text}' ]"
     extraction_function = lambda x: validators.amex(x)
 
 
 class UnionPayCreditCardObservable(Observable):
     name = "Union Pay Credit Card"
     type = "indicator"
-    pattern = "[ credit-card:provider = 'Union' AND credit-card:number = '{extracted_observable_text}' ]"
+    pattern = "[ credit-card:number = '{extracted_observable_text}' ]"
     extraction_function = lambda x: validators.unionpay(x)
 
 
 class DinersCreditCardObservable(Observable):
     name = "Diners Credit Card"
     type = "indicator"
-    pattern = "[ credit-card:provider = 'Diners' AND credit-card:number = '{extracted_observable_text}' ]"
+    pattern = "[ credit-card:number = '{extracted_observable_text}' ]"
     extraction_function = lambda x: validators.diners(x)
 
 
 class JCBCreditCardObservable(Observable):
     name = "JCB Credit Card"
     type = "indicator"
-    pattern = "[ credit-card:provider = 'JCB' AND credit-card:number = '{extracted_observable_text}' ]"
+    pattern = "[ credit-card:number = '{extracted_observable_text}' ]"
     extraction_function = lambda x: validators.jcb(x)
 
 
 class IBANCodeObservable(Observable):
     name = "IBAN"
     type = "indicator"
-    pattern = "[ iban:number = '{extracted_observable_text}' ]"
+    pattern = "[ bank-account:iban_number = '{extracted_observable_text}' ]"
     extraction_function = lambda x: validators.iban(x)
 
 
@@ -848,7 +897,7 @@ class SIGMARuleObservable(Observable):
     name = "SIGMA Rule"
     type = "indicator"
     pattern = "{extracted_observable_text}"
-    extraction_regex = r"((.*:.*\n)|(\s*- .*\n))+"
+    extraction_regex = r"((.*: \|\n([^:]*\n)+)|((\s*- .*\n))|(.*:.*\n))+"
 
     def get_sdo_object(self):
         # Check if the extracted text is a valid yaml file
@@ -884,21 +933,30 @@ class SIGMARuleObservable(Observable):
         # https://github.com/oasis-open/cti-python-stix2/issues/260
         pattern = pattern.replace("\\", "\\\\")
 
-        # Add "property-extension extension_type"
-        yaml_dict["extension_type"] = "property-extension"
+        external_references = []
+        if "references" in yaml_dict:
+            for reference in yaml_dict["references"]:
+                external_references += [
+                    ExternalReference(url=reference, source_name="Sigma Rule Reference")
+                ]
+
+        external_references += [self.branding_external_ref]
 
         indicator_dict = {
             "type": "indicator",
             "name": f"{self.name}{self.name_delimeter}{yaml_dict['title']}",
             "pattern_type": "sigma",
             "pattern": pattern,
-            "indicator_types": ["unknown"],
+            "indicator_types": ["malicious-activity"],
             "object_marking_refs": self.tlp_level,
             "created_by_ref": self.identity,
             "confidence": self.confidence,
-            "external_references": self.branding_external_ref,
+            "external_references": external_references,
             "extensions": {
-                "extension-definition--94f4bdb6-7f39-4d0a-b103-f787026963a6": yaml_dict
+                "extension-definition--94f4bdb6-7f39-4d0a-b103-f787026963a6": {
+                    "extension_type": "property-extension",
+                    "sigma_rule": yaml_dict,
+                }
             },
         }
 
@@ -944,6 +1002,13 @@ class MITREEnterpriseAttackObservable(Observable):
             "x-mitre-data-source",
         ],
     ):
+        if os.path.exists(f"{cti_folder}/{bundle_relative_path}") == False:
+            # Since the directory does not exist, we set the below
+            # variable to a regex that matches nothing
+            # https://stackoverflow.com/a/940840
+            cls.extraction_regex = r"a^"
+            return
+
         cls.memory_store = MemoryStore()
         cls.memory_store.load_from_file(f"{cti_folder}/{bundle_relative_path}")
 
@@ -976,17 +1041,25 @@ class MITREEnterpriseAttackObservable(Observable):
             "Length of regex string of %s: %d", cls.name, len(cls.extraction_regex)
         )
 
-    def get_sdo_object(self):
-        sdo_objects = self.memory_store.query(
-            Filter("name", "=", self.extracted_observable_text)
+    def filter_mitre_object(self, filter_text):
+        return self.memory_store.query(
+            Filter("name", "=", filter_text)
         ) or self.memory_store.query(
             Filter(
                 "external_references.external_id",
                 "=",
-                self.extracted_observable_text,
+                filter_text,
             )
         )
-        return sdo_objects[0]
+
+    def get_sdo_object(self):
+        sdo_objects = self.filter_mitre_object(self.extracted_observable_text)
+
+        if "." in self.extracted_observable_text:
+            attack_technique = self.extracted_observable_text.split(".")[0]
+            sdo_objects += self.filter_mitre_object(attack_technique)
+
+        return sdo_objects
 
 
 class MITREMobileAttackObservable(MITREEnterpriseAttackObservable):
@@ -1066,8 +1139,15 @@ class MITRECapecObservable(MITREEnterpriseAttackObservable):
 class CustomObservable(Observable):
     name = "Custom Observable"
     extraction_pattern_list = []
+    extraction_regex_pattern_list = []
     custom_observables_map = {}
     cti_folder_path = None
+
+    def __init__(
+        self, extracted_observable_text, config, defanged=False, regex_pattern=None
+    ):
+        super().__init__(extracted_observable_text, config, defanged)
+        self.regex_pattern = regex_pattern
 
     def get_stix2_object_custom(self, pattern, sdo_object_type):
         if sdo_object_type == "attack-pattern":
@@ -1179,12 +1259,20 @@ class CustomObservable(Observable):
 
         with open(custom_extraction_file) as file:
             for line in file:
+                if line.startswith("#") or line.isspace():
+                    # Ignore comments in custom_extraction_file
+                    continue
                 try:
-                    pattern, sdo_object_type = [
+                    pattern, type, sdo_object_type = [
                         text.strip() for text in line.split(",")
                     ]
                     pattern = pattern.strip('"')
-                    cls.extraction_pattern_list += [pattern]
+                    if type == "string":
+                        cls.extraction_pattern_list += [pattern]
+                    elif type == "regex":
+                        cls.extraction_regex_pattern_list += [pattern]
+                    else:
+                        raise ValueError("The 2nd column should be 'string' or 'regex'")
                     cls.custom_observables_map[pattern] = sdo_object_type
                 except Exception as error:
                     logger.warning(
@@ -1199,13 +1287,47 @@ class CustomObservable(Observable):
         for pattern in cls.extraction_pattern_list:
             if pattern in text:
                 extracted_observables.append(cls(pattern, config))
+        for pattern in cls.extraction_regex_pattern_list:
+            temp_matches = set()
+            for match in re.findall(pattern, text):
+                if match not in temp_matches:
+                    temp_matches.add(match)
+                    extracted_observables.append(
+                        cls(match, config, regex_pattern=pattern)
+                    )
+
         return extracted_observables, text
 
     def get_sdo_object(self):
-        pattern = self.extracted_observable_text
+        text = self.extracted_observable_text
+        regex_pattern = self.regex_pattern
+
+        if regex_pattern == None:
+            pattern = text
+        else:
+            pattern = regex_pattern
+
         sdo_object_type = self.custom_observables_map[pattern]
-        sdo_object = self.get_stix2_object_custom(pattern, sdo_object_type)
+        sdo_object = self.get_stix2_object_custom(text, sdo_object_type)
         return sdo_object
+
+
+class LookupObservable(CustomObservable):
+    name = "Lookup Observable"
+
+    @classmethod
+    def build_extraction_pattern_list(
+        cls, lookup_folder, cti_folder_path, ignore_lookup_list
+    ):
+        """
+        Build a regex with all the lookup match strings
+        """
+        pathlist = Path(lookup_folder).glob("**/*.txt")
+        for path in pathlist:
+            lookup_file_name = os.path.basename(path)
+            if ignore_lookup_list != None and lookup_file_name in ignore_lookup_list:
+                continue
+            super().build_extraction_pattern_list(path, cti_folder_path)
 
 
 def get_observable_class_from_name(observable_names):

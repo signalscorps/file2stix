@@ -2,6 +2,11 @@
 
 file2stix was built to be extended. This section of the documentation covers information that will be useful to developers.
 
+## Useful public intel sources for testing
+
+* [ORKL Threat Intelligence Library](https://orkl.eu/)
+* [APT & CyberCriminal Campaign Collection](https://github.com/CyberMonitor/APT_CyberCriminal_Campagin_Collections)
+
 ## Running tests
 
 Ensure that `pytest` is installed:
@@ -27,12 +32,6 @@ pytest
 ```shell
 file2stix --input-file tests/observable_tests/asn.txt
 ```
-
-Expected:
-
-* Indicator SDO
-* ASN SCO
-* R
 
 #### Country
 
@@ -184,7 +183,7 @@ file2stix --input-file tests/observable_tests/file_hash_ssdeep.txt
 file2stix --input-file tests/observable_tests/file.txt
 ```
 
-#### IBAN
+#### Bank Account
 
 ```shell
 file2stix --input-file tests/observable_tests/iban.txt
@@ -243,10 +242,44 @@ file2stix --input-file tests/observable_tests/ipv6_cidr.txt
 file2stix --input-file tests/observable_tests/mitre_attck_all.txt --update-mitre-cti-database
 ```
 
-##### Enterprise Matrix
+##### Enterprise Matrix (newest)
 
 ```shell
 file2stix --input-file tests/observable_tests/mitre_attck_enterprise.txt --update-mitre-cti-database
+```
+
+##### Enterprise Matrix (test subtechnique)
+
+```shell
+file2stix --input-file tests/observable_tests/mitre_attck_enterprise_subtechnique.txt --update-mitre-cti-database
+```
+
+##### Enterprise Matrix (version 8 / 10)
+
+No extraction, as subtechnique (in enterprise matrix) not present in version:
+
+```shell
+file2stix --input-file tests/observable_tests/mitre_attck_enterprise-v12-not-v8-enterprise-technique.txt --update-mitre-cti-database --mitre-attack-version "ATT&CK-v8.0"
+```
+
+Extraction, as subtechnique present in version:
+
+```shell
+file2stix --input-file tests/observable_tests/mitre_attck_enterprise-v12-not-v8-enterprise-technique.txt --update-mitre-cti-database --mitre-attack-version "ATT&CK-v12.1"
+```
+
+##### Enterprise Matrix (version 8 / 9)
+
+No extraction, as technique (in enterprise matrix) not present in version:
+
+```shell
+file2stix --input-file tests/observable_tests/mitre_attck_enterprise-v9-not-v8-enterprise-technique.txt --update-mitre-cti-database --mitre-attack-version "ATT&CK-v8.0"
+```
+
+Extraction, as technique not present in version:
+
+```shell
+file2stix --input-file tests/observable_tests/mitre_attck_enterprise-v9-not-v8-enterprise-technique.txt --update-mitre-cti-database --mitre-attack-version "ATT&CK-v9.0"
 ```
 
 ##### ICS Matrix
@@ -279,6 +312,14 @@ file2stix --input-file tests/observable_tests/registry_key.txt
 file2stix --input-file tests/observable_tests/sigma_rule.txt
 ```
 
+```shell
+file2stix --input-file tests/observable_tests/sigma_rule_2.txt
+```
+
+```shell
+file2stix --input-file tests/observable_tests/sigma_rule_3.txt
+```
+
 #### URL
 
 ```shell
@@ -307,16 +348,73 @@ file2stix --input-file tests/observable_tests/mac_address.txt
 
 ## Testing custom extractions
 
+### Using exact match 
+
 ```shell
-file2stix --input-file tests/custom_extractions/test_extractions.txt --custom-extraction-file tests/custom_extractions/test_extractions.txt
+file2stix --input-file tests/custom_extractions/malware_input_file.txt --custom-extraction-file tests/custom_extractions/malware_custom_extraction_exact.txt
 ```
 
+```shell
+file2stix --input-file tests/custom_extractions/malware_input_file.txt --custom-extraction-file tests/custom_extractions/test_extraction_exact.txt
+```
+
+### Using regex
+
+```shell
+file2stix --input-file tests/custom_extractions/malware_input_file.txt --custom-extraction-file tests/custom_extractions/malware_custom_extraction_regex.txt
+```
+
+```shell
+file2stix --input-file tests/observable_tests/ipv4.txt --custom-extraction-file tests/custom_extractions/regex_custom_extraction.txt
+```
 
 ### Extracting explicit ATT&CK Objects
 
 ```shell
 file2stix --input-file tests/custom_extractions/extract_as_attack_capec_objects.txt --custom-extraction-file tests/custom_extractions/extract_as_attack_capec_objects.txt
 ```
+
+### Check warnings for bad custom input file
+
+```shell
+file2stix --input-file tests/custom_extractions/malware_input_file.txt --custom-extraction-file tests/custom_extractions/malware_custom_extraction_exact_bad.txt
+```
+---
+
+## Testing lookups
+
+### Matching extractions
+
+```shell
+file2stix --input-file tests/lookups/malware-names.txt
+```
+
+```shell
+file2stix --input-file tests/lookups/threat-actors.txt
+```
+
+```shell
+file2stix --input-file tests/lookups/tools.txt
+```
+
+### Ignore lookups
+
+Single lookup:
+
+```shell
+file2stix --input-file tests/lookups/tools.txt --ignore-lookup-prefix tools
+```
+
+Multi-lookup
+
+```shell
+file2stix --input-file tests/lookups/multi-lookup-match.txt --ignore-lookup-prefix tools,malware
+```
+
+### Disabling lookup file
+
+TODO
+
 ---
 
 ## Testing branding
@@ -345,7 +443,11 @@ file2stix --input-file tests/file_inputs/doc/input.doc
 ```
 
 ```shell
-file2stix --input-file tests/file_inputs/doc/input.docxs
+file2stix --input-file tests/file_inputs/doc/input.docx
+```
+
+```shell
+file2stix --input-file tests/file_inputs/doc/ipv4.docx
 ```
 
 #### .html
@@ -381,6 +483,17 @@ file2stix --input-file tests/file_inputs/md/input.md
 ```shell
 file2stix --input-file tests/file_inputs/pdf/input.pdf
 ```
+
+Large complex PDFs
+
+```shell
+file2stix --input-file tests/file_inputs/pdf/rpt_APT37.pdf
+```
+
+```shell
+file2stix --input-file tests/file_inputs/pdf/FireEye-APT39.pdf
+```
+
 
 #### .txt
 
@@ -478,16 +591,25 @@ file2stix --input-file tests/warning_lists/default_list_matches-cidr.txt
 file2stix --input-file tests/warning_lists/custom_list_matches.txt --misp-custom-warning-list-file tests/warning_lists/custom_list.json --tlp-level GREEN
 ```
 
+### Remote Warning List
 
+```shell
+file2stix --input-file tests/warning_lists/custom_list_matches.txt --misp-custom-warning-list-file "https://raw.githubusercontent.com/signalscorps/file2stix/main/tests/warning_lists/custom_list_2.json" --tlp-level GREEN
+```
 
+### Bad Warning List (should throw error)
 
-### Ignore default warning list match extractions
+```shell
+file2stix --input-file tests/warning_lists/custom_list_matches.txt --misp-custom-warning-list-file "https://raw.githubusercontent.com/signalscorps/file2stix/main/tests/warning_lists/bad_warning_list.json" --tlp-level GREEN
+```
+
+### Ignore (do not extract) default warning list match extractions
 
 ```shell
 file2stix --input-file tests/warning_lists/default_list_matches-substring.txt --ignore-warninglist-observables
 ```
 
-### Ignore custom warning list match extractions
+### Ignore (do not extract) custom warning list match extractions
 
 ```shell
 file2stix --input-file tests/warning_lists/custom_list_matches.txt --misp-custom-warning-list-file tests/warning_lists/custom_list.json --tlp-level GREEN --ignore-warninglist-observables
@@ -524,11 +646,6 @@ Multiple extractions (sightings)
 ```shell
 file2stix --input-file tests/observable_tests/ipv4.txt --extraction-mode sighting
 ```
-
-
-
-
-
 
 ---
 
@@ -673,8 +790,6 @@ MITREICSAttackObservable,\
 MITRECapecObservable,\
 CustomObservable
 ```
-
-
 
 ## Testing adding custom identity
 
@@ -850,7 +965,7 @@ file2stix --input-file tests/observable_tests/credit_card_mastercard.txt
 file2stix --input-file tests/observable_tests/asn.txt
 ```
 
-### IBAN SCO
+### Bank account SCO
 
 ```shell
 file2stix --input-file tests/observable_tests/iban.txt
@@ -893,9 +1008,3 @@ file2stix --input-file tests/observable_tests/sigma_rule.txt
 ```shell
 file2stix --input-file tests/observable_tests/cve.txt
 ```
-
-
-
-
-
-

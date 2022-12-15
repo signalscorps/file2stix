@@ -5,6 +5,9 @@ Bunch of helper methods
 import json
 import yaml
 from bs4 import BeautifulSoup
+from pathlib import Path
+from file2stix.config import LOOKUP_FOLDER
+import os
 
 
 def inheritors(klass):
@@ -217,3 +220,14 @@ def combine_list(lists):
     for list in lists:
         result += list
     return result
+
+def get_lookup_file_from_name(lookup_prefixes):
+    found_lookup_files = set()
+    pathlist = Path(LOOKUP_FOLDER).glob("**/*.txt")
+    for path in pathlist:
+        lookup_file_name = os.path.basename(path)
+        for lookup_prefix in lookup_prefixes:
+            if lookup_file_name.startswith(lookup_prefix):
+                found_lookup_files.add(lookup_file_name)
+    return list(found_lookup_files)
+

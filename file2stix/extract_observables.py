@@ -5,7 +5,7 @@ Contains logic for extracting observables.
 import logging
 
 from file2stix.cache import Cache
-from file2stix.config import Config
+from file2stix.config import Config, LOOKUP_FOLDER
 from file2stix.error_handling import error_logger
 from file2stix.observables import (
     CustomObservable,
@@ -13,6 +13,7 @@ from file2stix.observables import (
     MITREMobileAttackObservable,
     MITREICSAttackObservable,
     MITRECapecObservable,
+    LookupObservable,
 )
 import pattern2sco
 
@@ -36,6 +37,7 @@ class ExtractStixObservables:
         self.index = 0
         self.extracted_observables = []
         self.config = config
+        self.final_result_list = []
         if ExtractStixObservables.modified_text == None:
             ExtractStixObservables.modified_text = text
 
@@ -44,10 +46,18 @@ class ExtractStixObservables:
             observable_cls == MITREEnterpriseAttackObservable
             or observable_cls == MITREMobileAttackObservable
             or observable_cls == MITREICSAttackObservable
-            or observable_cls == MITRECapecObservable
         ):
             if cache.is_mitre_cti_database_in_cache():
                 observable_cls.build_extraction_regex(cache.cti_folder_path)
+            else:
+                logger.warning(
+                    "Not extracting MITRE Observable since MITRE CTI database is not present in cache. "
+                    "Use --update-mitre-cti-database option to update MITRE CTI database."
+                )
+                return
+        elif observable_cls == MITRECapecObservable:
+            if cache.is_mitre_capec_cti_database_in_cache():
+                observable_cls.build_extraction_regex(cache.capec_cti_folder_path)
             else:
                 logger.warning(
                     "Not extracting MITRE Observable since MITRE CTI database is not present in cache. "
@@ -64,6 +74,11 @@ class ExtractStixObservables:
                     "Custom extraction file not given, hence not extracting any custom observables."
                 )
                 return
+        if observable_cls == LookupObservable:
+            lookup_folder = LOOKUP_FOLDER
+            observable_cls.build_extraction_pattern_list(
+                lookup_folder, cache.cti_folder_path, config.ignore_lookup_list
+            )
 
         (
             self.extracted_observables,
@@ -72,18 +87,18 @@ class ExtractStixObservables:
             ExtractStixObservables.modified_text, config
         )
 
-        logger.debug("Extraction of observable text complete.")
-
-    def __iter__(self):
-        return self
-
-    def __next__(self):
-        if self.index < len(self.extracted_observables):
-            extracted_observable = self.extracted_observables[self.index]
-            self.index += 1
-
+        # Store sdo and sco_objects
+        for extracted_observable in self.extracted_observables:
             try:
-                sdo_object = extracted_observable.get_sdo_object()
+                sdo_objects = extracted_observable.get_sdo_object()
+                if isinstance(sdo_objects, list) == False:
+                    sdo_objects = [sdo_objects]
+                for sdo_object in sdo_objects:
+                    self.final_result_list.append(
+                        self._get_final_result(
+                            sdo_object, extracted_observable.defanged
+                        )
+                    )
             except Exception as error:
                 if self.config.fail_on_errors == False:
                     error_logger.error(
@@ -105,9 +120,19 @@ class ExtractStixObservables:
                         extracted_observable.extracted_observable_text,
                     )
                     raise error
-            else:
-                sco_objects = pattern2sco.get_sco_objects(
-                    sdo_object, extracted_observable.defanged
-                )
-                return {"stix_observable": sdo_object, "sco_objects": sco_objects}
+
+        logger.debug("Extraction of observable text complete.")
+
+    def _get_final_result(self, sdo_object_item, defanged):
+        sco_objects = pattern2sco.get_sco_objects(sdo_object_item, defanged)
+        return {"stix_observable": sdo_object_item, "sco_objects": sco_objects}
+
+    def __iter__(self):
+        return self
+
+    def __next__(self):
+        if self.index < len(self.final_result_list):
+            result = self.final_result_list[self.index]
+            self.index += 1
+            return result
         raise StopIteration

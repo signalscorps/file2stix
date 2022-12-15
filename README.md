@@ -135,6 +135,8 @@ file2stix --input-file PATH/TO/FILE --custom-extraction-file PATH/TO/FILE --upda
 * `--output-processed-input-file` (optional, default false): this is useful for debugging extractions. It will show you the actual text considered for text extraction (because file2stix performs some preprocessing on files, see docs)
 * `--output-json-file` (optional, default stix2bundles): this is where the bundles for each report will be stored. By default is `$FILE2STIX/stix2bundles` but can be changed by specifying a directory path for this flag.
 * `--fail-on-errors` (optional, default false): By default file2stix will continue when non-critical errors (e.g. failed extraction) occurs and log errors runtime errors in the `logs/` directory. If set to `true`, the script will completely fail if any errors observed.
+* `--ignore-lookup-prefix` (optiona, default none): you can pass a prefix of a lookup to ignore any extractions it will create, e.g. `--ignore-lookup-prefix tools` would ignore the tools.txt lookup
+* `--mitre-attack-version` (optional, default latest): Use a [MITRE CTI repo tag](https://github.com/mitre/cti/tags) to select a version. e.g. https://github.com/mitre/cti/releases/tag/ATT%26CK-v12.0 would be `--mitre-attack-version  "ATT&CK-v12.1"`
 * `--help` (optional, default false) to print more about these options in the command line.
 
 For example;
@@ -171,7 +173,9 @@ If you notice a bug or have a feature request, [please submit them as issues on 
 
 [MIT LICENSE](/LICENSE).
 
-## Useful supporting tools
+## A special thanks to...
+
+I would like to thank the authors of the following tools used to build file2stix (making it a hundred times easier);
 
 * [STIX 2](https://pypi.org/project/stix2/): APIs for serializing and de-serializing STIX2 JSON content
 * [STIX 2 Pattern Validator](https://pypi.org/project/stix2-patterns/): a tool for checking the syntax of the Cyber Threat Intelligence (CTI) STIX Pattern expressions

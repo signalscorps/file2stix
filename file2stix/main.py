@@ -16,8 +16,10 @@ from pathlib import Path
 from stix2 import Report, Relationship, TLP_WHITE, Sighting, ObservedData, Filter
 from stix2.exceptions import ExtraPropertiesError
 from pymispwarninglists.api import WarningList
+import requests
+import validators
 
-from pattern2sco.custom_objects import Cryptocurrency, CreditCard, IBAN, UserAgent
+from pattern2sco.custom_objects import CryptocurrencyTransaction, CreditCard, BankAccount, UserAgent
 
 from file2stix.backends import arangodb
 from file2stix import __appname__
@@ -84,8 +86,13 @@ def main(config: Config):
 
     if config.misp_custom_warning_list_file:
         try:
-            with open(config.misp_custom_warning_list_file) as f:
-                misp_custom_warning_list = json.load(f)
+            if validators.url(config.misp_custom_warning_list_file):
+                response = requests.get(config.misp_custom_warning_list_file)
+                data = response.text
+                misp_custom_warning_list = json.loads(data)
+            else:
+                with open(config.misp_custom_warning_list_file) as f:
+                    misp_custom_warning_list = json.load(f)
             WarningList(
                 misp_custom_warning_list
             )  # Just to validate if the format is correct
@@ -100,8 +107,8 @@ def main(config: Config):
             )
 
     # Update MITRE ATT&CK and CAPEC database
-    if config.update_mitre_cti_database == True:
-        cache.update_mitre_cti_database()
+    if config.update_mitre_cti_database == True or config.mitre_attack_version != None:
+        cache.update_mitre_cti_database(config.mitre_attack_version)
 
     if config.input_file_path == None:
         logger.info("No input file given. Exiting...")
@@ -126,7 +133,12 @@ def main(config: Config):
     elif file_extension in (".yara", ".yar", ".yml", ".yaml"):
         input = Path(input_file_path).read_text()
     else:
-        input = textract.process(input_file_path).decode("UTF-8")
+        # Use ASCII encoding
+        # input = textract.process(input_file_path).decode("UTF-8")
+        input = textract.process(input_file_path, output_encoding="ascii").decode("ascii")
+
+    # Add newline at the end of input
+    input = input + "\n"
 
     if config.output_preprocessed_file:
         with open(config.output_preprocessed_file, "w") as f:
@@ -256,13 +268,13 @@ def main(config: Config):
 
             # Add respective extension definitions if present
             for sco_object in stix_observable_objects["sco_objects"]:
-                if isinstance(sco_object, Cryptocurrency):
+                if isinstance(sco_object, CryptocurrencyTransaction):
                     observables_list.extension_definition_objects[
                         "extension-definition--532ae28d-137b-4b89-afb7-9cf9b504191b"
                     ] = STIX2_OBJECTS_STORE.get_object_by_id(
                         "extension-definition--532ae28d-137b-4b89-afb7-9cf9b504191b"
                     )
-                if isinstance(sco_object, Cryptocurrency):
+                if isinstance(sco_object, CryptocurrencyTransaction):
                     observables_list.extension_definition_objects[
                         "extension-definition--532ae28d-137b-4b89-afb7-9cf9b504191b"
                     ] = STIX2_OBJECTS_STORE.get_object_by_id(
@@ -274,7 +286,7 @@ def main(config: Config):
                     ] = STIX2_OBJECTS_STORE.get_object_by_id(
                         "extension-definition--abd6fc0e-749e-4e6c-a20c-1faa419f5ee4"
                     )
-                if isinstance(sco_object, IBAN):
+                if isinstance(sco_object, BankAccount):
                     observables_list.extension_definition_objects[
                         "extension-definition--349c1029-4052-4635-a064-263cb17290ea"
                     ] = STIX2_OBJECTS_STORE.get_object_by_id(
