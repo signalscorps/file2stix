@@ -1,0 +1,1198 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.4.2, mkdocs-material-8.5.6">
+    
+    
+      
+        <title>3.1. Overview - file2stix Docs</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.20d9efc8.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.cbb835fc.min.css">
+        
+      
+      
+
+    
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="" data-md-color-primary="none" data-md-color-accent="none">
+  
+    
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#extractions" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="file2stix Docs" class="md-header__button md-logo" aria-label="file2stix Docs" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            file2stix Docs
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              3.1. Overview
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/signalscorps/file2stix" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    signalscorps/file2stix
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="file2stix Docs" class="md-nav__button md-logo" aria-label="file2stix Docs" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    file2stix Docs
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/signalscorps/file2stix" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    signalscorps/file2stix
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        1. Index
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../inputs/" class="md-nav__link">
+        2. Inputs
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+    
+  
+  
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3" type="checkbox" id="__nav_3" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_3">
+          3. Extraction Modes
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="3. Extraction Modes" data-md-level="1">
+        <label class="md-nav__title" for="__nav_3">
+          <span class="md-nav__icon md-icon"></span>
+          3. Extraction Modes
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          3.1. Overview
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        3.1. Overview
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#stix-support" class="md-nav__link">
+    STIX Support
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#identities-identity-sdos" class="md-nav__link">
+    Identities (identity) SDOs
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#report-sdos-report" class="md-nav__link">
+    Report SDOs (report)
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#relationship-sros-relationship" class="md-nav__link">
+    Relationship SROS (relationship)
+  </a>
+  
+    <nav class="md-nav" aria-label="Relationship SROS (relationship)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#default-extractions-report-and-sdo" class="md-nav__link">
+    Default extractions (Report and SDO)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#custom-extractions-report-and-sdo" class="md-nav__link">
+    Custom extractions (Report and SDO)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sco-and-sdo-relationships" class="md-nav__link">
+    SCO and SDO relationships
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#confidence-scoring" class="md-nav__link">
+    Confidence scoring
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#tlp-marking-definition" class="md-nav__link">
+    TLP (marking-definition)
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#defanging" class="md-nav__link">
+    Defanging
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#branding" class="md-nav__link">
+    Branding
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#warning-lists" class="md-nav__link">
+    Warning Lists
+  </a>
+  
+    <nav class="md-nav" aria-label="Warning Lists">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#custom-warning-lists" class="md-nav__link">
+    Custom Warning Lists
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#extracted-object-logic" class="md-nav__link">
+    Extracted Object logic
+  </a>
+  
+    <nav class="md-nav" aria-label="Extracted Object logic">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#sros" class="md-nav__link">
+    SROs
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sdos" class="md-nav__link">
+    SDOs
+  </a>
+  
+    <nav class="md-nav" aria-label="SDOs">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#example-1" class="md-nav__link">
+    Example 1
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#example-2" class="md-nav__link">
+    Example 2
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#scos" class="md-nav__link">
+    SCOs
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#mode-specific-extractions" class="md-nav__link">
+    Mode specific extractions
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../extractions-analysis-mode/" class="md-nav__link">
+        3.2. Analysis Mode (default)
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../extractions-observed-mode/" class="md-nav__link">
+        3.3. Observed Mode
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../extractions-sightings-mode/" class="md-nav__link">
+        3.4. Sightings Mode
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../backends/" class="md-nav__link">
+        4. Backends
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../developers/" class="md-nav__link">
+        5. Developers / Testing
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../demo/" class="md-nav__link">
+        6. Demo Walkthrough
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#stix-support" class="md-nav__link">
+    STIX Support
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#identities-identity-sdos" class="md-nav__link">
+    Identities (identity) SDOs
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#report-sdos-report" class="md-nav__link">
+    Report SDOs (report)
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#relationship-sros-relationship" class="md-nav__link">
+    Relationship SROS (relationship)
+  </a>
+  
+    <nav class="md-nav" aria-label="Relationship SROS (relationship)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#default-extractions-report-and-sdo" class="md-nav__link">
+    Default extractions (Report and SDO)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#custom-extractions-report-and-sdo" class="md-nav__link">
+    Custom extractions (Report and SDO)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sco-and-sdo-relationships" class="md-nav__link">
+    SCO and SDO relationships
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#confidence-scoring" class="md-nav__link">
+    Confidence scoring
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#tlp-marking-definition" class="md-nav__link">
+    TLP (marking-definition)
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#defanging" class="md-nav__link">
+    Defanging
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#branding" class="md-nav__link">
+    Branding
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#warning-lists" class="md-nav__link">
+    Warning Lists
+  </a>
+  
+    <nav class="md-nav" aria-label="Warning Lists">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#custom-warning-lists" class="md-nav__link">
+    Custom Warning Lists
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#extracted-object-logic" class="md-nav__link">
+    Extracted Object logic
+  </a>
+  
+    <nav class="md-nav" aria-label="Extracted Object logic">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#sros" class="md-nav__link">
+    SROs
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sdos" class="md-nav__link">
+    SDOs
+  </a>
+  
+    <nav class="md-nav" aria-label="SDOs">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#example-1" class="md-nav__link">
+    Example 1
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#example-2" class="md-nav__link">
+    Example 2
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#scos" class="md-nav__link">
+    SCOs
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#mode-specific-extractions" class="md-nav__link">
+    Mode specific extractions
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+  <a href="https://github.com/signalscorps/file2stix/edit/main/docs/extractions.md" title="Edit this page" class="md-content__button md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25Z"/></svg>
+  </a>
+
+
+<h1 id="extractions">Extractions<a class="headerlink" href="#extractions" title="Permanent link">&para;</a></h1>
+<p>file2stix extracts observables from text and translates them into STIX 2.1 Objects. This section of the documentation describes the templates of the STIX Objects created.</p>
+<h2 id="stix-support">STIX Support<a class="headerlink" href="#stix-support" title="Permanent link">&para;</a></h2>
+<p>file2stix only supports STIX version 2.1 <a href="https://docs.oasis-open.org/cti/stix/v2.1/os/stix-v2.1-os.html">as defined by this specification</a>.</p>
+<h2 id="identities-identity-sdos">Identities (<code>identity</code>) SDOs<a class="headerlink" href="#identities-identity-sdos" title="Permanent link">&para;</a></h2>
+<p>file2stix assigns a <code>created_by_ref</code> property to many Objects. </p>
+<p>By defaults the generic file2stix identity will be used. </p>
+<p>You can also change the Identity used by creating your own template file (see example <code>tests/stix_templates/custom_identity_good.yml</code>). </p>
+<p>This is passed using the <code>--user-identity-file</code> flag.</p>
+<p>If you do modify the file make sure to follow the schema defined herel <code>tests/stix_templates/custom_identity_schema.yml</code></p>
+<p>Here are some of the common things that can cause error;</p>
+<ol>
+<li>Keep the quotes (<code>""</code>) around values</li>
+<li>Replace the UUID in the <code>id</code> property with your own or a randomly generated UUID v4. <a href="https://www.uuidgenerator.net/version4">Here is a generator you can use to do this</a></li>
+<li>e.g. <code>identity--acf55024-6bbe-486f-a27a-7967559324f4</code> -&gt; <code>identity--bf65f135-7876-4b4f-a48b-4cbd85e77e87</code></li>
+<li>Modify the <code>created</code> and <code>modified</code> dates, if needed. Be sure to keep the same date/time format <code>YYYY-DD-MMTHH:MM:SS.sssZ</code></li>
+<li>Update the <code>name</code> and <code>description</code> fields. If using special json characters be sure to escape them</li>
+<li>The <code>identity_class</code> property <a href="https://docs.oasis-open.org/cti/stix/v2.1/os/stix-v2.1-os.html#_be1dktvcmyu">must match one shown here</a></li>
+<li>The <code>sectors</code> property <a href="https://docs.oasis-open.org/cti/stix/v2.1/os/stix-v2.1-os.html#_oogrswk3onck">must match one shown here</a></li>
+</ol>
+<h2 id="report-sdos-report">Report SDOs (<code>report</code>)<a class="headerlink" href="#report-sdos-report" title="Permanent link">&para;</a></h2>
+<p>All individual data sources ingested or uploaded are represented as a unique <a href="https://docs.oasis-open.org/cti/stix/v2.1/cs01/stix-v2.1-cs01.html#_n8bjzg1ysgdq">STIX Report SDO</a> that take the following structure;</p>
+<pre><code class="language-json">    {
+      &quot;type&quot;: &quot;report&quot;,
+      &quot;spec_version&quot;: &quot;2.1&quot;,
+      &quot;id&quot;: &quot;report--&lt;GENERATED BY STIX2 LIBRARY&gt;&quot;,
+      &quot;created_by_ref&quot;: &quot;identity--&lt;IDENTITY ID&gt;&quot;,
+      &quot;created&quot;: &quot;&lt;ITEM INGEST DATE&gt;&quot;,
+      &quot;modified&quot;: &quot;&lt;ITEM INGEST DATE&gt;&quot;,
+      &quot;name&quot;: &quot;File converted: &lt;FILENAME&gt;&quot;,
+      &quot;published&quot;: &quot;&lt;ITEM INGEST DATE&gt;&quot;,
+      &quot;report_types&quot;: [&quot;threat-report&quot;],
+      &quot;object_marking_refs&quot;: [
+        &quot;marking-definition--&lt;TLP LEVEL SET&gt;&quot;
+      ],
+      &quot;object_refs&quot;: [&quot;&lt;LIST OF ALL EXTRACTED OBJECTS&gt;&quot;],
+      &quot;external_references&quot;: [
+        {
+          &quot;source_name&quot;: &quot;file2stix&quot;,
+          &quot;description&quot;: &quot;This object was created using file2stix from the Signals Corps.&quot;,
+          &quot;url&quot;: &quot;https://github.com/signalscorps/file2stix&quot;
+        }
+      ]
+    }
+</code></pre>
+<p>Note, the <code>object_refs</code> contains all references that are referenced by objects in the report (SDOs, SROs, SCOs). This includes extracted objects (i.e. Indicator SDOs, Vulnerability SDOs, Software SCOs, Relationship SROs etc.).</p>
+<h2 id="relationship-sros-relationship">Relationship SROS (<code>relationship</code>)<a class="headerlink" href="#relationship-sros-relationship" title="Permanent link">&para;</a></h2>
+<p>There are two types of extractions in file2stix; default and custom. T</p>
+<h3 id="default-extractions-report-and-sdo">Default extractions (Report and SDO)<a class="headerlink" href="#default-extractions-report-and-sdo" title="Permanent link">&para;</a></h3>
+<p>In the case of default extractions, a Relationship between the extracted Object and Report SDO is created with the <code>relationship_type</code> equal to default-extract.</p>
+<p>The <code>created_by_ref</code> is the Identity ID.</p>
+<p>The <code>created</code> and <code>modified</code> dates match those in the linked Report Object.</p>
+<p>Here is the structure of the SRO for default extractions;</p>
+<pre><code class="language-json">  {
+    &quot;type&quot;: &quot;relationship&quot;,
+    &quot;spec_version&quot;: &quot;2.1&quot;,
+    &quot;id&quot;: &quot;relationship--&lt;GENERATED BY STIX2 LIBRARY&gt;&quot;,
+    &quot;created_by_ref&quot;: &quot;identity--&lt;USER IDENTITY ID&gt;&quot;,
+    &quot;created&quot;: &quot;&lt;REPORT CREATED DATE&gt;&quot;,
+    &quot;modified&quot;: &quot;&lt;REPORT CREATED DATE&gt;&quot;,
+    &quot;relationship_type&quot;: &quot;default-extract-from&quot;,
+    &quot;source_ref&quot;: &quot;&lt;EXTRACTED STIX OBSERVABLE ID&gt;&quot;,
+    &quot;target_ref&quot;: &quot;report--&lt;REPORT OBJECT&gt;&quot;,
+    &quot;external_references&quot;: [
+      {
+        &quot;source_name&quot;: &quot;file2stix&quot;,
+        &quot;description&quot;: &quot;This object was created using file2stix from the Signals Corps.&quot;,
+        &quot;url&quot;: &quot;https://github.com/signalscorps/file2stix&quot;
+      }
+    ]
+  }
+</code></pre>
+<h3 id="custom-extractions-report-and-sdo">Custom extractions (Report and SDO)<a class="headerlink" href="#custom-extractions-report-and-sdo" title="Permanent link">&para;</a></h3>
+<p>Custom extractions have slightly different Relationship Objects created where the <code>relationship_type</code> equal to custom-extract, as follows;</p>
+<pre><code class="language-json">  {
+    &quot;type&quot;: &quot;relationship&quot;,
+    &quot;spec_version&quot;: &quot;2.1&quot;,
+    &quot;id&quot;: &quot;relationship--&lt;GENERATED BY STIX2 LIBRARY&gt;&quot;,
+    &quot;created_by_ref&quot;: &quot;identity--&lt;USER IDENTITY ID&gt;&quot;,
+    &quot;created&quot;: &quot;&lt;REPORT CREATED DATE&gt;&quot;,
+    &quot;modified&quot;: &quot;&lt;REPORT CREATED DATE&gt;&quot;,
+    &quot;relationship_type&quot;: &quot;custom-extract-from&quot;,
+    &quot;source_ref&quot;: &quot;&lt;EXTRACTED STIX OBSERVABLE ID&gt;&quot;,
+    &quot;target_ref&quot;: &quot;report--&lt;REPORT OBJECT&gt;&quot;,
+    &quot;external_references&quot;: [
+      {
+        &quot;source_name&quot;: &quot;file2stix&quot;,
+        &quot;description&quot;: &quot;This object was created using file2stix from the Signals Corps.&quot;,
+        &quot;url&quot;: &quot;https://github.com/signalscorps/file2stix&quot;
+      }
+    ]
+  }
+</code></pre>
+<h3 id="sco-and-sdo-relationships">SCO and SDO relationships<a class="headerlink" href="#sco-and-sdo-relationships" title="Permanent link">&para;</a></h3>
+<p>Many extractions that create Indicator Objects also create one or more SCOs. These are joined like so</p>
+<pre><code class="language-json">  {
+    &quot;type&quot;: &quot;relationship&quot;,
+    &quot;spec_version&quot;: &quot;2.1&quot;,
+    &quot;id&quot;: &quot;relationship--&lt;GENERATED BY STIX2 LIBRARY&gt;&quot;,
+    &quot;created_by_ref&quot;: &quot;identity--&lt;USER IDENTITY ID&gt;&quot;,
+    &quot;created&quot;: &quot;&lt;REPORT CREATED DATE&gt;&quot;,
+    &quot;modified&quot;: &quot;&lt;REPORT CREATED DATE&gt;&quot;,
+    &quot;relationship_type&quot;: &quot;pattern-contains&quot;,
+    &quot;source_ref&quot;: &quot;indicator--&lt;EXTRACTED STIX INDICATOR ID&gt;&quot;,
+    &quot;target_ref&quot;: &quot;&lt;EXTRACTED STIX SCO ID&gt;&quot;,
+    &quot;external_references&quot;: [
+      {
+        &quot;source_name&quot;: &quot;file2stix&quot;,
+        &quot;description&quot;: &quot;This object was created using file2stix from the Signals Corps.&quot;,
+        &quot;url&quot;: &quot;https://github.com/signalscorps/file2stix&quot;
+      }
+    ]
+  }
+</code></pre>
+<h2 id="confidence-scoring">Confidence scoring<a class="headerlink" href="#confidence-scoring" title="Permanent link">&para;</a></h2>
+<p>file2stix also optionally allows you to add the <code>confidence</code> property to all extracted Indicator SDOs. You can set confidence between 0 - 100.</p>
+<p><a href="https://docs.oasis-open.org/cti/stix/v2.1/os/stix-v2.1-os.html#_1v6elyto0uqg">Consult the STIX 2.1 Specification for more information if you're unfamiliar with confidence scoring</a>.</p>
+<p>Confidence is passed using the <code>--confidence</code> flag.</p>
+<h2 id="tlp-marking-definition">TLP (<code>marking-definition</code>)<a class="headerlink" href="#tlp-marking-definition" title="Permanent link">&para;</a></h2>
+<p>The default TLP level assigned is <code>TLP:WHITE</code>. You can change the TLP level using the <code>--tlp-level</code> flag.</p>
+<p>file2stix allows for <code>TLP:GREEN</code>, <code>TLP:AMBER</code>, <code>TLP:RED</code> and <code>TLP:WHITE</code> definitions to be used when adding Reports. </p>
+<p>This determines the <a href="https://docs.oasis-open.org/cti/stix/v2.1/os/stix-v2.1-os.html#_yd3ar14ekwrs">STIX marking-definition</a>, either;</p>
+<ul>
+<li><code>TLP:WHITE</code> (<code>marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9</code>)</li>
+<li><code>TLP:GREEN</code> (<code>marking-definition--34098fce-860f-48ae-8e50-ebd3cc5e41da</code>)</li>
+<li><code>TLP:AMBER</code> (<code>marking-definition--f88d31f6-486f-44da-b317-01333bde0b82</code>)</li>
+<li><code>TLP:RED</code> (<code>marking-definition--5e57c739-391a-4eb3-b6be-7d15ca92d5ed</code>)</li>
+</ul>
+<p>The TLP value is reported in the <code>object_marking_refs</code> property for the STIX Report Object and all extracted Objects representing extracted Observables (except for ATT&amp;CK or CAPEC, where generic MITRE Objects are used).</p>
+<h2 id="defanging">Defanging<a class="headerlink" href="#defanging" title="Permanent link">&para;</a></h2>
+<p>Defanging obfuscates indicators into a safer representations so that a user reading a report does not accidentally click on a malicious URL or inadvertently run malicious code. Many cyber threat intelligence reports shared electronically employ defanging.</p>
+<p>Typical types of fanged Observables include IPv4 addresses (e.g. <code>1.1.1.1</code>), IPv6 addresses (e.g. <code>2001:0db8:85a3:0000:0000:8a2e:0370:7334</code>), domain names (e.g. <code>example.com</code>), URLs (e.g. <code>https://example.com/research/index.html</code>), email addresses (e.g. <code>example@example.com</code>), file extensions (e.g. <code>malicious.exe</code>), and directory paths (e.g. <code>C:\\Windows\\System32</code>).</p>
+<p>Unfortunately, there is no universal standard for defanging, although there are some common methods. Some samples of defanging I have observed include the following:</p>
+<ul>
+<li>Wrapping one or more special characters in <code>[</code> <code>]</code></li>
+<li>e.g. <code>www[.]example[.]com</code></li>
+<li>e.g. <code>http[:]//example.com</code></li>
+<li>e.g. <code>http[://]example.com</code></li>
+<li>e.g. <code>1.1.1.1[/]24</code></li>
+<li>Wrapping one or more special characters in <code>{</code> <code>}</code></li>
+<li>Wrapping one or more special characters in <code>(</code> <code>)</code></li>
+<li>Prefixing one or more special characters with <code>[</code></li>
+<li>e.g. <code>www[.example[.com</code></li>
+<li>e.g. <code>http[://example.com</code></li>
+<li>e.g. <code>http[://example.com</code></li>
+<li>Prefixing one or more special characters with <code>\</code></li>
+<li>Replacing <code>http</code> and <code>hxxp</code></li>
+<li>e.g. <code>hxxps://google.com</code></li>
+<li>Replacing <code>.</code> with <code>dot</code></li>
+<li>e.g. <code>example@example dot com</code></li>
+<li>e.g. <code>http://example dot com</code></li>
+<li>Replacing <code>.</code> with <code>[dot]</code> (or  <code>(dot)</code>, or <code>{dot}</code>)</li>
+<li>e.g. <code>example@example[dot]com</code></li>
+<li>Replacing <code>@</code> with <code>at</code></li>
+<li>e.g. <code>example at example.com</code></li>
+<li>Replacing <code>@</code> with <code>[at]</code> (or  <code>(at)</code>, or <code>{at}</code>)</li>
+<li>e.g. <code>example[at]example.com</code> </li>
+</ul>
+<p>Note, a combination of the above techniques are also commonly implemented used. For example replacing <code>.</code> with <code>dot</code> and replacing <code>@</code> with <code>at</code> for an email like so; fanged = <code>example at example dot com</code>, defanged = <code>example@example.com</code></p>
+<p>Another example using even more fanging technique combinations for a URL; fanged = <code>hxxps[:]//test\.example[.)com[/]path</code>, defanged = <code>https://test.example.com/path</code></p>
+<p>file2stix can be used to defang the following observable types</p>
+<ul>
+<li>ipv4</li>
+<li>ipv6</li>
+<li>domain</li>
+<li>url</li>
+<li>email-address</li>
+</ul>
+<p>Defanging will only occur if the <code>--defang-observables</code> is set to <code>true</code> (by default it is <code>false</code>).</p>
+<p>When set to true, all SCO Objects that have been defanged will contain the property <code>"defanged": true</code>.</p>
+<p>For example;</p>
+<pre><code class="language-json">{
+    &quot;type&quot;: &quot;email-addr&quot;,
+    &quot;spec_version&quot;: &quot;2.1&quot;,
+    &quot;id&quot;: &quot;email-addr--0e81edfb-25a5-5cb0-8cb0-fe9c5efb6257&quot;,
+    &quot;value&quot;: &quot;example9@example.com`&quot;,
+    &quot;defanged&quot;: true
+}
+</code></pre>
+<h2 id="branding">Branding<a class="headerlink" href="#branding" title="Permanent link">&para;</a></h2>
+<p>By default file2stix will populate the <code>external_references</code> section of all SDOs and SROs with a reference to file2stix.</p>
+<pre><code class="language-json">&quot;external_references&quot;: [
+    {
+        &quot;source_name&quot;: &quot;file2stix&quot;,
+        &quot;description&quot;: &quot;This object was created using file2stix from the Signals Corps.&quot;,
+        &quot;url&quot;: &quot;https://github.com/signalscorps/file2stix&quot;
+      }
+</code></pre>
+<p>It is possible to remove this by using the <code>--no-branding</code> flag.</p>
+<h2 id="warning-lists">Warning Lists<a class="headerlink" href="#warning-lists" title="Permanent link">&para;</a></h2>
+<p>Warning Lists identify potentially benign file2stix extractions. DO NOT BE CONFUSED by the name; Warning Lists in file2stix are the equivilant of whitelists in other products.</p>
+<p>file2stix uses MISP Warning Lists (using <a href="https://github.com/MISP/PyMISPWarningLists">PyMISPWarningLists</a>) to identify potential extractions that should be whitelisted using a custom Extension definition.</p>
+<p>https://github.com/signalscorps/stix2-objects/blob/main/extension-definition/property-extension/warning-list-extension/extension-definition--c8ea5ecb-f4a3-45e7-94de-9b9ba05161af/20220101000000000.json</p>
+<p>Extracted values that match a Warning List are still converted to STIX 2.1 Objects, however, will contain the custom property listing the Warning Lists the extracted value matches with and will also contain <code>indicator_types</code> = <code>benign</code>.</p>
+<p>For example;</p>
+<pre><code class="language-json">{
+    &quot;type&quot;: &quot;indicator&quot;,
+    &quot;spec_version&quot;: &quot;2.1&quot;,
+    &quot;id&quot;: &quot;indicator--fb715301-acf3-4add-a70a-2b96f5ac15f5&quot;,
+    &quot;created&quot;: &quot;2022-09-07T06:18:21.997149Z&quot;,
+    &quot;modified&quot;: &quot;2022-09-08T06:13:24.191194Z&quot;,
+    &quot;name&quot;: &quot;Domain: google.com&quot;,
+    &quot;indicator_types&quot;: [
+        &quot;unknown&quot;,
+        &quot;benign&quot;
+    ],
+    &quot;pattern&quot;: &quot;[ domain-name:value = 'google.com' ]&quot;,
+    &quot;pattern_type&quot;: &quot;stix&quot;,
+    &quot;pattern_version&quot;: &quot;2.1&quot;,
+    &quot;valid_from&quot;: &quot;2022-09-07T06:18:21.997149Z&quot;,
+    &quot;object_marking_refs&quot;: [
+        &quot;marking-definition--613f2e26-407d-48c7-9eca-b8e91df99dc9&quot;
+    ],
+    &quot;extensions&quot;: {
+        &quot;extension-definition--c8ea5ecb-f4a3-45e7-94de-9b9ba05161af&quot;: {
+            &quot;extension_type&quot;: &quot;property-extension&quot;,
+            &quot;warning_list_match&quot;: [
+                {
+                    &quot;list_name&quot;: &quot;Top 20 000 websites from Cisco Umbrella&quot;,
+                    &quot;list_url&quot;: &quot;https://misp.github.io/misp-warninglists/lists/cisco_top20k/list.json&quot;,
+                    &quot;list_type&quot;: &quot;misp&quot;
+                },
+                {
+                    &quot;list_name&quot;: &quot;Custom list with url&quot;,
+                    &quot;list_url&quot;: &quot;https://example.com/list.json&quot;,
+                    &quot;list_type&quot;: &quot;custom&quot;
+                },
+                {
+                    &quot;list_name&quot;: &quot;Custom list with local path&quot;,
+                    &quot;list_type&quot;: &quot;custom&quot;
+                }
+            ]
+        }
+    },
+    &quot;external_references&quot;: [
+        {
+            &quot;source_name&quot;: &quot;file2stix&quot;,
+            &quot;description&quot;: &quot;This object was created using file2stix from the Signals Corps.&quot;,
+            &quot;url&quot;: &quot;https://github.com/signalscorps/file2stix&quot;
+        }
+    ]
+}
+</code></pre>
+<p>Note, MISP Warning Lists contain a <code>type</code> value (defined in the Warning List JSON). file2stix treats each Warning List differently, depending on its type as follows;</p>
+<ul>
+<li><code>string</code>: extracted observables must be exact match to Warning List value (e.g. warning list: google.com -&gt; observable: google.com = match)</li>
+<li><code>substring</code>: extracted observable must contain Warning List value (e.g. warning list: google -&gt; observable: api.google.com = match)</li>
+<li><code>hostname</code>: extracted observable must contain Warning List value</li>
+<li><code>cidr</code>: extracted observable must be exact match to Warning List value</li>
+<li><code>regex</code>: file2stix does not consider warning lists of type <code>regex</code></li>
+</ul>
+<p>It is possible to completely ignore extractions that match to warning lists (and not create a STIX Object from them) using the flag <code>--ignore-warninglist-observables</code>.</p>
+<p>By default file2stix will compare all <a href="https://github.com/MISP/misp-warninglists">MISP Warning lists</a> (about 50 in total) to the input.</p>
+<h3 id="custom-warning-lists">Custom Warning Lists<a class="headerlink" href="#custom-warning-lists" title="Permanent link">&para;</a></h3>
+<p>You can also create your own Warning Lists. Custom Warning Lists must follow the <a href="https://github.com/MISP/misp-warninglists/blob/main/schema.json">MISP Warning List schema</a>.</p>
+<p>An example of a custom warning list can be seen in <code>tests/file_inputs/custom_warning_lists/list.json</code></p>
+<p>Due to the way data is shared, only Reports marked TLP GREEN, TLP AMBER, or TLP RED can be used with custom warning lists. As TLP WHITE reports are shared without attribution, printing a Warning List name will not be enough for a downstream user to determine what/who/and where the Warning List came from.</p>
+<p>You can either pass a custom warning list as a local file path to the warning list json, e.g. <code>tests/file_inputs/custom_warning_lists/list.json</code> or using a url, e.g. <code>http://www.example.com/custom_warning_lists/list.json</code>.</p>
+<p>e.g.</p>
+<pre><code class="language-shell">file2stix --input-file tests/warning_lists/custom_list_matches.txt --misp-custom-warning-list-file tests/warning_lists/custom_list.json --tlp-level GREEN
+</code></pre>
+<p>Or</p>
+<pre><code class="language-shell">file2stix --input-file tests/warning_lists/custom_list_matches.txt --misp-custom-warning-list-file &quot;https://raw.githubusercontent.com/signalscorps/file2stix/main/tests/warning_lists/custom_list.json&quot; --tlp-level GREEN
+</code></pre>
+<p>file2stix will first check the Warning List is in the expected MISP Warning List format. If not, it will return an error and will not process the file.</p>
+<h2 id="extracted-object-logic">Extracted Object logic<a class="headerlink" href="#extracted-object-logic" title="Permanent link">&para;</a></h2>
+<p>If the same Observable is identified more than once in the same report, only one extraction is made. For example, if 1.1.1.1 is seen 3 times in a report, only one Indicator SDO is created for it.</p>
+<p>If using Observed or Sighting mode the Observed Data SDO will count the occurances of an observable in the report using the <code>number_observed</code> field.</p>
+<p>Note, the settings passed to the command line also determine how the following object types are created;</p>
+<h3 id="sros">SROs<a class="headerlink" href="#sros" title="Permanent link">&para;</a></h3>
+<p>These are never reused, and unique to every report.</p>
+<h3 id="sdos">SDOs<a class="headerlink" href="#sdos" title="Permanent link">&para;</a></h3>
+<p>file2stix reuses SDO Indicator, Vulnerability and Location objects (for default extractions) and Attack Pattern, Campaign, Course of Action, Infrastructure, Intrusion Set, Malware, Threat Actor, Tool when the following properties match:</p>
+<ul>
+<li>confidence: different confidence scores cn (assigned with <code>--confidence</code> flag)</li>
+<li>user identity: can be custom (assigned with <code>--user-identity-file</code> flag)</li>
+<li>TLP: either white, green, amber, or red (assigned with <code>tlp-level</code> flag)</li>
+<li>branding: file2stix branding can be removed (assigned with <code>--no-branding</code> flag)</li>
+<li>custom warning list: users can assign their own warning list which will be reported in a custom extension inside each SDO (assigned with <code>--misp-custom-warning-list-file</code> flag).</li>
+</ul>
+<p>Put another way, if the same combination of TLP, identity confidence, branding and warning list exists, a previously created object is updated, else a new one is created.</p>
+<p>Observered Data SDOs are always unique.</p>
+<p>In the case where an SDO is reused, the <code>modified</code> property is update to reflect the latest observation of the observable.</p>
+<h4 id="example-1">Example 1<a class="headerlink" href="#example-1" title="Permanent link">&para;</a></h4>
+<p>To demonstrate how this works in practice, lets assume in report 1 an IPv4 address observable (<code>198.51.100.3</code>) is detected.</p>
+<p>Assuming the IPv4 address (<code>198.51.100.3</code>) has not been saved as an IPv4 address SDO previously from a report with the same confidence, identity, TLP, branding and custom warning list settings, a new SDO would be created for it (in this case, lets give it <code>id</code> = <code>ff26c055-6336-5bc5-b98d-13d6226742dd</code>). </p>
+<p>The <code>created</code> and <code>modified</code> properties for this STIX Object would both have the same timestamp (the time of extraction).</p>
+<p>If this IPv4 address (<code>198.51.100.3</code>) was later detected in another data source imported to file2stix and that report was created with the same confidence, identity, TLP, branding and custom warning list settings, the existing SDO would be used (and updated) to represent the extraction.</p>
+<h4 id="example-2">Example 2<a class="headerlink" href="#example-2" title="Permanent link">&para;</a></h4>
+<p>Lets now imagine a third report was uploaded with <code>198.51.100.3</code> in it. However, this time the report is uploaded with a different TLP to the two previous reports described in example 1.</p>
+<p>In this case, a brand new Indicator SDO would be created for this extraction.</p>
+<p>If a fourth report was uploaded with <code>198.51.100.3</code> in it, with the same settings used for report 3, the same SDO created in report 3 would be reused.</p>
+<p>This does not include SCOs (e.g. Software Objects). Here the existing Object would be used, but not updated (because they do not contain <code>created</code> or <code>modified</code> properties) ti.</p>
+<h3 id="scos">SCOs<a class="headerlink" href="#scos" title="Permanent link">&para;</a></h3>
+<p>SCOs use the <code>value</code> field as an ID Contributing property.</p>
+<p>See the STIX spec for more; https://docs.oasis-open.org/cti/stix/v2.1/os/stix-v2.1-os.html#_q6l05xzpcdf</p>
+<p>Therefore, SCOs do not contain branding, tlp, identity, confidence or warning list and therefore SCOs are always reused if the <code>value</code> field matches.</p>
+<p>Take the examples 1 and 2 for SDOs above, in this case one ipv4-addr SCO for <code>198.51.100.3</code> would be created.</p>
+<h2 id="mode-specific-extractions">Mode specific extractions<a class="headerlink" href="#mode-specific-extractions" title="Permanent link">&para;</a></h2>
+<p>The type of Objects created during extraction depends on the mode used. file2stix offers two modes;</p>
+<ol>
+<li><code>analysis</code> (default): used during research to create STIX 2.1 Objects from general threat research</li>
+<li><a href="../extractions-analysis-mode/">View Analysis Mode documentation here</a></li>
+<li><code>observed</code>: allows you to keep track of how many times you've seen an extraction in a report</li>
+<li><a href="../extractions-observed-mode/">View Observed Mode documentation here</a></li>
+<li><code>sighting</code>: used to denote that extractions from a report represent real instances of an observable being seen in your environment (generally used for log inputs)</li>
+<li><a href="../extractions-sightings-mode/">View Sighting Mode documentation here</a></li>
+</ol>
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+    <nav class="md-footer__inner md-grid" aria-label="Footer" >
+      
+        
+        <a href="../inputs/" class="md-footer__link md-footer__link--prev" aria-label="Previous: 2. Inputs" rel="prev">
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+          </div>
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              2. Inputs
+            </div>
+          </div>
+        </a>
+      
+      
+        
+        <a href="../extractions-analysis-mode/" class="md-footer__link md-footer__link--next" aria-label="Next: 3.2. Analysis Mode (default)" rel="next">
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              3.2. Analysis Mode (default)
+            </div>
+          </div>
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4Z"/></svg>
+          </div>
+        </a>
+      
+    </nav>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright &copy; Signals Corps
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+        <div class="md-social">
+  
+    
+    
+      
+      
+    
+    <a href="https://www.signalscorps.com/" target="_blank" rel="noopener" title="www.signalscorps.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M352 256c0 22.2-1.2 43.6-3.3 64H163.3c-2.2-20.4-3.3-41.8-3.3-64s1.2-43.6 3.3-64h185.4c2.2 20.4 3.3 41.8 3.3 64zm28.8-64h123.1c5.3 20.5 8.1 41.9 8.1 64s-2.8 43.5-8.1 64H380.8c2.1-20.6 3.2-42 3.2-64s-1.1-43.4-3.2-64zm112.6-32H376.7c-10-63.9-29.8-117.4-55.3-151.6 78.3 20.7 142 77.5 171.9 151.6zm-149.1 0H167.7c6.1-36.4 15.5-68.6 27-94.7 10.5-23.6 22.2-40.7 33.5-51.5C239.4 3.2 248.7 0 256 0s16.6 3.2 27.8 13.8c11.3 10.8 23 27.9 33.5 51.5 11.6 26 21 58.2 27 94.7zm-209 0H18.6c30-74.1 93.6-130.9 172-151.6-25.5 34.2-45.3 87.7-55.3 151.6zM8.1 192h123.1c-2.1 20.6-3.2 42-3.2 64s1.1 43.4 3.2 64H8.1C2.8 299.5 0 278.1 0 256s2.8-43.5 8.1-64zm186.6 254.6c-11.6-26-20.9-58.2-27-94.6h176.6c-6.1 36.4-15.5 68.6-27 94.6-10.5 23.6-22.2 40.7-33.5 51.5-11.2 10.7-20.5 13.9-27.8 13.9s-16.6-3.2-27.8-13.8c-11.3-10.8-23-27.9-33.5-51.5zM135.3 352c10 63.9 29.8 117.4 55.3 151.6-78.4-20.7-142-77.5-172-151.6h116.7zm358.1 0c-30 74.1-93.6 130.9-171.9 151.6 25.5-34.2 45.2-87.7 55.3-151.6h116.6z"/></svg>
+    </a>
+  
+    
+    
+      
+      
+    
+    <a href="https://join.slack.com/t/signalscorps-public/shared_invite/zt-1exnc12ww-9RKR6aMgO57GmHcl156DAA" target="_blank" rel="noopener" title="join.slack.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M94.12 315.1c0 25.9-21.16 47.06-47.06 47.06S0 341 0 315.1c0-25.9 21.16-47.06 47.06-47.06h47.06v47.06zm23.72 0c0-25.9 21.16-47.06 47.06-47.06s47.06 21.16 47.06 47.06v117.84c0 25.9-21.16 47.06-47.06 47.06s-47.06-21.16-47.06-47.06V315.1zm47.06-188.98c-25.9 0-47.06-21.16-47.06-47.06S139 32 164.9 32s47.06 21.16 47.06 47.06v47.06H164.9zm0 23.72c25.9 0 47.06 21.16 47.06 47.06s-21.16 47.06-47.06 47.06H47.06C21.16 243.96 0 222.8 0 196.9s21.16-47.06 47.06-47.06H164.9zm188.98 47.06c0-25.9 21.16-47.06 47.06-47.06 25.9 0 47.06 21.16 47.06 47.06s-21.16 47.06-47.06 47.06h-47.06V196.9zm-23.72 0c0 25.9-21.16 47.06-47.06 47.06-25.9 0-47.06-21.16-47.06-47.06V79.06c0-25.9 21.16-47.06 47.06-47.06 25.9 0 47.06 21.16 47.06 47.06V196.9zM283.1 385.88c25.9 0 47.06 21.16 47.06 47.06 0 25.9-21.16 47.06-47.06 47.06-25.9 0-47.06-21.16-47.06-47.06v-47.06h47.06zm0-23.72c-25.9 0-47.06-21.16-47.06-47.06 0-25.9 21.16-47.06 47.06-47.06h117.84c25.9 0 47.06 21.16 47.06 47.06 0 25.9-21.16 47.06-47.06 47.06H283.1z"/></svg>
+    </a>
+  
+    
+    
+      
+      
+    
+    <a href="https://github.com/signalscorps" target="_blank" rel="noopener" title="github.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    <script id="__config" type="application/json">{"base": "..", "features": ["navigation.instant"], "search": "../assets/javascripts/workers/search.5bf1dace.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version.title": "Select version"}}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.078830c0.min.js"></script>
+      
+    
+  </body>
+</html>
